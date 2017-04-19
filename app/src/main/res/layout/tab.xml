@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="@dimen/dm090"
+                android:background="@android:color/transparent" />
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm001"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/dm091"
+                android:background="@color/line" />
+
+            <RadioGroup
+                android:id="@+id/rg_tab"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm090"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_tab_1"
+                    style="@style/tab"
+                    android:checked="true"
+                    android:drawableTop="@drawable/tab_1"
+                    android:padding="@dimen/dm010" />
+
+                <RadioButton
+                    android:id="@+id/rb_tab_2"
+                    style="@style/tab"
+                    android:drawableTop="@drawable/tab_2"
+                    android:padding="@dimen/dm010" />
+
+                <RadioButton
+                    android:id="@+id/rb_tab_3"
+                    style="@style/tab"
+                    android:padding="@dimen/dm010" />
+
+                <RadioButton
+                    android:id="@+id/rb_tab_4"
+                    style="@style/tab"
+                    android:drawableTop="@drawable/tab_4"
+                    android:padding="@dimen/dm010" />
+
+                <RadioButton
+                    android:id="@+id/rb_tab_5"
+                    style="@style/tab"
+                    android:drawableTop="@drawable/tab_5"
+                    android:padding="@dimen/dm010" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm130"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/transparent">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/btn_tab_fram"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#00000000"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/unread_msg_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dm028"
+                        android:layout_marginLeft="@dimen/dm065"
+                        android:layout_marginTop="@dimen/dm005"
+                        android:background="@drawable/bubble"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/dm008"
+                        android:paddingRight="@dimen/dm008"
+                        android:text="9"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dm018"
+                        android:visibility="invisible" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="top|center">
+
+                    <CheckBox
+                        android:layout_width="@dimen/dm100"
+                        android:layout_height="@dimen/dm100"
+                        android:background="@drawable/tab_3"
+                        android:button="@null" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </TabHost>
+
+</RelativeLayout>

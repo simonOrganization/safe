@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dm020"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_home_question_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="楼宇安防监控系统有什么解决方案吗？"
+            android:textColor="@color/title_333"
+            android:textSize="@dimen/dm026" />
+
+        <com.lchtime.safetyexpress.views.MyGridView
+            android:id="@+id/mgv_home_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dm020"
+            android:horizontalSpacing="@dimen/dm010"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="3">
+
+        </com.lchtime.safetyexpress.views.MyGridView>
+
+        <TextView
+            android:id="@+id/tv_home_question_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dm020"
+            android:singleLine="true"
+            android:text="417回答"
+            android:textColor="@color/title_999"
+            android:textSize="@dimen/dm026" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm020"
+        android:background="@color/line_big" />
+
+</LinearLayout>

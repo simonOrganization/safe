@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dm360"
+    android:orientation="vertical">
+
+    <com.sivin.Banner
+        android:id="@+id/sb_home_banner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm360"
+        android:background="@drawable/home_banner"
+        app:banner_pointGravity="center_horizontal"
+        app:banner_pointDrawable="@drawable/sel_banner_point"
+        app:banner_pointContainerBackground="@android:color/transparent"
+        app:banner_pointTopBottomMargin="@dimen/dm020"
+        app:banner_pointLeftRightMargin="@dimen/dm005"
+        app:banner_pointAutoPlayInterval="3"
+        app:banner_pageChangeDuration="800"/>
+
+</LinearLayout>

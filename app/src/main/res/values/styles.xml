@@ -1,0 +1,38 @@
+<resources>
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar"></style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- 底端tab -->
+    <style name="tab">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textSize">@dimen/dm024</item>
+        <item name="android:textColor">@drawable/tab_text</item>
+    </style>
+
+    <!-- dialog样式 -->
+    <style name="MIDialog" parent="android:Theme.Holo.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <!-- EditText -->
+    <style name="edit_style">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/title_333</item>
+        <item name="android:textColorHint">@color/title_999</item>
+        <item name="android:textCursorDrawable">@drawable/color_cursor</item>
+        <item name="android:digits">@string/et_limit_gbk</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+</resources>

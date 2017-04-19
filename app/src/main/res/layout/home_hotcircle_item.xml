@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/dm030"
+    android:paddingBottom="@dimen/dm030"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/raiv_hotcircle_icon"
+        android:layout_width="@dimen/dm110"
+        android:layout_height="@dimen/dm110"
+        android:background="@drawable/home_test_img5"/>
+
+    <TextView
+        android:id="@+id/tv_hotcircle_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dm020"
+        android:singleLine="true"
+        android:text="万家灯火"
+        android:textSize="@dimen/dm026"
+        android:textColor="@color/title_333"/>
+
+    <ImageView
+        android:id="@+id/iv_hotcircle_subscribe"
+        android:layout_width="@dimen/dm100"
+        android:layout_height="@dimen/dm040"
+        android:src="@drawable/subscribe_on"
+        android:layout_marginTop="@dimen/dm014"/>
+
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="title_333">#333333</color>
+    <color name="title_666">#666666</color>
+    <color name="title_999">#999999</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="commen_pink">#ff8f8e</color>
+    <color name="commen_reg">#ea553f</color>
+    <color name="commen_gray">#e0e0e0</color>
+    <color name="commen_orange">#ff9973</color>
+    <color name="line">#e5e5e5</color>
+    <color name="line_big">#f5f5f5</color>
+
+    <color name="holo_blue_bright">#ff00ddff</color>
+    <color name="holo_green_light">#ff99cc00</color>
+    <color name="holo_orange_light">#ffffbb33</color>
+    <color name="holo_red_light">#ffff4444</color>
+
+</resources>

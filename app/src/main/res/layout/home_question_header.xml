@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm020"
+        android:background="@color/line_big" />
+
+    <LinearLayout
+        android:id="@+id/ll_home_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/dm010"
+        android:layout_marginBottom="@dimen/dm010"
+        android:padding="@dimen/dm020"
+        android:orientation="horizontal">
+
+        <com.lchtime.safetyexpress.views.CircleImageView
+            android:layout_width="@dimen/dm080"
+            android:layout_height="@dimen/dm080"
+            android:background="@drawable/vip_test_icon"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:layout_marginLeft="@dimen/dm020"
+            android:text="昵称"
+            android:textSize="@dimen/dm028"
+            android:textColor="@color/title_333"/>
+
+        <ImageView
+            android:layout_width="@dimen/dm035"
+            android:layout_height="@dimen/dm030"
+            android:src="@drawable/right_next" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm020"
+        android:background="@color/line_big" />
+
+</LinearLayout>

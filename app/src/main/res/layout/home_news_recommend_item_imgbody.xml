@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ll_imgbody"
+    android:orientation="vertical">
+
+    <!--<com.lchtime.safetyexpress.views.MultiImageView-->
+        <!--android:id="@+id/miv_recommend_imgbody"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" >-->
+    <!--</com.lchtime.safetyexpress.views.MultiImageView>-->
+
+    <com.lchtime.safetyexpress.views.MyGridView
+        android:id="@+id/mgv_recommend_imgbody"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="@dimen/dm010"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="3">
+
+    </com.lchtime.safetyexpress.views.MyGridView>
+
+</LinearLayout>

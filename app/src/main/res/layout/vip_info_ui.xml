@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm020"
+                android:background="@color/line_big" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dm020"
+                android:layout_marginLeft="@dimen/dm020"
+                android:layout_marginRight="@dimen/dm020"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_info_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dm020"
+                    android:paddingTop="@dimen/dm020">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="头像"
+                        android:textColor="@color/title_666"
+                        android:textSize="@dimen/dm028" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <com.lchtime.safetyexpress.views.CircleImageView
+                        android:id="@+id/viv_info_icon"
+                        android:layout_width="@dimen/dm100"
+                        android:layout_height="@dimen/dm100"
+                        android:layout_marginRight="@dimen/dm010"
+                        android:background="@drawable/vip_test_icon" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dm035"
+                        android:layout_height="@dimen/dm030"
+                        android:src="@drawable/right_next" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm001"
+                    android:background="@color/line" />
+
+                <LinearLayout
+                    android:id="@+id/ll_info_nickname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dm020"
+                    android:paddingTop="@dimen/dm020">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="昵称"
+                        android:textColor="@color/title_666"
+                        android:textSize="@dimen/dm028" />
+
+                    <TextView
+                        android:id="@+id/tv_info_nickname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_marginRight="@dimen/dm010"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:text="未设置"
+                        android:textColor="@color/title_999"
+                        android:textSize="@dimen/dm026" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dm035"
+                        android:layout_height="@dimen/dm030"
+                        android:src="@drawable/right_next" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm001"
+                    android:background="@color/line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dm020"
+                    android:paddingTop="@dimen/dm020">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="行业"
+                        android:textColor="@color/title_666"
+                        android:textSize="@dimen/dm028" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_marginRight="@dimen/dm010"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:text="未设置"
+                        android:textColor="@color/title_999"
+                        android:textSize="@dimen/dm026" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dm035"
+                        android:layout_height="@dimen/dm030"
+                        android:src="@drawable/right_next" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm001"
+                    android:background="@color/line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dm020"
+                    android:paddingTop="@dimen/dm020">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="岗位"
+                        android:textColor="@color/title_666"
+                        android:textSize="@dimen/dm028" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_marginRight="@dimen/dm010"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:text="未设置"
+                        android:textColor="@color/title_999"
+                        android:textSize="@dimen/dm026" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dm035"
+                        android:layout_height="@dimen/dm030"
+                        android:src="@drawable/right_next" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm001"
+                    android:background="@color/line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dm020"
+                    android:paddingTop="@dimen/dm020">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="部门"
+                        android:textColor="@color/title_666"
+                        android:textSize="@dimen/dm028" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_marginRight="@dimen/dm010"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:text="未设置"
+                        android:textColor="@color/title_999"
+                        android:textSize="@dimen/dm026" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dm035"
+                        android:layout_height="@dimen/dm030"
+                        android:src="@drawable/right_next" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm001"
+                    android:background="@color/line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dm020"
+                    android:paddingTop="@dimen/dm020">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="所在地"
+                        android:textColor="@color/title_666"
+                        android:textSize="@dimen/dm028" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_marginRight="@dimen/dm010"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:text="未设置"
+                        android:textColor="@color/title_999"
+                        android:textSize="@dimen/dm026" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dm035"
+                        android:layout_height="@dimen/dm030"
+                        android:src="@drawable/right_next" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm001"
+                    android:background="@color/line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dm020"
+                    android:paddingTop="@dimen/dm020">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="公司名称"
+                        android:textColor="@color/title_666"
+                        android:textSize="@dimen/dm028" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_marginRight="@dimen/dm010"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:text="未设置"
+                        android:textColor="@color/title_999"
+                        android:textSize="@dimen/dm026" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dm035"
+                        android:layout_height="@dimen/dm030"
+                        android:src="@drawable/right_next" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm001"
+                    android:background="@color/line" />
+
+                <LinearLayout
+                    android:id="@+id/ll_info_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dm020"
+                    android:paddingTop="@dimen/dm020">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="手机号"
+                        android:textColor="@color/title_666"
+                        android:textSize="@dimen/dm028" />
+
+                    <TextView
+                        android:id="@+id/tv_info_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_marginRight="@dimen/dm010"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:text="未设置"
+                        android:textColor="@color/title_999"
+                        android:textSize="@dimen/dm026" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dm035"
+                        android:layout_height="@dimen/dm030"
+                        android:src="@drawable/right_next" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm001"
+                    android:background="@color/line" />
+
+                <LinearLayout
+                    android:id="@+id/ll_info_birthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dm020"
+                    android:paddingTop="@dimen/dm020">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="生日"
+                        android:textColor="@color/title_666"
+                        android:textSize="@dimen/dm028" />
+
+                    <TextView
+                        android:id="@+id/tv_info_birthday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_marginRight="@dimen/dm010"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:text="未设置"
+                        android:textColor="@color/title_999"
+                        android:textSize="@dimen/dm026" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dm035"
+                        android:layout_height="@dimen/dm030"
+                        android:src="@drawable/right_next" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm001"
+                    android:background="@color/line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dm020"
+                    android:paddingTop="@dimen/dm020">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="性别"
+                        android:textColor="@color/title_666"
+                        android:textSize="@dimen/dm028" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_marginRight="@dimen/dm010"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:text="未设置"
+                        android:textColor="@color/title_999"
+                        android:textSize="@dimen/dm026" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dm035"
+                        android:layout_height="@dimen/dm030"
+                        android:src="@drawable/right_next" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm001"
+                    android:background="@color/line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dm100"
+                    android:paddingTop="@dimen/dm020">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="个人简历"
+                        android:textColor="@color/title_666"
+                        android:textSize="@dimen/dm028" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_marginRight="@dimen/dm010"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:text="未设置"
+                        android:textColor="@color/title_999"
+                        android:textSize="@dimen/dm026" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dm035"
+                        android:layout_height="@dimen/dm030"
+                        android:src="@drawable/right_next" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm020"
+                android:background="@color/line_big" />
+
+            <LinearLayout
+                android:id="@+id/ll_info_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dm020"
+                android:layout_marginRight="@dimen/dm020"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dm020"
+                android:paddingTop="@dimen/dm020">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="密码"
+                    android:textColor="@color/title_666"
+                    android:textSize="@dimen/dm028" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dm020"
+                    android:layout_marginRight="@dimen/dm010"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="设置"
+                    android:textColor="@color/title_999"
+                    android:textSize="@dimen/dm026" />
+
+                <ImageView
+                    android:layout_width="@dimen/dm035"
+                    android:layout_height="@dimen/dm030"
+                    android:src="@drawable/right_next" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm001"
+                android:layout_marginBottom="@dimen/dm020"
+                android:layout_marginLeft="@dimen/dm020"
+                android:layout_marginRight="@dimen/dm020"
+                android:background="@color/line" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

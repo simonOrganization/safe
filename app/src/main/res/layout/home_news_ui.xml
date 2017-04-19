@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/title"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm020"
+        android:background="@color/line_big"/>
+
+    <com.lchtime.safetyexpress.views.XHorizontalScrollView
+        android:id="@+id/xhsv_home_news"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm080"
+        android:background="@drawable/background_tabs" >
+    </com.lchtime.safetyexpress.views.XHorizontalScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm020"
+        android:background="@color/line_big"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_home_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>

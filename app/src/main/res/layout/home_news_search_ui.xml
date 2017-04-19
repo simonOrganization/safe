@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_home"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dm020"
+        android:paddingLeft="@dimen/dm020"
+        android:paddingRight="@dimen/dm020"
+        android:paddingTop="@dimen/dm015">
+
+        <EditText
+            android:id="@+id/et_news_search"
+            style="@style/edit_style"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dm060"
+            android:layout_weight="1"
+            android:background="@drawable/shape_bg_gray"
+            android:drawableLeft="@drawable/home_search"
+            android:drawablePadding="@dimen/dm010"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:hint="输入关键词"
+            android:imeOptions="actionSearch"
+            android:paddingLeft="@dimen/dm010"
+            android:singleLine="true"
+            android:textColor="@color/title_333"
+            android:textColorHint="@color/commen_reg"
+            android:textSize="@dimen/dm024" />
+
+        <TextView
+            android:id="@+id/tv_news_search_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dm050"
+            android:layout_marginLeft="@dimen/dm020"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/commen_reg"
+            android:textSize="@dimen/dm026" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/sv_news_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm080"
+                android:background="@color/line_big"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dm020"
+                android:paddingRight="@dimen/dm020">
+
+                <TextView
+                    android:id="@+id/tv_news_search_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="历史记录"
+                    android:textColor="@color/title_666"
+                    android:textSize="@dimen/dm026" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:id="@+id/ll_news_search_clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dm020">
+
+                    <ImageView
+                        android:layout_width="@dimen/dm043"
+                        android:layout_height="@dimen/dm043"
+                        android:src="@drawable/search_delete" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/slv_news_search_record"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dm020"
+                android:layout_marginRight="@dimen/dm020"></ListView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm080"
+                android:layout_marginTop="@dimen/dm020"
+                android:background="@color/line_big"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dm020"
+                android:paddingRight="@dimen/dm020">
+
+                <TextView
+                    android:id="@+id/tv_news_search_hot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="热门搜索"
+                    android:textColor="@color/title_666"
+                    android:textSize="@dimen/dm026" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ListView
+        android:id="@+id/lv_news_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:divider="@null"
+        android:listSelector="@android:color/transparent"></ListView>
+
+</LinearLayout>
