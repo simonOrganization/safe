@@ -8,11 +8,14 @@ import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -24,6 +27,7 @@ import com.lchtime.safetyexpress.ui.circle.CircleUI;
 import com.lchtime.safetyexpress.ui.home.HomeUI;
 import com.lchtime.safetyexpress.ui.vip.VipUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.views.CirclePublicPop;
 
 
 /**
@@ -41,6 +45,8 @@ public class TabUI extends TabActivity implements OnClickListener {
     private RadioButton rb_tab_3;
     private RadioButton rb_tab_4;
     private RadioButton rb_tab_5;
+    private RadioGroup rg_tab;
+    private CheckBox tab_check;
     private TabHost tabHost;
 
     @Override
@@ -53,6 +59,15 @@ public class TabUI extends TabActivity implements OnClickListener {
         Drawable drawable;
         int right = CommonUtils.getDimen(this, R.dimen.dm035);
         int bottom = CommonUtils.getDimen(this, R.dimen.dm035);
+        rg_tab = (RadioGroup) findViewById(R.id.rg_tab);
+        tab_check = (CheckBox) findViewById(R.id.tab_check);
+        tab_check.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CirclePublicPop circlePublicPop = new CirclePublicPop(TabUI.this);
+                circlePublicPop.showPopData(rg_tab);
+            }
+        });
         rb_tab_1 = (RadioButton) findViewById(R.id.rb_tab_1);
         rb_tab_1.setOnClickListener(this);
         rb_tab_1.setText("首页");
@@ -99,7 +114,12 @@ public class TabUI extends TabActivity implements OnClickListener {
         intent = new Intent().setClass(this, VipUI.class);
         spec = tabHost.newTabSpec("tab5").setIndicator("tab5").setContent(intent);
         tabHost.addTab(spec);
-
+        HomeUI.homeUI_instance.setHomeToCircleInterface(new HomeUI.HomeToCircleInterface() {
+            @Override
+            public void toCircleActivity() {
+                setCurrentTabByTag("tab2");
+            }
+        });
     }
 
     @Override
@@ -113,6 +133,7 @@ public class TabUI extends TabActivity implements OnClickListener {
                 break;
             case R.id.rb_tab_3:
                 setCurrentTabByTag("tab3");
+
                 break;
             case R.id.rb_tab_4:
                 setCurrentTabByTag("tab4");
