@@ -45,12 +45,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="图片（选填，提供问题截图）"/>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rc_pic"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dm277">
 
-        </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:overScrollMode="never" />
 
         <TextView
             android:padding="@dimen/dm016"

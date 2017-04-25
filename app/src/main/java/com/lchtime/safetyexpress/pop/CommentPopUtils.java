@@ -24,13 +24,14 @@ public abstract class CommentPopUtils
     protected OnClickListener onClickListener;
     protected OnItemClickListener itemClickListener;
     protected OnDismissListener onDismissListener;
+    protected View contentView;
 
     public CommentPopUtils(View v, Context context, int layout)
     {
         super();
         this.v = v;
-        View view = LayoutInflater.from(context).inflate(layout, null);
-        popupWindow = new PopupWindow(view, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        contentView = LayoutInflater.from(context).inflate(layout, null);
+        popupWindow = new PopupWindow(contentView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         popupWindow.setOnDismissListener(new OnDismissListener()
         {
             @Override
@@ -43,7 +44,7 @@ public abstract class CommentPopUtils
                 }
             }
         });
-        initLayout(view, context);
+        initLayout(contentView, context);
         context = null;
 
     }
@@ -144,6 +145,40 @@ public abstract class CommentPopUtils
         popupWindow.update();
 
     }
+
+    /**
+     * 下拉式 弹出 pop菜单 parent
+     *
+     * @paramparent
+     */
+    @SuppressWarnings("deprecation")
+    public void myLocation()
+    {
+        // 刷新状态
+        popupWindow.update();
+        // 设置允许在外点击消失
+        popupWindow.setOutsideTouchable(true);
+        // 使其聚集
+        popupWindow.setTouchable(true);
+        popupWindow.setFocusable(true);
+        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+                    popupWindow.dismiss();
+                    return true;
+                }
+                return false;
+            }
+        });
+        // 设置弹出位置
+        popupWindow.showAtLocation(contentView, Gravity.BOTTOM, 0, 0);
+
+
+    }
+
+
+
 
     /**
      * 隐藏菜单

@@ -174,14 +174,14 @@ public class VipUI extends BaseUI {
      */
     @OnClick(R.id.ll_vip_opinion)
     private void getOpinion(View view) {
-        String ub_id = SpTools.getString(this, Constants.CONFIGFILE,"");
-        if (TextUtils.isEmpty(ub_id)){
-            Intent intent = new Intent(this, LoginUI.class);
-            startActivity(intent);
-        }else {
+//        String ub_id = SpTools.getString(this, Constants.CONFIGFILE,"");
+//        if (TextUtils.isEmpty(ub_id)){
+//            Intent intent = new Intent(this, LoginUI.class);
+//            startActivity(intent);
+//        }else {
             Intent intent = new Intent(VipUI.this, OpinionActivity.class);
             startActivity(intent);
-        }
+//        }
     }
 
     /**

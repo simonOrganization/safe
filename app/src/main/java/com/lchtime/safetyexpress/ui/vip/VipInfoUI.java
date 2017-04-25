@@ -1,15 +1,16 @@
 package com.lchtime.safetyexpress.ui.vip;
 
-import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.text.TextUtils;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.DatePicker;
-import android.widget.ImageView;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
@@ -20,18 +21,23 @@ import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.luck.picture.lib.model.FunctionConfig;
+import com.luck.picture.lib.model.FunctionOptions;
+import com.luck.picture.lib.model.PictureConfig;
+import com.yalantis.ucrop.entity.LocalMedia;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 个人资料
  * Created by user on 2017/4/15.
  */
 @ContentView(R.layout.vip_info_ui)
-public class VipInfoUI extends BaseUI {
+public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindow.OnDismissListener{
 
     public static final int WORK = 0;
     public static final int WORK_DOWHAT = 1;
@@ -46,6 +52,11 @@ public class VipInfoUI extends BaseUI {
     private TimePickerView pvCustomTime;
 
     private ArrayList<CardBean> cardItem = new ArrayList<>();
+    //选择拍摄或者选取头像的popwindow
+
+    private PopupWindow popupWindow;
+
+    private View contentView;
     //生日
     @ViewInject(R.id.tv_info_birthday)
     private TextView tv_birthday;
@@ -65,6 +76,10 @@ public class VipInfoUI extends BaseUI {
     @ViewInject(R.id.tv_info_sex)
     private TextView tv_sex;
 
+    //性别
+    @ViewInject(R.id.vip_info_ui)
+    private View vip_info_ui;
+
 
     private String updateDate;
 
@@ -76,6 +91,33 @@ public class VipInfoUI extends BaseUI {
     @Override
     protected void setControlBasis() {
         setTitle("个人资料");
+
+        initPopWindow();
+//        selectPicPop = new SelectPicPop(vip_info_ui, VipInfoUI.this, R.layout.activity_pic_pop);
+    }
+
+    private void initPopWindow() {
+
+        contentView = LayoutInflater.from(VipInfoUI.this).inflate(
+                R.layout.activity_pic_pop, null);
+        //设置弹出框的宽度和高度
+        popupWindow = new PopupWindow(contentView,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setOnDismissListener(this);
+        ColorDrawable dw = new ColorDrawable(55000000);
+        popupWindow.setBackgroundDrawable(dw);
+        popupWindow.setFocusable(true);// 取得焦点
+        //进入退出的动画
+        popupWindow.setAnimationStyle(R.style.mypopwindow_anim_style);
+        //注意  要是点击外部空白处弹框消息  那么必须给弹框设置一个背景色  不然是不起作用的
+
+        //点击外部消失
+        popupWindow.setOutsideTouchable(true);
+        //设置可以点击
+        popupWindow.setTouchable(true);
+
+
     }
 
     @Override
@@ -87,6 +129,30 @@ public class VipInfoUI extends BaseUI {
         initCustomTimePicker();
     }
 
+
+    /**
+     * 头像
+     * @param view
+     */
+    @OnClick(R.id.ll_info_icon)
+    private void getPicture(View view){
+        backgroundAlpha(0.5f);
+        popupWindow.showAtLocation(contentView, Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0);
+
+        contentView.findViewById(R.id.tv_picture_list).setOnClickListener(this);
+        contentView.findViewById(R.id.tv_takepic).setOnClickListener(this);
+    }
+
+    /**
+     * 设置添加屏幕的背景透明度
+     * @param bgAlpha
+     */
+    public void backgroundAlpha(float bgAlpha)
+    {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = bgAlpha; //0.0-1.0
+        getWindow().setAttributes(lp);
+    }
     /**
      * 昵称
      * @param view
@@ -343,5 +409,49 @@ public class VipInfoUI extends BaseUI {
         }
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()){
+            case R.id.tv_picture_list:
+                FunctionOptions options = new FunctionOptions.Builder()
+                        . setSelectMode(FunctionConfig.MODE_SINGLE) // 可选择图片的数量
+                        .create();
+                PictureConfig.getPictureConfig().init(options).openPhoto(this, resultCallback);
+                break;
+            case R.id.tv_takepic:
+                PictureConfig.getPictureConfig().startOpenCamera(this, resultCallback);
+                break;
+        }
+        popupWindow.dismiss();
+    }
+
+    /**
+     * 图片回调方法
+     */
+    private PictureConfig.OnSelectResultCallback resultCallback = new PictureConfig.OnSelectResultCallback() {
+        @Override
+        public void onSelectSuccess(List<LocalMedia> resultList) {
+            Log.i("callBack_result", resultList.size() + "");
+            LocalMedia media = resultList.get(0);
+            if (media.isCut() && !media.isCompressed()) {
+                // 裁剪过
+                String path = media.getCutPath();
+            } else if (media.isCompressed() || (media.isCut() && media.isCompressed())) {
+                // 压缩过,或者裁剪同时压缩过,以最终压缩过图片为准
+                String path = media.getCompressPath();
+            } else {
+                // 原图地址
+                String path = media.getPath();
+            }
+
+        }
+    };
+
+    @Override
+    public void onDismiss() {
+        backgroundAlpha(1f);
     }
 }

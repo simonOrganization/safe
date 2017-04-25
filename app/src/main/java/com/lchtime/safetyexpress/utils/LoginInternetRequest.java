@@ -66,10 +66,12 @@ public class LoginInternetRequest {
         }
         String url = context.getResources().getString(R.string.service_host_address)
                 .concat(context.getResources().getString(R.string.getLogin));
-        OkHttpUtils.get().url(url)
+        Log.d("host",url);
+        OkHttpUtils.post().url(url)
                 .addParams("sid","")
                 .addParams("ub_phone",phonenumber)
-                .addParams("index",(index++)+"")
+//                .addParams("index",(index++)+"")
+                .addParams("index",3+"")
                 .addParams("ud_pwd",password)
                 .addParams("uo_long","")
                 .addParams("uo_lat","")

@@ -52,14 +52,12 @@ public class LoginUI extends BaseUI {
     private void getLogin(View view){
 
 
-        String phonenumber = et_login_username.getText().toString();
-        String password = et_login_passport.getText().toString();
+        String phonenumber = et_login_username.getText().toString().trim();
+        String password = et_login_passport.getText().toString().trim();
         LoginInternetRequest.login(phonenumber, password, new LoginInternetRequest.ForResultListener() {
             @Override
                     public void onResponseMessage(String code) {
                         if (code.equals("成功")){
-                            Intent intent = new Intent(LoginUI.this, TabUI.class);
-                            startActivity(intent);
                             finish();
                 }
             }

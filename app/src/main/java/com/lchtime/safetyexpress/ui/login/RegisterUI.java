@@ -72,8 +72,8 @@ public class RegisterUI extends BaseUI {
 //        Intent intent = new Intent(RegisterUI.this, TabUI.class);
 //        startActivity(intent);
 //        finish();
-        String phoneNum = et_register_username.getText().toString();
-        String pwd = et_register_passport.getText().toString();
+        String phoneNum = et_register_username.getText().toString().trim();
+        String pwd = et_register_passport.getText().toString().trim();
         String customRegisterNum = et_register_code.getText().toString();
         LoginInternetRequest.register(phoneNum, registerCode, pwd, customRegisterNum, register_getcode, new LoginInternetRequest.ForResultListener() {
             @Override

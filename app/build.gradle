@@ -6,7 +6,7 @@ android {
     buildToolsVersion "24.0.3"
     defaultConfig {
         applicationId "com.lchtime.safetyexpress"
-        minSdkVersion 17
+        minSdkVersion 16
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -32,4 +32,7 @@ dependencies {
     compile files('libs/gson-2.2.1.jar')
     compile 'com.jakewharton:butterknife:8.5.1'
     apt 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile 'com.github.LuckSiege.PictureSelector:picture_library:v1.3.1'
+
+
 }
