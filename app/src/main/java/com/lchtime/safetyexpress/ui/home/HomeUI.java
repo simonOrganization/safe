@@ -12,9 +12,11 @@ import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.HomeHotCircleAdapter;
 import com.lchtime.safetyexpress.adapter.HomeHotTrackAdapter;
 import com.lchtime.safetyexpress.adapter.HomeHotVideoAdapter;
+import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
 import com.lchtime.safetyexpress.bean.HomeBannerBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.circle.CircleUI;
+import com.lchtime.safetyexpress.ui.news.HomeNewActivity;
 import com.lchtime.safetyexpress.views.MyGridView;
 import com.lchtime.safetyexpress.views.MyListView;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -191,7 +193,8 @@ public class HomeUI extends BaseUI {
      */
     @OnClick(R.id.ll_home_news)
     private void getNews(View view){
-        Intent intent = new Intent(HomeUI.this, HomeNewsUI.class);
+//        Intent intent = new Intent(HomeUI.this, HomeNewsUI.class);
+        Intent intent = new Intent(HomeUI.this, HomeNewActivity.class);
         startActivity(intent);
     }
 
