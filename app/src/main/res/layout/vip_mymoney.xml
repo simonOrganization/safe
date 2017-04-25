@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line_big"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <LinearLayout
+        android:background="@null"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm328"
+        android:orientation="vertical">
+
+        <TextView
+            android:padding="@dimen/dm024"
+            android:textSize="@dimen/dm022"
+            android:textColor="#333333"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="问题和意见"/>
+
+        <EditText
+            android:background="@android:color/transparent"
+            android:textCursorDrawable="@null"
+            android:layout_marginLeft="@dimen/dm024"
+            android:textSize="@dimen/dm020"
+            android:textColor="#333333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请简要描述你的问题意见"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:padding="@dimen/dm024"
+            android:textSize="@dimen/dm022"
+            android:textColor="#666666"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="图片（选填，提供问题截图）"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_marginLeft="@dimen/dm016"
+                android:layout_width="@dimen/dm277"
+                android:layout_height="@dimen/dm277"
+                android:src="@drawable/updata_img"/>
+            <ImageView
+                android:layout_marginLeft="@dimen/dm016"
+                android:layout_width="@dimen/dm277"
+                android:layout_height="@dimen/dm277"
+                android:src="@drawable/updata_img_btn"/>
+        </LinearLayout>
+
+        <TextView
+            android:padding="@dimen/dm016"
+            android:textSize="@dimen/dm021"
+            android:textColor="#999999"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="上传图片支持jpg、png等格式，尺寸需小鱼200KB"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

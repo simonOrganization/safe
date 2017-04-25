@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--主 -->
+    <string name="service_host_address">http://douniu.com/</string>
+
+    <!--登录-->
+    <string name="getLogin">index.php/user/login/</string>
+    <!--发送验证码-->
+    <string name="sendCode">index.php/valid/send/</string>
+    <!--注册-->
+    <string name="reg">index.php/user/reg/</string>
+    <!--验证码验证-->
+    <string name="valid">index.php/valid/valid/</string>
+    <!--重置密码-->
+    <string name="reset">index.php/user/reset/</string>
+    <!--修改密码-->
+    <string name="chpwd">index.php/user/chpwd/</string>
+    <!--获取个人信息-->
+    <string name="mycount">index.php/mycount/view/</string>
+    <!--修改个人信息-->
+    <string name="mycountEdit">index.php/mycount/edit/</string>
+    <!--上传-->
+    <string name="upload">index.php/system/upload/</string>
+
+</resources>
