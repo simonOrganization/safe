@@ -88,6 +88,14 @@ public class CommonUtils {
             return -1;
         }
     }
+    //查看sd卡是否存在
+    public static boolean ExistSDCard() {
+        if (android.os.Environment.getExternalStorageState().equals(
+                android.os.Environment.MEDIA_MOUNTED)) {
+            return true;
+        } else
+            return false;
+    }
 
     /**
      * 判断是否有网

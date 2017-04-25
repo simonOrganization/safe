@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_home"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm066"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dm020"
+        android:paddingRight="@dimen/dm020">
+
+        <ImageView
+            android:layout_width="@dimen/dm028"
+            android:layout_height="@dimen/dm028"
+            android:background="@drawable/backs"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/v_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="我的订阅"
+            android:textColor="@color/commen_reg"
+            android:textSize="@dimen/dm024" />
+
+        <ImageView
+            android:id="@+id/iv_right"
+            android:layout_width="@dimen/dm028"
+            android:layout_height="@dimen/dm028"
+            android:src="@drawable/circle_subscribe" />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/circle_subscribe_rc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/dm020"/>
+
+
+</LinearLayout>

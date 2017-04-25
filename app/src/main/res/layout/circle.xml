@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm080"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/dm010"
+        android:paddingRight="@dimen/dm010"
+        >
+        <LinearLayout
+            android:id="@+id/ll_home_search"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dm050"
+            android:layout_weight="1"
+            android:background="@drawable/shape_bg_gray"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dm010"
+            android:paddingRight="@dimen/dm010">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/home_search"
+                android:drawablePadding="@dimen/dm012"
+                android:gravity="center"
+                android:text="搜你感兴趣的内容"
+                android:textColor="@color/commen_reg"
+                android:textSize="@dimen/dm020" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/circle_subscribe_but"
+            android:layout_width="@dimen/dm070"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="订阅"
+            android:textColor="@color/commen_reg"
+            android:textSize="@dimen/dm020"
+            android:background="@null"/>
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:descendantFocusability="blocksDescendants"
+            android:background="@color/white">
+
+            <include layout="@layout/home_banner" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm060"
+                android:orientation="horizontal"
+                android:background="@color/white">
+                <LinearLayout
+                    android:id="@+id/circle_work"
+                    android:layout_width="@dimen/dm120"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/dm020">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="行业选择"
+                        android:textSize="@dimen/dm024"
+                        android:textColor="@color/title_333"/>
+                    <ImageView
+                        android:layout_width="@dimen/dm020"
+                        android:layout_height="@dimen/dm010"
+                        android:background="@drawable/circle_bot"
+                        android:layout_marginLeft="@dimen/dm006"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/circle_gangwei"
+                    android:layout_width="@dimen/dm120"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/dm030">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="岗位选择"
+                        android:textSize="@dimen/dm024"
+                        android:textColor="@color/title_333"/>
+                    <ImageView
+                        android:layout_width="@dimen/dm020"
+                        android:layout_height="@dimen/dm010"
+                        android:background="@drawable/circle_bot"
+                        android:layout_marginLeft="@dimen/dm006"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/circle_address"
+                    android:layout_width="@dimen/dm120"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/dm030">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="地理位置"
+                        android:textSize="@dimen/dm024"
+                        android:textColor="@color/title_333"/>
+                    <ImageView
+                        android:layout_width="@dimen/dm020"
+                        android:layout_height="@dimen/dm010"
+                        android:background="@drawable/circle_bot"
+                        android:layout_marginLeft="@dimen/dm006"/>
+
+                </LinearLayout>
+                <View
+                    android:id="@+id/circle_layout_view"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:id="@+id/circle_more"
+                    android:layout_width="@dimen/dm026"
+                    android:layout_height="@dimen/dm026"
+                    android:background="@drawable/circle_sort"
+                    android:layout_marginRight="@dimen/dm016"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="true"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm016"
+                android:background="@color/page_color"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <View
+                    android:id="@+id/circle_pop_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/title_999"
+                    android:visibility="gone"/>
+            <com.lchtime.safetyexpress.views.EmptyRecyclerView
+                android:id="@+id/circle_rc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/title_999"
+                android:layout_marginLeft="@dimen/dm020"
+                android:layout_marginRight="@dimen/dm020"
+                />
+            <TextView
+                android:id="@+id/circle_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="沒有"
+                android:visibility="gone"/>
+
+
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</LinearLayout>

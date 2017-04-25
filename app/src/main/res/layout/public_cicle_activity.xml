@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:id="@+id/public_circle_activity">
+    <LinearLayout
+        android:id="@+id/ll_home"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm066"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dm010"
+        android:paddingRight="@dimen/dm010">
+
+        <Button
+            android:id="@+id/public_circle_cancel"
+            android:layout_width="@dimen/dm050"
+            android:layout_height="match_parent"
+            android:text="取消"
+            android:textSize="@dimen/dm020"
+            android:textColor="@color/commen_reg"
+            android:background="@null"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/v_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="发圈子"
+            android:textColor="@color/commen_reg"
+            android:textSize="@dimen/dm024" />
+        <Button
+            android:id="@+id/public_circle_submit"
+            android:layout_width="@dimen/dm080"
+            android:layout_height="match_parent"
+            android:text="发送"
+            android:textSize="@dimen/dm020"
+            android:textColor="@color/commen_reg"
+            android:background="@null"
+            android:gravity="center"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm020"
+        android:background="@color/page_color"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm240"
+        android:background="@color/white"
+        android:textColorHint="@color/title_999"
+        android:textColor="@color/title_666"
+        android:hint="分享新事件"
+        android:gravity="top"
+        android:textSize="@dimen/dm020"
+        android:padding="@dimen/dm020"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm020"
+        android:background="@color/page_color"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加图片，最多可添加9张"
+        android:textColor="@color/title_999"
+        android:textSize="@dimen/dm020"
+        android:layout_marginTop="@dimen/dm016"
+        android:layout_marginLeft="@dimen/dm016"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/public_circle_rc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dm012"
+        android:layout_marginLeft="@dimen/dm016"
+        android:layout_marginRight="@dimen/dm016" />
+
+</LinearLayout>

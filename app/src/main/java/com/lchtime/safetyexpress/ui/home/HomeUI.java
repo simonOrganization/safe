@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.ui.home;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import com.lchtime.safetyexpress.adapter.HomeHotTrackAdapter;
 import com.lchtime.safetyexpress.adapter.HomeHotVideoAdapter;
 import com.lchtime.safetyexpress.bean.HomeBannerBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
+import com.lchtime.safetyexpress.ui.circle.CircleUI;
 import com.lchtime.safetyexpress.views.MyGridView;
 import com.lchtime.safetyexpress.views.MyListView;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -51,6 +53,8 @@ public class HomeUI extends BaseUI {
     private HomeHotCircleAdapter homeHotCircleAdapter;
     private HomeHotTrackAdapter homeHotTrackAdapter;
     private HomeHotVideoAdapter homeHotVideoAdapter;
+    private HomeToCircleInterface homeToCircleInterface;
+    public static HomeUI homeUI_instance = null;
 
     private List<HomeBannerBean> mDatas = new ArrayList<>();
 
@@ -61,6 +65,7 @@ public class HomeUI extends BaseUI {
 
     @Override
     protected void setControlBasis() {
+        homeUI_instance = this;
         //轮播图
         BannerAdapter adapter = new BannerAdapter<HomeBannerBean>(mDatas) {
             @Override
@@ -206,6 +211,7 @@ public class HomeUI extends BaseUI {
      */
     @OnClick(R.id.ll_home_circle)
     private void getCircle(View view){
+       homeToCircleInterface.toCircleActivity();
         makeText("安全圈子");
     }
 
@@ -217,6 +223,12 @@ public class HomeUI extends BaseUI {
     private void getQuestion(View view){
         Intent intent = new Intent(HomeUI.this, HomeQuestionUI.class);
         startActivity(intent);
+    }
+    public interface HomeToCircleInterface{
+        void toCircleActivity();
+    }
+    public void setHomeToCircleInterface(HomeToCircleInterface homeToCircleInterface){
+        this.homeToCircleInterface = homeToCircleInterface;
     }
 
 }
