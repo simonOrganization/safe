@@ -125,10 +125,6 @@
                 android:textColor="@color/title_999"
                 android:textSize="@dimen/dm026" />
 
-            <ImageView
-                android:layout_width="@dimen/dm035"
-                android:layout_height="@dimen/dm030"
-                android:src="@drawable/right_next" />
 
         </LinearLayout>
 

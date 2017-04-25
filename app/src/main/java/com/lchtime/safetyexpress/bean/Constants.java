@@ -5,4 +5,7 @@ package com.lchtime.safetyexpress.bean;
  */
 
 public class Constants {
+
+    public static String userId = "userId";
+    public static final String CONFIGFILE = "login";
 }

@@ -24,7 +24,9 @@ public class VipInfoHintPop extends CommentPopUtils implements View.OnClickListe
     public void initLayout(View v, Context context) {
         tv_perfect = (TextView) v.findViewById(R.id.tv_perfect);
         tv_jump = (TextView) v.findViewById(R.id.tv_jump);
+        //设置完善按钮点击事件
         tv_perfect.setOnClickListener(this);
+        //设置跳过按钮点击事件
         tv_jump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

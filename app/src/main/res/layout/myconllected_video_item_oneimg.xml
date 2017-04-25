@@ -11,6 +11,17 @@
         android:layout_margin="@dimen/dm020"
         android:orientation="horizontal">
 
+        <CheckBox
+            android:id="@+id/rb_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@null"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:button="@null"
+            android:visibility="visible"
+            android:layout_marginRight="@dimen/dm020" />
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -38,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:text="未来新闻"
+                    android:text="小爷们"
                     android:textColor="@color/title_666"
                     android:textSize="@dimen/dm024" />
 
@@ -48,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dm020"
                     android:singleLine="true"
-                    android:text="223评论"
+                    android:text="1万次播放"
                     android:textColor="@color/title_666"
                     android:textSize="@dimen/dm024" />
 
@@ -58,20 +69,36 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dm020"
                     android:singleLine="true"
-                    android:text="09:30"
+                    android:text="2-1-16"
                     android:textColor="@color/title_666"
                     android:textSize="@dimen/dm024" />
 
             </LinearLayout>
 
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/iv_recommend_oneimg_img"
+        <RelativeLayout
             android:layout_width="@dimen/dm230"
             android:layout_height="@dimen/dm160"
-            android:layout_marginLeft="@dimen/dm020"
-            android:background="@drawable/home_test_img6" />
+            android:layout_marginLeft="@dimen/dm020">
+            <ImageView
+                android:id="@+id/iv_recommend_oneimg_img"
+                android:layout_width="@dimen/dm230"
+                android:layout_height="@dimen/dm160"
+                android:layout_marginLeft="@dimen/dm020"
+                android:background="@drawable/home_test_img6" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:background="@color/black"
+                android:textColor="@color/white"
+                android:layout_marginRight="@dimen/dm008"
+                android:layout_marginBottom="@dimen/dm008"
+                android:text="05:55"/>
+        </RelativeLayout>
+
+
 
     </LinearLayout>
 

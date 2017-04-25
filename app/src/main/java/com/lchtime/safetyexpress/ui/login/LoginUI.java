@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 
+import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.TabUI;
+import com.lchtime.safetyexpress.utils.LoginInternetRequest;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -24,6 +26,7 @@ public class LoginUI extends BaseUI {
     //密码
     @ViewInject(R.id.et_login_passport)
     private EditText et_login_passport;
+
 
     @Override
     protected void back() {
@@ -47,9 +50,20 @@ public class LoginUI extends BaseUI {
      */
     @OnClick(R.id.tv_login_login)
     private void getLogin(View view){
-        Intent intent = new Intent(LoginUI.this, TabUI.class);
-        startActivity(intent);
-        finish();
+
+
+        String phonenumber = et_login_username.getText().toString();
+        String password = et_login_passport.getText().toString();
+        LoginInternetRequest.login(phonenumber, password, new LoginInternetRequest.ForResultListener() {
+            @Override
+                    public void onResponseMessage(String code) {
+                        if (code.equals("成功")){
+                            Intent intent = new Intent(LoginUI.this, TabUI.class);
+                            startActivity(intent);
+                            finish();
+                }
+            }
+        });
     }
 
     /**
@@ -98,5 +112,6 @@ public class LoginUI extends BaseUI {
     private void getSina(View view){
         makeText("微博");
     }
+
 
 }

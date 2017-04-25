@@ -4,42 +4,48 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
+        android:background="@color/white"
+        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#EEEEEE">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="#aaa" />
-
-        <ImageView
-            android:id="@+id/iv_cancel"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="17dp"
-            android:padding="8dp"
-            android:src="@drawable/to_down" />
+        android:layout_height="60dp"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_finish"
-            android:layout_width="wrap_content"
+            android:background="@color/white"
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="17dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:padding="8dp"
-            android:text="完成"
-            android:textColor="#24AD9D"
+            android:text="取消"
+            android:textColor="@color/title_666"
             android:textSize="18sp" />
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="#aaa" />
-    </RelativeLayout>
+            android:layout_gravity="center_vertical"
+            android:layout_width="0.5dp"
+            android:layout_height="40dp"
+            android:background="#d5d5d5" />
+        <TextView
+            android:background="@color/white"
+            android:id="@+id/tv_sure"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:text="确定"
+            android:gravity="center"
+            android:textColor="@color/commen_pink"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#d5d5d5" />
 
     <!--此部分需要完整复制过去，删减或者更改ID会导致初始化找不到内容而报空-->
     <LinearLayout
@@ -68,19 +74,8 @@
             android:layout_weight="1" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#24ad9d" />
 
-    <TextView
-        android:id="@+id/tv_add"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#E5E9EC"
-        android:gravity="center"
-        android:text="+ 添加加油卡"
-        android:textColor="#24AD9D"
-        android:textSize="18sp" />
+
+
 
 </LinearLayout>

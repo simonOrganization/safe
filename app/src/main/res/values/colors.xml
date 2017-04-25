@@ -22,4 +22,10 @@
     <color name="holo_orange_light">#ffffbb33</color>
     <color name="holo_red_light">#ffff4444</color>
 
+
+    <color name="tab_indicator_selected">#ff8f8e</color>
+    <color name="tab_text_selected">#ff8f8e</color>
+    <color name="tab_text_normal">#333333</color>
+    <color name="tab_devider">#ffffff</color>
+
 </resources>

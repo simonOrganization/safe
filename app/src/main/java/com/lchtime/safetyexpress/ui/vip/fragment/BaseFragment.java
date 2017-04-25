@@ -7,7 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cp.mygoogle.utils.UIUtils;
+import com.lchtime.safetyexpress.utils.UIUtils;
+import com.lchtime.safetyexpress.views.LoadingPager;
 
 import java.util.List;
 import java.util.Map;

@@ -1,11 +1,16 @@
 package com.lchtime.safetyexpress.ui.vip;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.view.View;
+import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.ui.BaseUI;
+import com.lchtime.safetyexpress.views.CircleImageView;
 import com.lidroid.xutils.view.annotation.ContentView;
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 /**
@@ -15,6 +20,9 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 @ContentView(R.layout.vip_setting_ui)
 public class VipSettingUI extends BaseUI {
 
+    @ViewInject(R.id.tv_setting_version)
+    private TextView tv_version;
+
     @Override
     protected void back() {
         finish();
@@ -23,6 +31,7 @@ public class VipSettingUI extends BaseUI {
     @Override
     protected void setControlBasis() {
         setTitle("设置");
+        setVersion();
     }
 
     @Override
@@ -35,4 +44,16 @@ public class VipSettingUI extends BaseUI {
         Intent intent = new Intent(VipSettingUI.this,VipSettingAboutUsUI.class);
         startActivity(intent);
     }
+
+    private void setVersion() {
+        String version = "未设置";
+        try {
+            version = getPackageManager().getPackageInfo(getPackageName(),0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        tv_version.setText(version);
+    }
+
+
 }

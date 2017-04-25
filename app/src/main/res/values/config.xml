@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--主 -->
-    <string name="service_host_address">http://douniu.com/</string>
+    <string name="service_host_address">http://fcar.com/</string>
 
     <!--登录-->
     <string name="getLogin">index.php/user/login/</string>
     <!--发送验证码-->
-    <string name="sendCode">index.php/valid/send/</string>
+    <string name="sendCode">index.php/system/send/</string>
     <!--注册-->
     <string name="reg">index.php/user/reg/</string>
     <!--验证码验证-->

@@ -11,6 +11,9 @@ import android.graphics.RectF;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.DisplayMetrics;
+import android.widget.Toast;
+
+import com.lchtime.safetyexpress.MyApplication;
 
 /**
  * Created by user on 2017/4/17.
@@ -86,4 +89,36 @@ public class CommonUtils {
         }
     }
 
+    /**
+     * 判断是否有网
+     * @param context
+     * @return
+     */
+
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        if(networkInfo != null && networkInfo.isAvailable()){
+            return true;//当前有可用网络
+        }
+        else{
+            return false;//当前无可用网络
+        }
+    }
+
+
+    public static void toastMessage(String msg){
+        Toast.makeText(MyApplication.getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+
+    /**
+     * 判断手机号的正则表达式
+     * @param username
+     * @return
+     */
+    public static boolean isMobilePhone(String username) {
+        String telRegex = "[1][34578]\\d{9}";
+        return username.matches(telRegex);
+    }
 }

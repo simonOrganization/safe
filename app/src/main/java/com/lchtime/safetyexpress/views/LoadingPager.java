@@ -4,10 +4,11 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.cp.mygoogle.R;
-import com.cp.mygoogle.utils.UIUtils;
 
-import com.cp.mygoogle.proxy.ThreadPoolFactory;
+import com.lchtime.safetyexpress.MyApplication;
+import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.proxy.ThreadPoolFactory;
+import com.lchtime.safetyexpress.utils.UIUtils;
 
 /**
  * Created by Dreamer on 2017/3/1.

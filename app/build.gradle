@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.3"
     defaultConfig {
         applicationId "com.lchtime.safetyexpress"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -20,9 +20,13 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile project(':mylibrary')
     compile 'com.xiwenhec:banner:1.0.2'
     compile 'com.zhy:okhttputils:2.6.2'
+    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
+    compile project(':PagerSlidingTabStrip')
+    compile 'com.contrarywind:Android-PickerView:3.2.4'
+    compile files('libs/gson-2.2.1.jar')
 }

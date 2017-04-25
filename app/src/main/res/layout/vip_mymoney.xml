@@ -8,68 +8,45 @@
     <include layout="@layout/title" />
 
     <LinearLayout
-        android:background="@null"
+        android:gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm328"
-        android:orientation="vertical">
-
+        android:layout_height="@dimen/dm280"
+        android:orientation="vertical"
+        android:background="@drawable/bg_mymoney">
+        <ImageView
+            android:layout_marginTop="@dimen/dm064"
+            android:layout_width="@dimen/dm074"
+            android:layout_height="@dimen/dm074"
+            android:src="@drawable/renminbi_logo"/>
         <TextView
-            android:padding="@dimen/dm024"
-            android:textSize="@dimen/dm022"
-            android:textColor="#333333"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="问题和意见"/>
-
-        <EditText
-            android:background="@android:color/transparent"
-            android:textCursorDrawable="@null"
-            android:layout_marginLeft="@dimen/dm024"
-            android:textSize="@dimen/dm020"
-            android:textColor="#333333"
+            android:layout_marginTop="@dimen/dm024"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="请简要描述你的问题意见"/>
+            android:textSize="@dimen/dm024"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="账户余额"/>
+        <TextView
+            android:id="@+id/tv_account_balance"
+            android:layout_marginTop="@dimen/dm016"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dm024"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="¥15.00"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:background="@null"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="@dimen/dm048"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="@dimen/dm024"
+        android:text="提现方式"
+        android:textSize="@dimen/dm022"
+        android:textColor="#666666"/>
 
-        <TextView
-            android:padding="@dimen/dm024"
-            android:textSize="@dimen/dm022"
-            android:textColor="#666666"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="图片（选填，提供问题截图）"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_marginLeft="@dimen/dm016"
-                android:layout_width="@dimen/dm277"
-                android:layout_height="@dimen/dm277"
-                android:src="@drawable/updata_img"/>
-            <ImageView
-                android:layout_marginLeft="@dimen/dm016"
-                android:layout_width="@dimen/dm277"
-                android:layout_height="@dimen/dm277"
-                android:src="@drawable/updata_img_btn"/>
-        </LinearLayout>
-
-        <TextView
-            android:padding="@dimen/dm016"
-            android:textSize="@dimen/dm021"
-            android:textColor="#999999"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="上传图片支持jpg、png等格式，尺寸需小鱼200KB"/>
-
-    </LinearLayout>
-
-
+    <include
+        android:id="@+id/item_authorization_zhifubao"
+        layout="@layout/item_money" />
 </LinearLayout>

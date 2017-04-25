@@ -123,6 +123,30 @@ public abstract class BaseUI extends FragmentActivity {
         }
     }
 
+    /**
+     * 描述:显示右菜单删除
+     */
+    protected void rightTextVisible(String text) {
+        LinearLayout ll_right = (LinearLayout) findViewById(R.id.ll_right);
+        if (ll_right != null) {
+            ll_right.setVisibility(View.VISIBLE);
+            ll_right.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clickEvent();
+                }
+            });
+        }
+        TextView tv_right = (TextView) findViewById(R.id.tv_delete);
+        if (tv_right != null) {
+            tv_right.setVisibility(View.VISIBLE);
+            tv_right.setText(text);
+        }
+
+    }
+
+
+
     protected void makeText(final String content) {
         new Handler().post(new Runnable() {
             @Override
@@ -205,6 +229,10 @@ public abstract class BaseUI extends FragmentActivity {
             window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             // window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
+    }
+
+    protected void clickEvent(){
+
     }
 
 }

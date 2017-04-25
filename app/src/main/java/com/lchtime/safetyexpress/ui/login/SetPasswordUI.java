@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.TabUI;
+import com.lchtime.safetyexpress.utils.LoginInternetRequest;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -19,15 +20,20 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 @ContentView(R.layout.set_password_ui)
 public class SetPasswordUI extends BaseUI {
 
+    private String registerCode;
     //手机号
     @ViewInject(R.id.et_set_pwd_username)
     private EditText et_set_pwd_username;
     //获取验证码
     @ViewInject(R.id.tv_set_pwd_getcode)
-    private TextView tv_set_pwd_getcode;
+    private TextView set_pwd_getcode;
     //密码
     @ViewInject(R.id.et_set_pwd_passport)
-    private EditText et_set_pwd_passport;
+    private EditText set_pwd_passport;
+
+    //验证码输入框
+    @ViewInject(R.id.et_set_pwd_code)
+    private EditText et_set_pwd_code;
 
     @Override
     protected void back() {
@@ -50,9 +56,36 @@ public class SetPasswordUI extends BaseUI {
      */
     @OnClick(R.id.tv_set_pwd_perfect)
     private void getPerfect(View view){
-//        Intent intent = new Intent(SetPasswordUI.this, LoginUI.class);
-//        startActivity(intent);
-//        finish();
+
+        String phoneNum = et_set_pwd_username.getText().toString();
+        String customCode = et_set_pwd_code.getText().toString();
+        String pwd = set_pwd_passport.getText().toString();
+        LoginInternetRequest.forgetPassword(phoneNum, registerCode, customCode, pwd, pwd, set_pwd_getcode, set_pwd_passport, set_pwd_passport,
+                new LoginInternetRequest.ForResultListener() {
+                    @Override
+                    public void onResponseMessage(String code) {
+                        Intent intent = new Intent(SetPasswordUI.this, LoginUI.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
+    }
+
+
+    /**
+     * 获取验证码
+     * @param view
+     */
+    @OnClick(R.id.tv_set_pwd_getcode)
+    private void getRegisterGetCode(View view){
+        String phoneNum = et_set_pwd_username.getText().toString();
+        LoginInternetRequest.verificationCode(phoneNum, set_pwd_getcode, new LoginInternetRequest.ForResultListener() {
+            @Override
+            public void onResponseMessage(String code) {
+                registerCode = code;
+            }
+        });
     }
 
 }

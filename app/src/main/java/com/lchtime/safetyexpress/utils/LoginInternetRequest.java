@@ -8,11 +8,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.zfxf.douniu.R;
-import com.zfxf.douniu.bean.LoginResult;
-import com.zfxf.douniu.utils.CommonUtils;
-import com.zfxf.douniu.utils.Constants;
-import com.zfxf.douniu.utils.SpTools;
+import com.lchtime.safetyexpress.MyApplication;
+import com.lchtime.safetyexpress.R;
+
+import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.LoginResult;
+import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -35,14 +36,14 @@ public class LoginInternetRequest {
     private static boolean isRun = false;
     static {
         mGson = new Gson();
-        context = CommonUtils.getContext();
+        context = MyApplication.getContext();
         timeCount = new TimeCount(60000, 1000);
     }
 
 
     public static void login(String phonenumber, String password, ForResultListener listener){
         mListener = listener;
-        if(!CommonUtils.isNetworkAvailable(CommonUtils.getContext())){
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("");
             return;
@@ -76,6 +77,7 @@ public class LoginInternetRequest {
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
+                Log.d("0000---------------0000",e.getMessage());
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
 
@@ -106,7 +108,7 @@ public class LoginInternetRequest {
     public static void verificationCode(String phoneNumber, TextView view, ForResultListener listener){
         mListener = listener;
         mTextView = view;
-        if(!CommonUtils.isNetworkAvailable(CommonUtils.getContext())){
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("");
             return;
@@ -170,7 +172,7 @@ public class LoginInternetRequest {
     public static void register(String phoneNumber, String vc_code, String password, String code, TextView view, ForResultListener listener){
         mListener = listener;
         mTextView = view;
-        if(!CommonUtils.isNetworkAvailable(CommonUtils.getContext())){
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
@@ -245,7 +247,7 @@ public class LoginInternetRequest {
     public static void forgetPassword(String phoneNumber, String vc_code, String code, String password, String nextPassword, TextView view, final EditText passport, final EditText nextPassport, ForResultListener listener){
         mListener = listener;
         mTextView = view;
-        if(!CommonUtils.isNetworkAvailable(CommonUtils.getContext())){
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
@@ -331,7 +333,7 @@ public class LoginInternetRequest {
      * @param listener listener
      */
     public static void reviseCode(String password, String newpassword, String confirmpassword, EditText editpass, EditText editnewpass, EditText editconfirm, ForResultListener listener) {
-        if(!CommonUtils.isNetworkAvailable(CommonUtils.getContext())){
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }

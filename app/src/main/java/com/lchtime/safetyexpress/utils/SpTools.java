@@ -3,6 +3,8 @@ package com.lchtime.safetyexpress.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.lchtime.safetyexpress.bean.Constants;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;

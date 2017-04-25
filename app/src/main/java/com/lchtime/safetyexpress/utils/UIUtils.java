@@ -3,7 +3,8 @@ package com.lchtime.safetyexpress.utils;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.cp.mygoogle.base.MyApplication;
+import com.lchtime.safetyexpress.MyApplication;
+
 
 /**
  * Created by Dreamer on 2017/2/27.
