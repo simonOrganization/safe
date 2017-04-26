@@ -1,17 +1,32 @@
 package com.lchtime.safetyexpress.ui.home;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.adapter.NewSearchStringAdapter;
+import com.lchtime.safetyexpress.bean.res.SearchRes;
 import com.lchtime.safetyexpress.ui.BaseUI;
+import com.lchtime.safetyexpress.ui.Const;
+import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.ArrayList;
+
+import okhttp3.Call;
 
 /**
  * 新闻 搜索
@@ -33,14 +48,16 @@ public class HomeNewsSearchUI extends BaseUI {
     @ViewInject(R.id.tv_news_search_tip)
     private TextView tv_home_search_tip;
     //历史记录展示
-    @ViewInject(R.id.slv_news_search_record)
-    private ListView slv_news_search_record;
+    @ViewInject(R.id.slv_news_search_history)
+    private RecyclerView slv_news_search_history;
     //清除搜索历史
     @ViewInject(R.id.ll_news_search_clear)
     private LinearLayout ll_news_search_clear;
     //列表展示
     @ViewInject(R.id.lv_news_search)
     private ListView lv_news_search;
+    private NewSearchStringAdapter historyAdapter;
+    private ArrayList<String> historyList;
 
     //搜索内容
     private String content;
@@ -62,12 +79,54 @@ public class HomeNewsSearchUI extends BaseUI {
     @Override
     protected void setControlBasis() {
         setStatus2();
+        slv_news_search_history.setLayoutManager(new LinearLayoutManager(HomeNewsSearchUI.this));
 
     }
 
     @Override
     protected void prepareData() {
+        getDefaultData();
+    }
+    private void getDefaultData(){
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            return;
+        }
+        OkHttpUtils
+                .post()
+                .url(Const.NEW_SEARCH)
+                .addParams("search","")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        Toast.makeText(HomeNewsSearchUI.this, "网络不稳定，请检查后重试", Toast.LENGTH_SHORT).show();
+                    }
 
+                    @Override
+                    public void onResponse(String response, int id) {
+                        SearchRes searchRes = (SearchRes) JsonUtils.stringToObject(response,SearchRes.class);
+                        if(searchRes.getResult().getCode().equals("10")){
+                            if(historyAdapter == null){
+                                historyList= searchRes.getHistory();
+                                historyAdapter = new NewSearchStringAdapter(historyList,HomeNewsSearchUI.this);
+                                slv_news_search_history.setAdapter(historyAdapter);
+                            }else{
+                                if(historyList!=null){
+                                    historyList.clear();
+                                    historyList = null;
+                                }
+                                historyList = searchRes.getHistory();
+                                historyAdapter.notifyDataSetChanged();
+
+                            }
+
+
+                        }else{
+                            Toast.makeText(HomeNewsSearchUI.this, searchRes.getResult().getInfo(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
 }
