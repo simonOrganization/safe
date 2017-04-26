@@ -1,8 +1,10 @@
 package com.lchtime.safetyexpress.ui.news;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.Toast;
 
 import com.lchtime.safetyexpress.MyApplication;
@@ -12,18 +14,17 @@ import com.lchtime.safetyexpress.bean.NewTypeBean;
 import com.lchtime.safetyexpress.bean.res.NewsRes;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.Const;
+import com.lchtime.safetyexpress.ui.home.HomeNewsSearchUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.Callback;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import okhttp3.Call;
 
 
@@ -54,6 +55,15 @@ public class HomeNewActivity extends BaseUI {
 //        ButterKnife.bind(this);
         getTabData();
 
+    }
+    /**
+     * 搜索
+     * @param view
+     */
+    @OnClick(R.id.ll_right)
+    private void getSearch(View view){
+        Intent intent = new Intent(HomeNewActivity.this, HomeNewsSearchUI.class);
+        startActivity(intent);
     }
 
     @Override

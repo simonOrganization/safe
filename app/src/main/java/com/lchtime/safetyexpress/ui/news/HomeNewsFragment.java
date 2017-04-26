@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.ui.news;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,16 +9,26 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
 import com.lchtime.safetyexpress.bean.NewsBean;
+import com.lchtime.safetyexpress.bean.res.NewsListRes;
+import com.lchtime.safetyexpress.ui.Const;
+import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
+import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lchtime.safetyexpress.views.EmptyRecyclerView;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
 
 /**
  * Created by yxn on 2017/4/25.
@@ -54,11 +65,75 @@ public class HomeNewsFragment extends Fragment {
         if(position == 0){
             commentList = bundle.getParcelableArrayList("comments");
             homeNewAdapter = new HomeNewAdapter(context,commentList);
+            homeNewAdapter.setNewItemInterface(new HomeNewAdapter.NewsItemInterface() {
+                @Override
+                public void setNewOnItem(int position) {
+                    Intent intent = new Intent(context, HomeNewsDetailUI.class);
+                    intent.putExtra("newsId","");
+                    startActivity(intent);
+                }
+
+                @Override
+                public void setVideoPlay(String url) {
+                    Intent intent = new Intent(context, MediaActivity.class);
+                    intent.putExtra("url",url);
+                    startActivity(intent);
+                }
+            });
             home_new_fragment_rc.setAdapter(homeNewAdapter);
         }else{
             type_id = bundle.getString("typeId");
+            getNewsList(type_id);
         }
 
 
+    }
+    private void getNewsList(String cid){
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            return;
+        }
+        OkHttpUtils
+                .post()
+                .url(Const.NEW_LIST)
+                .addParams("cd_id",cid)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        Toast.makeText(context,"网络不稳定，请检查后重试",Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onResponse(String response, int id) {
+
+                        NewsListRes newsListRes = (NewsListRes) JsonUtils.stringToObject(response,NewsListRes.class);
+                        if(newsListRes.getResult().getCode().equals("10")){
+                            if(commentList!=null){
+                                commentList.clear();
+                                commentList = null;
+                            }
+                            commentList = newsListRes.getCms_context();
+                            homeNewAdapter = new HomeNewAdapter(context,commentList);
+                            homeNewAdapter.setNewItemInterface(new HomeNewAdapter.NewsItemInterface() {
+                                @Override
+                                public void setNewOnItem(int position) {
+                                    Intent intent = new Intent(context, HomeNewsDetailUI.class);
+                                    intent.putExtra("newsId","");
+                                    startActivity(intent);
+                                }
+
+                                @Override
+                                public void setVideoPlay(String url) {
+                                    Intent intent = new Intent(context, MediaActivity.class);
+                                    intent.putExtra("url",url);
+                                    startActivity(intent);
+                                }
+                            });
+                            home_new_fragment_rc.setAdapter(homeNewAdapter);
+                        }else{
+                            Toast.makeText(context,newsListRes.getResult().getInfo(),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }
