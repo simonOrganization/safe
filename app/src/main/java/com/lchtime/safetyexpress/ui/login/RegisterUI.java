@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.ui.BaseUI;
@@ -75,12 +76,13 @@ public class RegisterUI extends BaseUI {
         String phoneNum = et_register_username.getText().toString().trim();
         String pwd = et_register_passport.getText().toString().trim();
         String customRegisterNum = et_register_code.getText().toString();
+        if (registerCode == null){
+            return ;
+        }
         LoginInternetRequest.register(phoneNum, registerCode, pwd, customRegisterNum, register_getcode, new LoginInternetRequest.ForResultListener() {
             @Override
             public void onResponseMessage(String code) {
                 if ("成功".equals(code)){
-                    Intent intent = new Intent(RegisterUI.this, TabUI.class);
-                    startActivity(intent);
                     finish();
                 }
             }
@@ -99,6 +101,8 @@ public class RegisterUI extends BaseUI {
             @Override
             public void onResponseMessage(String code) {
                 registerCode = code;
+
+                Toast.makeText(RegisterUI.this,registerCode,Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -1,8 +1,12 @@
 package com.lchtime.safetyexpress.ui.vip;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -11,13 +15,24 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
+import com.google.gson.Gson;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.CardBean;
+import com.lchtime.safetyexpress.bean.ConfigTable;
+import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.UpdataBean;
+import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
+import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.LoginInternetRequest;
+import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.utils.UpdataImageUtils;
+import com.lchtime.safetyexpress.views.CircleImageView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -26,6 +41,7 @@ import com.luck.picture.lib.model.FunctionOptions;
 import com.luck.picture.lib.model.PictureConfig;
 import com.yalantis.ucrop.entity.LocalMedia;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -57,6 +73,9 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
     private PopupWindow popupWindow;
 
     private View contentView;
+    //昵称
+    @ViewInject(R.id.tv_info_nickname)
+    private TextView tv_nikname;
     //生日
     @ViewInject(R.id.tv_info_birthday)
     private TextView tv_birthday;
@@ -72,16 +91,32 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
     //所在地
     @ViewInject(R.id.tv_info_address)
     private TextView tv_address;
+
+    //手机号
+    @ViewInject(R.id.tv_info_phone)
+    private TextView tv_phone;
+
+    //公司名称
+    @ViewInject(R.id.tv_info_company_name)
+    private TextView tv_company_name;
     //性别
     @ViewInject(R.id.tv_info_sex)
     private TextView tv_sex;
 
-    //性别
+    //头像
+    @ViewInject(R.id.viv_info_icon)
+    private CircleImageView viv_icon;
+    //整个activity
     @ViewInject(R.id.vip_info_ui)
     private View vip_info_ui;
 
 
     private String updateDate;
+    private String userId;
+    private Gson gson;
+    private String phoneNum;
+    private UpdataImageUtils updataImageUtils;
+    private int ud_photo_fileid;
 
     @Override
     protected void back() {
@@ -123,10 +158,38 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
     @Override
     protected void prepareData() {
 
+        userId = SpTools.getString(this, Constants.userId,"");
+        gson = new Gson();
+        updataImageUtils = new UpdataImageUtils();
         //初始化自定义选项卡
         initCustomOptionPicker();
         //初始化自定义事件选项卡
         initCustomTimePicker();
+
+        LoginInternetRequest.getVipInfo(userId, new LoginInternetRequest.ForResultListener() {
+            @Override
+            public void onResponseMessage(String code) {
+                VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
+                phoneNum = vipInfoBean.user_base;
+                initVipInfo(vipInfoBean);
+            }
+        });
+    }
+
+    private void initVipInfo(VipInfoBean bean) {
+        if (bean.user_detail != null) {
+            tv_nikname.setText(TextUtils.isEmpty(bean.user_detail.ud_nickname) ? "还没有设置" : bean.user_detail.ud_nickname);
+            //手机号码
+            tv_phone.setText(phoneNum);
+            //岗位
+            tv_dowhat.setText(TextUtils.isEmpty(bean.user_detail.ud_post) ? "还没有设置" : bean.user_detail.ud_post);
+            //行业
+            tv_work.setText(TextUtils.isEmpty(bean.user_detail.ud_profession) ? "还没有设置" : bean.user_detail.ud_profession);
+            tv_address.setText(TextUtils.isEmpty(bean.user_detail.ud_addr) ? "还没有设置" : bean.user_detail.ud_addr);
+            tv_company_name.setText(TextUtils.isEmpty(bean.user_detail.ud_company_name) ? "还没有设置" : bean.user_detail.ud_company_name);
+            tv_birthday.setText(TextUtils.isEmpty(bean.user_detail.ud_borth) ? "还没有设置" : bean.user_detail.ud_borth);
+            tv_sex.setText(TextUtils.isEmpty(bean.user_detail.ud_sex) ? "还没有设置" : bean.user_detail.ud_sex);
+        }
     }
 
 
@@ -417,7 +480,11 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
         switch (v.getId()){
             case R.id.tv_picture_list:
                 FunctionOptions options = new FunctionOptions.Builder()
-                        . setSelectMode(FunctionConfig.MODE_SINGLE) // 可选择图片的数量
+                        .setSelectMode(FunctionConfig.MODE_SINGLE) // 可选择图片的数量
+                        .setEnableCrop(true) // 是否打开剪切选项
+                        .setShowCamera(false)
+                        .setCropMode(FunctionConfig.CROP_MODEL_1_1)
+                        .setCompress(true)
                         .create();
                 PictureConfig.getPictureConfig().init(options).openPhoto(this, resultCallback);
                 break;
@@ -436,15 +503,37 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
         public void onSelectSuccess(List<LocalMedia> resultList) {
             Log.i("callBack_result", resultList.size() + "");
             LocalMedia media = resultList.get(0);
-            if (media.isCut() && !media.isCompressed()) {
+            if (media.isCut() && media.isCompressed()) {
                 // 裁剪过
                 String path = media.getCutPath();
-            } else if (media.isCompressed() || (media.isCut() && media.isCompressed())) {
-                // 压缩过,或者裁剪同时压缩过,以最终压缩过图片为准
-                String path = media.getCompressPath();
-            } else {
-                // 原图地址
-                String path = media.getPath();
+                updataImageUtils.upDataPic(BitmapFactory.decodeFile(path), "my_icon", new UpdataImageUtils.UpdataPicListener() {
+                    //上传头像的回调
+                    @Override
+                    public void onResponse(String response) {
+                        UpdataBean updataBean = gson.fromJson(response, UpdataBean.class);
+
+                        File file = new File(getFilesDir(), "my_icon");
+                        viv_icon.setImageURI(Uri.fromFile(file));
+
+                        if (updataBean != null&& updataBean.arr != null) {
+                            ud_photo_fileid = updataBean.arr[0];
+                            //上传编辑信息
+                            LoginInternetRequest.editVipInfo(phoneNum,
+                                    ConfigTable.PHOTO_ID, ud_photo_fileid + "",
+                                    SpTools.getString(VipInfoUI.this, Constants.userId, ""),
+                                    new LoginInternetRequest.ForResultListener() {
+                                        @Override
+                                        public void onResponseMessage(String code) {
+                                            if (code.equals("10")) {
+                                                File file = new File(getFilesDir(), "my_icon");
+                                                viv_icon.setImageURI(Uri.fromFile(file));
+
+                                            }
+                                        }
+                                    });
+                        }
+                    }
+                });
             }
 
         }

@@ -74,7 +74,7 @@ public class VipUI extends BaseUI {
             }
         }, 1000);
 
-        String ub_id = SpTools.getString(this, Constants.CONFIGFILE,"");
+        String ub_id = SpTools.getString(this, Constants.userId,"");
         if (TextUtils.isEmpty(ub_id)){
             logIn.setVisibility(View.GONE);
             logOut.setVisibility(View.VISIBLE);
@@ -157,7 +157,7 @@ public class VipUI extends BaseUI {
      */
     @OnClick(R.id.tv_vip_collected)
     private void getMyConllected(View view) {
-        String ub_id = SpTools.getString(this, Constants.CONFIGFILE,"");
+        String ub_id = SpTools.getString(this, Constants.userId,"");
         if (TextUtils.isEmpty(ub_id)){
             Intent intent = new Intent(this, LoginUI.class);
             startActivity(intent);
@@ -191,7 +191,7 @@ public class VipUI extends BaseUI {
      */
     @OnClick(R.id.ll_vip_mymoney)
     private void getMyMoney(View view) {
-        String ub_id = SpTools.getString(this, Constants.CONFIGFILE,"");
+        String ub_id = SpTools.getString(this, Constants.userId,"");
         if (TextUtils.isEmpty(ub_id)){
             Intent intent = new Intent(this, LoginUI.class);
             startActivity(intent);
@@ -208,7 +208,7 @@ public class VipUI extends BaseUI {
      */
     @OnClick(R.id.ll_vip_setting)
     private void getSetting(View view) {
-        String ub_id = SpTools.getString(this, Constants.CONFIGFILE,"");
+        String ub_id = SpTools.getString(this, Constants.userId,"");
         if (TextUtils.isEmpty(ub_id)){
             Intent intent = new Intent(this, LoginUI.class);
             startActivity(intent);

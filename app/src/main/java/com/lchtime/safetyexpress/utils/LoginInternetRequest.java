@@ -11,8 +11,10 @@ import com.google.gson.Gson;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 
+import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.LoginResult;
+import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -41,6 +43,9 @@ public class LoginInternetRequest {
     }
 
 
+/**
+ *  登录
+ *  */
     public static void login(String phonenumber, String password, ForResultListener listener){
         mListener = listener;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
@@ -70,8 +75,7 @@ public class LoginInternetRequest {
         OkHttpUtils.post().url(url)
                 .addParams("sid","")
                 .addParams("ub_phone",phonenumber)
-//                .addParams("index",(index++)+"")
-                .addParams("index",3+"")
+                .addParams("index",(index++)+"")
                 .addParams("ud_pwd",password)
                 .addParams("uo_long","")
                 .addParams("uo_lat","")
@@ -149,14 +153,14 @@ public class LoginInternetRequest {
                 LoginResult result = mGson.fromJson(response,LoginResult.class);
                 String code = result.result.code;
                 String info = result.result.info;
-                if(code.equals("10")){
-                    String mVc_code = result.vc_code;
-                    mListener.onResponseMessage(mVc_code);
-                }else if(code.equals("20")){
+                if(code.equals("20")){
                     if(info.equals("ub_phone error!")){
                         CommonUtils.toastMessage("您输入的手机号错误");
                         mListener.onResponseMessage("");
                     }
+                }else{
+                    String mVc_code = result.vc_code;
+                    mListener.onResponseMessage(mVc_code);
                 }
             }
         });
@@ -206,6 +210,7 @@ public class LoginInternetRequest {
                 .addParams("ub_phone",phoneNumber)
                 .addParams("index",(index++)+"")
                 .addParams("ud_pwd",password)
+                .addParams("vc_code",vc_code)
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -221,13 +226,15 @@ public class LoginInternetRequest {
                     reset();
                     mListener.onResponseMessage("成功");
                 }else if(code.equals("20")){
-                    if(info.equals("ub_phone error!")){
+                    if(info.equals("手机长度不正确")){
                         CommonUtils.toastMessage("您输入的手机号错误");
-                    }else if(info.equals("ub_phone exist!")){
+                    }else if(info.equals("手机号已存在！")){
                         CommonUtils.toastMessage("您输入的手机号已注册");
-                    }else if(info.equals("ud_pwd error!")){
+                    }else if(info.equals("密码长度不正确！")){
                         CommonUtils.toastMessage("您输入的密码位数不足6位");
                     }
+                }else {
+                    CommonUtils.toastMessage("未知错误");
                 }
             }
         });
@@ -397,9 +404,98 @@ public class LoginInternetRequest {
 
     }
 
+
+    /**
+     *  获取个人信息
+     *  */
+    public static void getVipInfo(String ub_id,ForResultListener listener){
+        mListener = listener;
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            mListener.onResponseMessage("");
+            return;
+        }
+        String url = context.getResources().getString(R.string.service_host_address)
+                .concat(context.getResources().getString(R.string.mycount));
+        Log.d("host",url);
+        OkHttpUtils.post().url(url)
+                .addParams("sid","")
+                .addParams("index",(index++)+"")
+                .addParams("ub_id",ub_id)
+                .addParams("uo_long","")
+                .addParams("uo_lat","")
+                .addParams("uo_high","")
+                .build().execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                Log.d("0000---------------0000",e.getMessage());
+                CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+                VipInfoBean vipInfoBean = mGson.fromJson(response, VipInfoBean.class);
+                String code = vipInfoBean.result.code;
+                if (code.equals("10")) {
+                    mListener.onResponseMessage(response);
+                } else  {
+                    CommonUtils.toastMessage("请求网络数据失败，请检查网络");
+                }
+            }
+        });
+    }
+
+    /**
+     *  修改个人信息
+     *  */
+    public static void editVipInfo(String phoneNum,String key,String value,String ub_id,ForResultListener listener){
+        mListener = listener;
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            if (mListener != null){
+                mListener.onResponseMessage("");
+            }
+            return;
+        }
+        String url = context.getResources().getString(R.string.service_host_address)
+                .concat(context.getResources().getString(R.string.mycountEdit));
+        Log.d("host",url);
+        OkHttpUtils.post().url(url)
+                .addParams("sid","")
+                .addParams("index",(index++)+"")
+                .addParams("ub_id",ub_id)
+                .addParams("uo_long","")
+                .addParams("uo_lat","")
+                .addParams("uo_high","")
+                .addParams("user_base","\"user_base\": \"" + phoneNum + "\"")
+                .addParams("user_detail","\"user_detail\": {\""+key+"\": \""+value+"\"}")
+                .build().execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                Log.d("0000---------------0000",e.getMessage());
+                CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+                BasicResult basicResult = mGson.fromJson(response, BasicResult.class);
+                String code = basicResult.code;
+                if (code.equals("10")) {
+                    CommonUtils.toastMessage(basicResult.info);
+                    if (mListener != null){
+                        mListener.onResponseMessage(code);
+                    }
+                } else  {
+                    CommonUtils.toastMessage("请求网络数据失败，请检查网络");
+                }
+            }
+        });
+    }
+
     public interface ForResultListener{
         void onResponseMessage(String code);
     }
+
     /**
      * 验证码倒计时timecount
      */
