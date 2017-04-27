@@ -17,6 +17,7 @@
             android:background="@color/line_big" />
 
         <WebView
+            android:id="@+id/home_news_detailed_web"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/line_big"></WebView>
@@ -26,7 +27,8 @@
             android:layout_height="@dimen/dm098"
             android:layout_alignParentBottom="true"
             android:background="@color/white"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <View
                 android:layout_width="match_parent"

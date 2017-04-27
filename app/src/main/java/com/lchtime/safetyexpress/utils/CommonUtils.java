@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.utils;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -11,9 +12,20 @@ import android.graphics.RectF;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lchtime.safetyexpress.MyApplication;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by user on 2017/4/17.
@@ -129,4 +141,80 @@ public class CommonUtils {
         String telRegex = "[1][34578]\\d{9}";
         return username.matches(telRegex);
     }
+
+    public static String getStandardDate(String timeStr) {
+
+        StringBuffer sb = new StringBuffer();
+
+        long t = Long.parseLong(timeStr);
+        long time = System.currentTimeMillis() - (t*1000);
+        long mill = (long) Math.ceil(time /1000);//秒前
+
+        long minute = (long) Math.ceil(time/60/1000.0f);// 分钟前
+
+        long hour = (long) Math.ceil(time/60/60/1000.0f);// 小时
+
+        long day = (long) Math.ceil(time/24/60/60/1000.0f);// 天前
+
+        if (day - 1 > 0) {
+            sb.append(day + "天");
+        } else if (hour - 1 > 0) {
+            if (hour >= 24) {
+                sb.append("1天");
+            } else {
+                sb.append(hour + "小时");
+            }
+        } else if (minute - 1 > 0) {
+            if (minute == 60) {
+                sb.append("1小时");
+            } else {
+                sb.append(minute + "分钟");
+            }
+        } else if (mill - 1 > 0) {
+            if (mill == 60) {
+                sb.append("1分钟");
+            } else {
+                sb.append(mill + "秒");
+            }
+        } else {
+            sb.append("刚刚");
+        }
+        if (!sb.toString().equals("刚刚")) {
+            sb.append("前");
+        }
+        return sb.toString();
+    }
+    public static String getSpaceTime(Long millisecond) {
+        Calendar calendar = Calendar.getInstance();
+        Long currentMillisecond = calendar.getTimeInMillis();
+
+        //间隔秒
+        Long spaceSecond = (currentMillisecond - millisecond) / 1000;
+
+        //一分钟之内
+        if (spaceSecond >= 0 && spaceSecond < 60) {
+            return "刚刚";
+        }
+        //一小时之内
+        else if (spaceSecond / 60 > 0 && spaceSecond / 60 < 60) {
+            return spaceSecond / 60 + "分钟之前";
+        }
+        //一天之内
+        else if (spaceSecond / (60 * 60) > 0 && spaceSecond / (60 * 60) < 24) {
+            return spaceSecond / (60 * 60) + "小时之前";
+        }
+        //3天之内
+        else if (spaceSecond/(60*60*24)>0&&spaceSecond/(60*60*24)<3){
+            return spaceSecond/(60*60*24)+"天之前";
+        }else {
+            return getDateTimeFromMillisecond(millisecond);
+        }
+    }
+    public static String getDateTimeFromMillisecond(Long millisecond){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date(millisecond);
+        String dateStr = simpleDateFormat.format(date);
+        return dateStr.substring(2,dateStr.length());
+    }
+
 }

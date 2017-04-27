@@ -7,17 +7,17 @@ import java.util.ArrayList;
  */
 
 public class CircleOneBean {
-    private ArrayList<CircleTwoBean> images;
+    private ArrayList<String> images;
 
-    public CircleOneBean(ArrayList<CircleTwoBean> images) {
+    public CircleOneBean(ArrayList<String> images) {
         this.images = images;
     }
 
-    public ArrayList<CircleTwoBean> getImages() {
+    public ArrayList<String> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<CircleTwoBean> images) {
+    public void setImages(ArrayList<String> images) {
         this.images = images;
     }
 }
