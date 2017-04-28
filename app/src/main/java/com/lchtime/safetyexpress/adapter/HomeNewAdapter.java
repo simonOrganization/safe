@@ -17,6 +17,7 @@ import com.lchtime.safetyexpress.bean.CircleTwoBean;
 import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.views.GridSpacingItemDecoration;
+import com.lchtime.safetyexpress.views.NoTouchRecycler;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.squareup.picasso.Picasso;
 
@@ -107,6 +108,9 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
             homeNewHolder.textViews.get(0).setText(bean.getCc_title());
             homeNewHolder.home_new_item_rc.setLayoutManager(new GridLayoutManager(context,3));
             homeNewHolder.home_new_item_rc.addItemDecoration(new GridSpacingItemDecoration(3,10,true));
+            homeNewHolder.home_new_item_rc.setClickable(false);
+            homeNewHolder.home_new_item_rc.setPressed(false);
+            homeNewHolder.home_new_item_rc.setEnabled(false);
             if(bean.getMedia() != null && bean.getMedia().size()>0){
                 CircleImageAdapter imageAdapter = new CircleImageAdapter(context,bean.getMedia());
                 homeNewHolder.home_new_item_rc.setAdapter(imageAdapter);
@@ -159,7 +163,7 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
         @BindViews({R.id.home_new_item_title,R.id.home_new_item_from,R.id.home_new_item_comment,R.id.home_new_item_time})
         List<TextView> textViews;
         @BindView(R.id.home_new_item_rc)
-        RecyclerView home_new_item_rc;
+        NoTouchRecycler home_new_item_rc;
 
         public HomeNewHolder(View itemView) {
             super(itemView);

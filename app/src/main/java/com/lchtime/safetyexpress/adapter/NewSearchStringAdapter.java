@@ -2,6 +2,7 @@ package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,15 +37,14 @@ public class NewSearchStringAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if(holder instanceof NewSearchStringHolder){
             NewSearchStringHolder stringHolder = (NewSearchStringHolder) holder;
             stringHolder.new_search_string_tv.setText(mDatas.get(position));
-        }
 
     }
 
     @Override
     public int getItemCount() {
+        Log.i("yang","count===="+mDatas.size());
         return mDatas.size();
     }
     class NewSearchStringHolder extends RecyclerView.ViewHolder{
