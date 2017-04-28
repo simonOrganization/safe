@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lchtime.safetyexpress.R;
@@ -19,10 +18,10 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
  * Created by user on 2017/4/17.
  */
 @ContentView(R.layout.vip_info_nickname_ui)
-public class VipInfoNicknameUI extends BaseUI {
+public class VipInfoPartUI extends BaseUI {
 
     @ViewInject(R.id.et_edit_nikname)
-    private EditText et_nikname;
+    private EditText et_part;
     @Override
     protected void back() {
         finish();
@@ -30,7 +29,8 @@ public class VipInfoNicknameUI extends BaseUI {
 
     @Override
     protected void setControlBasis() {
-        setTitle("昵称");
+        et_part.setHint("请输入您所在的部门");
+        setTitle("部门");
         rightVisible("保存");
     }
 
@@ -45,13 +45,14 @@ public class VipInfoNicknameUI extends BaseUI {
      */
     @OnClick(R.id.ll_right)
     private void getSave(View view){
-        String editNikname = et_nikname.getText().toString().trim();
-        if (!TextUtils.isEmpty(editNikname)){
+        String editPart = et_part.getText().toString().trim();
+        if (!TextUtils.isEmpty(editPart)){
             Intent intent = new Intent();
-            intent.putExtra("editNikname",editNikname);
-            setResult(0,intent);
+            intent.putExtra("editPart",editPart);
+            setResult(1,intent);
             finish();
-        }else {
+        }
+        else {
             Toast.makeText(this,"您没有输入任何内容",Toast.LENGTH_SHORT).show();
         }
     }

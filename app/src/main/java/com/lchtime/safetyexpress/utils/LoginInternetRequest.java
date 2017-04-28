@@ -13,13 +13,26 @@ import com.lchtime.safetyexpress.R;
 
 import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.LoginResult;
+import com.lchtime.safetyexpress.bean.PostBean;
+import com.lchtime.safetyexpress.bean.ProfessionBean;
+import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+
 import okhttp3.Call;
+
+import static android.R.attr.key;
+import static android.R.attr.value;
 
 /**
  * @author Admin
@@ -84,6 +97,9 @@ public class LoginInternetRequest {
             @Override
             public void onError(Call call, Exception e, int id) {
                 Log.d("0000---------------0000",e.getMessage());
+                SpTools.setString(MyApplication.getContext(), Constants.userId, null);//存储用户的ub_id
+                SpTools.setString(MyApplication.getContext(), Constants.phoneNum, null);//存储用户的手机号码
+                SpTools.setString(MyApplication.getContext(), Constants.password, null);//存储用户的密码
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
 
@@ -96,11 +112,14 @@ public class LoginInternetRequest {
                     SpTools.setString(context, Constants.userId, result.ub_id);//存储用户的ub_id
                     mListener.onResponseMessage("成功");
                 } else if (code.equals("20")) {
-                    if (info.equals("ub_phone error!")) {
-                        CommonUtils.toastMessage("您输入的手机号有误,请重新输入");
-                    } else if (info.endsWith("ud_pwd error!")) {
-                        CommonUtils.toastMessage("您输入的密码有误,请重新输入");
-                    }
+                    SpTools.setString(MyApplication.getContext(), Constants.userId, null);//存储用户的ub_id
+                    SpTools.setString(MyApplication.getContext(), Constants.phoneNum, null);//存储用户的手机号码
+                    SpTools.setString(MyApplication.getContext(), Constants.password, null);//存储用户的密码
+
+                    CommonUtils.toastMessage(info);
+
+
+
                 }
             }
         });
@@ -411,6 +430,7 @@ public class LoginInternetRequest {
     public static void getVipInfo(String ub_id,ForResultListener listener){
         mListener = listener;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+            InitInfo.isLogin = false;
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("");
             return;
@@ -429,28 +449,33 @@ public class LoginInternetRequest {
             @Override
             public void onError(Call call, Exception e, int id) {
                 Log.d("0000---------------0000",e.getMessage());
+                InitInfo.isLogin = false;
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
 
             @Override
             public void onResponse(String response, int id) {
-                VipInfoBean vipInfoBean = mGson.fromJson(response, VipInfoBean.class);
-                String code = vipInfoBean.result.code;
-                if (code.equals("10")) {
-                    mListener.onResponseMessage(response);
-                } else  {
-                    CommonUtils.toastMessage("请求网络数据失败，请检查网络");
+                if (!TextUtils.isEmpty(response)) {
+                    VipInfoBean vipInfoBean = mGson.fromJson(response, VipInfoBean.class);
+                    String code = vipInfoBean.result.code;
+                    if (code.equals("10")) {
+                        mListener.onResponseMessage(response);
+                    } else {
+                        CommonUtils.toastMessage("请求网络数据失败，请检查网络");
+                    }
                 }
             }
         });
     }
 
+
     /**
-     *  修改个人信息
+     *  得到行业
      *  */
-    public static void editVipInfo(String phoneNum,String key,String value,String ub_id,ForResultListener listener){
+    public static void getProfession(String ub_id,ForResultListener listener){
         mListener = listener;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+            InitInfo.isLogin = false;
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             if (mListener != null){
                 mListener.onResponseMessage("");
@@ -467,8 +492,7 @@ public class LoginInternetRequest {
                 .addParams("uo_long","")
                 .addParams("uo_lat","")
                 .addParams("uo_high","")
-                .addParams("user_base","\"user_base\": \"" + phoneNum + "\"")
-                .addParams("user_detail","\"user_detail\": {\""+key+"\": \""+value+"\"}")
+                .addParams("type",1+"")
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -478,15 +502,140 @@ public class LoginInternetRequest {
 
             @Override
             public void onResponse(String response, int id) {
-                BasicResult basicResult = mGson.fromJson(response, BasicResult.class);
-                String code = basicResult.code;
-                if (code.equals("10")) {
-                    CommonUtils.toastMessage(basicResult.info);
-                    if (mListener != null){
-                        mListener.onResponseMessage(code);
+                ProfessionBean professionBean = mGson.fromJson(response, ProfessionBean.class);
+                if (!TextUtils.isEmpty(response) && professionBean != null) {
+                    String code = professionBean.result.code;
+                    if (code.equals("10")) {
+                        CommonUtils.toastMessage(professionBean.result.info);
+                        if (mListener != null) {
+                            mListener.onResponseMessage(response);
+                        }
+                    } else {
+                        CommonUtils.toastMessage("请求网络数据失败，请检查网络");
                     }
-                } else  {
-                    CommonUtils.toastMessage("请求网络数据失败，请检查网络");
+                }
+            }
+        });
+    }
+
+    /**
+     *  得到岗位
+     *  */
+    public static void getPost(String ub_id,ForResultListener listener){
+        mListener = listener;
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+            InitInfo.isLogin = false;
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            if (mListener != null){
+                mListener.onResponseMessage("");
+            }
+            return;
+        }
+        String url = context.getResources().getString(R.string.service_host_address)
+                .concat(context.getResources().getString(R.string.mycountEdit));
+        Log.d("host",url);
+        OkHttpUtils.post().url(url)
+                .addParams("sid","")
+                .addParams("index",(index++)+"")
+                .addParams("ub_id",ub_id)
+                .addParams("uo_long","")
+                .addParams("uo_lat","")
+                .addParams("uo_high","")
+                .addParams("type",2+"")
+                .build().execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                Log.d("0000---------------0000",e.getMessage());
+                CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+                PostBean postBean = mGson.fromJson(response, PostBean.class);
+                if (!TextUtils.isEmpty(response) && postBean != null) {
+                    String code = postBean.result.code;
+                    if (code.equals("10")) {
+                        CommonUtils.toastMessage(postBean.result.info);
+                        if (mListener != null) {
+                            mListener.onResponseMessage(response);
+                        }
+                    } else {
+                        CommonUtils.toastMessage("请求网络数据失败，请检查网络");
+                    }
+                }
+            }
+        });
+    }
+
+
+
+    /**
+     *  修改个人信息
+     *  */
+    public static void editVipInfo(String phoneNum, Map<String,String> map, String ub_id, ForResultListener listener){
+        mListener = listener;
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            if (mListener != null){
+                mListener.onResponseMessage("");
+            }
+            return;
+        }
+        String url = context.getResources().getString(R.string.service_host_address)
+                .concat(context.getResources().getString(R.string.mycountEdit));
+        Log.d("host",url);
+        PostFormBuilder builder = OkHttpUtils.post().url(url)
+                .addParams("sid","")
+                .addParams("index",(index++)+"")
+                .addParams("ub_id",ub_id)
+                .addParams("uo_long","")
+                .addParams("uo_lat","")
+                .addParams("uo_high","")
+                .addParams("user_base","\"user_base\": \"" + phoneNum + "\"");
+
+        StringBuffer user_detail = new StringBuffer();
+        user_detail.append("{");
+        Set<String> keySet = map.keySet();
+        int max = keySet.size();
+        int current = 0;
+         for (String key : keySet) {
+             current++;
+             String value = map.get(key);
+             if (current == max){
+                 user_detail.append("\""+key+"\": \""+value+"\"" + "}");
+             }else {
+
+                 user_detail.append("\""+key+"\": \""+value+"\"" + ",");
+
+             }
+
+         }
+
+        Log.d("我自己要看的json串",user_detail.toString());
+        builder.addParams("user_detail",user_detail.toString());
+
+        builder.build().execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                Log.d("0000---------------0000",e.getMessage());
+                CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+                if (!TextUtils.isEmpty(response)) {
+                    Result result = mGson.fromJson(response, Result.class);
+                    String code = result.result.code;
+                    if ("10".equals(code)) {
+                        CommonUtils.toastMessage(result.result.info);
+                        if (mListener != null) {
+                            mListener.onResponseMessage(code);
+                        }
+                    } else {
+                        CommonUtils.toastMessage("上传失败");
+                    }
+                }else {
+                    CommonUtils.toastMessage("上传失败");
                 }
             }
         });

@@ -1,14 +1,20 @@
 package com.lchtime.safetyexpress.ui.login;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.InitInfo;
+import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.TabUI;
 import com.lchtime.safetyexpress.utils.LoginInternetRequest;
+import com.lchtime.safetyexpress.utils.SpTools;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -27,6 +33,8 @@ public class LoginUI extends BaseUI {
     @ViewInject(R.id.et_login_passport)
     private EditText et_login_passport;
 
+    private Gson gson;
+
 
     @Override
     protected void back() {
@@ -37,6 +45,7 @@ public class LoginUI extends BaseUI {
     protected void setControlBasis() {
         setTitle("登录");
         rightVisible("注册");
+
     }
 
     @Override
@@ -52,13 +61,34 @@ public class LoginUI extends BaseUI {
     private void getLogin(View view){
 
 
-        String phonenumber = et_login_username.getText().toString().trim();
-        String password = et_login_passport.getText().toString().trim();
+        final String phonenumber = et_login_username.getText().toString().trim();
+        final String password = et_login_passport.getText().toString().trim();
         LoginInternetRequest.login(phonenumber, password, new LoginInternetRequest.ForResultListener() {
             @Override
                     public void onResponseMessage(String code) {
                         if (code.equals("成功")){
-                            finish();
+                            SpTools.setString(LoginUI.this, Constants.phoneNum,phonenumber);
+                            SpTools.setString(LoginUI.this, Constants.password,password);
+                            LoginInternetRequest.getVipInfo(SpTools.getString(LoginUI.this, Constants.userId, ""), new LoginInternetRequest.ForResultListener() {
+                                @Override
+                                public void onResponseMessage(String code) {
+                                    if(!TextUtils.isEmpty(code)) {
+                                        if (gson == null){
+                                            gson = new Gson();
+                                        }
+                                        VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
+                                        if (vipInfoBean != null) {
+                                            InitInfo.phoneNumber = vipInfoBean.user_base;
+                                            InitInfo.vipInfoBean = vipInfoBean;
+                                            InitInfo.isLogin = true;
+                                            SpTools.setString(LoginUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
+                                            SpTools.setString(LoginUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
+                                            finish();
+                                        }
+                                    }
+                                }
+                            });
+
                 }
             }
         });

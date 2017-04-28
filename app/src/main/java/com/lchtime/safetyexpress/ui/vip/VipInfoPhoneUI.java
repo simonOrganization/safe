@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -30,6 +31,12 @@ public class VipInfoPhoneUI extends BaseUI {
     @Override
     protected void setControlBasis() {
         setTitle("手机号");
+        String phoneNumber = InitInfo.phoneNumber;
+        String head=phoneNumber.substring(0,2);
+        String tail=phoneNumber.substring(6);
+        String s=head+"****"+tail;
+
+        tv_info_phone_phone.setText(s);
     }
 
     @Override

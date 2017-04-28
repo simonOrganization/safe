@@ -18,15 +18,23 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.InitInfo;
+import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.add.AddUI;
 import com.lchtime.safetyexpress.ui.chat.ChatUI;
 import com.lchtime.safetyexpress.ui.circle.CircleUI;
 import com.lchtime.safetyexpress.ui.home.HomeUI;
+import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.ui.vip.VipUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.LoginInternetRequest;
+import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.CirclePublicPop;
 
 
@@ -48,6 +56,11 @@ public class TabUI extends TabActivity implements OnClickListener {
     private RadioGroup rg_tab;
     private CheckBox tab_check;
     private TabHost tabHost;
+
+
+
+    private String userId;
+    private Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +131,33 @@ public class TabUI extends TabActivity implements OnClickListener {
             @Override
             public void toCircleActivity() {
                 setCurrentTabByTag("tab2");
+            }
+        });
+
+       getVipInfo();
+
+
+    }
+
+    private void getVipInfo() {
+        if (gson == null){
+            gson = new Gson();
+        }
+        userId = SpTools.getString(this, Constants.userId,"");
+        //登录操作
+        LoginInternetRequest.getVipInfo(userId, new LoginInternetRequest.ForResultListener() {
+            @Override
+            public void onResponseMessage(String code) {
+                if(!TextUtils.isEmpty(code)) {
+                    VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
+                    if (vipInfoBean != null) {
+                        InitInfo.phoneNumber = vipInfoBean.user_base;
+                        InitInfo.vipInfoBean = vipInfoBean;
+                        InitInfo.isLogin = true;
+                        SpTools.setString(TabUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
+                        SpTools.setString(TabUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
+                    }
+                }
             }
         });
     }

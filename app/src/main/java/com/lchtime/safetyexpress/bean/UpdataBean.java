@@ -1,5 +1,7 @@
 package com.lchtime.safetyexpress.bean;
 
+import java.util.List;
+
 /**
  * Created by android-cp on 2017/4/26.
  */
@@ -7,6 +9,6 @@ package com.lchtime.safetyexpress.bean;
 public class UpdataBean {
 
     public BasicResult result;
-    public int[] arr;
+    public List<String> file_ids;
 
 }

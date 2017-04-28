@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lchtime.safetyexpress.R;
@@ -14,15 +13,15 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 /**
- *个人资料-昵称
+ *个人资料-简历
  *
  * Created by user on 2017/4/17.
  */
-@ContentView(R.layout.vip_info_nickname_ui)
-public class VipInfoNicknameUI extends BaseUI {
+@ContentView(R.layout.vip_info_simple_ui)
+public class VipInfoSimpleUI extends BaseUI {
 
-    @ViewInject(R.id.et_edit_nikname)
-    private EditText et_nikname;
+    @ViewInject(R.id.et_info_simple)
+    private EditText et_simple;
     @Override
     protected void back() {
         finish();
@@ -30,7 +29,7 @@ public class VipInfoNicknameUI extends BaseUI {
 
     @Override
     protected void setControlBasis() {
-        setTitle("昵称");
+        setTitle("个人简介");
         rightVisible("保存");
     }
 
@@ -45,11 +44,11 @@ public class VipInfoNicknameUI extends BaseUI {
      */
     @OnClick(R.id.ll_right)
     private void getSave(View view){
-        String editNikname = et_nikname.getText().toString().trim();
-        if (!TextUtils.isEmpty(editNikname)){
+        String simple = et_simple.getText().toString().trim();
+        if (!TextUtils.isEmpty(simple)){
             Intent intent = new Intent();
-            intent.putExtra("editNikname",editNikname);
-            setResult(0,intent);
+            intent.putExtra("simple",simple);
+            setResult(3,intent);
             finish();
         }else {
             Toast.makeText(this,"您没有输入任何内容",Toast.LENGTH_SHORT).show();
