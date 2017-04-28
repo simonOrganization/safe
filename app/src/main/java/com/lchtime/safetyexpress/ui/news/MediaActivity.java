@@ -86,7 +86,7 @@ public class MediaActivity extends Activity {
             Message message = Message.obtain();
             Log.i("yang","run======");
             try {
-                url="http://baobab.wdjcdn.com/145076769089714.mp4";
+//                url="http://baobab.wdjcdn.com/145076769089714.mp4";
 //                Uri uri= Uri.parse(uriStr);
                 if(!TextUtils.isEmpty(url)){
                     Log.i("yang","uri!=null======");

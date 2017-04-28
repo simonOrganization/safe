@@ -3,11 +3,14 @@ package com.lchtime.safetyexpress.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  * Created by yxn on 2017/4/25.
  */
 
-public class NewsBean implements Parcelable {
+public class NewsBean implements Serializable {
     private String cc_id;
     private String cc_cd_id;
     private String cc_cd_parent_id_dir;
@@ -26,7 +29,42 @@ public class NewsBean implements Parcelable {
     private String cc_mark;
     private String cc_fielid;
     private String cc_fee;
-    private String is_media;
+    private String is_delete;
+    private String count;
+    private String plNum;
+    private ArrayList<String> media;
+
+    public ArrayList<String> getMedia() {
+        return media;
+    }
+
+    public void setMedia(ArrayList<String> media) {
+        this.media = media;
+    }
+
+    public String getPlNum() {
+        return plNum;
+    }
+
+    public void setPlNum(String plNum) {
+        this.plNum = plNum;
+    }
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
+    }
+
+    public String getIs_delete() {
+        return is_delete;
+    }
+
+    public void setIs_delete(String is_delete) {
+        this.is_delete = is_delete;
+    }
 
     public String getCc_id() {
         return cc_id;
@@ -172,74 +210,74 @@ public class NewsBean implements Parcelable {
         this.cc_fee = cc_fee;
     }
 
-    public String getIs_media() {
-        return is_media;
-    }
-
-    public void setIs_media(String is_media) {
-        this.is_media = is_media;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(cc_id);
-        parcel.writeString(cc_cd_id);
-        parcel.writeString(cc_cd_parent_id_dir);
-        parcel.writeString(cc_title);
-        parcel.writeString(cc_description);
-        parcel.writeString(cc_from);
-        parcel.writeString(cc_datetime);
-        parcel.writeString(cc_auth);
-        parcel.writeString(cc_web_keyword);
-        parcel.writeString(cc_web_description);
-        parcel.writeString(cc_context);
-        parcel.writeString(cc_pos);
-        parcel.writeString(cc_agr);
-        parcel.writeString(cc_aga);
-        parcel.writeString(cc_count);
-        parcel.writeString(cc_mark);
-        parcel.writeString(cc_fielid);
-        parcel.writeString(cc_fee);
-        parcel.writeString(is_media);
-    }
-    public static final Parcelable.Creator<NewsBean> CREATOR = new Creator(){
-
-        @Override
-        public NewsBean createFromParcel(Parcel source) {
-            // TODO Auto-generated method stub
-            // 必须按成员变量声明的顺序读取数据，不然会出现获取数据出错
-            NewsBean p = new NewsBean();
-            p.setCc_id(source.readString());
-            p.setCc_cd_id(source.readString());
-            p.setCc_cd_parent_id_dir(source.readString());
-            p.setCc_title(source.readString());
-            p.setCc_description(source.readString());
-            p.setCc_from(source.readString());
-            p.setCc_datetime(source.readString());
-            p.setCc_auth(source.readString());
-            p.setCc_web_keyword(source.readString());
-            p.setCc_web_description(source.readString());
-            p.setCc_context(source.readString());
-            p.setCc_pos(source.readString());
-            p.setCc_agr(source.readString());
-            p.setCc_aga(source.readString());
-            p.setCc_count(source.readString());
-            p.setCc_mark(source.readString());
-            p.setCc_fielid(source.readString());
-            p.setCc_fee(source.readString());
-            p.setIs_media(source.readString());
-            return p;
-        }
-
-        @Override
-        public NewsBean[] newArray(int size) {
-            // TODO Auto-generated method stub
-            return new NewsBean[size];
-        }
-    };
+//    @Override
+//    public int describeContents() {
+//        return 0;
+//    }
+//
+//    @Override
+//    public void writeToParcel(Parcel parcel, int i) {
+//        parcel.writeString(cc_id);
+//        parcel.writeString(cc_cd_id);
+//        parcel.writeString(cc_cd_parent_id_dir);
+//        parcel.writeString(cc_title);
+//        parcel.writeString(cc_description);
+//        parcel.writeString(cc_from);
+//        parcel.writeString(cc_datetime);
+//        parcel.writeString(cc_auth);
+//        parcel.writeString(cc_web_keyword);
+//        parcel.writeString(cc_web_description);
+//        parcel.writeString(cc_context);
+//        parcel.writeString(cc_pos);
+//        parcel.writeString(cc_agr);
+//        parcel.writeString(cc_aga);
+//        parcel.writeString(cc_count);
+//        parcel.writeString(cc_mark);
+//        parcel.writeString(cc_fielid);
+//        parcel.writeString(cc_fee);
+//        parcel.writeString(is_delete);
+//        parcel.writeString(count);
+//        parcel.writeString(plNum);
+//        parcel.writeStringList(media);
+//
+//
+//    }
+//    public static final Parcelable.Creator<NewsBean> CREATOR = new Creator(){
+//
+//        @Override
+//        public NewsBean createFromParcel(Parcel source) {
+//            // TODO Auto-generated method stub
+//            // 必须按成员变量声明的顺序读取数据，不然会出现获取数据出错
+//            NewsBean p = new NewsBean();
+//            p.setCc_id(source.readString());
+//            p.setCc_cd_id(source.readString());
+//            p.setCc_cd_parent_id_dir(source.readString());
+//            p.setCc_title(source.readString());
+//            p.setCc_description(source.readString());
+//            p.setCc_from(source.readString());
+//            p.setCc_datetime(source.readString());
+//            p.setCc_auth(source.readString());
+//            p.setCc_web_keyword(source.readString());
+//            p.setCc_web_description(source.readString());
+//            p.setCc_context(source.readString());
+//            p.setCc_pos(source.readString());
+//            p.setCc_agr(source.readString());
+//            p.setCc_aga(source.readString());
+//            p.setCc_count(source.readString());
+//            p.setCc_mark(source.readString());
+//            p.setCc_fielid(source.readString());
+//            p.setCc_fee(source.readString());
+//            p.setIs_delete(source.readString());
+//            p.setCount(source.readString());
+//            p.setPlNum(source.readString());
+////            p.setMedia(source.readArrayList());
+//            return p;
+//        }
+//
+//        @Override
+//        public NewsBean[] newArray(int size) {
+//            // TODO Auto-generated method stub
+//            return new NewsBean[size];
+//        }
+//    };
 }

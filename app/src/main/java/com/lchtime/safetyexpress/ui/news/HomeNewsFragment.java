@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,11 +43,18 @@ public class HomeNewsFragment extends Fragment {
     private HomeNewAdapter homeNewAdapter;
     private String type_id;
     private ArrayList<NewsBean> commentList;
+//    private View view = null;
+//    private boolean IS_LOADED = false;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Nullable
@@ -63,7 +72,9 @@ public class HomeNewsFragment extends Fragment {
         Bundle bundle = getArguments();
         int position = bundle.getInt("position");
         if(position == 0){
-            commentList = bundle.getParcelableArrayList("comments");
+            Log.i("yang","position == 0");
+//            commentList = bundle.getParcelableArrayList("comments");
+            commentList = (ArrayList<NewsBean>) bundle.getSerializable("comments");
             homeNewAdapter = new HomeNewAdapter(context,commentList);
             homeNewAdapter.setNewItemInterface(new HomeNewAdapter.NewsItemInterface() {
                 @Override
@@ -82,8 +93,13 @@ public class HomeNewsFragment extends Fragment {
             });
             home_new_fragment_rc.setAdapter(homeNewAdapter);
         }else{
+            Log.i("yang","else   ===");
             type_id = bundle.getString("typeId");
-            getNewsList(type_id);
+            if(!TextUtils.isEmpty(type_id)){
+                getNewsList(type_id);
+                Log.i("yang","isEmpty===="+type_id);
+            }
+
         }
 
 
@@ -105,14 +121,17 @@ public class HomeNewsFragment extends Fragment {
                     }
                     @Override
                     public void onResponse(String response, int id) {
-
+                        Log.i("yang","getNewsList=="+response);
                         NewsListRes newsListRes = (NewsListRes) JsonUtils.stringToObject(response,NewsListRes.class);
                         if(newsListRes.getResult().getCode().equals("10")){
                             if(commentList!=null){
                                 commentList.clear();
                                 commentList = null;
+                                commentList = new ArrayList<NewsBean>();
                             }
+                            Log.i("yang","onResponse===="+newsListRes.getCms_context().size());
                             commentList = newsListRes.getCms_context();
+                            Log.i("yang","onResponse===="+commentList.size());
                             homeNewAdapter = new HomeNewAdapter(context,commentList);
                             homeNewAdapter.setNewItemInterface(new HomeNewAdapter.NewsItemInterface() {
                                 @Override
@@ -136,4 +155,5 @@ public class HomeNewsFragment extends Fragment {
                     }
                 });
     }
+
 }

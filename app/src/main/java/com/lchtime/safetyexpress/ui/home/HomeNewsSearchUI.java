@@ -2,6 +2,7 @@ package com.lchtime.safetyexpress.ui.home;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -56,8 +57,12 @@ public class HomeNewsSearchUI extends BaseUI {
     //列表展示
     @ViewInject(R.id.lv_news_search)
     private ListView lv_news_search;
+    @ViewInject(R.id.slv_news_search_hot)
+    RecyclerView slv_news_search_hot;
     private NewSearchStringAdapter historyAdapter;
+    private NewSearchStringAdapter hotAdapter;
     private ArrayList<String> historyList;
+    private ArrayList<String> hotList;
 
     //搜索内容
     private String content;
@@ -80,7 +85,7 @@ public class HomeNewsSearchUI extends BaseUI {
     protected void setControlBasis() {
         setStatus2();
         slv_news_search_history.setLayoutManager(new LinearLayoutManager(HomeNewsSearchUI.this));
-
+        slv_news_search_hot.setLayoutManager(new LinearLayoutManager(HomeNewsSearchUI.this));
     }
 
     @Override
@@ -105,12 +110,17 @@ public class HomeNewsSearchUI extends BaseUI {
 
                     @Override
                     public void onResponse(String response, int id) {
+
                         SearchRes searchRes = (SearchRes) JsonUtils.stringToObject(response,SearchRes.class);
                         if(searchRes.getResult().getCode().equals("10")){
                             if(historyAdapter == null){
                                 historyList= searchRes.getHistory();
                                 historyAdapter = new NewSearchStringAdapter(historyList,HomeNewsSearchUI.this);
                                 slv_news_search_history.setAdapter(historyAdapter);
+                                hotList = searchRes.getHot();
+                                hotAdapter = new NewSearchStringAdapter(hotList,HomeNewsSearchUI.this);
+                                slv_news_search_hot.setAdapter(hotAdapter);
+
                             }else{
                                 if(historyList!=null){
                                     historyList.clear();
