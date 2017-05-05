@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public class NewsRes {
     private BasicResult result;
     private ArrayList<NewTypeBean> cms_dir;
-    private ArrayList<NewsBean> tj;
+    public ArrayList<NewsBean> tj;
+    public ArrayList<NewsBean> hot;
 
     public BasicResult getResult() {
         return result;

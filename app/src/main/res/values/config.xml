@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--主 -->
-    <string name="service_host_address">http://modao1.cc/</string>
+    <string name="service_host_address">http://fcar.lchtime.cn:8001/</string>
 
     <!--登录-->
     <string name="getLogin">index.php/user/login/</string>
@@ -15,11 +15,19 @@
     <string name="reset">index.php/user/reset/</string>
     <!--修改密码-->
     <string name="chpwd">index.php/user/chpwd/</string>
+    //修改电话号码
+    <string name="chphone">index.php/user/changephone/</string>
     <!--获取个人信息-->
     <string name="mycount">index.php/user/view/</string>
     <!--修改个人信息-->
     <string name="mycountEdit">index.php/user/edit/</string>
     <!--上传-->
     <string name="upload">index.php/system/upload/</string>
+    <!--意见建议-->
+    <string name="advice">index.php/user/advice/</string>
+    <!--收藏-->
+    <string name="attention">index.php/user/attention/</string>
+    <!--首页新闻-->
+    <string name="indexhot">index.php/cms/indexhot/</string>
 
 </resources>

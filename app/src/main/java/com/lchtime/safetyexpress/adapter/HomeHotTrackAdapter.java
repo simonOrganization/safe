@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.bean.NewsBean;
 
 import java.util.List;
 
@@ -20,10 +21,11 @@ public class HomeHotTrackAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
-    private List<String> list;
+    private List<NewsBean> list;
 
-    public HomeHotTrackAdapter(Context context) {
+    public HomeHotTrackAdapter(Context context,List<NewsBean> list) {
         this.context = context;
+        this.list = list;
         inflater = LayoutInflater.from(context);
     }
 

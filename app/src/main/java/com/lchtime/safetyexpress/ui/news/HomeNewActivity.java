@@ -81,6 +81,7 @@ public class HomeNewActivity extends BaseUI {
         OkHttpUtils
                 .post()
                 .url(Const.NEW_TYPE)
+                .addParams("type","0")
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -95,6 +96,8 @@ public class HomeNewActivity extends BaseUI {
                         if(newsRes.getResult().getCode().equals("10")){
                             ArrayList<NewTypeBean> list = new ArrayList<NewTypeBean>();
                             list.add(new NewTypeBean("推荐"));
+                            //新增加的tab
+                            list.add(new NewTypeBean("热点追踪"));
                             list.addAll(newsRes.getCms_dir());
                             activity_new_tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);//MODE_FIXED
                             for (int i = 0; i < list.size(); i++) {
@@ -106,7 +109,6 @@ public class HomeNewActivity extends BaseUI {
                             }
                             fragmentAdapter = new NewsFragmentAdapter(getSupportFragmentManager(),fragments);
                             fragmentAdapter.setmDatas(list);
-                            fragmentAdapter.setmCommentDatas(newsRes.getTj());
                             activity_new_vp.setAdapter(fragmentAdapter);
                             activity_new_tablayout.setupWithViewPager(activity_new_vp);
                             activity_new_tablayout.setTabsFromPagerAdapter(fragmentAdapter);

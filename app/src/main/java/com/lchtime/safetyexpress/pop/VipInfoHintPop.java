@@ -1,9 +1,11 @@
 package com.lchtime.safetyexpress.pop;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
+import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 
 /**
@@ -15,9 +17,11 @@ public class VipInfoHintPop extends CommentPopUtils implements View.OnClickListe
 
     private TextView tv_perfect;
     private TextView tv_jump;
+    private Activity activity;
 
-    public VipInfoHintPop(View v, Context context, int layout) {
-        super(v, context, layout);
+    public VipInfoHintPop(View v, Activity activity, int layout) {
+        super(v, activity, layout);
+        this.activity = activity;
     }
 
     @Override
@@ -30,6 +34,9 @@ public class VipInfoHintPop extends CommentPopUtils implements View.OnClickListe
         tv_jump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (activity != null){
+                    activity.finish();
+                }
                 dismiss();
             }
         });

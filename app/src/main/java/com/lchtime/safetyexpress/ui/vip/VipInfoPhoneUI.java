@@ -32,8 +32,8 @@ public class VipInfoPhoneUI extends BaseUI {
     protected void setControlBasis() {
         setTitle("手机号");
         String phoneNumber = InitInfo.phoneNumber;
-        String head=phoneNumber.substring(0,2);
-        String tail=phoneNumber.substring(6);
+        String head=phoneNumber.substring(0,3);
+        String tail=phoneNumber.substring(7);
         String s=head+"****"+tail;
 
         tv_info_phone_phone.setText(s);

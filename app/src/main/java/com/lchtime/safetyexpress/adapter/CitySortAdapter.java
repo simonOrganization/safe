@@ -8,7 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
-import com.socks.selectcitymodule.view.CitySortModel;
+
+import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.views.CityView.CitySortModel;
 
 import java.util.List;
 

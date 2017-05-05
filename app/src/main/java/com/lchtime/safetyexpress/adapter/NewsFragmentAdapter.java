@@ -34,12 +34,10 @@ public class NewsFragmentAdapter extends FragmentPagerAdapter {
         Fragment fragment = fragments.get(position);
         Bundle bundle = new Bundle();
         bundle.putInt("position",position);
-        if(position == 0){
-//            bundle.putParcelableArrayList("comments",newsList);
-            bundle.putSerializable("comments",newsList);
-//            bundle.putString("comments",position+"");
-        }else{
+        if(position != 0 && position != 1){
+
             bundle.putString("typeId",mDatas.get(position).getCd_id());
+
         }
         fragment.setArguments(bundle);
         return fragment;

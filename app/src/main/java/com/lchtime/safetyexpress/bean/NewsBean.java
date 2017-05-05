@@ -34,6 +34,8 @@ public class NewsBean implements Serializable {
     private String plNum;
     private ArrayList<String> media;
 
+    public boolean isCheck;
+
     public ArrayList<String> getMedia() {
         return media;
     }

@@ -3,6 +3,7 @@ package com.lchtime.safetyexpress.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -11,6 +12,7 @@ import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.io.BufferedOutputStream;
@@ -20,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import okhttp3.Call;
 
@@ -31,20 +34,55 @@ public class UpdataImageUtils {
 
     private int index;
     private UpdataPicListener mListener;
-    public void upDataPic(final Bitmap zoomBitMap, final String MYICON, UpdataPicListener updataPicListener){
+    public void upDataPic(final Bitmap zoomBitMap, final String filePath, UpdataPicListener updataPicListener){
         mListener = updataPicListener;
         final Context context = MyApplication.getContext();
-
+        File file = new File(filePath);
         OkHttpUtils.post()
-                .addFile("image[]",MYICON,new File(context.getFilesDir(),MYICON))
                 .url(context.getResources().getString(R.string.service_host_address).concat(context.getResources().getString(R.string.upload)))
+                .addFile("image[]",file.getName(),file)
                 .addParams("sid", "")
                 .addParams("index", (index++) + "")
                 .addParams("ub_id", SpTools.getString(context , Constants.userId ,""))
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
+                Log.d("--------","response="+e);
                 Toast.makeText(context,"上传头像失败，请重新上传", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onResponse(String response, int id) {
+                Log.d("--------","response="+response);
+                if (mListener != null){
+                    mListener.onResponse(response);
+                }
+                Toast.makeText(context,"上传头像成功",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+/**
+ *
+ * 上传多张图片
+ * */
+    public void upMuchDataPic(List<File> list, UpdataPicListener updataPicListener){
+        mListener = updataPicListener;
+        final Context context = MyApplication.getContext();
+
+        PostFormBuilder builder = OkHttpUtils.post()
+                .url(context.getResources().getString(R.string.service_host_address).concat(context.getResources().getString(R.string.upload)));
+
+        for (int i = 0 ;i < list.size(); i ++){
+            builder.addFile("image[]","advice" + i,list.get(i));
+        }
+        builder
+                .addParams("sid", "")
+                .addParams("index", (index++) + "")
+                .addParams("ub_id", SpTools.getString(context , Constants.userId ,""))
+                .build().execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                Toast.makeText(context,"上传图片失败，请重新上传", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onResponse(String response, int id) {
@@ -52,7 +90,7 @@ public class UpdataImageUtils {
                 if (mListener != null){
                     mListener.onResponse(response);
                 }
-                Toast.makeText(context,"上传头像成功",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"上传图片成功",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -94,6 +132,7 @@ public class UpdataImageUtils {
     public static void saveBitmapFile(Bitmap bitmap , String str){
 
         File file = new File(MyApplication.getContext().getFilesDir(),str);//将要保存图片的路径
+        Log.d("------------","file="+file.getName());
         try {
             if(file.exists()){
                 file.delete();

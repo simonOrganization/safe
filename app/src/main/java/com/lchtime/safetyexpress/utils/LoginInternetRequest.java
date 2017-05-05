@@ -243,7 +243,9 @@ public class LoginInternetRequest {
                 String info = result.result.info;
                 if(code.equals("10")){
                     reset();
-                    mListener.onResponseMessage("成功");
+                    if (!TextUtils.isEmpty(result.ub_id)) {
+                        mListener.onResponseMessage(result.ub_id);
+                    }
                 }else if(code.equals("20")){
                     if(info.equals("手机长度不正确")){
                         CommonUtils.toastMessage("您输入的手机号错误");
@@ -352,37 +354,29 @@ public class LoginInternetRequest {
 
     /**
      *
-     * @param password 原密码
      * @param newpassword 新密码
      * @param confirmpassword 新密码确认
-     * @param editpass 原密码的Editext
      * @param editnewpass 新密码的Editext
-     * @param editconfirm 确认密码的Editext
      * @param listener listener
      */
-    public static void reviseCode(String password, String newpassword, String confirmpassword, EditText editpass, EditText editnewpass, EditText editconfirm, ForResultListener listener) {
+    public static void reviseCode(String newpassword, String confirmpassword, EditText editnewpass, ForResultListener listener) {
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         mListener = listener;
-        if(TextUtils.isEmpty(password) | TextUtils.isEmpty(newpassword) | TextUtils.isEmpty(confirmpassword)){
+        if(TextUtils.isEmpty(newpassword) | TextUtils.isEmpty(confirmpassword)){
             CommonUtils.toastMessage("您输入的密码为空");
-            editpass.setText("");
             editnewpass.setText("");
-            editconfirm.setText("");
             return;
-        }else if(password.length()<6 |confirmpassword.length()<6){
+        }else if(confirmpassword.length()<6){
             CommonUtils.toastMessage("输入的新密码长度不要小于6位");
-            editpass.setText("");
             editnewpass.setText("");
-            editconfirm.setText("");
             return;
         }
         if(!newpassword.equals(confirmpassword)){
             CommonUtils.toastMessage("二次输入的新密码不一致");
             editnewpass.setText("");
-            editconfirm.setText("");
             return;
         }
         String url = context.getResources().getString(R.string.service_host_address)
@@ -390,12 +384,12 @@ public class LoginInternetRequest {
         OkHttpUtils.post().url(url)
                 .addParams("sid","")
                 .addParams("index",(index++)+"")
-                .addParams("ub_id",SpTools.getString(context, Constants.userId,""))
                 .addParams("uo_long","")
                 .addParams("uo_lat","")
                 .addParams("uo_high","")
-                .addParams("ud_pwd",password)
-                .addParams("nw_pwd",newpassword)
+                .addParams("ud_pwd",newpassword)
+                .addParams("vc_code",newpassword)
+                .addParams("ub_phone",newpassword)
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -423,6 +417,55 @@ public class LoginInternetRequest {
 
     }
 
+
+    /**
+     *
+     * 更换手机号
+     */
+    public static void ChangePhone(String code, String ub_id, String phoneNum, ForResultListener listener) {
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            return;
+        }
+        mListener = listener;
+
+        String url = context.getResources().getString(R.string.service_host_address)
+                .concat(context.getResources().getString(R.string.chphone));
+        OkHttpUtils.post().url(url)
+                .addParams("sid","")
+                .addParams("index",(index++)+"")
+                .addParams("uo_long","")
+                .addParams("uo_lat","")
+                .addParams("uo_high","")
+                .addParams("code",code)
+                .addParams("ub_id",ub_id)
+                .addParams("phone",phoneNum)
+                .build().execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
+            }
+            @Override
+            public void onResponse(String response, int id) {
+                Log.d("----------","RegisterUI="+response);
+                LoginResult result = mGson.fromJson(response, LoginResult.class);
+                String code = result.result.code;
+                String info = result.result.info;
+                if(code.equals("10")){
+                    mListener.onResponseMessage("成功");
+                }else if(code.equals("20")){
+//                    if(info.equals("ub_phone error!")){
+//                        CommonUtils.toastMessage("您输入的手机号错误");
+//                    }else if(info.equals("ub_phone exist!")){
+//                        CommonUtils.toastMessage("您输入的手机号已注册");
+//                    }else if(info.equals("ud_pwd error!")){
+//                        CommonUtils.toastMessage("您输入的密码位数不足6位");
+//                    }
+                }
+            }
+        });
+
+    }
 
     /**
      *  获取个人信息
@@ -506,7 +549,7 @@ public class LoginInternetRequest {
                 if (!TextUtils.isEmpty(response) && professionBean != null) {
                     String code = professionBean.result.code;
                     if (code.equals("10")) {
-                        CommonUtils.toastMessage(professionBean.result.info);
+//                        CommonUtils.toastMessage(professionBean.result.info);
                         if (mListener != null) {
                             mListener.onResponseMessage(response);
                         }
@@ -555,7 +598,7 @@ public class LoginInternetRequest {
                 if (!TextUtils.isEmpty(response) && postBean != null) {
                     String code = postBean.result.code;
                     if (code.equals("10")) {
-                        CommonUtils.toastMessage(postBean.result.info);
+           //             CommonUtils.toastMessage(postBean.result.info);
                         if (mListener != null) {
                             mListener.onResponseMessage(response);
                         }
@@ -666,8 +709,9 @@ public class LoginInternetRequest {
         }
     }
 
-    private static void reset() {
+    public static void reset() {
         if(timeCount != null){
+            timeCount.cancel();
             timeCount.onFinish();
         }
     }

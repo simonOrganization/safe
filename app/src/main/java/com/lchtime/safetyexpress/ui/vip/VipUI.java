@@ -3,10 +3,13 @@ package com.lchtime.safetyexpress.ui.vip;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.bean.CheckUpdataBean;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.VipInfoBean;
@@ -57,7 +61,10 @@ public class VipUI extends BaseUI {
     @ViewInject(R.id.ll_vip_login)
     private LinearLayout logIn;
 
-    private VipInfoHintPop vipInfoHintPop;
+    //登陆后显示的布局
+    @ViewInject(R.id.tv_vip_info)
+    private LinearLayout addr_pro_post;
+
 
     private Gson gson;
 
@@ -72,7 +79,6 @@ public class VipUI extends BaseUI {
     protected void setControlBasis() {
         setTitle("我");
         backGone();
-        vipInfoHintPop = new VipInfoHintPop(civ_vip_icon, VipUI.this, R.layout.pop_info_hint);
         handler = new Handler();
     }
 
@@ -84,23 +90,6 @@ public class VipUI extends BaseUI {
     @Override
     protected void onResume() {
         super.onResume();
-        if (InitInfo.isShowed) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    vipInfoHintPop.showAtLocation();
-                    vipInfoHintPop.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(VipUI.this, VipInfoUI.class);
-                            startActivity(intent);
-                            vipInfoHintPop.dismiss();
-                        }
-                    });
-                }
-            }, 1000);
-            InitInfo.isShowed = false;
-        }
 
         String ub_id = SpTools.getString(this, Constants.userId,"");
         if (TextUtils.isEmpty(ub_id)){
@@ -149,6 +138,32 @@ public class VipUI extends BaseUI {
             String name = SpTools.getString(this,Constants.nik_name,"");
             tv_vip_nickname.setText(TextUtils.isEmpty(name) ? "设置昵称" : name);
         }
+
+        String[] arr = {InitInfo.vipInfoBean.user_detail.ud_post,InitInfo.vipInfoBean.user_detail.ud_profession,InitInfo.vipInfoBean.user_detail.ud_addr};
+        if (!(TextUtils.isEmpty(arr[0])||
+                TextUtils.isEmpty(arr[1])||
+                TextUtils.isEmpty(arr[2]))){
+            float desity = getResources().getDisplayMetrics().density;
+            addr_pro_post.removeAllViews();
+            for (int i = 0; i < arr.length;i++){
+                TextView tv = new TextView(this);
+                tv.setText(arr[i]);
+                tv.setBackground(getResources().getDrawable(R.drawable.shape_white_border));
+                tv.setHeight(R.dimen.dm050);
+                tv.setGravity(Gravity.CENTER);
+                tv.setSingleLine(true);
+                tv.setTextColor(Color.WHITE);
+                tv.setTextSize(26/desity + 0.5f);
+                tv.setPadding((int)(30/desity + 0.5f),0,(int)(30/desity + 0.5f),0);
+                if (i > 0){
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    layoutParams.setMargins((int)(10/desity + 0.5f),0,0,0);//4个参数按顺序分别是左上右下
+
+                    tv.setLayoutParams(layoutParams);
+                }
+                addr_pro_post.addView(tv);
+            }
+        }
     }
 
     /**
@@ -186,6 +201,13 @@ public class VipUI extends BaseUI {
         //有网络的情况下
         if (CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             //没有个人信息的情况下
+            if (InitInfo.vipInfoBean == null){
+                Toast.makeText(this,"网络异常",Toast.LENGTH_SHORT).show();
+                return;
+            }else if(InitInfo.vipInfoBean.user_detail == null){
+                Toast.makeText(this,"网络异常",Toast.LENGTH_SHORT).show();
+                return;
+            }
             if (!InitInfo.isLogin) {
                 getVipInfo();
             }
@@ -207,6 +229,13 @@ public class VipUI extends BaseUI {
         //有网络的情况下
         if (CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             //没有个人信息的情况下
+            if (InitInfo.vipInfoBean == null){
+                Toast.makeText(this,"网络异常",Toast.LENGTH_SHORT).show();
+                return;
+            }else if(InitInfo.vipInfoBean.user_detail == null){
+                Toast.makeText(this,"网络异常",Toast.LENGTH_SHORT).show();
+                return;
+            }
             if (!InitInfo.isLogin) {
                 getVipInfo();
             }
@@ -227,6 +256,13 @@ public class VipUI extends BaseUI {
         //有网络的情况下
         if (CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             //没有个人信息的情况下
+            if (InitInfo.vipInfoBean == null){
+                Toast.makeText(this,"网络异常",Toast.LENGTH_SHORT).show();
+                return;
+            }else if(InitInfo.vipInfoBean.user_detail == null){
+                Toast.makeText(this,"网络异常",Toast.LENGTH_SHORT).show();
+                return;
+            }
             if (!InitInfo.isLogin) {
                 getVipInfo();
             }
@@ -318,7 +354,7 @@ public class VipUI extends BaseUI {
                 if (!TextUtils.isEmpty(code)) {
                     VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
                     if (vipInfoBean != null) {
-                        InitInfo.phoneNumber = vipInfoBean.user_base;
+                        InitInfo.phoneNumber = vipInfoBean.user_detail.ub_phone;
                         InitInfo.vipInfoBean = vipInfoBean;
                         InitInfo.isLogin = true;
                         SpTools.setString(VipUI.this, Constants.nik_name, vipInfoBean.user_detail.ud_nickname);

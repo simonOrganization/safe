@@ -1,15 +1,25 @@
 package com.lchtime.safetyexpress.ui.login;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.InitInfo;
+import com.lchtime.safetyexpress.bean.VipInfoBean;
+import com.lchtime.safetyexpress.pop.VipInfoHintPop;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.TabUI;
+import com.lchtime.safetyexpress.ui.vip.VipInfoUI;
+import com.lchtime.safetyexpress.ui.vip.VipUI;
 import com.lchtime.safetyexpress.utils.LoginInternetRequest;
+import com.lchtime.safetyexpress.utils.SpTools;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -22,6 +32,12 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 public class RegisterUI extends BaseUI {
 
     private String registerCode;
+
+    private Gson gson;
+
+    private String userId;
+
+    private VipInfoHintPop vipInfoHintPop;
 
     //手机号
     @ViewInject(R.id.et_register_username)
@@ -46,7 +62,7 @@ public class RegisterUI extends BaseUI {
     @Override
     protected void setControlBasis() {
         setTitle("注册");
-        rightVisible("登录");
+        vipInfoHintPop = new VipInfoHintPop(et_register_username, RegisterUI.this, R.layout.pop_info_hint);
     }
 
     @Override
@@ -82,8 +98,52 @@ public class RegisterUI extends BaseUI {
         LoginInternetRequest.register(phoneNum, registerCode, pwd, customRegisterNum, register_getcode, new LoginInternetRequest.ForResultListener() {
             @Override
             public void onResponseMessage(String code) {
-                if ("成功".equals(code)){
-                    finish();
+                //存储用户的ub_id
+                SpTools.setString(RegisterUI.this, Constants.userId, code);
+                userId = code;
+                getVipInfo();
+                //显示不全信息对话框
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        vipInfoHintPop.showAtLocation();
+                        vipInfoHintPop.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(RegisterUI.this, VipInfoUI.class);
+                                startActivity(intent);
+                                vipInfoHintPop.dismiss();
+                                finish();
+                            }
+                        });
+                    }
+                }, 1000);
+                InitInfo.isShowed = false;
+
+            }
+        });
+    }
+
+    private void getVipInfo() {
+        if (gson == null){
+            gson = new Gson();
+        }
+        if (TextUtils.isEmpty(userId)){
+            userId = SpTools.getString(this,Constants.userId,"");
+        }
+        //登录操作
+        LoginInternetRequest.getVipInfo(userId, new LoginInternetRequest.ForResultListener() {
+            @Override
+            public void onResponseMessage(String code) {
+                if(!TextUtils.isEmpty(code)) {
+                    VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
+                    if (vipInfoBean != null) {
+                        InitInfo.phoneNumber = vipInfoBean.user_detail.ub_phone;
+                        InitInfo.vipInfoBean = vipInfoBean;
+                        InitInfo.isLogin = true;
+                        SpTools.setString(RegisterUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
+                        SpTools.setString(RegisterUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
+                    }
                 }
             }
         });

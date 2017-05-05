@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.utils;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -25,7 +26,7 @@ import okhttp3.Call;
 
 public class MyConllectedProtocal {
 
-    public static void requestDelete(String type,String del_ids){
+    public static void requestDelete(String type, String del_ids, final DeleteResponse deleteResponse){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("请检查网络");
             return;
@@ -44,50 +45,22 @@ public class MyConllectedProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        Toast.makeText(MyApplication.getContext(),"请检查网络设置",Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-                        NewsListRes newsListRes = (NewsListRes) JsonUtils.stringToObject(myResponse,NewsListRes.class);
-                        if(newsListRes.getResult().getCode().equals("10")){
-                            if(commentList!=null){
-                                commentList.clear();
-                                commentList = null;
-                                commentList = new ArrayList<NewsBean>();
-                            }
-                            Log.i("yang","onResponse===="+newsListRes.getCms_context().size());
-                            commentList = newsListRes.getCms_context();
-                            Log.i("yang","onResponse===="+commentList.size());
-                            if (homeNewAdapter == null) {
-                                homeNewAdapter = new HomeNewAdapter(getContext(), commentList);
-                            }
-                            homeNewAdapter.setNewItemInterface(new HomeNewAdapter.NewsItemInterface() {
-                                @Override
-                                public void setNewOnItem(int position) {
-                                    Intent intent = new Intent(getContext(), HomeNewsDetailUI.class);
-                                    intent.putExtra("newsId","");
-                                    startActivity(intent);
-                                }
-
-                                @Override
-                                public void setVideoPlay(String url) {
-                                    Intent intent = new Intent(getContext(), MediaActivity.class);
-                                    intent.putExtra("url",url);
-                                    startActivity(intent);
-                                }
-                            });
-
-//                if (recyclerView == null){
-//                    recyclerView = new EmptyRecyclerView(MyApplication.getContext());
-//                    recyclerView.setAdapter(homeNewAdapter);
-//                }
-                            homeNewAdapter.notifyDataSetChanged();
-                            // home_new_fragment_rc.setAdapter(homeNewAdapter);
-                        }else{
-                            Toast.makeText(getContext(),newsListRes.getResult().getInfo(),Toast.LENGTH_SHORT).show();
+                        if (TextUtils.isEmpty(response)){
+                            Toast.makeText(MyApplication.getContext(),"请检查网络设置",Toast.LENGTH_SHORT).show();
+                            return;
                         }
+                        NewsListRes newsListRes = (NewsListRes) JsonUtils.stringToObject(response,NewsListRes.class);
+                        deleteResponse.onDeleteResponse(newsListRes);
                     }
                 });
+    }
+
+    public interface DeleteResponse{
+        void onDeleteResponse(NewsListRes newsListRes);
     }
 }

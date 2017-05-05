@@ -91,10 +91,13 @@ public class MyConllectedVideoAdapter extends BaseAdapter {
             Drawable drawable = currentFragment.getActivity().getResources().getDrawable(R.drawable.rb_delete);
 
         //设置drawable对象的大小
-            drawable.setBounds(0,0,20,20);
+            drawable.setBounds(10,10,10,10);
 
         //设置CheckBox对象的位置，对应为左、上、右、下
-            holder.rb.setCompoundDrawables(drawable,null,null,null);
+           // holder.rb.setCompoundDrawables(drawable,null,null,null);
+
+           // holder.rb.setBackgroundDrawable(drawable);
+
             //显示
             holder.rb.setVisibility(View.VISIBLE);
             holder.rb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

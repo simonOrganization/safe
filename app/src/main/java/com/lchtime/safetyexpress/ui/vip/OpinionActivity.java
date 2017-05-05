@@ -3,13 +3,25 @@ package com.lchtime.safetyexpress.ui.vip;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.GridImageAdapter;
+import com.lchtime.safetyexpress.bean.AdviceBean;
+import com.lchtime.safetyexpress.bean.BasicResult;
+import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
+import com.lchtime.safetyexpress.utils.BitmapUtils;
+import com.lchtime.safetyexpress.utils.JsonUtils;
+import com.lchtime.safetyexpress.utils.OpinionProtocal;
+import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.utils.UpdataImageUtils;
 import com.lchtime.safetyexpress.views.FullyGridLayoutManager;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -19,6 +31,7 @@ import com.luck.picture.lib.model.FunctionOptions;
 import com.luck.picture.lib.model.PictureConfig;
 import com.yalantis.ucrop.entity.LocalMedia;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +46,13 @@ public class OpinionActivity extends BaseUI{
     private List<LocalMedia> selectMedia = new ArrayList<>();
     @ViewInject(R.id.recycler)
     private RecyclerView picView;
+    @ViewInject(R.id.et_describe_text)
+    private EditText describe_text;
+    private List<File> fileList;
+
+    private OpinionProtocal protocal;
+    private UpdataImageUtils updataImageUtils;
+    private String filesid;
 
     @Override
     protected void back() {
@@ -171,8 +191,19 @@ public class OpinionActivity extends BaseUI{
         public void onSelectSuccess(List<LocalMedia> resultList) {
             selectMedia = resultList;
             Log.i("callBack_result", selectMedia.size() + "");
-            LocalMedia media = resultList.get(0);
-            if (media.isCut() && !media.isCompressed()) {
+            fileList = new ArrayList<>();
+            for (int i = 0; i < resultList.size() ; i ++){
+                LocalMedia media = resultList.get(i);
+                String path = media.getCompressPath();
+                File file = new File(path);
+                fileList.add(file);
+            }
+
+            if (selectMedia != null) {
+                adapter.setList(selectMedia);
+                adapter.notifyDataSetChanged();
+            }
+           /* if (media.isCut() && !media.isCompressed()) {
                 // 裁剪过
                 String path = media.getCutPath();
             } else if (media.isCompressed() || (media.isCut() && media.isCompressed())) {
@@ -185,7 +216,62 @@ public class OpinionActivity extends BaseUI{
             if (selectMedia != null) {
                 adapter.setList(selectMedia);
                 adapter.notifyDataSetChanged();
-            }
+            }*/
         }
     };
+
+    @Override
+    protected void clickEvent() {
+        if (protocal == null){
+            protocal = new OpinionProtocal();
+        }
+
+        if (updataImageUtils == null){
+            updataImageUtils = new UpdataImageUtils();
+        }
+
+        final String advice = describe_text.getText().toString().trim();
+        if (TextUtils.isEmpty(advice)){
+            Toast.makeText(this,"意见不能为空",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (fileList != null && fileList.size() > 0){
+            updataImageUtils.upMuchDataPic(fileList, new UpdataImageUtils.UpdataPicListener() {
+                @Override
+                public void onResponse(String response) {
+                    UpdataBean updataBean = (UpdataBean) JsonUtils.stringToObject(response, UpdataBean.class);
+
+                    filesid = "";
+                    if (updataBean != null&& updataBean.file_ids != null) {
+                        //拼接上传picture的id
+                        for (int i = 0; i < updataBean.file_ids.size(); i ++) {
+                            if (i == 0){
+                                filesid = filesid + updataBean.file_ids.get(i);
+                            }else {
+                                filesid = filesid + ";" + updataBean.file_ids.get(i);
+                            }
+                        }
+
+                        protocal.getDataInternet(advice, filesid, SpTools.getString(OpinionActivity.this, Constants.userId, ""), new OpinionProtocal.OpinionResultListener() {
+                            @Override
+                            public void onResponseMessage(Object result) {
+                                AdviceBean adviceBean = (AdviceBean) result;
+                                Toast.makeText(OpinionActivity.this,adviceBean.result.info,Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+            });
+        }else {
+            filesid = "";
+            protocal.getDataInternet(advice, filesid, SpTools.getString(OpinionActivity.this, Constants.userId, ""), new OpinionProtocal.OpinionResultListener() {
+                @Override
+                public void onResponseMessage(Object result) {
+                    AdviceBean adviceBean = (AdviceBean) result;
+                    Toast.makeText(OpinionActivity.this,adviceBean.result.info,Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+    }
 }

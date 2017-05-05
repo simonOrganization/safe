@@ -53,7 +53,7 @@
             android:layout_weight="1"
             android:gravity="right"
             android:singleLine="true"
-            android:text="010-8812227"
+            android:text="010-58247322"
             android:textColor="@color/commen_reg"
             android:textSize="@dimen/dm026" />
 
@@ -88,7 +88,7 @@
             android:layout_weight="1"
             android:gravity="right"
             android:singleLine="true"
-            android:text="liurongli@qq.com"
+            android:text="bjhaty@126.com"
             android:textColor="@color/commen_reg"
             android:textSize="@dimen/dm026" />
 

@@ -5,4 +5,5 @@ package com.lchtime.safetyexpress.bean;
  */
 
 public class AdviceBean {
+   public BasicResult result;
 }

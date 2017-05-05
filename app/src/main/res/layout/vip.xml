@@ -190,7 +190,7 @@
                 android:background="@color/commen_reg"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <com.lchtime.safetyexpress.views.CircleImageView
                     android:id="@+id/civ_vip_icon"
@@ -212,19 +212,27 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/dm026" />
 
-                <TextView
+                <LinearLayout
                     android:id="@+id/tv_vip_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dm050"
+                    android:gravity="center"
                     android:layout_marginTop="@dimen/dm020"
                     android:paddingLeft="@dimen/dm030"
                     android:paddingRight="@dimen/dm030"
-                    android:background="@drawable/shape_white_border"
-                    android:gravity="center"
-                    android:singleLine="true"
-                    android:text="去完善个人信息"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dm026" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dm050"
+                        android:paddingLeft="@dimen/dm030"
+                        android:paddingRight="@dimen/dm030"
+                        android:background="@drawable/shape_white_border"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="去完善个人信息"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dm026" />
+                </LinearLayout>
 
             </LinearLayout>
 

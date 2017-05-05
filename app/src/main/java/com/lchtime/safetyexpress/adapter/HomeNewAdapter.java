@@ -1,20 +1,26 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.CircleTwoBean;
 import com.lchtime.safetyexpress.bean.NewsBean;
+import com.lchtime.safetyexpress.ui.vip.fragment.NewsFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.views.GridSpacingItemDecoration;
 import com.lchtime.safetyexpress.views.NoTouchRecycler;
@@ -38,6 +44,11 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
     private static final int ITEM_VIEW_TYPE_ONE = 1;
     private static final int ITEM_VIEW_TYPE_VIDEO = 2;
     private ArrayList<NewsBean> mDatas;
+
+    public List<NewsBean> list = new ArrayList<>();
+    private Fragment fragment;
+
+    private boolean flag = false;
 
     public HomeNewAdapter(Context context,ArrayList<NewsBean> mDatas) {
         this.context = context;
@@ -90,6 +101,62 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
         return itemViewType;
     }
 
+    /*--------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    public List<NewsBean> getUpdataList(){
+        return list;
+    }
+    public void setCheckBoxShow(Fragment fragment,boolean isShow){
+        this.fragment = fragment;
+        flag = isShow;
+    }
+
+
+    public void setCheckBox(CheckBox rb, final int position){
+        //设置删除按钮
+        if (flag == true){
+
+            //设置checkbox的自定义背景
+
+            /*Drawable drawable = fragment.getActivity().getResources().getDrawable(R.drawable.rb_delete);
+
+            //设置drawable对象的大小
+            drawable.setBounds(0,0,20,20);
+
+            //设置CheckBox对象的位置，对应为左、上、右、下
+            rb.setCompoundDrawables(drawable,null,null,null);
+            */
+            //显示
+            rb.setVisibility(View.VISIBLE);
+            final NewsBean newsBean = mDatas.get(position);
+            rb.setChecked(newsBean.isCheck);
+            rb.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (fragment instanceof NewsFragment) {
+                        //如果之前不是选中的状态
+                        if (!newsBean.isCheck) {
+                            list.add(newsBean);
+                            ((NewsFragment)fragment).updataDeleteNum(1);
+
+                        } else {
+                            list.remove(newsBean);
+                            ((NewsFragment)fragment).updataDeleteNum(-1);
+                        }
+                    }
+                    newsBean.isCheck = !newsBean.isCheck;
+
+                }
+            });
+
+        }else {
+            //隐藏
+            rb.setVisibility(View.GONE);
+        }
+    }
+
+
+    /*--------------------------------------------------------------------------------------------------------------------------------------------*/
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -98,8 +165,11 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
                 newsItemInterface.setNewOnItem(position);
             }
         });
+
+
         final NewsBean bean = mDatas.get(position);
         if(holder instanceof HomeNewHolder){
+            setCheckBox(((HomeNewHolder) holder).rb,position);
             HomeNewHolder homeNewHolder = (HomeNewHolder) holder;
 //            ArrayList<CircleTwoBean> mlist = new ArrayList<CircleTwoBean>();
 //            mlist.add(new CircleTwoBean());
@@ -107,7 +177,7 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
 //            mlist.add(new CircleTwoBean());
             homeNewHolder.textViews.get(0).setText(bean.getCc_title());
             homeNewHolder.home_new_item_rc.setLayoutManager(new GridLayoutManager(context,3));
-            homeNewHolder.home_new_item_rc.addItemDecoration(new GridSpacingItemDecoration(3,10,true));
+            homeNewHolder.home_new_item_rc.addItemDecoration(new GridSpacingItemDecoration(3,0,true));
             homeNewHolder.home_new_item_rc.setClickable(false);
             homeNewHolder.home_new_item_rc.setPressed(false);
             homeNewHolder.home_new_item_rc.setEnabled(false);
@@ -121,7 +191,9 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
                 homeNewHolder.textViews.get(3).setText(CommonUtils.getSpaceTime(Long.parseLong(bean.getCc_datetime())));
             }
 
+
         }else if(holder instanceof HomeNewNoHolder){
+            setCheckBox(((HomeNewNoHolder) holder).rb,position);
             HomeNewNoHolder homeNewNoHolder = (HomeNewNoHolder) holder;
             homeNewNoHolder.textViews.get(0).setText(bean.getCc_title());
             Picasso.with(context).load(mDatas.get(position).getMedia().get(0)).into(homeNewNoHolder.home_new_no_item_image);
@@ -130,7 +202,9 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
             if(!TextUtils.isEmpty(bean.getCc_datetime())){
                 homeNewNoHolder.textViews.get(3).setText(CommonUtils.getSpaceTime(Long.parseLong(bean.getCc_datetime())));
             }
+
         }else if(holder instanceof HomeNewVideoHolder){
+            setCheckBox(((HomeNewVideoHolder) holder).rb,position);
             Log.i("yang","HomeNewVideoHolder----");
             HomeNewVideoHolder homeNewVideoHolder = (HomeNewVideoHolder) holder;
             homeNewVideoHolder.textViews.get(0).setText(bean.getCc_title());
@@ -147,12 +221,12 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
                     newsItemInterface.setVideoPlay(bean.getMedia().get(1));
                 }
             });
+
         }
     }
 
     @Override
     public int getItemCount() {
-        Log.i("yang","onResponse===="+mDatas.size());
         if(mDatas!=null && mDatas.size()>0){
             return mDatas.size();
         }else{
@@ -164,6 +238,8 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
         List<TextView> textViews;
         @BindView(R.id.home_new_item_rc)
         NoTouchRecycler home_new_item_rc;
+        @BindView(R.id.rb_delete)
+        CheckBox rb;
 
         public HomeNewHolder(View itemView) {
             super(itemView);
@@ -175,6 +251,8 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
         List<TextView> textViews;
         @BindView(R.id.home_new_no_item_image)
         ImageView home_new_no_item_image;
+        @BindView(R.id.rb_delete)
+        CheckBox rb;
 
         public HomeNewNoHolder(View itemView) {
             super(itemView);
@@ -187,6 +265,8 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
         List<TextView> textViews;
         @BindView(R.id.home_new_video_item_video)
         ImageView home_new_video_item_video;
+        @BindView(R.id.rb_delete)
+        CheckBox rb;
 
         public HomeNewVideoHolder(View itemView) {
             super(itemView);

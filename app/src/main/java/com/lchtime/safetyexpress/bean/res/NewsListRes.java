@@ -3,15 +3,17 @@ package com.lchtime.safetyexpress.bean.res;
 import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.NewsBean;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yxn on 2017/4/26.
  */
 
 public class NewsListRes {
-    private BasicResult result;
-    private String total;
-    private ArrayList<NewsBean> cms_context;
+    public BasicResult result;
+    public String total;
+    public ArrayList<NewsBean> cms_context;
+    public ArrayList<ArrayList<NewsBean>> hot;
 
     public BasicResult getResult() {
         return result;

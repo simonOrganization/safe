@@ -24,7 +24,7 @@
         android:paddingRight="@dimen/dm020">
 
         <EditText
-            android:id="@+id/et_info_phone_valid_phone"
+            android:id="@+id/et_info_valid_phone"
             style="@style/edit_style"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -6,7 +6,7 @@ package com.lchtime.safetyexpress.bean;
 
 public class VipInfoBean {
     public BasicResult result;//基础结果
-    public String user_base;//电话号码
+   // public String user_base;//电话号码
     public UserDetail user_detail;//用户的ID
 
     public static class UserDetail{
@@ -24,5 +24,6 @@ public class VipInfoBean {
         //备注
         public String ud_memo;
         public String ud_photo_fileid;
+        public String ub_phone;//电话号码
     }
 }

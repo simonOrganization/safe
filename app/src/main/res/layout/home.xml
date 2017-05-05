@@ -302,6 +302,7 @@
                         android:src="@drawable/home_refresh" />
 
                     <TextView
+                        android:id="@+id/tv_hotnews_change"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dm010"
@@ -319,7 +320,7 @@
                 android:layout_marginRight="@dimen/dm020"
                 android:background="@color/line" />
 
-            <com.lchtime.safetyexpress.views.MyListView
+            <com.lchtime.safetyexpress.views.EmptyRecyclerView
                 android:id="@+id/mlv_home_hot_track"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -329,7 +330,7 @@
                 android:layout_marginLeft="@dimen/dm020"
                 android:layout_marginRight="@dimen/dm020">
 
-            </com.lchtime.safetyexpress.views.MyListView>
+            </com.lchtime.safetyexpress.views.EmptyRecyclerView>
 
             <View
                 android:layout_width="match_parent"

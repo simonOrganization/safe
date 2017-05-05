@@ -25,6 +25,7 @@ import com.google.gson.Gson;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.CardBean;
+import com.lchtime.safetyexpress.bean.CheckUpdataBean;
 import com.lchtime.safetyexpress.bean.ConfigTable;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
@@ -72,6 +73,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
     private static final int PART_CODE = 1;
     private static final int COMPANY_CODE = 2;
     private static final int SIMPLE_CODE = 3;
+    private static final int CITY_CODE = 4;
 
     private static int currentOption = -1;
     //自定义选项卡
@@ -151,7 +153,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
     @Override
     protected void setControlBasis() {
         setTitle("个人资料");
-        rightTextVisible("上传");
+        rightTextVisible("保存");
 
         initPopWindow();
 //        selectPicPop = new SelectPicPop(vip_info_ui, VipInfoUI.this, R.layout.activity_pic_pop);
@@ -207,9 +209,18 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
         //初始化自定义事件选项卡
         initCustomTimePicker();
 
+        //初始化行业、岗位、所在地的记录
+        initCheckOptions();
+
         if (InitInfo.vipInfoBean != null) {
             initVipInfo(InitInfo.vipInfoBean);
         }
+    }
+
+    private void initCheckOptions() {
+        CheckUpdataBean.ud_addr = InitInfo.vipInfoBean.user_detail.ud_addr;
+        CheckUpdataBean.ud_profession = InitInfo.vipInfoBean.user_detail.ud_profession;
+        CheckUpdataBean.ud_post = InitInfo.vipInfoBean.user_detail.ud_post;
     }
 
     private void initHangYe() {
@@ -371,9 +382,8 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
      */
     @OnClick(R.id.ll_info_address)
     private void getAddress(View view){
-        currentOption = ADDRESS;
-        getData(currentOption);
-        pvCustomOptions.show(); //弹出自定义条件选择器
+        Intent intent = new Intent(this,SelectCityActivity.class);
+        startActivityForResult(intent,CITY_CODE);
     }
 
     /**
@@ -446,11 +456,13 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
                         map.put("ud_profession",tx);
                         tv_work.setText(tx);
                         allInfo.ud_profession = tx;
+                        CheckUpdataBean.ud_profession = tx;
                         break;
                     case WORK_DOWHAT:
                         map.put("ud_post",tx);
                         tv_dowhat.setText(tx);
                         allInfo.ud_post = tx;
+                        CheckUpdataBean.ud_post = tx;
                         break;
                     case SEX:
                         map.put("ud_sex",tx);
@@ -586,11 +598,6 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
                     }
                 }
                 break;
-            case ADDRESS:
-                for (int i = 0; i < 5; i++) {
-                    cardItem.add(new CardBean(i, "所在地 " + i));
-                }
-                break;
             case SEX:
                 cardItem.add(new CardBean(0, "男"));
                 cardItem.add(new CardBean(0, "女"));
@@ -633,12 +640,16 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
             LocalMedia media = resultList.get(0);
             if (media.isCut() && media.isCompressed()) {
                 // 裁剪过
-                phtotoPath = media.getCutPath();
-                updataImageUtils.upDataPic(BitmapUtils.getBitmap(phtotoPath), Constants.photo_name, new UpdataImageUtils.UpdataPicListener() {
+                phtotoPath = media.getCompressPath();
+                updataImageUtils.upDataPic(BitmapUtils.getBitmap(phtotoPath), phtotoPath, new UpdataImageUtils.UpdataPicListener() {
                     //上传头像的回调
                     @Override
                     public void onResponse(String response) {
                         UpdataBean updataBean = gson.fromJson(response, UpdataBean.class);
+                        if (updataBean == null){
+                            Toast.makeText(VipInfoUI.this,"上传图片失败",Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
                         if (!TextUtils.isEmpty(phtotoPath)) {
                             viv_icon.setImageBitmap(BitmapUtils.getBitmap(phtotoPath));
@@ -652,7 +663,6 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
                     }
                 });
             }
-
         }
     };
 
@@ -691,6 +701,15 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
                 allInfo.ud_memo = simple;
             }
 
+        }else if (requestCode == CITY_CODE){
+            if (data != null) {
+                String city = data.getStringExtra("city");
+                map.put("ud_addr",city);
+                tv_address.setText(city);
+                allInfo.ud_addr = city;
+                CheckUpdataBean.ud_addr = city;
+            }
+
         }
 
 
@@ -702,44 +721,54 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
      */
     @Override
     protected void clickEvent() {
+       if (TextUtils.isEmpty(CheckUpdataBean.ud_addr)||TextUtils.isEmpty(CheckUpdataBean.ud_post)||TextUtils.isEmpty(CheckUpdataBean.ud_profession)){
+           Toast.makeText(this,"填写行业、岗位、地址三个必填选项才可上传",Toast.LENGTH_SHORT).show();
+           return;
+       }
         if (map.size() > 0) {
-            String uid = SpTools.getString(this, Constants.userId, "");
-            LoginInternetRequest.editVipInfo(InitInfo.phoneNumber, map, uid, new LoginInternetRequest.ForResultListener() {
-                @Override
-                public void onResponseMessage(String code) {
-                    Toast.makeText(VipInfoUI.this, "上传成功", Toast.LENGTH_SHORT).show();
-                    //将裁剪得图片转换成bitmap
-                    if (!TextUtils.isEmpty(phtotoPath)) {
-                        Bitmap zoomBitMap = BitmapFactory.decodeFile(phtotoPath);
-                        UpdataImageUtils.saveBitmapFile(zoomBitMap, Constants.photo_name);//先保存文件到本地
-                    }
-                    InitInfo.vipInfoBean.user_detail.ud_nickname =
-                            allInfo.ud_nickname == null ? InitInfo.vipInfoBean.user_detail.ud_nickname : allInfo.ud_nickname;
-                    //行业
-                    InitInfo.vipInfoBean.user_detail.ud_profession =
-                            allInfo.ud_profession == null ? InitInfo.vipInfoBean.user_detail.ud_profession : allInfo.ud_profession;
-                    //岗位
-                    InitInfo.vipInfoBean.user_detail.ud_post =
-                            allInfo.ud_post == null ? InitInfo.vipInfoBean.user_detail.ud_post : allInfo.ud_post;
-                    InitInfo.vipInfoBean.user_detail.ud_addr =
-                            allInfo.ud_addr == null ? InitInfo.vipInfoBean.user_detail.ud_addr : allInfo.ud_addr;
-                    InitInfo.vipInfoBean.user_detail.ud_company_name =
-                            allInfo.ud_company_name == null ? InitInfo.vipInfoBean.user_detail.ud_company_name : allInfo.ud_company_name;
-                    InitInfo.vipInfoBean.user_detail.ud_borth =
-                            allInfo.ud_borth == null ? InitInfo.vipInfoBean.user_detail.ud_borth : allInfo.ud_borth;
-                    InitInfo.vipInfoBean.user_detail.ud_sex =
-                            allInfo.ud_sex == null ? InitInfo.vipInfoBean.user_detail.ud_sex : allInfo.ud_sex;
-                    //备注
-                    InitInfo.vipInfoBean.user_detail.ud_memo =
-                            allInfo.ud_memo == null ? InitInfo.vipInfoBean.user_detail.ud_memo : allInfo.ud_memo;
-                    InitInfo.vipInfoBean.user_detail.ud_photo_fileid =
-                            allInfo.ud_photo_fileid == null ? InitInfo.vipInfoBean.user_detail.ud_photo_fileid : allInfo.ud_photo_fileid;
-                    finish();
-                }
-            });
+            changeInfo();
         }else {
             Toast.makeText(this,"您没有更改任何信息",Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+
+    private void changeInfo() {
+        String uid = SpTools.getString(this, Constants.userId, "");
+        LoginInternetRequest.editVipInfo(InitInfo.phoneNumber, map, uid, new LoginInternetRequest.ForResultListener() {
+            @Override
+            public void onResponseMessage(String code) {
+                Toast.makeText(VipInfoUI.this, "上传成功", Toast.LENGTH_SHORT).show();
+                //将裁剪得图片转换成bitmap
+                if (!TextUtils.isEmpty(phtotoPath)) {
+                    Bitmap zoomBitMap = BitmapFactory.decodeFile(phtotoPath);
+                    UpdataImageUtils.saveBitmapFile(zoomBitMap, Constants.photo_name);//先保存文件到本地
+                }
+                InitInfo.vipInfoBean.user_detail.ud_nickname =
+                        allInfo.ud_nickname == null ? InitInfo.vipInfoBean.user_detail.ud_nickname : allInfo.ud_nickname;
+                //行业
+                InitInfo.vipInfoBean.user_detail.ud_profession =
+                        allInfo.ud_profession == null ? InitInfo.vipInfoBean.user_detail.ud_profession : allInfo.ud_profession;
+                //岗位
+                InitInfo.vipInfoBean.user_detail.ud_post =
+                        allInfo.ud_post == null ? InitInfo.vipInfoBean.user_detail.ud_post : allInfo.ud_post;
+                InitInfo.vipInfoBean.user_detail.ud_addr =
+                        allInfo.ud_addr == null ? InitInfo.vipInfoBean.user_detail.ud_addr : allInfo.ud_addr;
+                InitInfo.vipInfoBean.user_detail.ud_company_name =
+                        allInfo.ud_company_name == null ? InitInfo.vipInfoBean.user_detail.ud_company_name : allInfo.ud_company_name;
+                InitInfo.vipInfoBean.user_detail.ud_borth =
+                        allInfo.ud_borth == null ? InitInfo.vipInfoBean.user_detail.ud_borth : allInfo.ud_borth;
+                InitInfo.vipInfoBean.user_detail.ud_sex =
+                        allInfo.ud_sex == null ? InitInfo.vipInfoBean.user_detail.ud_sex : allInfo.ud_sex;
+                //备注
+                InitInfo.vipInfoBean.user_detail.ud_memo =
+                        allInfo.ud_memo == null ? InitInfo.vipInfoBean.user_detail.ud_memo : allInfo.ud_memo;
+                InitInfo.vipInfoBean.user_detail.ud_photo_fileid =
+                        allInfo.ud_photo_fileid == null ? InitInfo.vipInfoBean.user_detail.ud_photo_fileid : allInfo.ud_photo_fileid;
+                finish();
+            }
+        });
     }
 
     @Override

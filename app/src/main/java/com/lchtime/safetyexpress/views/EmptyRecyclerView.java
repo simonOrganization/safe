@@ -31,7 +31,7 @@ public class EmptyRecyclerView extends RecyclerView {
     };
 
     public EmptyRecyclerView(Context context) {
-        super(context);
+        this(context,null);
     }
 
     public EmptyRecyclerView(Context context, AttributeSet attrs) {

@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.ui.home;
 
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,9 +15,14 @@ import com.lchtime.safetyexpress.adapter.HomeHotTrackAdapter;
 import com.lchtime.safetyexpress.adapter.HomeHotVideoAdapter;
 import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
 import com.lchtime.safetyexpress.bean.HomeBannerBean;
+import com.lchtime.safetyexpress.bean.NewsBean;
+import com.lchtime.safetyexpress.bean.res.NewsListRes;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.circle.CircleUI;
+import com.lchtime.safetyexpress.ui.home.protocal.HotNewsProtocal;
 import com.lchtime.safetyexpress.ui.news.HomeNewActivity;
+import com.lchtime.safetyexpress.ui.news.MediaActivity;
+import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.lchtime.safetyexpress.views.MyGridView;
 import com.lchtime.safetyexpress.views.MyListView;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -47,18 +53,22 @@ public class HomeUI extends BaseUI {
     private MyGridView mgv_home_hot_circle;
     //热点追踪
     @ViewInject(R.id.mlv_home_hot_track)
-    private MyListView mlv_home_hot_track;
+    private EmptyRecyclerView mlv_home_hot_track;
     //视频热点
     @ViewInject(R.id.mlv_home_hot_video)
     private MyListView mlv_home_hot_video;
 
     private HomeHotCircleAdapter homeHotCircleAdapter;
-    private HomeHotTrackAdapter homeHotTrackAdapter;
+    private HomeNewAdapter homeHotTrackAdapter;
     private HomeHotVideoAdapter homeHotVideoAdapter;
     private HomeToCircleInterface homeToCircleInterface;
     public static HomeUI homeUI_instance = null;
 
     private List<HomeBannerBean> mDatas = new ArrayList<>();
+    private HotNewsProtocal protocal;
+    //新闻热点的数据
+    private NewsListRes newsListRes;
+    private ArrayList<NewsBean> hotNewsList;
 
     @Override
     protected void back() {
@@ -100,16 +110,24 @@ public class HomeUI extends BaseUI {
                 makeText("圈子" + position);
             }
         });
+
+
         //热点追踪
-        homeHotTrackAdapter = new HomeHotTrackAdapter(HomeUI.this);
+        if (hotNewsList == null){
+            hotNewsList = new ArrayList<>();
+        }
+        homeHotTrackAdapter = new HomeNewAdapter(HomeUI.this,hotNewsList);
+        mlv_home_hot_track.setLayoutManager(new LinearLayoutManager(HomeUI.this));
         mlv_home_hot_track.setAdapter(homeHotTrackAdapter);
-        mlv_home_hot_track.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*mlv_home_hot_track.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(HomeUI.this, HomeNewsDetailUI.class);
                 startActivity(intent);
             }
-        });
+        });*/
+
+
         //视频热点
         homeHotVideoAdapter = new HomeHotVideoAdapter(HomeUI.this);
         mlv_home_hot_video.setAdapter(homeHotVideoAdapter);
@@ -126,7 +144,11 @@ public class HomeUI extends BaseUI {
     @Override
     protected void prepareData() {
         getAdvData();
+        //首页热点追踪
+        getHotNewsData();
     }
+
+
 
     /**
      * 获取广告
@@ -227,11 +249,77 @@ public class HomeUI extends BaseUI {
         Intent intent = new Intent(HomeUI.this, HomeQuestionUI.class);
         startActivity(intent);
     }
+
+    /**
+     * 热点追踪换一换
+     * @param view
+     */
+    private int index = 0;
+    @OnClick(R.id.tv_hotnews_change)
+    private void getHotNews(View view){
+        if (newsListRes != null){
+            if (hotNewsList == null){
+                return;
+            }
+            index++;
+            //先清除
+            hotNewsList.clear();
+            //添加所有
+            if (index >= newsListRes.hot.size()){
+                index = 0;
+            }
+            hotNewsList.addAll(newsListRes.hot.get(index));
+            homeHotTrackAdapter.notifyDataSetChanged();
+
+
+        }
+    }
+
+
     public interface HomeToCircleInterface{
         void toCircleActivity();
     }
     public void setHomeToCircleInterface(HomeToCircleInterface homeToCircleInterface){
         this.homeToCircleInterface = homeToCircleInterface;
+    }
+
+
+    private void getHotNewsData() {
+        if(protocal == null){
+            protocal = new HotNewsProtocal();
+        }
+        protocal.getNewsList("1", new HotNewsProtocal.HotNewsListener() {
+            @Override
+            public void hotNewsResponse(NewsListRes newsListRes) {
+
+                if (hotNewsList == null){
+                    return;
+                }
+                //先清除
+                hotNewsList.clear();
+                HomeUI.this.newsListRes = newsListRes;
+                //添加所有
+                hotNewsList.addAll(newsListRes.hot.get(0));
+
+                homeHotTrackAdapter.setNewItemInterface(new HomeNewAdapter.NewsItemInterface() {
+                    @Override
+                    public void setNewOnItem(int position) {
+                        Intent intent = new Intent(HomeUI.this, HomeNewsDetailUI.class);
+                        intent.putExtra("newsId","");
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void setVideoPlay(String url) {
+                        Intent intent = new Intent(HomeUI.this, MediaActivity.class);
+                        intent.putExtra("url",url);
+                        startActivity(intent);
+                    }
+                });
+
+                homeHotTrackAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
 }

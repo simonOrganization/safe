@@ -78,7 +78,7 @@ public class LoginUI extends BaseUI {
                                         }
                                         VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
                                         if (vipInfoBean != null) {
-                                            InitInfo.phoneNumber = vipInfoBean.user_base;
+                                            InitInfo.phoneNumber = vipInfoBean.user_detail.ub_phone;
                                             InitInfo.vipInfoBean = vipInfoBean;
                                             InitInfo.isLogin = true;
                                             SpTools.setString(LoginUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);

@@ -13,13 +13,14 @@
 
         <CheckBox
             android:id="@+id/rb_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dm040"
+            android:layout_height="@dimen/dm040"
             android:text="@null"
             android:layout_gravity="center_vertical"
             android:gravity="center"
             android:button="@null"
             android:visibility="visible"
+            android:background="@drawable/rb_delete"
             android:layout_marginRight="@dimen/dm020" />
 
         <LinearLayout

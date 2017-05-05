@@ -4,6 +4,20 @@ package com.lchtime.safetyexpress.utils.cacheutils;
  * Created by android-cp on 2017/5/4.
  */
 
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Paint;
+import android.os.Build;
+import android.provider.MediaStore;
+import android.view.View;
+import android.view.Window;
+
+import java.io.File;
+
 /**
  * Android各版本的兼容方法
  */
@@ -15,8 +29,8 @@ public class MethodsCompat {
     }
 
     @TargetApi(7)
-    public static Bitmap getThumbnail(ContentResolver cr, long origId, int kind, Options options) {
-        return MediaStore.Images.Thumbnails.getThumbnail(cr,origId,kind, options);
+    public static Bitmap getThumbnail(ContentResolver cr, long origId, int kind, BitmapFactory.Options options) {
+        return MediaStore.Images.Thumbnails.getThumbnail(cr, origId, kind, options);
     }
 
     @TargetApi(8)
@@ -53,3 +67,4 @@ public class MethodsCompat {
             window.setUiOptions(uiOptions);
         }
     }
+}
