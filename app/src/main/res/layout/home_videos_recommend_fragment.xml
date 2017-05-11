@@ -5,12 +5,13 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/lv_videos_recommend"
+
+        <com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView
+            android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
-            android:divider="@null"
-            android:listSelector="@android:color/transparent"></ListView>
+            android:layout_height="match_parent">
+
+
+        </com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView>
 
 </LinearLayout>

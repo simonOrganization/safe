@@ -91,7 +91,7 @@ public class HomeNewActivity extends BaseUI {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.i("yang","getTabData======="+response);
+
                         NewsRes newsRes = (NewsRes) JsonUtils.stringToObject(response, NewsRes.class);
                         if(newsRes.getResult().getCode().equals("10")){
                             ArrayList<NewTypeBean> list = new ArrayList<NewTypeBean>();

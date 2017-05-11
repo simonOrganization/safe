@@ -10,7 +10,8 @@ public class InitInfo {
     public static String phoneNumber;
     //记录已经登录，但是否有网络的情况
     public static boolean isLogin = false;
-
-
     public static boolean isShowed = true;
+
+    public static ProfessionBean professionBean;
+    public static PostBean postBean;
 }

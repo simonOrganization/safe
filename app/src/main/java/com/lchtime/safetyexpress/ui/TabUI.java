@@ -25,6 +25,8 @@ import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
+import com.lchtime.safetyexpress.bean.PostBean;
+import com.lchtime.safetyexpress.bean.ProfessionBean;
 import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.add.AddUI;
 import com.lchtime.safetyexpress.ui.chat.ChatUI;
@@ -158,6 +160,22 @@ public class TabUI extends TabActivity implements OnClickListener {
                         SpTools.setString(TabUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
                     }
                 }
+            }
+        });
+        //获取行业、岗位
+        LoginInternetRequest.getProfession("", new LoginInternetRequest.ForResultListener() {
+            @Override
+            public void onResponseMessage(String code) {
+                InitInfo.professionBean = gson.fromJson(code, ProfessionBean.class);
+
+            }
+        });
+
+        LoginInternetRequest.getPost("", new LoginInternetRequest.ForResultListener() {
+            @Override
+            public void onResponseMessage(String code) {
+                InitInfo.postBean = gson.fromJson(code, PostBean.class);
+
             }
         });
     }

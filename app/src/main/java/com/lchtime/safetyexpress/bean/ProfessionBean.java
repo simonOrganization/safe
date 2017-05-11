@@ -12,9 +12,10 @@ public class ProfessionBean {
 
     public List<ProfessionItemBean> hy;
 
-    public class ProfessionItemBean{
+    public static class ProfessionItemBean{
         public String hy_id;
         public String hy_name;
+        public boolean isSelect;
     }
 
 }

@@ -7,20 +7,20 @@ import java.util.ArrayList;
  */
 
 public class NewTypeBean {
-    private String cd_mark;
-    private String cd_id;
-    private String cd_parent_id;
-    private String cd_parent_id_dir;
-    private String cd_name;
-    private String cd_des;
-    private String cd_context;
-    private String cd_modal;
-    private String cd_pos;
-    private String cd_type;
-    private String cd_web_keyword;
-    private String cd_web_description;
-    private String cd_fieldid;
-    private ArrayList<String> cd_child;
+    public String cd_mark;
+    public String cd_id;
+    public String cd_parent_id;
+    public String cd_parent_id_dir;
+    public String cd_name;
+    public String cd_des;
+    public String cd_context;
+    public String cd_modal;
+    public String cd_pos;
+    public String cd_type;
+    public String cd_web_keyword;
+    public String cd_web_description;
+    public String cd_fieldid;
+    public ArrayList<String> cd_child;
 
     public NewTypeBean(String cd_name) {
         this.cd_name = cd_name;

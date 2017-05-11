@@ -71,6 +71,8 @@ public class MyConllected extends BaseUI {
 
     //设置删除键角标
     private int num = 0;
+    private BaseFragment currentFragment;
+
     @Override
     protected void back() {
         finish();
@@ -112,45 +114,20 @@ public class MyConllected extends BaseUI {
         deleteAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //执行删除动作
-                List<NewsBean> list = ((NewsFragment) FragmentFactory.createFragment(0)).getDeleteList();
-                if (list == null){
-                    CommonUtils.toastMessage("您没有选择要删除的选项");
-                    return ;
-                }
-                String del_ids = "";
-                for (int i = 0; i < list.size(); i ++){
-                    NewsBean bean = list.get(i);
-                    if (i == 0){
-                        del_ids = del_ids + bean.getCc_id();
-                    }else {
-                        del_ids = del_ids + ";" + bean.getCc_id();
+                if (currentFragment != null){
+                    if (currentFragment instanceof NewsFragment){
+                        deleteNews();
+                    }else if (currentFragment instanceof VedioFragment){
+                        deleteVideos();
                     }
                 }
-                if (!TextUtils.isEmpty(del_ids)) {
-                    MyConllectedProtocal.requestDelete("1", del_ids, new MyConllectedProtocal.DeleteResponse() {
-                        @Override
-                        public void onDeleteResponse(NewsListRes newsListRes) {
-                            if(newsListRes.getResult().getCode().equals("10")){
-                                //成功
-                                Toast.makeText(MyApplication.getContext(),newsListRes.getResult().getInfo(),Toast.LENGTH_SHORT).show();
 
-                                ((NewsFragment) FragmentFactory.createFragment(0)).updataDeleteList();
-                                clickEvent();
-                                num = 0;
-                                deleteAll.setText("删除");
 
-                            }else{
-                                Toast.makeText(MyApplication.getContext(),"删除收藏失败！",Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                }else {
-                    CommonUtils.toastMessage("您没有选择要删除的选项");
-                }
             }
         });
     }
+
+
 
     class MyPagerAdapter extends FragmentPagerAdapter{
 
@@ -189,8 +166,8 @@ public class MyConllected extends BaseUI {
 
         @Override
         public void onPageSelected(int position) {
-            BaseFragment baseFragment = FragmentFactory.createFragment(position);
-            LoadingPager loadingPager = baseFragment.getLoadingPager();
+            currentFragment = FragmentFactory.createFragment(position);
+            LoadingPager loadingPager = currentFragment.getLoadingPager();
             loadingPager.triggerLoadData();
         }
 
@@ -238,5 +215,88 @@ public class MyConllected extends BaseUI {
         deleteAll.setText(text);
     }
 
+    //删除新闻
+    private void deleteNews() {
+        //执行删除动作
+        List<NewsBean> list = ((NewsFragment) FragmentFactory.createFragment(0)).getDeleteList();
+
+        if (list == null){
+            CommonUtils.toastMessage("您没有选择要删除的选项");
+            return ;
+        }
+        String del_ids = "";
+        for (int i = 0; i < list.size(); i ++){
+            NewsBean bean = list.get(i);
+            if (i == 0){
+                del_ids = del_ids + bean.getCc_id();
+            }else {
+                del_ids = del_ids + ";" + bean.getCc_id();
+            }
+        }
+        if (!TextUtils.isEmpty(del_ids)) {
+            MyConllectedProtocal.requestDelete("1", del_ids, "0",new MyConllectedProtocal.DeleteResponse() {
+                @Override
+                public void onDeleteResponse(NewsListRes newsListRes) {
+                    if(newsListRes.getResult().getCode().equals("10")){
+                        //成功
+                        Toast.makeText(MyApplication.getContext(),newsListRes.getResult().getInfo(),Toast.LENGTH_SHORT).show();
+
+                        ((NewsFragment) FragmentFactory.createFragment(0)).updataDeleteList();
+                        clickEvent();
+                        num = 0;
+                        deleteAll.setText("删除");
+
+                    }else{
+                        Toast.makeText(MyApplication.getContext(),"删除收藏失败！",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }else {
+            CommonUtils.toastMessage("您没有选择要删除的选项");
+        }
+    }
+
+
+    //删除视频
+    private void deleteVideos() {
+        List<NewsBean> list = ((VedioFragment) FragmentFactory.createFragment(1)).getDeleteList();
+
+
+        if (list == null){
+            CommonUtils.toastMessage("您没有选择要删除的选项");
+            return ;
+        }
+        String del_ids = "";
+        for (int i = 0; i < list.size(); i ++){
+            NewsBean bean = list.get(i);
+            if (i == 0){
+                del_ids = del_ids + bean.getCc_id();
+            }else {
+                del_ids = del_ids + ";" + bean.getCc_id();
+            }
+        }
+        if (!TextUtils.isEmpty(del_ids)) {
+            MyConllectedProtocal.requestDelete("1", del_ids, "9",new MyConllectedProtocal.DeleteResponse() {
+                @Override
+                public void onDeleteResponse(NewsListRes newsListRes) {
+                    if(newsListRes.getResult().getCode().equals("10")){
+                        //成功
+                        Toast.makeText(MyApplication.getContext(),newsListRes.getResult().getInfo(),Toast.LENGTH_SHORT).show();
+
+                        ((VedioFragment) FragmentFactory.createFragment(1)).updataDeleteList();
+                        clickEvent();
+                        num = 0;
+                        deleteAll.setText("删除");
+
+                    }else{
+                        Toast.makeText(MyApplication.getContext(),"删除收藏失败！",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }else {
+            CommonUtils.toastMessage("您没有选择要删除的选项");
+        }
+
+    }
 
 }

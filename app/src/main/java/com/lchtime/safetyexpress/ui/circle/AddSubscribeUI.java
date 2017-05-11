@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.ui.circle.fragment.SubscirbeAllFragment;
@@ -39,13 +40,22 @@ public class AddSubscribeUI extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_subscribe_layout);
         ButterKnife.bind(this);
+        //初始化titile
+        TextView tv_title = (TextView) findViewById(R.id.title);
+        if (tv_title != null) {
+            tv_title.setText("添加订阅");
+        }
         initFragment();
         add_subscirbe_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i){
-                    case R.id.add_subscirbe_line_rb_all:  setIndexSelected(0);break;
-                    case R.id.add_subscirbe_line_rb_comm:  setIndexSelected(1);break;
+                    case R.id.add_subscirbe_line_rb_all:
+                        setIndexSelected(0);
+                        break;
+                    case R.id.add_subscirbe_line_rb_comm:
+                        setIndexSelected(1);
+                        break;
                 }
             }
         });
@@ -76,7 +86,7 @@ public class AddSubscribeUI extends FragmentActivity {
         ft.hide(fragments[mIndex]);
         //判断是否添加
         if (!fragments[index].isAdded()) {
-            ft.add(R.id.add_subscribe_frame, fragments[index]).show(fragments[index]);
+            ft.replace(R.id.add_subscribe_frame, fragments[index]).show(fragments[index]);
         } else {
             ft.show(fragments[index]);
         }
@@ -85,7 +95,7 @@ public class AddSubscribeUI extends FragmentActivity {
         mIndex = index;
     }
 
-    @OnClick(R.id.add_subscirbe_back)
+    @OnClick(R.id.ll_back)
     void setOnclick(View view){
         AddSubscribeUI.this.finish();
     }

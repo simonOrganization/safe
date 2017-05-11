@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,10 @@ import android.widget.Toast;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.CirclePopAdapter;
 import com.lchtime.safetyexpress.bean.CircleSelectBean;
+import com.lchtime.safetyexpress.bean.ProfessionBean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,7 +38,7 @@ public class CirclePopView extends PopupWindow {
     Button circle_pop_restart;
     @BindView(R.id.circle_pop_submit)
     Button circle_pop_submit;
-    private ArrayList<CircleSelectBean> array;
+    private List<ProfessionBean.ProfessionItemBean> array;
     private CirclePopAdapter adapter;
 
 
@@ -75,16 +78,16 @@ public class CirclePopView extends PopupWindow {
 //            }
 //        });
     }
-    public void setDataAdapter(final ArrayList<CircleSelectBean> array){
+    public void setDataAdapter(final List<ProfessionBean.ProfessionItemBean> array){
         this.array = array;
         adapter = new CirclePopAdapter(context,array);
         adapter.setItemInterface(new CirclePopAdapter.PopItemInterfce() {
             @Override
             public void setItem(int position) {
-                if(array.get(position).isSelect()){
-                    array.get(position).setSelect(false);
+                if(array.get(position).isSelect){
+                    array.get(position).isSelect = false;
                 }else{
-                    array.get(position).setSelect(true);
+                    array.get(position).isSelect = true;
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -92,7 +95,7 @@ public class CirclePopView extends PopupWindow {
         circle_pop_rc.setAdapter(adapter);
     }
     public void showPopWindow(View view){
-        Toast.makeText(context,"work",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context,"work",Toast.LENGTH_SHORT).show();
         if (!this.isShowing()) {
             // 以下拉方式显示popupwindow
             this.showAsDropDown(view);
@@ -105,8 +108,8 @@ public class CirclePopView extends PopupWindow {
         switch (view.getId()){
             case R.id.circle_pop_restart:
                 for(int i=0;i<array.size();i++){
-                    if(array.get(i).isSelect()){
-                        array.get(i).setSelect(false);
+                    if(array.get(i).isSelect){
+                        array.get(i).isSelect = false;
                     }
                 }
                 adapter.notifyDataSetChanged();
@@ -115,8 +118,12 @@ public class CirclePopView extends PopupWindow {
                 CirclePopView.this.dismiss();
                 String selectPosition = "";
                 for(int i=0;i<array.size();i++){
-                    if(array.get(i).isSelect()){
-                        selectPosition = selectPosition+","+i;
+                    if(array.get(i).isSelect){
+                        if (TextUtils.isEmpty(selectPosition)){
+                            selectPosition = selectPosition  + i;
+                        }else {
+                            selectPosition = selectPosition + "," + i;
+                        }
                     }
                 }
                 circlePopInterface.getPopIds(selectPosition);

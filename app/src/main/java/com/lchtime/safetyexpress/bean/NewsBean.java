@@ -11,28 +11,28 @@ import java.util.ArrayList;
  */
 
 public class NewsBean implements Serializable {
-    private String cc_id;
-    private String cc_cd_id;
-    private String cc_cd_parent_id_dir;
-    private String cc_title;
-    private String cc_description;
-    private String cc_from;
-    private String cc_datetime;
-    private String cc_auth;
-    private String cc_web_keyword;
-    private String cc_web_description;
-    private String cc_context;
-    private String cc_pos;
-    private String cc_agr;
-    private String cc_aga;
-    private String cc_count;
-    private String cc_mark;
-    private String cc_fielid;
-    private String cc_fee;
-    private String is_delete;
-    private String count;
-    private String plNum;
-    private ArrayList<String> media;
+    public String cc_id;
+    public String cc_cd_id;
+    public String cc_cd_parent_id_dir;
+    public String cc_title;
+    public String cc_description;
+    public String cc_from;
+    public String cc_datetime;
+    public String cc_auth;
+    public String cc_web_keyword;
+    public String cc_web_description;
+    public String cc_context;
+    public String cc_pos;
+    public String cc_agr;
+    public String cc_aga;
+    public String cc_count;
+    public String cc_mark;
+    public String cc_fielid;
+    public String cc_fee;
+    public String is_delete;
+    public String count;
+    public String plNum;
+    public ArrayList<String> media;
 
     public boolean isCheck;
 

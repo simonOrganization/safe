@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.CircleTwoBean;
 import com.lchtime.safetyexpress.bean.NewsBean;
+import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.vip.fragment.NewsFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.views.GridSpacingItemDecoration;
@@ -91,6 +93,9 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
                 //文字
                 itemViewType = ITEM_VIEW_TYPE_IMAGE ;
                 Log.i("yang","D----");
+            }else if(beanType.contains("V")){
+                //视频
+                itemViewType = ITEM_VIEW_TYPE_ONE ;
             }else{
                 itemViewType = ITEM_VIEW_TYPE_IMAGE ;
             }
@@ -191,7 +196,6 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
                 homeNewHolder.textViews.get(3).setText(CommonUtils.getSpaceTime(Long.parseLong(bean.getCc_datetime())));
             }
 
-
         }else if(holder instanceof HomeNewNoHolder){
             setCheckBox(((HomeNewNoHolder) holder).rb,position);
             HomeNewNoHolder homeNewNoHolder = (HomeNewNoHolder) holder;
@@ -201,6 +205,18 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
             homeNewNoHolder.textViews.get(2).setText(bean.getCc_count()+"评论");
             if(!TextUtils.isEmpty(bean.getCc_datetime())){
                 homeNewNoHolder.textViews.get(3).setText(CommonUtils.getSpaceTime(Long.parseLong(bean.getCc_datetime())));
+            }
+
+            String beanType = bean.getCc_mark();
+            if (beanType.contains("V")){
+                homeNewNoHolder.home_new_no_item_image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, MediaActivity.class);
+                        intent.putExtra("url",bean.media.get(1));
+                        context.startActivity(intent);
+                    }
+                });
             }
 
         }else if(holder instanceof HomeNewVideoHolder){

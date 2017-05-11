@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.CircleSelectBean;
+import com.lchtime.safetyexpress.bean.ProfessionBean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,10 +25,10 @@ import butterknife.ButterKnife;
 
 public class CirclePopAdapter extends RecyclerView.Adapter {
     private Context context;
-    private ArrayList<CircleSelectBean> mDatas;
+    private List<ProfessionBean.ProfessionItemBean> mDatas;
     private PopItemInterfce popItemInterfce;
 
-    public CirclePopAdapter(Context context,ArrayList<CircleSelectBean> mDatas) {
+    public CirclePopAdapter(Context context,List<ProfessionBean.ProfessionItemBean> mDatas) {
         this.context = context;
         this.mDatas = mDatas;
     }
@@ -41,7 +43,7 @@ public class CirclePopAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        CircleSelectBean bean = mDatas.get(position);
+        ProfessionBean.ProfessionItemBean bean = mDatas.get(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,7 +52,7 @@ public class CirclePopAdapter extends RecyclerView.Adapter {
         });
         if(holder instanceof CirclePopHolder){
             CirclePopHolder circlePopHolder = (CirclePopHolder) holder;
-            if(bean.isSelect()){
+            if(bean.isSelect){
                 circlePopHolder.circle_pop_tv.setTextColor(Color.parseColor("#ff0000"));
                 circlePopHolder.circle_pop_view.setBackgroundColor(Color.RED);
                 circlePopHolder.circle_pop_image.setVisibility(View.VISIBLE);
@@ -59,6 +61,7 @@ public class CirclePopAdapter extends RecyclerView.Adapter {
                 circlePopHolder.circle_pop_view.setBackgroundColor(Color.WHITE);
                 circlePopHolder.circle_pop_image.setVisibility(View.GONE);
             }
+            circlePopHolder.circle_pop_tv.setText(bean.hy_name);
         }
 
     }

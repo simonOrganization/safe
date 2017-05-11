@@ -2,8 +2,13 @@ package com.lchtime.safetyexpress.ui.home.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +16,30 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
 import com.lchtime.safetyexpress.adapter.HomeVideosRecommendAdapter;
+import com.lchtime.safetyexpress.bean.NewsBean;
+import com.lchtime.safetyexpress.bean.res.NewsListRes;
+import com.lchtime.safetyexpress.bean.res.VideoRes;
+import com.lchtime.safetyexpress.ui.Const;
+import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
 import com.lchtime.safetyexpress.ui.home.HomeVideosDeatilUI;
+import com.lchtime.safetyexpress.ui.home.protocal.VideoProtocal;
+import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.JsonUtils;
+import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
+import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.mzhy.http.okhttp.OkHttpUtils;
-import com.mzhy.http.okhttp.callback.StringCallback;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.ArrayList;
+
+import okhttp3.Call;
 
 /**
  * 视频- 推荐
@@ -28,10 +49,20 @@ import com.mzhy.http.okhttp.callback.StringCallback;
 public class VideosRecommendFragment extends Fragment {
 
     //列表展示
-    @ViewInject(R.id.lv_videos_recommend)
-    private ListView lv_videos_recommend;
+    @ViewInject(R.id.refreshLayout)
+    private PullLoadMoreRecyclerView refreshLayout;
+    @ViewInject(R.id.home_new_fragment_rc)
+    private EmptyRecyclerView home_new_fragment_rc;
 
     private HomeVideosRecommendAdapter homeVideosRecommendAdapter;
+
+    private VideoProtocal protocal;
+    public ArrayList<NewsBean> videoList;
+    private int pageIndex = 0;
+
+    int footPage = 0;
+    int headPage = 0;
+    private String cd_id;
 
     @Nullable
     @Override
@@ -44,17 +75,90 @@ public class VideosRecommendFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ViewUtils.inject(this, view);
 
-        homeVideosRecommendAdapter = new HomeVideosRecommendAdapter(getActivity());
-        lv_videos_recommend.setAdapter(homeVideosRecommendAdapter);
-        lv_videos_recommend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        home_new_fragment_rc.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        Bundle bundle = getArguments();
+        cd_id = bundle.getString("cd_id");
+        if (protocal == null){
+            protocal = new VideoProtocal();
+        }
+        protocal.getVideoList("0", cd_id,new VideoProtocal.VideoListListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if ((position - 1) < homeVideosRecommendAdapter.getCount()) {
-                    Intent intent = new Intent(getActivity(), HomeVideosDeatilUI.class);
-                    startActivity(intent);
-                }
+            public void videoListResponse(VideoRes videoRes) {
+                videoList = videoRes.cms_context;
+                homeVideosRecommendAdapter = new HomeVideosRecommendAdapter(getActivity(),videoList);
+                home_new_fragment_rc.setLayoutManager(new LinearLayoutManager(getContext()));
+                refreshLayout.setAdapter(homeVideosRecommendAdapter);
             }
         });
+
+        refreshLayout.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        footPage = 0;
+                        videoList = new ArrayList<NewsBean>();
+
+                        if(!TextUtils.isEmpty(cd_id)){
+
+                            protocal.getVideoList("0", cd_id,new VideoProtocal.VideoListListener() {
+                                @Override
+                                public void videoListResponse(VideoRes videoRes) {
+                                    videoList.clear();
+                                    videoList.addAll(videoRes.cms_context);
+                                    homeVideosRecommendAdapter .notifyDataSetChanged();
+                                    refreshLayout.setPullLoadMoreCompleted();
+                                }
+                            });
+                        }
+
+
+                    }
+                },2000);
+            }
+
+            @Override
+            public void onLoadMore() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //如果是推荐或者是热点
+                        footPage++;
+
+                        if(!TextUtils.isEmpty(cd_id)){
+                            footPage++;
+                            protocal.getVideoList(footPage + "", cd_id,new VideoProtocal.VideoListListener() {
+                                @Override
+                                public void videoListResponse(VideoRes videoRes) {
+                                    videoList.addAll(videoRes.cms_context);
+                                    homeVideosRecommendAdapter .notifyDataSetChanged();
+                                }
+                            });
+                        }
+                        refreshLayout.setPullLoadMoreCompleted();
+                    }
+                },2000);
+            }
+        });
+
+
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        videoList = null;
+        headPage = 0;
+        footPage = 0;
     }
 
 }

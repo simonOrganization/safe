@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,18 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.HomeNewsRecommendBean;
+import com.lchtime.safetyexpress.bean.NewsBean;
+import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
+import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.vip.fragment.BaseFragment;
+import com.lchtime.safetyexpress.ui.vip.fragment.NewsFragment;
 import com.lchtime.safetyexpress.ui.vip.fragment.VedioFragment;
+import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.views.MyGridView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,31 +39,31 @@ public class MyConllectedVideoAdapter extends BaseAdapter {
 
     private Context context;
     private List<String> photos;
-    private List<HomeNewsRecommendBean> list;
-    private HomeNewsRecommendBean newsRecommendBean;
+  //  private List<HomeNewsRecommendBean> list;
+  //  private HomeNewsRecommendBean newsRecommendBean;
     private VedioFragment currentFragment;
+    private List<NewsBean> newsBeenList;
+
+    public List<NewsBean> list = new ArrayList<>();
 
     private boolean flag = false;
 
-    public MyConllectedVideoAdapter(Context context, VedioFragment currentFragment) {
+    public MyConllectedVideoAdapter(Context context, VedioFragment currentFragment,List<NewsBean> newsBeenList) {
         this.context = context;
         this.currentFragment = currentFragment;
+        this.newsBeenList = newsBeenList;
         //测试
-        list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            newsRecommendBean = new HomeNewsRecommendBean();
-            list.add(newsRecommendBean);
-        }
+
     }
 
     @Override
     public int getCount() {
-        return 10;
+        return newsBeenList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return newsBeenList.get(position);
     }
 
     @Override
@@ -66,12 +74,10 @@ public class MyConllectedVideoAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        int itemViewType = getItemViewType(position);
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
                 //单张图片
-
             convertView = View.inflate(context, R.layout.myconllected_video_item_oneimg, null);
             holder.iv_oneimg_img = (ImageView)convertView.findViewById(R.id.iv_recommend_oneimg_img);
 
@@ -84,58 +90,71 @@ public class MyConllectedVideoAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+        setCheckBox(holder.rb,position);
+
+
+        final NewsBean bean = newsBeenList.get(position);
+        holder.tv_from.setText(bean.getCc_from());
+        holder.tv_comment.setText(bean.getCc_count());
+        //时间
+        holder.tv_time.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.getCc_datetime())));
+        holder.tv_title.setText(bean.getCc_title());
+        if (bean.getMedia() != null) {
+            Picasso.with(MyApplication.getContext()).load(bean.getMedia().get(0)).into(holder.iv_oneimg_img);
+        }else {
+
+        }
+
+        holder.iv_oneimg_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MediaActivity.class);
+                intent.putExtra("url",bean.media.get(1));
+                context.startActivity(intent);
+            }
+        });
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, HomeNewsDetailUI.class);
+                intent.putExtra("newsId","");
+                context.startActivity(intent);
+            }
+        });
+
+
+
+
+        return convertView;
+    }
+
+    private void setCheckBox(CheckBox rb,int position) {
         if (flag == true){
 
-            //设置checkbox的自定义背景
-
-            Drawable drawable = currentFragment.getActivity().getResources().getDrawable(R.drawable.rb_delete);
-
-        //设置drawable对象的大小
-            drawable.setBounds(10,10,10,10);
-
-        //设置CheckBox对象的位置，对应为左、上、右、下
-           // holder.rb.setCompoundDrawables(drawable,null,null,null);
-
-           // holder.rb.setBackgroundDrawable(drawable);
-
-            //显示
-            holder.rb.setVisibility(View.VISIBLE);
-            holder.rb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            rb.setVisibility(View.VISIBLE);
+            final NewsBean newsBean = newsBeenList.get(position);
+            rb.setChecked(newsBean.isCheck);
+            rb.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    //如果选中就加一，否则减一
-                    if (isChecked) {
-                        currentFragment.updataDeleteNum(1);
-                    }else {
-                        currentFragment.updataDeleteNum(-1);
+                public void onClick(View v) {
+                    //如果之前不是选中的状态
+                    if (!newsBean.isCheck) {
+                        list.add(newsBean);
+                        ((VedioFragment)currentFragment).updataDeleteNum(1);
+
+                    } else {
+                        list.remove(newsBean);
+                        ((VedioFragment)currentFragment).updataDeleteNum(-1);
                     }
+
+                    newsBean.isCheck = !newsBean.isCheck;
                 }
+
             });
         }else {
             //隐藏
-            holder.rb.setVisibility(View.GONE);
+            rb.setVisibility(View.GONE);
         }
-
-        holder.tv_from.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "来源", Toast.LENGTH_SHORT).show();
-            }
-        });
-        holder.tv_comment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "评论", Toast.LENGTH_SHORT).show();
-            }
-        });
-        holder.tv_time.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "时间", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        return convertView;
     }
 
     class ViewHolder {
@@ -160,6 +179,10 @@ public class MyConllectedVideoAdapter extends BaseAdapter {
         ImageView iv_oneimg_img;
 
         CheckBox rb;
+    }
+
+    public List<NewsBean> getUpdataList(){
+        return list;
     }
 
     public void setDelete(boolean isDelete){

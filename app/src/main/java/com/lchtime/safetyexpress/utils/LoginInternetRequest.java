@@ -515,13 +515,13 @@ public class LoginInternetRequest {
     /**
      *  得到行业
      *  */
-    public static void getProfession(String ub_id,ForResultListener listener){
-        mListener = listener;
+    public static void getProfession(String ub_id, final ForResultListener listener){
+        //mListener = listener;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             InitInfo.isLogin = false;
             CommonUtils.toastMessage("您当前无网络，请联网再试");
-            if (mListener != null){
-                mListener.onResponseMessage("");
+            if (listener != null){
+                listener.onResponseMessage("");
             }
             return;
         }
@@ -550,8 +550,8 @@ public class LoginInternetRequest {
                     String code = professionBean.result.code;
                     if (code.equals("10")) {
 //                        CommonUtils.toastMessage(professionBean.result.info);
-                        if (mListener != null) {
-                            mListener.onResponseMessage(response);
+                        if (listener != null) {
+                            listener.onResponseMessage(response);
                         }
                     } else {
                         CommonUtils.toastMessage("请求网络数据失败，请检查网络");
@@ -564,13 +564,13 @@ public class LoginInternetRequest {
     /**
      *  得到岗位
      *  */
-    public static void getPost(String ub_id,ForResultListener listener){
-        mListener = listener;
+    public static void getPost(String ub_id, final ForResultListener listener){
+        //mListener = listener;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             InitInfo.isLogin = false;
             CommonUtils.toastMessage("您当前无网络，请联网再试");
-            if (mListener != null){
-                mListener.onResponseMessage("");
+            if (listener != null){
+                listener.onResponseMessage("");
             }
             return;
         }
@@ -599,8 +599,8 @@ public class LoginInternetRequest {
                     String code = postBean.result.code;
                     if (code.equals("10")) {
            //             CommonUtils.toastMessage(postBean.result.info);
-                        if (mListener != null) {
-                            mListener.onResponseMessage(response);
+                        if (listener != null) {
+                            listener.onResponseMessage(response);
                         }
                     } else {
                         CommonUtils.toastMessage("请求网络数据失败，请检查网络");

@@ -15,6 +15,7 @@ public class PostBean {
     public class PostItemBean{
         public String gw_id;
         public String gw_name;
+        public boolean isSelect;
     }
 
 }

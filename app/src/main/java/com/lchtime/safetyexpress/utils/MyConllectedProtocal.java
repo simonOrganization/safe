@@ -26,7 +26,7 @@ import okhttp3.Call;
 
 public class MyConllectedProtocal {
 
-    public static void requestDelete(String type, String del_ids, final DeleteResponse deleteResponse){
+    public static void requestDelete(String type, String del_ids, String module,final DeleteResponse deleteResponse){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("请检查网络");
             return;
@@ -37,7 +37,7 @@ public class MyConllectedProtocal {
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("module", 0 + "")
+                .addParams("module", module + "")
                 .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
                 .addParams("type", type)
                 .addParams("del_ids", del_ids)

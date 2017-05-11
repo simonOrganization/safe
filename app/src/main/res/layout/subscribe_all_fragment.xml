@@ -3,6 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
+
     <LinearLayout
         android:id="@+id/subscribe_all_ll"
         android:layout_width="match_parent"
@@ -16,18 +17,22 @@
             android:gravity="center"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_adddy_hy"
+                android:layout_width="@dimen/dm100"
                 android:layout_height="wrap_content"
                 android:text="行业"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textSize="@dimen/dm022"
-                android:textColor="@color/title_333"/>
+                android:textColor="@color/circle_text_indicator_selector"/>
             <ImageView
-                android:layout_width="@dimen/dm017"
+                android:id="@+id/iv_hy_indicator"
+                android:layout_width="@dimen/dm020"
                 android:layout_height="@dimen/dm010"
                 android:layout_marginLeft="@dimen/dm008"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:background="@drawable/circle_bot"/>
+                android:src="@drawable/circle_indicator_selector" />
         </LinearLayout>
         <View
             android:layout_width="@dimen/dm001"
@@ -41,18 +46,22 @@
             android:gravity="center"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_adddy_gw"
+                android:layout_width="@dimen/dm100"
                 android:layout_height="wrap_content"
                 android:text="岗位"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textSize="@dimen/dm022"
-                android:textColor="@color/title_333"/>
+                android:textColor="@color/circle_text_indicator_selector"/>
             <ImageView
-                android:layout_width="@dimen/dm017"
+                android:id="@+id/iv_gw_indicator"
+                android:layout_width="@dimen/dm020"
                 android:layout_height="@dimen/dm010"
                 android:layout_marginLeft="@dimen/dm008"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:background="@drawable/circle_bot"/>
+                android:src="@drawable/circle_indicator_selector" />
         </LinearLayout>
         <View
             android:layout_width="@dimen/dm001"
@@ -65,21 +74,28 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal">
+
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_adddy_addr"
+                android:layout_width="@dimen/dm100"
                 android:layout_height="wrap_content"
                 android:text="地理位置"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textSize="@dimen/dm024"
-                android:textColor="@color/title_333"/>
+                android:textColor="@color/circle_text_indicator_selector"/>
+
             <ImageView
-                android:layout_width="@dimen/dm017"
+                android:id="@+id/iv_addr_indicator"
+                android:layout_width="@dimen/dm020"
                 android:layout_height="@dimen/dm010"
                 android:layout_marginLeft="@dimen/dm008"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:background="@drawable/circle_bot"/>
+                android:src="@drawable/circle_indicator_selector"/>
         </LinearLayout>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm020"

@@ -10,7 +10,8 @@
         android:background="@color/white"
         android:paddingTop="@dimen/dm020"
         android:paddingBottom="@dimen/dm020">
-        <ImageView
+        <com.lchtime.safetyexpress.views.CircleImageView
+            android:id="@+id/iv_circle_photo"
             android:layout_width="@dimen/dm060"
             android:layout_height="@dimen/dm060"
             android:adjustViewBounds="true"
@@ -28,12 +29,17 @@
                 android:text="落日西风"
                 android:textSize="@dimen/dm022"
                 android:textColor="@color/red"/>
-            <Button
+            <CheckBox
                 android:id="@+id/circle_item_subscribe"
                 android:layout_width="@dimen/dm088"
                 android:layout_height="@dimen/dm032"
-                android:background="@drawable/circle_item_subscirb"
+                android:layout_marginRight="@dimen/dm007"
+                android:text="@null"
+                android:button="@null"
+                android:gravity="center"
+                android:background="@drawable/circle_item_subscribe_selector"
                 android:layout_alignParentRight="true" />
+
 
             <TextView
                 android:id="@+id/circle_item_company_name"
@@ -87,7 +93,25 @@
                 android:layout_marginTop="@dimen/dm012"
                 android:layout_below="@id/circle_item_image_rc"
                 android:orientation="horizontal">
+
                 <ImageView
+                    android:layout_width="@dimen/dm024"
+                    android:layout_height="@dimen/dm024"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/circle_item_time"
+                    />
+                <TextView
+                    android:id="@+id/circle_item_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="09:30"
+                    android:textSize="@dimen/dm020"
+                    android:textColor="@color/title_999"
+                    android:layout_marginLeft="@dimen/dm006"/>
+
+                <ImageView
+                    android:layout_marginLeft="@dimen/dm020"
                     android:layout_width="@dimen/dm024"
                     android:layout_height="@dimen/dm024"
                     android:adjustViewBounds="true"
@@ -98,17 +122,21 @@
                     android:id="@+id/circle_item_talk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="09:30"
+                    android:text="0"
                     android:textSize="@dimen/dm020"
                     android:textColor="@color/title_999"
                     android:layout_marginLeft="@dimen/dm006"/>
 
-                <ImageView
+                <CheckBox
+                    android:id="@+id/iv_circle_item_great"
                     android:layout_width="@dimen/dm024"
                     android:layout_height="@dimen/dm024"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    android:background="@drawable/circle_item_great"
+                    android:text="@null"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:background="@drawable/circle_item_great_selector"
                     android:layout_marginLeft="@dimen/dm020"/>
                 <TextView
                     android:id="@+id/circle_item_great"
@@ -118,12 +146,16 @@
                     android:textSize="@dimen/dm020"
                     android:textColor="@color/title_999"
                     android:layout_marginLeft="@dimen/dm006"/>
-                <ImageView
+                <CheckBox
+                    android:id="@+id/iv_circle_item_low"
                     android:layout_width="@dimen/dm024"
                     android:layout_height="@dimen/dm024"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    android:background="@drawable/circle_item_below"
+                    android:text="@null"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:background="@drawable/circle_item_below_selector"
                     android:layout_marginLeft="@dimen/dm020"/>
                 <TextView
                     android:id="@+id/circle_item_low"

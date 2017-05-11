@@ -3,32 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
-    <LinearLayout
-        android:id="@+id/ll_home"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dm066"
-        android:background="@color/white"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/dm020"
-        android:paddingRight="@dimen/dm020">
-        <ImageButton
-            android:id="@+id/add_subscirbe_back"
-            android:layout_width="@dimen/dm028"
-            android:layout_height="@dimen/dm028"
-            android:background="@drawable/backs"
-            android:scaleType="centerCrop" />
-        <TextView
-            android:id="@+id/v_title"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:gravity="center"
-            android:text="添加订阅"
-            android:textColor="@color/commen_reg"
-            android:textSize="@dimen/dm024" />
-    </LinearLayout>
+    <include layout="@layout/title" />
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm002"

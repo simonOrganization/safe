@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,9 +27,9 @@ import butterknife.ButterKnife;
 
 public class CircleImageAdapter extends RecyclerView.Adapter {
     private Context context;
-    private ArrayList<String> circleTwoList;
+    private List<String> circleTwoList;
 
-    public CircleImageAdapter(Context context, ArrayList<String> circleTwoList) {
+    public CircleImageAdapter(Context context, List<String> circleTwoList) {
         this.context = context;
         this.circleTwoList = circleTwoList;
     }
@@ -41,12 +42,12 @@ public class CircleImageAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
+       // ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         //layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         CircleImageHolder holder1 = (CircleImageHolder) holder;
 //        ImageLoader.getInstance().displayImage(circleTwoList.get(position),holder1.circle_image,Option);
         if(!TextUtils.isEmpty(circleTwoList.get(position))){
-            Picasso.with(context).load(circleTwoList.get(position)).into(holder1.circle_image);
+            Picasso.with(context).load(circleTwoList.get(position)).fit().into(holder1.circle_image);
         }
     }
 

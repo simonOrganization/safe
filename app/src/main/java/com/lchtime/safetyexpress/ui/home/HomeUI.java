@@ -2,7 +2,6 @@ package com.lchtime.safetyexpress.ui.home;
 
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -11,20 +10,16 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.HomeHotCircleAdapter;
-import com.lchtime.safetyexpress.adapter.HomeHotTrackAdapter;
-import com.lchtime.safetyexpress.adapter.HomeHotVideoAdapter;
 import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
 import com.lchtime.safetyexpress.bean.HomeBannerBean;
 import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.bean.res.NewsListRes;
 import com.lchtime.safetyexpress.ui.BaseUI;
-import com.lchtime.safetyexpress.ui.circle.CircleUI;
 import com.lchtime.safetyexpress.ui.home.protocal.HotNewsProtocal;
 import com.lchtime.safetyexpress.ui.news.HomeNewActivity;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.lchtime.safetyexpress.views.MyGridView;
-import com.lchtime.safetyexpress.views.MyListView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -56,11 +51,13 @@ public class HomeUI extends BaseUI {
     private EmptyRecyclerView mlv_home_hot_track;
     //视频热点
     @ViewInject(R.id.mlv_home_hot_video)
-    private MyListView mlv_home_hot_video;
+    private EmptyRecyclerView mlv_home_hot_video;
 
     private HomeHotCircleAdapter homeHotCircleAdapter;
     private HomeNewAdapter homeHotTrackAdapter;
-    private HomeHotVideoAdapter homeHotVideoAdapter;
+
+    //首页视频的adapter
+    private HomeNewAdapter homeHotVideoAdapter;
     private HomeToCircleInterface homeToCircleInterface;
     public static HomeUI homeUI_instance = null;
 
@@ -68,7 +65,9 @@ public class HomeUI extends BaseUI {
     private HotNewsProtocal protocal;
     //新闻热点的数据
     private NewsListRes newsListRes;
+    private NewsListRes videoListRes;
     private ArrayList<NewsBean> hotNewsList;
+    private ArrayList<NewsBean> vedioNewsList;
 
     @Override
     protected void back() {
@@ -129,15 +128,19 @@ public class HomeUI extends BaseUI {
 
 
         //视频热点
-        homeHotVideoAdapter = new HomeHotVideoAdapter(HomeUI.this);
+        if (vedioNewsList == null){
+            vedioNewsList = new ArrayList<>();
+        }
+        homeHotVideoAdapter = new HomeNewAdapter(HomeUI.this,vedioNewsList);
+        mlv_home_hot_video.setLayoutManager(new LinearLayoutManager(HomeUI.this));
         mlv_home_hot_video.setAdapter(homeHotVideoAdapter);
-        mlv_home_hot_video.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(HomeUI.this, HomeVideosDeatilUI.class);
-                startActivity(intent);
-            }
-        });
+//        mlv_home_hot_video.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(HomeUI.this, HomeVideosDeatilUI.class);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 
@@ -145,7 +148,8 @@ public class HomeUI extends BaseUI {
     protected void prepareData() {
         getAdvData();
         //首页热点追踪
-        getHotNewsData();
+        getHotNewsData("1");
+        getHotNewsData("2");
     }
 
 
@@ -254,22 +258,47 @@ public class HomeUI extends BaseUI {
      * 热点追踪换一换
      * @param view
      */
-    private int index = 0;
+    private int hotIndex = 0;
     @OnClick(R.id.tv_hotnews_change)
     private void getHotNews(View view){
         if (newsListRes != null){
             if (hotNewsList == null){
                 return;
             }
-            index++;
+            hotIndex++;
             //先清除
             hotNewsList.clear();
             //添加所有
-            if (index >= newsListRes.hot.size()){
-                index = 0;
+            if (hotIndex >= newsListRes.hot.size()){
+                hotIndex = 0;
             }
-            hotNewsList.addAll(newsListRes.hot.get(index));
+            hotNewsList.addAll(newsListRes.hot.get(hotIndex));
             homeHotTrackAdapter.notifyDataSetChanged();
+
+
+        }
+    }
+
+    /**
+     * 视频中心换一换
+     * @param view
+     */
+    private int vedioIndex = 0;
+    @OnClick(R.id.tv_vedio_change)
+    private void getHotVedio(View view){
+        if (videoListRes != null){
+            if (vedioNewsList == null){
+                return;
+            }
+            vedioIndex++;
+            //先清除
+            vedioNewsList.clear();
+            //添加所有
+            if (vedioIndex >= videoListRes.hot.size()){
+                vedioIndex = 0;
+            }
+            vedioNewsList.addAll(videoListRes.hot.get(vedioIndex));
+            homeHotVideoAdapter.notifyDataSetChanged();
 
 
         }
@@ -284,24 +313,36 @@ public class HomeUI extends BaseUI {
     }
 
 
-    private void getHotNewsData() {
+    private void getHotNewsData(final String type) {
         if(protocal == null){
             protocal = new HotNewsProtocal();
         }
-        protocal.getNewsList("1", new HotNewsProtocal.HotNewsListener() {
+        protocal.getNewsList(type, new HotNewsProtocal.HotNewsListener() {
             @Override
             public void hotNewsResponse(NewsListRes newsListRes) {
-
+                List list = null;
+                HomeNewAdapter adapter = null;
                 if (hotNewsList == null){
                     return;
                 }
-                //先清除
-                hotNewsList.clear();
-                HomeUI.this.newsListRes = newsListRes;
-                //添加所有
-                hotNewsList.addAll(newsListRes.hot.get(0));
+                if("1".equals(type)){
+                    list = hotNewsList;
+                    adapter = homeHotTrackAdapter;
+                    HomeUI.this.newsListRes = newsListRes;
+                }else {
+                    list = vedioNewsList;
+                    adapter = homeHotVideoAdapter;
+                    HomeUI.this.videoListRes = newsListRes;
+                }
 
-                homeHotTrackAdapter.setNewItemInterface(new HomeNewAdapter.NewsItemInterface() {
+                //先清除
+                list.clear();
+
+                //添加所有---------------
+                list.addAll(newsListRes.hot.get(0));
+
+
+                adapter.setNewItemInterface(new HomeNewAdapter.NewsItemInterface() {
                     @Override
                     public void setNewOnItem(int position) {
                         Intent intent = new Intent(HomeUI.this, HomeNewsDetailUI.class);
@@ -317,7 +358,7 @@ public class HomeUI extends BaseUI {
                     }
                 });
 
-                homeHotTrackAdapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
         });
     }

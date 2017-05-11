@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.ui.home;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -9,12 +10,17 @@ import android.util.TypedValue;
 import android.view.View;
 
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.bean.NewTypeBean;
+import com.lchtime.safetyexpress.bean.res.VideoRes;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.home.fragment.VideosRecommendFragment;
+import com.lchtime.safetyexpress.ui.home.protocal.VideoProtocal;
 import com.lchtime.safetyexpress.views.XHorizontalScrollView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+
+import java.util.List;
 
 /**
  * 视频中心
@@ -32,6 +38,9 @@ public class HomeVideosUI extends BaseUI {
 
     private VideosPagerAdapter videosPagerAdapter;
 
+    private VideoProtocal protocal;
+    private List<NewTypeBean> titleList;
+
     @Override
     protected void back() {
         finish();
@@ -39,22 +48,33 @@ public class HomeVideosUI extends BaseUI {
 
     @Override
     protected void setControlBasis() {
-        setTitle("新闻中心");
+        setTitle("视频中心");
         rightVisible(R.drawable.news_search);
 
-        videosPagerAdapter = new VideosPagerAdapter(getSupportFragmentManager());
-        vp_home_videos.setAdapter(videosPagerAdapter);
-
-        final int pageMargin = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
-                        .getDisplayMetrics());
-        vp_home_videos.setPageMargin(pageMargin);
-
-        xhsv_home_videos.setViewPager(vp_home_videos);
     }
 
     @Override
     protected void prepareData() {
+
+        if (protocal == null){
+            protocal = new VideoProtocal();
+        }
+        protocal.getVideoDir(new VideoProtocal.VideoDirListener() {
+            @Override
+            public void videoDirResponse(VideoRes response) {
+                titleList = response.cms_dir;
+                videosPagerAdapter = new VideosPagerAdapter(getSupportFragmentManager());
+                vp_home_videos.setAdapter(videosPagerAdapter);
+
+                final int pageMargin = (int) TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
+                                .getDisplayMetrics());
+                vp_home_videos.setPageMargin(pageMargin);
+
+                xhsv_home_videos.setViewPager(vp_home_videos);
+                videosPagerAdapter.notifyDataSetChanged();
+            }
+        });
 
     }
 
@@ -71,9 +91,6 @@ public class HomeVideosUI extends BaseUI {
 
     class VideosPagerAdapter extends FragmentPagerAdapter {
 
-        //测试
-        private String[] titles = {"推荐", "热点", "安全动态", "安全事故",
-                "法规标准", "安全知识"};
 
         public VideosPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -81,17 +98,21 @@ public class HomeVideosUI extends BaseUI {
 
         @Override
         public Fragment getItem(int arg0) {
-            return new VideosRecommendFragment();
+                Fragment fragment = new VideosRecommendFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("cd_id",titleList.get(arg0).cd_id);
+                fragment.setArguments(bundle);
+            return fragment;
         }
 
         @Override
         public int getCount() {
-            return titles.length;
+            return titleList == null ? 0 :titleList.size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return titles[position];
+            return titleList == null ? "" : titleList.get(position).cd_name;
         }
 
     }

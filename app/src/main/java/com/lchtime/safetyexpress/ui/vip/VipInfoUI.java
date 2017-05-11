@@ -143,6 +143,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
     private String phtotoPath;
 
     private Handler handler ;
+    private FunctionOptions options;
 
 
     @Override
@@ -611,20 +612,25 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
     @Override
     public void onClick(View v) {
 
+        if(options == null){
+            // 可选择图片的数量
+            // 是否打开剪切选项
+            options = new FunctionOptions.Builder()
+                    .setSelectMode(FunctionConfig.MODE_SINGLE) // 可选择图片的数量
+                    .setEnableCrop(true) // 是否打开剪切选项
+                    .setShowCamera(false)
+                    .setCropMode(FunctionConfig.CROP_MODEL_1_1)
+                    .setCompress(true)
+                    .setCompressFlag(1)
+                    .create();
+        }
         switch (v.getId()){
             case R.id.tv_picture_list:
-                FunctionOptions options = new FunctionOptions.Builder()
-                        .setSelectMode(FunctionConfig.MODE_SINGLE) // 可选择图片的数量
-                        .setEnableCrop(true) // 是否打开剪切选项
-                        .setShowCamera(false)
-                        .setCropMode(FunctionConfig.CROP_MODEL_1_1)
-                        .setCompress(true)
-                        .setCompressFlag(1)
-                        .create();
+
                 PictureConfig.getPictureConfig().init(options).openPhoto(this, resultCallback);
                 break;
             case R.id.tv_takepic:
-                PictureConfig.getPictureConfig().startOpenCamera(this, resultCallback);
+                PictureConfig.getPictureConfig().init(options).startOpenCamera(this, resultCallback);
                 break;
         }
         popupWindow.dismiss();

@@ -15,7 +15,7 @@
     <string name="reset">index.php/user/reset/</string>
     <!--修改密码-->
     <string name="chpwd">index.php/user/chpwd/</string>
-    //修改电话号码
+    <!--修改电话号码-->
     <string name="chphone">index.php/user/changephone/</string>
     <!--获取个人信息-->
     <string name="mycount">index.php/user/view/</string>
@@ -29,5 +29,32 @@
     <string name="attention">index.php/user/attention/</string>
     <!--首页新闻-->
     <string name="indexhot">index.php/cms/indexhot/</string>
+    <!--视频分类-->
+    <string name="videodir">index.php/cms/videodir</string>
+    <!--视频列表-->
+    <string name="videolist">index.php/cms/videolist</string>
+    <!--圈子列表-->
+    <string name="qzlist">index.php/quanzi/qzlist</string>
+    <!--添加订阅-->
+    <string name="adddy">index.php/quanzi/adddy</string>
+    <!--订阅按钮-->
+    <string name="qzdy">index.php/quanzi/qzdy</string>
+    <!--我的订阅-->
+    <string name="mydy">index.php/quanzi/mydy</string>
+    <!--点赞和踩-->
+    <string name="newsdz">index.php/quanzi/newsdz</string>
+    <string name="help">
+        发动态，挣现金啦！
+        在这里，您发布的内容所有人都能看到哦！通过手机随时随地把一线现场的安全新闻、故事图片、隐患治理、救援方案、安全文化、管理经验等图文并茂的编辑发布到“圈子”内，就可获得以下奖励：
+        1、	发布的文章被点赞一次可获得0.05元奖励；
+        2、	被评论一次可获得0.08元奖励；
+        3、	被分享一次可获得0.1元奖励；
+        4、	被收藏一次可获得0.1元奖励；
+        5、	被点踩一次得到-0.05元的惩罚；
+        6、	发布的文章经审核后，如果被官方推荐为高质量内容并转到新闻中心，可额外获得10奖励！！
+        7、	以上所有奖励上不封顶，后台自动统计发放到“我的钱包”。
+        【例如：您在“圈子“里发布了一篇文章，点赞（100次），评论（50条），被分享（50次），被收藏（50次），另外被推荐到新闻中心，您便可获得0.05×100+0.08×50+0.1×50+0.1×50+10=29元的现金奖励】。
+        还在等什么，赶紧成为“安全快车”一线特约“记者”吧！
+    </string>
 
 </resources>

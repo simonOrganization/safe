@@ -10,7 +10,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/dm020"
         android:paddingRight="@dimen/dm020">
-        <ImageView
+        <com.lchtime.safetyexpress.views.CircleImageView
             android:id="@+id/add_subscribe_item_image"
             android:layout_width="@dimen/dm070"
             android:layout_height="@dimen/dm070"
@@ -26,14 +26,16 @@
             android:layout_marginLeft="@dimen/dm010"
             android:layout_toRightOf="@id/add_subscribe_item_image"
             android:text="龙创科技"/>
-        <ImageButton
+        <CheckBox
             android:id="@+id/add_subscirbe_item_but"
             android:layout_width="@dimen/dm090"
             android:layout_height="@dimen/dm030"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:background="@drawable/circle_item_subscirb"
-            android:layout_alignParentRight="true"/>
+            android:layout_marginRight="@dimen/dm007"
+            android:text="@null"
+            android:button="@null"
+            android:gravity="center"
+            android:background="@drawable/circle_item_subscribe_selector"
+            android:layout_alignParentRight="true" />
         <TextView
             android:id="@+id/add_subscribe_item_content"
             android:layout_width="wrap_content"
@@ -51,7 +53,7 @@
             android:textSize="@dimen/dm022"
             android:textColor="@color/title_999"
             android:layout_marginLeft="@dimen/dm010"
-            android:text="607已阅读"
+            android:text="607已订阅"
             android:layout_alignParentRight="true"
             android:layout_alignBottom="@id/add_subscribe_item_image"
             />

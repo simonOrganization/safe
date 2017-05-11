@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.NewsBean;
+import com.lchtime.safetyexpress.ui.home.HomeVideosDeatilUI;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.squareup.picasso.Picasso;
@@ -43,7 +44,7 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
         ViewHolder myHolder = (ViewHolder)holder;
         final NewsBean bean = videoList.get(position);
@@ -61,6 +62,15 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
                 Intent intent = new Intent(context, MediaActivity.class);
                 intent.putExtra("url",bean.media.get(1));
                 context.startActivity(intent);
+            }
+        });
+        myHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ((position - 1) <getItemCount()) {
+                    Intent intent = new Intent(context, HomeVideosDeatilUI.class);
+                    context.startActivity(intent);
+                }
             }
         });
 

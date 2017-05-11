@@ -1,15 +1,25 @@
 package com.lchtime.safetyexpress.ui.circle;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.adapter.CircleAdapter;
 import com.lchtime.safetyexpress.adapter.CircleSubscribAdapter;
+import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.MydyBean;
+import com.lchtime.safetyexpress.bean.QzContextBean;
+import com.lchtime.safetyexpress.ui.BaseUI;
+import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
+import com.lchtime.safetyexpress.utils.SpTools;
+import com.lidroid.xutils.view.annotation.ContentView;
+import com.lidroid.xutils.view.annotation.ViewInject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,29 +29,83 @@ import butterknife.OnClick;
 /**
  * Created by yxn on 2017/4/21.
  */
-
-public class SubscribActivity extends Activity {
-    @BindView(R.id.circle_subscribe_rc)
+@ContentView(R.layout.activity_subscribe)
+public class SubscribActivity extends BaseUI {
+    //订阅页面顶部横向
+    @ViewInject(R.id.circle_subscribe_rc)
     RecyclerView circle_subscribe_rc;
-    @BindView(R.id.iv_right)
+    //订阅页面的圈子布局
+    @ViewInject(R.id.erc_subscribe_circle)
+    RecyclerView erc_subscribe_circle;
+    @ViewInject(R.id.iv_right)
     ImageView iv_right;
     private CircleSubscribAdapter adapter;
 
+    private CircleAdapter circleAdapter;
+
+    private CircleProtocal protocal;
+    private String userid;
+    private List<MydyBean.DyBean> dyList = new ArrayList<>();
+    private List<QzContextBean> circleList = new ArrayList<>();
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subscribe);
-        ButterKnife.bind(this);
+    protected void back() {
+        finish();
+    }
+
+    @Override
+    protected void setControlBasis() {
+        rightVisible(R.drawable.circle_subscribe);
+        setTitle("我的订阅");
         //设置布局管理器
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         circle_subscribe_rc.setLayoutManager(linearLayoutManager);
+        erc_subscribe_circle.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 //        circle_subscribe_rc.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new CircleSubscribAdapter(this);
-        circle_subscribe_rc.setAdapter(adapter);
+        if (protocal == null){
+            protocal = new CircleProtocal();
+        }
+        userid = SpTools.getString(this, Constants.userId,"");
+        protocal.getMySubscribe(userid, new CircleProtocal.NormalListener() {
+            @Override
+            public void normalResponse(Object response) {
+                MydyBean bean = (MydyBean) response;
+                dyList.clear();
+                if (bean.dy != null) {
+                    dyList.addAll(bean.dy);
+                }
+                //上边的横向adapter
+                adapter = new CircleSubscribAdapter(SubscribActivity.this,dyList);
+                circle_subscribe_rc.setAdapter(adapter);
+
+                //下面圈子列表
+                circleList.clear();
+                if (bean.quanzi != null) {
+                    circleList.addAll(bean.quanzi);
+                }
+                circleAdapter = new CircleAdapter(SubscribActivity.this,circleList);
+                circleAdapter.setShowDy(false);
+                erc_subscribe_circle.setAdapter(circleAdapter);
+            }
+        });
+
+
+        initListener();
     }
-    @OnClick(R.id.iv_right)
-    void setOnclick(View view){
-        startActivity(new Intent(SubscribActivity.this,AddSubscribeUI.class));
+
+    @Override
+    protected void prepareData() {
+
     }
+
+    private void initListener() {
+        iv_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SubscribActivity.this,AddSubscribeUI.class));
+            }
+        });
+    }
+
 }

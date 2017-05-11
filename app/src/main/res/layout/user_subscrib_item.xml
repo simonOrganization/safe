@@ -13,8 +13,8 @@
         android:id="@+id/raiv_hotcircle_icon"
         android:layout_width="@dimen/dm090"
         android:layout_height="@dimen/dm090"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/home_test_img5"/>
+        android:layout_gravity="center_horizontal" />
+
 
     <TextView
         android:id="@+id/tv_hotcircle_name"
@@ -27,11 +27,14 @@
         android:layout_gravity="center_horizontal"
         android:textColor="@color/title_333"/>
 
-    <ImageView
+    <CheckBox
         android:id="@+id/iv_hotcircle_subscribe"
         android:layout_width="@dimen/dm080"
-        android:layout_height="@dimen/dm040"
-        android:src="@drawable/subscribe_on"
+        android:layout_height="@dimen/dm032"
+        android:text="@null"
+        android:button="@null"
+        android:gravity="center"
+        android:background="@drawable/circle_item_subscribe_selector"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dm010"/>
     </LinearLayout>
