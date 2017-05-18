@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+    <TextView
+        android:layout_marginTop="@dimen/dm030"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/dm040"
+        android:layout_marginRight="@dimen/dm040"
+        android:layout_height="@dimen/dm090"
+        android:textSize="@dimen/dm030"
+        android:textColor="@color/black"
+        android:text="请输入您的支付宝账户和姓名，确保无误后提交即可"
+        />
+    <EditText
+        android:layout_marginTop="@dimen/dm060"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/dm050"
+        android:layout_marginRight="@dimen/dm050"
+        android:layout_height="@dimen/dm090"
+        android:background="@drawable/rectangle"
+        android:textColorHint="@color/title_999"
+        android:padding="@dimen/dm020"
+        android:textSize="@dimen/dm030"
+        android:hint="请输入名字"
+        />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_marginTop="@dimen/dm030"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/dm050"
+        android:layout_marginRight="@dimen/dm050"
+        android:layout_height="@dimen/dm090"
+        android:background="@drawable/rectangle"
+        android:hint="请输入支付宝账户"
+        android:inputType="number"
+        android:padding="@dimen/dm020"
+        android:textSize="@dimen/dm030"
+        android:textColorHint="@color/title_999"
+         />
+
+    <TextView
+        android:id="@+id/tv_login_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm090"
+        android:layout_marginLeft="@dimen/dm050"
+        android:layout_marginRight="@dimen/dm050"
+        android:layout_marginTop="@dimen/dm030"
+        android:background="@drawable/shape_bg_pink"
+        android:gravity="center"
+        android:text="修改"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dm030" />
+</LinearLayout>
