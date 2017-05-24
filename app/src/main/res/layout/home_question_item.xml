@@ -29,6 +29,21 @@
             android:numColumns="3">
 
         </com.lchtime.safetyexpress.views.MyGridView>
+        <ImageView
+            android:id="@+id/one_pic_home_question"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/dm020"
+            android:layout_height="@dimen/dm300" />
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_wenda_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="4"
+            android:textSize="@dimen/dm026"
+            android:textColor="@color/title_666"
+            android:ellipsize="end"
+            android:text="@string/help"/>
 
         <TextView
             android:id="@+id/tv_home_question_num"

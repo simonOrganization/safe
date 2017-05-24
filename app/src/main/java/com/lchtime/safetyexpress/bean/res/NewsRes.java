@@ -15,6 +15,7 @@ public class NewsRes {
     private ArrayList<NewTypeBean> cms_dir;
     public ArrayList<NewsBean> tj;
     public ArrayList<NewsBean> hot;
+    public int totalpage;
 
     public BasicResult getResult() {
         return result;

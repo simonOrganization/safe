@@ -32,6 +32,7 @@ public class NewsBean implements Serializable {
     public String is_delete;
     public String count;
     public String plNum;
+    public String video_time;
     public ArrayList<String> media;
 
     public boolean isCheck;

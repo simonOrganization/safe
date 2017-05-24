@@ -33,6 +33,10 @@ public class HomeNewsDetailUI extends BaseUI {
     private WebView home_news_detailed_web;
 
     private SharePop sharePop;
+    private String cc_id;
+    //类型，是新闻还是视频
+    private String type;
+    private String baseUrl = "";
 
     @Override
     protected void back() {
@@ -41,7 +45,16 @@ public class HomeNewsDetailUI extends BaseUI {
 
     @Override
     protected void setControlBasis() {
-        setTitle("新闻中心");
+        cc_id = getIntent().getStringExtra("newsId");
+        type = getIntent().getStringExtra("type");
+        if ("news".equals(type)){
+            baseUrl = Const.HOST+"cms/pagenews?cc_id=" + cc_id;
+            setTitle("新闻中心");
+        }else if ("video".equals(type)){
+            baseUrl = Const.HOST+"cms/videoinfo?cc_id=" + cc_id;
+            setTitle("视频中心");
+        }
+
         rightVisible(R.drawable.news_share);
         sharePop = new SharePop(ll_right, HomeNewsDetailUI.this, R.layout.pop_share);
         init();
@@ -53,7 +66,11 @@ public class HomeNewsDetailUI extends BaseUI {
     }
     private void init(){
         //WebView加载web资源
-        home_news_detailed_web.loadUrl(Const.HOST+"cms/pagenews?cc_id=81");
+
+
+
+
+        home_news_detailed_web.loadUrl(baseUrl);
         //启用支持javascript
         WebSettings settings = home_news_detailed_web.getSettings();
         settings.setJavaScriptEnabled(true);

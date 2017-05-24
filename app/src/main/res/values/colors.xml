@@ -7,11 +7,13 @@
     <color name="title_333">#333333</color>
     <color name="title_666">#666666</color>
     <color name="title_999">#999999</color>
+    <color name="title_1999">#55999999</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 
     <color name="commen_pink">#ff8f8e</color>
     <color name="commen_reg">#ea553f</color>
+    <color name="commen_yellow">#ffc412</color>
     <color name="commen_gray">#e0e0e0</color>
     <color name="commen_orange">#ff9973</color>
     <color name="line">#e5e5e5</color>

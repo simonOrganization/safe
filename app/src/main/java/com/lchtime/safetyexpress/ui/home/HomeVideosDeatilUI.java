@@ -2,12 +2,11 @@ package com.lchtime.safetyexpress.ui.home;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.pop.SharePop;
 import com.lchtime.safetyexpress.ui.BaseUI;
+import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;

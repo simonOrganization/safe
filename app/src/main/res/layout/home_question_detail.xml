@@ -3,4 +3,40 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/title"/>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm020"
+            android:background="@color/line_big" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rc_question_huifu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_home_question"
+        android:layout_width="@dimen/dm100"
+        android:layout_height="@dimen/dm100"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/dm400"
+        android:layout_marginRight="@dimen/dm020"
+        android:background="@drawable/bubble_yellow"
+        android:gravity="center"
+        android:text="回答"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dm028" />
+</RelativeLayout>
+
 </LinearLayout>

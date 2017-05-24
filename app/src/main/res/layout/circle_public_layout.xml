@@ -74,5 +74,9 @@
                 android:textColor="@color/title_666"/>
         </LinearLayout>
         </LinearLayout>
+        <View
+            android:background="@color/page_color"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm120"/>
 
 </LinearLayout>

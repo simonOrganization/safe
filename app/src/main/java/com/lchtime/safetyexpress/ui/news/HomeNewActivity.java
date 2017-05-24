@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Toast;
 
 import com.lchtime.safetyexpress.MyApplication;
@@ -15,9 +16,12 @@ import com.lchtime.safetyexpress.bean.NewTypeBean;
 import com.lchtime.safetyexpress.bean.res.NewsRes;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.Const;
-import com.lchtime.safetyexpress.ui.home.HomeNewsSearchUI;
+import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
+import com.lchtime.safetyexpress.ui.vip.fragment.*;
+import com.lchtime.safetyexpress.ui.vip.fragment.BaseFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
+import com.lchtime.safetyexpress.views.LoadingPager;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -41,6 +45,7 @@ public class HomeNewActivity extends BaseUI {
     ViewPager activity_new_vp;
     private NewsFragmentAdapter fragmentAdapter;
     private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+    private MyOnpageChangeListener listener;
 
     @Override
     protected void back() {
@@ -57,6 +62,8 @@ public class HomeNewActivity extends BaseUI {
         getTabData();
 
     }
+
+
     /**
      * 搜索
      * @param view
@@ -64,6 +71,7 @@ public class HomeNewActivity extends BaseUI {
     @OnClick(R.id.ll_right)
     private void getSearch(View view){
         Intent intent = new Intent(HomeNewActivity.this, HomeNewsSearchUI.class);
+        intent.putExtra("type","1");
         startActivity(intent);
     }
 
@@ -112,7 +120,7 @@ public class HomeNewActivity extends BaseUI {
                             activity_new_vp.setAdapter(fragmentAdapter);
                             activity_new_tablayout.setupWithViewPager(activity_new_vp);
                             activity_new_tablayout.setTabsFromPagerAdapter(fragmentAdapter);
-                            activity_new_vp.setCurrentItem(0);
+                            initListener();
 
                         }else{
                             Toast.makeText(HomeNewActivity.this,newsRes.getResult().getInfo(),Toast.LENGTH_SHORT).show();
@@ -120,4 +128,40 @@ public class HomeNewActivity extends BaseUI {
                     }
                 });
     }
+
+
+    private void initListener() {
+        listener = new MyOnpageChangeListener();
+
+        activity_new_vp.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                listener.onPageSelected(0);
+                activity_new_vp.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
+        activity_new_vp.addOnPageChangeListener(listener);
+
+    }
+
+    class MyOnpageChangeListener implements ViewPager.OnPageChangeListener{
+
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            BaseFragment currentFragment = (BaseFragment) fragments.get(position);
+            LoadingPager loadingPager = currentFragment.getLoadingPager();
+            loadingPager.triggerLoadData();
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    }
+
 }

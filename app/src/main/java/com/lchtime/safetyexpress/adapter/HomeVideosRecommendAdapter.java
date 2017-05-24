@@ -3,6 +3,7 @@ package com.lchtime.safetyexpress.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.NewsBean;
+import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
+import com.lchtime.safetyexpress.ui.home.HomeUI;
 import com.lchtime.safetyexpress.ui.home.HomeVideosDeatilUI;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
@@ -54,7 +57,9 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
         myHolder.tv_from.setText(bean.cc_from);
         myHolder.tv_comment.setText(bean.plNum);
 
-        myHolder.tv_time2.setText( CommonUtils.getSpaceTime(Long.parseLong(bean.cc_datetime)));
+        if (!TextUtils.isEmpty(bean.cc_datetime)) {
+            myHolder.tv_time2.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.cc_datetime)));
+        }
         myHolder.tv_playnum.setText(bean.cc_count + "次播放");
         myHolder.rl_play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +73,11 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
             @Override
             public void onClick(View v) {
                 if ((position - 1) <getItemCount()) {
-                    Intent intent = new Intent(context, HomeVideosDeatilUI.class);
+//                    Intent intent = new Intent(context, HomeVideosDeatilUI.class);
+//                    context.startActivity(intent);
+                    Intent intent = new Intent(context, HomeNewsDetailUI.class);
+                    intent.putExtra("newsId", videoList.get(position).cc_id);
+                    intent.putExtra("type","video");
                     context.startActivity(intent);
                 }
             }

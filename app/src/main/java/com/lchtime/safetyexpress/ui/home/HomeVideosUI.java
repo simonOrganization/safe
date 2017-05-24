@@ -2,6 +2,7 @@ package com.lchtime.safetyexpress.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -15,6 +16,8 @@ import com.lchtime.safetyexpress.bean.res.VideoRes;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.home.fragment.VideosRecommendFragment;
 import com.lchtime.safetyexpress.ui.home.protocal.VideoProtocal;
+import com.lchtime.safetyexpress.ui.news.HomeNewsFragment;
+import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
 import com.lchtime.safetyexpress.views.XHorizontalScrollView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -31,7 +34,8 @@ public class HomeVideosUI extends BaseUI {
 
     //XHorizontalScrollView
     @ViewInject(R.id.xhsv_home_videos)
-    private XHorizontalScrollView xhsv_home_videos;
+    //private XHorizontalScrollView xhsv_home_videos;
+    private TabLayout xhsv_home_videos;
     //ViewPager
     @ViewInject(R.id.vp_home_videos)
     private ViewPager vp_home_videos;
@@ -66,13 +70,19 @@ public class HomeVideosUI extends BaseUI {
                 videosPagerAdapter = new VideosPagerAdapter(getSupportFragmentManager());
                 vp_home_videos.setAdapter(videosPagerAdapter);
 
-                final int pageMargin = (int) TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
-                                .getDisplayMetrics());
-                vp_home_videos.setPageMargin(pageMargin);
 
-                xhsv_home_videos.setViewPager(vp_home_videos);
-                videosPagerAdapter.notifyDataSetChanged();
+                xhsv_home_videos.setTabMode(TabLayout.MODE_SCROLLABLE);//MODE_FIXED
+                xhsv_home_videos.setupWithViewPager(vp_home_videos);
+                xhsv_home_videos.setTabsFromPagerAdapter(videosPagerAdapter);
+
+
+//                final int pageMargin = (int) TypedValue.applyDimension(
+//                        TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
+//                                .getDisplayMetrics());
+//                vp_home_videos.setPageMargin(pageMargin);
+//
+//                xhsv_home_videos.setViewPager(vp_home_videos);
+//                videosPagerAdapter.notifyDataSetChanged();
             }
         });
 
@@ -86,6 +96,7 @@ public class HomeVideosUI extends BaseUI {
     @OnClick(R.id.ll_right)
     private void getSearch(View view) {
         Intent intent = new Intent(HomeVideosUI.this, HomeNewsSearchUI.class);
+        intent.putExtra("type","2");
         startActivity(intent);
     }
 

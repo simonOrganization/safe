@@ -4,60 +4,9 @@
     android:layout_height="match_parent"
     android:background="@color/white">
     <include layout="@layout/title" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dm002"
-        android:background="@color/page_color"/>
-    <RadioGroup
-        android:id="@+id/add_subscirbe_rg"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dm070"
-        android:orientation="horizontal">
-        <RadioButton
-            android:id="@+id/add_subscirbe_line_rb_all"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="全部"
-            android:gravity="center"
-            android:textSize="@dimen/dm024"
-            android:button="@null"
-            android:checked="true"
-            android:textColor="@drawable/add_subscirbe_text_color"/>
-        <RadioButton
-            android:id="@+id/add_subscirbe_line_rb_comm"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="推荐"
-            android:gravity="center"
-            android:textSize="@dimen/dm024"
-            android:button="@null"
-            android:checked="false"
-            android:textColor="@drawable/add_subscirbe_text_color"/>
-    </RadioGroup>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dm002"
-        android:orientation="horizontal"
-        android:background="@color/page_color">
-        <View
-            android:id="@+id/add_subscirbe_line_left"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:background="@color/commen_reg"/>
-        <View
-            android:id="@+id/add_subscirbe_line_right"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:background="@color/page_color"/>
-    </LinearLayout>
-    <FrameLayout
-        android:id="@+id/add_subscribe_frame"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_other_person_subscribe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
 
 </LinearLayout>

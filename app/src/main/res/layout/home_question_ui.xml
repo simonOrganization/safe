@@ -5,33 +5,38 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+
     <include layout="@layout/title" />
+    <!--<include-->
+        <!--layout="@layout/home_question_header" />-->
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
+        <com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView
             android:id="@+id/lv_home_question"
+            android:divider="@null"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@null"
             android:listSelector="@android:color/transparent"
-            android:scrollbars="none"></ListView>
+            android:scrollbars="none">
+
+        </com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView>
 
         <TextView
             android:id="@+id/tv_home_question"
-            android:layout_width="@dimen/dm070"
-            android:layout_height="@dimen/dm070"
+            android:layout_width="@dimen/dm100"
+            android:layout_height="@dimen/dm100"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="@dimen/dm100"
-            android:layout_marginRight="@dimen/dm030"
+            android:layout_marginBottom="@dimen/dm400"
+            android:layout_marginRight="@dimen/dm020"
             android:background="@drawable/bubble"
             android:gravity="center"
             android:text="提问"
             android:textColor="@color/white"
-            android:textSize="@dimen/dm026" />
+            android:textSize="@dimen/dm028" />
 
     </RelativeLayout>
 

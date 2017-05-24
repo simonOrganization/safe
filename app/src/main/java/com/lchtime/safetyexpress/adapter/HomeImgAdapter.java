@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -21,28 +22,29 @@ public class HomeImgAdapter  extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
     private List<String> list;
-    private int[] imgs;
+    //private int[] imgs;
 
-    public HomeImgAdapter(Context context) {
+    public HomeImgAdapter(Context context,List<String> list) {
         this.context = context;
+        this.list = list;
         inflater = LayoutInflater.from(context);
         //测试
-        imgs = new int[]{R.drawable.home_test_img6, R.drawable.home_test_img6, R.drawable.home_test_img6};
+        //imgs = new int[]{R.drawable.home_test_img6, R.drawable.home_test_img6, R.drawable.home_test_img6};
     }
 
     @Override
     public int getCount() {
-        return imgs.length;
+        return list == null ? 0 : list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return list.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -56,7 +58,7 @@ public class HomeImgAdapter  extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.iv_img.setBackgroundResource(imgs[position]);
+        Picasso.with(context).load(list.get(position)).fit().into(holder.iv_img);
         return convertView;
     }
 

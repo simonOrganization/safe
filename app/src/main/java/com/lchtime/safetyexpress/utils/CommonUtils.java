@@ -26,6 +26,7 @@ import com.lchtime.safetyexpress.MyApplication;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * Created by user on 2017/4/17.
@@ -185,36 +186,72 @@ public class CommonUtils {
         return sb.toString();
     }
     public static String getSpaceTime(Long millisecond) {
+
+        long current=System.currentTimeMillis();//当前时间毫秒数
+        long zero = current/(1000*3600*24)*(1000*3600*24)- TimeZone.getDefault().getRawOffset();//今天零点零分零秒的毫秒数
+
+
         Calendar calendar = Calendar.getInstance();
         Long currentMillisecond = calendar.getTimeInMillis();
 
+
         //间隔秒
-        Long spaceSecond = (currentMillisecond - millisecond) / 1000;
+//        Long spaceSecond = (currentMillisecond - millisecond) / 1000;
+        Long spaceSecond = (currentMillisecond - millisecond*1000) / 1000;
+        //发布时间和今日零点相差的毫秒值
+        long todaySecond = (millisecond*1000 - zero)/1000;
+        //昨天
+        long upSecond = (millisecond*1000 - zero)/1000 + 24*60*60;
+        //前天
+        long upUpSecond = (millisecond*1000 - zero)/1000 + 48*60*60;
 
         //一分钟之内
         if (spaceSecond >= 0 && spaceSecond < 60) {
             return "刚刚";
         }
-        //一小时之内
-        else if (spaceSecond / 60 > 0 && spaceSecond / 60 < 60) {
-            return spaceSecond / 60 + "分钟之前";
+
+        //如果是今天发布的
+        else if (todaySecond > 0 ){
+            //一小时之内
+            if (spaceSecond / 60 > 0 && spaceSecond / 60 < 60) {
+                return spaceSecond / 60 + "分钟前";
+            }
+            //一天之内
+//            else if(spaceSecond / (60 * 60) > 0 && spaceSecond / (60 * 60) < 24) {
+//                return spaceSecond / (60 * 60) + "小时之前";
+//            }
+            else{
+                return spaceSecond / (60 * 60) + "小时前";
+            }
+
         }
-        //一天之内
-        else if (spaceSecond / (60 * 60) > 0 && spaceSecond / (60 * 60) < 24) {
-            return spaceSecond / (60 * 60) + "小时之前";
+       else if(upSecond > 0){
+            return "昨天";
         }
-        //3天之内
-        else if (spaceSecond/(60*60*24)>0&&spaceSecond/(60*60*24)<3){
-            return spaceSecond/(60*60*24)+"天之前";
-        }else {
-            return getDateTimeFromMillisecond(millisecond);
+       else if (upUpSecond > 0){
+            return "前天";
+        }
+
+        else {
+            return getDateTimeFromMillisecond(millisecond*1000);
         }
     }
+
     public static String getDateTimeFromMillisecond(Long millisecond){
+        Calendar calendar = Calendar.getInstance();
+        Long currentMillisecond = calendar.getTimeInMillis();
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date(millisecond);
+        Date date = new Date(currentMillisecond);
         String dateStr = simpleDateFormat.format(date);
-        return dateStr.substring(2,dateStr.length());
+
+        Date date2 = new Date(millisecond);
+        String dateStr2 = simpleDateFormat.format(date2);
+
+        if (dateStr.substring(0,4).equals(dateStr2.substring(0,4))){
+            return dateStr.substring(5,dateStr.length());
+        }
+        return dateStr.substring(0,dateStr.length());
     }
 
 }

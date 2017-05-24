@@ -7,7 +7,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dm020"
+        android:layout_marginTop="@dimen/dm020"
+        android:layout_marginBottom="@dimen/dm020"
+        android:layout_marginLeft="@dimen/dm010"
+        android:layout_marginRight="@dimen/dm010"
         android:orientation="horizontal">
         <CheckBox
             android:id="@+id/rb_delete"
@@ -110,6 +113,12 @@
             android:background="@color/line" />
 
     </LinearLayout>
+
+    <View
+        android:layout_below="@id/ll_item_pic_wenzi"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm001"
+        android:background="@color/title_999"/>
 
 
 </LinearLayout>

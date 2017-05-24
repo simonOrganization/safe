@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/white"
     android:focusableInTouchMode="true"
     android:orientation="vertical">
@@ -23,26 +23,41 @@
         android:paddingLeft="@dimen/dm020"
         android:paddingRight="@dimen/dm020"
         android:paddingTop="@dimen/dm015">
-
-        <EditText
-            android:id="@+id/et_news_search"
-            style="@style/edit_style"
+        <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="@dimen/dm060"
             android:layout_weight="1"
-            android:background="@drawable/shape_bg_gray"
-            android:drawableLeft="@drawable/home_search"
-            android:drawablePadding="@dimen/dm010"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:hint="输入关键词"
-            android:imeOptions="actionSearch"
-            android:paddingLeft="@dimen/dm010"
-            android:singleLine="true"
-            android:textColor="@color/title_333"
-            android:textColorHint="@color/commen_reg"
-            android:textSize="@dimen/dm024" />
+            android:layout_height="@dimen/dm060"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical">
+            <EditText
+                android:id="@+id/et_news_search"
+                style="@style/edit_style"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm060"
+                android:background="@drawable/shape_bg_gray"
+                android:drawableLeft="@drawable/home_search"
+                android:drawablePadding="@dimen/dm010"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:hint="输入关键词"
+                android:imeOptions="actionSearch"
+                android:paddingLeft="@dimen/dm010"
+                android:singleLine="true"
+                android:textColor="@color/title_333"
+                android:textColorHint="@color/commen_reg"
+                android:textSize="@dimen/dm024"/>
 
+            <ImageView
+                android:id="@+id/ivDeleteText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/delet_zhaopian_1x"
+                android:layout_centerInParent="true"
+                android:paddingRight="20dp"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
         <TextView
             android:id="@+id/tv_news_search_cancel"
             android:layout_width="wrap_content"
@@ -54,99 +69,115 @@
             android:textSize="@dimen/dm026" />
     </LinearLayout>
 
-    <ScrollView
-        android:id="@+id/sv_news_search"
+    <!--<ScrollView-->
+        <!--android:id="@+id/sv_news_search"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:scrollbars="none"-->
+        <!--android:visibility="visible">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/white"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/dm080"-->
+                <!--android:background="@color/line_big"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:paddingLeft="@dimen/dm020"-->
+                <!--android:paddingRight="@dimen/dm020">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_news_search_tip"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="最近搜索"-->
+                    <!--android:textColor="@color/title_666"-->
+                    <!--android:textSize="@dimen/dm026" />-->
+
+                <!--<View-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:layout_weight="1" />-->
+
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/ll_news_search_clear"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:paddingLeft="@dimen/dm020">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/iv_giveup"-->
+                        <!--android:layout_width="@dimen/dm043"-->
+                        <!--android:layout_height="@dimen/dm043"-->
+                        <!--android:src="@drawable/search_delete" />-->
+
+                <!--</LinearLayout>-->
+
+            <!--</LinearLayout>-->
+
+            <!--&lt;!&ndash;<android.support.v7.widget.RecyclerView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/slv_news_search_history"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_marginLeft="@dimen/dm020"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_marginRight="@dimen/dm020"/>&ndash;&gt;-->
+
+            <!--<com.lchtime.safetyexpress.change.view.FlowLayout-->
+                <!--android:id="@+id/slv_news_search_history"-->
+                <!--android:layout_marginTop="@dimen/dm020"-->
+                <!--android:paddingLeft="@dimen/dm020"-->
+                <!--android:paddingRight="@dimen/dm020"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"></com.lchtime.safetyexpress.change.view.FlowLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/dm080"-->
+                <!--android:layout_marginTop="@dimen/dm020"-->
+                <!--android:background="@color/line_big"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:paddingLeft="@dimen/dm020"-->
+                <!--android:paddingRight="@dimen/dm020">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_news_search_hot"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="热门搜索"-->
+                    <!--android:textColor="@color/title_666"-->
+                    <!--android:textSize="@dimen/dm026" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--&lt;!&ndash;<android.support.v7.widget.RecyclerView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/slv_news_search_hot"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_marginLeft="@dimen/dm020"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_marginRight="@dimen/dm020"/>&ndash;&gt;-->
+
+            <!--<com.lchtime.safetyexpress.change.view.FlowLayout-->
+                <!--android:id="@+id/slv_news_search_hot"-->
+                <!--android:layout_marginTop="@dimen/dm020"-->
+                <!--android:paddingLeft="@dimen/dm020"-->
+                <!--android:paddingRight="@dimen/dm020"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"></com.lchtime.safetyexpress.change.view.FlowLayout>-->
+
+        <!--</LinearLayout>-->
+
+    <!--</ScrollView>-->
+
+    <FrameLayout
+        android:id="@+id/fl_conent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:visibility="visible">
+        android:layout_height="match_parent"></FrameLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dm080"
-                android:background="@color/line_big"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/dm020"
-                android:paddingRight="@dimen/dm020">
-
-                <TextView
-                    android:id="@+id/tv_news_search_tip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="历史记录"
-                    android:textColor="@color/title_666"
-                    android:textSize="@dimen/dm026" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
-
-                <LinearLayout
-                    android:id="@+id/ll_news_search_clear"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/dm020">
-
-                    <ImageView
-                        android:layout_width="@dimen/dm043"
-                        android:layout_height="@dimen/dm043"
-                        android:src="@drawable/search_delete" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/slv_news_search_history"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dm020"
-                android:layout_marginRight="@dimen/dm020"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dm080"
-                android:layout_marginTop="@dimen/dm020"
-                android:background="@color/line_big"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/dm020"
-                android:paddingRight="@dimen/dm020">
-
-                <TextView
-                    android:id="@+id/tv_news_search_hot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="热门搜索"
-                    android:textColor="@color/title_666"
-                    android:textSize="@dimen/dm026" />
-
-            </LinearLayout>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/slv_news_search_hot"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dm020"
-                android:layout_marginRight="@dimen/dm020"/>
-
-        </LinearLayout>
-
-    </ScrollView>
-
-    <ListView
-        android:id="@+id/lv_news_search"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        android:divider="@null"
-        android:listSelector="@android:color/transparent"></ListView>
 
 </LinearLayout>

@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
 android {
+    signingConfigs {
+        safety {
+            keyAlias 'safety'
+            keyPassword 'lchtime'
+            storeFile file('C:/签名/safety.jks')
+            storePassword 'lchtime'
+        }
+    }
     compileSdkVersion 24
     buildToolsVersion "24.0.3"
     defaultConfig {
@@ -11,12 +19,18 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.safety
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            signingConfig signingConfigs.safety
+        }
+    }
+    productFlavors {
     }
 }
 
@@ -35,5 +49,9 @@ dependencies {
     compile 'com.android.support:design:25.2.0'
     compile 'com.google.code.gson:gson:2.7'
     compile files('libs/picasso-2.5.2.jar')
-    compile('org.kymjs.kjframe:kjframe:2.6')
+    compile 'org.kymjs.kjframe:kjframe:2.6'
+    compile 'com.youth.banner:banner:1.4.9'
+    //最新版本
+    compile project(':recordlib')
+    compile project(':threeLoginFrame')
 }

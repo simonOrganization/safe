@@ -43,16 +43,52 @@
     <string name="mydy">index.php/quanzi/mydy</string>
     <!--点赞和踩-->
     <string name="newsdz">index.php/quanzi/newsdz</string>
+    <!--问答首页-->
+    <string name="shouye">index.php/wenda/shouye</string>
+    <!--问答详情-->
+    <string name="wdinfo">index.php/wenda/wddetail</string>
+    <!--提问-->
+    <string name="tiwen">index.php/wenda/tiwen</string>
+    <!--回答-->
+    <string name="answer">index.php/wenda/tjanswer</string>
+    <!--上传文字视频圈子-->
+    <string name="qzfb">index.php/quanzi/qzfb</string>
+    <!--我的动态-->
+    <string name="qzdt">index.php/quanzi/qzdt</string>
+    <!--删除圈子-->
+    <string name="qzdel">index.php/quanzi/qzdel</string>
+    <!--热门圈子-->
+    <string name="hotqz">index.php/quanzi/hotqz</string>
+    <!--获取好友个人信息-->
+    <string name="person">index.php/user/person</string>
+    <!--获取他人订阅信息-->
+    <string name="otherdy">index.php/quanzi/otherdy</string>
+    <!--我的账户-->
+    <string name="myaccount">index.php/caiwu/myaccount</string>
+    <!--绑定账户-->
+    <string name="addaccount">index.php/caiwu/addaccount</string>
+    <!--账户明细-->
+    <string name="cashlist">index.php/caiwu/cashlist</string>
+    <string name="tixian">index.php/caiwu/tixian</string>
+    <!--热门搜索关键字-->
+    <string name="hotsearch">index.php/system/hotsearch</string>
+    <!--全局搜索-->
+    <string name="qjsearch">index.php/search/search</string>
+    <!--圈子搜索-->
+    <string name="qzsearch">index.php/quanzi/qzsearch</string>
+    <!--新闻视频搜索-->
+    <string name="xwspsearch">index.php/cms/search</string>
+    <string name="mywd">index.php/wenda/mywd</string>
     <string name="help">
-        发动态，挣现金啦！
+        发动态，挣现金啦！\n
         在这里，您发布的内容所有人都能看到哦！通过手机随时随地把一线现场的安全新闻、故事图片、隐患治理、救援方案、安全文化、管理经验等图文并茂的编辑发布到“圈子”内，就可获得以下奖励：
-        1、	发布的文章被点赞一次可获得0.05元奖励；
-        2、	被评论一次可获得0.08元奖励；
-        3、	被分享一次可获得0.1元奖励；
-        4、	被收藏一次可获得0.1元奖励；
-        5、	被点踩一次得到-0.05元的惩罚；
-        6、	发布的文章经审核后，如果被官方推荐为高质量内容并转到新闻中心，可额外获得10奖励！！
-        7、	以上所有奖励上不封顶，后台自动统计发放到“我的钱包”。
+        \n1、	发布的文章被点赞一次可获得0.05元奖励；
+        \n2、	被评论一次可获得0.08元奖励；
+        \n3、	被分享一次可获得0.1元奖励；
+        \n4、	被收藏一次可获得0.1元奖励；
+        \n5、	被点踩一次得到-0.05元的惩罚；
+        \n6、	发布的文章经审核后，如果被官方推荐为高质量内容并转到新闻中心，可额外获得10奖励！！
+        \n7、	以上所有奖励上不封顶，后台自动统计发放到“我的钱包”。
         【例如：您在“圈子“里发布了一篇文章，点赞（100次），评论（50条），被分享（50次），被收藏（50次），另外被推荐到新闻中心，您便可获得0.05×100+0.08×50+0.1×50+0.1×50+10=29元的现金奖励】。
         还在等什么，赶紧成为“安全快车”一线特约“记者”吧！
     </string>

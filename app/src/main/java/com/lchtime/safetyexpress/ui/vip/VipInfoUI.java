@@ -616,6 +616,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
             // 可选择图片的数量
             // 是否打开剪切选项
             options = new FunctionOptions.Builder()
+                    .setType(FunctionConfig.TYPE_IMAGE) // 图片or视频 FunctionConfig.TYPE_IMAGE  TYPE_VIDEO
                     .setSelectMode(FunctionConfig.MODE_SINGLE) // 可选择图片的数量
                     .setEnableCrop(true) // 是否打开剪切选项
                     .setShowCamera(false)
@@ -759,6 +760,9 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
                 //岗位
                 InitInfo.vipInfoBean.user_detail.ud_post =
                         allInfo.ud_post == null ? InitInfo.vipInfoBean.user_detail.ud_post : allInfo.ud_post;
+                //岗位
+                InitInfo.vipInfoBean.user_detail.ud_bm =
+                        allInfo.ud_bm == null ? InitInfo.vipInfoBean.user_detail.ud_bm : allInfo.ud_bm;
                 InitInfo.vipInfoBean.user_detail.ud_addr =
                         allInfo.ud_addr == null ? InitInfo.vipInfoBean.user_detail.ud_addr : allInfo.ud_addr;
                 InitInfo.vipInfoBean.user_detail.ud_company_name =

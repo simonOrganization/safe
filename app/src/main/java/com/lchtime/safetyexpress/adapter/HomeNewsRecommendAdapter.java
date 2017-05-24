@@ -163,7 +163,7 @@ public class HomeNewsRecommendAdapter extends BaseAdapter {
 //                } else {
 //                    holder.miv_imgs.setVisibility(View.GONE);
 //                }
-                HomeImgAdapter homeImgAdapter = new HomeImgAdapter(context);
+                HomeImgAdapter homeImgAdapter = new HomeImgAdapter(context,null);
                 holder.mgv_imgs.setAdapter(homeImgAdapter);
                 break;
             case ITEM_VIEW_TYPE_VIDEO:

@@ -2,6 +2,7 @@ package com.lchtime.safetyexpress.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.widget.GridView;
 
 /**
@@ -21,8 +22,14 @@ public class MyGridView extends GridView {
         super(context, attrs, defStyle);
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        return false;
+    }
+
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int expandSpec = MeasureSpec.makeMeasureSpec(536870911, -2147483648);
         super.onMeasure(widthMeasureSpec, expandSpec);
     }
+
 }

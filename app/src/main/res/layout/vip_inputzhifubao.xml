@@ -6,54 +6,93 @@
     android:orientation="vertical">
 
     <include layout="@layout/title" />
-    <TextView
-        android:layout_marginTop="@dimen/dm030"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="@dimen/dm040"
-        android:layout_marginRight="@dimen/dm040"
-        android:layout_height="@dimen/dm090"
-        android:textSize="@dimen/dm030"
-        android:textColor="@color/black"
-        android:text="请输入您的支付宝账户和姓名，确保无误后提交即可"
-        />
-    <EditText
+
+    <com.lchtime.safetyexpress.views.CircleImageView
+        android:id="@+id/civ_vip_icon"
+        android:layout_width="@dimen/dm138"
+        android:layout_height="@dimen/dm138"
         android:layout_marginTop="@dimen/dm060"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="@dimen/dm050"
-        android:layout_marginRight="@dimen/dm050"
-        android:layout_height="@dimen/dm090"
-        android:background="@drawable/rectangle"
-        android:textColorHint="@color/title_999"
-        android:padding="@dimen/dm020"
-        android:textSize="@dimen/dm030"
-        android:hint="请输入名字"
-        />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_marginTop="@dimen/dm030"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="@dimen/dm050"
-        android:layout_marginRight="@dimen/dm050"
-        android:layout_height="@dimen/dm090"
-        android:background="@drawable/rectangle"
-        android:hint="请输入支付宝账户"
-        android:inputType="number"
-        android:padding="@dimen/dm020"
-        android:textSize="@dimen/dm030"
-        android:textColorHint="@color/title_999"
-         />
-
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/vip_test_icon" />
     <TextView
-        android:id="@+id/tv_login_login"
+        android:layout_marginTop="@dimen/dm020"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dm026"
+        android:textColor="@color/commen_reg"
+        android:layout_gravity="center_horizontal"
+        android:text="提现到支付宝账号"
+        />
+    <TextView
+        android:id="@+id/tv_zhifubao_num"
+        android:layout_marginTop="@dimen/dm020"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dm026"
+        android:textColor="@color/commen_reg"
+        android:layout_gravity="center_horizontal"
+        android:text="186****3369"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dm060"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dm070"
+            android:textSize="@dimen/dm030"
+            android:textColor="@color/title_666"
+            android:text="提现金额"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dm010"
+            android:background="@drawable/smallrectangle"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dm020"
+                android:textSize="@dimen/dm026"
+                android:text="¥"/>
+
+            <EditText
+                android:id="@+id/et_money_num"
+                android:inputType="number"
+                android:textSize="@dimen/dm026"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/all_output"
+            android:layout_width="@dimen/dm154"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dm010"
+            android:layout_marginRight="@dimen/dm050"
+            android:textSize="@dimen/dm026"
+            android:textColor="@color/white"
+            android:background="@drawable/shape_bg_pink_small"
+            android:gravity="center"
+            android:padding="@dimen/dm008"
+            android:text="全部提现"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_output"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm090"
         android:layout_marginLeft="@dimen/dm050"
         android:layout_marginRight="@dimen/dm050"
-        android:layout_marginTop="@dimen/dm030"
+        android:layout_marginTop="@dimen/dm070"
         android:background="@drawable/shape_bg_pink"
         android:gravity="center"
-        android:text="修改"
+        android:text="确认提现"
         android:textColor="@color/white"
         android:textSize="@dimen/dm030" />
 </LinearLayout>

@@ -7,21 +7,21 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.QzContextBean;
+import com.lchtime.safetyexpress.bean.WenDaDetailBean;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.ui.circle.CircleUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.views.CircleImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -34,236 +34,75 @@ import butterknife.ButterKnife;
  */
 
 public class QuetionDetailAdapter extends RecyclerView.Adapter {
+
     private Activity context;
-    private List<QzContextBean> circleOneList;
+    private List<WenDaDetailBean.HdinfoBean> list;
 
-    public QuetionDetailAdapter(Activity context, List<QzContextBean> circleOneList) {
+    public QuetionDetailAdapter(Activity context, List<WenDaDetailBean.HdinfoBean> circleOneList) {
         this.context = context;
-        this.circleOneList = circleOneList;
+        this.list = circleOneList;
     }
 
-    private boolean isShowDy = true;
 
-    public void setShowDy(boolean isShowDy){
-        this.isShowDy = isShowDy;
-    }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.circle_item,parent,false);
-        if(!isShowDy){
-            view.findViewById(R.id.circle_item_subscribe).setVisibility(View.GONE);
-            view.findViewById(R.id.circle_item_subscribe_num).setVisibility(View.GONE);
-        }
+        View view = LayoutInflater.from(context).inflate(R.layout.question_pinglun_item, parent, false);
         return new CircleHodler(view);
     }
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
-        ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
-        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        int screenWith = ScreenUtil.getScreenSize(context)[0];
-        if(holder instanceof CircleHodler){
-            CircleHodler circleHodler = (CircleHodler) holder;
-            final QzContextBean bean = circleOneList.get(position);
 
+        final WenDaDetailBean.HdinfoBean bean = list.get(position);
+        if (holder instanceof CircleHodler) {
+            CircleHodler myHolder = (CircleHodler) holder;
+
+            ViewGroup.LayoutParams lp =  myHolder.circleItemShipin.getLayoutParams();
+            lp.width = 600;
+            lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            myHolder.circleItemShipin.setLayoutParams(lp);
+            myHolder.circleItemShipin.setMaxWidth(600);
+            //context.getWindowManager().getDefaultDisplay().getWidth() - 100
+            myHolder.circleItemShipin.setMaxHeight(1200);
             //如果有图片
-            if (TextUtils.isEmpty(bean.qc_video)) {
-                ((CircleHodler) holder).circle_item_shipin.setVisibility(View.GONE);
-                ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.VISIBLE);
-                //一片张图
-                if (bean.pic.size() == 1) {
-                    ViewGroup.LayoutParams layoutParamsss = circleHodler.circle_item_image_rc.getLayoutParams();
-                    layoutParamsss.width = screenWith / 3;
-                    circleHodler.circle_item_image_rc.setLayoutManager(new GridLayoutManager(context, 1));
-//                circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(2,10,true));
-                } else if (bean.pic.size() == 4) {
-                    //四张图片
-                    ViewGroup.LayoutParams layoutParamsss = circleHodler.circle_item_image_rc.getLayoutParams();
-                    layoutParamsss.width = screenWith / 2;
-                    circleHodler.circle_item_image_rc.setLayoutManager(new GridLayoutManager(context, 2));
-                    //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(2, 5, true));
-                } else {
-                    //多张图片
-                    ViewGroup.LayoutParams layoutParamsss = circleHodler.circle_item_image_rc.getLayoutParams();
-                    layoutParamsss.width = ViewGroup.LayoutParams.MATCH_PARENT;
-                    circleHodler.circle_item_image_rc.setLayoutManager(new GridLayoutManager(context, 3));
-                    //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(3, 5, true));
-                }
-                //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(3, 5, true));
-                CircleImageAdapter imageAdapter = new CircleImageAdapter(context, bean.pic);
-                circleHodler.circle_item_image_rc.setAdapter(imageAdapter);
+            if (bean.pic.size() != 0) {
+                myHolder.circleItemShipin.setVisibility(View.VISIBLE);
+                Picasso.with(context).load(bean.pic.get(0)).into(myHolder.circleItemShipin);
+            } else {
                 //如果没有图片
-            }else {
-                ((CircleHodler) holder).circle_item_shipin.setVisibility(View.VISIBLE);
-                ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.GONE);
-                //视频
-                Picasso.with(context).load(bean.pic.get(0)).into(((CircleHodler) holder).circle_item_shipin);
-
-                circleHodler.circle_item_shipin.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });
+                ((CircleHodler) holder).circleItemShipin.setVisibility(View.GONE);
             }
-            final CircleProtocal protocal = new CircleProtocal();
-            Picasso.with(context).load(bean.ud_photo_fileid).into(((CircleHodler) holder).iv_circle_photo);
-            ((CircleHodler) holder).circle_item_company_name.setText(bean.user);
-            ((CircleHodler) holder).circle_item_title.setText(bean.qc_auth);
-            ((CircleHodler) holder).circle_item_content.setText(bean.qc_context);
-            ((CircleHodler) holder).circle_item_talk.setText(bean.qc_pinglun);
-            ((CircleHodler) holder).circle_item_subscribe.setChecked("1".equals(bean.is_dy));
-            ((CircleHodler) holder).circle_item_subscribe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    String userid = SpTools.getString(context, Constants.userId,"");
-                    if (TextUtils.isEmpty(userid)){
-                        CommonUtils.toastMessage("没有登陆！！");
-                        ((CircleHodler) holder).circle_item_subscribe.setChecked(!isChecked);
-                        return;
-                    }else {
-                        protocal.changeSubscribe(userid, bean.qc_ub_id, isChecked ? "1" : "0", new CircleProtocal.CircleListener() {
-                            @Override
-                            public void circleResponse(CircleBean response) {
-                                // CommonUtils.toastMessage(response.result.info);
-                                if (context instanceof CircleUI) {
-                                    ((CircleUI) context).refreshData();
-                                }
-                            }
-                        });
-                    }
-                }
-            });
-            //点赞
-            setGreate((CircleHodler) holder, bean, protocal);
 
-            //比down
-            setDown((CircleHodler) holder, bean, protocal);
-
-            ((CircleHodler) holder).circle_item_time.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.qc_date)));
-            ((CircleHodler) holder).circle_item_subscribe_num.setText(bean.dyNum + "已订阅");
-//            circleHodler.circle_item_image_rc.addItemDecoration(new SpacesItemDecoration(10));
+            Picasso.with(context).load(bean.ud_photo_fileid).into(((CircleHodler) holder).ivCirclePhoto);
+            ((CircleHodler) holder).circleItemTitle.setText(bean.ud_nickname);
+            ((CircleHodler) holder).circleItemCompanyName.setText(bean.user);
+            ((CircleHodler) holder).circleItemContent.setText(bean.a_context);
         }
 
-
-    }
-
-    private void setGreate(final CircleHodler holder, final QzContextBean bean, final CircleProtocal protocal) {
-        holder.circle_item_great.setText(bean.qc_zc);
-        holder.iv_circle_item_great.setChecked("1".equals(bean.zan));
-        //点赞逻辑监听
-        holder.iv_circle_item_great.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String userid = SpTools.getString(context, Constants.userId,"");
-                if (TextUtils.isEmpty(userid)){
-                    CommonUtils.toastMessage("没有登陆！！");
-                    holder.iv_circle_item_great.setChecked("1".equals(bean.zan));
-                    return;
-                }else {
-                    //请求网络数据
-                    protocal.updataZanOrCai(userid, bean.qc_id, "1", "0", new CircleProtocal.NormalListener() {
-                        @Override
-                        public void normalResponse(Object response) {
-                            BasicResult result = (BasicResult) response;
-                            if (!result.code.equals("10")) {
-                                CommonUtils.toastMessage(result.getInfo());
-                                holder.iv_circle_item_great.setChecked("1".equals(bean.zan));
-                            }else {
-                                if (context instanceof CircleUI) {
-                                    ((CircleUI) context).refreshData();
-                                }
-                            }
-                        }
-                    });
-                    holder.iv_circle_item_great.setChecked(true);
-                }
-
-            }
-        });
-    }
-
-    private void setDown(final CircleHodler holder, final QzContextBean bean, final CircleProtocal protocal) {
-        holder.circle_item_low.setText(bean.qc_zc);
-        holder.iv_circle_item_low.setChecked("1".equals(bean.cai));
-        //点赞逻辑监听
-        holder.iv_circle_item_low.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String userid = SpTools.getString(context, Constants.userId,"");
-                if (TextUtils.isEmpty(userid)){
-                    CommonUtils.toastMessage("没有登陆！！");
-                    holder.iv_circle_item_low.setChecked("1".equals(bean.cai));
-                    return;
-                }else {
-
-                    //请求网络数据
-                    protocal.updataZanOrCai(userid, bean.qc_id, "0", "1", new CircleProtocal.NormalListener() {
-                        @Override
-                        public void normalResponse(Object response) {
-                            BasicResult result = (BasicResult) response;
-                            if (!result.code.equals("10")) {
-                                CommonUtils.toastMessage(result.getInfo());
-                                holder.iv_circle_item_low.setChecked("1".equals(bean.zan));
-                            }else {
-                                if (context instanceof CircleUI) {
-                                    ((CircleUI) context).refreshData();
-                                }
-                            }
-                        }
-                    });
-
-                    holder.iv_circle_item_low.setChecked(true);
-                }
-
-            }
-        });
     }
 
 
     @Override
     public int getItemCount() {
-        return circleOneList.size();
+        return list.size();
     }
 
 
+    class CircleHodler extends RecyclerView.ViewHolder {
 
-
-    class CircleHodler extends RecyclerView.ViewHolder{
-        @BindView(R.id.circle_item_image_rc)
-        RecyclerView circle_item_image_rc;
-        @BindView(R.id.circle_item_shipin)
-        ImageView circle_item_shipin;
         @BindView(R.id.iv_circle_photo)
-        ImageView iv_circle_photo;
-        @BindView(R.id.circle_item_company_name)
-        TextView circle_item_company_name;
+        CircleImageView ivCirclePhoto;
         @BindView(R.id.circle_item_title)
-        TextView circle_item_title;
+        TextView circleItemTitle;
+        @BindView(R.id.circle_item_company_name)
+        TextView circleItemCompanyName;
         @BindView(R.id.circle_item_content)
-        TextView circle_item_content;
-        @BindView(R.id.circle_item_talk)
-        TextView circle_item_talk;
-        @BindView(R.id.circle_item_great)
-        TextView circle_item_great;
-        //点赞图片
-        @BindView(R.id.iv_circle_item_great)
-        CheckBox iv_circle_item_great;
-        @BindView(R.id.circle_item_low)
-        TextView circle_item_low;
-        //比down图片
-        @BindView(R.id.iv_circle_item_low)
-        CheckBox iv_circle_item_low;
-        @BindView(R.id.circle_item_time)
-        TextView circle_item_time;
-        @BindView(R.id.circle_item_subscribe)
-        CheckBox circle_item_subscribe;
-        @BindView(R.id.circle_item_subscribe_num)
-        TextView circle_item_subscribe_num;
-
+        TextView circleItemContent;
+        @BindView(R.id.circle_item_shipin)
+        ImageView circleItemShipin;
         public CircleHodler(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
 
         }
     }

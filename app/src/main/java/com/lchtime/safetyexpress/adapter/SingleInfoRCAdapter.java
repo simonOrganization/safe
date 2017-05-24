@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,6 +22,7 @@ import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -36,6 +36,7 @@ import butterknife.ButterKnife;
 
 public class SingleInfoRCAdapter extends RecyclerView.Adapter {
 
+
     private Activity context;
     private List<MyCircleActiveBean.QuanziBean> circleOneList;
 
@@ -46,7 +47,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.mycircle_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.single_info_item, parent, false);
         return new MyCircleActiveHodler(view);
     }
 
@@ -119,13 +120,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
 
             ((MyCircleActiveHodler) holder).circleItemTime.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.qc_date)));
 //            circleHodler.circle_item_image_rc.addItemDecoration(new SpacesItemDecoration(10));
-            ((MyCircleActiveHodler) holder).circleItemDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //删除
-                    deleteCircle(((MyCircleActiveHodler) holder),position,protocal);
-                }
-            });
+            ((MyCircleActiveHodler) holder).circleItemDelete.setVisibility(View.GONE);
         }
 
 
@@ -230,7 +225,6 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
 
 
     class MyCircleActiveHodler extends RecyclerView.ViewHolder {
-
         @BindView(R.id.circle_item_content)
         TextView circleItemContent;
         @BindView(R.id.iv_recommend_img)
@@ -244,7 +238,9 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
         @BindView(R.id.circle_item_shipin)
         RelativeLayout circleItemShipin;
         @BindView(R.id.circle_item_image_rc)
-        RecyclerView circleItemImageRc;
+        EmptyRecyclerView circleItemImageRc;
+        @BindView(R.id.circle_item_time)
+        TextView circleItemTime;
         @BindView(R.id.circle_item_talk)
         TextView circleItemTalk;
         @BindView(R.id.iv_circle_item_great)
@@ -255,12 +251,9 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
         CheckBox ivCircleItemLow;
         @BindView(R.id.circle_item_low)
         TextView circleItemLow;
-        @BindView(R.id.circle_item_time)
-        TextView circleItemTime;
         @BindView(R.id.circle_item_delete)
         TextView circleItemDelete;
-        @BindView(R.id.lltime)
-        LinearLayout lltime;
+
         public MyCircleActiveHodler(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

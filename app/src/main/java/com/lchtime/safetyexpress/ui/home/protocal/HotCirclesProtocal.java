@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.HotCircleBean;
 import com.lchtime.safetyexpress.bean.res.NewsListRes;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
@@ -22,18 +23,17 @@ import okhttp3.Call;
 
 public class HotCirclesProtocal {
 
-    public void getNewsList(String type, final HotNewsListener listener){
+    public void getCirclesList(final HotNewsListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
-                .concat(MyApplication.getContext().getResources().getString(R.string.indexhot));
+                .concat(MyApplication.getContext().getResources().getString(R.string.hotqz));
         OkHttpUtils
                 .post()
                 .url(url)
                 .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
-                .addParams("type", type)
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -47,19 +47,19 @@ public class HotCirclesProtocal {
                             CommonUtils.toastMessage("没有数据返回");
                             return;
                         }
-                        NewsListRes newsListRes = (NewsListRes) JsonUtils.stringToObject(response,NewsListRes.class);
-                        if(newsListRes.getResult().getCode().equals("10")){
+                        HotCircleBean hotCircleBean = (HotCircleBean) JsonUtils.stringToObject(response,HotCircleBean.class);
+                        if(hotCircleBean.result.code.equals("10")){
                             if (listener != null){
-                                listener.hotNewsResponse(newsListRes);
+                                listener.hotNewsResponse(hotCircleBean);
                             }
                         }else{
-                            CommonUtils.toastMessage(newsListRes.getResult().getInfo());
+                            CommonUtils.toastMessage(hotCircleBean.result.info);
                         }
                     }
                 });
     }
 
     public interface HotNewsListener{
-        void hotNewsResponse(NewsListRes newsListRes);
+        void hotNewsResponse(HotCircleBean hotCircleBean);
     }
 }

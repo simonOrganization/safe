@@ -73,6 +73,13 @@ public class HomeQuestionAdapter extends RecyclerView.Adapter {
         final WenDaBean.TwBean bean = list.get(position);
         ViewHolder myHolder = (ViewHolder) holder;
 
+        ViewGroup.LayoutParams lp =  myHolder.iv_question.getLayoutParams();
+        lp.width = 300;
+        lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        myHolder.iv_question.setLayoutParams(lp);
+        myHolder.iv_question.setMaxWidth(300);
+        //context.getWindowManager().getDefaultDisplay().getWidth() - 100
+        myHolder.iv_question.setMaxHeight(300*5);
         if (ONE_PIC_TYPE == getItemViewType(position)) {
             //一张图
             myHolder.iv_question.setVisibility(View.VISIBLE);
@@ -118,7 +125,7 @@ public class HomeQuestionAdapter extends RecyclerView.Adapter {
 
         public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
+            ButterKnife.bind(this,itemView);
         }
     }
 }

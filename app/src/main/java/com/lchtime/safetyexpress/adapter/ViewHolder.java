@@ -36,9 +36,9 @@ public class ViewHolder extends RecyclerView.ViewHolder
 
 
     public static ViewHolder createViewHolder(Context context, View itemView)
-    {
-        ViewHolder holder = new ViewHolder(context, itemView);
-        return holder;
+{
+    ViewHolder holder = new ViewHolder(context, itemView);
+    return holder;
     }
 
     public static ViewHolder createViewHolder(Context context,

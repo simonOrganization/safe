@@ -181,6 +181,11 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
 //            mlist.add(new CircleTwoBean());
 //            mlist.add(new CircleTwoBean());
             homeNewHolder.textViews.get(0).setText(bean.getCc_title());
+            if (bean.getMedia().size() == 0){
+                homeNewHolder.home_new_item_rc.setVisibility(View.GONE);
+            }else {
+                homeNewHolder.home_new_item_rc.setVisibility(View.VISIBLE);
+            }
             homeNewHolder.home_new_item_rc.setLayoutManager(new GridLayoutManager(context,3));
             homeNewHolder.home_new_item_rc.addItemDecoration(new GridSpacingItemDecoration(3,0,true));
             homeNewHolder.home_new_item_rc.setClickable(false);
@@ -200,7 +205,9 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
             setCheckBox(((HomeNewNoHolder) holder).rb,position);
             HomeNewNoHolder homeNewNoHolder = (HomeNewNoHolder) holder;
             homeNewNoHolder.textViews.get(0).setText(bean.getCc_title());
-            Picasso.with(context).load(mDatas.get(position).getMedia().get(0)).into(homeNewNoHolder.home_new_no_item_image);
+            if (bean.getMedia().size() > 0) {
+                Picasso.with(context).load(bean.getMedia().get(0)).into(homeNewNoHolder.home_new_no_item_image);
+            }
             homeNewNoHolder.textViews.get(1).setText(bean.getCc_from());
             homeNewNoHolder.textViews.get(2).setText(bean.getCc_count()+"评论");
             if(!TextUtils.isEmpty(bean.getCc_datetime())){
@@ -217,6 +224,16 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
                         context.startActivity(intent);
                     }
                 });
+                //首页视频借用此adapter，因此需要将隐藏的半透明和视频时长显示出来
+                homeNewNoHolder.video_model.setVisibility(View.VISIBLE);
+                homeNewNoHolder.video_time.setVisibility(View.VISIBLE);
+                homeNewNoHolder.video_time.setText(bean.video_time);
+
+            }
+            if (position + 1 == getItemCount()){
+                homeNewNoHolder.line.setVisibility(View.GONE);
+            }else {
+                homeNewNoHolder.line.setVisibility(View.VISIBLE);
             }
 
         }else if(holder instanceof HomeNewVideoHolder){
@@ -230,13 +247,16 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
                 homeNewVideoHolder.textViews.get(3).setText(CommonUtils.getSpaceTime(Long.parseLong(bean.getCc_datetime())));
             }
 
-            Picasso.with(context).load(mDatas.get(position).getMedia().get(0)).into(homeNewVideoHolder.home_new_video_item_video);
+            if (mDatas.get(position).getMedia().size() > 0) {
+                Picasso.with(context).load(mDatas.get(position).getMedia().get(0)).into(homeNewVideoHolder.home_new_video_item_video);
+            }
             homeNewVideoHolder.home_new_video_item_video.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     newsItemInterface.setVideoPlay(bean.getMedia().get(1));
                 }
             });
+
 
         }
     }
@@ -269,6 +289,13 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
         ImageView home_new_no_item_image;
         @BindView(R.id.rb_delete)
         CheckBox rb;
+        @BindView(R.id.item_line)
+        View line;
+        @BindView(R.id.video_model)
+        View video_model;
+        @BindView(R.id.video_time)
+        TextView video_time;
+
 
         public HomeNewNoHolder(View itemView) {
             super(itemView);

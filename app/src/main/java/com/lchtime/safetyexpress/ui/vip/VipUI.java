@@ -273,6 +273,22 @@ public class VipUI extends BaseUI {
         }
     }
 
+    /**
+     * 我的动态
+     *
+     * @param view
+     */
+    @OnClick(R.id.ll_vip_mycircle_active)
+    private void getMyActive(View view) {
+        String ub_id = SpTools.getString(this, Constants.userId,"");
+        if (TextUtils.isEmpty(ub_id)){
+            Intent intent = new Intent(this, LoginUI.class);
+            startActivity(intent);
+        }else {
+            Intent intent = new Intent(VipUI.this, MyCircleActiveActivity.class);
+            startActivity(intent);
+        }
+    }
 
     /**
      * 我的收藏

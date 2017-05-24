@@ -23,6 +23,145 @@
                 android:layout_marginBottom="@dimen/dm090"
                 android:background="@android:color/transparent" />
 
+        <!--弹出的窗-->
+            <RelativeLayout
+                android:id="@+id/show_window"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/fire_event"/>
+                <View
+                    android:id="@+id/view_none"
+                    android:background="#33000000"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:gravity="bottom"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dm280"
+                            android:gravity="bottom">
+
+                            <LinearLayout
+                                android:id="@+id/ll_unclickble_pic"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dm280"
+                                android:orientation="horizontal"
+                                android:paddingLeft="@dimen/dm032"
+                                android:paddingRight="@dimen/dm032"
+                                android:gravity="center_vertical"
+                                android:background="@color/page_color">
+                                <LinearLayout
+                                    android:id="@+id/circle_public_tv"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:gravity="center_horizontal">
+                                    <ImageView
+                                        android:layout_width="@dimen/dm100"
+                                        android:layout_height="@dimen/dm100"
+                                        android:adjustViewBounds="true"
+                                        android:scaleType="centerCrop"
+                                        android:background="@drawable/circle_text"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="文字"
+                                        android:layout_marginTop="@dimen/dm010"
+                                        android:textSize="@dimen/dm022"
+                                        android:textColor="@color/title_666"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/circle_public_camera"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:gravity="center_horizontal">
+                                    <ImageView
+                                        android:layout_width="@dimen/dm100"
+                                        android:layout_height="@dimen/dm100"
+                                        android:adjustViewBounds="true"
+                                        android:scaleType="centerCrop"
+                                        android:background="@drawable/circle_camera"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="拍摄"
+                                        android:layout_marginTop="@dimen/dm010"
+                                        android:textSize="@dimen/dm022"
+                                        android:textColor="@color/title_666"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/circle_public_question"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:gravity="center_horizontal">
+                                    <ImageView
+                                        android:layout_width="@dimen/dm100"
+                                        android:layout_height="@dimen/dm100"
+                                        android:adjustViewBounds="true"
+                                        android:scaleType="centerCrop"
+                                        android:background="@drawable/circle_question"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="提问"
+                                        android:layout_marginTop="@dimen/dm010"
+                                        android:textSize="@dimen/dm022"
+                                        android:textColor="@color/title_666"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/jiangli_guize"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:gravity="center_vertical"
+                                android:layout_marginRight="@dimen/dm020"
+                                android:layout_marginTop="@dimen/dm020"
+                                android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="@dimen/dm028"
+                                    android:layout_height="@dimen/dm028"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="@dimen/dm010"
+                                    android:src="@drawable/wenhao"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/dm025"
+                                    android:gravity="center"
+                                    android:text="奖励规则"/>
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+
+            <View
+                android:id="@+id/ll_unclickble_view"
+                android:background="@color/page_color"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm120"/>
+
+            </LinearLayout>
+            </RelativeLayout>
+
+
+
+
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
@@ -39,7 +178,7 @@
             <RadioGroup
                 android:id="@+id/rg_tab"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm090"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:background="@android:color/transparent"
                 android:gravity="center"
@@ -84,12 +223,12 @@
 
                 <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
                 <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1">
 
                     <Button
@@ -132,12 +271,12 @@
 
                 <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
                 <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
             </LinearLayout>

@@ -4,7 +4,7 @@
     <!-- 圆角 -->
     <corners android:radius="@dimen/dm090" />
     <!-- 背景颜色 -->
-    <solid android:color="@color/commen_reg" />
+    <solid android:color="@color/commen_yellow" />
     <!-- 边框 -->
 
 </shape>

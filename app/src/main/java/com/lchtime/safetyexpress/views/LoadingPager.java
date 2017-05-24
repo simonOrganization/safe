@@ -79,8 +79,11 @@ public abstract class LoadingPager extends FrameLayout {
         }
 
 
-        if (mSuccessView == null && mCurState == STATE_SUCCESS){
+        if (mSuccessView == null && mCurState == STATE_SUCCESS) {
             mSuccessView = initSuccessView();
+            if (mSuccessView.getParent() != null) {
+                ((FrameLayout)mSuccessView.getParent()).removeView(mSuccessView);
+            }
             this.addView(mSuccessView);
         }
 

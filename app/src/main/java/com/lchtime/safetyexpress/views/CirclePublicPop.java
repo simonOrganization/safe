@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.ui.circle.PublicCircleUI;
+import com.lchtime.safetyexpress.ui.circle.PublishCircleUI;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -55,7 +55,7 @@ public class CirclePublicPop extends PopupWindow {
     void setOnclick(View view){
         switch (view.getId()){
             case R.id.circle_public_tv:
-                context.startActivity(new Intent(context, PublicCircleUI.class));
+                context.startActivity(new Intent(context, PublishCircleUI.class));
                 break;
             case R.id.circle_public_camera:
 

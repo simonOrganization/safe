@@ -40,8 +40,9 @@ import butterknife.ButterKnife;
 /**
  * Created by android-cp on 2017/5/12.
  */
-@ContentView(R.layout.ask_question_activity)
+@ContentView(R.layout.answer_question_activity)
 public class AnswerQuestionActivity extends BaseUI {
+
     @BindView(R.id.ll_home)
     LinearLayout llHome;
     @BindView(R.id.v_title)
@@ -61,7 +62,7 @@ public class AnswerQuestionActivity extends BaseUI {
     @BindView(R.id.rl_title)
     RelativeLayout rlTitle;
     @BindView(R.id.et_question_text)
-    EditText etQuestionText;
+    TextView etQuestionText;
     @BindView(R.id.et_describe_text)
     EditText etDescribeText;
     @BindView(R.id.recycler)
@@ -69,6 +70,8 @@ public class AnswerQuestionActivity extends BaseUI {
     private GridImageAdapter adapter;
     private List<LocalMedia> selectMedia = new ArrayList<>();
     private List<File> fileList;
+    private String questionTitle;
+    private String q_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,7 @@ public class AnswerQuestionActivity extends BaseUI {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
     }
+
     @Override
     protected void back() {
         finish();
@@ -84,12 +88,15 @@ public class AnswerQuestionActivity extends BaseUI {
     @Override
     protected void setControlBasis() {
         ButterKnife.bind(this);
-        setTitle("提问");
+        setTitle("撰写回答");
         rightTextVisible("发送");
+        questionTitle = getIntent().getStringExtra("title");
+        q_id = getIntent().getStringExtra("q_id");
+        etQuestionText.setText(questionTitle);
         FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         recycler.setLayoutManager(manager);
         adapter = new GridImageAdapter(this, onAddPicClickListener);
-        adapter.setSelectMax(3);//最多选择的个数
+        adapter.setSelectMax(1);//最多选择的个数
         recycler.setAdapter(adapter);
         adapter.setOnItemClickListener(new GridImageAdapter.OnItemClickListener() {
             @Override
@@ -126,19 +133,19 @@ public class AnswerQuestionActivity extends BaseUI {
                             .setCompress(true) //是否压缩
                             .setEnablePixelCompress(true) //是否启用像素压缩
                             .setEnableQualityCompress(true) //是否启质量压缩
-                            .setMaxSelectNum(3) // 可选择图片的数量
+                            .setMaxSelectNum(1) // 可选择图片的数量
                             .setSelectMode(FunctionConfig.MODE_MULTIPLE) // 单选 or 多选
                             .setShowCamera(false) //是否显示拍照选项 这里自动根据type 启动拍照或录视频
                             .setEnablePreview(true) // 是否打开预览选项
                             .setEnableCrop(false) // 是否打开剪切选项
 //                            .setPreviewVideo(false) // 是否预览视频(播放) mode or 多选有效
-                            .setCheckedBoxDrawable( R.drawable.select_cb)
+                            .setCheckedBoxDrawable(R.drawable.select_cb)
 //                            .setRecordVideoDefinition(FunctionConfig.HIGH) // 视频清晰度
 //                            .setRecordVideoSecond(60) // 视频秒数
                             .setGif(false)// 是否显示gif图片，默认不显示
 //                            .setCropW(cropW) // cropW-->裁剪宽度 值不能小于100  如果值大于图片原始宽高 将返回原图大小
 //                            .setCropH(cropH) // cropH-->裁剪高度 值不能小于100 如果值大于图片原始宽高 将返回原图大小
-                            .setMaxB(200) // 压缩最大值 例如:200kb  就设置202400，202400 / 1024 = 200kb
+                            .setMaxB(200) // 压缩最大值 例如:200kb  就设置202400，202400 / ic_launcher = 200kb
                             .setPreviewColor(previewColor) //预览字体颜色
                             .setCompleteColor(completeColor) //已完成字体颜色
                             .setPreviewBottomBgColor(ContextCompat.getColor(AnswerQuestionActivity.this, R.color.transparent)) //预览底部背景色
@@ -174,7 +181,7 @@ public class AnswerQuestionActivity extends BaseUI {
             selectMedia = resultList;
             Log.i("callBack_result", selectMedia.size() + "");
             fileList = new ArrayList<>();
-            for (int i = 0; i < resultList.size() ; i ++){
+            for (int i = 0; i < resultList.size(); i++) {
                 LocalMedia media = resultList.get(i);
                 String path = media.getCompressPath();
                 File file = new File(path);
@@ -205,40 +212,41 @@ public class AnswerQuestionActivity extends BaseUI {
     private UpdataImageUtils updataImageUtils;
     private HomeQuestionProtocal protocal;
     private String filesid;
+
     @Override
     protected void clickEvent() {
-        if (protocal == null){
+        if (protocal == null) {
             protocal = new HomeQuestionProtocal();
         }
 
-        if (updataImageUtils == null){
+        if (updataImageUtils == null) {
             updataImageUtils = new UpdataImageUtils();
         }
 
-        final String question = etQuestionText.getText().toString().trim();
-        final String description = etDescribeText.getText().toString().trim();
-        if (TextUtils.isEmpty(question)){
-            Toast.makeText(this,"问题不能为空",Toast.LENGTH_SHORT).show();
+        final String answer = etDescribeText.getText().toString().trim();
+        if (TextUtils.isEmpty(answer)) {
+            Toast.makeText(this, "回答不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (fileList != null && fileList.size() > 0){
+        if (fileList != null && fileList.size() > 0) {
             updataImageUtils.upMuchDataPic(fileList, new UpdataImageUtils.UpdataPicListener() {
                 @Override
                 public void onResponse(String response) {
                     UpdataBean updataBean = (UpdataBean) JsonUtils.stringToObject(response, UpdataBean.class);
 
                     filesid = "";
-                    if (updataBean != null&& updataBean.file_ids != null) {
+                    if (updataBean != null && updataBean.file_ids != null) {
                         //拼接上传picture的id
-                        for (int i = 0; i < updataBean.file_ids.size(); i ++) {
-                            if (i == 0){
+                        for (int i = 0; i < updataBean.file_ids.size(); i++) {
+                            if (i == 0) {
                                 filesid = filesid + updataBean.file_ids.get(i);
-                            }else {
+                            } else {
                                 filesid = filesid + "," + updataBean.file_ids.get(i);
                             }
                         }
 
-                        protocal.postTiWenContent(question, description, filesid, new HomeQuestionProtocal.QuestionListener() {
+
+                        protocal.postAnswerContent(q_id, answer, filesid, new HomeQuestionProtocal.QuestionListener() {
                             @Override
                             public void questionResponse(Object response) {
                                 Result result = (Result) response;
@@ -248,9 +256,9 @@ public class AnswerQuestionActivity extends BaseUI {
                     }
                 }
             });
-        }else {
+        } else {
             filesid = "";
-            protocal.postTiWenContent(question, description, filesid, new HomeQuestionProtocal.QuestionListener() {
+            protocal.postAnswerContent(q_id, answer, filesid, new HomeQuestionProtocal.QuestionListener() {
                 @Override
                 public void questionResponse(Object response) {
                     Result result = (Result) response;

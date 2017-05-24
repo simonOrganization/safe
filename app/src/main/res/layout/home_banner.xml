@@ -18,4 +18,12 @@
         app:banner_pointAutoPlayInterval="3"
         app:banner_pageChangeDuration="800"/>
 
+    <!--<com.youth.banner.Banner-->
+        <!--android:id="@+id/sb_home_banner"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dm360"-->
+        <!--android:background="@drawable/home_banner"/>-->
+
+
+
 </LinearLayout>

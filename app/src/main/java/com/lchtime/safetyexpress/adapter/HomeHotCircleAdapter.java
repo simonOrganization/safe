@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.bean.HotCircleBean;
+import com.lchtime.safetyexpress.ui.home.protocal.HotCirclesProtocal;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 /**
  * Created by user on 2017/4/14.
@@ -18,19 +24,21 @@ public class HomeHotCircleAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
-    private int[] imgs;
-    private String[] txts;
+//    private int[] imgs;
+//    private String[] txts;
+    private List<HotCircleBean.HotBean> list;
 
-    public HomeHotCircleAdapter(Context context) {
+    public HomeHotCircleAdapter(Context context, List<HotCircleBean.HotBean> list) {
         this.context = context;
         inflater = LayoutInflater.from(context);
-        imgs = new int[]{R.drawable.home_test_img1, R.drawable.home_test_img2, R.drawable.home_test_img3, R.drawable.home_test_img4, R.drawable.home_test_img5};
-        txts = new String[]{"BIG笑工坊", "轻松时刻", "完美红颜", "大咖秀", "万家灯火"};
+        this.list = list;
+//        imgs = new int[]{R.drawable.home_test_img1, R.drawable.home_test_img2, R.drawable.home_test_img3, R.drawable.home_test_img4, R.drawable.home_test_img5};
+//        txts = new String[]{"BIG笑工坊", "轻松时刻", "完美红颜", "大咖秀", "万家灯火"};
     }
 
     @Override
     public int getCount() {
-        return txts.length;
+        return list.size();
     }
 
     @Override
@@ -56,8 +64,10 @@ public class HomeHotCircleAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.raiv_icon.setBackgroundResource(imgs[position]);
-        holder.tv_name.setText(txts[position]);
+        if (!TextUtils.isEmpty(list.get(position).ud_photo_fileid)) {
+            Picasso.with(context).load(list.get(position).ud_photo_fileid).fit().into(holder.raiv_icon);
+        }
+        holder.tv_name.setText(list.get(position).ud_nickname);
 
         return convertView;
     }

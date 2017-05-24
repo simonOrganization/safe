@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:descendantFocusability="blocksDescendants">
     <LinearLayout
+        android:id="@+id/ll_item_pic_wenzi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dm020"
+        android:layout_marginTop="@dimen/dm020"
+        android:layout_marginBottom="@dimen/dm020"
+        android:layout_marginLeft="@dimen/dm010"
+        android:layout_marginRight="@dimen/dm010"
         android:orientation="horizontal">
         <CheckBox
             android:id="@+id/rb_delete"
@@ -17,7 +21,7 @@
             android:layout_gravity="center_vertical"
             android:gravity="center"
             android:button="@null"
-            android:visibility="visible"
+            android:visibility="gone"
             android:background="@drawable/rb_delete"
             android:layout_marginRight="@dimen/dm020" />
 
@@ -40,7 +44,7 @@
             <com.lchtime.safetyexpress.views.NoTouchRecycler
                 android:id="@+id/home_new_item_rc"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dm160"
                 android:layout_marginTop="@dimen/dm020" />
 
             <LinearLayout
@@ -90,4 +94,10 @@
             android:background="@color/line" />
     </LinearLayout>
 
-</LinearLayout>
+    <View
+        android:layout_below="@id/ll_item_pic_wenzi"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm001"
+        android:background="@color/title_999"/>
+
+</RelativeLayout>

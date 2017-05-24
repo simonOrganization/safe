@@ -14,6 +14,7 @@ public class NewsListRes {
     public String total;
     public ArrayList<NewsBean> cms_context;
     public ArrayList<ArrayList<NewsBean>> hot;
+    public int totalpage;
 
     public BasicResult getResult() {
         return result;

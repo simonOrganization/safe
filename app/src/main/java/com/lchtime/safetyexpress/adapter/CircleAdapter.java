@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -20,6 +21,7 @@ import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.ui.circle.CircleUI;
+import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
@@ -98,10 +100,16 @@ public class CircleAdapter extends RecyclerView.Adapter {
                 circleHodler.circle_item_image_rc.setAdapter(imageAdapter);
                 //如果没有图片
             }else {
-                ((CircleHodler) holder).circle_item_shipin.setVisibility(View.VISIBLE);
-                ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.GONE);
+
                 //视频
-                Picasso.with(context).load(bean.pic.get(0)).into(((CircleHodler) holder).circle_item_shipin);
+                if (bean.pic.size() > 0) {
+                    ((CircleHodler) holder).circle_item_shipin.setVisibility(View.VISIBLE);
+                    ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.GONE);
+                    Picasso.with(context).load(bean.pic.get(0)).into(((CircleHodler) holder).circle_item_shipin);
+                }else {
+                    ((CircleHodler) holder).circle_item_shipin.setVisibility(View.GONE);
+                    ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.GONE);
+                }
 
                 circleHodler.circle_item_shipin.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -111,7 +119,17 @@ public class CircleAdapter extends RecyclerView.Adapter {
                 });
             }
             final CircleProtocal protocal = new CircleProtocal();
-            Picasso.with(context).load(bean.ud_photo_fileid).into(((CircleHodler) holder).iv_circle_photo);
+            if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {
+                Picasso.with(context).load(bean.ud_photo_fileid).into(((CircleHodler) holder).iv_circle_photo);
+            }
+            ((CircleHodler) holder).iv_circle_photo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, SingleInfoUI.class);
+                    intent.putExtra("uid",bean.qc_ub_id);
+                    context.startActivity(intent);
+                }
+            });
             ((CircleHodler) holder).circle_item_company_name.setText(bean.user);
             ((CircleHodler) holder).circle_item_title.setText(bean.qc_auth);
             ((CircleHodler) holder).circle_item_content.setText(bean.qc_context);

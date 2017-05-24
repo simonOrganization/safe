@@ -31,8 +31,8 @@ public class ImageLoaderUtils
                  */
                 .denyCacheImageMultipleSizesInMemory()
                 // You can pass your own memory cache implementation你可以通过自己的内存缓存实现
-                // .memoryCache(new UsingFreqLimitedMemoryCache(2 * 1024 * 1024))
-                // .memoryCacheSize(2 * 1024 * 1024)
+                // .memoryCache(new UsingFreqLimitedMemoryCache(2 * ic_launcher * ic_launcher))
+                // .memoryCacheSize(2 * ic_launcher * ic_launcher)
                 // 硬盘缓存50MB
                 .diskCacheSize(50 * 1024 * 1024)
                 // 将保存的时候的URI名称用MD5

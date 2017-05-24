@@ -48,6 +48,8 @@ public class OpinionActivity extends BaseUI{
     private RecyclerView picView;
     @ViewInject(R.id.et_describe_text)
     private EditText describe_text;
+    @ViewInject(R.id.et_phone_num)
+    private EditText et_phone_num;
     private List<File> fileList;
 
     private OpinionProtocal protocal;
@@ -153,7 +155,7 @@ public class OpinionActivity extends BaseUI{
                             .setGif(false)// 是否显示gif图片，默认不显示
 //                            .setCropW(cropW) // cropW-->裁剪宽度 值不能小于100  如果值大于图片原始宽高 将返回原图大小
 //                            .setCropH(cropH) // cropH-->裁剪高度 值不能小于100 如果值大于图片原始宽高 将返回原图大小
-                            .setMaxB(200) // 压缩最大值 例如:200kb  就设置202400，202400 / 1024 = 200kb
+                            .setMaxB(200) // 压缩最大值 例如:200kb  就设置202400，202400 / ic_launcher = 200kb
                             .setPreviewColor(previewColor) //预览字体颜色
                             .setCompleteColor(completeColor) //已完成字体颜色
                             .setPreviewBottomBgColor(ContextCompat.getColor(OpinionActivity.this, R.color.transparent)) //预览底部背景色
@@ -235,6 +237,7 @@ public class OpinionActivity extends BaseUI{
             Toast.makeText(this,"意见不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
+        final String phone_num = et_phone_num.getText().toString().trim();
         if (fileList != null && fileList.size() > 0){
             updataImageUtils.upMuchDataPic(fileList, new UpdataImageUtils.UpdataPicListener() {
                 @Override
@@ -252,7 +255,7 @@ public class OpinionActivity extends BaseUI{
                             }
                         }
 
-                        protocal.getDataInternet(advice, filesid, SpTools.getString(OpinionActivity.this, Constants.userId, ""), new OpinionProtocal.OpinionResultListener() {
+                        protocal.getDataInternet(advice, filesid, SpTools.getString(OpinionActivity.this, Constants.userId, ""), phone_num,new OpinionProtocal.OpinionResultListener() {
                             @Override
                             public void onResponseMessage(Object result) {
                                 AdviceBean adviceBean = (AdviceBean) result;
@@ -264,7 +267,7 @@ public class OpinionActivity extends BaseUI{
             });
         }else {
             filesid = "";
-            protocal.getDataInternet(advice, filesid, SpTools.getString(OpinionActivity.this, Constants.userId, ""), new OpinionProtocal.OpinionResultListener() {
+            protocal.getDataInternet(advice, filesid, SpTools.getString(OpinionActivity.this, Constants.userId, ""),phone_num, new OpinionProtocal.OpinionResultListener() {
                 @Override
                 public void onResponseMessage(Object result) {
                     AdviceBean adviceBean = (AdviceBean) result;

@@ -33,6 +33,7 @@ public class AddSubscribBean {
 
     public List<ItemBean> tj;
     public List<ItemBean> all;
+    public List<ItemBean> dy;
 
     public static class ResultBean {
         public String code;
@@ -46,6 +47,5 @@ public class AddSubscribBean {
         public String dy;
         public String is_dy;
         public String user;
-
     }
 }

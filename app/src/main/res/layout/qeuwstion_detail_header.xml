@@ -3,4 +3,146 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_home_question_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="楼宇安防监控系统有什么解决方案吗？"
+            android:textColor="@color/title_333"
+            android:textSize="@dimen/dm030"
+            android:layout_margin="@dimen/dm030"
+            />
+
+        <TextView
+            android:id="@+id/tv_home_question_describ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:text="楼宇安防监控系统有什么解决方案吗楼宇安防监控系统有什么解决方案吗楼宇安防监控系统有什么解决方案吗楼宇安防监控系统有什么解决方案吗楼宇安防监控系统有什么解决方案吗楼宇安防监控系统有什么解决方案吗楼宇安防监控系统有什么解决方案吗"
+            android:layout_marginLeft="@dimen/dm030"
+            android:textColor="@color/title_666"
+            android:textSize="@dimen/dm026" />
+
+        <com.lchtime.safetyexpress.views.MyGridView
+            android:id="@+id/mgv_home_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dm020"
+            android:horizontalSpacing="@dimen/dm010"
+            android:listSelector="@android:color/transparent"
+            android:layout_marginLeft="@dimen/dm030"
+            android:layout_marginRight="@dimen/dm030"
+            android:numColumns="3">
+
+        </com.lchtime.safetyexpress.views.MyGridView>
+        <ImageView
+            android:id="@+id/one_pic_home_question"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/dm030"
+            android:layout_marginLeft="@dimen/dm030"
+            android:layout_height="@dimen/dm150" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_home_question_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dm020"
+                android:singleLine="true"
+                android:text="417回答"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dm020"
+                android:textColor="@color/title_999"
+                android:textSize="@dimen/dm024" />
+            <TextView
+                android:id="@+id/tv_home_focus_num"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dm020"
+                android:singleLine="true"
+                android:text="3人关注"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dm020"
+                android:textColor="@color/title_999"
+                android:textSize="@dimen/dm024" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_marginTop="@dimen/dm040"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm001"
+            android:background="@color/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm080"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="@dimen/dm030"
+                    android:layout_height="@dimen/dm030"
+                    android:background="@drawable/question_addpic"/>
+                <TextView
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/dm005"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="关注问题"
+                    android:textSize="@dimen/dm030"
+                    android:textColor="#e9553e"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/dm001"
+                android:layout_height="match_parent"
+                android:background="@color/line" />
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <ImageView
+
+                    android:layout_width="@dimen/dm030"
+                    android:layout_height="@dimen/dm030"
+                    android:background="@drawable/question_invitepic"/>
+                <TextView
+                    android:layout_marginLeft="@dimen/dm005"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="邀请好友回答"
+                    android:textSize="@dimen/dm030"
+                    android:textColor="#e9553e"/>
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm001"
+            android:background="@color/line" />
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm020"
+            android:background="@color/line_big" />
+
+    </LinearLayout>
 </LinearLayout>

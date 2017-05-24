@@ -2,11 +2,14 @@ package com.lchtime.safetyexpress;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Process;
 import android.text.TextUtils;
 
+import com.bslee.threelogin.util.UIUtils;
 import com.lchtime.safetyexpress.utils.ImageLoaderUtils;
+import com.squareup.picasso.Transformation;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +39,8 @@ public class MyApplication extends Application {
 
     @Override
     public void onCreate() {
+        UIUtils.initContext(this);
+
         mContext = getApplicationContext();
 
         mMainThreadHandler = new Handler();
@@ -58,5 +63,7 @@ public class MyApplication extends Application {
     public static int getMainThreadId() {
         return mMainThreadId;
     }
+
+
 
 }

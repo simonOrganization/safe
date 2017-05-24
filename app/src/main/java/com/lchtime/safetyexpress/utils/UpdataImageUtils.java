@@ -146,4 +146,32 @@ public class UpdataImageUtils {
         }
     }
 
+
+    public void upDataVideo(final String filePath,File video_pic, final UpdataPicListener updataPicListener){
+        final Context context = MyApplication.getContext();
+        File file = new File(filePath);
+        OkHttpUtils.post()
+                .url(context.getResources().getString(R.string.service_host_address).concat(context.getResources().getString(R.string.upload)))
+                .addFile("image[]",file.getName(),file)
+                .addFile("image[]",video_pic.getName() + "jpg",video_pic)
+                .addParams("sid", "")
+                .addParams("index", (index++) + "")
+                .addParams("ub_id", SpTools.getString(context , Constants.userId ,""))
+                .build().execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                Log.d("--------","response="+e);
+                Toast.makeText(context,"上传视频失败，请重新上传", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onResponse(String response, int id) {
+                Log.d("--------","response="+response);
+                if (updataPicListener != null){
+                    updataPicListener.onResponse(response);
+                }
+                Toast.makeText(context,"上传视频成功",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

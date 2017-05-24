@@ -2,6 +2,7 @@ package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,9 @@ public class AddSubscribeAdapter extends RecyclerView.Adapter {
         myHolder.add_subscirbe_item_but.setChecked("1".equals(bean.is_dy));
         //是否已阅读
         myHolder.add_subscribe_item_count.setText( bean.dy+"已订阅");
-        Picasso.with(context).load(bean.ud_photo_fileid).fit().into(myHolder.add_subscribe_item_image);
+        if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {
+            Picasso.with(context).load(bean.ud_photo_fileid).fit().into(myHolder.add_subscribe_item_image);
+        }
 
     }
 

@@ -5,12 +5,11 @@ import android.text.TextUtils;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.AddSubscribBean;
-import com.lchtime.safetyexpress.bean.BasicResult;
+import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
 import com.lchtime.safetyexpress.bean.MydyBean;
 import com.lchtime.safetyexpress.bean.Result;
+import com.lchtime.safetyexpress.bean.SingleInfoBean;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
-import com.lchtime.safetyexpress.bean.res.VideoRes;
-import com.lchtime.safetyexpress.ui.home.protocal.VideoProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.mzhy.http.okhttp.OkHttpUtils;
@@ -273,6 +272,244 @@ public class CircleProtocal {
                     }
                 });
     }
+
+    public void getUpdataVideoData( String ub_id,String qc_context,String qc_video,String pic,final NormalListener listener) {
+        if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            return;
+        }
+        String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
+                .concat(MyApplication.getContext().getResources().getString(R.string.qzfb));
+        OkHttpUtils
+                .post()
+                .addParams("ub_id",ub_id)
+                .addParams("qc_context",qc_context)
+                .addParams("qc_video",qc_video)
+                .addParams("pic",pic)
+                .url(url)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        CommonUtils.toastMessage("错误");
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        if (TextUtils.isEmpty(response)) {
+                            CommonUtils.toastMessage("没有数据返回");
+                            return;
+                        }
+                        Result bean = (Result) JsonUtils.stringToObject(response, Result.class);
+                        if (bean.result.code.equals("10")) {
+                            if (listener != null) {
+                                listener.normalResponse(bean);
+                            }
+                        } else {
+                            CommonUtils.toastMessage(bean.result.info);
+                        }
+                    }
+                });
+    }
+
+    public void getUpdataCommonData( String ub_id,String qc_context,String pic,final NormalListener listener) {
+        if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            return;
+        }
+        String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
+                .concat(MyApplication.getContext().getResources().getString(R.string.qzfb));
+        OkHttpUtils
+                .post()
+                .addParams("ub_id",ub_id)
+                .addParams("qc_context",qc_context)
+                .addParams("qc_video","")
+                .addParams("pic",pic)
+                .url(url)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        CommonUtils.toastMessage("错误");
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        if (TextUtils.isEmpty(response)) {
+                            CommonUtils.toastMessage("没有数据返回");
+                            return;
+                        }
+                        Result bean = (Result) JsonUtils.stringToObject(response, Result.class);
+                        if (bean.result.code.equals("10")) {
+                            if (listener != null) {
+                                listener.normalResponse(bean);
+                            }
+                        } else {
+                            CommonUtils.toastMessage(bean.result.info);
+                        }
+                    }
+                });
+    }
+
+    public void getMyCircleList( String ub_id,String uid,final NormalListener listener) {
+        if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            return;
+        }
+        String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
+                .concat(MyApplication.getContext().getResources().getString(R.string.qzdt));
+        OkHttpUtils
+                .post()
+                .addParams("ub_id",ub_id)
+                //别人的id
+                .addParams("uid",uid)
+                .url(url)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        if (TextUtils.isEmpty(response)) {
+                            CommonUtils.toastMessage("没有数据返回");
+                            return;
+                        }
+                        MyCircleActiveBean bean = (MyCircleActiveBean) JsonUtils.stringToObject(response, MyCircleActiveBean.class);
+                        if (bean.result.code.equals("10")) {
+                            if (listener != null) {
+                                listener.normalResponse(bean);
+                            }
+                        } else {
+                            CommonUtils.toastMessage(bean.result.info);
+                        }
+                    }
+                });
+    }
+/*
+* 删除圈子
+* */
+    public void getDeleteCircle( String ub_id,String del_id,final NormalListener listener) {
+        if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            return;
+        }
+        String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
+                .concat(MyApplication.getContext().getResources().getString(R.string.qzdel));
+        OkHttpUtils
+                .post()
+                .addParams("ub_id",ub_id)
+                //0:删除圈子 1:评论
+                .addParams("action","0")
+                .addParams("del_id",del_id)
+                .url(url)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        if (TextUtils.isEmpty(response)) {
+                            CommonUtils.toastMessage("没有数据返回");
+                            return;
+                        }
+                        Result  bean = (Result) JsonUtils.stringToObject(response, Result.class);
+                        if (bean.result.code.equals("10")) {
+                            if (listener != null) {
+                                listener.normalResponse(bean);
+                            }
+                        } else {
+                            CommonUtils.toastMessage(bean.result.info);
+                        }
+                    }
+                });
+    }
+
+     /*
+ * 获取个人信息列表
+ * */
+    public void getSingleInfoList( String ub_id,String uid,final NormalListener listener) {
+        if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            return;
+        }
+        String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
+                .concat(MyApplication.getContext().getResources().getString(R.string.person));
+        OkHttpUtils
+                .post()
+                .addParams("ub_id",ub_id)
+                .addParams("uid",uid)
+                .url(url)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        if (TextUtils.isEmpty(response)) {
+                            CommonUtils.toastMessage("没有数据返回");
+                            return;
+                        }
+                        SingleInfoBean bean = (SingleInfoBean) JsonUtils.stringToObject(response, SingleInfoBean.class);
+                        if (bean.result.code.equals("10")) {
+                            if (listener != null) {
+                                listener.normalResponse(bean);
+                            }
+                        } else {
+                            CommonUtils.toastMessage(bean.result.info);
+                        }
+                    }
+                });
+    }
+
+    /*
+ * 获取他人订阅列表
+ * */
+    public void getOtherSubscribeList( String ub_id,String uid,final NormalListener listener) {
+        if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            return;
+        }
+        String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
+                .concat(MyApplication.getContext().getResources().getString(R.string.otherdy));
+        OkHttpUtils
+                .post()
+                .addParams("ub_id",ub_id)
+                .addParams("uid",uid)
+                .url(url)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        if (TextUtils.isEmpty(response)) {
+                            CommonUtils.toastMessage("没有数据返回");
+                            return;
+                        }
+                        AddSubscribBean bean = (AddSubscribBean) JsonUtils.stringToObject(response, AddSubscribBean.class);
+                        if (bean.result.code.equals("10")) {
+                            if (listener != null) {
+                                listener.normalResponse(bean);
+                            }
+                        } else {
+                            CommonUtils.toastMessage(bean.result.info);
+                        }
+                    }
+                });
+    }
+
 
     public interface CircleListener{
         void circleResponse(CircleBean response);

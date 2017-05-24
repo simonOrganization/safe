@@ -2,6 +2,7 @@ package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +52,9 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final CircleSubscribeHolder myViewHolder = (CircleSubscribeHolder) holder;
         final MydyBean.DyBean bean = dy.get(position);
-        Picasso.with(context).load(bean.ud_photo_fileid).fit().into(myViewHolder.raiv_hotcircle_icon);
+        if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {
+            Picasso.with(context).load(bean.ud_photo_fileid).fit().into(myViewHolder.raiv_hotcircle_icon);
+        }
         myViewHolder.tv_hotcircle_name.setText(bean.ud_nickname);
         myViewHolder.cb_hotcircle_subscribe.setChecked(true);
         myViewHolder.cb_hotcircle_subscribe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

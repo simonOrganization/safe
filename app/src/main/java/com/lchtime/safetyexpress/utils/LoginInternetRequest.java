@@ -491,7 +491,7 @@ public class LoginInternetRequest {
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                Log.d("0000---------------0000",e.getMessage());
+               // Log.d("0000---------------0000",e.getMessage());
                 InitInfo.isLogin = false;
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
@@ -539,7 +539,7 @@ public class LoginInternetRequest {
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                Log.d("0000---------------0000",e.getMessage());
+             //   Log.d("0000---------------0000",e.getMessage());
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
 
@@ -588,7 +588,7 @@ public class LoginInternetRequest {
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                Log.d("0000---------------0000",e.getMessage());
+//                Log.d("0000---------------0000",e.getMessage());
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
 
@@ -675,7 +675,7 @@ public class LoginInternetRequest {
                             mListener.onResponseMessage(code);
                         }
                     } else {
-                        CommonUtils.toastMessage("上传失败");
+                        CommonUtils.toastMessage(result.result.info);
                     }
                 }else {
                     CommonUtils.toastMessage("上传失败");

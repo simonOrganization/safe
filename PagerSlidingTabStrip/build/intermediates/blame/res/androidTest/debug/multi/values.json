@@ -1,29 +1,5 @@
 [
     {
-        "outputFile": "F:\\git_car\\PagerSlidingTabStrip\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 56,
-                    "endOffset": 107
-                },
-                "from": {
-                    "file": "F:\\git_car\\PagerSlidingTabStrip\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 56,
-                        "endOffset": 107
-                    }
-                }
-            }
-        ]
-    },
-    {
         "outputFile": "C:\\gitrepositories\\safe\\PagerSlidingTabStrip\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
         "map": [
             {

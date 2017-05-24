@@ -1,6 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line_big"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include layout="@layout/title" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm016"
+            android:background="@color/page_color"/>
+        <LinearLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm100"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/et_question_text"
+                android:background="@color/white"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/dm026"
+                android:layout_marginLeft="@dimen/dm020"
+                android:layout_marginTop="@dimen/dm030"
+                android:textColor="#333333"
+                android:gravity="top"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColorHint="@color/title_666"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm100"
+                android:hint="请输入问题，最多30字"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm016"
+            android:background="@color/page_color"/>
+
+        <LinearLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            android:background="@color/page_color"/>
+            <LinearLayout
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <EditText
+                    android:id="@+id/et_describe_text"
+                    android:background="@color/white"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/dm026"
+                    android:layout_marginTop="@dimen/dm030"
+                    android:layout_marginLeft="@dimen/dm020"
+                    android:textColor="#333333"
+                    android:textColorHint="@color/title_666"
+                    android:gravity="top"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm300"
+                    android:hint="添加描述和配图"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm016"
+                android:background="@color/page_color"/>
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginLeft="@dimen/dm020"
+                android:id="@+id/recycler"
+                android:layout_marginTop="@dimen/dm030"
+                android:layout_marginBottom="@dimen/dm030"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+        </RelativeLayout>
+
+    </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>

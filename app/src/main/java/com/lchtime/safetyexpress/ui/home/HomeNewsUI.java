@@ -11,6 +11,7 @@ import android.view.View;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.home.fragment.NewsRecommendFragment;
+import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
 import com.lchtime.safetyexpress.views.XHorizontalScrollView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;

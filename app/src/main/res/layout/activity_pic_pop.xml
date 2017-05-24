@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dm030"
                 android:gravity="center"
-                android:text="相册"
+                android:text="从手机相册中选择"
                 android:textColor="@color/title_333"
                 android:textSize="@dimen/dm026" />
 

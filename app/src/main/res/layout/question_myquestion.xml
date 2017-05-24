@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pengzai="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line_big"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <com.astuetz.PagerSlidingTabStrip
+                android:id="@+id/main_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                pengzai:pstsTabTextColor="@color/tab_text_normal"
+                pengzai:pstsIndicatorColor="@color/tab_indicator_selected"
+                pengzai:pstsSelectedTabTextColor="@color/tab_text_selected"
+                pengzai:pstsDividerColor="@color/tab_devider"
+                pengzai:pstsSelectedTabTextSize="16sp"
+                pengzai:pstsTabTextSize="16sp"
+                pengzai:pstsShouldExpand="true"
+                ></com.astuetz.PagerSlidingTabStrip>
+            <LinearLayout
+                android:id="@+id/ll_titleshow"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm070"
+                android:background="@color/page_color"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_titleshow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/dm026"
+                    android:textColor="@color/title_333"
+                    android:layout_marginLeft="@dimen/dm020"
+                    android:text="关注问题（02）"/>
+            </LinearLayout>
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v4.view.ViewPager>
+
+        </LinearLayout>
+    
+
+
+</LinearLayout>

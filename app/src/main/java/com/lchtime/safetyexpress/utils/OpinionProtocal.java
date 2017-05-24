@@ -28,7 +28,7 @@ import okhttp3.Call;
 
 public class OpinionProtocal {
     public OpinionResultListener mListener;
-    public void getDataInternet(String advice,String filedid,String userID,OpinionResultListener listener){
+    public void getDataInternet(String advice,String filedid,String userID,String phone,OpinionResultListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
@@ -41,6 +41,7 @@ public class OpinionProtocal {
                 .url(url)
                 .addParams("advice",advice)
                 .addParams("fileid",filedid)
+                .addParams("phone",phone)
                 .addParams("ub_id",userID)
                 .addParams("uo_long","")
                 .addParams("uo_lat","")

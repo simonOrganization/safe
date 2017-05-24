@@ -7,32 +7,75 @@
 
     <include layout="@layout/title" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm016"
+        android:background="@color/page_color"/>
     <LinearLayout
-        android:background="@null"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm080"
+        android:orientation="horizontal">
+        <TextView
+            android:padding="@dimen/dm024"
+            android:textSize="@dimen/dm028"
+            android:textColor="#333333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系方式"
+            android:background="@color/white"
+
+            />
+        <EditText
+            android:id="@+id/et_phone_num"
+            android:background="@color/white"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/dm028"
+            android:layout_marginLeft="@dimen/dm024"
+            android:textColor="#333333"
+            android:gravity="top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="方便我们及时向您反馈问题"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm328"
         android:orientation="vertical">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm016"
+            android:background="@color/page_color"/>
         <TextView
             android:padding="@dimen/dm024"
-            android:textSize="@dimen/dm022"
+            android:textSize="@dimen/dm028"
             android:textColor="#333333"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="问题和意见"/>
+            android:text="问题和意见"
+            android:background="@color/white"
 
+            />
         <EditText
             android:id="@+id/et_describe_text"
-            android:background="@android:color/transparent"
+            android:background="@color/white"
             android:textCursorDrawable="@null"
+            android:textSize="@dimen/dm028"
             android:layout_marginLeft="@dimen/dm024"
-            android:textSize="@dimen/dm020"
             android:textColor="#333333"
             android:gravity="top"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="请简要描述你的问题意见"/>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm016"
+        android:background="@color/page_color"/>
 
     <LinearLayout
         android:background="@null"
@@ -42,27 +85,21 @@
 
         <TextView
             android:padding="@dimen/dm024"
-            android:textSize="@dimen/dm022"
+            android:textSize="@dimen/dm028"
             android:textColor="#666666"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="图片（选填，提供问题截图）"/>
+            android:text="图片（选填，提供问题截图）"
+            android:background="@color/white"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler"
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
             android:overScrollMode="never" />
 
-        <TextView
-            android:padding="@dimen/dm016"
-            android:textSize="@dimen/dm021"
-            android:textColor="#999999"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="上传图片支持jpg、png等格式，尺寸需小于200KB"/>
 
     </LinearLayout>
 

@@ -2,22 +2,30 @@ package com.lchtime.safetyexpress.ui.home;
 
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.HomeHotCircleAdapter;
 import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
+import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.HomeBannerBean;
+import com.lchtime.safetyexpress.bean.HotCircleBean;
 import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.bean.res.NewsListRes;
 import com.lchtime.safetyexpress.ui.BaseUI;
+import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
+import com.lchtime.safetyexpress.ui.home.protocal.HotCirclesProtocal;
 import com.lchtime.safetyexpress.ui.home.protocal.HotNewsProtocal;
 import com.lchtime.safetyexpress.ui.news.HomeNewActivity;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
+import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.lchtime.safetyexpress.views.MyGridView;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -68,6 +76,9 @@ public class HomeUI extends BaseUI {
     private NewsListRes videoListRes;
     private ArrayList<NewsBean> hotNewsList;
     private ArrayList<NewsBean> vedioNewsList;
+    //首页热门圈子的数据
+    private List<HotCircleBean.HotBean> hotList;
+    private List<List<HotCircleBean.HotBean>> hot;
 
     @Override
     protected void back() {
@@ -78,6 +89,17 @@ public class HomeUI extends BaseUI {
     protected void setControlBasis() {
         homeUI_instance = this;
         //轮播图
+
+//        sb_home_banner.setImageLoader(new ImageLoader() {
+//            @Override
+//            public void displayImage(Context context, Object path, ImageView imageView) {
+//                Picasso.with(context).load(((HomeBannerBean)path).getImgurl()).into(imageView);
+//            }
+//        });
+//        //设置图片集合
+//        sb_home_banner.setImages(mDatas);
+//
+//        sb_home_banner.start();
         BannerAdapter adapter = new BannerAdapter<HomeBannerBean>(mDatas) {
             @Override
             protected void bindTips(TextView tv, HomeBannerBean homeBannerBean) {
@@ -101,7 +123,10 @@ public class HomeUI extends BaseUI {
             }
         });
         //热门圈子
-        homeHotCircleAdapter = new HomeHotCircleAdapter(HomeUI.this);
+        if (hotList == null){
+            hotList = new ArrayList<>();
+        }
+        homeHotCircleAdapter = new HomeHotCircleAdapter(HomeUI.this,hotList);
         mgv_home_hot_circle.setAdapter(homeHotCircleAdapter);
         mgv_home_hot_circle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -147,6 +172,8 @@ public class HomeUI extends BaseUI {
     @Override
     protected void prepareData() {
         getAdvData();
+        //首页热门圈子
+        getHotCircleData(0);
         //首页热点追踪
         getHotNewsData("1");
         getHotNewsData("2");
@@ -201,6 +228,7 @@ public class HomeUI extends BaseUI {
     @OnClick(R.id.ll_home_search)
     private void getSearch(View view){
         Intent intent = new Intent(HomeUI.this, HomeNewsSearchUI.class);
+        intent.putExtra("type","0");
         startActivity(intent);
     }
 
@@ -250,6 +278,10 @@ public class HomeUI extends BaseUI {
      */
     @OnClick(R.id.ll_home_question)
     private void getQuestion(View view){
+        if (TextUtils.isEmpty(SpTools.getString(MyApplication.getContext(), Constants.userId, ""))){
+            CommonUtils.toastMessage("登陆后才能看问答");
+            return;
+        }
         Intent intent = new Intent(HomeUI.this, HomeQuestionUI.class);
         startActivity(intent);
     }
@@ -302,6 +334,21 @@ public class HomeUI extends BaseUI {
 
 
         }
+    }/**
+     * 热门圈子换一换
+     * @param view
+     */
+    private int hotCircleIndex = 0;
+    @OnClick(R.id.hot_circle_change)
+    private void getHotCircle(View view){
+        hotCircleIndex++;
+        //添加所有
+        if (hot != null) {
+            if (hotCircleIndex >= hot.size()) {
+                hotCircleIndex = 0;
+            }
+            getHotCircleData(hotCircleIndex);
+        }
     }
 
 
@@ -339,15 +386,28 @@ public class HomeUI extends BaseUI {
                 list.clear();
 
                 //添加所有---------------
-                list.addAll(newsListRes.hot.get(0));
+                if (newsListRes.hot != null) {
+                    list.addAll(newsListRes.hot.get(0));
+                }
 
 
                 adapter.setNewItemInterface(new HomeNewAdapter.NewsItemInterface() {
                     @Override
                     public void setNewOnItem(int position) {
-                        Intent intent = new Intent(HomeUI.this, HomeNewsDetailUI.class);
-                        intent.putExtra("newsId","");
-                        startActivity(intent);
+                        if ("1".equals(type)){
+                            //新闻
+                            Intent intent = new Intent(HomeUI.this, HomeNewsDetailUI.class);
+                            intent.putExtra("newsId", hotNewsList.get(position).cc_id);
+                            intent.putExtra("type","news");
+                            startActivity(intent);
+                        }else {
+                            //视频
+                            Intent intent = new Intent(HomeUI.this, HomeNewsDetailUI.class);
+                            intent.putExtra("newsId", vedioNewsList.get(position).cc_id);
+                            intent.putExtra("type","video");
+                            startActivity(intent);
+                        }
+
                     }
 
                     @Override
@@ -361,6 +421,39 @@ public class HomeUI extends BaseUI {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    private HotCirclesProtocal hotCirclesProtocal;
+    private void getHotCircleData(final int page) {
+        if(hotCirclesProtocal == null){
+            hotCirclesProtocal = new HotCirclesProtocal();
+        }
+
+        if (hot == null) {
+            hotCirclesProtocal.getCirclesList(new HotCirclesProtocal.HotNewsListener() {
+                @Override
+                public void hotNewsResponse(HotCircleBean hotCircleBean) {
+                    hot = hotCircleBean.hot;
+                    //先清除
+                    if (hot == null) {
+                        return;
+                    }
+                    hotList.clear();
+
+                    //添加所有---------------
+                    hotList.addAll(hot.get(page));
+
+                    homeHotCircleAdapter.notifyDataSetChanged();
+                }
+            });
+        }else {
+            hotList.clear();
+
+            //添加所有---------------
+            hotList.addAll(hot.get(page));
+
+            homeHotCircleAdapter.notifyDataSetChanged();
+        }
     }
 
 }
