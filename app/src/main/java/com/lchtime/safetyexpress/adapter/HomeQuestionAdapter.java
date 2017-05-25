@@ -99,7 +99,7 @@ public class HomeQuestionAdapter extends RecyclerView.Adapter {
         }
 
         myHolder.tv_title.setText(bean.q_title);
-        myHolder.tv_question.setText(bean.hd_num + "回答");
+        myHolder.tv_question.setText(bean.hdNum + "回答");
         myHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

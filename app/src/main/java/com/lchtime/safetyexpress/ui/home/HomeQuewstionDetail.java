@@ -15,9 +15,12 @@ import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.HeaderAndFooterWrapper;
 import com.lchtime.safetyexpress.adapter.HomeImgAdapter;
 import com.lchtime.safetyexpress.adapter.QuetionDetailAdapter;
+import com.lchtime.safetyexpress.bean.InitInfo;
+import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.WenDaDetailBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
+import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.views.MyGridView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.squareup.picasso.Picasso;
@@ -58,19 +61,6 @@ public class HomeQuewstionDetail extends BaseUI {
     TextView tvHomeQuestion;
 
 
-//    @BindView(R.id.tv_home_question_title)
-//    TextView tvHomeQuestionTitle;
-//    @BindView(R.id.tv_home_question_describ)
-//    TextView tvHomeQuestionDescrib;
-//    @BindView(R.id.mgv_home_question)
-//    MyGridView mgvHomeQuestion;
-//    @BindView(R.id.one_pic_home_question)
-//    ImageView onePicHomeQuestion;
-//    @BindView(R.id.tv_home_question_num)
-//    TextView tvHomeQuestionNum;
-//    @BindView(R.id.tv_home_focus_num)
-//    TextView tvHomeFocusNum;
-
     TextView tvHomeQuestionTitle;
     TextView tvHomeQuestionDescrib;
     MyGridView mgvHomeQuestion;
@@ -85,12 +75,25 @@ public class HomeQuewstionDetail extends BaseUI {
     private List<WenDaDetailBean.HdinfoBean> huiFuList = new ArrayList<>();
     private WenDaDetailBean detailBean;
     private HeaderAndFooterWrapper wrapperAdapter;
-
+    private LinearLayout ll_guanzhu;
+    private LinearLayout ll_yiguanzhu;
+    private RelativeLayout rl_isguanzhu;
 
 
     @Override
     protected void back() {
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (InitInfo.wendaDetail){
+            setControlBasis();
+            prepareData();
+            InitInfo.wendaDetail = false;
+        }
+
     }
 
     @Override
@@ -123,6 +126,7 @@ public class HomeQuewstionDetail extends BaseUI {
                 startActivity(intent);
             }
         });
+
     }
 
     private void initView(View view) {
@@ -133,6 +137,9 @@ public class HomeQuewstionDetail extends BaseUI {
          tvHomeQuestionNum = (TextView) view.findViewById(R.id.tv_home_question_num);
          tvHomeFocusNum = (TextView) view.findViewById(R.id.tv_home_focus_num);
          llInviteFriend = (LinearLayout) view.findViewById(R.id.ll_invite_friend);
+        ll_guanzhu = (LinearLayout) view.findViewById(R.id.ll_guanzhu);
+        ll_yiguanzhu = (LinearLayout) view.findViewById(R.id.ll_yiguanzhu);
+        rl_isguanzhu = (RelativeLayout) view.findViewById(R.id.rl_isguanzhu);
     }
 
 
@@ -148,8 +155,35 @@ public class HomeQuewstionDetail extends BaseUI {
                 detailBean = bean;
                 tvHomeQuestionTitle.setText(bean.wenti.q_title);
                 tvHomeQuestionDescrib.setText(bean.wenti.q_description);
-                tvHomeQuestionNum.setText(bean.huida + "回答");
-                tvHomeFocusNum.setText(bean.guanzhu + "人关注");
+                tvHomeQuestionNum.setText(bean.wenti.hdNum + "回答");
+                tvHomeFocusNum.setText(bean.wenti.gzNum + "人关注");
+                if ("0".equals(bean.wenti.is_gz)){
+                    ll_guanzhu.setVisibility(View.VISIBLE);
+                    ll_yiguanzhu.setVisibility(View.GONE);
+                }else {
+                    ll_guanzhu.setVisibility(View.GONE);
+                    ll_yiguanzhu.setVisibility(View.VISIBLE);
+                }
+
+
+                rl_isguanzhu.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //点击关注按钮
+                        protocal.postGuanZhu(bean.wenti.q_id, bean.wenti.is_gz, new HomeQuestionProtocal.QuestionListener() {
+                            @Override
+                            public void questionResponse(Object response) {
+                                Result result = (Result) response;
+                                if ("10".equals(result.result.code)){
+                                    //刷新数据
+                                    prepareData();
+                                }
+                                CommonUtils.toastMessage(result.result.getInfo());
+                            }
+                        });
+
+                    }
+                });
                 if (bean.wenti.pic.size() == 1) {
                     //一张图
                     mgvHomeQuestion.setVisibility(View.GONE);

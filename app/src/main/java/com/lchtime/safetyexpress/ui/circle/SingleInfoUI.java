@@ -86,6 +86,7 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
     @Override
     protected void setControlBasis() {
         ButterKnife.bind(this);
+        setTitle("个人主页");
         uid = getIntent().getStringExtra("uid");
         View view = View.inflate(this,R.layout.single_info_header,null);
         initView(view);
@@ -100,7 +101,7 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
     private CircleProtocal protocal;
     private String userid;
     @Override
-    protected void prepareData() {
+    public void prepareData() {
         if (protocal == null) {
             protocal = new CircleProtocal();
         }

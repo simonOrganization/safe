@@ -1,5 +1,9 @@
 package com.lchtime.safetyexpress.ui.vip.fragment;
 
+import com.lchtime.safetyexpress.ui.home.fragment.GuanZhuFragment;
+import com.lchtime.safetyexpress.ui.home.fragment.TiWenFragment;
+import com.lchtime.safetyexpress.ui.home.fragment.WenDaFragment;
+
 import java.util.HashMap;
 import java.util.Map;
 

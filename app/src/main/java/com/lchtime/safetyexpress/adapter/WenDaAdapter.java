@@ -1,22 +1,15 @@
 package com.lchtime.safetyexpress.adapter;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.MyWenDaBean;
-import com.lchtime.safetyexpress.bean.WenDaBean;
-import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
-import com.lchtime.safetyexpress.ui.vip.fragment.WenDaFragment;
-import com.lchtime.safetyexpress.views.MyGridView;
-import com.squareup.picasso.Picasso;
+import com.lchtime.safetyexpress.ui.home.fragment.WenDaFragment;
 
 import java.util.List;
 

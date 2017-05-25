@@ -1,10 +1,10 @@
 package com.lchtime.safetyexpress.ui.home;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,13 +14,8 @@ import android.widget.TextView;
 import com.astuetz.PagerSlidingTabStrip;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.ui.BaseUI;
-import com.lchtime.safetyexpress.ui.vip.MyConllected;
 import com.lchtime.safetyexpress.ui.vip.fragment.BaseFragment;
-import com.lchtime.safetyexpress.ui.vip.fragment.FragmentFactory;
 import com.lchtime.safetyexpress.ui.vip.fragment.FragmentFactory2WenDa;
-import com.lchtime.safetyexpress.ui.vip.fragment.GuanZhuFragment;
-import com.lchtime.safetyexpress.ui.vip.fragment.TiWenFragment;
-import com.lchtime.safetyexpress.ui.vip.fragment.WenDaFragment;
 import com.lchtime.safetyexpress.views.LoadingPager;
 import com.lidroid.xutils.view.annotation.ContentView;
 
@@ -65,6 +60,7 @@ public class MyQuestion extends BaseUI {
 
     private String[] mMainTitle = {"关注","回答","提问"};
     private MyOnpageChangeListener myOnpageChangeListener;
+    public String otherid = "";
 
     @Override
     protected void back() {
@@ -73,9 +69,13 @@ public class MyQuestion extends BaseUI {
 
     @Override
     protected void setControlBasis() {
-        setTitle("我的问答");
         ButterKnife.bind(this);
-
+        otherid = getIntent().getStringExtra("otherid");
+        if (TextUtils.isEmpty(otherid)){
+            setTitle("我的问答");
+        }else {
+            setTitle("他的问答");
+        }
         bindViewPager();
 
     }

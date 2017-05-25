@@ -1,6 +1,8 @@
 package com.lchtime.safetyexpress.ui.circle;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -94,9 +96,25 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     private HeaderAndFooterWrapper wapperAdapter;
     private View headerView2;
 
+
     @Override
     protected void back() {
         exit();
+    }
+
+    private boolean isOnCreate = false;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (InitInfo.circleRefresh){
+            refreshData();
+            InitInfo.circleRefresh = false;
+        }
     }
 
     @Override

@@ -45,8 +45,8 @@ public class SubscribActivity extends BaseUI {
 
     private CircleProtocal protocal;
     private String userid;
-    private List<MydyBean.DyBean> dyList = new ArrayList<>();
-    private List<QzContextBean> circleList = new ArrayList<>();
+    private List<MydyBean.DyBean> dyList;
+    private List<QzContextBean> circleList;
 
     @Override
     protected void back() {
@@ -57,12 +57,35 @@ public class SubscribActivity extends BaseUI {
     protected void setControlBasis() {
         rightVisible(R.drawable.circle_subscribe);
         setTitle("我的订阅");
+
+        dyList = new ArrayList<>();
+        circleList = new ArrayList<>();
+        //上边的横向adapter
+        adapter = new CircleSubscribAdapter(SubscribActivity.this,dyList);
+        circle_subscribe_rc.setAdapter(adapter);
+        //下面的adapter
+        circleAdapter = new CircleAdapter(SubscribActivity.this,circleList);
+        //不显示订阅按钮
+        circleAdapter.setShowDy(false);
+        erc_subscribe_circle.setAdapter(circleAdapter);
         //设置布局管理器
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         circle_subscribe_rc.setLayoutManager(linearLayoutManager);
         erc_subscribe_circle.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 //        circle_subscribe_rc.setLayoutManager(new LinearLayoutManager(this));
+
+
+        refreshData();
+        initListener();
+    }
+
+    @Override
+    protected void prepareData() {
+
+    }
+
+    public void refreshData(){
         if (protocal == null){
             protocal = new CircleProtocal();
         }
@@ -76,27 +99,17 @@ public class SubscribActivity extends BaseUI {
                     dyList.addAll(bean.dy);
                 }
                 //上边的横向adapter
-                adapter = new CircleSubscribAdapter(SubscribActivity.this,dyList);
-                circle_subscribe_rc.setAdapter(adapter);
 
+                adapter.notifyDataSetChanged();
                 //下面圈子列表
                 circleList.clear();
                 if (bean.quanzi != null) {
                     circleList.addAll(bean.quanzi);
                 }
-                circleAdapter = new CircleAdapter(SubscribActivity.this,circleList);
-                circleAdapter.setShowDy(false);
-                erc_subscribe_circle.setAdapter(circleAdapter);
+                circleAdapter.notifyDataSetChanged();
+
             }
         });
-
-
-        initListener();
-    }
-
-    @Override
-    protected void prepareData() {
-
     }
 
     private void initListener() {

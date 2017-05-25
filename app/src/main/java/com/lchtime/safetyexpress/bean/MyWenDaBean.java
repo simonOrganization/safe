@@ -22,7 +22,7 @@ public class MyWenDaBean {
      */
 
     public String num;
-    public int totalpage;
+    public String totalpage;
     /**
      * num : 0
      * oid : 3
@@ -43,6 +43,9 @@ public class MyWenDaBean {
         public String oid;
         public String title;
         public String time;
+//        type=0   param=关注问题的id
+//        type=1   param=回答的内容
+//        type=2   param=问题描述
         public String param;
     }
 }

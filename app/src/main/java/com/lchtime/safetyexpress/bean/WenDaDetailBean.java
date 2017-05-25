@@ -32,8 +32,7 @@ public class WenDaDetailBean {
      * hdinfo : [{"a_id":2,"aq_id":7,"aq_title":"77777777","a_ub_id":17,"a_context":"法国恢复规划法规和","a_dz":"","a_dc":"","a_create":"1494463884","user":"安全快车用户3330   ","ud_photo_fileid":"http://fcar.lchtime.cn:8001/upload/pub/head/2c223800d88ef9f054f73ecd7e0943d6.","pic":[]},{"a_id":3,"aq_id":7,"aq_title":"88888888888","a_ub_id":82,"a_context":"fsdfdsf ","a_dz":"","a_dc":"","a_create":"1494463884","user":"哈哈 互联网/电子商务 大幅度 哈哈哈哈","ud_photo_fileid":"http://fcar.lchtime.cn:8001/upload/82/2017/05/11/d9163859b4c8bf0831f35c5ee9f2baff.png","pic":[]}]
      */
 
-    public String huida;
-    public String guanzhu;
+
     /**
      * a_id : 2
      * aq_id : 7
@@ -61,6 +60,9 @@ public class WenDaDetailBean {
         public String q_title;
         public String q_description;
         public String q_create;
+        public String is_gz ;
+        public String hdNum;
+        public String gzNum;
         public List<String> pic;
     }
 

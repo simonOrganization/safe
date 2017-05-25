@@ -99,7 +99,8 @@
         android:orientation="horizontal"
         android:layout_below="@id/ll_item_pic_wenzi"
         android:layout_alignLeft="@id/ll_item_pic_wenzi"
-        android:layout_alignStart="@id/ll_item_pic_wenzi">
+        android:layout_alignStart="@id/ll_item_pic_wenzi"
+        android:layout_marginLeft="@dimen/dm020">
 
         <TextView
             android:id="@+id/home_new_no_item_from"

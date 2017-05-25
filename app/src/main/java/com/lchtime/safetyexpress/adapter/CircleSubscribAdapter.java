@@ -14,8 +14,10 @@ import android.widget.TextView;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.MydyBean;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
+import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
@@ -49,7 +51,7 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final CircleSubscribeHolder myViewHolder = (CircleSubscribeHolder) holder;
         final MydyBean.DyBean bean = dy.get(position);
         if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {
@@ -57,21 +59,40 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
         }
         myViewHolder.tv_hotcircle_name.setText(bean.ud_nickname);
         myViewHolder.cb_hotcircle_subscribe.setChecked(true);
-        myViewHolder.cb_hotcircle_subscribe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+        myViewHolder.cb_hotcircle_subscribe.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onClick(View v) {
                 if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
                     CommonUtils.toastMessage("您当前无网络，请联网再试");
-                    myViewHolder.cb_hotcircle_subscribe.setChecked(!isChecked);
+                    myViewHolder.cb_hotcircle_subscribe.setChecked(true);
                     return;
                 }
-                protocal.changeSubscribe(SpTools.getString(context, Constants.userId,""), bean.ud_ub_id, isChecked ? "1" : "0", new CircleProtocal.CircleListener() {
-                    @Override
-                    public void circleResponse(CircleBean response) {
-                        CommonUtils.toastMessage(response.result.info);
-                    }
-                });
-
+                String userid = SpTools.getString(context, Constants.userId,"");
+                if (TextUtils.isEmpty(userid)){
+                    CommonUtils.toastMessage("请登陆！！！");
+                    myViewHolder.cb_hotcircle_subscribe.setChecked(true);
+                    return;
+                }else {
+                    protocal.changeSubscribe(userid, bean.ud_ub_id, "0" , new CircleProtocal.CircleListener() {
+                        @Override
+                        public void circleResponse(CircleBean response) {
+                            if ("10".equals(response.result.code)){
+                                //移除操作
+                                dy.remove(position);
+                                if (context instanceof SubscribActivity){
+                                    ((SubscribActivity) context).refreshData();
+                                }
+                                //notifyDataSetChanged();
+                                InitInfo.circleRefresh = true;
+                            }else {
+                                //订阅或者取消订阅失败了
+                                myViewHolder.cb_hotcircle_subscribe.setChecked(true);
+                            }
+                            CommonUtils.toastMessage(response.result.getInfo());
+                        }
+                    });
+                }
             }
         });
 

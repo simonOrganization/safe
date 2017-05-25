@@ -51,6 +51,8 @@
     <string name="tiwen">index.php/wenda/tiwen</string>
     <!--回答-->
     <string name="answer">index.php/wenda/tjanswer</string>
+    <!--关注-->
+    <string name="guanzhu">index.php/wenda/guanzhu</string>
     <!--上传文字视频圈子-->
     <string name="qzfb">index.php/quanzi/qzfb</string>
     <!--我的动态-->

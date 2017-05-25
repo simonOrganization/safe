@@ -71,7 +71,7 @@ public class OtherPersonSubscribeActivity extends BaseUI {
 
     private String userid;
     @Override
-    protected void prepareData() {
+    public void prepareData() {
         if (protocal == null){
             protocal = new CircleProtocal();
         }
@@ -86,7 +86,7 @@ public class OtherPersonSubscribeActivity extends BaseUI {
                 if (bean.dy != null) {
                     allList.addAll(bean.dy);
                 }
-                addSubscribeAdapter = new AddSubscribeAdapter(OtherPersonSubscribeActivity.this,allList);
+                addSubscribeAdapter = new AddSubscribeAdapter(OtherPersonSubscribeActivity.this,allList,OtherPersonSubscribeActivity.this);
                 rcOtherPersonSubscribe.setAdapter(addSubscribeAdapter);
             }
         });

@@ -29,9 +29,11 @@ public class HotCircleBean {
     }
 
     public static class HotBean {
-        public int ud_ub_id;
+        public String ud_ub_id;
         public String ud_photo_fileid;
         public String ud_nickname;
         public int dycount;
+        //自己打的标记
+        public boolean checked;
     }
 }

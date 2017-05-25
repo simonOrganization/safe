@@ -23,11 +23,14 @@
         android:textSize="@dimen/dm026"
         android:textColor="@color/title_333"/>
 
-    <ImageView
+    <CheckBox
         android:id="@+id/iv_hotcircle_subscribe"
         android:layout_width="@dimen/dm100"
         android:layout_height="@dimen/dm040"
-        android:src="@drawable/subscribe_on"
-        android:layout_marginTop="@dimen/dm014"/>
+        android:layout_marginTop="@dimen/dm014"
+        android:text="@null"
+        android:button="@null"
+        android:gravity="center"
+        android:background="@drawable/circle_item_subscribe_selector" />
 
 </LinearLayout>

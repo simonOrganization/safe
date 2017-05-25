@@ -16,8 +16,11 @@ import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
+import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.ui.circle.CircleUI;
+import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
+import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
@@ -149,73 +152,74 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
         holder.circleItemGreat.setText(bean.qc_zc);
         holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
         //点赞逻辑监听
+
         holder.ivCircleItemGreat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userid = SpTools.getString(context, Constants.userId, "");
-                if (TextUtils.isEmpty(userid)) {
+                String userid = SpTools.getString(context, Constants.userId,"");
+                if (TextUtils.isEmpty(userid)){
                     CommonUtils.toastMessage("没有登陆！！");
                     holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
                     return;
-                } else {
+                }else {
                     //请求网络数据
+                    if ("1".equals(bean.zan)){
+                        holder.ivCircleItemGreat.setChecked(true);
+                    }
                     protocal.updataZanOrCai(userid, bean.qc_id, "1", "0", new CircleProtocal.NormalListener() {
                         @Override
                         public void normalResponse(Object response) {
                             BasicResult result = (BasicResult) response;
-                            if (!result.code.equals("10")) {
-                                CommonUtils.toastMessage(result.getInfo());
-                                holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
-                            } else {
-                                if (context instanceof CircleUI) {
-                                    ((CircleUI) context).refreshData();
-                                }
+                            if (context instanceof SingleInfoUI){
+                                ((SingleInfoUI) context).prepareData();
                             }
+                            CommonUtils.toastMessage(result.getInfo());
                         }
                     });
-                    holder.ivCircleItemGreat.setChecked(true);
+                    //holder.iv_circle_item_great.setChecked(true);
                 }
 
             }
         });
     }
 
+
     private void setDown(final MyCircleActiveHodler holder, final MyCircleActiveBean.QuanziBean bean, final CircleProtocal protocal) {
-        holder.circleItemLow.setText(bean.qc_zc);
+        holder.circleItemLow.setText(bean.qc_fd);
         holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
         //点赞逻辑监听
         holder.ivCircleItemLow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userid = SpTools.getString(context, Constants.userId, "");
-                if (TextUtils.isEmpty(userid)) {
+                String userid = SpTools.getString(context, Constants.userId,"");
+                if (TextUtils.isEmpty(userid)){
                     CommonUtils.toastMessage("没有登陆！！");
                     holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
                     return;
-                } else {
-
+                }else {
+                    if ("1".equals(bean.zan)){
+                        holder.ivCircleItemLow.setChecked(true);
+                    }
                     //请求网络数据
                     protocal.updataZanOrCai(userid, bean.qc_id, "0", "1", new CircleProtocal.NormalListener() {
                         @Override
                         public void normalResponse(Object response) {
                             BasicResult result = (BasicResult) response;
-                            if (!result.code.equals("10")) {
-                                CommonUtils.toastMessage(result.getInfo());
-                                holder.ivCircleItemLow.setChecked("1".equals(bean.zan));
-                            } else {
-                                if (context instanceof CircleUI) {
-                                    ((CircleUI) context).refreshData();
-                                }
+                            if (context instanceof SingleInfoUI){
+                                ((SingleInfoUI) context).prepareData();
                             }
+                            CommonUtils.toastMessage(result.getInfo());
                         }
                     });
 
-                    holder.ivCircleItemLow.setChecked(true);
+                    //holder.iv_circle_item_low.setChecked(true);
                 }
 
             }
         });
     }
+
+
 
 
     @Override

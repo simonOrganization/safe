@@ -66,7 +66,7 @@ public class SubscirbeCommendFragment extends Fragment {
         initData();
     }
 
-    private void initData() {
+    public void initData() {
         userid = SpTools.getString(getContext(), Constants.userId,"");
         if (protocal == null){
             protocal = new CircleProtocal();
@@ -87,7 +87,7 @@ public class SubscirbeCommendFragment extends Fragment {
                 if (bean.tj != null) {
                     commendList.addAll(bean.tj);
                 }
-                addSubscribeAdapter = new AddSubscribeAdapter(context,commendList);
+                addSubscribeAdapter = new AddSubscribeAdapter(context,commendList,SubscirbeCommendFragment.this);
                 subscribe_comm_rc.setAdapter(addSubscribeAdapter);
             }
         });

@@ -14,4 +14,10 @@ public class InitInfo {
 
     public static ProfessionBean professionBean;
     public static PostBean postBean;
+
+
+
+
+    public static boolean circleRefresh = false;
+    public static boolean wendaDetail = false;
 }

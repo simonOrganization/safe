@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -9,8 +10,19 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.AddSubscribBean;
+import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.InitInfo;
+import com.lchtime.safetyexpress.bean.res.CircleBean;
+import com.lchtime.safetyexpress.ui.circle.OtherPersonSubscribeActivity;
+import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
+import com.lchtime.safetyexpress.ui.circle.fragment.SubscirbeAllFragment;
+import com.lchtime.safetyexpress.ui.circle.fragment.SubscirbeCommendFragment;
+import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
+import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.CircleImageView;
 import com.squareup.picasso.Picasso;
 
@@ -26,10 +38,13 @@ import butterknife.ButterKnife;
 public class AddSubscribeAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<AddSubscribBean.ItemBean> mDatas;
+    private CircleProtocal protocal = new CircleProtocal();
+    private Object fragment;
 
-    public AddSubscribeAdapter(Context context,List<AddSubscribBean.ItemBean> mDatas) {
+    public AddSubscribeAdapter(Context context, List<AddSubscribBean.ItemBean> mDatas, Object fragment) {
         this.context = context;
         this.mDatas = mDatas;
+        this.fragment = fragment;
     }
 
     @Override
@@ -40,11 +55,47 @@ public class AddSubscribeAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        AddSubscribeHodler myHolder = (AddSubscribeHodler) holder;
-        AddSubscribBean.ItemBean bean = mDatas.get(position);
+
+        final AddSubscribeHodler myHolder = (AddSubscribeHodler) holder;
+        final AddSubscribBean.ItemBean bean = mDatas.get(position);
         myHolder.add_subscribe_item_name.setText(bean.ud_nickname);
         myHolder.add_subscribe_item_content.setText(bean.user);
         myHolder.add_subscirbe_item_but.setChecked("1".equals(bean.is_dy));
+        myHolder.add_subscirbe_item_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
+                    CommonUtils.toastMessage("您当前无网络，请联网再试");
+                    myHolder.add_subscirbe_item_but.setChecked("1".equals(bean.is_dy));
+                    return;
+                }
+                String userid = SpTools.getString(context, Constants.userId,"");
+                if (TextUtils.isEmpty(userid)){
+                    CommonUtils.toastMessage("请登陆！！！");
+                    myHolder.add_subscirbe_item_but.setChecked("1".equals(bean.is_dy));
+                    return;
+                }else {
+                    protocal.changeSubscribe(userid, bean.ud_ub_id, "0" , new CircleProtocal.CircleListener() {
+                        @Override
+                        public void circleResponse(CircleBean response) {
+
+                                if (fragment instanceof SubscirbeAllFragment) {
+                                    ((SubscirbeAllFragment) fragment).refreshData();
+                                } else if (fragment instanceof SubscirbeCommendFragment) {
+                                    ((SubscirbeCommendFragment) fragment).initData();
+                                } else if (fragment instanceof OtherPersonSubscribeActivity) {
+                                    ((OtherPersonSubscribeActivity) fragment).prepareData();
+                                }
+                            if ("10".equals(response.result.code)) {
+                                InitInfo.circleRefresh = true;
+                            }
+
+                            CommonUtils.toastMessage(response.result.getInfo());
+                        }
+                    });
+                }
+            }
+        });
         //是否已阅读
         myHolder.add_subscribe_item_count.setText( bean.dy+"已订阅");
         if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {

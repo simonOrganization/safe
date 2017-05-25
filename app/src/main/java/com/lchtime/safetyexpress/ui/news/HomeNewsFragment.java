@@ -69,7 +69,9 @@ public class HomeNewsFragment extends BaseFragment {
         context = getActivity();
         view = View.inflate(getContext(), R.layout.home_new_fragment,null);
         ButterKnife.bind(this, view);
-        commentList = new ArrayList<>();
+        if (commentList == null) {
+            commentList = new ArrayList<>();
+        }
         homeNewAdapter = new HomeNewAdapter(context,commentList);
         home_new_fragment_rc.setAdapter(homeNewAdapter);
     }
@@ -89,6 +91,9 @@ public class HomeNewsFragment extends BaseFragment {
 
         Bundle bundle = getArguments();
         final int position = bundle.getInt("position");
+        if (commentList != null){
+            commentList.clear();
+        }
         if(position == 0){
             Log.i("yang","position == 0");
 //            commentList = bundle.getParcelableArrayList("comments");

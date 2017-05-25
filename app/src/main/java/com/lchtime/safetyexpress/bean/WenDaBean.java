@@ -44,7 +44,7 @@ public class WenDaBean {
         public String q_title;
         public String q_description;
         public String q_create;
-        public String hd_num;
+        public String hdNum ;
         public List<String> pic;
     }
 }

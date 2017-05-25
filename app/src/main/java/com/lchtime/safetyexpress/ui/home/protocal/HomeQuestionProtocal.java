@@ -174,6 +174,44 @@ public class HomeQuestionProtocal {
                     }
                 });
     }
+
+    public void postGuanZhu(String q_id,String type,final QuestionListener listener){
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            return;
+        }
+        String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
+                .concat(MyApplication.getContext().getResources().getString(R.string.guanzhu));
+        OkHttpUtils
+                .post()
+                .url(url)
+                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("q_id", q_id)
+                .addParams("type", type)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        if (TextUtils.isEmpty(response)){
+                            CommonUtils.toastMessage("没有数据返回");
+                            return;
+                        }
+                        Result bean = (Result) JsonUtils.stringToObject(response,Result.class);
+                        if(bean.result.code.equals("10")){
+                            if (listener != null){
+                                listener.questionResponse(bean);
+                            }
+                        }else{
+                            CommonUtils.toastMessage(bean.result.info);
+                        }
+                    }
+                });
+    }
     public interface QuestionListener{
         void questionResponse(Object response);
     }

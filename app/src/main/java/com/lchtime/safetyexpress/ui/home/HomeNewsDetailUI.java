@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.pop.SharePop;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.Const;
@@ -43,6 +44,8 @@ public class HomeNewsDetailUI extends BaseUI {
 
     private SharePop sharePop;
     private String cc_id;
+    private String a_id;
+    private String aq_id;
     //类型，是新闻还是视频
     private String type;
     private String baseUrl = "";
@@ -56,6 +59,8 @@ public class HomeNewsDetailUI extends BaseUI {
     protected void setControlBasis() {
         String ub_id = SpTools.getString(this, Constants.userId,"");
         cc_id = getIntent().getStringExtra("newsId");
+        a_id = getIntent().getStringExtra("a_id");
+        aq_id = getIntent().getStringExtra("aq_id");
         type = getIntent().getStringExtra("type");
 
         if ("news".equals(type)){
@@ -64,6 +69,14 @@ public class HomeNewsDetailUI extends BaseUI {
         }else if ("video".equals(type)){
             baseUrl = Const.HOST+"cms/videoinfo?cc_id=" + cc_id;
             setTitle("视频中心");
+        }else if (("circle".equals(type))){
+            //圈子的baseurl
+            baseUrl = Const.HOST + "quanzi/qzinfo?qc_id=" + cc_id;
+            setTitle("圈子详情");
+        }else if (("wenda".equals(type))){
+            //问答的baseurl
+            baseUrl = Const.HOST + "wenda/myhuida?a_id= "+a_id+"&q_id=" + aq_id;
+            setTitle("查看全部1888888888个回答");
         }
         if (!TextUtils.isEmpty(ub_id)){
             baseUrl = baseUrl + "&ub_id=" +ub_id;
@@ -116,6 +129,7 @@ public class HomeNewsDetailUI extends BaseUI {
         });
     }
 
+    //跳转个人界面
     @JavascriptInterface
     public void getUserId(final String ub_id){
         runOnUiThread(new Runnable() {
@@ -125,6 +139,35 @@ public class HomeNewsDetailUI extends BaseUI {
                 Intent intent = new Intent(HomeNewsDetailUI.this,SingleInfoUI.class);
                 intent.putExtra("uid",ub_id);
                 startActivity(intent);
+
+            }
+        });
+    }
+//问答界面删除
+    @JavascriptInterface
+    public void getDelId (final String ub_id){
+        runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                if (!TextUtils.isEmpty(ub_id)){
+                    InitInfo.wendaDetail = true;
+                    finish();
+                }else {
+                    CommonUtils.toastMessage("删除失败");
+                }
+
+            }
+        });
+    }
+
+    //问答界面编辑
+    @JavascriptInterface
+    public void getWdEditId (final String ub_id){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
 
             }
         });

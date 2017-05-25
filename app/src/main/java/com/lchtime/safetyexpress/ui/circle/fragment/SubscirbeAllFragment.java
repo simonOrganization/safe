@@ -120,7 +120,7 @@ public class SubscirbeAllFragment extends Fragment {
                 if (bean.all != null) {
                     allList.addAll(bean.all);
                 }
-                addSubscribeAdapter = new AddSubscribeAdapter(context,allList);
+                addSubscribeAdapter = new AddSubscribeAdapter(context,allList,SubscirbeAllFragment.this);
                 subscribe_all_rc.setAdapter(addSubscribeAdapter);
             }
         });

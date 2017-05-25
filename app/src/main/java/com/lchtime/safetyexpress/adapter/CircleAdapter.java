@@ -23,7 +23,9 @@ import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.ui.circle.CircleUI;
 import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
+import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
+import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
@@ -122,6 +124,8 @@ public class CircleAdapter extends RecyclerView.Adapter {
             final CircleProtocal protocal = new CircleProtocal();
             if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {
                 Picasso.with(context).load(bean.ud_photo_fileid).into(((CircleHodler) holder).iv_circle_photo);
+            }else {
+                Picasso.with(context).load(R.drawable.circle_user_image).into(((CircleHodler) holder).iv_circle_photo);
             }
             ((CircleHodler) holder).iv_circle_photo.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -136,21 +140,25 @@ public class CircleAdapter extends RecyclerView.Adapter {
             ((CircleHodler) holder).circle_item_content.setText(bean.qc_context);
             ((CircleHodler) holder).circle_item_talk.setText(bean.qc_pinglun);
             ((CircleHodler) holder).circle_item_subscribe.setChecked("1".equals(bean.is_dy));
-            ((CircleHodler) holder).circle_item_subscribe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            ((CircleHodler) holder).circle_item_subscribe.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                public void onClick(View v) {
                     String userid = SpTools.getString(context, Constants.userId,"");
                     if (TextUtils.isEmpty(userid)){
-                        CommonUtils.toastMessage("没有登陆！！");
-                        ((CircleHodler) holder).circle_item_subscribe.setChecked(!isChecked);
+                        CommonUtils.toastMessage("请登陆！！！");
+                        ((CircleHodler) holder).circle_item_subscribe.setChecked("1".equals(bean.is_dy));
                         return;
                     }else {
-                        protocal.changeSubscribe(userid, bean.qc_ub_id, isChecked ? "1" : "0", new CircleProtocal.CircleListener() {
+                        String type = "0".equals(bean.is_dy) ? "1" : "0";
+                        protocal.changeSubscribe(userid, bean.qc_ub_id, type , new CircleProtocal.CircleListener() {
                             @Override
                             public void circleResponse(CircleBean response) {
-                                // CommonUtils.toastMessage(response.result.info);
                                 if (context instanceof CircleUI) {
                                     ((CircleUI) context).refreshData();
+                                }
+
+                                if (context instanceof SubscribActivity) {
+                                    ((SubscribActivity) context).refreshData();
                                 }
                             }
                         });
@@ -166,6 +174,15 @@ public class CircleAdapter extends RecyclerView.Adapter {
             ((CircleHodler) holder).circle_item_time.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.qc_date)));
             ((CircleHodler) holder).circle_item_subscribe_num.setText(bean.dyNum + "已订阅");
 //            circleHodler.circle_item_image_rc.addItemDecoration(new SpacesItemDecoration(10));
+            ((CircleHodler) holder).itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, HomeNewsDetailUI.class);
+                    intent.putExtra("newsId",bean.qc_id);
+                    intent.putExtra("type","circle");
+                    context.startActivity(intent);
+                }
+            });
         }
 
 
@@ -191,15 +208,19 @@ public class CircleAdapter extends RecyclerView.Adapter {
                         public void normalResponse(Object response) {
                             BasicResult result = (BasicResult) response;
                             if (!result.code.equals("10")) {
-                                CommonUtils.toastMessage(result.getInfo());
-                                //holder.iv_circle_item_great.setChecked("1".equals(bean.zan));
-                                ((CircleUI) context).refreshData();
+                                if (context instanceof  CircleUI) {
+                                    ((CircleUI) context).refreshData();
+                                }else if (context instanceof SubscribActivity){
+                                    ((SubscribActivity) context).refreshData();
+                                }
                             }else {
                                 if (context instanceof CircleUI) {
-                                    CommonUtils.toastMessage(result.getInfo());
                                     ((CircleUI) context).refreshData();
+                                }else if (context instanceof SubscribActivity){
+                                    ((SubscribActivity) context).refreshData();
                                 }
                             }
+                            CommonUtils.toastMessage(result.getInfo());
                         }
                     });
                     //holder.iv_circle_item_great.setChecked(true);
@@ -229,14 +250,19 @@ public class CircleAdapter extends RecyclerView.Adapter {
                         public void normalResponse(Object response) {
                             BasicResult result = (BasicResult) response;
                             if (!result.code.equals("10")) {
-                                CommonUtils.toastMessage(result.getInfo());
-                                ((CircleUI) context).refreshData();
+                                if (context instanceof  CircleUI) {
+                                    ((CircleUI) context).refreshData();
+                                }else if (context instanceof SubscribActivity){
+                                    ((SubscribActivity) context).refreshData();
+                                }
                             }else {
                                 if (context instanceof CircleUI) {
-                                    CommonUtils.toastMessage(result.getInfo());
                                     ((CircleUI) context).refreshData();
+                                }else if (context instanceof SubscribActivity){
+                                    ((SubscribActivity) context).refreshData();
                                 }
                             }
+                            CommonUtils.toastMessage(result.getInfo());
                         }
                     });
 
