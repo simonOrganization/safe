@@ -128,7 +128,7 @@
                     android:textColor="@color/title_999"
                     android:layout_marginLeft="@dimen/dm006"/>
 
-                <CheckBox
+                <RadioButton
                     android:id="@+id/iv_circle_item_great"
                     android:layout_width="@dimen/dm024"
                     android:layout_height="@dimen/dm024"
@@ -147,7 +147,7 @@
                     android:textSize="@dimen/dm020"
                     android:textColor="@color/title_999"
                     android:layout_marginLeft="@dimen/dm006"/>
-                <CheckBox
+                <RadioButton
                     android:id="@+id/iv_circle_item_low"
                     android:layout_width="@dimen/dm024"
                     android:layout_height="@dimen/dm024"

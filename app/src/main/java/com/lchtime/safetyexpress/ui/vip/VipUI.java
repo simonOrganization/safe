@@ -110,7 +110,7 @@ public class VipUI extends BaseUI {
         File file = new File(MyApplication.getContext().getFilesDir(),Constants.photo_name);//将要保存图片的路径
         //如果没有加载过图片了
         if (!file.exists()){
-            civ_vip_icon.setImageDrawable(getResources().getDrawable(R.drawable.vip_test_icon));
+            civ_vip_icon.setImageDrawable(getResources().getDrawable(R.drawable.circle_user_image));
             if (!TextUtils.isEmpty(InitInfo.vipInfoBean.user_detail.ud_photo_fileid)){
                 UpdataImageUtils.getUrlBitmap(InitInfo.vipInfoBean.user_detail.ud_photo_fileid, new UpdataImageUtils.BitmapListener() {
                     @Override
@@ -163,6 +163,24 @@ public class VipUI extends BaseUI {
                 }
                 addr_pro_post.addView(tv);
             }
+        }else {
+            float desity = getResources().getDisplayMetrics().density;
+            addr_pro_post.removeAllViews();
+            TextView tv = new TextView(this);
+            tv.setText("去完善个人信息");
+            tv.setBackground(getResources().getDrawable(R.drawable.shape_white_border));
+            tv.setHeight(R.dimen.dm050);
+            tv.setGravity(Gravity.CENTER);
+            tv.setSingleLine(true);
+            tv.setTextColor(Color.WHITE);
+            tv.setTextSize(26/desity + 0.5f);
+            tv.setPadding((int)(30/desity + 0.5f),0,(int)(30/desity + 0.5f),0);
+
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins((int)(10/desity + 0.5f),0,0,0);//4个参数按顺序分别是左上右下
+            tv.setLayoutParams(layoutParams);
+
+            addr_pro_post.addView(tv);
         }
     }
 

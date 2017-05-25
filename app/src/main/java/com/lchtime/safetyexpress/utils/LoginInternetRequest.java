@@ -72,6 +72,7 @@ public class LoginInternetRequest {
             return ;
         }else if(TextUtils.isEmpty(password)){
             CommonUtils.toastMessage("您输入的密码为空");
+            mListener.onResponseMessage("");
             return;
         }
 
@@ -100,6 +101,7 @@ public class LoginInternetRequest {
                 SpTools.setString(MyApplication.getContext(), Constants.userId, null);//存储用户的ub_id
                 SpTools.setString(MyApplication.getContext(), Constants.phoneNum, null);//存储用户的手机号码
                 SpTools.setString(MyApplication.getContext(), Constants.password, null);//存储用户的密码
+                mListener.onResponseMessage("失败");
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
 
@@ -115,7 +117,7 @@ public class LoginInternetRequest {
                     SpTools.setString(MyApplication.getContext(), Constants.userId, null);//存储用户的ub_id
                     SpTools.setString(MyApplication.getContext(), Constants.phoneNum, null);//存储用户的手机号码
                     SpTools.setString(MyApplication.getContext(), Constants.password, null);//存储用户的密码
-
+                    mListener.onResponseMessage("失败");
                     CommonUtils.toastMessage(info);
 
 
@@ -135,18 +137,18 @@ public class LoginInternetRequest {
         mTextView = view;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
-            mListener.onResponseMessage("");
+            mListener.onResponseMessage("net");
             return;
         }
         if(TextUtils.isEmpty(phoneNumber)){
             CommonUtils.toastMessage("您输入的手机号为空");
-            mListener.onResponseMessage("");
+            //mListener.onResponseMessage("");
             return ;
         }
         if(!TextUtils.isEmpty(phoneNumber)){
             if(!CommonUtils.isMobilePhone(phoneNumber)){
                 CommonUtils.toastMessage("您输入的手机号有误");
-                mListener.onResponseMessage("");
+                //mListener.onResponseMessage("");
                 return ;
             }
         }
@@ -164,7 +166,7 @@ public class LoginInternetRequest {
             @Override
             public void onError(Call call, Exception e, int id) {
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
-                mListener.onResponseMessage("");
+                mListener.onResponseMessage("net");
             }
 
             @Override
@@ -175,7 +177,7 @@ public class LoginInternetRequest {
                 if(code.equals("20")){
                     if(info.equals("ub_phone error!")){
                         CommonUtils.toastMessage("您输入的手机号错误");
-                        mListener.onResponseMessage("");
+                        //mListener.onResponseMessage("");
                     }
                 }else{
                     String mVc_code = result.vc_code;
@@ -199,16 +201,20 @@ public class LoginInternetRequest {
         mTextView = view;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
+            mListener.onResponseMessage("");
             return;
         }
         if(TextUtils.isEmpty(phoneNumber)){
             CommonUtils.toastMessage("您输入的手机号为空");
+            mListener.onResponseMessage("");
             return;
         }else if(TextUtils.isEmpty(code)){
             CommonUtils.toastMessage("您输入的验证码为空");
+            mListener.onResponseMessage("");
             return;
         }else if(TextUtils.isEmpty(password)){
             CommonUtils.toastMessage("您输入的密码为空");
+            mListener.onResponseMessage("");
             return;
         }
         if(!TextUtils.isEmpty(phoneNumber)){
@@ -220,6 +226,7 @@ public class LoginInternetRequest {
         }
         if(!vc_code.equals(code)){
             CommonUtils.toastMessage("您输入的验证码错误");
+            mListener.onResponseMessage("");
             return;
         }
         String url = context.getResources().getString(R.string.service_host_address)
@@ -233,6 +240,7 @@ public class LoginInternetRequest {
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
+                mListener.onResponseMessage("");
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
             @Override
@@ -249,13 +257,17 @@ public class LoginInternetRequest {
                 }else if(code.equals("20")){
                     if(info.equals("手机长度不正确")){
                         CommonUtils.toastMessage("您输入的手机号错误");
+                        mListener.onResponseMessage("");
                     }else if(info.equals("手机号已存在！")){
                         CommonUtils.toastMessage("您输入的手机号已注册");
+                        mListener.onResponseMessage("");
                     }else if(info.equals("密码长度不正确！")){
                         CommonUtils.toastMessage("您输入的密码位数不足6位");
+                        mListener.onResponseMessage("");
                     }
                 }else {
                     CommonUtils.toastMessage("未知错误");
+                    mListener.onResponseMessage("");
                 }
             }
         });
@@ -279,23 +291,28 @@ public class LoginInternetRequest {
         mTextView = view;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
+            mListener.onResponseMessage("");
             return;
         }
         if(TextUtils.isEmpty(phoneNumber)){
             CommonUtils.toastMessage("您输入的手机号为空");
+            mListener.onResponseMessage("");
             return;
         }else if(TextUtils.isEmpty(code)){
             CommonUtils.toastMessage("您输入的验证码为空");
+            mListener.onResponseMessage("");
             return;
         }else if(TextUtils.isEmpty(password) | TextUtils.isEmpty(nextPassword)){
             CommonUtils.toastMessage("您输入的密码为空");
             passport.setText("");
             nextPassport.setText("");
+            mListener.onResponseMessage("");
             return;
         }else if(password.length()<6 |nextPassword.length()<6){
             CommonUtils.toastMessage("输入的密码长度不要小于6位");
             passport.setText("");
             nextPassport.setText("");
+            mListener.onResponseMessage("");
             return;
         }
         if(!TextUtils.isEmpty(phoneNumber)){
@@ -309,10 +326,12 @@ public class LoginInternetRequest {
             CommonUtils.toastMessage("二次输入的密码不一致");
             passport.setText("");
             nextPassport.setText("");
+            mListener.onResponseMessage("");
             return;
         }
         if(!vc_code.equals(code)){
             CommonUtils.toastMessage("您输入的验证码错误");
+            mListener.onResponseMessage("");
             return;
         }
 
@@ -331,6 +350,7 @@ public class LoginInternetRequest {
             @Override
             public void onError(Call call, Exception e, int id) {
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
+                mListener.onResponseMessage("");
             }
             @Override
             public void onResponse(String response, int id) {
@@ -346,6 +366,10 @@ public class LoginInternetRequest {
 
                 }else if(code.equals("20")){
                     CommonUtils.toastMessage("修改密码失败，请重新输入");
+                    mListener.onResponseMessage("");
+                }else {
+                    CommonUtils.toastMessage(info);
+                    mListener.onResponseMessage("");
                 }
             }
         });

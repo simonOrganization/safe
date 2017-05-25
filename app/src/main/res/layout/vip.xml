@@ -197,7 +197,7 @@
                     android:layout_width="@dimen/dm138"
                     android:layout_height="@dimen/dm138"
                     android:layout_marginTop="@dimen/dm050"
-                    android:background="@drawable/vip_test_icon" />
+                    android:background="@drawable/circle_user_image" />
 
                 <TextView
                     android:id="@+id/tv_vip_nickname"

@@ -57,7 +57,7 @@
                         android:layout_width="@dimen/dm100"
                         android:layout_height="@dimen/dm100"
                         android:layout_marginRight="@dimen/dm010"
-                        android:background="@drawable/vip_test_icon" />
+                        android:background="@drawable/circle_user_image" />
 
                     <ImageView
                         android:layout_width="@dimen/dm035"

@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -58,18 +59,30 @@ public class HomeNewsSearchUI extends BaseUI {
     private HomeSearchContentFragment keyWordFragment;
     private Fragment currentFragment;
 
+    private String intentData;
     @Override
     protected void back() {
         finish();
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if (!TextUtils.isEmpty(intentData)){
+            et_news_search.setText(intentData);
+
+            searchDown();
+
+
+        }
+    }
+    @Override
     protected void setControlBasis() {
         mType = getIntent().getStringExtra("type");
         if (TextUtils.isEmpty(mType)){
             mType = "0";
         }
-
+        intentData = getIntent().getStringExtra("content");
         initListener();
         changeUI(7);
 
@@ -103,6 +116,8 @@ public class HomeNewsSearchUI extends BaseUI {
                         currentFragment = mCacheFragments.get(7);
                     }
                 }
+
+
             }
 
             @Override

@@ -20,7 +20,11 @@
 
         <ScrollView
             android:layout_width="@dimen/dm500"
-            android:layout_height="@dimen/dm712">
+            android:layout_height="@dimen/dm712"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbarThumbVertical="@color/commen_reg"
+            android:scrollbarSize="3dp"
+            android:scrollbars="vertical">
             <TextView
                 android:id="@+id/content"
                 android:layout_width="match_parent"

@@ -32,6 +32,7 @@ import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.lchtime.safetyexpress.views.LoadingPager;
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.io.IOException;
@@ -110,7 +111,10 @@ public class HomeNewsFragment extends BaseFragment {
             @Override
             public void onRefresh() {
                 footPage = 0;
-                commentList = new ArrayList<NewsBean>();
+                if (commentList == null) {
+                    commentList = new ArrayList<NewsBean>();
+                }
+                commentList.clear();
                 if (position == 0 || position == 1){
                     new Thread(new Runnable() {
                         @Override
@@ -166,6 +170,7 @@ public class HomeNewsFragment extends BaseFragment {
 
     int totalPage = 1;
     private void initPosition1to2(final String type, String url,String index) {
+        String ub_id = SpTools.getString(getContext(),Constants.userId,"");
         if (Integer.parseInt(index) + 1 > totalPage){
             handler.post(new Runnable() {
                 @Override
@@ -190,13 +195,16 @@ public class HomeNewsFragment extends BaseFragment {
 
         Response response = null;
         try {
-            response = OkHttpUtils
+
+            PostFormBuilder builder = OkHttpUtils
                     .post()
                     .url(url)
                     .addParams("type",type)
-                    .addParams("page",index)
-                    .build()
-                    .execute();
+                    .addParams("page",index);
+            if (!TextUtils.isEmpty(ub_id)){
+                builder.addParams("ub_id",ub_id);
+            }
+            response = builder .build().execute();
             String myResponse = response.body().string();
 
             final NewsRes newsRes = (NewsRes) JsonUtils.stringToObject(myResponse,NewsRes.class);
@@ -259,6 +267,7 @@ public class HomeNewsFragment extends BaseFragment {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
+                    homeNewAdapter.notifyDataSetChanged();
                     refreshLayout.setPullLoadMoreCompleted();
                 }
             });
@@ -281,6 +290,7 @@ public class HomeNewsFragment extends BaseFragment {
     }
 
     private void getNewsList(String cid,String url,String index){
+        String ub_id = SpTools.getString(getContext(),Constants.userId,"");
         if (Integer.parseInt(index) + 1 > totalPage){
             handler.post(new Runnable() {
                 @Override
@@ -304,13 +314,17 @@ public class HomeNewsFragment extends BaseFragment {
 
         Response response = null;
         try {
-            response = OkHttpUtils
+
+
+            PostFormBuilder builder = OkHttpUtils
                     .post()
                     .url(url)
                     .addParams("cd_id",cid)
-                    .addParams("page",index)
-                    .build()
-                    .execute();
+                    .addParams("page",index);
+            if (!TextUtils.isEmpty(ub_id)){
+                builder.addParams("ub_id",ub_id);
+            }
+            response = builder .build().execute();
             String myResponse = response.body().string();
             Log.i("cui","getNewsList=="+response);
             final NewsListRes newsListRes = (NewsListRes) JsonUtils.stringToObject(myResponse,NewsListRes.class);
@@ -368,6 +382,7 @@ public class HomeNewsFragment extends BaseFragment {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
+                    homeNewAdapter.notifyDataSetChanged();
                     refreshLayout.setPullLoadMoreCompleted();
                 }
             });

@@ -114,6 +114,22 @@ public abstract class LoadingPager extends FrameLayout {
         }
     }
 
+
+    public void triggerLoadData2(){
+
+        if (mLoadDataTask == null){
+
+            mCurState = STATE_LOADING;
+
+            refreshViewByState();
+
+            mLoadDataTask = new LoadDataTask();
+
+            ThreadPoolFactory.getNormalThreadPoolProxy().submit(mLoadDataTask);
+
+        }
+    }
+
     class LoadDataTask implements Runnable{
         @Override
         public void run() {

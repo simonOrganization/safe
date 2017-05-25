@@ -114,6 +114,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/line" />
             <LinearLayout
+                android:id="@+id/ll_invite_friend"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:gravity="center"

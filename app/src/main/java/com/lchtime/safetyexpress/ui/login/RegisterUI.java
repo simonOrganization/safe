@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +56,10 @@ public class RegisterUI extends BaseUI {
     @ViewInject(R.id.et_register_passport)
     private EditText et_register_passport;
 
+
+    @ViewInject(R.id.pb_progress)
+    private ProgressBar pb_progress;
+
     @Override
     protected void back() {
         finish();
@@ -84,42 +90,61 @@ public class RegisterUI extends BaseUI {
      * 注册
      * @param view
      */
+
+    boolean isLogin = false;
     @OnClick(R.id.tv_register_reg)
     private void getRegister(View view){
-//        Intent intent = new Intent(RegisterUI.this, TabUI.class);
-//        startActivity(intent);
-//        finish();
+        if (isLogin == true){
+            return;
+        }
+        isLogin = true;
+        //显示progressbar
+        pb_progress.setVisibility(View.VISIBLE);
+        backgroundAlpha(0.5f);
+
         String phoneNum = et_register_username.getText().toString().trim();
         String pwd = et_register_passport.getText().toString().trim();
         String customRegisterNum = et_register_code.getText().toString();
         if (registerCode == null){
+            Toast.makeText(RegisterUI.this,"您没有获取验证码",Toast.LENGTH_SHORT).show();
+            isLogin = false;
+            backgroundAlpha(1f);
+            pb_progress.setVisibility(View.GONE);
             return ;
         }
         LoginInternetRequest.register(phoneNum, registerCode, pwd, customRegisterNum, register_getcode, new LoginInternetRequest.ForResultListener() {
             @Override
             public void onResponseMessage(String code) {
-                //存储用户的ub_id
-                SpTools.setString(RegisterUI.this, Constants.userId, code);
-                userId = code;
-                getVipInfo();
-                //显示不全信息对话框
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        vipInfoHintPop.showAtLocation();
-                        vipInfoHintPop.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(RegisterUI.this, VipInfoUI.class);
-                                startActivity(intent);
-                                vipInfoHintPop.dismiss();
-                                finish();
-                            }
-                        });
-                    }
-                }, 1000);
-                InitInfo.isShowed = false;
-
+                if (!TextUtils.isEmpty(code)) {
+                    //存储用户的ub_id
+                    SpTools.setString(RegisterUI.this, Constants.userId, code);
+                    userId = code;
+                    getVipInfo();
+                    //显示不全信息对话框
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            vipInfoHintPop.showAtLocation();
+                            vipInfoHintPop.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(RegisterUI.this, VipInfoUI.class);
+                                    startActivity(intent);
+                                    vipInfoHintPop.dismiss();
+                                    finish();
+                                }
+                            });
+                        }
+                    }, 1000);
+                    InitInfo.isShowed = false;
+                    isLogin = false;
+                    backgroundAlpha(1f);
+                    pb_progress.setVisibility(View.GONE);
+                }else {
+                    isLogin = false;
+                    backgroundAlpha(1f);
+                    pb_progress.setVisibility(View.GONE);
+                }
             }
         });
     }
@@ -131,6 +156,7 @@ public class RegisterUI extends BaseUI {
         if (TextUtils.isEmpty(userId)){
             userId = SpTools.getString(this,Constants.userId,"");
         }
+
         //登录操作
         LoginInternetRequest.getVipInfo(userId, new LoginInternetRequest.ForResultListener() {
             @Override
@@ -161,10 +187,20 @@ public class RegisterUI extends BaseUI {
             @Override
             public void onResponseMessage(String code) {
                 registerCode = code;
-
-                Toast.makeText(RegisterUI.this,registerCode,Toast.LENGTH_SHORT).show();
+                if ("net".equals(registerCode)){
+                    Toast.makeText(RegisterUI.this,"请查看网络",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+               // Toast.makeText(RegisterUI.this,registerCode,Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void backgroundAlpha(float bgAlpha)
+    {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = bgAlpha; //0.0-1.0
+        getWindow().setAttributes(lp);
     }
 
 }

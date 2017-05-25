@@ -77,6 +77,7 @@ public class HomeQuewstionDetail extends BaseUI {
     ImageView onePicHomeQuestion;
     TextView tvHomeQuestionNum;
     TextView tvHomeFocusNum;
+    LinearLayout llInviteFriend;
     private String qid = "";
 
     private HomeQuestionProtocal protocal;
@@ -115,6 +116,13 @@ public class HomeQuewstionDetail extends BaseUI {
                 startActivity(intent);
             }
         });
+        llInviteFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeQuewstionDetail.this,InviteFriendActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initView(View view) {
@@ -124,6 +132,7 @@ public class HomeQuewstionDetail extends BaseUI {
          onePicHomeQuestion = (ImageView) view.findViewById(R.id.one_pic_home_question);
          tvHomeQuestionNum = (TextView) view.findViewById(R.id.tv_home_question_num);
          tvHomeFocusNum = (TextView) view.findViewById(R.id.tv_home_focus_num);
+         llInviteFriend = (LinearLayout) view.findViewById(R.id.ll_invite_friend);
     }
 
 

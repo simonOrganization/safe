@@ -249,9 +249,9 @@ public class CommonUtils {
         String dateStr2 = simpleDateFormat.format(date2);
 
         if (dateStr.substring(0,4).equals(dateStr2.substring(0,4))){
-            return dateStr.substring(5,dateStr.length());
+            return dateStr2.substring(5,dateStr.length());
         }
-        return dateStr.substring(0,dateStr.length());
+        return dateStr2.substring(0,dateStr.length());
     }
 
 }

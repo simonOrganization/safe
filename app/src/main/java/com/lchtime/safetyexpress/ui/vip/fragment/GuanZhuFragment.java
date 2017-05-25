@@ -52,6 +52,9 @@ public class GuanZhuFragment extends BaseFragment {
 
     @Override
     public LoadingPager.LoadedResult initData() {
+        if (items != null){
+            items.clear();
+        }
         getData("0");
         return loadedResult;
     }

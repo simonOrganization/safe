@@ -8,7 +8,9 @@ import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bslee.threelogin.api.OauthListener;
@@ -53,6 +55,9 @@ public class LoginUI extends BaseUI {
     @ViewInject(R.id.et_login_passport)
     private EditText et_login_passport;
 
+    @ViewInject(R.id.pb_progress)
+    private ProgressBar pb_progress;
+
     private Gson gson;
     private Handler handler = new Handler();
     private MyReceiver mReceiver;
@@ -82,10 +87,16 @@ public class LoginUI extends BaseUI {
      * 登录
      * @param view
      */
+    boolean isLogin = false;
     @OnClick(R.id.tv_login_login)
     private void getLogin(View view){
-
-
+        if (isLogin == true){
+            return;
+        }
+        isLogin = true;
+        //显示progressbar
+        pb_progress.setVisibility(View.VISIBLE);
+        backgroundAlpha(0.5f);
         final String phonenumber = et_login_username.getText().toString().trim();
         final String password = et_login_passport.getText().toString().trim();
         LoginInternetRequest.login(phonenumber, password, new LoginInternetRequest.ForResultListener() {
@@ -109,12 +120,19 @@ public class LoginUI extends BaseUI {
                                             SpTools.setString(LoginUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
                                             SpTools.setString(LoginUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
                                             finish();
+                                            isLogin = false;
+                                            backgroundAlpha(1f);
+                                            pb_progress.setVisibility(View.GONE);
                                         }
                                     }
                                 }
                             });
 
-                }
+                         }else {
+                            isLogin = false;
+                            backgroundAlpha(1f);
+                            pb_progress.setVisibility(View.GONE);
+                        }
             }
         });
     }
@@ -277,6 +295,14 @@ public class LoginUI extends BaseUI {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mReceiver);
         mReceiver = null;
         super.onDestroy();
+    }
+
+
+    public void backgroundAlpha(float bgAlpha)
+    {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = bgAlpha; //0.0-1.0
+        getWindow().setAttributes(lp);
     }
 
 }

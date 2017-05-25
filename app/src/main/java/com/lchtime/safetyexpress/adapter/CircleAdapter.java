@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -174,6 +175,7 @@ public class CircleAdapter extends RecyclerView.Adapter {
         holder.circle_item_great.setText(bean.qc_zc);
         holder.iv_circle_item_great.setChecked("1".equals(bean.zan));
         //点赞逻辑监听
+
         holder.iv_circle_item_great.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -190,15 +192,17 @@ public class CircleAdapter extends RecyclerView.Adapter {
                             BasicResult result = (BasicResult) response;
                             if (!result.code.equals("10")) {
                                 CommonUtils.toastMessage(result.getInfo());
-                                holder.iv_circle_item_great.setChecked("1".equals(bean.zan));
+                                //holder.iv_circle_item_great.setChecked("1".equals(bean.zan));
+                                ((CircleUI) context).refreshData();
                             }else {
                                 if (context instanceof CircleUI) {
+                                    CommonUtils.toastMessage(result.getInfo());
                                     ((CircleUI) context).refreshData();
                                 }
                             }
                         }
                     });
-                    holder.iv_circle_item_great.setChecked(true);
+                    //holder.iv_circle_item_great.setChecked(true);
                 }
 
             }
@@ -206,7 +210,7 @@ public class CircleAdapter extends RecyclerView.Adapter {
     }
 
     private void setDown(final CircleHodler holder, final QzContextBean bean, final CircleProtocal protocal) {
-        holder.circle_item_low.setText(bean.qc_zc);
+        holder.circle_item_low.setText(bean.qc_fd);
         holder.iv_circle_item_low.setChecked("1".equals(bean.cai));
         //点赞逻辑监听
         holder.iv_circle_item_low.setOnClickListener(new View.OnClickListener() {
@@ -226,16 +230,17 @@ public class CircleAdapter extends RecyclerView.Adapter {
                             BasicResult result = (BasicResult) response;
                             if (!result.code.equals("10")) {
                                 CommonUtils.toastMessage(result.getInfo());
-                                holder.iv_circle_item_low.setChecked("1".equals(bean.zan));
+                                ((CircleUI) context).refreshData();
                             }else {
                                 if (context instanceof CircleUI) {
+                                    CommonUtils.toastMessage(result.getInfo());
                                     ((CircleUI) context).refreshData();
                                 }
                             }
                         }
                     });
 
-                    holder.iv_circle_item_low.setChecked(true);
+                    //holder.iv_circle_item_low.setChecked(true);
                 }
 
             }
@@ -270,12 +275,12 @@ public class CircleAdapter extends RecyclerView.Adapter {
         TextView circle_item_great;
         //点赞图片
         @BindView(R.id.iv_circle_item_great)
-        CheckBox iv_circle_item_great;
+        RadioButton iv_circle_item_great;
         @BindView(R.id.circle_item_low)
         TextView circle_item_low;
         //比down图片
         @BindView(R.id.iv_circle_item_low)
-        CheckBox iv_circle_item_low;
+        RadioButton iv_circle_item_low;
         @BindView(R.id.circle_item_time)
         TextView circle_item_time;
         @BindView(R.id.circle_item_subscribe)

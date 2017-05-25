@@ -123,27 +123,14 @@ public class TabUI extends TabActivity implements OnClickListener {
             }
         });
 
-//        unclickble_pic.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //CommonUtils.toastMessage("ll_unclickble_pic");
-//            }
-//        });
+
         unclickble_view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return true;
             }
         });
-//        tab_check.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //设置加号点击事件
-//                CirclePublicPop circlePublicPop = new CirclePublicPop(TabUI.this);
-//                circlePublicPop.showPopData(rg_tab);
-//
-//            }
-//        });
+
 
         //弹框，弹出奖励规则
         jiangli_guize.setOnClickListener(new OnClickListener() {

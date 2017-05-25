@@ -4,6 +4,10 @@ package com.bslee.threelogin.constans;
  * Created by android-cp on 2017/5/22.
  */
 
+//
+//APP ID1106181532
+//APP KEYQGhgIAuvET2V5N4K
+
 public class ThirdAppKey {
     //微信
     public static final String WEIXIN_SCOPE="snsapi_userinfo";

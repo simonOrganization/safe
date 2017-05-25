@@ -13,6 +13,7 @@ import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.mzhy.http.okhttp.OkHttpUtils;
+import com.mzhy.http.okhttp.builder.PostFormBuilder;
 import com.mzhy.http.okhttp.callback.StringCallback;
 
 import okhttp3.Call;
@@ -160,15 +161,22 @@ public class CircleProtocal {
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
                 .concat(MyApplication.getContext().getResources().getString(R.string.newsdz));
-        OkHttpUtils
+        PostFormBuilder builder = OkHttpUtils
                 .post()
-                .addParams("ub_id",ub_id)
+                .addParams("ub_id", ub_id)
                 //新闻id
-                .addParams("qc_id",qc_id)
-                //同意
-                .addParams("qc_agr",qc_agr)
-                //反对
-                .addParams("qc_aga",qc_aga)
+                .addParams("qc_id", qc_id);
+        if ("1".equals(qc_agr)) {
+            builder
+                    //同意
+                    .addParams("qc_agr", qc_agr);
+
+        }else {
+            builder
+                    //反对
+                    .addParams("qc_aga", qc_aga);
+        }
+        builder
                 .url(url)
                 .build()
                 .execute(new StringCallback() {

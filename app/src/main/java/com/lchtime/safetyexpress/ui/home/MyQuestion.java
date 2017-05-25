@@ -18,6 +18,9 @@ import com.lchtime.safetyexpress.ui.vip.MyConllected;
 import com.lchtime.safetyexpress.ui.vip.fragment.BaseFragment;
 import com.lchtime.safetyexpress.ui.vip.fragment.FragmentFactory;
 import com.lchtime.safetyexpress.ui.vip.fragment.FragmentFactory2WenDa;
+import com.lchtime.safetyexpress.ui.vip.fragment.GuanZhuFragment;
+import com.lchtime.safetyexpress.ui.vip.fragment.TiWenFragment;
+import com.lchtime.safetyexpress.ui.vip.fragment.WenDaFragment;
 import com.lchtime.safetyexpress.views.LoadingPager;
 import com.lidroid.xutils.view.annotation.ContentView;
 
@@ -25,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by android-cp on 2017/5/23.
+ * Created by android-cp on 2017/5/23. 我的问答界面
  */
 @ContentView(R.layout.question_myquestion)
 public class MyQuestion extends BaseUI {
@@ -83,6 +86,7 @@ public class MyQuestion extends BaseUI {
         myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         vpViewpager.setAdapter(myPagerAdapter);
         mainTabs.setViewPager(vpViewpager);
+        vpViewpager.setOffscreenPageLimit(0);
     }
 
     @Override
@@ -147,7 +151,20 @@ public class MyQuestion extends BaseUI {
         public void onPageSelected(int position) {
             currentFragment = FragmentFactory2WenDa.createFragment(position);
             LoadingPager loadingPager = currentFragment.getLoadingPager();
-            loadingPager.triggerLoadData();
+            loadingPager.triggerLoadData2();
+            switch (position){
+
+
+                case 0://返回 关注 对应的fragment
+                    tvTitleshow.setText("关注问题" );
+                    break;
+                case 1://返回 回答 对应的fragment
+                    tvTitleshow.setText("我的回答");
+                    break;
+                case 2://返回 提问 对应的fragment
+                    tvTitleshow.setText("我的提问");
+                    break;
+            }
         }
 
         @Override

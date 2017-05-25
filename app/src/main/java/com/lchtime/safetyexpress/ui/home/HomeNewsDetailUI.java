@@ -1,17 +1,26 @@
 package com.lchtime.safetyexpress.ui.home;
 
+import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.pop.SharePop;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.Const;
+import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
+import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
+import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.SpTools;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -45,8 +54,10 @@ public class HomeNewsDetailUI extends BaseUI {
 
     @Override
     protected void setControlBasis() {
+        String ub_id = SpTools.getString(this, Constants.userId,"");
         cc_id = getIntent().getStringExtra("newsId");
         type = getIntent().getStringExtra("type");
+
         if ("news".equals(type)){
             baseUrl = Const.HOST+"cms/pagenews?cc_id=" + cc_id;
             setTitle("新闻中心");
@@ -54,11 +65,15 @@ public class HomeNewsDetailUI extends BaseUI {
             baseUrl = Const.HOST+"cms/videoinfo?cc_id=" + cc_id;
             setTitle("视频中心");
         }
-
+        if (!TextUtils.isEmpty(ub_id)){
+            baseUrl = baseUrl + "&ub_id=" +ub_id;
+        }
         rightVisible(R.drawable.news_share);
         sharePop = new SharePop(ll_right, HomeNewsDetailUI.this, R.layout.pop_share);
         init();
     }
+
+
 
     @Override
     protected void prepareData() {
@@ -66,8 +81,6 @@ public class HomeNewsDetailUI extends BaseUI {
     }
     private void init(){
         //WebView加载web资源
-
-
 
 
         home_news_detailed_web.loadUrl(baseUrl);
@@ -80,12 +93,42 @@ public class HomeNewsDetailUI extends BaseUI {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 // TODO Auto-generated method stub
                 //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
-                view.loadUrl(url);
+                //view.loadUrl(url);
                 return true;
+            }
+        });
+
+        home_news_detailed_web.addJavascriptInterface(this,"android");
+    }
+
+//搜索
+    @JavascriptInterface
+    public void getKeyWord(final String text){
+        runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                Intent intent = new Intent(HomeNewsDetailUI.this,HomeNewsSearchUI.class);
+                intent.putExtra("content",text);
+                startActivity(intent);
+
             }
         });
     }
 
+    @JavascriptInterface
+    public void getUserId(final String ub_id){
+        runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                Intent intent = new Intent(HomeNewsDetailUI.this,SingleInfoUI.class);
+                intent.putExtra("uid",ub_id);
+                startActivity(intent);
+
+            }
+        });
+    }
     /**
      * 分享
      *

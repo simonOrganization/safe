@@ -127,16 +127,6 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 makeText("广告" + position);
             }
         });
-//        sb_home_banner.setImageLoader(new ImageLoader() {
-//            @Override
-//            public void displayImage(Context context, Object path, ImageView imageView) {
-//                Picasso.with(context).load(((HomeBannerBean)path).getImgurl()).into(imageView);
-//            }
-//        });
-//        //设置图片集合
-//        sb_home_banner.setImages(mDatas);
-//
-//        sb_home_banner.start();
 
         cp = new CirclePopView(CircleUI.this);
         initData();
@@ -225,80 +215,6 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
 
     }
 
-
-   /* //行业选择
-    public static final String HANG_YE = "hy";
-    private boolean hySelected = false;
-    @OnClick(R.id.circle_work)
-    private void getWork(View view){
-        //改变ui
-        hy_indicator.setSelected(true);
-        hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
-        tv_hy_selected.setSelected(true);
-        //更新数据
-        currentSelected = HANG_YE;
-        cp.setDataAdapter(InitInfo.professionBean.hy);
-        //显示在circle_work的下方
-        cp.showPopWindow(circle_work);
-
-
-    }
-    //岗位选择
-    public static final String GANG_WEI = "gw";
-    private boolean gwSelected = false;
-    @OnClick(R.id.circle_gangwei)
-    private void getGangwei(View view){
-        //改变ui
-        gw_indicator.setSelected(true);
-        gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
-        tv_gw_selected.setSelected(true);
-        currentSelected = GANG_WEI;
-        if (gwList.size() <= 0) {
-            for (PostBean.PostItemBean bean : InitInfo.postBean.gw) {
-                ProfessionBean.ProfessionItemBean itemBean = new ProfessionBean.ProfessionItemBean();
-                itemBean.isSelect = bean.isSelect;
-                itemBean.hy_name = bean.gw_name;
-                itemBean.hy_id = bean.gw_id;
-                gwList.add(itemBean);
-            }
-        }
-        cp.setDataAdapter(gwList);
-        cp.showPopWindow(circle_work);
-
-    }
-    //地理位置
-    public static final String ADDRESS ="addr";
-    @OnClick(R.id.circle_address)
-    private void getAddress(View view){
-        currentSelected = ADDRESS;
-        Intent intent = new Intent(this, SelectCityActivity.class);
-        startActivityForResult(intent,CITY_REQUEST_CODE);
-
-    }*/
-    //按照什么来排序
- /*   @OnClick(R.id.circle_more)
-    private void getMord(View view){
-        if (moreData == null){
-            moreData = new ArrayList<String>();
-            moreData.add("按最新排序");
-            moreData.add("按热门排序");
-            moreData.add("按订阅量排序");
-        }
-        spinerPopWindow = new SpinerPopWindow(CircleUI.this,moreData);
-        spinerPopWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
-        spinerPopWindow.showAsDropDown(circle_layout_view);
-        spinerPopWindow.setSpinerInterface(new SpinerPopWindow.SpinerInterface() {
-            @Override
-            public void setSpinerInterface(int position) {
-                spinerPopWindow.dismiss();
-                request_order = position + "";
-                //请求筛选过的数据
-                refreshData();
-
-            }
-        });
-    }
-*/
     @Override
     protected void prepareData() {
         getAdvData();
@@ -439,7 +355,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 if(response.qz_context != null) {
                     circleList.addAll(response.qz_context);
                 }
-                rcAdapter.notifyDataSetChanged();
+                wapperAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -494,7 +410,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
             }
             spinerPopWindow = new SpinerPopWindow(CircleUI.this,moreData);
             spinerPopWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
-            spinerPopWindow.showAsDropDown(headerView);
+            spinerPopWindow.showAsDropDown(circle_more);
             spinerPopWindow.setSpinerInterface(new SpinerPopWindow.SpinerInterface() {
                 @Override
                 public void setSpinerInterface(int position) {
