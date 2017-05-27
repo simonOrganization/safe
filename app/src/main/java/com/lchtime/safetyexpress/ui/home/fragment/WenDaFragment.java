@@ -22,6 +22,7 @@ import com.lchtime.safetyexpress.ui.vip.fragment.BaseFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.LoadingPager;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.PostFormBuilder;
@@ -41,6 +42,7 @@ public class WenDaFragment extends BaseFragment {
     private RecyclerView recyclerView;
     private Handler handler = new Handler();
     private String otherid = "";
+    private PullLoadMoreRecyclerView pullLoadMoreRecyclerView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,17 +50,55 @@ public class WenDaFragment extends BaseFragment {
         if (getActivity() instanceof  MyQuestion) {
             otherid = ((MyQuestion) getActivity()).otherid;
         }
-        recyclerView = new RecyclerView(getContext());
+        if (pullLoadMoreRecyclerView == null) {
+            pullLoadMoreRecyclerView = new PullLoadMoreRecyclerView(getContext());
+        }
+        recyclerView = (RecyclerView) pullLoadMoreRecyclerView.findViewById(R.id.home_new_fragment_rc);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        items = new ArrayList<>();
+        if (items == null) {
+            items = new ArrayList<>();
+        }
         adapter = new WenDaAdapter(this,items);
         recyclerView.setAdapter(adapter);
-    }
+        pullLoadMoreRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+            @Override
+            public void onRefresh() {
+                if (items != null){
+                    items.clear();
+                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getData("1");
+                    }
+                }).start();
 
+            }
+
+            @Override
+            public void onLoadMore() {
+                page++;
+                if (page > totalPage){
+                    CommonUtils.toastMessage("已经没有更多了");
+                    pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                    return;
+                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getData(page + "");
+                    }
+                }).start();
+
+            }
+        });
+    }
+    private int page = 1;
+    private int totalPage = 1;
     @Override
     protected View initSuccessView() {
         adapter.notifyDataSetChanged();
-        return recyclerView;
+        return pullLoadMoreRecyclerView;
     }
 
     @Override
@@ -66,7 +106,7 @@ public class WenDaFragment extends BaseFragment {
         if (items != null){
             items.clear();
         }
-        getData("0");
+        getData("1");
         return loadedResult;
     }
 
@@ -79,6 +119,14 @@ public class WenDaFragment extends BaseFragment {
     private void getData(String page){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             loadedResult = LoadingPager.LoadedResult.ERRO;
+
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+
+                }
+            });
             return;
         }
 
@@ -117,17 +165,37 @@ public class WenDaFragment extends BaseFragment {
                 if (adapter == null) {
                     adapter = new WenDaAdapter(this,items);
                 }
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
 
-
-                loadedResult = LoadingPager.LoadedResult.SUCCESS;
+                loadedResult = checkResult(items);
             }else{
                 loadedResult = LoadingPager.LoadedResult.ERRO;
             }
+
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+
+                }
+            });
 
 
         } catch (Exception e) {
             e.printStackTrace();
             loadedResult = LoadingPager.LoadedResult.ERRO;
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+
+                }
+            });
         }
     }
 

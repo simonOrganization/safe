@@ -6,37 +6,52 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <include layout="@layout/title"/>
-
-    <View
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm020"
-        android:background="@color/line_big"/>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/success"
+            android:visibility="gone"
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="match_parent"
+                    android:background="@color/white">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm020"
+                android:background="@color/line_big"/>
 
-    <!--<com.lchtime.safetyexpress.views.XHorizontalScrollView-->
-        <!--android:id="@+id/xhsv_home_videos"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/dm080"-->
-        <!--android:background="@drawable/background_tabs" >-->
-    <!--</com.lchtime.safetyexpress.views.XHorizontalScrollView>-->
-    <android.support.design.widget.TabLayout
-        android:id="@+id/xhsv_home_videos"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dm070"
-        app:tabIndicatorColor="@color/commen_reg"
-        app:tabSelectedTextColor="@color/commen_reg"
-        app:tabTextColor="#000000"
-        android:background="@color/white"/>
+            <!--<com.lchtime.safetyexpress.views.XHorizontalScrollView-->
+                <!--android:id="@+id/xhsv_home_videos"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/dm080"-->
+                <!--android:background="@drawable/background_tabs" >-->
+            <!--</com.lchtime.safetyexpress.views.XHorizontalScrollView>-->
+            <android.support.design.widget.TabLayout
+                android:id="@+id/xhsv_home_videos"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm070"
+                app:tabIndicatorColor="@color/commen_reg"
+                app:tabSelectedTextColor="@color/commen_reg"
+                app:tabTextColor="#000000"
+                android:background="@color/white"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dm020"
-        android:background="@color/line_big"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm020"
+                android:background="@color/line_big"/>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_home_videos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.v4.view.ViewPager>
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_home_videos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v4.view.ViewPager>
+        </LinearLayout>
+
+        <include android:id="@+id/loading" android:visibility="visible" layout="@layout/pager_loading"/>
+        <include android:id="@+id/empty" android:visibility="gone" layout="@layout/pager_empty"/>
+        <include android:id="@+id/error" android:visibility="gone" layout="@layout/pager_error"/>
+    </RelativeLayout>
 
 </LinearLayout>

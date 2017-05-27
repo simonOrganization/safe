@@ -1,6 +1,9 @@
 package com.lchtime.safetyexpress.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -17,8 +20,11 @@ import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.MydyBean;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
+import com.lchtime.safetyexpress.pop.VipInfoHintPop;
 import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
+import com.lchtime.safetyexpress.ui.login.RegisterUI;
+import com.lchtime.safetyexpress.ui.vip.VipInfoUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.CircleImageView;
@@ -35,11 +41,12 @@ import butterknife.ButterKnife;
  */
 
 public class CircleSubscribAdapter extends RecyclerView.Adapter {
-    private Context context;
+    private Activity context;
     private List<MydyBean.DyBean> dy;
     private CircleProtocal protocal = new CircleProtocal();
+    private VipInfoHintPop vipInfoHintPop;
 
-    public CircleSubscribAdapter(Context context,List<MydyBean.DyBean> dy) {
+    public CircleSubscribAdapter(Activity context,List<MydyBean.DyBean> dy) {
         this.context = context;
         this.dy = dy;
     }
@@ -60,42 +67,83 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
         myViewHolder.tv_hotcircle_name.setText(bean.ud_nickname);
         myViewHolder.cb_hotcircle_subscribe.setChecked(true);
 
+
+
         myViewHolder.cb_hotcircle_subscribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-                    CommonUtils.toastMessage("您当前无网络，请联网再试");
-                    myViewHolder.cb_hotcircle_subscribe.setChecked(true);
-                    return;
-                }
-                String userid = SpTools.getString(context, Constants.userId,"");
-                if (TextUtils.isEmpty(userid)){
-                    CommonUtils.toastMessage("请登陆！！！");
-                    myViewHolder.cb_hotcircle_subscribe.setChecked(true);
-                    return;
-                }else {
-                    protocal.changeSubscribe(userid, bean.ud_ub_id, "0" , new CircleProtocal.CircleListener() {
-                        @Override
-                        public void circleResponse(CircleBean response) {
-                            if ("10".equals(response.result.code)){
-                                //移除操作
-                                dy.remove(position);
-                                if (context instanceof SubscribActivity){
-                                    ((SubscribActivity) context).refreshData();
-                                }
-                                //notifyDataSetChanged();
-                                InitInfo.circleRefresh = true;
-                            }else {
-                                //订阅或者取消订阅失败了
-                                myViewHolder.cb_hotcircle_subscribe.setChecked(true);
+                if (context instanceof SubscribActivity){
+                    //弹框
+                    if (vipInfoHintPop == null) {
+                        vipInfoHintPop = new VipInfoHintPop(myViewHolder.cb_hotcircle_subscribe, context, R.layout.pop_confirm_unsubscribe);
+                        new Handler().post(new Runnable() {
+                            @Override
+                            public void run() {
+                                vipInfoHintPop.showAtLocation();
+                                vipInfoHintPop.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        removeSubscribe(myViewHolder, bean, position);
+                                        vipInfoHintPop.dismiss();
+                                    }
+                                });
+                                vipInfoHintPop.tv_jump.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        myViewHolder.cb_hotcircle_subscribe.setChecked(true);
+                                        vipInfoHintPop.dismiss();
+                                    }
+                                });
                             }
-                            CommonUtils.toastMessage(response.result.getInfo());
-                        }
-                    });
+                        });
+                    }
                 }
+
             }
         });
 
+
+
+    }
+
+
+
+    private void removeSubscribe(final CircleSubscribeHolder myViewHolder, MydyBean.DyBean bean, final int position) {
+        if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            myViewHolder.cb_hotcircle_subscribe.setChecked(true);
+            return;
+        }
+        String userid = SpTools.getString(context, Constants.userId,"");
+        if (TextUtils.isEmpty(userid)){
+            CommonUtils.toastMessage("请登陆！！！");
+            myViewHolder.cb_hotcircle_subscribe.setChecked(true);
+            return;
+        }else {
+            protocal.changeSubscribe(userid, bean.ud_ub_id, "0" , new CircleProtocal.CircleListener() {
+                @Override
+                public void circleResponse(CircleBean response) {
+                    if ("10".equals(response.result.code)){
+                        //移除操作
+                        dy.remove(position);
+                        if (dy.size() == 0){
+                            if (context instanceof SubscribActivity){
+                                ((SubscribActivity) context).setEmptyVisiblity();
+                            }
+                        }
+                        if (context instanceof SubscribActivity){
+                            ((SubscribActivity) context).refreshData();
+                        }
+                        //notifyDataSetChanged();
+                        InitInfo.circleRefresh = true;
+                    }else {
+                        //订阅或者取消订阅失败了
+                        myViewHolder.cb_hotcircle_subscribe.setChecked(true);
+                    }
+                    CommonUtils.toastMessage(response.result.getInfo());
+                }
+            });
+        }
     }
 
     @Override

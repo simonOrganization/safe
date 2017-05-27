@@ -16,7 +16,7 @@ import com.lchtime.safetyexpress.R;
 public class VipInfoHintPop extends CommentPopUtils implements View.OnClickListener {
 
     private TextView tv_perfect;
-    private TextView tv_jump;
+    public TextView tv_jump;
     private Activity activity;
 
     public VipInfoHintPop(View v, Activity activity, int layout) {

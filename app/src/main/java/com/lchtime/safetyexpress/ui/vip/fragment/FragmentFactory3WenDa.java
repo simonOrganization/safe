@@ -11,14 +11,14 @@ import java.util.Map;
  * Created by android-cp on 2017/4/21.
  */
 
-public class FragmentFactory2WenDa {
+public class FragmentFactory3WenDa {
     public static final int FRAGMENT_GUANZHU = 0;//新闻
     public static final int FRAGMENT_HUIDA = 1;//视频
     public static final int FRAGMENT_TIWEN = 2;//圈子
 
-    public Map<Integer,BaseFragment> mCacheFragments = new HashMap<>();
+    public static Map<Integer,BaseFragment> mCacheFragments = new HashMap<>();
 
-    public BaseFragment createFragment(int position){
+    public static BaseFragment createFragment(int position){
         BaseFragment fragment = null;
 
         if(mCacheFragments.containsKey(position)){

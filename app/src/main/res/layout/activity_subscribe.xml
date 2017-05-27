@@ -6,27 +6,17 @@
 
 
     <include layout="@layout/title" />
-    <ScrollView
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/success"
+            android:visibility="gone"
+            android:orientation="vertical" android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/circle_subscribe_rc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_marginTop="@dimen/dm020"
-                android:layout_marginLeft="@dimen/dm020"
-                android:layout_marginRight="@dimen/dm020"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dm016"
-                android:background="@color/page_color"/>
+            android:background="@color/white">
+
             <com.lchtime.safetyexpress.views.EmptyRecyclerView
                 android:id="@+id/erc_subscribe_circle"
                 android:layout_width="match_parent"
@@ -36,7 +26,9 @@
                 android:layout_marginRight="@dimen/dm020">
             </com.lchtime.safetyexpress.views.EmptyRecyclerView>
         </LinearLayout>
-
-    </ScrollView>
+        <include android:id="@+id/loading" android:visibility="visible" layout="@layout/pager_loading"/>
+        <include android:id="@+id/empty" android:visibility="gone" layout="@layout/pager_empty"/>
+        <include android:id="@+id/error" android:visibility="gone" layout="@layout/pager_error"/>
+    </RelativeLayout>
 
 </LinearLayout>

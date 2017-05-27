@@ -86,7 +86,7 @@ public class MyQuestion extends BaseUI {
         myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         vpViewpager.setAdapter(myPagerAdapter);
         mainTabs.setViewPager(vpViewpager);
-        vpViewpager.setOffscreenPageLimit(0);
+        vpViewpager.setOffscreenPageLimit(1);
     }
 
     @Override
@@ -120,7 +120,10 @@ public class MyQuestion extends BaseUI {
 
         @Override
         public Fragment getItem(int position) {
-            Fragment fragment = FragmentFactory2WenDa.createFragment(position);
+            if (factory2WenDa == null){
+                factory2WenDa = new FragmentFactory2WenDa();
+            }
+            Fragment fragment = factory2WenDa.createFragment(position);
             if (fragment != null){
                 return fragment;
             }
@@ -140,6 +143,7 @@ public class MyQuestion extends BaseUI {
     }
 
     private BaseFragment currentFragment;
+    private FragmentFactory2WenDa factory2WenDa;
     class MyOnpageChangeListener implements ViewPager.OnPageChangeListener{
 
         @Override
@@ -149,7 +153,10 @@ public class MyQuestion extends BaseUI {
 
         @Override
         public void onPageSelected(int position) {
-            currentFragment = FragmentFactory2WenDa.createFragment(position);
+            if (factory2WenDa == null){
+                factory2WenDa = new FragmentFactory2WenDa();
+            }
+            currentFragment = factory2WenDa.createFragment(position);
             LoadingPager loadingPager = currentFragment.getLoadingPager();
             loadingPager.triggerLoadData2();
             switch (position){

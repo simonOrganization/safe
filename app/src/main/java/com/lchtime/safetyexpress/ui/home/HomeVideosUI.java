@@ -9,6 +9,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.NewTypeBean;
@@ -40,6 +42,15 @@ public class HomeVideosUI extends BaseUI {
     @ViewInject(R.id.vp_home_videos)
     private ViewPager vp_home_videos;
 
+    @ViewInject(R.id.loading)
+    RelativeLayout loading;
+    @ViewInject(R.id.empty)
+    RelativeLayout empty;
+    @ViewInject(R.id.error)
+    RelativeLayout error;
+    @ViewInject(R.id.success)
+    LinearLayout success;
+
     private VideosPagerAdapter videosPagerAdapter;
 
     private VideoProtocal protocal;
@@ -66,7 +77,16 @@ public class HomeVideosUI extends BaseUI {
         protocal.getVideoDir(new VideoProtocal.VideoDirListener() {
             @Override
             public void videoDirResponse(VideoRes response) {
+                if (response == null){
+                    //没数据或者是错误的时候
+                    setErrorVisiblity();
+                    return;
+                }
                 titleList = response.cms_dir;
+                if (titleList == null || titleList.size() == 0){
+                    setEmptyVisiblity();
+                    return;
+                }
                 videosPagerAdapter = new VideosPagerAdapter(getSupportFragmentManager());
                 vp_home_videos.setAdapter(videosPagerAdapter);
 
@@ -74,15 +94,7 @@ public class HomeVideosUI extends BaseUI {
                 xhsv_home_videos.setTabMode(TabLayout.MODE_SCROLLABLE);//MODE_FIXED
                 xhsv_home_videos.setupWithViewPager(vp_home_videos);
                 xhsv_home_videos.setTabsFromPagerAdapter(videosPagerAdapter);
-
-
-//                final int pageMargin = (int) TypedValue.applyDimension(
-//                        TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
-//                                .getDisplayMetrics());
-//                vp_home_videos.setPageMargin(pageMargin);
-//
-//                xhsv_home_videos.setViewPager(vp_home_videos);
-//                videosPagerAdapter.notifyDataSetChanged();
+                setSuccessVisiblity();
             }
         });
 
@@ -126,5 +138,30 @@ public class HomeVideosUI extends BaseUI {
             return titleList == null ? "" : titleList.get(position).cd_name;
         }
 
+    }
+
+    public void setLoadingVisiblity(){
+        loading.setVisibility(View.VISIBLE);
+        empty.setVisibility(View.GONE);
+        error.setVisibility(View.GONE);
+        success.setVisibility(View.GONE);
+    }
+    public void setEmptyVisiblity(){
+        loading.setVisibility(View.GONE);
+        empty.setVisibility(View.VISIBLE);
+        error.setVisibility(View.GONE);
+        success.setVisibility(View.GONE);
+    }
+    public void setErrorVisiblity(){
+        loading.setVisibility(View.GONE);
+        empty.setVisibility(View.GONE);
+        error.setVisibility(View.VISIBLE);
+        success.setVisibility(View.GONE);
+    }
+    public void setSuccessVisiblity(){
+        loading.setVisibility(View.GONE);
+        empty.setVisibility(View.GONE);
+        error.setVisibility(View.GONE);
+        success.setVisibility(View.VISIBLE);
     }
 }

@@ -23,6 +23,7 @@ public class VideoProtocal {
     public void getVideoDir( final VideoDirListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.videoDirResponse(null);
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -34,13 +35,14 @@ public class VideoProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        listener.videoDirResponse(null);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         if (TextUtils.isEmpty(response)){
                             CommonUtils.toastMessage("没有数据返回");
+                            listener.videoDirResponse(null);
                             return;
                         }
                         VideoRes videoRes = (VideoRes) JsonUtils.stringToObject(response,VideoRes.class);

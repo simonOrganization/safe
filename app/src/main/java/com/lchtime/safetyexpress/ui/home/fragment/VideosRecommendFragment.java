@@ -82,7 +82,7 @@ public class VideosRecommendFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         home_new_fragment_rc.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        videoList = new ArrayList<NewsBean>();
         Bundle bundle = getArguments();
         cd_id = bundle.getString("cd_id");
         if (protocal == null){
@@ -105,7 +105,7 @@ public class VideosRecommendFragment extends Fragment {
                     @Override
                     public void run() {
                         footPage = 0;
-                        videoList = new ArrayList<NewsBean>();
+                        videoList.clear();
 
                         if(!TextUtils.isEmpty(cd_id)){
 

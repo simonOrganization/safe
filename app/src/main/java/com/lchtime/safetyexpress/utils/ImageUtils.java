@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Transformation;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -108,5 +111,48 @@ public class ImageUtils {
         }
     }
 
+
+    public static Transformation getTransformation(final ImageView mImg) {
+        Transformation transformation = new Transformation() {
+
+            @Override
+            public Bitmap transform(Bitmap source) {
+
+                int targetHeight = mImg.getHeight();
+                // LogCat.i("source.getHeight()="+source.getHeight()+",source.getWidth()="+source.getWidth()+",targetWidth="+targetWidth);
+
+                if (source.getHeight() == 0) {
+                    return source;
+                }
+
+                //如果图片小于设置的宽度，则返回原图
+//                if (source.getHeight() < targetHeight) {
+//                    return source;
+//                } else {
+                //如果图片大小大于等于设置的宽度，则按照设置的宽度比例来缩放
+                double aspectRatio = (double) source.getHeight() / (double) source.getWidth();
+                int targetWidth = (int) (targetHeight / aspectRatio);
+                if (targetHeight != 0 && targetWidth != 0) {
+                    Bitmap result = Bitmap.createScaledBitmap(source, targetWidth, targetHeight, false);
+                    if (result != source) {
+                        // Same bitmap is returned if sizes are the same
+                        source.recycle();
+                    }
+                    return result;
+                } else {
+                    return source;
+                }
+//                }
+
+            }
+
+            @Override
+            public String key() {
+                return "transformation" + " desiredWidth";
+            }
+        };
+
+        return transformation;
+    }
 
 }

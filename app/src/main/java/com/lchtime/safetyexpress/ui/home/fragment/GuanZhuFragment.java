@@ -18,6 +18,7 @@ import com.lchtime.safetyexpress.ui.vip.fragment.BaseFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.LoadingPager;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.PostFormBuilder;
@@ -37,6 +38,7 @@ public class GuanZhuFragment extends BaseFragment {
     private RecyclerView recyclerView;
     private Handler handler = new Handler();
     private String otherid = "";
+    private PullLoadMoreRecyclerView pullLoadMoreRecyclerView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,17 +46,56 @@ public class GuanZhuFragment extends BaseFragment {
         if (getActivity() instanceof  MyQuestion) {
             otherid = ((MyQuestion) getActivity()).otherid;
         }
-        recyclerView = new RecyclerView(getContext());
+        if (pullLoadMoreRecyclerView == null) {
+            pullLoadMoreRecyclerView = new PullLoadMoreRecyclerView(getContext());
+        }
+        recyclerView = (RecyclerView) pullLoadMoreRecyclerView.findViewById(R.id.home_new_fragment_rc);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        items = new ArrayList<>();
+        if (items == null) {
+            items = new ArrayList<>();
+        }
         adapter = new WenDaAdapter(this,items);
         recyclerView.setAdapter(adapter);
+        pullLoadMoreRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+            @Override
+            public void onRefresh() {
+                if (items != null){
+                    items.clear();
+                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getData("1");
+                    }
+                }).start();
+
+            }
+
+            @Override
+            public void onLoadMore() {
+                page++;
+                if (page > totalPage){
+                    CommonUtils.toastMessage("已经没有更多了");
+                    pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                    return;
+                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getData(page + "");
+                    }
+                }).start();
+
+            }
+        });
     }
 
+    private int page = 1;
+    private int totalPage = 1;
     @Override
     protected View initSuccessView() {
 
-        return recyclerView;
+        return pullLoadMoreRecyclerView;
     }
 
     @Override
@@ -62,7 +103,7 @@ public class GuanZhuFragment extends BaseFragment {
         if (items != null){
             items.clear();
         }
-        getData("0");
+        getData("1");
         return loadedResult;
     }
 
@@ -75,6 +116,13 @@ public class GuanZhuFragment extends BaseFragment {
     private void getData(String page){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             loadedResult = LoadingPager.LoadedResult.ERRO;
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+
+                }
+            });
             return;
         }
 
@@ -86,7 +134,7 @@ public class GuanZhuFragment extends BaseFragment {
                     .post()
                     .url(url)
                     .addParams("page", page)
-                    .addParams("type", "0")
+                    .addParams("type", "1")
                     .addParams("ub_id", SpTools.getString(getContext(), Constants.userId, ""));
 
             if (!TextUtils.isEmpty(otherid)){
@@ -121,15 +169,29 @@ public class GuanZhuFragment extends BaseFragment {
                     }
                 });
 
-                loadedResult = LoadingPager.LoadedResult.SUCCESS;
+                loadedResult = checkResult(items);
             }else{
                 loadedResult = LoadingPager.LoadedResult.ERRO;
             }
 
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+
+                }
+            });
 
         } catch (Exception e) {
             e.printStackTrace();
             loadedResult = LoadingPager.LoadedResult.ERRO;
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+
+                }
+            });
         }
     }
 

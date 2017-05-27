@@ -213,6 +213,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 circleList.clear();
                 circleList.addAll(response.qz_context);
                 rcAdapter = new CircleAdapter(CircleUI.this,circleList);
+                rcAdapter.setIsCircle(true);
                 wapperAdapter = new HeaderAndFooterWrapper(rcAdapter);
                 wapperAdapter.addHeaderView(headerView2);
                 wapperAdapter.addHeaderView(headerView);

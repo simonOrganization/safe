@@ -19,6 +19,7 @@ import com.lchtime.safetyexpress.pop.SharePop;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.Const;
 import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
+import com.lchtime.safetyexpress.ui.circle.fragment.SubscirbeAllFragment;
 import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
@@ -114,7 +115,7 @@ public class HomeNewsDetailUI extends BaseUI {
         home_news_detailed_web.addJavascriptInterface(this,"android");
     }
 
-//搜索
+    //搜索
     @JavascriptInterface
     public void getKeyWord(final String text){
         runOnUiThread(new Runnable() {
@@ -163,12 +164,12 @@ public class HomeNewsDetailUI extends BaseUI {
 
     //问答界面编辑
     @JavascriptInterface
-    public void getWdEditId (final String ub_id){
+    public void getWdEditId (final String a_id,final String a_img, final  String pic){
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
-
+                Intent intent = new Intent(HomeNewsDetailUI.this,H5AnswerActivity.class);
+                startActivity(intent);
             }
         });
     }

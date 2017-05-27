@@ -48,7 +48,7 @@ public class WenDaDetailBean {
      */
 
     public List<HdinfoBean> hdinfo;
-
+    public int  totalpage = 1;
     public static class ResultBean {
         public String code;
         public String info;

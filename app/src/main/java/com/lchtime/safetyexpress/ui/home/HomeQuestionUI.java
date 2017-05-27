@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lchtime.safetyexpress.MyApplication;
@@ -23,6 +24,7 @@ import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.Const;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
 import com.lchtime.safetyexpress.utils.BitmapUtils;
+import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
 import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.CircleImageView;
@@ -50,6 +52,15 @@ public class HomeQuestionUI extends BaseUI {
 
     @ViewInject(R.id.home_new_fragment_rc)
     private RecyclerView recyclerView;
+
+    @ViewInject(R.id.loading)
+    RelativeLayout loading;
+    @ViewInject(R.id.empty)
+    RelativeLayout empty;
+    @ViewInject(R.id.error)
+    RelativeLayout error;
+    @ViewInject(R.id.success)
+    RelativeLayout success;
 
     private HomeQuestionAdapter homeQuestionAdapter;
     private HomeQuestionProtocal protocal;
@@ -87,70 +98,6 @@ public class HomeQuestionUI extends BaseUI {
 
     }
 
-    private void initListener() {
-        lv_home_question.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
-            @Override
-            public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        footPage = 0;
-                        if (protocal == null){
-                            protocal = new HomeQuestionProtocal();
-                        }
-                        protocal.getWenDaList("0",new HomeQuestionProtocal.QuestionListener() {
-                            @Override
-                            public void questionResponse(Object response) {
-                                final WenDaBean bean = (WenDaBean) response;
-                                list.clear();
-                                if (bean.tw != null) {
-                                    list.addAll(bean.tw);
-                                }
-                                homeQuestionAdapter.notifyDataSetChanged();
-                                lv_home_question.setPullLoadMoreCompleted();
-                            }
-                        });
-
-                    }
-                },0);
-            }
-
-            @Override
-            public void onLoadMore() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        footPage++;
-                        if (protocal == null){
-                            protocal = new HomeQuestionProtocal();
-                        }
-                        protocal.getWenDaList(footPage + "",new HomeQuestionProtocal.QuestionListener() {
-                            @Override
-                            public void questionResponse(Object response) {
-                                final WenDaBean bean = (WenDaBean) response;
-                                if (bean.tw != null) {
-                                    list.addAll(bean.tw);
-                                }
-                                homeQuestionAdapter.notifyDataSetChanged();
-                                lv_home_question.setPullLoadMoreCompleted();
-                            }
-                        });
-
-                    }
-                },0);
-            }
-        });
-
-        tv_home_question.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //提问按钮的监听
-                Intent intent = new Intent(HomeQuestionUI.this,AskQuestionActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
     public void initMyInfo(){
         File file = new File(MyApplication.getContext().getFilesDir(), Constants.photo_name);//将要保存图片的路径
         //如果没有加载过图片了
@@ -176,9 +123,91 @@ public class HomeQuestionUI extends BaseUI {
         }else {
             civ.setImageBitmap(BitmapUtils.getBitmap(file.getAbsolutePath()));
         }
-
-        nikName.setText(InitInfo.vipInfoBean.user_detail.ud_nickname);
+        if (InitInfo.vipInfoBean != null && InitInfo.vipInfoBean.user_detail != null) {
+            nikName.setText(InitInfo.vipInfoBean.user_detail.ud_nickname);
+        }
     }
+
+    private int totalPage = 1;
+    private void initListener() {
+        lv_home_question.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        footPage = 0;
+                        if (protocal == null){
+                            protocal = new HomeQuestionProtocal();
+                        }
+                        protocal.getWenDaList("0",new HomeQuestionProtocal.QuestionListener() {
+                            @Override
+                            public void questionResponse(Object response) {
+                                if(response == null){
+                                    setErrorVisiblity();
+                                    return;
+                                }
+                                final WenDaBean bean = (WenDaBean) response;
+                                list.clear();
+                                if (bean.tw != null) {
+                                    list.addAll(bean.tw);
+                                }
+                                wrapper.notifyDataSetChanged();
+                                lv_home_question.setPullLoadMoreCompleted();
+                            }
+                        });
+
+                    }
+                },0);
+            }
+
+            @Override
+            public void onLoadMore() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        footPage++;
+                        if (footPage > totalPage){
+                            CommonUtils.toastMessage("没有更多了！！！");
+                            lv_home_question.setPullLoadMoreCompleted();
+                            return;
+                        }
+                        if (protocal == null){
+                            protocal = new HomeQuestionProtocal();
+                        }
+                        protocal.getWenDaList(footPage + "",new HomeQuestionProtocal.QuestionListener() {
+                            @Override
+                            public void questionResponse(Object response) {
+                                if (response == null){
+                                    CommonUtils.toastMessage("请检查网络");
+                                    return;
+                                }
+                                final WenDaBean bean = (WenDaBean) response;
+                                if (bean.tw != null) {
+                                    list.addAll(bean.tw);
+                                }
+                                totalPage = bean.totalpage;
+                                wrapper.notifyDataSetChanged();
+                                lv_home_question.setPullLoadMoreCompleted();
+                            }
+                        });
+
+                    }
+                },0);
+            }
+        });
+
+        tv_home_question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //提问按钮的监听
+                Intent intent = new Intent(HomeQuestionUI.this,AskQuestionActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+
 
     private HeaderAndFooterWrapper wrapper;
     @Override
@@ -189,18 +218,54 @@ public class HomeQuestionUI extends BaseUI {
         protocal.getWenDaList("0",new HomeQuestionProtocal.QuestionListener() {
             @Override
             public void questionResponse(Object response) {
+                if (response == null){
+                    setErrorVisiblity();
+                    return;
+                }
                 final WenDaBean bean = (WenDaBean) response;
                 list.clear();
                 if (bean.tw != null) {
                     list.addAll(bean.tw);
                 }
+                if (list.size()== 0){
+                    setEmptyVisiblity();
+                    return;
+                }
+                totalPage = bean.totalpage;
                 homeQuestionAdapter = new HomeQuestionAdapter(HomeQuestionUI.this,list);
                 wrapper = new HeaderAndFooterWrapper(homeQuestionAdapter);
                 wrapper.addHeaderView(view);
                 recyclerView.setLayoutManager(new LinearLayoutManager(HomeQuestionUI.this));
                 lv_home_question.setAdapter(wrapper);
+                setSuccessVisiblity();
             }
         });
+    }
+
+
+    public void setLoadingVisiblity(){
+        loading.setVisibility(View.VISIBLE);
+        empty.setVisibility(View.GONE);
+        error.setVisibility(View.GONE);
+        success.setVisibility(View.GONE);
+    }
+    public void setEmptyVisiblity(){
+        loading.setVisibility(View.GONE);
+        empty.setVisibility(View.VISIBLE);
+        error.setVisibility(View.GONE);
+        success.setVisibility(View.GONE);
+    }
+    public void setErrorVisiblity(){
+        loading.setVisibility(View.GONE);
+        empty.setVisibility(View.GONE);
+        error.setVisibility(View.VISIBLE);
+        success.setVisibility(View.GONE);
+    }
+    public void setSuccessVisiblity(){
+        loading.setVisibility(View.GONE);
+        empty.setVisibility(View.GONE);
+        error.setVisibility(View.GONE);
+        success.setVisibility(View.VISIBLE);
     }
 
 }

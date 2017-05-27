@@ -27,6 +27,7 @@ import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.ImageUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.GridSpacingItemDecoration;
@@ -45,6 +46,7 @@ import butterknife.ButterKnife;
 public class CircleAdapter extends RecyclerView.Adapter {
     private Activity context;
     private List<QzContextBean> circleOneList;
+    private boolean isCircle = false;
 
     public CircleAdapter(Activity context, List<QzContextBean> circleOneList) {
         this.context = context;
@@ -81,10 +83,27 @@ public class CircleAdapter extends RecyclerView.Adapter {
                 ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.VISIBLE);
                 //一片张图
                 if (bean.pic.size() == 1) {
-                    ViewGroup.LayoutParams layoutParamsss = circleHodler.circle_item_image_rc.getLayoutParams();
-                    layoutParamsss.width = screenWith / 3;
-                    circleHodler.circle_item_image_rc.setLayoutManager(new GridLayoutManager(context, 1));
+                    if (isCircle){
+                        //如果是圈子界面
+                        ((CircleHodler) holder).circle_item_shipin.setVisibility(View.VISIBLE);
+                        ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.GONE);
+                        Picasso.with(context).load(bean.pic.get(0))
+                                .transform(ImageUtils.getTransformation(((CircleHodler) holder).circle_item_shipin))
+                                .into(((CircleHodler) holder).circle_item_shipin);
+                        circleHodler.circle_item_shipin.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                            }
+                        });
+
+                    }else {
+                        //如果不是圈子界面，那么取消显示
+                        ViewGroup.LayoutParams layoutParamsss = circleHodler.circle_item_image_rc.getLayoutParams();
+                        layoutParamsss.width = screenWith / 3;
+                        circleHodler.circle_item_image_rc.setLayoutManager(new GridLayoutManager(context, 1));
 //                circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(2,10,true));
+                    }
                 } else if (bean.pic.size() == 4) {
                     //四张图片
                     ViewGroup.LayoutParams layoutParamsss = circleHodler.circle_item_image_rc.getLayoutParams();
@@ -108,7 +127,9 @@ public class CircleAdapter extends RecyclerView.Adapter {
                 if (bean.pic.size() > 0) {
                     ((CircleHodler) holder).circle_item_shipin.setVisibility(View.VISIBLE);
                     ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.GONE);
-                    Picasso.with(context).load(bean.pic.get(0)).into(((CircleHodler) holder).circle_item_shipin);
+                    Picasso.with(context).load(bean.pic.get(0))
+                            .transform(ImageUtils.getTransformation(((CircleHodler) holder).circle_item_shipin))
+                            .into(((CircleHodler) holder).circle_item_shipin);
                 }else {
                     ((CircleHodler) holder).circle_item_shipin.setVisibility(View.GONE);
                     ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.GONE);
@@ -319,5 +340,9 @@ public class CircleAdapter extends RecyclerView.Adapter {
             ButterKnife.bind(this,itemView);
 
         }
+    }
+
+    public void setIsCircle(boolean isCircle){
+        this.isCircle = isCircle;
     }
 }

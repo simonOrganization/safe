@@ -7,6 +7,8 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.lchtime.safetyexpress.MyApplication;
@@ -43,6 +45,14 @@ public class HomeNewActivity extends BaseUI {
     TabLayout activity_new_tablayout;
     @ViewInject(R.id.activity_new_vp)
     ViewPager activity_new_vp;
+    @ViewInject(R.id.loading)
+    RelativeLayout loading;
+    @ViewInject(R.id.empty)
+    RelativeLayout empty;
+    @ViewInject(R.id.error)
+    RelativeLayout error;
+    @ViewInject(R.id.success)
+    LinearLayout success;
     private NewsFragmentAdapter fragmentAdapter;
     private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
     private MyOnpageChangeListener listener;
@@ -83,6 +93,7 @@ public class HomeNewActivity extends BaseUI {
     }
     private void getTabData(){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+            setErrorVisiblity();
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
@@ -94,13 +105,18 @@ public class HomeNewActivity extends BaseUI {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        setErrorVisiblity();
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
 
                         NewsRes newsRes = (NewsRes) JsonUtils.stringToObject(response, NewsRes.class);
+                        if (newsRes.getCms_dir().size() == 0){
+                            //如果没有数据
+                            setEmptyVisiblity();
+                            return;
+                        }
                         if(newsRes.getResult().getCode().equals("10")){
                             ArrayList<NewTypeBean> list = new ArrayList<NewTypeBean>();
                             list.add(new NewTypeBean("推荐"));
@@ -121,8 +137,9 @@ public class HomeNewActivity extends BaseUI {
                             activity_new_tablayout.setupWithViewPager(activity_new_vp);
                             activity_new_tablayout.setTabsFromPagerAdapter(fragmentAdapter);
                             initListener();
-
+                            setSuccessVisiblity();
                         }else{
+                            setErrorVisiblity();
                             Toast.makeText(HomeNewActivity.this,newsRes.getResult().getInfo(),Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -162,6 +179,31 @@ public class HomeNewActivity extends BaseUI {
         public void onPageScrollStateChanged(int state) {
 
         }
+    }
+
+    public void setLoadingVisiblity(){
+        loading.setVisibility(View.VISIBLE);
+        empty.setVisibility(View.GONE);
+        error.setVisibility(View.GONE);
+        success.setVisibility(View.GONE);
+    }
+    public void setEmptyVisiblity(){
+        loading.setVisibility(View.GONE);
+        empty.setVisibility(View.VISIBLE);
+        error.setVisibility(View.GONE);
+        success.setVisibility(View.GONE);
+    }
+    public void setErrorVisiblity(){
+        loading.setVisibility(View.GONE);
+        empty.setVisibility(View.GONE);
+        error.setVisibility(View.VISIBLE);
+        success.setVisibility(View.GONE);
+    }
+    public void setSuccessVisiblity(){
+        loading.setVisibility(View.GONE);
+        empty.setVisibility(View.GONE);
+        error.setVisibility(View.GONE);
+        success.setVisibility(View.VISIBLE);
     }
 
 }

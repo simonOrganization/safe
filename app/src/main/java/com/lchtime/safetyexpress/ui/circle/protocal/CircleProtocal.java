@@ -207,6 +207,7 @@ public class CircleProtocal {
     public void getMySubscribe( String ub_id,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.normalResponse(null);
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -219,13 +220,14 @@ public class CircleProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        listener.normalResponse(null);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         if (TextUtils.isEmpty(response)) {
                             CommonUtils.toastMessage("没有数据返回");
+                            listener.normalResponse(null);
                             return;
                         }
                         MydyBean mydyBean = (MydyBean) JsonUtils.stringToObject(response, MydyBean.class);
@@ -235,6 +237,7 @@ public class CircleProtocal {
                             }
                         } else {
                             CommonUtils.toastMessage(mydyBean.result.info);
+                            listener.normalResponse(null);
                         }
                     }
                 });

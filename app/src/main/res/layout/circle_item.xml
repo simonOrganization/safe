@@ -75,10 +75,8 @@
                 android:layout_marginTop="@dimen/dm010"/>
             <ImageView
                 android:id="@+id/circle_item_shipin"
-                android:layout_width="@dimen/dm260"
-                android:layout_height="@dimen/dm130"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dm300"
                 android:layout_marginTop="@dimen/dm010"
                 android:layout_below="@id/circle_item_content"/>
             <android.support.v7.widget.RecyclerView

@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.adapter;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,10 @@ import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.MyWenDaBean;
+import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
+import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
+import com.lchtime.safetyexpress.ui.home.fragment.GuanZhuFragment;
+import com.lchtime.safetyexpress.ui.home.fragment.TiWenFragment;
 import com.lchtime.safetyexpress.ui.home.fragment.WenDaFragment;
 
 import java.util.List;
@@ -69,6 +74,26 @@ public class WenDaAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View v) {
                 //问答详情
+                if (context instanceof WenDaFragment){
+                    //如果是问答，就跳转h5
+                    Intent intent = new Intent(context.getActivity(),HomeNewsDetailUI.class);
+                    //回答id
+                    intent.putExtra("a_id",bean.oid);
+                    //回答的问题id
+                    intent.putExtra("aq_id",bean.q_id);
+                    intent.putExtra("type","wenda");
+                    context.startActivity(intent);
+                }else {
+                    Intent intent = new Intent(context.getActivity(),HomeQuewstionDetail.class);
+                    if (context instanceof GuanZhuFragment){
+                        //关注的问题id
+                        intent.putExtra("q_id",bean.param);
+                    }else if (context instanceof TiWenFragment) {
+                        //提问的问题id
+                        intent.putExtra("q_id", bean.oid);
+                    }
+                    context.startActivity(intent);
+                }
 //                Intent intent = new Intent(context,HomeQuewstionDetail.class);
 //                intent.putExtra("q_id",bean.q_id);
 //                context.startActivity(intent);

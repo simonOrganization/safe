@@ -25,6 +25,7 @@ public class HomeQuestionProtocal {
     public void getWenDaList( String page,final QuestionListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.questionResponse(null);
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -38,13 +39,14 @@ public class HomeQuestionProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        listener.questionResponse(null);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         if (TextUtils.isEmpty(response)){
                             CommonUtils.toastMessage("没有数据返回");
+                            listener.questionResponse(null);
                             return;
                         }
                         WenDaBean bean = (WenDaBean) JsonUtils.stringToObject(response,WenDaBean.class);
@@ -60,9 +62,10 @@ public class HomeQuestionProtocal {
     }
 
 
-    public void getWenDaDetail(String q_id ,final QuestionListener listener){
+    public void getWenDaDetail(String page,String q_id ,final QuestionListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.questionResponse(null);
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -72,17 +75,19 @@ public class HomeQuestionProtocal {
                 .url(url)
                 .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
                 .addParams("q_id", q_id)
+                .addParams("page", page)
                 .build()
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        listener.questionResponse(null);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         if (TextUtils.isEmpty(response)){
                             CommonUtils.toastMessage("没有数据返回");
+                            listener.questionResponse(null);
                             return;
                         }
                         WenDaDetailBean bean = (WenDaDetailBean) JsonUtils.stringToObject(response,WenDaDetailBean.class);
@@ -91,6 +96,7 @@ public class HomeQuestionProtocal {
                                 listener.questionResponse(bean);
                             }
                         }else{
+                            listener.questionResponse(null);
                             CommonUtils.toastMessage(bean.result.info);
                         }
                     }

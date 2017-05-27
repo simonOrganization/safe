@@ -15,6 +15,7 @@ import com.lchtime.safetyexpress.bean.WenDaBean;
 import com.lchtime.safetyexpress.ui.Const;
 import com.lchtime.safetyexpress.ui.home.HomeQuestionUI;
 import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
+import com.lchtime.safetyexpress.utils.ImageUtils;
 import com.lchtime.safetyexpress.views.MyGridView;
 import com.squareup.picasso.Picasso;
 
@@ -73,18 +74,13 @@ public class HomeQuestionAdapter extends RecyclerView.Adapter {
         final WenDaBean.TwBean bean = list.get(position);
         ViewHolder myHolder = (ViewHolder) holder;
 
-        ViewGroup.LayoutParams lp =  myHolder.iv_question.getLayoutParams();
-        lp.width = 300;
-        lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        myHolder.iv_question.setLayoutParams(lp);
-        myHolder.iv_question.setMaxWidth(300);
-        //context.getWindowManager().getDefaultDisplay().getWidth() - 100
-        myHolder.iv_question.setMaxHeight(300*5);
+
         if (ONE_PIC_TYPE == getItemViewType(position)) {
             //一张图
             myHolder.iv_question.setVisibility(View.VISIBLE);
             myHolder.mgv_question.setVisibility(View.GONE);
-            Picasso.with(context).load(bean.pic.get(0)).into(myHolder.iv_question);
+            Picasso.with(context).load(bean.pic.get(0)).transform(ImageUtils.getTransformation(myHolder.iv_question))
+            .into(myHolder.iv_question);
         } else {
             //多张图或者没图
             if (list.size() == 0) {

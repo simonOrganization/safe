@@ -40,12 +40,17 @@ public class MyWenDaBean {
 
     public static class ItemBean {
         public String num;
+        //我的关注  oid = 关注id
+//        我的提问  oid =  问题id
+//        我的回答  oid = 回答id
+
         public String oid;
         public String title;
         public String time;
 //        type=0   param=关注问题的id
-//        type=1   param=回答的内容
 //        type=2   param=问题描述
+//        type=1   param=回答的内容
         public String param;
+        public String q_id;
     }
 }
