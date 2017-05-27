@@ -2,6 +2,7 @@ package com.lchtime.safetyexpress.ui.circle.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,7 +17,9 @@ import com.lchtime.safetyexpress.bean.AddSubscribBean;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
+import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +33,7 @@ import butterknife.ButterKnife;
 
 public class SubscirbeCommendFragment extends Fragment {
     @BindView(R.id.subscribe_comm_rc)
+    PullLoadMoreRecyclerView pullLoadMoreRecyclerView;
     RecyclerView subscribe_comm_rc;
     private Context context;
     private String userid;
@@ -43,7 +47,7 @@ public class SubscirbeCommendFragment extends Fragment {
     private String request_gw =InitInfo.vipInfoBean.user_detail.ud_post;
     private String request_addr = InitInfo.vipInfoBean.user_detail.ud_addr;
     private String request_page = "0";
-    private int totalPage;
+    private int totalPage = 1;
 
     @Override
     public void onAttach(Context context) {
@@ -62,11 +66,42 @@ public class SubscirbeCommendFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        subscribe_comm_rc = (RecyclerView) pullLoadMoreRecyclerView.findViewById(R.id.home_new_fragment_rc);
         subscribe_comm_rc.setLayoutManager(new LinearLayoutManager(context));
-        initData();
+        initData("1");
+        initListener();
     }
 
-    public void initData() {
+    private Handler handler = new Handler();
+    private void initListener() {
+        pullLoadMoreRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+            @Override
+            public void onRefresh() {
+                page = 1;
+                initData("1");
+            }
+
+            @Override
+            public void onLoadMore() {
+                page++;
+                if (page > totalPage){
+                    CommonUtils.toastMessage("没有更多了");
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                        }
+                    },300);
+                    return;
+                }
+                isLoadMore = true;
+                initData(page+"");
+            }
+        });
+    }
+    private boolean isLoadMore = false;
+    private int page = 1;
+    public void initData(String page) {
         userid = SpTools.getString(getContext(), Constants.userId,"");
         if (protocal == null){
             protocal = new CircleProtocal();
@@ -77,18 +112,30 @@ public class SubscirbeCommendFragment extends Fragment {
         String addr = request_addr;
         //0为推荐1为全部
         String action = "0";
-        String page = request_page;
         protocal.getAddDyData(ub_id, hy, gw, addr, action, page, new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
+                if (response == null){
+                    CommonUtils.toastMessage("加载数据失败");
+                    pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                    return;
+                }
                 AddSubscribBean bean = (AddSubscribBean) response;
                 totalPage = bean.totalpage;
-                commendList.clear();
+                if (!isLoadMore) {
+                    commendList.clear();
+                }
                 if (bean.tj != null) {
                     commendList.addAll(bean.tj);
                 }
-                addSubscribeAdapter = new AddSubscribeAdapter(context,commendList,SubscirbeCommendFragment.this);
-                subscribe_comm_rc.setAdapter(addSubscribeAdapter);
+                if (addSubscribeAdapter == null){
+
+                    addSubscribeAdapter = new AddSubscribeAdapter(context,commendList,SubscirbeCommendFragment.this);
+                    subscribe_comm_rc.setAdapter(addSubscribeAdapter);
+                }
+                addSubscribeAdapter.notifyDataSetChanged();
+                isLoadMore = false;
+                pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
             }
         });
     }

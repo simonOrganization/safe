@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.DrmInitData;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.AddSubscribeAdapter;
+import com.lchtime.safetyexpress.adapter.HeaderAndFooterWrapper;
 import com.lchtime.safetyexpress.bean.AddSubscribBean;
 import com.lchtime.safetyexpress.bean.CircleSelectBean;
 import com.lchtime.safetyexpress.bean.Constants;
@@ -29,7 +31,9 @@ import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.ui.circle.CircleUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.vip.SelectCityActivity;
+import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.CirclePopView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -44,25 +48,12 @@ import butterknife.OnClick;
  * Created by yxn on 2017/4/23.
  */
 
-public class SubscirbeAllFragment extends Fragment {
+public class SubscirbeAllFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.subscribe_all_rc)
+    PullLoadMoreRecyclerView pullLoadMoreRecyclerView;
     RecyclerView subscribe_all_rc;
     private CirclePopView cp;
-    @BindView(R.id.subscribe_all_ll)
-    LinearLayout subscribe_all_ll;
-    @BindView(R.id.tv_adddy_hy)
-    TextView tv_adddy_hy;
-    @BindView(R.id.tv_adddy_gw)
-    TextView tv_adddy_gw;
-    @BindView(R.id.tv_adddy_addr)
-    TextView tv_adddy_addr;
 
-    @BindView(R.id.iv_hy_indicator)
-    ImageView hy_indicator;
-    @BindView(R.id.iv_gw_indicator)
-    ImageView gw_indicator;
-    @BindView(R.id.iv_addr_indicator)
-    ImageView addr_indicator;
     private List<ProfessionBean.ProfessionItemBean> gwList = new ArrayList<>();
     private Context context;
     private String userid;
@@ -77,6 +68,19 @@ public class SubscirbeAllFragment extends Fragment {
     private String request_addr = "";
     private String request_page = "0";
     private int totalPage;
+
+    private HeaderAndFooterWrapper wrapper;
+    private LinearLayout subscribe_all_ll;
+    private TextView tv_adddy_hy;
+    private TextView tv_adddy_gw;
+    private TextView tv_adddy_addr;
+    private ImageView hy_indicator;
+    private ImageView gw_indicator;
+    private ImageView addr_indicator;
+    private LinearLayout subscribe_all_work;
+    private LinearLayout subscribe_all_gangwei;
+    private LinearLayout subscribe_all_address;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -94,10 +98,67 @@ public class SubscirbeAllFragment extends Fragment {
     @Override
     public void onActivityCreated( Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initView();
+        initListener();
         initPopwindow();
         initData();
 
     }
+
+    private void initView() {
+        subscribe_all_rc = (RecyclerView) pullLoadMoreRecyclerView.findViewById(R.id.home_new_fragment_rc);
+        View view = View.inflate(getContext(),R.layout.subscribe_all_header,null);
+        subscribe_all_ll = (LinearLayout) view.findViewById(R.id.subscribe_all_ll);
+        tv_adddy_hy = (TextView) view.findViewById(R.id.tv_adddy_hy);
+        tv_adddy_gw = (TextView) view.findViewById(R.id.tv_adddy_gw);
+        tv_adddy_addr = (TextView) view.findViewById(R.id.tv_adddy_addr);
+        hy_indicator = (ImageView) view.findViewById(R.id.iv_hy_indicator);
+        gw_indicator = (ImageView) view.findViewById(R.id.iv_gw_indicator);
+        addr_indicator = (ImageView) view.findViewById(R.id.iv_addr_indicator);
+        subscribe_all_work = (LinearLayout) view.findViewById(R.id.subscribe_all_work);
+        subscribe_all_gangwei = (LinearLayout) view.findViewById(R.id.subscribe_all_gangwei);
+        subscribe_all_address = (LinearLayout) view.findViewById(R.id.subscribe_all_address);
+
+        addSubscribeAdapter = new AddSubscribeAdapter(context,allList,SubscirbeAllFragment.this);
+        wrapper = new HeaderAndFooterWrapper(addSubscribeAdapter);
+        subscribe_all_rc.setAdapter(wrapper);
+        wrapper.addHeaderView(view);
+    }
+
+    private Handler handler = new Handler();
+    private void initListener() {
+        pullLoadMoreRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+            @Override
+            public void onRefresh() {
+                page = 1;
+                refreshData("1");
+            }
+
+            @Override
+            public void onLoadMore() {
+                page++;
+                if (page > totalPage){
+                    CommonUtils.toastMessage("没有更多了");
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                        }
+                    },300);
+
+                    return;
+                }
+                isLoadMore = true;
+                refreshData(page + "");
+            }
+        });
+        subscribe_all_work.setOnClickListener(this);
+        subscribe_all_gangwei.setOnClickListener(this);
+        subscribe_all_address.setOnClickListener(this);
+
+
+    }
+
 
     private void initData() {
         userid = SpTools.getString(getContext(), Constants.userId,"");
@@ -120,8 +181,7 @@ public class SubscirbeAllFragment extends Fragment {
                 if (bean.all != null) {
                     allList.addAll(bean.all);
                 }
-                addSubscribeAdapter = new AddSubscribeAdapter(context,allList,SubscirbeAllFragment.this);
-                subscribe_all_rc.setAdapter(addSubscribeAdapter);
+                wrapper.notifyDataSetChanged();
             }
         });
     }
@@ -134,9 +194,9 @@ public class SubscirbeAllFragment extends Fragment {
     public static final String ADDRESS ="addr";
     private boolean hySelected = false;
     private boolean gwSelected = false;
-    @OnClick({R.id.subscribe_all_work,R.id.subscribe_all_gangwei,R.id.subscribe_all_address})
-    void setOnclick(View view){
-        switch (view.getId()){
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
             case R.id.subscribe_all_work:
                 //改变ui
                 hy_indicator.setSelected(true);
@@ -145,7 +205,7 @@ public class SubscirbeAllFragment extends Fragment {
                 currentSelected = HANG_YE;
                 cp.setDataAdapter(InitInfo.professionBean.hy);
                 cp.showPopWindow(subscribe_all_ll);
-            break;
+                break;
             case R.id.subscribe_all_gangwei:
                 //改变ui
                 gw_indicator.setSelected(true);
@@ -172,6 +232,44 @@ public class SubscirbeAllFragment extends Fragment {
         }
 
     }
+//    @OnClick({R.id.subscribe_all_work,R.id.subscribe_all_gangwei,R.id.subscribe_all_address})
+//    void setOnclick(View view){
+//        switch (view.getId()){
+//            case R.id.subscribe_all_work:
+//                //改变ui
+//                hy_indicator.setSelected(true);
+//                hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
+//                tv_adddy_hy.setSelected(true);
+//                currentSelected = HANG_YE;
+//                cp.setDataAdapter(InitInfo.professionBean.hy);
+//                cp.showPopWindow(subscribe_all_ll);
+//            break;
+//            case R.id.subscribe_all_gangwei:
+//                //改变ui
+//                gw_indicator.setSelected(true);
+//                gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
+//                tv_adddy_gw.setSelected(true);
+//                currentSelected = GANG_WEI;
+//                if (gwList.size() <= 0) {
+//                    for (PostBean.PostItemBean bean : InitInfo.postBean.gw) {
+//                        ProfessionBean.ProfessionItemBean itemBean = new ProfessionBean.ProfessionItemBean();
+//                        itemBean.isSelect = bean.isSelect;
+//                        itemBean.hy_name = bean.gw_name;
+//                        itemBean.hy_id = bean.gw_id;
+//                        gwList.add(itemBean);
+//                    }
+//                }
+//                cp.setDataAdapter(gwList);
+//                cp.showPopWindow(subscribe_all_ll);
+//                break;
+//            case R.id.subscribe_all_address:
+//                currentSelected = ADDRESS;
+//                Intent intent = new Intent(getActivity(), SelectCityActivity.class);
+//                startActivityForResult(intent,CITY_REQUEST_CODE);
+//                break;
+//        }
+//
+//    }
     private void initPopwindow() {
         subscribe_all_rc.setLayoutManager(new LinearLayoutManager(context));
         cp = new CirclePopView(getActivity());
@@ -252,7 +350,7 @@ public class SubscirbeAllFragment extends Fragment {
                 tv_adddy_gw.setText(title);
             }
         }
-        refreshData();
+        refreshData("1");
 
     }
 
@@ -263,30 +361,42 @@ public class SubscirbeAllFragment extends Fragment {
             if (data != null) {
                 String selectCity = data.getStringExtra("city");
                 request_addr = selectCity;
-                refreshData();
+                refreshData("1");
                 tv_adddy_addr.setText(selectCity);
             }
         }
     }
-
-    public void refreshData() {
+    private int page= 1;
+    private boolean isLoadMore = false;
+    public void refreshData(String page) {
         String ub_id = userid;
         String hy = request_hy;
         String gw = request_gw;
         String addr = request_addr;
         //0为推荐1为全部
         String action = "1";
-        String page = request_page;
         protocal.getAddDyData(ub_id, hy, gw, addr, action, page, new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
+                if (response == null){
+                    CommonUtils.toastMessage("请检查网络");
+                    pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                    return;
+                }
                 AddSubscribBean bean = (AddSubscribBean) response;
-                allList.clear();
+                totalPage = bean.totalpage;
+                if (!isLoadMore) {
+                    allList.clear();
+                }
                 if(bean.all != null) {
                     allList.addAll(bean.all);
                 }
-                addSubscribeAdapter.notifyDataSetChanged();
+                wrapper.notifyDataSetChanged();
+                pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                isLoadMore = false;
             }
         });
     }
+
+
 }

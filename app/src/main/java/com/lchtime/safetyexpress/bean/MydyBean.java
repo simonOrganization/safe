@@ -54,6 +54,7 @@ public class MydyBean {
      */
 
     public List<QzContextBean> quanzi;
+    public String totalpage;
 
     public static class ResultBean {
         public String code;

@@ -10,15 +10,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dm020"
         android:layout_marginBottom="@dimen/dm020"
-        android:layout_marginLeft="@dimen/dm010"
-        android:layout_marginRight="@dimen/dm010"
         android:orientation="horizontal">
         <CheckBox
             android:id="@+id/rb_delete"
             android:layout_width="@dimen/dm040"
             android:layout_height="@dimen/dm040"
             android:text="@null"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center_vertical|center_horizontal"
             android:gravity="center"
             android:button="@null"
             android:visibility="visible"
@@ -34,7 +32,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_gravity="center_vertical"
+                android:layout_gravity="top"
                 android:orientation="vertical">
 
                 <TextView
@@ -139,5 +137,5 @@
         android:layout_below="@id/ll_item_pic_wenzi_2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm001"
-        android:background="@color/title_999"/>
+        android:background="@color/line"/>
 </RelativeLayout>

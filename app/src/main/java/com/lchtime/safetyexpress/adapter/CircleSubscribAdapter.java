@@ -63,6 +63,8 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
         final MydyBean.DyBean bean = dy.get(position);
         if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {
             Picasso.with(context).load(bean.ud_photo_fileid).fit().into(myViewHolder.raiv_hotcircle_icon);
+        }else {
+            Picasso.with(context).load(R.drawable.circle_user_image).fit().into(myViewHolder.raiv_hotcircle_icon);
         }
         myViewHolder.tv_hotcircle_name.setText(bean.ud_nickname);
         myViewHolder.cb_hotcircle_subscribe.setChecked(true);
@@ -132,7 +134,7 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
                             }
                         }
                         if (context instanceof SubscribActivity){
-                            ((SubscribActivity) context).refreshData();
+                            ((SubscribActivity) context).refreshData("1");
                         }
                         //notifyDataSetChanged();
                         InitInfo.circleRefresh = true;

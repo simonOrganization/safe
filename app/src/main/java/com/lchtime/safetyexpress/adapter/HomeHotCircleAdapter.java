@@ -45,8 +45,7 @@ public class HomeHotCircleAdapter extends BaseAdapter {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.list = list;
-//        imgs = new int[]{R.drawable.home_test_img1, R.drawable.home_test_img2, R.drawable.home_test_img3, R.drawable.home_test_img4, R.drawable.home_test_img5};
-//        txts = new String[]{"BIG笑工坊", "轻松时刻", "完美红颜", "大咖秀", "万家灯火"};
+
     }
 
     @Override
@@ -81,7 +80,9 @@ public class HomeHotCircleAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         if (!TextUtils.isEmpty(list.get(position).ud_photo_fileid)) {
-            Picasso.with(context).load(list.get(position).ud_photo_fileid).fit().into(holder.raiv_icon);
+            Picasso.with(context).load(list.get(position).ud_photo_fileid).into(holder.raiv_icon);
+        }else {
+            Picasso.with(context).load(R.drawable.circle_user_image).into(holder.raiv_icon);
         }
         holder.iv_subscribe.setChecked(list.get(position).checked);
         holder.tv_name.setText(list.get(position).ud_nickname);

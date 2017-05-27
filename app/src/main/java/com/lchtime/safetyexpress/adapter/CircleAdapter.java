@@ -175,11 +175,11 @@ public class CircleAdapter extends RecyclerView.Adapter {
                             @Override
                             public void circleResponse(CircleBean response) {
                                 if (context instanceof CircleUI) {
-                                    ((CircleUI) context).refreshData();
+                                    ((CircleUI) context).refreshData("1");
                                 }
 
                                 if (context instanceof SubscribActivity) {
-                                    ((SubscribActivity) context).refreshData();
+                                    ((SubscribActivity) context).refreshData("1");
                                 }
                             }
                         });
@@ -208,39 +208,52 @@ public class CircleAdapter extends RecyclerView.Adapter {
 
 
     }
-
+    private boolean greate = false;
+    private boolean down = false;
     private void setGreate(final CircleHodler holder, final QzContextBean bean, final CircleProtocal protocal) {
         holder.circle_item_great.setText(bean.qc_zc);
         holder.iv_circle_item_great.setChecked("1".equals(bean.zan));
         //点赞逻辑监听
-
+        if ("1".equals(bean.zan)){
+            holder.iv_circle_item_great.setClickable(false);
+            return;
+        }
         holder.iv_circle_item_great.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String userid = SpTools.getString(context, Constants.userId,"");
                 if (TextUtils.isEmpty(userid)){
                     CommonUtils.toastMessage("没有登陆！！");
                     holder.iv_circle_item_great.setChecked("1".equals(bean.zan));
                     return;
                 }else {
+                    holder.iv_circle_item_great.setClickable(false);
                     //请求网络数据
                     protocal.updataZanOrCai(userid, bean.qc_id, "1", "0", new CircleProtocal.NormalListener() {
                         @Override
                         public void normalResponse(Object response) {
+                            if (response == null){
+                                holder.iv_circle_item_great.setChecked("1".equals(bean.zan));
+                                holder.iv_circle_item_great.setClickable(true);
+                                CommonUtils.toastMessage("请求网络失败");
+                                return;
+                            }
                             BasicResult result = (BasicResult) response;
                             if (!result.code.equals("10")) {
                                 if (context instanceof  CircleUI) {
-                                    ((CircleUI) context).refreshData();
+                                    ((CircleUI) context).refreshItemData(bean.qc_id);
                                 }else if (context instanceof SubscribActivity){
-                                    ((SubscribActivity) context).refreshData();
+                                    ((SubscribActivity) context).refreshItemData(bean.qc_id);
                                 }
                             }else {
                                 if (context instanceof CircleUI) {
-                                    ((CircleUI) context).refreshData();
+                                    ((CircleUI) context).refreshItemData(bean.qc_id);
                                 }else if (context instanceof SubscribActivity){
-                                    ((SubscribActivity) context).refreshData();
+                                    ((SubscribActivity) context).refreshItemData(bean.qc_id);
                                 }
                             }
+                            holder.iv_circle_item_low.setClickable(false);
                             CommonUtils.toastMessage(result.getInfo());
                         }
                     });
@@ -255,6 +268,10 @@ public class CircleAdapter extends RecyclerView.Adapter {
         holder.circle_item_low.setText(bean.qc_fd);
         holder.iv_circle_item_low.setChecked("1".equals(bean.cai));
         //点赞逻辑监听
+        if ("1".equals(bean.cai)){
+            holder.iv_circle_item_low.setClickable(false);
+            return;
+        }
         holder.iv_circle_item_low.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -269,20 +286,27 @@ public class CircleAdapter extends RecyclerView.Adapter {
                     protocal.updataZanOrCai(userid, bean.qc_id, "0", "1", new CircleProtocal.NormalListener() {
                         @Override
                         public void normalResponse(Object response) {
+                            if (response == null){
+                                holder.iv_circle_item_low.setChecked("1".equals(bean.zan));
+                                holder.iv_circle_item_low.setClickable(true);
+                                CommonUtils.toastMessage("请求网络失败");
+                                return;
+                            }
                             BasicResult result = (BasicResult) response;
                             if (!result.code.equals("10")) {
                                 if (context instanceof  CircleUI) {
-                                    ((CircleUI) context).refreshData();
+                                    ((CircleUI) context).refreshItemData(bean.qc_id);
                                 }else if (context instanceof SubscribActivity){
-                                    ((SubscribActivity) context).refreshData();
+                                    ((SubscribActivity) context).refreshItemData(bean.qc_id);
                                 }
                             }else {
                                 if (context instanceof CircleUI) {
-                                    ((CircleUI) context).refreshData();
+                                    ((CircleUI) context).refreshItemData(bean.qc_id);
                                 }else if (context instanceof SubscribActivity){
-                                    ((SubscribActivity) context).refreshData();
+                                    ((SubscribActivity) context).refreshItemData(bean.qc_id);
                                 }
                             }
+                            holder.iv_circle_item_low.setClickable(false);
                             CommonUtils.toastMessage(result.getInfo());
                         }
                     });

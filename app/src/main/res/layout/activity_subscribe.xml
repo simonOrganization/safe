@@ -17,14 +17,12 @@
             android:layout_height="match_parent"
             android:background="@color/white">
 
-            <com.lchtime.safetyexpress.views.EmptyRecyclerView
+            <com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView
                 android:id="@+id/erc_subscribe_circle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
-                android:layout_marginLeft="@dimen/dm020"
-                android:layout_marginRight="@dimen/dm020">
-            </com.lchtime.safetyexpress.views.EmptyRecyclerView>
+                android:background="@color/white">
+            </com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView>
         </LinearLayout>
         <include android:id="@+id/loading" android:visibility="visible" layout="@layout/pager_loading"/>
         <include android:id="@+id/empty" android:visibility="gone" layout="@layout/pager_empty"/>

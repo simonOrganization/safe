@@ -176,7 +176,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                                 holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
                             } else {
                                 if (context instanceof CircleUI) {
-                                    ((CircleUI) context).refreshData();
+                                    ((CircleUI) context).refreshItemData(bean.qc_id);
                                 }
                             }
                         }
@@ -212,7 +212,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                                 holder.ivCircleItemLow.setChecked("1".equals(bean.zan));
                             } else {
                                 if (context instanceof CircleUI) {
-                                    ((CircleUI) context).refreshData();
+                                    ((CircleUI) context).refreshItemData(bean.qc_id);
                                 }
                             }
                         }

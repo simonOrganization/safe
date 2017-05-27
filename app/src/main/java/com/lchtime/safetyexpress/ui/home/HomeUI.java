@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.ui.home;
 
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
@@ -46,7 +47,7 @@ import okhttp3.Call;
  * Created by user on 2017/4/14.
  */
 @ContentView(R.layout.home)
-public class HomeUI extends BaseUI {
+public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListener {
 
     //banner图
     @ViewInject(R.id.sb_home_banner)
@@ -60,6 +61,9 @@ public class HomeUI extends BaseUI {
     //视频热点
     @ViewInject(R.id.mlv_home_hot_video)
     private EmptyRecyclerView mlv_home_hot_video;
+
+    @ViewInject(R.id.home_swipeRefreshLayout)
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private HomeHotCircleAdapter homeHotCircleAdapter;
     private HomeNewAdapter homeHotTrackAdapter;
@@ -87,6 +91,8 @@ public class HomeUI extends BaseUI {
 
     @Override
     protected void setControlBasis() {
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark);
+        swipeRefreshLayout.setOnRefreshListener(this);
         homeUI_instance = this;
         //轮播图
 
@@ -247,7 +253,6 @@ public class HomeUI extends BaseUI {
      */
     @OnClick(R.id.ll_home_news)
     private void getNews(View view){
-//        Intent intent = new Intent(HomeUI.this, HomeNewsUI.class);
         Intent intent = new Intent(HomeUI.this, HomeNewActivity.class);
         startActivity(intent);
     }
@@ -351,7 +356,6 @@ public class HomeUI extends BaseUI {
         }
     }
 
-
     public interface HomeToCircleInterface{
         void toCircleActivity();
     }
@@ -367,6 +371,25 @@ public class HomeUI extends BaseUI {
         protocal.getNewsList(type, new HotNewsProtocal.HotNewsListener() {
             @Override
             public void hotNewsResponse(NewsListRes newsListRes) {
+                if (newsListRes == null){
+                    String s = "";
+                    if ("1".equals(type)){
+                        s = "获取新闻失败";
+                        isNewComplete = true;
+                    }else {
+                        s = "获取视频失败";
+                        isVideoComplete = true;
+                    }
+                    CommonUtils.toastMessage(s);
+
+                    if (isNewComplete && isVideoComplete &&isCircleComplete){
+                        isNewComplete = false;
+                        isVideoComplete = false;
+                        isCircleComplete = false;
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                    return;
+                }
                 List list = null;
                 HomeNewAdapter adapter = null;
                 if (hotNewsList == null){
@@ -419,6 +442,20 @@ public class HomeUI extends BaseUI {
                 });
 
                 adapter.notifyDataSetChanged();
+                if ("1".equals(type)){
+                    //热点新闻
+                    isNewComplete = true;
+                }else {
+                    isVideoComplete = true;
+                }
+
+                if (isNewComplete && isVideoComplete &&isCircleComplete){
+                    isNewComplete = false;
+                    isVideoComplete = false;
+                    isCircleComplete = false;
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+
             }
         });
     }
@@ -429,21 +466,41 @@ public class HomeUI extends BaseUI {
             hotCirclesProtocal = new HotCirclesProtocal();
         }
 
-        if (hot == null) {
+        if (hot == null || hot.size() == 0) {
             hotCirclesProtocal.getCirclesList(new HotCirclesProtocal.HotNewsListener() {
                 @Override
                 public void hotNewsResponse(HotCircleBean hotCircleBean) {
-                    hot = hotCircleBean.hot;
-                    //先清除
-                    if (hot == null) {
+                    if (hotCircleBean == null){
+                        isCircleComplete = true;
+                        if (isNewComplete && isVideoComplete &&isCircleComplete){
+                            isNewComplete = false;
+                            isVideoComplete = false;
+                            isCircleComplete = false;
+                            swipeRefreshLayout.setRefreshing(false);
+                        }
                         return;
                     }
+                    if (hot == null) {
+                        hot = hotCircleBean.hot;
+                    }else {
+                        hot.clear();
+                        hot.addAll(hotCircleBean.hot);
+                    }
+
+                    //先清除
+
                     hotList.clear();
 
                     //添加所有---------------
                     hotList.addAll(hot.get(page));
 
                     homeHotCircleAdapter.notifyDataSetChanged();
+                    if (isNewComplete && isVideoComplete &&isCircleComplete){
+                        isNewComplete = false;
+                        isVideoComplete = false;
+                        isCircleComplete = false;
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
                 }
             });
         }else {
@@ -453,7 +510,29 @@ public class HomeUI extends BaseUI {
             hotList.addAll(hot.get(page));
 
             homeHotCircleAdapter.notifyDataSetChanged();
+            isCircleComplete = true;
+            if (isNewComplete && isVideoComplete &&isCircleComplete){
+                isNewComplete = false;
+                isVideoComplete = false;
+                isCircleComplete = false;
+                swipeRefreshLayout.setRefreshing(false);
+            }
         }
     }
+
+
+    private boolean isNewComplete = false;
+    private boolean isVideoComplete = false;
+    private boolean isCircleComplete = false;
+    @Override
+    public void onRefresh() {
+        if (hot != null) {
+            hot.clear();
+        }
+        prepareData();
+
+    }
+
+
 
 }

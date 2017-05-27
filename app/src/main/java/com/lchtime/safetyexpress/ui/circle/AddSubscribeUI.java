@@ -67,6 +67,7 @@ public class AddSubscribeUI extends FragmentActivity {
         fragments = new Fragment[]{saf,scf};
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.add_subscribe_frame,fragments[0]).commit();
+//        ft.add(R.id.add_subscribe_frame,fragments[1]).commit();
         setIndexSelected(0);
     }
     private void setIndexSelected(int index) {
@@ -86,7 +87,7 @@ public class AddSubscribeUI extends FragmentActivity {
         ft.hide(fragments[mIndex]);
         //判断是否添加
         if (!fragments[index].isAdded()) {
-            ft.replace(R.id.add_subscribe_frame, fragments[index]).show(fragments[index]);
+            ft.add(R.id.add_subscribe_frame, fragments[index]).show(fragments[index]);
         } else {
             ft.show(fragments[index]);
         }

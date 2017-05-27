@@ -51,6 +51,7 @@ dependencies {
     compile files('libs/picasso-2.5.2.jar')
     compile 'org.kymjs.kjframe:kjframe:2.6'
     compile 'com.youth.banner:banner:1.4.9'
+    compile 'com.timehop.stickyheadersrecyclerview:library:0.4.3@aar'
     //最新版本
     compile project(':recordlib')
     compile project(':threeLoginFrame')

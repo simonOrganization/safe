@@ -2,8 +2,9 @@ package com.lchtime.safetyexpress.ui.circle;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,7 +17,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.CircleAdapter;
+import com.lchtime.safetyexpress.adapter.CircleHeaderAndFooterWrapper;
 import com.lchtime.safetyexpress.adapter.HeaderAndFooterWrapper;
+import com.lchtime.safetyexpress.bean.CircleItemUpBean;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.HomeBannerBean;
 import com.lchtime.safetyexpress.bean.InitInfo;
@@ -30,6 +33,7 @@ import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
 import com.lchtime.safetyexpress.ui.vip.SelectCityActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.CirclePopView;
 import com.lchtime.safetyexpress.views.SpinerPopWindow;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -39,6 +43,7 @@ import com.mzhy.http.okhttp.OkHttpUtils;
 import com.mzhy.http.okhttp.callback.StringCallback;
 import com.sivin.Banner;
 import com.sivin.BannerAdapter;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +57,7 @@ import okhttp3.Call;
 public class CircleUI extends BaseUI implements View.OnClickListener {
     //banner图
     @ViewInject(R.id.circle_rc)
+    private PullLoadMoreRecyclerView pullLoadMoreRecyclerView;
     private RecyclerView circle_rc;
     private Banner sb_home_banner;
     private LinearLayout circle_work;
@@ -93,8 +99,10 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     private ArrayList<String> moreData;
     private String userid;
     private View headerView;
-    private HeaderAndFooterWrapper wapperAdapter;
+    private CircleHeaderAndFooterWrapper wapperAdapter;
     private View headerView2;
+    private StickyRecyclerHeadersDecoration topStickyHeadersItemDecoration;
+
 
 
     @Override
@@ -112,7 +120,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
         if (InitInfo.circleRefresh){
-            refreshData();
+            refreshData("1");
             InitInfo.circleRefresh = false;
         }
     }
@@ -120,6 +128,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     @Override
     protected void setControlBasis() {
         initView();
+        initListener();
         userid = SpTools.getString(this,Constants.userId,"");
 
         //轮播图
@@ -171,8 +180,38 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
             }
         });
     }
+    private Handler handler = new Handler();
+    private void initListener() {
+        pullLoadMoreRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+            @Override
+            public void onRefresh() {
+                page = 1;
+                refreshData("1");
+            }
+
+            @Override
+            public void onLoadMore() {
+                page++;
+                if (page > totalPage){
+                    CommonUtils.toastMessage("没有更多了");
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                        }
+                    },300);
+                    return;
+                }
+                isLoadMore = true;
+                refreshData(page + "");
+            }
+        });
+    }
 
     private void initView() {
+
+        circle_rc = (RecyclerView) pullLoadMoreRecyclerView.findViewById(R.id.home_new_fragment_rc);
+
         headerView = View.inflate(this, R.layout.circle_header,null);
 
         circle_work = (LinearLayout) headerView.findViewById(R.id.circle_work);
@@ -190,6 +229,18 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         headerView2 = View.inflate(this, R.layout.home_banner,null);
         //banner图
         sb_home_banner = (Banner) headerView2.findViewById(R.id.sb_home_banner);
+
+        rcAdapter = new CircleAdapter(CircleUI.this,circleList);
+        rcAdapter.setIsCircle(true);
+        wapperAdapter = new CircleHeaderAndFooterWrapper(rcAdapter);
+        wapperAdapter.addHeaderView(headerView2);
+        wapperAdapter.addHeaderView(headerView);
+        circle_rc.setAdapter(wapperAdapter);
+
+        topStickyHeadersItemDecoration = new StickyRecyclerHeadersDecoration(wapperAdapter);
+
+        circle_rc.setLayoutManager(new GridLayoutManager(CircleUI.this, 1) );
+//        circle_rc.setLayoutManager(new LinearLayoutManager(this));
 
         circle_work.setOnClickListener(this);
         circle_gangwei.setOnClickListener(this);
@@ -209,15 +260,10 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         protocal.getCircleList(userid, "0", "4", "0", new CircleProtocal.CircleListener() {
             @Override
             public void circleResponse(CircleBean response) {
-                circle_rc.setLayoutManager(new GridLayoutManager(CircleUI.this, 1) );
+                totalPage = response.total;
                 circleList.clear();
                 circleList.addAll(response.qz_context);
-                rcAdapter = new CircleAdapter(CircleUI.this,circleList);
-                rcAdapter.setIsCircle(true);
-                wapperAdapter = new HeaderAndFooterWrapper(rcAdapter);
-                wapperAdapter.addHeaderView(headerView2);
-                wapperAdapter.addHeaderView(headerView);
-                circle_rc.setAdapter(wapperAdapter);
+                wapperAdapter.notifyDataSetChanged();
             }
         });
 
@@ -295,7 +341,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
             if (data != null) {
                 String selectCity = data.getStringExtra("city");
                 request_addr = selectCity;
-                refreshData();
+                refreshData("1");
                 tv_addr_selected.setText(selectCity);
             }
         }
@@ -352,14 +398,16 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 tv_gw_selected.setText(title);
             }
         }
-        refreshData();
+        refreshData("1");
 
     }
 
-    public void refreshData() {
+    private boolean isLoadMore = false;
+    private int page = 1;
+    private int totalPage = 1;
+    public void refreshData(String page) {
         //请求筛选过的数据
         String ub_id = userid;
-        String page = "0";
         //全部圈子
         String type = "4";
         String ud_profession = request_hy;
@@ -370,13 +418,53 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         protocal.getCircleSelectedList(ub_id, page, type, ud_profession, ud_post, ud_addr, order, new CircleProtocal.CircleListener() {
             @Override
             public void circleResponse(CircleBean response) {
-                circleList.clear();
+                if (response == null){
+                    CommonUtils.toastMessage("更新失败");
+                    pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                    return;
+                }
+                totalPage = response.total;
+                if (!isLoadMore) {
+                    circleList.clear();
+                }
                 if(response.qz_context != null) {
                     circleList.addAll(response.qz_context);
                 }
+                pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
                 wapperAdapter.notifyDataSetChanged();
+                isLoadMore = false;
             }
         });
+    }
+
+
+    public void refreshItemData(final String qc_id) {
+        if (protocal == null){
+            protocal = new CircleProtocal();
+        }
+        userid = SpTools.getString(this, Constants.userId,"");
+        protocal.getItemInfo(userid, qc_id, new CircleProtocal.NormalListener() {
+            @Override
+            public void normalResponse(Object response) {
+                if (response == null){
+                    CommonUtils.toastMessage("更新数据失败");
+                    return;
+                }
+                CircleItemUpBean circleItemUpBean = (CircleItemUpBean) response;
+                QzContextBean qzContextBean = circleItemUpBean.qz_info.get(0);
+                for (int i = 0; i < circleList.size() ; i ++){
+                    QzContextBean bean = circleList.get(i);
+                    if (qc_id.equals(bean.qc_id)){
+                        circleList.set(i,qzContextBean);
+                        break;
+                    }
+                }
+                wapperAdapter.notifyDataSetChanged();
+
+            }
+        });
+
+
     }
     //行业
     public static final String HANG_YE = "hy";
@@ -388,6 +476,8 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     public static final String ADDRESS ="addr";
     @Override
     public void onClick(View v) {
+        RecyclerView.LayoutManager layoutManager = circle_rc.getLayoutManager();
+        ((LinearLayoutManager) layoutManager).scrollToPositionWithOffset(1,0);
         if (v == circle_work){
             //改变ui
             hy_indicator.setSelected(true);
@@ -436,10 +526,12 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                     spinerPopWindow.dismiss();
                     request_order = position + "";
                     //请求筛选过的数据
-                    refreshData();
+                    refreshData("1");
 
                 }
             });
         }
     }
+
+
 }

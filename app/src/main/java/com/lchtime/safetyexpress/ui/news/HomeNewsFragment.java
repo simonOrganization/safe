@@ -147,6 +147,17 @@ public class HomeNewsFragment extends BaseFragment {
 
                 //如果是推荐或者是热点
                 footPage++;
+                if (footPage == totalPage){
+                    CommonUtils.toastMessage("没有更多了");
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            refreshLayout.setPullLoadMoreCompleted();
+                        }
+                    },200);
+
+                    return;
+                }
                 if (position == 0 || position == 1){
                     new Thread(new Runnable() {
                         @Override
@@ -180,6 +191,7 @@ public class HomeNewsFragment extends BaseFragment {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
+                    CommonUtils.toastMessage("没有更多了");
                     refreshLayout.setPullLoadMoreCompleted();
                 }
             });
@@ -300,6 +312,7 @@ public class HomeNewsFragment extends BaseFragment {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
+                    CommonUtils.toastMessage("没有更多了");
                     refreshLayout.setPullLoadMoreCompleted();
                 }
             });

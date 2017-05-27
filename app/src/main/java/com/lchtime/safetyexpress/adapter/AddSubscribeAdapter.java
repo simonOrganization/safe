@@ -75,14 +75,18 @@ public class AddSubscribeAdapter extends RecyclerView.Adapter {
                     myHolder.add_subscirbe_item_but.setChecked("1".equals(bean.is_dy));
                     return;
                 }else {
-                    protocal.changeSubscribe(userid, bean.ud_ub_id, "0" , new CircleProtocal.CircleListener() {
+                    protocal.changeSubscribe(userid, bean.ud_ub_id, "1".equals(bean.is_dy)?"0":"1" , new CircleProtocal.CircleListener() {
                         @Override
                         public void circleResponse(CircleBean response) {
-
+                                if (response == null){
+                                    CommonUtils.toastMessage("操作失败,请检查网络");
+                                    myHolder.add_subscirbe_item_but.setChecked("1".equals(bean.is_dy));
+                                    return;
+                                }
                                 if (fragment instanceof SubscirbeAllFragment) {
-                                    ((SubscirbeAllFragment) fragment).refreshData();
+                                    ((SubscirbeAllFragment) fragment).refreshData("1");
                                 } else if (fragment instanceof SubscirbeCommendFragment) {
-                                    ((SubscirbeCommendFragment) fragment).initData();
+                                    ((SubscirbeCommendFragment) fragment).initData("1");
                                 } else if (fragment instanceof OtherPersonSubscribeActivity) {
                                     ((OtherPersonSubscribeActivity) fragment).prepareData();
                                 }

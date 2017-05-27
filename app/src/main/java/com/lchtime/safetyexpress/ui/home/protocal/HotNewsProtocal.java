@@ -25,6 +25,7 @@ public class HotNewsProtocal {
     public void getNewsList(String type, final HotNewsListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.hotNewsResponse(null);
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -38,13 +39,14 @@ public class HotNewsProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        listener.hotNewsResponse(null);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         if (TextUtils.isEmpty(response)){
                             CommonUtils.toastMessage("没有数据返回");
+                            listener.hotNewsResponse(null);
                             return;
                         }
                         NewsListRes newsListRes = (NewsListRes) JsonUtils.stringToObject(response,NewsListRes.class);
@@ -54,6 +56,7 @@ public class HotNewsProtocal {
                             }
                         }else{
                             CommonUtils.toastMessage(newsListRes.getResult().getInfo());
+                            listener.hotNewsResponse(null);
                         }
                     }
                 });

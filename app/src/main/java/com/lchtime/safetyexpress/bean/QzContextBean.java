@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,5 +36,5 @@ public class QzContextBean {
     public String cai;
     public String is_dy;
     public String dyNum;
-    public List<String> pic;
+    public ArrayList<String> pic;
 }

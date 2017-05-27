@@ -26,6 +26,7 @@ public class HotCirclesProtocal {
     public void getCirclesList(final HotNewsListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.hotNewsResponse(null);
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -38,22 +39,25 @@ public class HotCirclesProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        listener.hotNewsResponse(null);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         if (TextUtils.isEmpty(response)){
                             CommonUtils.toastMessage("没有数据返回");
+                            listener.hotNewsResponse(null);
                             return;
                         }
                         HotCircleBean hotCircleBean = (HotCircleBean) JsonUtils.stringToObject(response,HotCircleBean.class);
                         if(hotCircleBean.result.code.equals("10")){
                             if (listener != null){
                                 listener.hotNewsResponse(hotCircleBean);
+                                listener.hotNewsResponse(null);
                             }
                         }else{
                             CommonUtils.toastMessage(hotCircleBean.result.info);
+                            listener.hotNewsResponse(null);
                         }
                     }
                 });

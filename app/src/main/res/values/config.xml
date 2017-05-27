@@ -81,6 +81,8 @@
     <!--新闻视频搜索-->
     <string name="xwspsearch">index.php/cms/search</string>
     <string name="mywd">index.php/wenda/mywd</string>
+    <!--返回点赞单条信息-->
+    <string name="clickdz">index.php/quanzi/clickdz</string>
     <string name="help">
         发动态，挣现金啦！\n
         在这里，您发布的内容所有人都能看到哦！通过手机随时随地把一线现场的安全新闻、故事图片、隐患治理、救援方案、安全文化、管理经验等图文并茂的编辑发布到“圈子”内，就可获得以下奖励：

@@ -48,6 +48,8 @@ public class CircleImageAdapter extends RecyclerView.Adapter {
 //        ImageLoader.getInstance().displayImage(circleTwoList.get(position),holder1.circle_image,Option);
         if(!TextUtils.isEmpty(circleTwoList.get(position))){
             Picasso.with(context).load(circleTwoList.get(position)).fit().into(holder1.circle_image);
+        }else {
+            Picasso.with(context).load(R.drawable.home_banner).fit().into(holder1.circle_image);
         }
     }
 

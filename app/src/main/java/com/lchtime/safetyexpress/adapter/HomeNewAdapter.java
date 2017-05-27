@@ -207,6 +207,8 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
             homeNewNoHolder.textViews.get(0).setText(bean.getCc_title());
             if (bean.getMedia().size() > 0) {
                 Picasso.with(context).load(bean.getMedia().get(0)).into(homeNewNoHolder.home_new_no_item_image);
+            }else {
+                Picasso.with(context).load(R.drawable.home_banner).into(homeNewNoHolder.home_new_no_item_image);
             }
             homeNewNoHolder.textViews.get(1).setText(bean.getCc_from());
             homeNewNoHolder.textViews.get(2).setText(bean.getCc_count()+"评论");

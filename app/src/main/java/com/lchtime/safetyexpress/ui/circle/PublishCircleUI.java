@@ -246,7 +246,7 @@ public class PublishCircleUI extends BaseUI {
                             if (i == 0){
                                 filesid = filesid + updataBean.file_ids.get(i);
                             }else {
-                                filesid = filesid + ";" + updataBean.file_ids.get(i);
+                                filesid = filesid + "," + updataBean.file_ids.get(i);
                             }
                         }
 

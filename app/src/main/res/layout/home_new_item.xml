@@ -10,8 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dm020"
         android:layout_marginBottom="@dimen/dm020"
-        android:layout_marginLeft="@dimen/dm010"
-        android:layout_marginRight="@dimen/dm010"
         android:orientation="horizontal">
         <CheckBox
             android:id="@+id/rb_delete"
@@ -44,7 +42,7 @@
             <com.lchtime.safetyexpress.views.NoTouchRecycler
                 android:id="@+id/home_new_item_rc"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm160"
+                android:layout_height="@dimen/dm140"
                 android:layout_marginTop="@dimen/dm020" />
 
             <LinearLayout
@@ -98,6 +96,6 @@
         android:layout_below="@id/ll_item_pic_wenzi"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm001"
-        android:background="@color/title_999"/>
+        android:background="@color/line"/>
 
 </RelativeLayout>

@@ -23,6 +23,7 @@
             android:textSize="@dimen/dm024"
             android:button="@null"
             android:checked="true"
+            android:background="@color/transparent"
             android:textColor="@drawable/add_subscirbe_text_color"/>
         <RadioButton
             android:id="@+id/add_subscirbe_line_rb_comm"
@@ -31,6 +32,7 @@
             android:layout_height="match_parent"
             android:text="推荐"
             android:gravity="center"
+            android:background="@color/transparent"
             android:textSize="@dimen/dm024"
             android:button="@null"
             android:checked="false"
