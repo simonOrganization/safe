@@ -102,6 +102,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"/>
         <activity
+            android:name=".ui.circle.CircleUI"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
             android:name=".ui.home.HomeNewsDetailUI"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"/>
@@ -119,10 +123,6 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".ui.home.HomeQuestionUI"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".ui.circle.CircleUI"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"/>
         <activity

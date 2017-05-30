@@ -8,13 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.CircleAdapter;
-import com.lchtime.safetyexpress.bean.QJSearchBean;
 import com.lchtime.safetyexpress.bean.QZSearchBean;
-import com.lchtime.safetyexpress.ui.circle.CircleUI;
 import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
 import com.lchtime.safetyexpress.ui.search.protocal.SerchProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;

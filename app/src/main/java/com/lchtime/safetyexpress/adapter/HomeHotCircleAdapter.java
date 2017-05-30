@@ -1,14 +1,12 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,11 +15,7 @@ import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.HotCircleBean;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
-import com.lchtime.safetyexpress.ui.circle.CircleUI;
-import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
-import com.lchtime.safetyexpress.ui.home.HomeUI;
-import com.lchtime.safetyexpress.ui.home.protocal.HotCirclesProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.squareup.picasso.Picasso;
