@@ -1,1 +1,1 @@
-include ':app', ':mylibrary', ':PagerSlidingTabStrip', ':recordlib', ':threeLoginFrame', ':video-player-manager'
+include ':app', ':mylibrary', ':PagerSlidingTabStrip', ':recordlib', ':threeLoginFrame', ':jcvideoplayer-lib'

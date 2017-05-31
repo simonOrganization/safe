@@ -14,18 +14,20 @@ import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.NewsBean;
+import com.lchtime.safetyexpress.ui.circle.VideoConstant;
 import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
 import com.lchtime.safetyexpress.ui.home.HomeUI;
 import com.lchtime.safetyexpress.ui.home.HomeVideosDeatilUI;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
-import com.mcoy_jiang.videomanager.ui.McoyVideoView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 /**
  * Created by android-cp on 2017/5/8.
@@ -55,8 +57,20 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
 
         myHolder.tv_title.setText(bean.cc_title);
 //        Picasso.with(context).load(bean.media.get(0)).fit().into(myHolder.iv_img);
-        myHolder.iv_img.setVideoBackground(bean.media.get(0));
-        myHolder.iv_img.setVideoUrl(bean.media.get(1));
+
+//        myHolder.iv_img.setUp(
+//                bean.media.get(1), JCVideoPlayer.SCREEN_LAYOUT_LIST,
+//                bean.cc_title);
+//        Picasso.with(context)
+//                .load(bean.media.get(0))
+//                .into(myHolder.iv_img.thumbImageView);
+
+        myHolder.iv_img.setUp(
+                VideoConstant.videoUrls[0][position], JCVideoPlayer.SCREEN_LAYOUT_LIST,
+                VideoConstant.videoTitles[0][position]);
+        Picasso.with(myHolder.iv_img.getContext())
+                .load(VideoConstant.videoThumbs[0][position])
+                .into(myHolder.iv_img.thumbImageView);
 
 
         myHolder.tv_from.setText(bean.cc_from);
@@ -102,7 +116,7 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
         @BindView(R.id.ll_recommend_share)
         LinearLayout ll_share;
         @BindView(R.id.iv_recommend_img)
-        McoyVideoView iv_img;
+        JCVideoPlayerStandard iv_img;
 //        @BindView(R.id.iv_recommend_img_bg)
 //        ImageView iv_img_bg;
 //        @BindView(R.id.iv_recommend_play)

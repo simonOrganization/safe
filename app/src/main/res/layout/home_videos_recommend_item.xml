@@ -49,12 +49,10 @@
             android:layout_height="@dimen/dm300"
             android:layout_marginTop="@dimen/dm020">
 
-            <com.mcoy_jiang.videomanager.ui.McoyVideoView
+            <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
                 android:id="@+id/iv_recommend_img"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm300">
-
-            </com.mcoy_jiang.videomanager.ui.McoyVideoView>
+                android:layout_height="@dimen/dm300" />
             <!--<ImageView-->
                 <!--android:id="@+id/iv_recommend_img"-->
                 <!--android:layout_width="match_parent"-->
