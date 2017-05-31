@@ -155,7 +155,7 @@ public class OpinionActivity extends BaseUI{
                             .setGif(false)// 是否显示gif图片，默认不显示
 //                            .setCropW(cropW) // cropW-->裁剪宽度 值不能小于100  如果值大于图片原始宽高 将返回原图大小
 //                            .setCropH(cropH) // cropH-->裁剪高度 值不能小于100 如果值大于图片原始宽高 将返回原图大小
-                            .setMaxB(200) // 压缩最大值 例如:200kb  就设置202400，202400 / ic_launcher = 200kb
+                            .setMaxB(512000) // 压缩最大值 例如:200kb  就设置202400，202400 / ic_launcher = 200kb
                             .setPreviewColor(previewColor) //预览字体颜色
                             .setCompleteColor(completeColor) //已完成字体颜色
                             .setPreviewBottomBgColor(ContextCompat.getColor(OpinionActivity.this, R.color.transparent)) //预览底部背景色

@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/cp/Android龙创时代/gitsafe/PagerSlidingTabStrip/src/main/jniLibs"/></dataSet><dataSet config="release"><source path="/Users/cp/Android龙创时代/gitsafe/PagerSlidingTabStrip/src/release/jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\gitrepositories\safe\PagerSlidingTabStrip\src\main\jniLibs"/></dataSet><dataSet config="release"><source path="C:\gitrepositories\safe\PagerSlidingTabStrip\src\release\jniLibs"/></dataSet></merger>

@@ -1,10 +1,14 @@
 [
     {
-        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\PagerSlidingTabStrip\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\background_tab.xml",
-        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\PagerSlidingTabStrip\\build\\intermediates\\bundles\\debug\\res\\drawable\\background_tab.xml"
+        "merged": "C:\\Users\\cp\\Android龙创时代\\gitsafe\\PagerSlidingTabStrip\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\background_tab.xml",
+        "source": "C:\\Users\\cp\\Android龙创时代\\gitsafe\\PagerSlidingTabStrip\\build\\intermediates\\bundles\\debug\\res\\drawable\\background_tab.xml"
     },
     {
-        "merged": "/Users/cp/Android龙创时代/gitsafe/PagerSlidingTabStrip/build/intermediates/res/merged/androidTest/debug/drawable/background_tab.xml",
-        "source": "/Users/cp/Android龙创时代/gitsafe/PagerSlidingTabStrip/build/intermediates/bundles/debug/res/drawable/background_tab.xml"
+        "merged": "C:\\gitrepositories\\safe\\PagerSlidingTabStrip\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\background_tab.xml",
+        "source": "C:\\gitrepositories\\safe\\PagerSlidingTabStrip\\build\\intermediates\\bundles\\debug\\res\\drawable\\background_tab.xml"
+    },
+    {
+        "merged": "C:\\Users\\cp\\Android龙创时代\\gitsafe\\C:\\gitrepositories\\safe\\PagerSlidingTabStrip\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\background_tab.xml",
+        "source": "C:\\Users\\cp\\Android龙创时代\\gitsafe\\C:\\gitrepositories\\safe\\PagerSlidingTabStrip\\build\\intermediates\\bundles\\debug\\res\\drawable\\background_tab.xml"
     }
 ]

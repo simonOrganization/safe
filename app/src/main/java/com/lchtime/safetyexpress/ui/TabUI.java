@@ -2,9 +2,13 @@ package com.lchtime.safetyexpress.ui;
 
 import android.app.TabActivity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
@@ -231,9 +235,15 @@ public class TabUI extends TabActivity implements OnClickListener {
         publiccamera.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(TabUI.this, RecordVideoActivity.class);
-                intent.putExtra(RecordVideoActivity.RECORD_VIDEO_PATH,videoPath);
-                startActivityForResult(intent,TAKE_DATA);
+
+                if(!hasPermission(new String[]{"android.permission.READ_EXTERNAL_STORAGE","android.permission.CAMERA","android.permission.RECORD_AUDIO"})) {
+                    requestPermission(1, new String[]{"android.permission.READ_EXTERNAL_STORAGE","android.permission.CAMERA","android.permission.RECORD_AUDIO"});
+                } else {
+                    Intent intent=new Intent(TabUI.this, RecordVideoActivity.class);
+                    intent.putExtra(RecordVideoActivity.RECORD_VIDEO_PATH,videoPath);
+                    startActivityForResult(intent,TAKE_DATA);
+                }
+
             }
         });
     }
@@ -305,6 +315,7 @@ public class TabUI extends TabActivity implements OnClickListener {
                 break;
             case R.id.circle_public_camera:
                 String ub_id = SpTools.getString(this, Constants.userId,"");
+
                 if (TextUtils.isEmpty(ub_id)){
                     CommonUtils.toastMessage("登录后才能发布圈子！");
                     return;
@@ -349,6 +360,52 @@ public class TabUI extends TabActivity implements OnClickListener {
 //                }
                 break;
         }
+    }
+
+
+    /*
+     *
+     *以下为  为了小视频申请动态权限
+     */
+    protected boolean hasPermission(String... permissions) {
+        String[] arr = permissions;
+        int length = permissions.length;
+
+        for(int i = 0; i < length; ++i) {
+            String permission = arr[i];
+            if(ContextCompat.checkSelfPermission(this, permission) != 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+    protected void requestPermission(int code, String... permissions) {
+        ActivityCompat.requestPermissions(this, permissions, code);
+    }
+
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch(requestCode) {
+            case 1:
+                if(grantResults.length >= 2
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                        && grantResults[1] == PackageManager.PERMISSION_GRANTED
+                        && grantResults[2] == PackageManager.PERMISSION_GRANTED) {
+
+                    Intent intent=new Intent(TabUI.this, RecordVideoActivity.class);
+                    intent.putExtra(RecordVideoActivity.RECORD_VIDEO_PATH,videoPath);
+                    startActivityForResult(intent,TAKE_DATA);
+
+                } else {
+                    CommonUtils.toastMessage("读取内存卡/相机权限/录音权限已被拒绝");
+                }
+                break;
+
+        }
+
     }
 
 }

@@ -72,7 +72,7 @@ public class RecordStartView extends View {
         super(context, attrs, defStyleAttr);
         TypedArray typedArray=context.obtainStyledAttributes(attrs, R.styleable.RecordStartView);
         //外环颜色
-        mRingColor=typedArray.getColor(R.styleable.RecordStartView_mRingColor, Color.GRAY);
+        mRingColor=typedArray.getColor(R.styleable.RecordStartView_mRingColor, getResources().getColor(R.color.white00));
         //进度条颜色
         mRingProgressColor=typedArray.getColor(R.styleable.RecordStartView_mRingProgressColor, Color.GREEN);
         //中间颜色设置白色

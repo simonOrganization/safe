@@ -139,14 +139,14 @@ public class PublishCircleUI extends BaseUI {
                             .setCheckedBoxDrawable( R.drawable.select_cb)
 //                            .setCropW(cropW) // cropW-->裁剪宽度 值不能小于100  如果值大于图片原始宽高 将返回原图大小
 //                            .setCropH(cropH) // cropH-->裁剪高度 值不能小于100 如果值大于图片原始宽高 将返回原图大小
-                            .setMaxB(200) // 压缩最大值 例如:200kb  就设置202400，202400 / ic_launcher = 200kb
+                            .setMaxB(512000) // 压缩最大值 例如:200kb  就设置202400，202400 / ic_launcher = 200kb
                             .setPreviewColor(previewColor) //预览字体颜色
                             .setCompleteColor(completeColor) //已完成字体颜色
                             .setPreviewBottomBgColor(ContextCompat.getColor(PublishCircleUI.this, R.color.transparent)) //预览底部背景色
                             .setBottomBgColor(ContextCompat.getColor(PublishCircleUI.this, R.color.transparent)) //图片列表底部背景色
-                            .setGrade(Luban.THIRD_GEAR) // 压缩档次 默认三档
+                            .setGrade(Luban.CUSTOM_GEAR) // 压缩档次 默认三档
                             .setCheckNumMode(false)//设置是否显示数字模式
-                            .setCompressQuality(100) // 图片裁剪质量,默认无损
+//                            .setCompressQuality(100) // 图片裁剪质量,默认无损
                             .setImageSpanCount(3) // 每行个数
                             .setSelectMedia(selectMedia) // 已选图片，传入在次进去可选中，不能传入网络图片
                             .setCompressFlag(1) // 1 系统自带压缩 2 luban压缩
