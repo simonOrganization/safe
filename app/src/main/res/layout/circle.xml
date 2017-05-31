@@ -46,13 +46,11 @@
     </LinearLayout>
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:descendantFocusability="blocksDescendants"
         android:background="@color/white">
-
 
 
         <com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView
@@ -63,8 +61,11 @@
             />
 
 
+        <include layout="@layout/circle_header"
+                 android:id="@+id/layout_circle_header"
+            android:visibility="gone"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </LinearLayout>

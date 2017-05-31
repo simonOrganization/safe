@@ -79,6 +79,9 @@ public class CirclePopView extends PopupWindow {
 //        });
     }
     public void setDataAdapter(final List<ProfessionBean.ProfessionItemBean> array){
+        if (array == null){
+            return;
+        }
         this.array = array;
         adapter = new CirclePopAdapter(context,array);
         adapter.setItemInterface(new CirclePopAdapter.PopItemInterfce() {
@@ -105,6 +108,9 @@ public class CirclePopView extends PopupWindow {
     }
     @OnClick({R.id.circle_pop_restart,R.id.circle_pop_submit})
     void setOnclick(View view){
+        if (array == null){
+            return;
+        }
         switch (view.getId()){
             case R.id.circle_pop_restart:
                 for(int i=0;i<array.size();i++){

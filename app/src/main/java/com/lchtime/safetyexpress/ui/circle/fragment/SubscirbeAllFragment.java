@@ -2,7 +2,6 @@ package com.lchtime.safetyexpress.ui.circle.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.DrmInitData;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -16,33 +15,27 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.AddSubscribeAdapter;
 import com.lchtime.safetyexpress.adapter.HeaderAndFooterWrapper;
 import com.lchtime.safetyexpress.bean.AddSubscribBean;
-import com.lchtime.safetyexpress.bean.CircleSelectBean;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.PostBean;
 import com.lchtime.safetyexpress.bean.ProfessionBean;
-import com.lchtime.safetyexpress.bean.res.CircleBean;
-import com.lchtime.safetyexpress.ui.circle.CircleUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.vip.SelectCityActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.CirclePopView;
-import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by yxn on 2017/4/23.

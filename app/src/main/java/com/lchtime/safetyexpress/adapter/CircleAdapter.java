@@ -8,13 +8,10 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.BasicResult;
@@ -30,10 +27,8 @@ import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ImageUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
-import com.lchtime.safetyexpress.views.GridSpacingItemDecoration;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -43,7 +38,7 @@ import butterknife.ButterKnife;
  * Created by yxn on 2017/4/20.
  */
 
-public class CircleAdapter extends RecyclerView.Adapter {
+public class CircleAdapter extends RecyclerView.Adapter  {
     private Activity context;
     private List<QzContextBean> circleOneList;
     private boolean isCircle = false;
@@ -241,7 +236,7 @@ public class CircleAdapter extends RecyclerView.Adapter {
                             }
                             BasicResult result = (BasicResult) response;
                             if (!result.code.equals("10")) {
-                                if (context instanceof  CircleUI) {
+                                if (context instanceof CircleUI) {
                                     ((CircleUI) context).refreshItemData(bean.qc_id);
                                 }else if (context instanceof SubscribActivity){
                                     ((SubscribActivity) context).refreshItemData(bean.qc_id);
@@ -294,7 +289,7 @@ public class CircleAdapter extends RecyclerView.Adapter {
                             }
                             BasicResult result = (BasicResult) response;
                             if (!result.code.equals("10")) {
-                                if (context instanceof  CircleUI) {
+                                if (context instanceof CircleUI) {
                                     ((CircleUI) context).refreshItemData(bean.qc_id);
                                 }else if (context instanceof SubscribActivity){
                                     ((SubscribActivity) context).refreshItemData(bean.qc_id);
@@ -319,9 +314,11 @@ public class CircleAdapter extends RecyclerView.Adapter {
     }
 
 
+
     @Override
     public int getItemCount() {
         return circleOneList.size();
+//        return 18;
     }
 
 

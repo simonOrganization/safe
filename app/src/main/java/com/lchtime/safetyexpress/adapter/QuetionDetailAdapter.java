@@ -2,28 +2,18 @@ package com.lchtime.safetyexpress.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.bean.Constants;
-import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.bean.WenDaDetailBean;
-import com.lchtime.safetyexpress.bean.res.CircleBean;
-import com.lchtime.safetyexpress.ui.circle.CircleUI;
-import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
 import com.lchtime.safetyexpress.ui.home.MyQuestion;
-import com.lchtime.safetyexpress.utils.CommonUtils;
-import com.lchtime.safetyexpress.utils.ScreenUtil;
-import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.CircleImageView;
 import com.squareup.picasso.Picasso;
 
