@@ -173,7 +173,7 @@ public class CircleHeaderAndFooterWrapper<T> extends RecyclerView.Adapter<Recycl
 
     @Override
     public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
-        
+
     }
 
     public static class MyHeaderViewHolder extends RecyclerView.ViewHolder {
