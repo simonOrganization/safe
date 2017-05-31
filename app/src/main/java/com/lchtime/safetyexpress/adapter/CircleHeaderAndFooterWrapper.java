@@ -153,5 +153,8 @@ public class CircleHeaderAndFooterWrapper<T> extends RecyclerView.Adapter<Recycl
         return mFootViews.size();
     }
 
-
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 }

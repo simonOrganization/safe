@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,13 +65,20 @@ public class CircleAdapter extends RecyclerView.Adapter  {
     }
 
     @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+        Log.i("---------------",position + "");
+//        holder.itemView.setTag(position);
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         int screenWith = ScreenUtil.getScreenSize(context)[0];
+        final QzContextBean bean = circleOneList.get(position);
         if(holder instanceof CircleHodler){
             CircleHodler circleHodler = (CircleHodler) holder;
-            final QzContextBean bean = circleOneList.get(position);
 
             //如果有图片
             if (TextUtils.isEmpty(bean.qc_video)) {
@@ -317,6 +325,7 @@ public class CircleAdapter extends RecyclerView.Adapter  {
 
     @Override
     public int getItemCount() {
+//        Log.i("mmmmmmmmmmmmmmmmmmmmm",circleOneList.size() + "");
         return circleOneList.size();
 //        return 18;
     }

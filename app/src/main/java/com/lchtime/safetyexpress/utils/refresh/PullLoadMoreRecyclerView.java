@@ -26,7 +26,7 @@ import com.lchtime.safetyexpress.R;
  */
 public class PullLoadMoreRecyclerView extends LinearLayout {
     private RecyclerView mRecyclerView;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
+    public SwipeRefreshLayout mSwipeRefreshLayout;
     private PullLoadMoreListener mPullLoadMoreListener;
     private boolean hasMore = true;
     private boolean isRefresh = false;
@@ -292,4 +292,5 @@ public class PullLoadMoreRecyclerView extends LinearLayout {
 
         void onLoadMore();
     }
+
 }

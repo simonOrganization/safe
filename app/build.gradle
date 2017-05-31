@@ -34,10 +34,14 @@ android {
     }
 }
 
+ext {
+    v_picasso = '2.5.3-SNAPSHOT'
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile project(':mylibrary')
+    compile "com.squareup.picasso:picasso:$v_picasso"
     compile 'com.xiwenhec:banner:1.0.2'
     compile 'com.zhy:okhttputils:2.6.2'
     compile 'com.android.support:recyclerview-v7:25.0.1'
@@ -54,4 +58,5 @@ dependencies {
     //最新版本
     compile project(':recordlib')
     compile project(':threeLoginFrame')
+    compile project(':video-player-manager')
 }

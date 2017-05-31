@@ -43,40 +43,47 @@
 
         </LinearLayout>
 
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dm300"
             android:layout_marginTop="@dimen/dm020">
 
-            <ImageView
+            <com.mcoy_jiang.videomanager.ui.McoyVideoView
                 android:id="@+id/iv_recommend_img"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm300"
-                android:background="@drawable/home_test_img8" />
+                android:layout_height="@dimen/dm300">
 
-            <ImageView
-                android:id="@+id/iv_recommend_img_bg"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dm300"
-                android:background="@drawable/video_sel_bg"
-                android:visibility="visible"/>
-        <RelativeLayout
-            android:id="@+id/rl_play"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+            </com.mcoy_jiang.videomanager.ui.McoyVideoView>
+            <!--<ImageView-->
+                <!--android:id="@+id/iv_recommend_img"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/dm300"-->
+                <!--android:background="@drawable/home_test_img8" />-->
 
-                    <ImageView
-                        android:id="@+id/iv_recommend_play"
-                        android:layout_width="@dimen/dm059"
-                        android:layout_height="@dimen/dm061"
-                        android:src="@drawable/video_play2" />
+            <!--<ImageView-->
+                <!--android:id="@+id/iv_recommend_img_bg"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/dm300"-->
+                <!--android:background="@drawable/video_sel_bg"-->
+                <!--android:visibility="visible"/>-->
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/rl_play"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:gravity="center"-->
+                    <!--android:orientation="horizontal">-->
 
-                </LinearLayout>
+                    <!--<ImageView-->
+                        <!--android:id="@+id/iv_recommend_play"-->
+                        <!--android:layout_width="@dimen/dm059"-->
+                        <!--android:layout_height="@dimen/dm061"-->
+                        <!--android:src="@drawable/video_play2" />-->
+
+                <!--</LinearLayout>-->
 
                 <TextView
                     android:id="@+id/tv_recommend_time1"
@@ -90,7 +97,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/dm024"/>
 
-            </RelativeLayout>
+            <!--</RelativeLayout>-->
         </RelativeLayout>
 
         <LinearLayout

@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -207,6 +208,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         });
     }
     private Handler handler = new Handler();
+
     private void initListener() {
         pullLoadMoreRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
             @Override
@@ -225,7 +227,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                         public void run() {
                             pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
                         }
-                    },300);
+                    },100);
                     return;
                 }
                 isLoadMore = true;
@@ -279,10 +281,11 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         wapperAdapter.addHeaderView(headerView2);
         wapperAdapter.addHeaderView(headerView);
         circle_rc.setAdapter(wapperAdapter);
+        circle_rc.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 
 
-        circle_rc.setLayoutManager(new GridLayoutManager(CircleUI.this, 1) );
-//        circle_rc.setLayoutManager(new LinearLayoutManager(this));
+//        circle_rc.setLayoutManager(new GridLayoutManager(CircleUI.this, 1) );
+
         circle_rc.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -332,12 +335,13 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         }
 
         userid = SpTools.getString(this, Constants.userId,"");
-        protocal.getCircleList(userid, "0", "4", "0", new CircleProtocal.CircleListener() {
+        protocal.getCircleList(userid, "1", "4", "0", new CircleProtocal.CircleListener() {
             @Override
             public void circleResponse(CircleBean response) {
                 totalPage = response.total;
                 circleList.clear();
                 circleList.addAll(response.qz_context);
+                Log.d("-------------","response.qz_context="+response.qz_context.size());
                 wapperAdapter.notifyDataSetChanged();
             }
         });

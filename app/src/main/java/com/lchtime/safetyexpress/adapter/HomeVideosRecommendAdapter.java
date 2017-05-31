@@ -19,6 +19,7 @@ import com.lchtime.safetyexpress.ui.home.HomeUI;
 import com.lchtime.safetyexpress.ui.home.HomeVideosDeatilUI;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.mcoy_jiang.videomanager.ui.McoyVideoView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -53,7 +54,11 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
         final NewsBean bean = videoList.get(position);
 
         myHolder.tv_title.setText(bean.cc_title);
-        Picasso.with(context).load(bean.media.get(0)).fit().into(myHolder.iv_img);
+//        Picasso.with(context).load(bean.media.get(0)).fit().into(myHolder.iv_img);
+        myHolder.iv_img.setVideoBackground(bean.media.get(0));
+        myHolder.iv_img.setVideoUrl(bean.media.get(1));
+
+
         myHolder.tv_from.setText(bean.cc_from);
         myHolder.tv_comment.setText(bean.plNum);
 
@@ -61,14 +66,14 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
             myHolder.tv_time2.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.cc_datetime)));
         }
         myHolder.tv_playnum.setText(bean.cc_count + "次播放");
-        myHolder.rl_play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, MediaActivity.class);
-                intent.putExtra("url",bean.media.get(1));
-                context.startActivity(intent);
-            }
-        });
+//        myHolder.rl_play.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(context, MediaActivity.class);
+//                intent.putExtra("url",bean.media.get(1));
+//                context.startActivity(intent);
+//            }
+//        });
         myHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,11 +102,11 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
         @BindView(R.id.ll_recommend_share)
         LinearLayout ll_share;
         @BindView(R.id.iv_recommend_img)
-        ImageView iv_img;
-        @BindView(R.id.iv_recommend_img_bg)
-        ImageView iv_img_bg;
-        @BindView(R.id.iv_recommend_play)
-        ImageView iv_play;
+        McoyVideoView iv_img;
+//        @BindView(R.id.iv_recommend_img_bg)
+//        ImageView iv_img_bg;
+//        @BindView(R.id.iv_recommend_play)
+//        ImageView iv_play;
         @BindView(R.id.tv_recommend_time1)
         TextView tv_time1;
         @BindView(R.id.tv_recommend_from)
@@ -112,8 +117,8 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
         TextView tv_time2;
         @BindView(R.id.tv_recommend_playnum)
         TextView tv_playnum;
-        @BindView(R.id.rl_play)
-        RelativeLayout rl_play;
+//        @BindView(R.id.rl_play)
+//        RelativeLayout rl_play;
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
