@@ -5,9 +5,11 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Process;
+import android.support.multidex.MultiDex;
 import android.text.TextUtils;
 
 import com.bslee.threelogin.util.UIUtils;
+import com.lchtime.safetyexpress.ui.chat.hx.HuanXinHelper;
 import com.lchtime.safetyexpress.utils.ImageLoaderUtils;
 import com.squareup.picasso.Transformation;
 
@@ -31,6 +33,9 @@ public class MyApplication extends Application {
     private static Handler mMainThreadHandler;
     private static int mMainThreadId;
 
+
+    public static Context applicationContext;
+
     public Map<String, String> getMemProtocolCacheMap() {
         return MemProtocolCacheMap;
     }
@@ -39,6 +44,8 @@ public class MyApplication extends Application {
 
     @Override
     public void onCreate() {
+        //MultiDex.install(this);
+        super.onCreate();
         UIUtils.initContext(this);
 
         mContext = getApplicationContext();
@@ -47,8 +54,9 @@ public class MyApplication extends Application {
 
         mMainThreadId = Process.myTid();
 
-        super.onCreate();
+        applicationContext = this;
         instance = this;
+        HuanXinHelper.getInstance().init(applicationContext);
         ImageLoaderUtils.initImageLoader(this);
     }
 
@@ -64,6 +72,12 @@ public class MyApplication extends Application {
         return mMainThreadId;
     }
 
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+       // MultiDex.install(this);
+    }
 
 
 }

@@ -15,12 +15,18 @@ android {
     defaultConfig {
         applicationId "com.lchtime.safetyexpress"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
 //        signingConfig signingConfigs.safety
     }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -32,6 +38,19 @@ android {
     }
     productFlavors {
     }
+
+    android{
+        lintOptions {
+            disable "ResourceType"
+        }
+
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 ext {
@@ -41,8 +60,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile project(':mylibrary')
-    compile "com.squareup.picasso:picasso:$v_picasso"
-
     compile 'com.xiwenhec:banner:1.0.2'
     compile 'com.zhy:okhttputils:2.6.2'
     compile 'com.android.support:recyclerview-v7:25.0.1'
@@ -52,12 +69,15 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'com.github.LuckSiege.PictureSelector:picture_library:v1.3.1'
     compile 'com.android.support:design:25.2.0'
-    compile 'com.google.code.gson:gson:2.7'
-    compile files('libs/picasso-2.5.2.jar')
+        compile 'com.google.code.gson:gson:2.7'
+    //    compile files('libs/picasso-2.5.2.jar')
     compile 'org.kymjs.kjframe:kjframe:2.6'
     compile 'com.youth.banner:banner:1.4.9'
     //最新版本
     compile project(':recordlib')
     compile project(':threeLoginFrame')
     compile project(':jcvideoplayer-lib')
+    compile "com.squareup.picasso:picasso:$v_picasso"
+    compile 'com.parse:parse-android:1.13.1'
+    compile project(':easeui')
 }

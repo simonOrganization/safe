@@ -13,12 +13,13 @@
  */
 package com.lchtime.safetyexpress.ui.chat.hx.db;
 
-import java.util.List;
-
 import android.content.ContentValues;
 import android.content.Context;
 
-import com.hyphenate.chatuidemo.domain.InviteMessage;
+
+import com.lchtime.safetyexpress.ui.chat.hx.domain.InviteMessage;
+
+import java.util.List;
 
 public class InviteMessgeDao {
 	static final String TABLE_NAME = "new_friends_msgs";

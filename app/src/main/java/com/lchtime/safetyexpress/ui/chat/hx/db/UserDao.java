@@ -13,13 +13,13 @@
  */
 package com.lchtime.safetyexpress.ui.chat.hx.db;
 
-import java.util.List;
-import java.util.Map;
-
 import android.content.Context;
 
-import com.hyphenate.chatuidemo.domain.RobotUser;
 import com.hyphenate.easeui.domain.EaseUser;
+import com.lchtime.safetyexpress.ui.chat.hx.domain.RobotUser;
+
+import java.util.List;
+import java.util.Map;
 
 public class UserDao {
 	public static final String TABLE_NAME = "uers";

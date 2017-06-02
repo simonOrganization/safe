@@ -58,19 +58,19 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
         myHolder.tv_title.setText(bean.cc_title);
 //        Picasso.with(context).load(bean.media.get(0)).fit().into(myHolder.iv_img);
 
-//        myHolder.iv_img.setUp(
-//                bean.media.get(1), JCVideoPlayer.SCREEN_LAYOUT_LIST,
-//                bean.cc_title);
-//        Picasso.with(context)
-//                .load(bean.media.get(0))
-//                .into(myHolder.iv_img.thumbImageView);
-
         myHolder.iv_img.setUp(
-                VideoConstant.videoUrls[0][position], JCVideoPlayer.SCREEN_LAYOUT_LIST,
-                VideoConstant.videoTitles[0][position]);
-        Picasso.with(myHolder.iv_img.getContext())
-                .load(VideoConstant.videoThumbs[0][position])
+                bean.media.get(1), JCVideoPlayer.SCREEN_LAYOUT_LIST,
+                bean.cc_title);
+        Picasso.with(context)
+                .load(bean.media.get(0))
                 .into(myHolder.iv_img.thumbImageView);
+//
+//        myHolder.iv_img.setUp(
+//                VideoConstant.videoUrls[0][position], JCVideoPlayer.SCREEN_LAYOUT_LIST,
+//                VideoConstant.videoTitles[0][position]);
+//        Picasso.with(myHolder.iv_img.getContext())
+//                .load(VideoConstant.videoThumbs[0][position])
+//                .into(myHolder.iv_img.thumbImageView);
 
 
         myHolder.tv_from.setText(bean.cc_from);

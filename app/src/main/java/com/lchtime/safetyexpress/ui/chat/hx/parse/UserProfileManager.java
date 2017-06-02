@@ -4,10 +4,9 @@ import android.content.Context;
 
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chatuidemo.DemoHelper.DataSyncListener;
-import com.hyphenate.chatuidemo.utils.PreferenceManager;
 import com.hyphenate.easeui.domain.EaseUser;
-import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
+import com.lchtime.safetyexpress.ui.chat.hx.HuanXinHelper;
+import com.lchtime.safetyexpress.ui.chat.hx.utils.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,7 @@ public class UserProfileManager {
 	/**
 	 * HuanXin sync contact nick and avatar listener
 	 */
-	private List<DataSyncListener> syncContactInfosListeners;
+	private List<HuanXinHelper.DataSyncListener> syncContactInfosListeners;
 
 	private boolean isSyncingContactInfosWithServer = false;
 
@@ -42,12 +41,12 @@ public class UserProfileManager {
 			return true;
 		}
 		ParseManager.getInstance().onInit(context);
-		syncContactInfosListeners = new ArrayList<DataSyncListener>();
+		syncContactInfosListeners = new ArrayList<HuanXinHelper.DataSyncListener>();
 		sdkInited = true;
 		return true;
 	}
 
-	public void addSyncContactInfoListener(DataSyncListener listener) {
+	public void addSyncContactInfoListener(HuanXinHelper.DataSyncListener listener) {
 		if (listener == null) {
 			return;
 		}
@@ -56,7 +55,7 @@ public class UserProfileManager {
 		}
 	}
 
-	public void removeSyncContactInfoListener(DataSyncListener listener) {
+	public void removeSyncContactInfoListener(HuanXinHelper.DataSyncListener listener) {
 		if (listener == null) {
 			return;
 		}
@@ -77,7 +76,7 @@ public class UserProfileManager {
 				isSyncingContactInfosWithServer = false;
 				// in case that logout already before server returns,we should
 				// return immediately
-				if (!DemoHelper.getInstance().isLoggedIn()) {
+				if (!HuanXinHelper.getInstance().isLoggedIn()) {
 					return;
 				}
 				if (callback != null) {
@@ -98,7 +97,7 @@ public class UserProfileManager {
 	}
 
 	public void notifyContactInfosSyncListener(boolean success) {
-		for (DataSyncListener listener : syncContactInfosListeners) {
+		for (HuanXinHelper.DataSyncListener listener : syncContactInfosListeners) {
 			listener.onSyncComplete(success);
 		}
 	}

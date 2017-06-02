@@ -148,7 +148,7 @@ public class HomeQuestionProtocal {
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
-                .concat(MyApplication.getContext().getResources().getString(R.string.answer));
+                .concat(MyApplication.getContext().getResources().getString(R.string.tjanswer));
         OkHttpUtils
                 .post()
                 .url(url)

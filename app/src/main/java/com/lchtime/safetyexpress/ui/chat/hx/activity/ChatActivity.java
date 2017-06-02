@@ -3,16 +3,19 @@ package com.lchtime.safetyexpress.ui.chat.hx.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import com.hyphenate.chatuidemo.R;
-import com.hyphenate.chatuidemo.runtimepermissions.PermissionsManager;
+
+
 import com.hyphenate.easeui.ui.EaseChatFragment;
 import com.hyphenate.util.EasyUtils;
+import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.ui.TabUI;
+import com.lchtime.safetyexpress.ui.chat.hx.fragment.ChatFragment;
 
 /**
  * chat activity，EaseChatFragment was used {@link #EaseChatFragment}
  *
  */
-public class ChatActivity extends BaseActivity{
+public class ChatActivity extends EaseBaseActivity{
     public static ChatActivity activityInstance;
     private EaseChatFragment chatFragment;
     String toChatUsername;
@@ -55,7 +58,7 @@ public class ChatActivity extends BaseActivity{
     public void onBackPressed() {
         chatFragment.onBackPressed();
         if (EasyUtils.isSingleActivity(this)) {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, TabUI.class);
             startActivity(intent);
         }
     }
@@ -66,6 +69,6 @@ public class ChatActivity extends BaseActivity{
 
     @Override public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
         @NonNull int[] grantResults) {
-        PermissionsManager.getInstance().notifyPermissionsChange(permissions, grantResults);
+//        PermissionsManager.getInstance().notifyPermissionsChange(permissions, grantResults);
     }
 }

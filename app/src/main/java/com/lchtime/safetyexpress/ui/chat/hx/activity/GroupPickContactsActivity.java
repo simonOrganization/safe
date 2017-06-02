@@ -29,19 +29,19 @@ import android.widget.TextView;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMGroup;
-import com.hyphenate.chatuidemo.Constant;
-import com.hyphenate.chatuidemo.DemoHelper;
-import com.hyphenate.chatuidemo.R;
 import com.hyphenate.easeui.adapter.EaseContactAdapter;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.widget.EaseSidebar;
+import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.ui.chat.hx.Constant;
+import com.lchtime.safetyexpress.ui.chat.hx.HuanXinHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class GroupPickContactsActivity extends BaseActivity {
+public class GroupPickContactsActivity extends EaseBaseActivity {
 	/** if this is a new group */
 	protected boolean isCreatingNewGroup;
 	private PickContactAdapter contactAdapter;
@@ -67,7 +67,7 @@ public class GroupPickContactsActivity extends BaseActivity {
 			existMembers = new ArrayList<String>();
 		// get contact list
 		final List<EaseUser> alluserList = new ArrayList<EaseUser>();
-		for (EaseUser user : DemoHelper.getInstance().getContactList().values()) {
+		for (EaseUser user : HuanXinHelper.getInstance().getContactList().values()) {
 			if (!user.getUsername().equals(Constant.NEW_FRIENDS_USERNAME) & !user.getUsername().equals(Constant.GROUP_USERNAME) & !user.getUsername().equals(Constant.CHAT_ROOM) & !user.getUsername().equals(Constant.CHAT_ROBOT))
 				alluserList.add(user);
 		}

@@ -21,12 +21,12 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.hyphenate.chatuidemo.Constant;
-import com.hyphenate.chatuidemo.DemoHelper;
-import com.hyphenate.chatuidemo.R;
 import com.hyphenate.easeui.adapter.EaseContactAdapter;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.widget.EaseSidebar;
+import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.ui.chat.hx.Constant;
+import com.lchtime.safetyexpress.ui.chat.hx.HuanXinHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 @SuppressLint("Registered")
-public class PickContactNoCheckboxActivity extends BaseActivity {
+public class PickContactNoCheckboxActivity extends EaseBaseActivity {
 
 	protected EaseContactAdapter contactAdapter;
 	private List<EaseUser> contactList;
@@ -76,7 +76,7 @@ public class PickContactNoCheckboxActivity extends BaseActivity {
 
 	private void getContactList() {
 		contactList.clear();
-		Map<String, EaseUser> users = DemoHelper.getInstance().getContactList();
+		Map<String, EaseUser> users = HuanXinHelper.getInstance().getContactList();
 		for (Entry<String, EaseUser> entry : users.entrySet()) {
 			if (!entry.getKey().equals(Constant.NEW_FRIENDS_USERNAME) && !entry.getKey().equals(Constant.GROUP_USERNAME) && !entry.getKey().equals(Constant.CHAT_ROOM) && !entry.getKey().equals(Constant.CHAT_ROBOT))
 				contactList.add(entry.getValue());

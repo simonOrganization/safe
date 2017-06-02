@@ -18,33 +18,28 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Toast;
 
-import com.easemob.redpacketsdk.RPSendPacketCallback;
-import com.easemob.redpacketsdk.bean.RedPacketInfo;
-import com.easemob.redpacketsdk.constant.RPConstant;
-import com.easemob.redpacket.utils.RedPacketUtil;
-import com.easemob.redpacket.widget.ChatRowRandomPacket;
-import com.easemob.redpacket.widget.ChatRowRedPacket;
-import com.easemob.redpacket.widget.ChatRowRedPacketAck;
-import com.easemob.redpacketui.utils.RPRedPacketUtil;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMCmdMessageBody;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMTextMessageBody;
-import com.hyphenate.chatuidemo.Constant;
-import com.hyphenate.chatuidemo.DemoHelper;
-import com.hyphenate.chatuidemo.R;
-import com.hyphenate.chatuidemo.domain.EmojiconExampleGroupData;
-import com.hyphenate.chatuidemo.domain.RobotUser;
-import com.hyphenate.chatuidemo.widget.ChatRowVoiceCall;
+
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.ui.EaseChatFragment;
 import com.hyphenate.easeui.ui.EaseChatFragment.EaseChatFragmentHelper;
 import com.hyphenate.easeui.widget.chatrow.EaseChatRow;
 import com.hyphenate.easeui.widget.chatrow.EaseCustomChatRowProvider;
-import com.hyphenate.easeui.widget.emojicon.EaseEmojiconMenu;
 import com.hyphenate.util.EasyUtils;
 import com.hyphenate.util.PathUtil;
+import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.ui.TabUI;
+import com.lchtime.safetyexpress.ui.chat.hx.Constant;
+import com.lchtime.safetyexpress.ui.chat.hx.HuanXinHelper;
+import com.lchtime.safetyexpress.ui.chat.hx.activity.ContextMenuActivity;
+import com.lchtime.safetyexpress.ui.chat.hx.activity.ForwardMessageActivity;
+import com.lchtime.safetyexpress.ui.chat.hx.activity.GroupDetailsActivity;
+import com.lchtime.safetyexpress.ui.chat.hx.activity.PickAtUserActivity;
+import com.lchtime.safetyexpress.ui.chat.hx.activity.UserProfileActivity;
+import com.lchtime.safetyexpress.ui.chat.hx.domain.RobotUser;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -94,8 +89,8 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
     @Override
     protected void setUpView() {
         setChatFragmentHelper(this);
-        if (chatType == Constant.CHATTYPE_SINGLE) { 
-            Map<String,RobotUser> robotMap = DemoHelper.getInstance().getRobotList();
+        if (chatType == Constant.CHATTYPE_SINGLE) {
+            Map<String,RobotUser> robotMap = HuanXinHelper.getInstance().getRobotList();
             if(robotMap!=null && robotMap.containsKey(toChatUsername)){
                 isRobot = true;
             }
@@ -107,13 +102,13 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
             @Override
             public void onClick(View v) {
                 if (EasyUtils.isSingleActivity(getActivity())) {
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    Intent intent = new Intent(getActivity(), TabUI.class);
                     startActivity(intent);
                 }
                 onBackPressed();
             }
         });
-        ((EaseEmojiconMenu)inputMenu.getEmojiconMenu()).addEmojiconGroup(EmojiconExampleGroupData.getData());
+//        ((EaseEmojiconMenu)inputMenu.getEmojiconMenu()).addEmojiconGroup(EmojiconExampleGroupData.getData());
         if(chatType == EaseConstant.CHATTYPE_GROUP){
             inputMenu.getPrimaryMenu().getEditText().addTextChangedListener(new TextWatcher() {
                 
@@ -141,7 +136,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
         //use the menu in base class
         super.registerExtendMenuItem();
         //extend menu items
-        inputMenu.registerExtendMenuItem(R.string.attach_video, R.drawable.em_chat_video_selector, ITEM_VIDEO, extendMenuItemClickListener);
+        /*inputMenu.registerExtendMenuItem(R.string.attach_video, R.drawable.em_chat_video_selector, ITEM_VIDEO, extendMenuItemClickListener);
         inputMenu.registerExtendMenuItem(R.string.attach_file, R.drawable.em_chat_file_selector, ITEM_FILE, extendMenuItemClickListener);
         if(chatType == Constant.CHATTYPE_SINGLE){
             inputMenu.registerExtendMenuItem(R.string.attach_voice_call, R.drawable.em_chat_voice_call_selector, ITEM_VOICE_CALL, extendMenuItemClickListener);
@@ -151,7 +146,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
         //red packet code : 注册红包菜单选项
         if (chatType != Constant.CHATTYPE_CHATROOM) {
             inputMenu.registerExtendMenuItem(R.string.attach_red_packet, R.drawable.em_chat_red_packet_selector, ITEM_RED_PACKET, extendMenuItemClickListener);
-        }
+        }*/
         //end of red packet code
     }
     
@@ -244,9 +239,9 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
             startActivityForResult(
                     (new Intent(getActivity(), GroupDetailsActivity.class).putExtra("groupId", toChatUsername)),
                     REQUEST_CODE_GROUP_DETAIL);
-        }else if(chatType == Constant.CHATTYPE_CHATROOM){
+        }/*else if(chatType == Constant.CHATTYPE_CHATROOM){
         	startActivityForResult(new Intent(getActivity(), ChatRoomDetailsActivity.class).putExtra("roomId", toChatUsername), REQUEST_CODE_GROUP_DETAIL);
-        }
+        }*/
     }
 
     @Override
@@ -267,24 +262,24 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
     public boolean onMessageBubbleClick(EMMessage message) {
         //消息框点击事件，demo这里不做覆盖，如需覆盖，return true
         //red packet code : 拆红包页面
-        if (message.getBooleanAttribute(RPConstant.MESSAGE_ATTR_IS_RED_PACKET_MESSAGE, false)){
+/*        if (message.getBooleanAttribute(RPConstant.MESSAGE_ATTR_IS_RED_PACKET_MESSAGE, false)){
             RedPacketUtil.openRedPacket(getActivity(), chatType, message, toChatUsername, messageList);
             return true;
-        }
+        }*/
         //end of red packet code
         return false;
     }
     @Override
     public void onCmdMessageReceived(List<EMMessage> messages) {
         //red packet code : 处理红包回执透传消息
-        for (EMMessage message : messages) {
+       /* for (EMMessage message : messages) {
             EMCmdMessageBody cmdMsgBody = (EMCmdMessageBody) message.getBody();
             String action = cmdMsgBody.action();//获取自定义action
             if (action.equals(RPConstant.REFRESH_GROUP_RED_PACKET_ACTION)){
                 RedPacketUtil.receiveRedPacketAckMessage(message);
                 messageList.refresh();
             }
-        }
+        }*/
         //end of red packet code
         super.onCmdMessageReceived(messages);
     }
@@ -297,25 +292,26 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
                 REQUEST_CODE_CONTEXT_MENU);
     }
 
+    //点击聊天界面的+号所显示的项目点击
     @Override
     public boolean onExtendMenuItemClick(int itemId, View view) {
-        switch (itemId) {
+       /* switch (itemId) {
         case ITEM_VIDEO:
             Intent intent = new Intent(getActivity(), ImageGridActivity.class);
             startActivityForResult(intent, REQUEST_CODE_SELECT_VIDEO);
             break;
         case ITEM_FILE: //file
-            selectFileFromLocal();
+//            selectFileFromLocal();
             break;
         case ITEM_VOICE_CALL:
-            startVoiceCall();
+//            startVoiceCall();
             break;
         case ITEM_VIDEO_CALL:
-            startVideoCall();
+//            startVideoCall();
             break;
         //red packet code : 进入发红包页面
         case ITEM_RED_PACKET:
-            //注意：不再支持原有的startActivityForResult进入红包相关页面
+          *//*  //注意：不再支持原有的startActivityForResult进入红包相关页面
             int itemType;
             if (chatType == EaseConstant.CHATTYPE_SINGLE) {
                 itemType = RPConstant.RP_ITEM_TYPE_SINGLE;
@@ -334,13 +330,13 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
                 public void onSendPacketSuccess(RedPacketInfo redPacketInfo) {
                     sendMessage(RedPacketUtil.createRPMessage(getActivity(), redPacketInfo, toChatUsername));
                 }
-            });
+            });*//*
             break;
             //end of red packet code
         default:
             break;
         }
-        //keep exist extend menu
+        //keep exist extend menu*/
         return false;
     }
     
@@ -363,30 +359,30 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
     /**
      * make a voice call
      */
-    protected void startVoiceCall() {
-        if (!EMClient.getInstance().isConnected()) {
-            Toast.makeText(getActivity(), R.string.not_connect_to_server, Toast.LENGTH_SHORT).show();
-        } else {
-            startActivity(new Intent(getActivity(), VoiceCallActivity.class).putExtra("username", toChatUsername)
-                    .putExtra("isComingCall", false));
-            // voiceCallBtn.setEnabled(false);
-            inputMenu.hideExtendMenuContainer();
-        }
-    }
-    
+//    protected void startVoiceCall() {
+//        if (!EMClient.getInstance().isConnected()) {
+//            Toast.makeText(getActivity(), R.string.not_connect_to_server, Toast.LENGTH_SHORT).show();
+//        } else {
+//            startActivity(new Intent(getActivity(), VoiceCallActivity.class).putExtra("username", toChatUsername)
+//                    .putExtra("isComingCall", false));
+//            // voiceCallBtn.setEnabled(false);
+//            inputMenu.hideExtendMenuContainer();
+//        }
+//    }
+//
     /**
      * make a video call
      */
-    protected void startVideoCall() {
-        if (!EMClient.getInstance().isConnected())
-            Toast.makeText(getActivity(), R.string.not_connect_to_server, Toast.LENGTH_SHORT).show();
-        else {
-            startActivity(new Intent(getActivity(), VideoCallActivity.class).putExtra("username", toChatUsername)
-                    .putExtra("isComingCall", false));
-            // videoCallBtn.setEnabled(false);
-            inputMenu.hideExtendMenuContainer();
-        }
-    }
+//    protected void startVideoCall() {
+//        if (!EMClient.getInstance().isConnected())
+//            Toast.makeText(getActivity(), R.string.not_connect_to_server, Toast.LENGTH_SHORT).show();
+//        else {
+//            startActivity(new Intent(getActivity(), VideoCallActivity.class).putExtra("username", toChatUsername)
+//                    .putExtra("isComingCall", false));
+//            // videoCallBtn.setEnabled(false);
+//            inputMenu.hideExtendMenuContainer();
+//        }
+//    }
     
     /**
      * chat row provider 
@@ -404,13 +400,13 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
         public int getCustomChatRowType(EMMessage message) {
             if(message.getType() == EMMessage.Type.TXT){
                 //voice call
-                if (message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VOICE_CALL, false)){
+                /*if (message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VOICE_CALL, false)){
                     return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_VOICE_CALL : MESSAGE_TYPE_SENT_VOICE_CALL;
                 }else if (message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VIDEO_CALL, false)){
                     //video call
                     return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_VIDEO_CALL : MESSAGE_TYPE_SENT_VIDEO_CALL;
-                }
-                //red packet code : 红包消息、红包回执消息以及转账消息的chatrow type
+                }*/
+              /*  //red packet code : 红包消息、红包回执消息以及转账消息的chatrow type
                 else if (RedPacketUtil.isRandomRedPacket(message)) {
                     //小额随机红包
                     return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_RANDOM : MESSAGE_TYPE_SEND_RANDOM;
@@ -420,7 +416,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
                 } else if (message.getBooleanAttribute(RPConstant.MESSAGE_ATTR_IS_RED_PACKET_ACK_MESSAGE, false)) {
                     //领取红包消息
                     return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_RED_PACKET_ACK : MESSAGE_TYPE_SEND_RED_PACKET_ACK;
-                }
+                }*/
                 //end of red packet code
             }
             return 0;
@@ -428,7 +424,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
 
         @Override
         public EaseChatRow getCustomChatRow(EMMessage message, int position, BaseAdapter adapter) {
-            if(message.getType() == EMMessage.Type.TXT){
+           /* if(message.getType() == EMMessage.Type.TXT){
                 // voice call or video call
                 if (message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VOICE_CALL, false) ||
                     message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VIDEO_CALL, false)){
@@ -443,7 +439,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
                     return new ChatRowRedPacketAck(getActivity(), message, position, adapter);
                 }
                 //end of red packet code
-            }
+            }*/
             return null;
         }
 
@@ -452,7 +448,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //调用该方法可防止红包SDK引起的内存泄漏
-        RPRedPacketUtil.getInstance().detachView();
+        /*//调用该方法可防止红包SDK引起的内存泄漏
+        RPRedPacketUtil.getInstance().detachView();*/
     }
 }
