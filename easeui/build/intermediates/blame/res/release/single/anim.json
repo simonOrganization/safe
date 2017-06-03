@@ -1,218 +1,326 @@
 [
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_enter.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_popup_enter.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_enter.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_popup_enter.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_bottom.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_out_bottom.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/abc_slide_in_bottom.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/anim/abc_slide_in_bottom.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\hold.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\hold.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_bottom.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_out_bottom.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_in.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\push_bottom_in.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/fade_out.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/fade_out.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_grow_fade_in_from_bottom.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\hold.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\hold.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_right.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\slide_out_to_right.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/slide_out_to_left.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/slide_out_to_left.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\head_in.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\head_in.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_in.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\push_bottom_in.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\voice_from_icon.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\voice_from_icon.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in2.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\push_top_in2.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_right.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\slide_out_to_right.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out2.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\push_top_out2.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\head_in.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\head_in.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\head_in.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\head_in.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\voice_from_icon.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\voice_from_icon.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_grow_fade_in_from_bottom.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/anim/abc_grow_fade_in_from_bottom.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in2.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\push_top_in2.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/voice_from_icon.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/voice_from_icon.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_left.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\slide_out_to_left.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in2.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\push_top_in2.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\hold.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\hold.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/push_top_in2.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/push_top_in2.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_shrink_fade_out_from_bottom.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/push_bottom_in.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/push_bottom_in.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_exit.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_popup_exit.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/hold.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/hold.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\voice_from_icon.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\voice_from_icon.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out2.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\push_top_out2.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\head_out.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\head_out.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/slide_out_to_right.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/slide_out_to_right.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\fade_in.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\fade_in.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\head_in.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\head_in.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_right.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\slide_in_from_right.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_left.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\slide_in_from_left.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/push_top_in.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/push_top_in.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_exit.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_popup_exit.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in2.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\push_top_in2.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_out.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_fade_out.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_left.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\slide_out_to_left.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_top.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_in_top.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\hold.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\hold.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\voice_to_icon.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\voice_to_icon.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_enter.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_popup_enter.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/abc_popup_exit.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/anim/abc_popup_exit.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_out.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_fade_out.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_exit.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_popup_exit.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_bottom.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_out_bottom.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/voice_to_icon.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/voice_to_icon.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_in.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_fade_in.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\voice_from_icon.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\voice_from_icon.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_right.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\slide_out_to_right.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\head_out.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\head_out.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\fade_out.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\fade_out.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\fade_in.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\fade_in.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_out.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\push_bottom_out.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/anim/abc_slide_out_bottom.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_bottom.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_in_bottom.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/anim/abc_shrink_fade_out_from_bottom.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_left.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\slide_in_from_left.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_right.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\slide_in_from_right.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\voice_to_icon.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\voice_to_icon.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_left.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\slide_in_from_left.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out2.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\push_top_out2.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_exit.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_popup_exit.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\push_top_in.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/abc_popup_enter.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/anim/abc_popup_enter.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_top.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_out_top.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_out.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_fade_out.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_shrink_fade_out_from_bottom.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_top.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_in_top.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\push_top_out.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\voice_to_icon.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\voice_to_icon.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\push_top_in.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_enter.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_popup_enter.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_top.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_in_top.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_out.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_fade_out.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_left.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\slide_out_to_left.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/abc_slide_out_top.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/anim/abc_slide_out_top.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\head_out.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\head_out.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/head_in.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/head_in.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_out.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\push_bottom_out.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_bottom.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_out_bottom.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\fade_in.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\fade_in.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_in.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_fade_in.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_in.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_fade_in.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/push_top_out.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/push_top_out.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\push_top_out.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_right.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\slide_out_to_right.xml"
     },
     {
-        "merged": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_in.xml",
-        "source": "C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\push_bottom_in.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\fade_out.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\fade_out.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_bottom.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_in_bottom.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_out.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\push_bottom_out.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\fade_out.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\fade_out.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_bottom.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_in_bottom.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_top.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_out_top.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_left.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\slide_in_from_left.xml"
     },
     {
-        "merged": "C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_right.xml",
-        "source": "C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\slide_in_from_right.xml"
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\voice_to_icon.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\voice_to_icon.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/slide_in_from_right.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/slide_in_from_right.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out2.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\push_top_out2.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\push_top_in.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/fade_in.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/fade_in.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/abc_fade_in.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/head_out.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/head_out.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_top.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\push_top_out.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\push_top_in.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/push_bottom_out.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/push_bottom_out.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_top.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/abc_slide_in_top.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/anim/abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_left.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\slide_out_to_left.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\head_out.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\head_out.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_out.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\push_bottom_out.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\fade_in.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\fade_in.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_in.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\push_top_out.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/slide_in_from_left.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/slide_in_from_left.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_in.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\anim\\push_bottom_in.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_bottom.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\fade_out.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\fade_out.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/push_top_out2.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/anim/push_top_out2.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_top.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_right.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\anim\\slide_in_from_right.xml"
+    },
+    {
+        "merged": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/res/merged/release/anim/abc_fade_out.xml",
+        "source": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/anim/abc_fade_out.xml"
     }
 ]
