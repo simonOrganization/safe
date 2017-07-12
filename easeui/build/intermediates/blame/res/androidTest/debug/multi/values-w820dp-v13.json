@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "outputFile": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values-w820dp-v13\\values-w820dp-v13.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values-w820dp-v13\\values-w820dp-v13.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

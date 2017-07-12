@@ -1,5 +1,0 @@
-import com.com.senwei.mkchat.chat.EMChat;
-import com.com.senwei.mkchat.chat.EMChatManager;
-import com.com.senwei.mkchat.chat.EMContactManager;
-import com.com.senwei.mkchat.chat.EMGroupManager;
-import com.com.senwei.mkchat.chat.EMCallManager;

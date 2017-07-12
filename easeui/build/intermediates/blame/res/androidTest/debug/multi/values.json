@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+        "outputFile": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -372,7 +372,7 @@
                     "endOffset": 1375
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -391,7 +391,7 @@
                     "endOffset": 1430
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -410,7 +410,7 @@
                     "endOffset": 1489
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -543,7 +543,7 @@
                     "endOffset": 2067
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -562,7 +562,7 @@
                     "endOffset": 2120
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -581,7 +581,7 @@
                     "endOffset": 2170
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -600,7 +600,7 @@
                     "endOffset": 2221
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -619,7 +619,7 @@
                     "endOffset": 2271
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -638,7 +638,7 @@
                     "endOffset": 2322
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -657,7 +657,7 @@
                     "endOffset": 2380
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -676,7 +676,7 @@
                     "endOffset": 2431
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
@@ -695,7 +695,7 @@
                     "endOffset": 2483
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -714,7 +714,7 @@
                     "endOffset": 2534
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -733,7 +733,7 @@
                     "endOffset": 2586
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
@@ -752,7 +752,7 @@
                     "endOffset": 2638
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
@@ -771,7 +771,7 @@
                     "endOffset": 2691
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
@@ -790,7 +790,7 @@
                     "endOffset": 2749
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
@@ -809,7 +809,7 @@
                     "endOffset": 2803
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
@@ -828,7 +828,7 @@
                     "endOffset": 2858
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -847,7 +847,7 @@
                     "endOffset": 2909
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 4,
@@ -866,7 +866,7 @@
                     "endOffset": 2961
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 22,
                         "startColumn": 4,
@@ -923,7 +923,7 @@
                     "endOffset": 3121
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 23,
                         "startColumn": 4,
@@ -942,7 +942,7 @@
                     "endOffset": 3165
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 24,
                         "startColumn": 4,
@@ -961,7 +961,7 @@
                     "endOffset": 3227
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 25,
                         "startColumn": 4,
@@ -980,7 +980,7 @@
                     "endOffset": 3291
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 26,
                         "startColumn": 4,
@@ -999,7 +999,7 @@
                     "endOffset": 3348
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 27,
                         "startColumn": 4,
@@ -1018,7 +1018,7 @@
                     "endOffset": 3402
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 28,
                         "startColumn": 4,
@@ -1113,7 +1113,7 @@
                     "endOffset": 3729
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 29,
                         "startColumn": 4,
@@ -1132,7 +1132,7 @@
                     "endOffset": 3782
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 30,
                         "startColumn": 4,
@@ -1151,7 +1151,7 @@
                     "endOffset": 3838
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 31,
                         "startColumn": 4,
@@ -1170,7 +1170,7 @@
                     "endOffset": 3889
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 32,
                         "startColumn": 4,
@@ -1227,7 +1227,7 @@
                     "endOffset": 4080
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 33,
                         "startColumn": 4,
@@ -1246,7 +1246,7 @@
                     "endOffset": 4127
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 34,
                         "startColumn": 4,
@@ -1265,7 +1265,7 @@
                     "endOffset": 4182
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 35,
                         "startColumn": 4,
@@ -1284,7 +1284,7 @@
                     "endOffset": 4237
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 36,
                         "startColumn": 4,
@@ -1341,7 +1341,7 @@
                     "endOffset": 4425
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 37,
                         "startColumn": 4,
@@ -1360,7 +1360,7 @@
                     "endOffset": 4478
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 38,
                         "startColumn": 4,
@@ -1379,7 +1379,7 @@
                     "endOffset": 4532
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 39,
                         "startColumn": 4,
@@ -1398,7 +1398,7 @@
                     "endOffset": 4583
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 40,
                         "startColumn": 4,
@@ -1417,7 +1417,7 @@
                     "endOffset": 4622
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 41,
                         "startColumn": 4,
@@ -1436,7 +1436,7 @@
                     "endOffset": 4665
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 42,
                         "startColumn": 4,
@@ -1455,7 +1455,7 @@
                     "endOffset": 4722
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 43,
                         "startColumn": 4,
@@ -1474,7 +1474,7 @@
                     "endOffset": 4784
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 44,
                         "startColumn": 4,
@@ -1778,7 +1778,7 @@
                     "endOffset": 5718
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 45,
                         "startColumn": 4,
@@ -1797,7 +1797,7 @@
                     "endOffset": 5763
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 46,
                         "startColumn": 4,
@@ -2006,7 +2006,7 @@
                     "endOffset": 6518
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 47,
                         "startColumn": 4,
@@ -2177,7 +2177,7 @@
                     "endOffset": 7144
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 48,
                         "startColumn": 4,
@@ -2196,7 +2196,7 @@
                     "endOffset": 7188
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 49,
                         "startColumn": 4,
@@ -2215,7 +2215,7 @@
                     "endOffset": 7232
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 50,
                         "startColumn": 4,
@@ -2234,7 +2234,7 @@
                     "endOffset": 7284
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 51,
                         "startColumn": 4,
@@ -2253,7 +2253,7 @@
                     "endOffset": 7344
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 52,
                         "startColumn": 4,
@@ -3678,7 +3678,7 @@
                     "endOffset": 34685
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 68,
                         "startColumn": 4,
@@ -3697,7 +3697,7 @@
                     "endOffset": 34741
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 69,
                         "startColumn": 4,
@@ -3716,7 +3716,7 @@
                     "endOffset": 34797
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 70,
                         "startColumn": 4,
@@ -3735,7 +3735,7 @@
                     "endOffset": 34854
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 71,
                         "startColumn": 4,
@@ -3754,7 +3754,7 @@
                     "endOffset": 34914
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 72,
                         "startColumn": 4,
@@ -3773,7 +3773,7 @@
                     "endOffset": 34967
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 73,
                         "startColumn": 4,
@@ -3792,7 +3792,7 @@
                     "endOffset": 35018
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 74,
                         "startColumn": 4,
@@ -3849,7 +3849,7 @@
                     "endOffset": 35240
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 75,
                         "startColumn": 4,
@@ -3868,7 +3868,7 @@
                     "endOffset": 35286
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 76,
                         "startColumn": 4,
@@ -3887,7 +3887,7 @@
                     "endOffset": 35335
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 77,
                         "startColumn": 4,
@@ -3906,7 +3906,7 @@
                     "endOffset": 35381
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 78,
                         "startColumn": 4,
@@ -4058,7 +4058,7 @@
                     "endOffset": 36045
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 79,
                         "startColumn": 4,
@@ -4077,7 +4077,7 @@
                     "endOffset": 36099
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 80,
                         "startColumn": 4,
@@ -4096,7 +4096,7 @@
                     "endOffset": 36150
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 81,
                         "startColumn": 4,
@@ -4400,7 +4400,7 @@
                     "endOffset": 37177
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 82,
                         "startColumn": 4,
@@ -4419,7 +4419,7 @@
                     "endOffset": 37226
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 83,
                         "startColumn": 4,
@@ -4438,7 +4438,7 @@
                     "endOffset": 37269
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 84,
                         "startColumn": 4,
@@ -4742,7 +4742,7 @@
                     "endOffset": 38164
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 85,
                         "startColumn": 4,
@@ -4761,7 +4761,7 @@
                     "endOffset": 38231
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 86,
                         "startColumn": 4,
@@ -4780,7 +4780,7 @@
                     "endOffset": 38306
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 87,
                         "startColumn": 4,
@@ -4799,7 +4799,7 @@
                     "endOffset": 38370
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 88,
                         "startColumn": 4,
@@ -4818,7 +4818,7 @@
                     "endOffset": 38468
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 89,
                         "startColumn": 4,
@@ -4837,7 +4837,7 @@
                     "endOffset": 38547
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 90,
                         "startColumn": 4,
@@ -4856,7 +4856,7 @@
                     "endOffset": 38621
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 91,
                         "startColumn": 4,
@@ -4875,7 +4875,7 @@
                     "endOffset": 38674
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 92,
                         "startColumn": 4,
@@ -4894,7 +4894,7 @@
                     "endOffset": 38751
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 93,
                         "startColumn": 4,
@@ -4913,7 +4913,7 @@
                     "endOffset": 38806
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 94,
                         "startColumn": 4,
@@ -4932,7 +4932,7 @@
                     "endOffset": 38878
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 95,
                         "startColumn": 4,
@@ -4951,7 +4951,7 @@
                     "endOffset": 38927
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 96,
                         "startColumn": 4,
@@ -4970,7 +4970,7 @@
                     "endOffset": 39005
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 97,
                         "startColumn": 4,
@@ -4989,7 +4989,7 @@
                     "endOffset": 39073
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 98,
                         "startColumn": 4,
@@ -5008,7 +5008,7 @@
                     "endOffset": 39168
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 99,
                         "startColumn": 4,
@@ -5027,7 +5027,7 @@
                     "endOffset": 39234
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 100,
                         "startColumn": 4,
@@ -5046,7 +5046,7 @@
                     "endOffset": 39294
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 101,
                         "startColumn": 4,
@@ -5065,7 +5065,7 @@
                     "endOffset": 39353
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 102,
                         "startColumn": 4,
@@ -5084,7 +5084,7 @@
                     "endOffset": 39419
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 103,
                         "startColumn": 4,
@@ -5103,7 +5103,7 @@
                     "endOffset": 39483
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 104,
                         "startColumn": 4,
@@ -5122,7 +5122,7 @@
                     "endOffset": 39567
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 105,
                         "startColumn": 4,
@@ -5141,7 +5141,7 @@
                     "endOffset": 39643
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 106,
                         "startColumn": 4,
@@ -5160,7 +5160,7 @@
                     "endOffset": 39720
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 107,
                         "startColumn": 4,
@@ -5179,7 +5179,7 @@
                     "endOffset": 39789
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 108,
                         "startColumn": 4,
@@ -5198,7 +5198,7 @@
                     "endOffset": 39852
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 109,
                         "startColumn": 4,
@@ -5217,7 +5217,7 @@
                     "endOffset": 39934
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 110,
                         "startColumn": 4,
@@ -5236,7 +5236,7 @@
                     "endOffset": 40010
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 111,
                         "startColumn": 4,
@@ -5255,7 +5255,7 @@
                     "endOffset": 40087
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 112,
                         "startColumn": 4,
@@ -5274,7 +5274,7 @@
                     "endOffset": 40185
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 113,
                         "startColumn": 4,
@@ -5293,7 +5293,7 @@
                     "endOffset": 40268
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 114,
                         "startColumn": 4,
@@ -5312,7 +5312,7 @@
                     "endOffset": 40336
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 115,
                         "startColumn": 4,
@@ -5331,7 +5331,7 @@
                     "endOffset": 40386
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 116,
                         "startColumn": 4,
@@ -5350,7 +5350,7 @@
                     "endOffset": 40459
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 117,
                         "startColumn": 4,
@@ -5369,7 +5369,7 @@
                     "endOffset": 40520
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 118,
                         "startColumn": 4,
@@ -5388,7 +5388,7 @@
                     "endOffset": 40602
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 119,
                         "startColumn": 4,
@@ -5407,7 +5407,7 @@
                     "endOffset": 40660
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 120,
                         "startColumn": 4,
@@ -5426,7 +5426,7 @@
                     "endOffset": 40710
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 121,
                         "startColumn": 4,
@@ -5445,7 +5445,7 @@
                     "endOffset": 40761
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 122,
                         "startColumn": 4,
@@ -5464,7 +5464,7 @@
                     "endOffset": 40845
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 123,
                         "startColumn": 4,
@@ -5483,7 +5483,7 @@
                     "endOffset": 40902
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 124,
                         "startColumn": 4,
@@ -5502,7 +5502,7 @@
                     "endOffset": 40953
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 125,
                         "startColumn": 4,
@@ -5521,7 +5521,7 @@
                     "endOffset": 41016
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 126,
                         "startColumn": 4,
@@ -5540,7 +5540,7 @@
                     "endOffset": 41070
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 127,
                         "startColumn": 4,
@@ -5559,7 +5559,7 @@
                     "endOffset": 41140
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 128,
                         "startColumn": 4,
@@ -5578,7 +5578,7 @@
                     "endOffset": 41187
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 129,
                         "startColumn": 4,
@@ -5597,7 +5597,7 @@
                     "endOffset": 41278
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 130,
                         "startColumn": 4,
@@ -5616,7 +5616,7 @@
                     "endOffset": 41379
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 131,
                         "startColumn": 4,
@@ -5635,7 +5635,7 @@
                     "endOffset": 41429
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 132,
                         "startColumn": 4,
@@ -5654,7 +5654,7 @@
                     "endOffset": 41503
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 133,
                         "startColumn": 4,
@@ -5673,7 +5673,7 @@
                     "endOffset": 41588
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 134,
                         "startColumn": 4,
@@ -5692,7 +5692,7 @@
                     "endOffset": 41659
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 135,
                         "startColumn": 4,
@@ -5711,7 +5711,7 @@
                     "endOffset": 41719
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 136,
                         "startColumn": 4,
@@ -5730,7 +5730,7 @@
                     "endOffset": 41792
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 137,
                         "startColumn": 4,
@@ -5749,7 +5749,7 @@
                     "endOffset": 41848
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 138,
                         "startColumn": 4,
@@ -5768,7 +5768,7 @@
                     "endOffset": 41911
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 139,
                         "startColumn": 4,
@@ -5787,7 +5787,7 @@
                     "endOffset": 41982
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 140,
                         "startColumn": 4,
@@ -5806,7 +5806,7 @@
                     "endOffset": 42066
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 141,
                         "startColumn": 4,
@@ -5825,7 +5825,7 @@
                     "endOffset": 42121
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 142,
                         "startColumn": 4,
@@ -5844,7 +5844,7 @@
                     "endOffset": 42189
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 143,
                         "startColumn": 4,
@@ -5863,7 +5863,7 @@
                     "endOffset": 42271
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 144,
                         "startColumn": 4,
@@ -5882,7 +5882,7 @@
                     "endOffset": 42365
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 145,
                         "startColumn": 4,
@@ -5901,7 +5901,7 @@
                     "endOffset": 42449
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 146,
                         "startColumn": 4,
@@ -5920,7 +5920,7 @@
                     "endOffset": 42533
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 147,
                         "startColumn": 4,
@@ -5939,7 +5939,7 @@
                     "endOffset": 42613
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 148,
                         "startColumn": 4,
@@ -5958,7 +5958,7 @@
                     "endOffset": 42669
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 149,
                         "startColumn": 4,
@@ -5977,7 +5977,7 @@
                     "endOffset": 42713
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 150,
                         "startColumn": 4,
@@ -5996,7 +5996,7 @@
                     "endOffset": 42770
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 151,
                         "startColumn": 4,
@@ -6015,7 +6015,7 @@
                     "endOffset": 42849
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 152,
                         "startColumn": 4,
@@ -6034,7 +6034,7 @@
                     "endOffset": 42932
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 153,
                         "startColumn": 4,
@@ -6053,7 +6053,7 @@
                     "endOffset": 43011
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 154,
                         "startColumn": 4,
@@ -6072,7 +6072,7 @@
                     "endOffset": 43087
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 155,
                         "startColumn": 4,
@@ -6091,7 +6091,7 @@
                     "endOffset": 43173
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 156,
                         "startColumn": 4,
@@ -6110,7 +6110,7 @@
                     "endOffset": 43217
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 157,
                         "startColumn": 4,
@@ -6129,7 +6129,7 @@
                     "endOffset": 43293
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 158,
                         "startColumn": 4,
@@ -6148,7 +6148,7 @@
                     "endOffset": 43369
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 159,
                         "startColumn": 4,
@@ -6167,7 +6167,7 @@
                     "endOffset": 43435
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 160,
                         "startColumn": 4,
@@ -6186,7 +6186,7 @@
                     "endOffset": 43516
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 161,
                         "startColumn": 4,
@@ -6205,7 +6205,7 @@
                     "endOffset": 43600
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 162,
                         "startColumn": 4,
@@ -6224,7 +6224,7 @@
                     "endOffset": 43658
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 163,
                         "startColumn": 4,
@@ -6243,7 +6243,7 @@
                     "endOffset": 43724
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 164,
                         "startColumn": 4,
@@ -6262,7 +6262,7 @@
                     "endOffset": 43809
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 165,
                         "startColumn": 4,
@@ -6281,7 +6281,7 @@
                     "endOffset": 43899
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 166,
                         "startColumn": 4,
@@ -6300,7 +6300,7 @@
                     "endOffset": 43966
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 167,
                         "startColumn": 4,
@@ -6319,7 +6319,7 @@
                     "endOffset": 44052
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 168,
                         "startColumn": 4,
@@ -6338,7 +6338,7 @@
                     "endOffset": 44148
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 169,
                         "startColumn": 4,
@@ -6357,7 +6357,7 @@
                     "endOffset": 44212
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 170,
                         "startColumn": 4,
@@ -6376,7 +6376,7 @@
                     "endOffset": 44289
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 171,
                         "startColumn": 4,
@@ -6395,7 +6395,7 @@
                     "endOffset": 44364
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 172,
                         "startColumn": 4,
@@ -6414,7 +6414,7 @@
                     "endOffset": 44443
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 173,
                         "startColumn": 4,
@@ -6433,7 +6433,7 @@
                     "endOffset": 44543
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 174,
                         "startColumn": 4,
@@ -6452,7 +6452,7 @@
                     "endOffset": 44626
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 175,
                         "startColumn": 4,
@@ -6471,7 +6471,7 @@
                     "endOffset": 44713
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 176,
                         "startColumn": 4,
@@ -6490,7 +6490,7 @@
                     "endOffset": 44789
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 177,
                         "startColumn": 4,
@@ -6509,7 +6509,7 @@
                     "endOffset": 44892
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 178,
                         "startColumn": 4,
@@ -6528,7 +6528,7 @@
                     "endOffset": 44975
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 179,
                         "startColumn": 4,
@@ -6547,7 +6547,7 @@
                     "endOffset": 45067
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 180,
                         "startColumn": 4,
@@ -6566,7 +6566,7 @@
                     "endOffset": 45133
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 181,
                         "startColumn": 4,
@@ -6585,7 +6585,7 @@
                     "endOffset": 45227
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 182,
                         "startColumn": 4,
@@ -6604,7 +6604,7 @@
                     "endOffset": 45287
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 183,
                         "startColumn": 4,
@@ -6623,7 +6623,7 @@
                     "endOffset": 45377
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 184,
                         "startColumn": 4,
@@ -6642,7 +6642,7 @@
                     "endOffset": 45438
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 185,
                         "startColumn": 4,
@@ -6661,7 +6661,7 @@
                     "endOffset": 45508
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 186,
                         "startColumn": 4,
@@ -6680,7 +6680,7 @@
                     "endOffset": 45589
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 187,
                         "startColumn": 4,
@@ -6699,7 +6699,7 @@
                     "endOffset": 45665
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 188,
                         "startColumn": 4,
@@ -6718,7 +6718,7 @@
                     "endOffset": 45720
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 189,
                         "startColumn": 4,
@@ -6737,7 +6737,7 @@
                     "endOffset": 45777
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 190,
                         "startColumn": 4,
@@ -6756,7 +6756,7 @@
                     "endOffset": 45852
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 191,
                         "startColumn": 4,
@@ -6775,7 +6775,7 @@
                     "endOffset": 45918
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 192,
                         "startColumn": 4,
@@ -7383,7 +7383,7 @@
                     "endOffset": 48207
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 193,
                         "startColumn": 4,
@@ -7402,7 +7402,7 @@
                     "endOffset": 48274
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 194,
                         "startColumn": 4,
@@ -7421,7 +7421,7 @@
                     "endOffset": 48328
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 195,
                         "startColumn": 4,
@@ -7440,7 +7440,7 @@
                     "endOffset": 48368
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 196,
                         "startColumn": 4,
@@ -7459,7 +7459,7 @@
                     "endOffset": 48420
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 197,
                         "startColumn": 4,
@@ -7478,7 +7478,7 @@
                     "endOffset": 48462
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 198,
                         "startColumn": 4,
@@ -7497,7 +7497,7 @@
                     "endOffset": 48532
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 199,
                         "startColumn": 4,
@@ -7516,7 +7516,7 @@
                     "endOffset": 48577
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 200,
                         "startColumn": 4,
@@ -7535,7 +7535,7 @@
                     "endOffset": 48630
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 201,
                         "startColumn": 4,
@@ -7554,7 +7554,7 @@
                     "endOffset": 48679
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 202,
                         "startColumn": 4,
@@ -7573,7 +7573,7 @@
                     "endOffset": 48729
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 203,
                         "startColumn": 4,
@@ -7592,7 +7592,7 @@
                     "endOffset": 48781
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 204,
                         "startColumn": 4,
@@ -7611,7 +7611,7 @@
                     "endOffset": 48828
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 205,
                         "startColumn": 4,
@@ -7630,7 +7630,7 @@
                     "endOffset": 48885
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 206,
                         "startColumn": 4,
@@ -7649,7 +7649,7 @@
                     "endOffset": 48942
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 207,
                         "startColumn": 4,
@@ -7668,7 +7668,7 @@
                     "endOffset": 48980
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 208,
                         "startColumn": 4,
@@ -7687,7 +7687,7 @@
                     "endOffset": 49032
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 209,
                         "startColumn": 4,
@@ -7706,7 +7706,7 @@
                     "endOffset": 49078
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 210,
                         "startColumn": 4,
@@ -7725,7 +7725,7 @@
                     "endOffset": 49128
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 211,
                         "startColumn": 4,
@@ -7744,7 +7744,7 @@
                     "endOffset": 49177
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 212,
                         "startColumn": 4,
@@ -7763,7 +7763,7 @@
                     "endOffset": 49227
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 213,
                         "startColumn": 4,
@@ -7782,7 +7782,7 @@
                     "endOffset": 49270
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 214,
                         "startColumn": 4,
@@ -7801,7 +7801,7 @@
                     "endOffset": 49319
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 215,
                         "startColumn": 4,
@@ -7820,7 +7820,7 @@
                     "endOffset": 49368
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 216,
                         "startColumn": 4,
@@ -7839,7 +7839,7 @@
                     "endOffset": 49427
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 217,
                         "startColumn": 4,
@@ -7858,7 +7858,7 @@
                     "endOffset": 49472
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 218,
                         "startColumn": 4,
@@ -7877,7 +7877,7 @@
                     "endOffset": 49519
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 219,
                         "startColumn": 4,
@@ -7896,7 +7896,7 @@
                     "endOffset": 49564
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 220,
                         "startColumn": 4,
@@ -7915,7 +7915,7 @@
                     "endOffset": 49624
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 221,
                         "startColumn": 4,
@@ -7934,7 +7934,7 @@
                     "endOffset": 49680
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 222,
                         "startColumn": 4,
@@ -7953,7 +7953,7 @@
                     "endOffset": 49772
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 223,
                         "startColumn": 4,
@@ -7972,7 +7972,7 @@
                     "endOffset": 49814
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 224,
                         "startColumn": 4,
@@ -7991,7 +7991,7 @@
                     "endOffset": 49883
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 225,
                         "startColumn": 4,
@@ -8010,7 +8010,7 @@
                     "endOffset": 50024
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 226,
                         "startColumn": 4,
@@ -8029,7 +8029,7 @@
                     "endOffset": 50072
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 227,
                         "startColumn": 4,
@@ -8048,7 +8048,7 @@
                     "endOffset": 50154
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 228,
                         "startColumn": 4,
@@ -8067,7 +8067,7 @@
                     "endOffset": 50204
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 229,
                         "startColumn": 4,
@@ -8086,7 +8086,7 @@
                     "endOffset": 50273
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 230,
                         "startColumn": 4,
@@ -8105,7 +8105,7 @@
                     "endOffset": 50344
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 231,
                         "startColumn": 4,
@@ -8124,7 +8124,7 @@
                     "endOffset": 50406
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 232,
                         "startColumn": 4,
@@ -8143,7 +8143,7 @@
                     "endOffset": 50482
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 233,
                         "startColumn": 4,
@@ -8162,7 +8162,7 @@
                     "endOffset": 50544
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 234,
                         "startColumn": 4,
@@ -8181,7 +8181,7 @@
                     "endOffset": 50629
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 235,
                         "startColumn": 4,
@@ -8200,7 +8200,7 @@
                     "endOffset": 50690
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 236,
                         "startColumn": 4,
@@ -8219,7 +8219,7 @@
                     "endOffset": 50781
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 237,
                         "startColumn": 4,
@@ -8238,7 +8238,7 @@
                     "endOffset": 50875
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 238,
                         "startColumn": 4,
@@ -8257,7 +8257,7 @@
                     "endOffset": 50913
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 239,
                         "startColumn": 4,
@@ -8276,7 +8276,7 @@
                     "endOffset": 50967
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 240,
                         "startColumn": 4,
@@ -8295,7 +8295,7 @@
                     "endOffset": 51009
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 241,
                         "startColumn": 4,
@@ -8314,7 +8314,7 @@
                     "endOffset": 51077
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 242,
                         "startColumn": 4,
@@ -8333,7 +8333,7 @@
                     "endOffset": 51167
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 243,
                         "startColumn": 4,
@@ -8352,7 +8352,7 @@
                     "endOffset": 51225
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 244,
                         "startColumn": 4,
@@ -8371,7 +8371,7 @@
                     "endOffset": 51279
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 245,
                         "startColumn": 4,
@@ -8390,7 +8390,7 @@
                     "endOffset": 51333
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 246,
                         "startColumn": 4,
@@ -8409,7 +8409,7 @@
                     "endOffset": 51381
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 247,
                         "startColumn": 4,
@@ -8428,7 +8428,7 @@
                     "endOffset": 51427
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 248,
                         "startColumn": 4,
@@ -8447,7 +8447,7 @@
                     "endOffset": 51485
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 249,
                         "startColumn": 4,
@@ -8466,7 +8466,7 @@
                     "endOffset": 51532
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 250,
                         "startColumn": 4,
@@ -8485,7 +8485,7 @@
                     "endOffset": 51588
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 251,
                         "startColumn": 4,
@@ -8504,7 +8504,7 @@
                     "endOffset": 51681
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 252,
                         "startColumn": 4,
@@ -8523,7 +8523,7 @@
                     "endOffset": 51726
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 253,
                         "startColumn": 4,
@@ -8542,7 +8542,7 @@
                     "endOffset": 51787
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 254,
                         "startColumn": 4,
@@ -8561,7 +8561,7 @@
                     "endOffset": 51844
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 255,
                         "startColumn": 4,
@@ -8580,7 +8580,7 @@
                     "endOffset": 51881
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 256,
                         "startColumn": 4,
@@ -8599,7 +8599,7 @@
                     "endOffset": 51944
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 257,
                         "startColumn": 4,
@@ -8618,7 +8618,7 @@
                     "endOffset": 52003
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 258,
                         "startColumn": 4,
@@ -8637,7 +8637,7 @@
                     "endOffset": 52060
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 259,
                         "startColumn": 4,
@@ -8656,7 +8656,7 @@
                     "endOffset": 52110
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 260,
                         "startColumn": 4,
@@ -8675,7 +8675,7 @@
                     "endOffset": 52193
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 261,
                         "startColumn": 4,
@@ -8694,7 +8694,7 @@
                     "endOffset": 52261
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 262,
                         "startColumn": 4,
@@ -8713,7 +8713,7 @@
                     "endOffset": 52333
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 263,
                         "startColumn": 4,
@@ -8732,7 +8732,7 @@
                     "endOffset": 52435
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 264,
                         "startColumn": 4,
@@ -8751,7 +8751,7 @@
                     "endOffset": 52525
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 265,
                         "startColumn": 4,
@@ -8770,7 +8770,7 @@
                     "endOffset": 52569
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 266,
                         "startColumn": 4,
@@ -8789,7 +8789,7 @@
                     "endOffset": 52677
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 267,
                         "startColumn": 4,
@@ -8808,7 +8808,7 @@
                     "endOffset": 52729
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 268,
                         "startColumn": 4,
@@ -8827,7 +8827,7 @@
                     "endOffset": 52838
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 269,
                         "startColumn": 4,
@@ -8846,7 +8846,7 @@
                     "endOffset": 52963
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 270,
                         "startColumn": 4,
@@ -8865,7 +8865,7 @@
                     "endOffset": 53003
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 271,
                         "startColumn": 4,
@@ -8884,7 +8884,7 @@
                     "endOffset": 53047
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 272,
                         "startColumn": 4,
@@ -8903,7 +8903,7 @@
                     "endOffset": 53163
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 273,
                         "startColumn": 4,
@@ -8922,7 +8922,7 @@
                     "endOffset": 53231
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 274,
                         "startColumn": 4,
@@ -8941,7 +8941,7 @@
                     "endOffset": 53281
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 275,
                         "startColumn": 4,
@@ -8960,7 +8960,7 @@
                     "endOffset": 53327
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 276,
                         "startColumn": 4,
@@ -8979,7 +8979,7 @@
                     "endOffset": 53393
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 277,
                         "startColumn": 4,
@@ -8998,7 +8998,7 @@
                     "endOffset": 53443
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 278,
                         "startColumn": 4,
@@ -9017,7 +9017,7 @@
                     "endOffset": 53514
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 279,
                         "startColumn": 4,
@@ -9036,7 +9036,7 @@
                     "endOffset": 53633
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 280,
                         "startColumn": 4,
@@ -9055,7 +9055,7 @@
                     "endOffset": 53695
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 281,
                         "startColumn": 4,
@@ -9074,7 +9074,7 @@
                     "endOffset": 53739
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 282,
                         "startColumn": 4,
@@ -9093,7 +9093,7 @@
                     "endOffset": 53791
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 283,
                         "startColumn": 4,
@@ -9112,7 +9112,7 @@
                     "endOffset": 53896
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 284,
                         "startColumn": 4,
@@ -9131,7 +9131,7 @@
                     "endOffset": 53978
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 285,
                         "startColumn": 4,
@@ -9150,7 +9150,7 @@
                     "endOffset": 54042
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 286,
                         "startColumn": 4,
@@ -9169,7 +9169,7 @@
                     "endOffset": 54107
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 287,
                         "startColumn": 4,
@@ -9188,7 +9188,7 @@
                     "endOffset": 54195
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 288,
                         "startColumn": 4,
@@ -9207,7 +9207,7 @@
                     "endOffset": 54275
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 289,
                         "startColumn": 4,
@@ -9226,7 +9226,7 @@
                     "endOffset": 54340
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 290,
                         "startColumn": 4,
@@ -9245,7 +9245,7 @@
                     "endOffset": 54404
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 291,
                         "startColumn": 4,
@@ -9264,7 +9264,7 @@
                     "endOffset": 54479
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 292,
                         "startColumn": 4,
@@ -9283,7 +9283,7 @@
                     "endOffset": 54549
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 293,
                         "startColumn": 4,
@@ -9302,7 +9302,7 @@
                     "endOffset": 54607
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 294,
                         "startColumn": 4,
@@ -9321,7 +9321,7 @@
                     "endOffset": 54665
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 295,
                         "startColumn": 4,
@@ -9340,7 +9340,7 @@
                     "endOffset": 54705
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 296,
                         "startColumn": 4,
@@ -9359,7 +9359,7 @@
                     "endOffset": 54807
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 297,
                         "startColumn": 4,
@@ -9378,7 +9378,7 @@
                     "endOffset": 54849
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 298,
                         "startColumn": 4,
@@ -9397,7 +9397,7 @@
                     "endOffset": 54970
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 299,
                         "startColumn": 4,
@@ -9416,7 +9416,7 @@
                     "endOffset": 55038
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 300,
                         "startColumn": 4,
@@ -9435,7 +9435,7 @@
                     "endOffset": 55112
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 301,
                         "startColumn": 4,
@@ -9454,7 +9454,7 @@
                     "endOffset": 55150
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 302,
                         "startColumn": 4,
@@ -9473,7 +9473,7 @@
                     "endOffset": 55248
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 303,
                         "startColumn": 4,
@@ -9492,7 +9492,7 @@
                     "endOffset": 55329
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 304,
                         "startColumn": 4,
@@ -9511,7 +9511,7 @@
                     "endOffset": 55443
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 305,
                         "startColumn": 4,
@@ -9530,7 +9530,7 @@
                     "endOffset": 55496
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 306,
                         "startColumn": 4,
@@ -9549,7 +9549,7 @@
                     "endOffset": 55558
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 307,
                         "startColumn": 4,
@@ -9568,7 +9568,7 @@
                     "endOffset": 55604
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 308,
                         "startColumn": 4,
@@ -9587,7 +9587,7 @@
                     "endOffset": 55796
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 309,
                         "startColumn": 4,
@@ -9606,7 +9606,7 @@
                     "endOffset": 55858
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 310,
                         "startColumn": 4,
@@ -9625,7 +9625,7 @@
                     "endOffset": 55920
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 311,
                         "startColumn": 4,
@@ -9644,7 +9644,7 @@
                     "endOffset": 56016
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 312,
                         "startColumn": 4,
@@ -9663,7 +9663,7 @@
                     "endOffset": 56083
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 313,
                         "startColumn": 4,
@@ -9682,7 +9682,7 @@
                     "endOffset": 56142
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 314,
                         "startColumn": 4,
@@ -9701,7 +9701,7 @@
                     "endOffset": 56202
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 315,
                         "startColumn": 4,
@@ -9720,7 +9720,7 @@
                     "endOffset": 56271
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 316,
                         "startColumn": 4,
@@ -9739,7 +9739,7 @@
                     "endOffset": 56305
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 317,
                         "startColumn": 4,
@@ -9758,7 +9758,7 @@
                     "endOffset": 56351
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 318,
                         "startColumn": 4,
@@ -9777,7 +9777,7 @@
                     "endOffset": 56393
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 319,
                         "startColumn": 4,
@@ -9796,7 +9796,7 @@
                     "endOffset": 56439
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 320,
                         "startColumn": 4,
@@ -9815,7 +9815,7 @@
                     "endOffset": 56554
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 321,
                         "startColumn": 4,
@@ -9834,7 +9834,7 @@
                     "endOffset": 56704
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 322,
                         "startColumn": 4,
@@ -9853,7 +9853,7 @@
                     "endOffset": 56746
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 323,
                         "startColumn": 4,
@@ -9872,7 +9872,7 @@
                     "endOffset": 56806
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 324,
                         "startColumn": 4,
@@ -9891,7 +9891,7 @@
                     "endOffset": 56888
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 325,
                         "startColumn": 4,
@@ -9910,7 +9910,7 @@
                     "endOffset": 56971
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 326,
                         "startColumn": 4,
@@ -9929,7 +9929,7 @@
                     "endOffset": 57028
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 327,
                         "startColumn": 4,
@@ -9948,7 +9948,7 @@
                     "endOffset": 57100
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 328,
                         "startColumn": 4,
@@ -9967,7 +9967,7 @@
                     "endOffset": 57146
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 329,
                         "startColumn": 4,
@@ -9986,7 +9986,7 @@
                     "endOffset": 57191
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 330,
                         "startColumn": 4,
@@ -10005,7 +10005,7 @@
                     "endOffset": 57270
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 331,
                         "startColumn": 4,
@@ -10024,7 +10024,7 @@
                     "endOffset": 57393
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 332,
                         "startColumn": 4,
@@ -10043,7 +10043,7 @@
                     "endOffset": 57435
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 333,
                         "startColumn": 4,
@@ -10062,7 +10062,7 @@
                     "endOffset": 57485
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 334,
                         "startColumn": 4,
@@ -10081,7 +10081,7 @@
                     "endOffset": 57523
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 335,
                         "startColumn": 4,
@@ -10100,7 +10100,7 @@
                     "endOffset": 57587
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 336,
                         "startColumn": 4,
@@ -10119,7 +10119,7 @@
                     "endOffset": 57684
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 337,
                         "startColumn": 4,
@@ -10138,7 +10138,7 @@
                     "endOffset": 57726
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 338,
                         "startColumn": 4,
@@ -10157,7 +10157,7 @@
                     "endOffset": 57775
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 339,
                         "startColumn": 4,
@@ -10195,7 +10195,7 @@
                     "endOffset": 57874
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 340,
                         "startColumn": 4,
@@ -10214,7 +10214,7 @@
                     "endOffset": 57941
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 341,
                         "startColumn": 4,
@@ -10233,7 +10233,7 @@
                     "endOffset": 57989
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 342,
                         "startColumn": 4,
@@ -10252,7 +10252,7 @@
                     "endOffset": 58052
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 343,
                         "startColumn": 4,
@@ -10271,7 +10271,7 @@
                     "endOffset": 58102
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 344,
                         "startColumn": 4,
@@ -10290,7 +10290,7 @@
                     "endOffset": 58206
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 345,
                         "startColumn": 4,
@@ -10309,7 +10309,7 @@
                     "endOffset": 58299
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 346,
                         "startColumn": 4,
@@ -10328,7 +10328,7 @@
                     "endOffset": 58399
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 347,
                         "startColumn": 4,
@@ -10347,7 +10347,7 @@
                     "endOffset": 58448
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 348,
                         "startColumn": 4,
@@ -10366,7 +10366,7 @@
                     "endOffset": 58489
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 349,
                         "startColumn": 4,
@@ -10385,7 +10385,7 @@
                     "endOffset": 58534
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 350,
                         "startColumn": 4,
@@ -10404,7 +10404,7 @@
                     "endOffset": 58596
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 351,
                         "startColumn": 4,
@@ -10423,7 +10423,7 @@
                     "endOffset": 58636
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 352,
                         "startColumn": 4,
@@ -10461,7 +10461,7 @@
                     "endOffset": 58774
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 353,
                         "startColumn": 4,
@@ -10480,7 +10480,7 @@
                     "endOffset": 58881
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 354,
                         "startColumn": 4,
@@ -10499,7 +10499,7 @@
                     "endOffset": 58927
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 355,
                         "startColumn": 4,
@@ -10518,7 +10518,7 @@
                     "endOffset": 58984
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 356,
                         "startColumn": 4,
@@ -10537,7 +10537,7 @@
                     "endOffset": 59067
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 357,
                         "startColumn": 4,
@@ -10556,7 +10556,7 @@
                     "endOffset": 59187
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 358,
                         "startColumn": 4,
@@ -10575,7 +10575,7 @@
                     "endOffset": 59247
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 359,
                         "startColumn": 4,
@@ -10594,7 +10594,7 @@
                     "endOffset": 59319
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 360,
                         "startColumn": 4,
@@ -10613,7 +10613,7 @@
                     "endOffset": 59376
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 361,
                         "startColumn": 4,
@@ -10632,7 +10632,7 @@
                     "endOffset": 59448
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 362,
                         "startColumn": 4,
@@ -10651,7 +10651,7 @@
                     "endOffset": 59526
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 363,
                         "startColumn": 4,
@@ -10670,7 +10670,7 @@
                     "endOffset": 59596
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 364,
                         "startColumn": 4,
@@ -10689,7 +10689,7 @@
                     "endOffset": 59672
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 365,
                         "startColumn": 4,
@@ -10708,7 +10708,7 @@
                     "endOffset": 59750
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 366,
                         "startColumn": 4,
@@ -10727,7 +10727,7 @@
                     "endOffset": 59845
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 367,
                         "startColumn": 4,
@@ -10746,7 +10746,7 @@
                     "endOffset": 59897
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 368,
                         "startColumn": 4,
@@ -10765,7 +10765,7 @@
                     "endOffset": 59945
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 369,
                         "startColumn": 4,
@@ -10784,7 +10784,7 @@
                     "endOffset": 59987
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 370,
                         "startColumn": 4,
@@ -10803,7 +10803,7 @@
                     "endOffset": 60039
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 371,
                         "startColumn": 4,
@@ -10822,7 +10822,7 @@
                     "endOffset": 60079
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 372,
                         "startColumn": 4,
@@ -10841,7 +10841,7 @@
                     "endOffset": 60131
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 373,
                         "startColumn": 4,
@@ -10860,7 +10860,7 @@
                     "endOffset": 60180
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 374,
                         "startColumn": 4,
@@ -10879,7 +10879,7 @@
                     "endOffset": 60242
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 375,
                         "startColumn": 4,
@@ -10898,7 +10898,7 @@
                     "endOffset": 60294
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 376,
                         "startColumn": 4,
@@ -10917,7 +10917,7 @@
                     "endOffset": 60376
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 377,
                         "startColumn": 4,
@@ -10975,7 +10975,7 @@
                     "endOffset": 60777
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 378,
                         "startColumn": 4,
@@ -10996,7 +10996,7 @@
                     "endOffset": 61089
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 382,
                         "startColumn": 4,
@@ -11017,7 +11017,7 @@
                     "endOffset": 61526
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 387,
                         "startColumn": 4,
@@ -11038,7 +11038,7 @@
                     "endOffset": 61743
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 393,
                         "startColumn": 4,
@@ -11059,7 +11059,7 @@
                     "endOffset": 61967
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 397,
                         "startColumn": 4,
@@ -11080,7 +11080,7 @@
                     "endOffset": 62194
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 401,
                         "startColumn": 4,
@@ -11101,7 +11101,7 @@
                     "endOffset": 62355
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 405,
                         "startColumn": 4,
@@ -11122,7 +11122,7 @@
                     "endOffset": 62506
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 408,
                         "startColumn": 4,
@@ -11180,7 +11180,7 @@
                     "endOffset": 62748
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 411,
                         "startColumn": 4,
@@ -14022,7 +14022,7 @@
                     "endOffset": 127837
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 412,
                         "startColumn": 4,
@@ -14043,7 +14043,7 @@
                     "endOffset": 128172
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 426,
                         "startColumn": 4,
@@ -14064,7 +14064,7 @@
                     "endOffset": 128740
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 432,
                         "startColumn": 4,
@@ -14085,7 +14085,7 @@
                     "endOffset": 129404
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 442,
                         "startColumn": 4,
@@ -14106,7 +14106,7 @@
                     "endOffset": 130064
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 457,
                         "startColumn": 4,
@@ -17796,7 +17796,7 @@
                     "endOffset": 159519
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 472,
                         "startColumn": 4,
@@ -17817,7 +17817,7 @@
                     "endOffset": 159893
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 481,
                         "startColumn": 4,
@@ -17838,7 +17838,7 @@
                     "endOffset": 160409
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 489,
                         "startColumn": 4,
@@ -17859,7 +17859,7 @@
                     "endOffset": 160617
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 499,
                         "startColumn": 4,
@@ -17880,7 +17880,7 @@
                     "endOffset": 160835
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 504,
                         "startColumn": 4,
@@ -17901,7 +17901,7 @@
                     "endOffset": 160992
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 509,
                         "startColumn": 4,
@@ -17921,7 +17921,7 @@
                     "endOffset": 161059
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 512,
                         "startColumn": 4,

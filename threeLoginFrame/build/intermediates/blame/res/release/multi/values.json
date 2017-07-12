@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "E:\\AndroidProjects\\gitsafe\\threeLoginFrame\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values\\values.xml",
+        "outputFile": "E:\\AndroidProjects\\gitsafety\\threeLoginFrame\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 90
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\threeLoginFrame\\src\\main\\res\\values\\strings-threelogin.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\threeLoginFrame\\src\\main\\res\\values\\strings-threelogin.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 142
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\threeLoginFrame\\src\\main\\res\\values\\strings-threelogin.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\threeLoginFrame\\src\\main\\res\\values\\strings-threelogin.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -49,7 +49,7 @@
                     "endOffset": 209
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\threeLoginFrame\\src\\main\\res\\values\\strings-threelogin.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\threeLoginFrame\\src\\main\\res\\values\\strings-threelogin.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -68,7 +68,7 @@
                     "endOffset": 265
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\threeLoginFrame\\src\\main\\res\\values\\strings-threelogin.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\threeLoginFrame\\src\\main\\res\\values\\strings-threelogin.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,

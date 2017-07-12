@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-xlarge-v4\\values-xlarge-v4.xml",
+        "outputFile": "E:\\AndroidProjects\\gitsafety\\easeui\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-xlarge-v4\\values-xlarge-v4.xml",
         "map": [
             {
                 "to": {
@@ -125,7 +125,7 @@
                     "endOffset": 521
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\res\\values-xlarge\\ease_dimens.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\res\\values-xlarge\\ease_dimens.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
@@ -144,7 +144,7 @@
                     "endOffset": 575
                 },
                 "from": {
-                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\res\\values-xlarge\\ease_dimens.xml",
+                    "file": "E:\\AndroidProjects\\gitsafety\\easeui\\res\\values-xlarge\\ease_dimens.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
