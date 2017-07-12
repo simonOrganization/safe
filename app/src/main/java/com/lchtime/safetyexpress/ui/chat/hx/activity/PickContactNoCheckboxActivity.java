@@ -22,25 +22,28 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.hyphenate.easeui.adapter.EaseContactAdapter;
+import com.hyphenate.easeui.bean.ContactBean;
+import com.hyphenate.easeui.bean.EaseInitBean;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.widget.EaseSidebar;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.ui.chat.hx.Constant;
-import com.lchtime.safetyexpress.ui.chat.hx.HuanXinHelper;
+import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 @SuppressLint("Registered")
-public class PickContactNoCheckboxActivity extends EaseBaseActivity {
+public class PickContactNoCheckboxActivity extends BaseActivity {
 
 	protected EaseContactAdapter contactAdapter;
 	private List<EaseUser> contactList;
-
+	protected Map<String,ContactBean> userInfo = new HashMap<>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,7 +55,16 @@ public class PickContactNoCheckboxActivity extends EaseBaseActivity {
 		// get contactlist
 		getContactList();
 		// set adapter
-		contactAdapter = new EaseContactAdapter(this, R.layout.ease_row_contact, contactList);
+		if (EaseInitBean.map == null) {
+			if (EaseInitBean.contactBean != null) {
+
+				for (ContactBean contactBean : EaseInitBean.contactBean.friendlist) {
+					userInfo.put(contactBean.hx_account, contactBean);
+				}
+			}
+			EaseInitBean.map = userInfo;
+		}
+		contactAdapter = new EaseContactAdapter(this, R.layout.ease_row_contact, contactList,EaseInitBean.map);
 		listView.setAdapter(contactAdapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -76,7 +88,7 @@ public class PickContactNoCheckboxActivity extends EaseBaseActivity {
 
 	private void getContactList() {
 		contactList.clear();
-		Map<String, EaseUser> users = HuanXinHelper.getInstance().getContactList();
+		Map<String, EaseUser> users = DemoHelper.getInstance().getContactList();
 		for (Entry<String, EaseUser> entry : users.entrySet()) {
 			if (!entry.getKey().equals(Constant.NEW_FRIENDS_USERNAME) && !entry.getKey().equals(Constant.GROUP_USERNAME) && !entry.getKey().equals(Constant.CHAT_ROOM) && !entry.getKey().equals(Constant.CHAT_ROBOT))
 				contactList.add(entry.getValue());

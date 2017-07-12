@@ -34,6 +34,7 @@
             android:padding="@dimen/dm020">
 
             <ImageView
+                android:id="@+id/del"
                 android:layout_width="@dimen/dm035"
                 android:layout_height="@dimen/dm035"
                 android:src="@drawable/et_clean" />

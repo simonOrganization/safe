@@ -5,21 +5,25 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.gson.Gson;
+import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.HomeHotCircleAdapter;
 import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
 import com.lchtime.safetyexpress.bean.Constants;
-import com.lchtime.safetyexpress.bean.HomeBannerBean;
+import com.lchtime.safetyexpress.bean.FirstPic;
 import com.lchtime.safetyexpress.bean.HotCircleBean;
+import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.bean.res.NewsListRes;
 import com.lchtime.safetyexpress.ui.BaseUI;
+import com.lchtime.safetyexpress.ui.home.protocal.PictureAdvantage;
 import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
 import com.lchtime.safetyexpress.ui.home.protocal.HotCirclesProtocal;
 import com.lchtime.safetyexpress.ui.home.protocal.HotNewsProtocal;
@@ -32,15 +36,11 @@ import com.lchtime.safetyexpress.views.MyGridView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.mzhy.http.okhttp.OkHttpUtils;
-import com.mzhy.http.okhttp.callback.StringCallback;
 import com.sivin.Banner;
 import com.sivin.BannerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import okhttp3.Call;
 
 /**
  * 首页
@@ -73,7 +73,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     private HomeToCircleInterface homeToCircleInterface;
     public static HomeUI homeUI_instance = null;
 
-    private List<HomeBannerBean> mDatas = new ArrayList<>();
+//    private List<HomeBannerBean> mDatas = new ArrayList<>();
     private HotNewsProtocal protocal;
     //新闻热点的数据
     private NewsListRes newsListRes;
@@ -83,10 +83,21 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     //首页热门圈子的数据
     private List<HotCircleBean.HotBean> hotList;
     private List<List<HotCircleBean.HotBean>> hot;
+    private Gson gson = new Gson();
 
     @Override
     protected void back() {
         exit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (InitInfo.homeRefresh){
+            hotCircleIndex = 0;
+            hot.clear();
+            getHotCircleData(0);
+        }
     }
 
     @Override
@@ -96,27 +107,19 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         homeUI_instance = this;
         //轮播图
 
-//        sb_home_banner.setImageLoader(new ImageLoader() {
-//            @Override
-//            public void displayImage(Context context, Object path, ImageView imageView) {
-//                Picasso.with(context).load(((HomeBannerBean)path).getImgurl()).into(imageView);
-//            }
-//        });
-//        //设置图片集合
-//        sb_home_banner.setImages(mDatas);
-//
-//        sb_home_banner.start();
-        BannerAdapter adapter = new BannerAdapter<HomeBannerBean>(mDatas) {
+        BannerAdapter adapter = new BannerAdapter<FirstPic.LunboBean>(lunbo) {
             @Override
-            protected void bindTips(TextView tv, HomeBannerBean homeBannerBean) {
-                tv.setText("");
+            protected void bindTips(TextView tv, FirstPic.LunboBean homeBannerBean) {
+//                tv.setText(homeBannerBean.url);
             }
 
             @Override
-            public void bindImage(ImageView imageView, HomeBannerBean homeBannerBean) {
+            public void bindImage(ImageView imageView, FirstPic.LunboBean homeBannerBean) {
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                 Glide.with(HomeUI.this)
-                        .load(homeBannerBean.getImgurl())
+                        .load(homeBannerBean.img)
                         .placeholder(R.drawable.home_banner)
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                         .error(R.drawable.home_banner)
                         .into(imageView);
             }
@@ -125,7 +128,16 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         sb_home_banner.setOnBannerItemClickListener(new Banner.OnBannerItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                makeText("广告" + position);
+//                makeText("广告" + position);
+                if (position == 0){
+                    Intent intent = new Intent(HomeUI.this,GetMoneyActivity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(HomeUI.this,H5DetailUI.class);
+                    intent.putExtra("type","url");
+                    intent.putExtra("url",lunbo.get(position).url);
+                    startActivity(intent);
+                }
             }
         });
         //热门圈子
@@ -134,13 +146,6 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         }
         homeHotCircleAdapter = new HomeHotCircleAdapter(HomeUI.this,hotList);
         mgv_home_hot_circle.setAdapter(homeHotCircleAdapter);
-        mgv_home_hot_circle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                makeText("圈子" + position);
-            }
-        });
-
 
         //热点追踪
         if (hotNewsList == null){
@@ -152,7 +157,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         /*mlv_home_hot_track.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(HomeUI.this, HomeNewsDetailUI.class);
+                Intent intent = new Intent(HomeUI.this, H5DetailUI.class);
                 startActivity(intent);
             }
         });*/
@@ -190,42 +195,50 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     /**
      * 获取广告
      */
+    private PictureAdvantage picProtocal = new PictureAdvantage();
+    private List<FirstPic.LunboBean> lunbo = new ArrayList<>();
     private void getAdvData() {
         //测试
 //        showProgressDialog();
-        OkHttpUtils.post().url("http://www.baidu.com")
-                .build().execute(new StringCallback() {
+        String ub_id = SpTools.getString(this,Constants.userId,"");
+        picProtocal.getFirstPic(ub_id, new PictureAdvantage.HotNewsListener() {
             @Override
-            public void onError(Call call, Exception e, int i) {
-//                dismissProgressDialog();
-                setTextData();
-            }
+            public void hotNewsResponse(String respose) {
+                if (respose == null){
+                    CommonUtils.toastMessage("请检查网络，获取推荐图片失败！");
+                    return;
+                }
+                FirstPic bean = gson.fromJson(respose,FirstPic.class);
 
-            @Override
-            public void onResponse(String s, int i) {
-                setTextData();
-//                dismissProgressDialog();
+                if ("10".equals(bean.result.code)){
+                    lunbo.clear();
+                    lunbo.addAll(bean.lunbo);
+                    sb_home_banner.notifiDataHasChanged();
+                }else {
+                    CommonUtils.toastMessage("获取推荐图片失败，请刷新重试！");
+                }
+
+
             }
         });
+
+//        OkHttpUtils.post().url("http://www.baidu.com")
+//                .build().execute(new StringCallback() {
+//            @Override
+//            public void onError(Call call, Exception e, int i) {
+////                dismissProgressDialog();
+//                setTextData();
+//            }
+//
+//            @Override
+//            public void onResponse(String s, int i) {
+//                setTextData();
+////                dismissProgressDialog();
+//            }
+//        });
     }
 
-    private void setTextData() {
-        mDatas.clear();
-        HomeBannerBean homeBannerBean = null;
-        homeBannerBean = new HomeBannerBean();
-        homeBannerBean.setImgurl("");
-        mDatas.add(homeBannerBean);
-        homeBannerBean = new HomeBannerBean();
-        homeBannerBean.setImgurl("");
-        mDatas.add(homeBannerBean);
-        homeBannerBean = new HomeBannerBean();
-        homeBannerBean.setImgurl("");
-        mDatas.add(homeBannerBean);
-        homeBannerBean = new HomeBannerBean();
-        homeBannerBean.setImgurl("");
-        mDatas.add(homeBannerBean);
-        sb_home_banner.notifiDataHasChanged();
-    }
+
 
     /**
      * 搜索
@@ -419,13 +432,13 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
                     public void setNewOnItem(int position) {
                         if ("1".equals(type)){
                             //新闻
-                            Intent intent = new Intent(HomeUI.this, HomeNewsDetailUI.class);
+                            Intent intent = new Intent(HomeUI.this, H5DetailUI.class);
                             intent.putExtra("newsId", hotNewsList.get(position).cc_id);
                             intent.putExtra("type","news");
                             startActivity(intent);
                         }else {
                             //视频
-                            Intent intent = new Intent(HomeUI.this, HomeNewsDetailUI.class);
+                            Intent intent = new Intent(HomeUI.this, H5DetailUI.class);
                             intent.putExtra("newsId", vedioNewsList.get(position).cc_id);
                             intent.putExtra("type","video");
                             startActivity(intent);

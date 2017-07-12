@@ -13,238 +13,287 @@
  */
 package com.lchtime.safetyexpress.ui.chat.hx.activity;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hyphenate.EMCallBack;
+import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.hyphenate.EMGroupChangeListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMConversation.EMConversationType;
-import com.hyphenate.chat.EMCursorResult;
-import com.hyphenate.chat.EMGroup;
-import com.hyphenate.chat.EMMucSharedFile;
-import com.hyphenate.chat.EMPushConfigs;
-import com.hyphenate.easeui.ui.EaseGroupListener;
+import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.easeui.widget.EaseAlertDialog;
 import com.hyphenate.easeui.widget.EaseAlertDialog.AlertDialogUser;
 import com.hyphenate.easeui.widget.EaseExpandGridView;
-import com.hyphenate.easeui.widget.EaseSwitchButton;
-import com.hyphenate.exceptions.HyphenateException;
-import com.hyphenate.util.EMLog;
+import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.ui.chat.hx.dialog.ExitGroupDialog;
+import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.InitInfo;
+import com.lchtime.safetyexpress.bean.Result;
+import com.lchtime.safetyexpress.bean.UpdataBean;
+import com.lchtime.safetyexpress.pop.VipInfoHintPop;
+import com.lchtime.safetyexpress.ui.chat.hx.activity.protocal.GetInfoProtocal;
+import com.lchtime.safetyexpress.ui.chat.hx.bean.InfoBean;
+import com.lchtime.safetyexpress.ui.chat.hx.db.TopUserDao;
+import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
+import com.lchtime.safetyexpress.ui.chat.hx.utils.CardUtils;
+import com.lchtime.safetyexpress.ui.chat.hx.utils.WindowUtils;
+import com.lchtime.safetyexpress.ui.vip.SelectCityActivity;
+import com.lchtime.safetyexpress.utils.BitmapUtils;
+import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.JsonUtils;
+import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.utils.UpdataImageUtils;
+import com.luck.picture.lib.model.FunctionConfig;
+import com.luck.picture.lib.model.FunctionOptions;
+import com.luck.picture.lib.model.PictureConfig;
+import com.squareup.picasso.Picasso;
+import com.yalantis.ucrop.entity.LocalMedia;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
-public class GroupDetailsActivity extends EaseBaseActivity implements OnClickListener {
+import static com.lchtime.safetyexpress.R.id.ll_more_member;
+import static com.lchtime.safetyexpress.R.id.rl_change_group_invite;
+
+public class GroupDetailsActivity extends BaseActivity implements OnClickListener, PopupWindow.OnDismissListener {
 	private static final String TAG = "GroupDetailsActivity";
 	private static final int REQUEST_CODE_ADD_USER = 0;
+	private static final int REQUEST_CODE_DEL_USER = 10;
 	private static final int REQUEST_CODE_EXIT = 1;
 	private static final int REQUEST_CODE_EXIT_DELETE = 2;
 	private static final int REQUEST_CODE_EDIT_GROUPNAME = 5;
-	private static final int REQUEST_CODE_EDIT_GROUP_DESCRIPTION = 6;
-	private static final int REQUEST_CODE_EDIT_GROUP_EXTENSION = 7;
+
+	private static final int CITY_CODE = 588;
 
 
 	private String groupId;
-	private ProgressBar loadingPB;
+//	private ProgressBar loadingPB;
 	private Button exitBtn;
-	private Button deleteBtn;
-	private EMGroup group;
-	private GridAdapter membersAdapter;
-	private OwnerAdminAdapter ownerAdminAdapter;
-	private ProgressDialog progressDialog;
-	private TextView announcementText;
-
+//	private EMGroup group;
+	private GridAdapter adapter;
 
 	public static GroupDetailsActivity instance;
-
 	
 	String st = "";
 
-	private EaseSwitchButton switchButton;
-	private EaseSwitchButton offlinePushSwitch;
-	private EMPushConfigs pushConfigs;
+//	private EaseSwitchButton switchButton;
 
-	private String operationUserId = "";
 
-	private List<String> adminList = Collections.synchronizedList(new ArrayList<String>());
-	private List<String> memberList = Collections.synchronizedList(new ArrayList<String>());
-	private List<String> muteList = Collections.synchronizedList(new ArrayList<String>());
-	private List<String> blackList = Collections.synchronizedList(new ArrayList<String>());
+	private TextView mTitle;
+	private ImageView mTitleRight;
+	private LinearLayout mTitleLeft;
+	private LinearLayout mLlTitleRight;
 
-	GroupChangeListener groupChangeListener;
+	private TextView qunName;
+	private LinearLayout llMoreMember;
+	private RelativeLayout invite;
+	private RelativeLayout hy;
+	private RelativeLayout addr;
+	private RelativeLayout groupUp;
+	private CheckBox chatUp;
+	private int mType = 1;
+	private GetInfoProtocal mProtocal;
+	private TextView mInviteContent;
+	private TextView mProfessionContent;
+	private TextView mAddrContent;
+	private TextView nullPic;
+	private RelativeLayout mClearAllHistory;
+	private EaseExpandGridView mUserGridview;
+	private RelativeLayout mChangeGroupNameLayout;
+	private InfoBean mBean;
+	private ImageView mIvNameArrow;
+	private ImageView mIvInviteArrow;
+	private ImageView mIvHyArrow;
+	private ImageView mIvAddrArrow;
+	private String mUserid;
+	private RelativeLayout mPhotoItem;
+	private ImageView mCivPhotoArrow;
+	private ImageView mCivPhoto;
+	private List<InfoBean.QunersBean> mAdapterList = new ArrayList<>();
+	private String ub_id;
+	private ProgressBar mBar;
+	private VipInfoHintPop popWindow;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    
         groupId = getIntent().getStringExtra("groupId");
-        group = EMClient.getInstance().groupManager().getGroup(groupId);
-
-        // we are not supposed to show the group if we don't find the group
-        if(group == null){
-            finish();
-            return;
-        }
-        
+		topMap = MyApplication.getInstance().getTopUserList();
 		setContentView(R.layout.em_activity_group_details);
-
+		ub_id = SpTools.getString(this, Constants.userId,"");
+		if (mProtocal == null){
+			mProtocal = new GetInfoProtocal();
+		}
 		instance = this;
 		st = getResources().getString(R.string.people);
-		RelativeLayout clearAllHistory = (RelativeLayout) findViewById(R.id.clear_all_history);
-		loadingPB = (ProgressBar) findViewById(R.id.progressBar);
+		mBar = (ProgressBar) findViewById(R.id.pb_progress);
+		setLoadding(true);
+		popWindow = new VipInfoHintPop(mBar, this, R.layout.pop_delete_hint);
+		mClearAllHistory = (RelativeLayout) findViewById(R.id.clear_all_history);
+		mUserGridview = (EaseExpandGridView) findViewById(R.id.gridview);
+		nullPic = (TextView) findViewById(R.id.null_pic);
+//		loadingPB = (ProgressBar) findViewById(R.id.progressBar);
 		exitBtn = (Button) findViewById(R.id.btn_exit_grp);
-		deleteBtn = (Button) findViewById(R.id.btn_exitdel_grp);
-		RelativeLayout changeGroupNameLayout = (RelativeLayout) findViewById(R.id.rl_change_group_name);
-		RelativeLayout changeGroupDescriptionLayout = (RelativeLayout) findViewById(R.id.rl_change_group_description);
-		RelativeLayout changeGroupExtension = (RelativeLayout) findViewById(R.id.rl_change_group_extension);
-		RelativeLayout idLayout = (RelativeLayout) findViewById(R.id.rl_group_id);
-		idLayout.setVisibility(View.VISIBLE);
-		TextView idText = (TextView) findViewById(R.id.tv_group_id_value);
+		qunName = (TextView) findViewById(R.id.qun_name);
+		llMoreMember = (LinearLayout) findViewById(ll_more_member);
+		invite = (RelativeLayout) findViewById(rl_change_group_invite);
+		mPhotoItem = (RelativeLayout) findViewById(R.id.photo_item);
+		hy = (RelativeLayout) findViewById(R.id.rl_change_group_hy);
+		addr = (RelativeLayout) findViewById(R.id.rl_change_group_addr);
+		groupUp = (RelativeLayout) findViewById(R.id.rl_change_group_up);
+		chatUp = (CheckBox) findViewById(R.id.cb_chat_up);
 
-		RelativeLayout rl_switch_block_groupmsg = (RelativeLayout) findViewById(R.id.rl_switch_block_groupmsg);
-		switchButton = (EaseSwitchButton) findViewById(R.id.switch_btn);
-		RelativeLayout searchLayout = (RelativeLayout) findViewById(R.id.rl_search);
+		chatUp.setChecked(topMap.containsKey(groupId));
 
-		RelativeLayout blockOfflineLayout = (RelativeLayout) findViewById(R.id.rl_switch_block_offline_message);
-		offlinePushSwitch = (EaseSwitchButton) findViewById(R.id.switch_block_offline_message);
+		mChangeGroupNameLayout = (RelativeLayout) findViewById(R.id.rl_change_group_name);
+		mInviteContent = (TextView) findViewById(R.id.invite_content);
+		mProfessionContent = (TextView) findViewById(R.id.profession_content);
+		mAddrContent = (TextView) findViewById(R.id.addr_content);
+		mCivPhoto = (ImageView) findViewById(R.id.civ_photo);
 
-		RelativeLayout announcementLayout = (RelativeLayout) findViewById(R.id.layout_group_announcement);
-		announcementText = (TextView) findViewById(R.id.tv_group_announcement_value);
+		mIvNameArrow = (ImageView) findViewById(R.id.iv_arrow);
+		mIvInviteArrow = (ImageView) findViewById(R.id.iv_group_name_arrow);
+		mIvHyArrow = (ImageView) findViewById(R.id.iv_arrow_hy);
+		mIvAddrArrow = (ImageView) findViewById(R.id.iv_arrow_addr);
+		mCivPhotoArrow = (ImageView) findViewById(R.id.photo_arrow);
 
-		RelativeLayout sharedFilesLayout = (RelativeLayout) findViewById(R.id.layout_share_files);
 
-		idText.setText(groupId);
-		if (group.getOwner() == null || "".equals(group.getOwner())
-				|| !group.getOwner().equals(EMClient.getInstance().getCurrentUser())) {
-			exitBtn.setVisibility(View.GONE);
-			deleteBtn.setVisibility(View.GONE);
-		}
+		//设置最下面按键的显示字
+
+
+		initTitle();
+		initData();
+
 		// show dismiss button if you are owner of group
-		if (EMClient.getInstance().getCurrentUser().equals(group.getOwner())) {
-			exitBtn.setVisibility(View.GONE);
-			deleteBtn.setVisibility(View.VISIBLE);
+
+
+	}
+
+	private void initData() {
+		if (mProtocal == null){
+			mProtocal = new GetInfoProtocal();
 		}
 
-		//get push configs
-		pushConfigs = EMClient.getInstance().pushManager().getPushConfigs();
+		initPopWindow();
+		String ub_id = SpTools.getString(this, Constants.userId,"");
+		mProtocal.getInfo(ub_id, "0", groupId, new AddCommandProtocal.NormalListener() {
+			@Override
+			public void normalResponse(Object response) {
+				if (response == null){
+					setLoadding(false);
+					CommonUtils.toastMessage("获取群信息失败！");
+					return;
+				}
+				mBean = (InfoBean) JsonUtils.stringToObject((String) response, InfoBean.class);
+				if ("10".equals(mBean.result.code)){
+					qunName.setText(mBean.qun.ud_nickname);
+					if (mBean.quners != null){
+						mTitle.setText(mBean.qun.ud_nickname + "(" + mBean.quners.size() + st );
+					}else {
+						mTitle.setText(mBean.qun.ud_nickname);
+					}
+					mInviteContent.setText(mBean.qun.sq_info);
+					mProfessionContent.setText(mBean.qun.sq_profession);
+					mAddrContent.setText(mBean.qun.sq_addr);
+					if (!TextUtils.isEmpty(mBean.qun.ud_photo_fileid)){
+						Picasso.with(GroupDetailsActivity.this)
+								.load(mBean.qun.ud_photo_fileid)
+								.into(mCivPhoto);
+					}else {
+						Picasso.with(GroupDetailsActivity.this)
+								.load(R.drawable.qun_list)
+								.into(mCivPhoto);
+					}
+					//如果不在群里面，在这里设置
+					setType();
+					initListener();
+					setLoadding(false);
+				}else {
+					CommonUtils.toastMessage("获取群消息失败");
+					setLoadding(false);
+				}
+			}
+		});
+	}
 
-		groupChangeListener = new GroupChangeListener();
+
+
+	private void initListener() {
+
+		GroupChangeListener groupChangeListener = new GroupChangeListener();
 		EMClient.getInstance().groupManager().addGroupChangeListener(groupChangeListener);
-		
-		((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "(" + group.getMemberCount() + st);
 
-		membersAdapter = new GridAdapter(this, R.layout.em_grid_owner, new ArrayList<String>());
-		EaseExpandGridView userGridview = (EaseExpandGridView) findViewById(R.id.gridview);
-		userGridview.setAdapter(membersAdapter);
+//		((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "(" + group.getAffiliationsCount() + st);
 
-		ownerAdminAdapter = new OwnerAdminAdapter(this, R.layout.em_grid_owner, new ArrayList<String>());
-		EaseExpandGridView ownerAdminGridview = (EaseExpandGridView) findViewById(R.id.owner_and_administrators_grid_view);
-		ownerAdminGridview.setAdapter(ownerAdminAdapter);
+
+//		List<String> members = new ArrayList<String>();
+//		members.addAll(group.getMembers());
+		if (mBean.quners != null) {
+			mAdapterList.clear();
+			mAdapterList.addAll(mBean.quners);
+			adapter = new GridAdapter(this, R.layout.em_grid, mAdapterList);
+			mUserGridview.setAdapter(adapter);
+		}
 
 		// 保证每次进详情看到的都是最新的group
-		updateGroup();
+//		updateGroup();
 
-		clearAllHistory.setOnClickListener(this);
-		changeGroupNameLayout.setOnClickListener(this);
-		changeGroupDescriptionLayout.setOnClickListener(this);
-		changeGroupExtension.setOnClickListener(this);
-		rl_switch_block_groupmsg.setOnClickListener(this);
-        searchLayout.setOnClickListener(this);
-		blockOfflineLayout.setOnClickListener(this);
-		announcementLayout.setOnClickListener(this);
-		sharedFilesLayout.setOnClickListener(this);
+
+		mClearAllHistory.setOnClickListener(this);
+//		blacklistLayout.setOnClickListener(this);
+		mChangeGroupNameLayout.setOnClickListener(this);
+//		rl_switch_block_groupmsg.setOnClickListener(this);
+//        searchLayout.setOnClickListener(this);
+		//更多成员点击事件
+		llMoreMember.setOnClickListener(this);
+		invite.setOnClickListener(this);
+		hy.setOnClickListener(this);
+		addr.setOnClickListener(this);
+		chatUp.setOnClickListener(this);
+		exitBtn.setOnClickListener(this);
+		mPhotoItem.setOnClickListener(this);
 	}
 
+	private void initTitle() {
+
+		mTitle = (TextView) findViewById(R.id.title);
+		mTitleRight = (ImageView) findViewById(R.id.iv_right);
+		mTitleLeft = (LinearLayout) findViewById(R.id.ll_back);
+		mLlTitleRight = (LinearLayout) findViewById(R.id.ll_right);
+		mLlTitleRight.setVisibility(View.VISIBLE);
+
+		mTitleRight.setVisibility(View.GONE);
+		mTitleRight.setImageResource(R.drawable.single_info_more);
 
 
-	boolean isCurrentOwner(EMGroup group) {
-		String owner = group.getOwner();
-		if (owner == null || owner.isEmpty()) {
-			return false;
-		}
-		return owner.equals(EMClient.getInstance().getCurrentUser());
-	}
-
-	boolean isCurrentAdmin(EMGroup group) {
-		synchronized (adminList) {
-			String currentUser = EMClient.getInstance().getCurrentUser();
-			for (String admin : adminList) {
-				if (currentUser.equals(admin)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	boolean isAdmin(String id) {
-		synchronized (adminList) {
-			for (String admin : adminList) {
-				if (id.equals(admin)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	boolean isInBlackList(String id) {
-		synchronized (blackList) {
-			if (id != null && !id.isEmpty()) {
-				for (String item : blackList) {
-					if (id.equals(item)) {
-						return true;
-					}
-				}
-			}
-		}
-		return false;
-	}
-
-	boolean isInMuteList(String id) {
-		synchronized (muteList) {
-			if (id != null && !id.isEmpty()) {
-				for (String item : muteList) {
-					if (id.equals(item)) {
-						return true;
-					}
-				}
-			}
-		}
-		return false;
-	}
-
-	boolean isCanAddMember(EMGroup group) {
-		if (group.isMemberAllowToInvite() ||
-				isAdmin(EMClient.getInstance().getCurrentUser()) ||
-				isCurrentOwner(group)) {
-			return true;
-		}
-		return false;
+		mLlTitleRight.setOnClickListener(this);
+		mTitleLeft.setOnClickListener(this);
 	}
 
 	@Override
@@ -254,188 +303,153 @@ public class GroupDetailsActivity extends EaseBaseActivity implements OnClickLis
 		String st2 = getResources().getString(R.string.is_quit_the_group_chat);
 		String st3 = getResources().getString(R.string.chatting_is_dissolution);
 		String st4 = getResources().getString(R.string.are_empty_group_of_news);
-		final String st5 = getResources().getString(R.string.is_modify_the_group_name);
+		String st5 = getResources().getString(R.string.is_modify_the_group_name);
 		final String st6 = getResources().getString(R.string.Modify_the_group_name_successful);
 		final String st7 = getResources().getString(R.string.change_the_group_name_failed_please);
-
-		final String st8 = getResources().getString(R.string.is_modify_the_group_description);
-		final String st9 = getResources().getString(R.string.Modify_the_group_description_successful);
-		final String st10 = getResources().getString(R.string.change_the_group_description_failed_please);
-		final String st11 = getResources().getString(R.string.Modify_the_group_extension_successful);
-		final String st12 = getResources().getString(R.string.change_the_group_extension_failed_please);
-
+		
 		if (resultCode == RESULT_OK) {
-			if (progressDialog == null) {
-				progressDialog = new ProgressDialog(GroupDetailsActivity.this);
-				progressDialog.setMessage(st1);
-				progressDialog.setCanceledOnTouchOutside(false);
-			}
+			String[] newmembers = null;
 			switch (requestCode) {
-			case REQUEST_CODE_ADD_USER:// 添加群成员
-				final String[] newmembers = data.getStringArrayExtra("newmembers");
-				progressDialog.setMessage(st1);
-				progressDialog.show();
+			case REQUEST_CODE_ADD_USER:
+				// 添加群成员
+				newmembers = data.getStringArrayExtra("newmembers");
+				setLoadding(true);
 				addMembersToGroup(newmembers);
 				break;
-			case REQUEST_CODE_EXIT: // 退出群
-				progressDialog.setMessage(st2);
-				progressDialog.show();
-				exitGrop();
-				break;
-			case REQUEST_CODE_EXIT_DELETE: // 解散群
-				progressDialog.setMessage(st3);
-				progressDialog.show();
-				deleteGrop();
-				break;
-
-			case REQUEST_CODE_EDIT_GROUPNAME: //修改群名称
-				final String returnData = data.getStringExtra("data");
-				if(!TextUtils.isEmpty(returnData)){
-					progressDialog.setMessage(st5);
-					progressDialog.show();
-					
-					new Thread(new Runnable() {
-						public void run() {
-							try {
-								EMClient.getInstance().groupManager().changeGroupName(groupId, returnData);
-								runOnUiThread(new Runnable() {
-									public void run() {
-										((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "(" + group.getMemberCount() + ")");
-										progressDialog.dismiss();
-										Toast.makeText(getApplicationContext(), st6, Toast.LENGTH_SHORT).show();
-									}
-								});
-
-							} catch (HyphenateException e) {
-								e.printStackTrace();
-								runOnUiThread(new Runnable() {
-									public void run() {
-										progressDialog.dismiss();
-										Toast.makeText(getApplicationContext(), st7, Toast.LENGTH_SHORT).show();
-									}
-								});
-							}
-						}
-					}).start();
-				}
-				break;
-			case REQUEST_CODE_EDIT_GROUP_DESCRIPTION:
-				final String returnData1 = data.getStringExtra("data");
-				if(!TextUtils.isEmpty(returnData1)){
-					progressDialog.setMessage(st5);
-					progressDialog.show();
-
-					new Thread(new Runnable() {
-						public void run() {
-							try {
-								EMClient.getInstance().groupManager().changeGroupDescription(groupId, returnData1);
-								runOnUiThread(new Runnable() {
-									public void run() {
-										progressDialog.dismiss();
-										Toast.makeText(getApplicationContext(), st9, Toast.LENGTH_SHORT).show();
-									}
-								});
-							} catch (HyphenateException e) {
-								e.printStackTrace();
-								runOnUiThread(new Runnable() {
-									public void run() {
-										progressDialog.dismiss();
-										Toast.makeText(getApplicationContext(), st10, Toast.LENGTH_SHORT).show();
-									}
-								});
-							}
-						}
-					}).start();
-				}
-				break;
-				case REQUEST_CODE_EDIT_GROUP_EXTENSION:
-					{
-					final String returnExtension = data.getStringExtra("data");
-					if (!TextUtils.isEmpty(returnExtension)) {
-						progressDialog.setMessage(st5);
-						progressDialog.show();
-
-						new Thread(new Runnable() {
-							public void run() {
-								try {
-									EMClient.getInstance().groupManager().updateGroupExtension(groupId, returnExtension);
-									runOnUiThread(new Runnable() {
-										public void run() {
-											progressDialog.dismiss();
-											Toast.makeText(getApplicationContext(), st11, Toast.LENGTH_SHORT).show();
-										}
-									});
-								} catch (HyphenateException e) {
-									e.printStackTrace();
-									runOnUiThread(new Runnable() {
-										public void run() {
-											progressDialog.dismiss();
-											Toast.makeText(getApplicationContext(), st12, Toast.LENGTH_SHORT).show();
-										}
-									});
-								}
-							}
-						}).start();
+			case REQUEST_CODE_DEL_USER:
+				// 添加群成员
+				newmembers = data.getStringArrayExtra("newmembers");
+				setLoadding(true);
+				String sns_quners = "";
+				for (int i = 0; i < newmembers.length;i++){
+					if ( i == 0){
+						sns_quners = sns_quners + newmembers[i];
+					}else {
+						sns_quners = sns_quners + "," + newmembers[i];
 					}
 				}
-				break;
 
+				if (!TextUtils.isEmpty(sns_quners)) {
+					deleteMembers(sns_quners);
+				}
+				break;
 			default:
 				break;
 			}
+		}else if (requestCode == CITY_CODE){
+			if (data != null) {
+				String city = data.getStringExtra("city");
+				mAddrContent.setText(city);
+			}
+
+		}
+
+		if (requestCode == 100){
+			//修改名称
+			if (data != null){
+				qunName.setText(data.getStringExtra("name"));
+			}
+		}else if (requestCode == 101){
+			//修改简介
+			if (data != null) {
+				mInviteContent.setText(data.getStringExtra("invite"));
+			}
+		}else if (requestCode == 102){
+			if (data != null){
+				String finish = data.getStringExtra("finish");
+				if ("1".equals(finish)){
+					finish();
+				}
+			}
 		}
 	}
 
-	private void refreshOwnerAdminAdapter() {
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				ownerAdminAdapter.clear();
-				ownerAdminAdapter.add(group.getOwner());
-				synchronized (adminList) {
-					ownerAdminAdapter.addAll(adminList);
-				}
-				ownerAdminAdapter.notifyDataSetChanged();
-			}
-		});
-	}
-
-	private void debugList(String str, List<String> list) {
-		EMLog.d(TAG, str);
-		for (String member : list) {
-			EMLog.d(TAG, "    " + member);
+	/**
+	 * 增加群成员
+	 *
+	 * @param newmembers
+	 */
+	private void addMembersToGroup(final String[] newmembers) {
+		if (mProtocal == null){
+			mProtocal = new GetInfoProtocal();
 		}
-	}
-
-	private void refreshMembersAdapter() {
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				debugList("memberList", memberList);
-				debugList("muteList", muteList);
-				debugList("blackList", blackList);
-
-				membersAdapter = new GridAdapter(GroupDetailsActivity.this, R.layout.em_grid_owner, new ArrayList<String>());
-
-				membersAdapter.clear();
-				synchronized (memberList) {
-					membersAdapter.addAll(memberList);
-				}
-
-				synchronized (muteList) {
-					membersAdapter.addAll(muteList);
-				}
-				synchronized (blackList) {
-					membersAdapter.addAll(blackList);
-				}
-				membersAdapter.notifyDataSetChanged();
-
-				EaseExpandGridView userGridview = (EaseExpandGridView) findViewById(R.id.gridview);
-				userGridview.setAdapter(membersAdapter);
+		if (TextUtils.isEmpty(ub_id)){
+			CommonUtils.toastMessage("请重新登录后重新操作！");
+			return;
+		}
+		mAdapterList.clear();
+		mAdapterList.addAll(mBean.quners);
+		String sns_qunser = "";
+		for (int i = 0 ; i < newmembers.length;i++){
+			InfoBean.QunersBean bean = new InfoBean.QunersBean();
+			EaseUser user = EaseUserUtils.getUserInfo(newmembers[i]);
+			if(user != null && user.getNick() != null){
+				bean.ud_nickname = user.getNick();
+			}else{
+				bean.ud_nickname = newmembers[i];
 			}
-		});
+
+			if(user != null && user.getAvatar() != null){
+
+				bean.ud_photo_fileid = user.getAvatar();
+
+			}else{
+				bean.pic_resource = 0;
+			}
+
+//			mAdapterList.add(bean);
+			if (i == 0){
+				sns_qunser = sns_qunser + newmembers[i];
+			}else {
+				sns_qunser = sns_qunser + "," +newmembers[i];
+			}
+		}
+		adapter.notifyDataSetChanged();
+
+		//执行网络添加群成员操作
+
+		if (!TextUtils.isEmpty(sns_qunser)) {
+
+			String message = "";
+			mProtocal.getApply(InitInfo.phoneNumber, groupId, "0", message, sns_qunser, new AddCommandProtocal.NormalListener() {
+				@Override
+				public void normalResponse(Object response) {
+					if (response == null){
+						CommonUtils.toastMessage("添加群成员失败！");
+						mAdapterList.clear();
+						mAdapterList.addAll(mBean.quners);
+						adapter.notifyDataSetChanged();
+						setLoadding(false);
+						return;
+					}
+					Result result = gson.fromJson((String) response, Result.class);
+					if ("10".equals(result.result.code)){
+						refreshMembers();
+
+						CommonUtils.toastMessage(result.result.info);
+					}else {
+						CommonUtils.toastMessage(result.result.info);
+						mAdapterList.clear();
+						mAdapterList.addAll(mBean.quners);
+						adapter.notifyDataSetChanged();
+					}
+					setLoadding(false);
+				}
+			});
+
+		}else {
+
+			setLoadding(false);
+		}
+
 	}
 
+
+
+	private void refreshMembers(){
+	    initData();
+	}
+	
 	/**
 	 * 点击退出群组按钮
 	 * 
@@ -446,23 +460,23 @@ public class GroupDetailsActivity extends EaseBaseActivity implements OnClickLis
 
 	}
 
-	/**
-	 * 点击解散群组按钮
-	 * 
-	 * @param view
-	 */
-	public void exitDeleteGroup(View view) {
-		startActivityForResult(new Intent(this, ExitGroupDialog.class).putExtra("deleteToast", getString(R.string.dissolution_group_hint)),
-				REQUEST_CODE_EXIT_DELETE);
-
-	}
+//	/**
+//	 * 点击解散群组按钮
+//	 *
+//	 * @param view
+//	 */
+//	public void exitDeleteGroup(View view) {
+//		startActivityForResult(new Intent(this, ExitGroupDialog.class).putExtra("deleteToast", getString(R.string.dissolution_group_hint)),
+//				REQUEST_CODE_EXIT_DELETE);
+//
+//	}
 
 	/**
 	 * 清空群聊天记录
 	 */
 	private void clearGroupHistory() {
 
-		EMConversation conversation = EMClient.getInstance().chatManager().getConversation(group.getGroupId(), EMConversationType.GroupChat);
+		EMConversation conversation = EMClient.getInstance().chatManager().getConversation(groupId, EMConversationType.GroupChat);
 		if (conversation != null) {
 			conversation.clearAllMessages();
 		}
@@ -472,6 +486,7 @@ public class GroupDetailsActivity extends EaseBaseActivity implements OnClickLis
 	/**
 	 * 退出群组
 	 * 
+	 * @param
 	 */
 	private void exitGrop() {
 		String st1 = getResources().getString(R.string.Exit_the_group_chat_failure);
@@ -481,7 +496,7 @@ public class GroupDetailsActivity extends EaseBaseActivity implements OnClickLis
 					EMClient.getInstance().groupManager().leaveGroup(groupId);
 					runOnUiThread(new Runnable() {
 						public void run() {
-							progressDialog.dismiss();
+							setLoadding(false);
 							setResult(RESULT_OK);
 							finish();
 							if(ChatActivity.activityInstance != null)
@@ -491,7 +506,7 @@ public class GroupDetailsActivity extends EaseBaseActivity implements OnClickLis
 				} catch (final Exception e) {
 					runOnUiThread(new Runnable() {
 						public void run() {
-							progressDialog.dismiss();
+							setLoadding(false);
 							Toast.makeText(getApplicationContext(), getResources().getString(R.string.Exit_the_group_chat_failure) + " " + e.getMessage(), Toast.LENGTH_LONG).show();
 						}
 					});
@@ -500,495 +515,346 @@ public class GroupDetailsActivity extends EaseBaseActivity implements OnClickLis
 		}).start();
 	}
 
-	/**
-	 * 解散群组
-	 * 
-	 */
-	private void deleteGrop() {
-		final String st5 = getResources().getString(R.string.Dissolve_group_chat_tofail);
-		new Thread(new Runnable() {
-			public void run() {
-				try {
-					EMClient.getInstance().groupManager().destroyGroup(groupId);
-					runOnUiThread(new Runnable() {
-						public void run() {
-							progressDialog.dismiss();
-							setResult(RESULT_OK);
-							finish();
-							if(ChatActivity.activityInstance != null)
-							    ChatActivity.activityInstance.finish();
-						}
-					});
-				} catch (final Exception e) {
-					runOnUiThread(new Runnable() {
-						public void run() {
-							progressDialog.dismiss();
-							Toast.makeText(getApplicationContext(), st5 + e.getMessage(), Toast.LENGTH_LONG).show();
-						}
-					});
-				}
+
+
+	private FunctionOptions options;
+	private Intent picData;
+	@Override
+	public void onClick(View v) {
+
+		if(options == null){
+			// 可选择图片的数量
+			// 是否打开剪切选项
+			options = new FunctionOptions.Builder()
+					.setType(FunctionConfig.TYPE_IMAGE) // 图片or视频 FunctionConfig.TYPE_IMAGE  TYPE_VIDEO
+					.setSelectMode(FunctionConfig.MODE_SINGLE) // 可选择图片的数量
+					.setEnableCrop(true) // 是否打开剪切选项
+					.setShowCamera(false)
+					.setCropMode(FunctionConfig.CROP_MODEL_1_1)
+					.setCompress(true)
+					.setCompressFlag(1)
+					.create();
+		}
+		switch (v.getId()) {
+//		case R.id.rl_switch_block_groupmsg: // 屏蔽或取消屏蔽群组
+//			toggleBlockGroup();
+//			break;
+
+		case R.id.clear_all_history: // 清空聊天记录
+
+			popWindow.setPerfect("删除");
+			popWindow.setJump("取消");
+			popWindow.setContent("确定清空此群的聊天记录吗？");
+			popWindow.showAtLocation();
+			popWindow.setOnClickListener(new View.OnClickListener() {
+					 @Override
+					 public void onClick(View v) {
+						 popWindow.dismiss();
+						 clearGroupHistory();
+					 }
+				 }
+			);
+
+			break;
+
+//		case R.id.rl_blacklist: // 黑名单列表
+//			startActivity(new Intent(GroupDetailsActivity.this, GroupBlacklistActivity.class).putExtra("groupId", groupId));
+//			break;
+
+		case R.id.rl_change_group_name:
+//			startActivityForResult(new Intent(this, EditActivity.class).putExtra("data", mBean.qun.ud_nickname), REQUEST_CODE_EDIT_GROUPNAME);
+			//更改群名
+			String name = qunName.getText().toString().trim();
+			if (TextUtils.isEmpty(name)){
+				name = "";
 			}
-		}).start();
+			Intent intent1 = new Intent(this,QunName.class);
+			intent1.putExtra("name",name);
+			startActivityForResult(intent1,100);
+			break;
+		case ll_more_member:
+//			CommonUtils.toastMessage("查看更多群成员");
+			Intent intent2 = new Intent(this,AllPeopleActivity.class);
+			intent2.putExtra("groupId", groupId);
+			startActivity(intent2);
+			break;
+		case rl_change_group_invite:
+//			CommonUtils.toastMessage("群介绍");
+			String invite = mInviteContent.getText().toString().trim();
+			if (TextUtils.isEmpty(invite)){
+				invite = "";
+			}
+			Intent intent3 = new Intent(this,QunInvite.class);
+			intent3.putExtra("invite",invite);
+			startActivityForResult(intent3,101);
+			break;
+		case R.id.rl_change_group_hy:
+//			CommonUtils.toastMessage("行业");
+			CardUtils.show(mProfessionContent,this);
+			break;
+		case R.id.rl_change_group_addr:
+//			CommonUtils.toastMessage("公司地址");
+			Intent intent = new Intent(this,SelectCityActivity.class);
+			startActivityForResult(intent,CITY_CODE);
+			break;
+		case R.id.cb_chat_up:
+//			CommonUtils.toastMessage("聊天置顶");
+			setUpConversation();
+			break;
+		case R.id.tv_picture_list:
+			//选择图片
+			PictureConfig.getPictureConfig().init(options).openPhoto(this, resultCallback);
+			popupWindow.dismiss();
+			break;
+
+		case R.id.tv_takepic:
+			//选择拍摄
+			PictureConfig.getPictureConfig().init(options).startOpenCamera(this, resultCallback);
+			popupWindow.dismiss();
+			break;
+		case R.id.photo_item:
+//			CommonUtils.toastMessage("更换群头像");
+			//弹框 更换群头像
+			getPicture();
+			break;
+		case R.id.btn_exit_grp:
+			if (mProtocal == null){
+				mProtocal = new GetInfoProtocal();
+			}
+
+			if (TextUtils.isEmpty(mUserid)) {
+				mUserid = SpTools.getString(this, Constants.userId, "");
+			}
+
+			if (mType == 0) {
+//				CommonUtils.toastMessage("申请加群");
+				Intent aintent = new Intent(this,ApplyMessage.class);
+				aintent.putExtra("type","0");
+				aintent.putExtra("groupid",groupId);
+				aintent.putExtra("master",mBean.qun.master);
+				startActivityForResult(aintent,102);
+
+			}else if (mType == 1){
+//				CommonUtils.toastMessage("删除退群");
+				deleteGroup();
+			}else if(mType == 2){
+//				CommonUtils.toastMessage("修改");
+				upDataInfo();
+
+			}
+			break;
+//		case R.id.rl_search:
+//            startActivity(new Intent(this, GroupSearchMessageActivity.class).putExtra("groupId", groupId));
+//
+//            break;
+
+		case R.id.ll_back: // 后退键
+			setResult(RESULT_OK);
+			finish();
+			break;
+		default:
+			break;
+		}
+
 	}
 
-	/**
-	 * 增加群成员
-	 * 
-	 * @param newmembers
-	 */
-	private void addMembersToGroup(final String[] newmembers) {
-		final String st6 = getResources().getString(R.string.Add_group_members_fail);
-		new Thread(new Runnable() {
-			
-			public void run() {
-				try {
-					// 创建者调用add方法
-					if (EMClient.getInstance().getCurrentUser().equals(group.getOwner())) {
-						EMClient.getInstance().groupManager().addUsersToGroup(groupId, newmembers);
-					} else {
-						// 一般成员调用invite方法
-						EMClient.getInstance().groupManager().inviteUser(groupId, newmembers, null);
+
+	private Map<String, EaseUser> topMap;
+	private void setUpConversation() {
+		setLoadding(true);
+		if (mProtocal == null){
+			mProtocal = new GetInfoProtocal();
+		}
+		if (mUserid == null) {
+			mUserid = SpTools.getString(this, Constants.userId, "");
+		}
+		if (TextUtils.isEmpty(mUserid)){
+			CommonUtils.toastMessage("请重新登录后再尝试！");
+			setLoadding(false);
+			return;
+		}
+
+		if (topMap.containsKey(groupId)){
+//			删除置顶
+			mProtocal.getUp(mUserid, "2", groupId, new AddCommandProtocal.NormalListener() {
+				@Override
+				public void normalResponse(Object response) {
+					if (response == null){
+						CommonUtils.toastMessage("取消置顶失败，请稍后再试");
+						chatUp.setChecked(true);
+						setLoadding(false);
+						return;
 					}
-					updateGroup();
-					refreshMembersAdapter();
-					runOnUiThread(new Runnable() {
-						public void run() {
-							((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "(" + group.getMemberCount()
-									+ st);
-							progressDialog.dismiss();
+
+					Result result = gson.fromJson((String) response,Result.class);
+					if ("10".equals(result.result.code)){
+						topMap.remove(groupId);
+						TopUserDao dao = new TopUserDao(GroupDetailsActivity.this);
+						dao.deleteContact(groupId);
+						CommonUtils.toastMessage("取消置顶成功");
+					}else {
+						CommonUtils.toastMessage(result.result.info);
+						chatUp.setChecked(true);
+					}
+
+					setLoadding(false);
+
+				}
+			});
+
+		}else {
+
+			//1 存入  2 删除
+			mProtocal.getUp(mUserid, "1", groupId, new AddCommandProtocal.NormalListener() {
+				@Override
+				public void normalResponse(Object response) {
+					if (response == null) {
+						CommonUtils.toastMessage("置顶失败，请稍后再试");
+						chatUp.setChecked(false);
+						setLoadding(false);
+						return;
+					}
+
+					Result result = gson.fromJson((String) response,Result.class);
+					if ("10".equals(result.result.code)){
+						EaseUser user = new EaseUser(groupId);
+						topMap.put(groupId,user);
+						TopUserDao dao = new TopUserDao(GroupDetailsActivity.this);
+						dao.saveContact(user);
+						CommonUtils.toastMessage("置顶成功");
+					}else {
+						CommonUtils.toastMessage(result.result.info);
+						chatUp.setChecked(false);
+					}
+					setLoadding(false);
+
+				}
+			});
+
+		}
+	}
+
+	private void deleteGroup() {
+
+		popWindow.setPerfect("删除");
+		popWindow.setJump("取消");
+		popWindow.setContent("确定退出群聊？");
+		popWindow.showAtLocation();
+		popWindow.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				popWindow.dismiss();
+				if (TextUtils.isEmpty(mUserid)){
+					CommonUtils.toastMessage("账号出现故障");
+					return;
+				}
+				mProtocal.getDeleteGrounp(mUserid, groupId, new AddCommandProtocal.NormalListener() {
+					@Override
+					public void normalResponse(Object response) {
+						if (response == null){
+							CommonUtils.toastMessage("退出群组失败！请稍后重试");
+							return;
 						}
-					});
-				} catch (final Exception e) {
-					runOnUiThread(new Runnable() {
-						public void run() {
-							progressDialog.dismiss();
-							Toast.makeText(getApplicationContext(), st6 + e.getMessage(), Toast.LENGTH_LONG).show();
+						Result result = gson.fromJson((String) response, Result.class);
+						if ("10".equals(result.result.code)){
+							CommonUtils.toastMessage(result.result.info);
+							finish();
+						}else {
+							CommonUtils.toastMessage(result.result.info);
 						}
-					});
+					}
+				});
+			}
+		});
+
+
+	}
+
+	//处理照片或者拍摄的回调
+	private String phtotoPath;
+	private UpdataImageUtils updataImageUtils;
+	private String photoId = "";
+	private Gson gson = new Gson();
+	private PictureConfig.OnSelectResultCallback resultCallback = new PictureConfig.OnSelectResultCallback() {
+		@Override
+		public void onSelectSuccess(List<LocalMedia> resultList) {
+			Log.i("callBack_result", resultList.size() + "");
+			LocalMedia media = resultList.get(0);
+			if (media.isCut() && media.isCompressed()) {
+				// 裁剪过
+				phtotoPath = media.getCompressPath();
+				if (updataImageUtils == null){
+					updataImageUtils = new UpdataImageUtils();
+				}
+				updataImageUtils.upDataPic(BitmapUtils.getBitmap(phtotoPath), phtotoPath, new UpdataImageUtils.UpdataPicListener() {
+					//上传头像的回调
+					@Override
+					public void onResponse(String response) {
+						UpdataBean updataBean = gson.fromJson(response, UpdataBean.class);
+						if (updataBean == null){
+							Toast.makeText(GroupDetailsActivity.this,"获取图片资源失败！请检查网络",Toast.LENGTH_SHORT).show();
+							return;
+						}
+
+						if (!TextUtils.isEmpty(phtotoPath)) {
+							mCivPhoto.setImageBitmap(BitmapUtils.getBitmap(phtotoPath));
+						}
+
+						if (updataBean != null&& updataBean.file_ids != null) {
+							photoId = updataBean.file_ids.get(0);
+
+						}
+					}
+				});
+			}
+		}
+	};
+
+	private void upDataInfo() {
+		if (TextUtils.isEmpty(mUserid)){
+            CommonUtils.toastMessage("账号出现故障");
+            return;
+        }
+		String qunNameContent = qunName.getText().toString().trim();
+		String describe = mInviteContent.getText().toString().trim();
+		String hy = mProfessionContent.getText().toString().trim();
+		String addr = mAddrContent.getText().toString().trim();
+		mProtocal.getUpdateGrounp(mUserid, qunNameContent, describe, photoId, hy, groupId,addr, new AddCommandProtocal.NormalListener() {
+			@Override
+			public void normalResponse(Object response) {
+				if (response == null){
+					CommonUtils.toastMessage("更改群消息失败！请稍后重试");
+					return;
+				}
+
+				Result result = gson.fromJson((String) response, Result.class);
+
+				if ("10".equals(result.result.code)){
+					CommonUtils.toastMessage(result.result.info);
+					finish();
+				}else {
+					CommonUtils.toastMessage(result.result.info);
 				}
 			}
-		}).start();
+		});
 	}
 
 	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-			case R.id.rl_switch_block_groupmsg: // 屏蔽或取消屏蔽群组
-				toggleBlockGroup();
-				break;
-
-			case R.id.clear_all_history: // 清空聊天记录
-				String st9 = getResources().getString(R.string.sure_to_empty_this);
-				new EaseAlertDialog(GroupDetailsActivity.this, null, st9, null, new AlertDialogUser() {
-
-					@Override
-					public void onResult(boolean confirmed, Bundle bundle) {
-						if(confirmed){
-							clearGroupHistory();
-						}
-					}
-				}, true).show();
-
-				break;
-
-			case R.id.rl_change_group_name:
-				startActivityForResult(new Intent(this, EditActivity.class).putExtra("data", group.getGroupName()).putExtra("editable", isCurrentOwner(group)),
-						REQUEST_CODE_EDIT_GROUPNAME);
-				break;
-			case R.id.rl_change_group_description:
-				startActivityForResult(new Intent(this, EditActivity.class).putExtra("data", group.getDescription()).
-						putExtra("title", getString(R.string.change_the_group_description)).putExtra("editable", isCurrentOwner(group)),
-						REQUEST_CODE_EDIT_GROUP_DESCRIPTION);
-				break;
-			case R.id.rl_search:
-				startActivity(new Intent(this, GroupSearchMessageActivity.class).putExtra("groupId", groupId));
-
-				break;
-			case R.id.rl_switch_block_offline_message:
-				toggleBlockOfflineMsg();
-				break;
-			case R.id.layout_group_announcement:
-				showAnnouncementDialog();
-				break;
-			case R.id.layout_share_files:
-//				startActivity(new Intent(this, SharedFilesActivity.class).putExtra("groupId", groupId));
-				break;
-			case R.id.rl_change_group_extension:
-				startActivityForResult(new Intent(this, EditActivity.class).putExtra("data", group.getExtension()).
-						putExtra("title", getString(R.string.change_the_group_extension)).putExtra("editable", isCurrentOwner(group)), REQUEST_CODE_EDIT_GROUP_EXTENSION);
-				break;
-			default:
-				break;
-		}
-
-	}
-
-	private void showAnnouncementDialog() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle(R.string.group_announcement);
-		if(group.getOwner().equals(EMClient.getInstance().getCurrentUser()) ||
-				group.getAdminList().contains(EMClient.getInstance().getCurrentUser())){
-			final EditText et = new EditText(GroupDetailsActivity.this);
-			et.setText(group.getAnnouncement());
-			builder.setView(et);
-			builder.setNegativeButton(R.string.cancel,null)
-					.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					final String text = et.getText().toString();
-					if(!text.equals(group.getAnnouncement())){
-						dialog.dismiss();
-						updateAnnouncement(text);
-					}
-				}
-			});
-		}else{
-			builder.setMessage(group.getAnnouncement());
-			builder.setPositiveButton(R.string.ok, null);
-		}
-		builder.show();
+	public void onDismiss() {
+		backgroundAlpha(1f);
 	}
 
 	/**
-	 * update with the passed announcement
-	 * @param announcement
+	 * 设置添加屏幕的背景透明度
+	 * @param bgAlpha
 	 */
-	private void updateAnnouncement(final String announcement) {
-		createProgressDialog();
-		progressDialog.setMessage("Updating ...");
-		progressDialog.show();
-
-		EMClient.getInstance().groupManager().asyncUpdateGroupAnnouncement(groupId, announcement,
-				new EMCallBack() {
-					@Override
-					public void onSuccess() {
-						runOnUiThread(new Runnable() {
-							@Override
-							public void run() {
-								progressDialog.dismiss();
-								announcementText.setText(announcement);
-							}
-						});
-					}
-
-					@Override
-					public void onError(int code, final String error) {
-						runOnUiThread(new Runnable() {
-							@Override
-							public void run() {
-								progressDialog.dismiss();
-								Toast.makeText(GroupDetailsActivity.this, "update fail," + error, Toast.LENGTH_SHORT).show();
-							}
-						});
-					}
-
-					@Override
-					public void onProgress(int progress, String status) {
-					}
-				});
-
+	public void backgroundAlpha(float bgAlpha)
+	{
+		WindowManager.LayoutParams lp = getWindow().getAttributes();
+		lp.alpha = bgAlpha; //0.0-1.0
+		getWindow().setAttributes(lp);
 	}
 
-
-	private void toggleBlockOfflineMsg() {
-		if(EMClient.getInstance().pushManager().getPushConfigs() == null){
-			return;
-		}
-		progressDialog = createProgressDialog();
-		progressDialog.setMessage("processing...");
-		progressDialog.show();
-//		final ArrayList list = (ArrayList) Arrays.asList(groupId);
-		final List<String> list = new ArrayList<String>();
-		list.add(groupId);
-		new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    if(offlinePushSwitch.isSwitchOpen()) {
-                        EMClient.getInstance().pushManager().updatePushServiceForGroup(list, false);
-                    }else{
-                        EMClient.getInstance().pushManager().updatePushServiceForGroup(list, true);
-                    }
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							progressDialog.dismiss();
-							if(offlinePushSwitch.isSwitchOpen()){
-								offlinePushSwitch.closeSwitch();
-							}else{
-								offlinePushSwitch.openSwitch();
-							}
-						}
-					});
-                } catch (HyphenateException e) {
-                    e.printStackTrace();
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							progressDialog.dismiss();
-							Toast.makeText(GroupDetailsActivity.this, "progress failed", Toast.LENGTH_SHORT).show();
-						}
-					});
-                }
-            }
-        }).start();
-	}
-
-	private ProgressDialog createProgressDialog(){
-		if (progressDialog == null) {
-			progressDialog = new ProgressDialog(GroupDetailsActivity.this);
-			progressDialog.setCanceledOnTouchOutside(false);
-		}
-		return progressDialog;
-	}
-
-	private void toggleBlockGroup() {
-		if(switchButton.isSwitchOpen()){
-			EMLog.d(TAG, "change to unblock group msg");
-			createProgressDialog();
-			progressDialog.setMessage(getString(R.string.Is_unblock));
-			progressDialog.show();
-			new Thread(new Runnable() {
-		        public void run() {
-		            try {
-		                EMClient.getInstance().groupManager().unblockGroupMessage(groupId);
-		                runOnUiThread(new Runnable() {
-		                    public void run() {
-		                    	switchButton.closeSwitch();
-		                        progressDialog.dismiss();
-		                    }
-		                });
-		            } catch (Exception e) {
-		                e.printStackTrace();
-		                runOnUiThread(new Runnable() {
-		                    public void run() {
-		                        progressDialog.dismiss();
-		                        Toast.makeText(getApplicationContext(), R.string.remove_group_of, Toast.LENGTH_LONG).show();
-		                    }
-		                });
-		                
-		            }
-		        }
-		    }).start();
-			
-		} else {
-			String st8 = getResources().getString(R.string.group_is_blocked);
-			final String st9 = getResources().getString(R.string.group_of_shielding);
-			EMLog.d(TAG, "change to block group msg");
-			createProgressDialog();
-			progressDialog.setMessage(st8);
-			progressDialog.show();
-			new Thread(new Runnable() {
-		        public void run() {
-		            try {
-		                EMClient.getInstance().groupManager().blockGroupMessage(groupId);
-		                runOnUiThread(new Runnable() {
-		                    public void run() {
-		                    	switchButton.openSwitch();
-		                        progressDialog.dismiss();
-		                    }
-		                });
-		            } catch (Exception e) {
-		                e.printStackTrace();
-		                runOnUiThread(new Runnable() {
-		                    public void run() {
-		                        progressDialog.dismiss();
-		                        Toast.makeText(getApplicationContext(), st9, Toast.LENGTH_LONG).show();
-		                    }
-		                });
-		            }
-		            
-		        }
-		    }).start();
-		}
-	}
-
-	Dialog createMemberMenuDialog() {
-		final Dialog dialog = new Dialog(GroupDetailsActivity.this);
-		dialog.setTitle("group");
-		dialog.setContentView(R.layout.em_chatroom_member_menu);
-
-		int ids[] = { R.id.menu_item_add_admin,
-				R.id.menu_item_rm_admin,
-				R.id.menu_item_remove_member,
-				R.id.menu_item_add_to_blacklist,
-				R.id.menu_item_remove_from_blacklist,
-				R.id.menu_item_transfer_owner,
-				R.id.menu_item_mute,
-				R.id.menu_item_unmute};
-
-		for (int id : ids) {
-			LinearLayout linearLayout = (LinearLayout)dialog.findViewById(id);
-			linearLayout.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(final View v) {
-					dialog.dismiss();
-					loadingPB.setVisibility(View.VISIBLE);
-
-					new Thread(new Runnable() {
-						@Override
-						public void run() {
-							try {
-								switch (v.getId()) {
-									case R.id.menu_item_add_admin:
-										EMClient.getInstance().groupManager().addGroupAdmin(groupId, operationUserId);
-										break;
-									case R.id.menu_item_rm_admin:
-										EMClient.getInstance().groupManager().removeGroupAdmin(groupId, operationUserId);
-										break;
-									case R.id.menu_item_remove_member:
-										EMClient.getInstance().groupManager().removeUserFromGroup(groupId, operationUserId);
-										break;
-									case R.id.menu_item_add_to_blacklist:
-										EMClient.getInstance().groupManager().blockUser(groupId, operationUserId);
-										break;
-									case R.id.menu_item_remove_from_blacklist:
-										EMClient.getInstance().groupManager().unblockUser(groupId, operationUserId);
-										break;
-									case R.id.menu_item_mute:
-										List<String> muteMembers = new ArrayList<String>();
-										muteMembers.add(operationUserId);
-										EMClient.getInstance().groupManager().muteGroupMembers(groupId, muteMembers, 20 * 60 * 1000);
-										break;
-									case R.id.menu_item_unmute:
-										List<String> list = new ArrayList<String>();
-										list.add(operationUserId);
-										EMClient.getInstance().groupManager().unMuteGroupMembers(groupId, list);
-										break;
-									case R.id.menu_item_transfer_owner:
-										EMClient.getInstance().groupManager().changeOwner(groupId, operationUserId);
-										break;
-									default:
-										break;
-								}
-								updateGroup();
-							} catch (final HyphenateException e) {
-								runOnUiThread(new Runnable() {
-									              @Override
-									              public void run() {
-										              Toast.makeText(GroupDetailsActivity.this, e.getDescription(), Toast.LENGTH_SHORT).show();
-									              }
-								              }
-								);
-								e.printStackTrace();
-
-							} finally {
-								runOnUiThread(new Runnable() {
-									@Override
-									public void run() {
-										loadingPB.setVisibility(View.INVISIBLE);
-									}
-								});
-							}
-						}
-					}).start();
-				}
-			});
-		}
-		return dialog;
-	}
-
-	void setVisibility(Dialog viewGroups, int[] ids, boolean[] visibilities) throws Exception {
-		if (ids.length != visibilities.length) {
-			throw new Exception("");
-		}
-
-		for (int i = 0; i < ids.length; i++) {
-			View view = viewGroups.findViewById(ids[i]);
-			view.setVisibility(visibilities[i] ? View.VISIBLE : View.GONE);
-		}
-	}
-
-	int[] ids = {
-			R.id.menu_item_transfer_owner,
-			R.id.menu_item_add_admin,
-			R.id.menu_item_rm_admin,
-			R.id.menu_item_remove_member,
-			R.id.menu_item_add_to_blacklist,
-			R.id.menu_item_remove_from_blacklist,
-			R.id.menu_item_mute,
-			R.id.menu_item_unmute
-	};
-
-	/**
-	 * 群组Owner和管理员gridadapter
-	 *
-	 * @author admin_new
-	 *
-	 */
-	private class OwnerAdminAdapter extends ArrayAdapter<String> {
-
-		private int res;
-
-		public OwnerAdminAdapter(Context context, int textViewResourceId, List<String> objects) {
-			super(context, textViewResourceId, objects);
-			res = textViewResourceId;
-		}
-
-		@Override
-		public View getView(final int position, View convertView, final ViewGroup parent) {
-			ViewHolder holder = null;
-			if (convertView == null) {
-				holder = new ViewHolder();
-				convertView = LayoutInflater.from(getContext()).inflate(res, null);
-				holder.imageView = (ImageView) convertView.findViewById(R.id.iv_avatar);
-				holder.textView = (TextView) convertView.findViewById(R.id.tv_name);
-				holder.badgeDeleteView = (ImageView) convertView.findViewById(R.id.badge_delete);
-				convertView.setTag(holder);
-			}else{
-				holder = (ViewHolder) convertView.getTag();
-			}
-
-			final LinearLayout button = (LinearLayout) convertView.findViewById(R.id.button_avatar);
-
-			final String username = getItem(position);
-			convertView.setVisibility(View.VISIBLE);
-			button.setVisibility(View.VISIBLE);
-			EaseUserUtils.setUserNick(username, holder.textView);
-			EaseUserUtils.setUserAvatar(getContext(), username, holder.imageView);
-
-			LinearLayout id_background = (LinearLayout) convertView.findViewById(R.id.l_bg_id);
-			id_background.setBackgroundColor(convertView.getResources().getColor(
-					position == 0 ? R.color.holo_red_light: R.color.holo_orange_light));
-			button.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if (!isCurrentOwner(group)) {
-						return;
-					}
-					if (username.equals(group.getOwner())) {
-						return;
-					}
-					operationUserId = username;
-					Dialog dialog = createMemberMenuDialog();
-					dialog.show();
-
-					boolean[] adminVisibilities = {
-							true,       //R.id.menu_item_transfer_owner,
-							false,      //R.id.menu_item_add_admin,
-							true,       //R.id.menu_item_rm_admin,
-							false,      //R.id.menu_item_remove_member,
-							false,      //R.id.menu_item_add_to_blacklist,
-							false,      //R.id.menu_item_remove_from_blacklist,
-							false,      //R.id.menu_item_mute,
-							false,      //R.id.menu_item_unmute
-					};
-					try {
-						setVisibility(dialog, ids, adminVisibilities);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			});
-			return convertView;
-		}
-
-		@Override
-		public int getCount() {
-			return super.getCount();
-		}
-	}
 
 
 	/**
@@ -997,13 +863,18 @@ public class GroupDetailsActivity extends EaseBaseActivity implements OnClickLis
 	 * @author admin_new
 	 * 
 	 */
-	private class GridAdapter extends ArrayAdapter<String> {
+	public boolean isInDeleteMode;
+	private class GridAdapter extends ArrayAdapter<InfoBean.QunersBean> {
 
 		private int res;
 
-		public GridAdapter(Context context, int textViewResourceId, List<String> objects) {
+		private List<InfoBean.QunersBean> objects;
+
+		public GridAdapter(Context context, int textViewResourceId, List<InfoBean.QunersBean> objects) {
 			super(context, textViewResourceId, objects);
+			this.objects = objects;
 			res = textViewResourceId;
+			isInDeleteMode = false;
 		}
 
 		@Override
@@ -1014,114 +885,123 @@ public class GroupDetailsActivity extends EaseBaseActivity implements OnClickLis
 				convertView = LayoutInflater.from(getContext()).inflate(res, null);
 				holder.imageView = (ImageView) convertView.findViewById(R.id.iv_avatar);
 				holder.textView = (TextView) convertView.findViewById(R.id.tv_name);
+				holder.badgeDeleteView = (ImageView) convertView.findViewById(R.id.badge_delete);
 				convertView.setTag(holder);
 			}else{
 			    holder = (ViewHolder) convertView.getTag();
 			}
 			final LinearLayout button = (LinearLayout) convertView.findViewById(R.id.button_avatar);
-
-			// add button
+			// 最后一个item，减人按钮
 			if (position == getCount() - 1) {
-				holder.textView.setText("");
-				holder.imageView.setImageResource(R.drawable.em_smiley_add_btn);
-				if (isCanAddMember(group)) {
-					convertView.setVisibility(View.VISIBLE);
+			    holder.textView.setText("");
+				// 设置成删除按钮
+			    holder.imageView.setImageResource(R.drawable.em_smiley_minus_btn);
+				// 如果不是创建者或者没有相应权限，不提供加减人按钮
+				if (!InitInfo.phoneNumber.equals(mBean.qun.master)) {
+					// if current user is not group admin, hide add/remove btn
+					convertView.setVisibility(View.GONE);
+				} else { // 显示删除按钮
 					button.setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
-							final String st11 = getResources().getString(R.string.Add_a_button_was_clicked);
-							EMLog.d(TAG, st11);
+							Intent intent = new Intent(GroupDetailsActivity.this, GroupPickDeleteContactsActivity.class);
+							intent.putExtra("groupId", groupId);
+							startActivityForResult(intent,REQUEST_CODE_DEL_USER);
+						}
+					});
+				}
+			} else if (position == getCount() - 2) { // 添加群组成员按钮
+			    holder.textView.setText("");
+			    holder.imageView.setImageResource(R.drawable.em_smiley_add_btn);
+				// 如果不是创建者或者没有相应权限
+				if (!InitInfo.phoneNumber.equals(mBean.qun.master)) {
+					// if current user is not group admin, hide add/remove btn
+					convertView.setVisibility(View.GONE);
+				} else {
+					button.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
 							// 进入选人页面
 							startActivityForResult(
 									(new Intent(GroupDetailsActivity.this, GroupPickContactsActivity.class).putExtra("groupId", groupId)),
 									REQUEST_CODE_ADD_USER);
 						}
 					});
-				} else {
-					convertView.setVisibility(View.INVISIBLE);
 				}
-				return  convertView;
-			} else {
-				// members
-				final String username = getItem(position);
-				EaseUserUtils.setUserNick(username, holder.textView);
-				EaseUserUtils.setUserAvatar(getContext(), username, holder.imageView);
-
-				LinearLayout id_background = (LinearLayout) convertView.findViewById(R.id.l_bg_id);
-				if (isInMuteList(username)) {
-					id_background.setBackgroundColor(convertView.getResources().getColor(R.color.gray_normal));
-				} else if (isInBlackList(username)) {
-					id_background.setBackgroundColor(convertView.getResources().getColor(R.color.holo_black));
-				} else {
-					id_background.setBackgroundColor(convertView.getResources().getColor(R.color.holo_blue_bright));
+			} else { // 普通item，显示群组成员
+				final InfoBean.QunersBean bean = getItem(position);
+				convertView.setVisibility(View.VISIBLE);
+				button.setVisibility(View.VISIBLE);
+				EaseUserUtils.setUserNick(bean.ud_nickname, holder.textView);
+				String photoSrc = objects.get(position).ud_photo_fileid;
+				int localPhotoSrc = objects.get(position).pic_resource;
+				if (!TextUtils.isEmpty(photoSrc)){
+					Glide.with(GroupDetailsActivity.this).load(photoSrc).into(holder.imageView);
+				}else if(localPhotoSrc != 0){
+					//如果有本地资源，那么就设置本地资源
+					Glide.with(GroupDetailsActivity.this).load(localPhotoSrc).into(holder.imageView);
+				}else {
+					Glide.with(GroupDetailsActivity.this).load(R.drawable.circle_user_image).into(holder.imageView);
 				}
 
+				final String st12 = getResources().getString(R.string.not_delete_myself);
+				final String st13 = getResources().getString(R.string.Are_removed);
+				final String st14 = getResources().getString(R.string.Delete_failed);
 				button.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						if (!isCurrentOwner(group) && !isCurrentAdmin(group)) {
-							return;
-						}
-						operationUserId = username;
-						Dialog dialog = createMemberMenuDialog();
-						dialog.show();
+							Intent intent = new Intent(GroupDetailsActivity.this,UserProfileActivity.class);
+							intent.putExtra("username",objects.get(position).hx_account);
+							startActivity(intent);
 
-						boolean[] normalVisibilities = {
-								false,      //R.id.menu_item_transfer_owner,
-								isCurrentOwner(group) ? true : false,       //R.id.menu_item_add_admin,
-								false,      //R.id.menu_item_rm_admin,
-								true,       //R.id.menu_item_remove_member,
-								true,       //R.id.menu_item_add_to_blacklist,
-								false,      //R.id.menu_item_remove_from_blacklist,
-								true,       //R.id.menu_item_mute,
-								false,      //R.id.menu_item_unmute
-						};
-
-						boolean[] blackListVisibilities = {
-								false,      //R.id.menu_item_transfer_owner,
-								false,      //R.id.menu_item_add_admin,
-								false,      //R.id.menu_item_rm_admin,
-								false,      //R.id.menu_item_remove_member,
-								false,      //R.id.menu_item_add_to_blacklist,
-								true,       //R.id.menu_item_remove_from_blacklist,
-								false,      //R.id.menu_item_mute,
-								false,      //R.id.menu_item_unmute
-						};
-
-						boolean[] muteListVisibilities = {
-								false,      //R.id.menu_item_transfer_owner,
-								isCurrentOwner(group) ? true : false,       //R.id.menu_item_add_admin,
-								false,      //R.id.menu_item_rm_admin,
-								true,       //R.id.menu_item_remove_member,
-								true,       //R.id.menu_item_add_to_blacklist,
-								false,      //R.id.menu_item_remove_from_blacklist,
-								false,      //R.id.menu_item_mute,
-								true,       //R.id.menu_item_unmute
-						};
-
-						boolean inBlackList = isInBlackList(username);
-						boolean inMuteList = isInMuteList(username);
-						try {
-							if (inBlackList) {
-								setVisibility(dialog, ids, blackListVisibilities);
-							} else if (inMuteList) {
-								setVisibility(dialog, ids, muteListVisibilities);
-							} else {
-								setVisibility(dialog, ids, normalVisibilities);
-							}
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
 					}
-				});
-			}
 
+
+				});
+
+			}
 			return convertView;
 		}
 
 		@Override
 		public int getCount() {
-			return super.getCount() + 1;
+			return super.getCount() + 2;
+		}
+	}
+
+	/**
+	 * 删除群成员
+	 *
+	 * @param sns_quners
+	 */
+
+	private void deleteMembers(final String sns_quners) {
+		final String st13 = getResources().getString(R.string.Are_removed);
+		if (!TextUtils.isEmpty(ub_id)) {
+
+			mProtocal.getDelMember(ub_id, groupId, sns_quners, new AddCommandProtocal.NormalListener() {
+				@Override
+				public void normalResponse(Object response) {
+					if (response == null) {
+						CommonUtils.toastMessage("删除群成员失败！请重试");
+						isInDeleteMode = false;
+						setLoadding(false);
+						return;
+					}
+					Result result = gson.fromJson((String) response, Result.class);
+					if ("10".equals(result.result.code)) {
+						isInDeleteMode = false;
+						mTitle.setText(mBean.qun.ud_nickname + "(" + mAdapterList.size() + st);
+						CommonUtils.toastMessage(result.result.info);
+						refreshMembers();
+						setLoadding(false);
+					} else {
+						isInDeleteMode = false;
+						CommonUtils.toastMessage(result.result.info);
+						setLoadding(false);
+					}
+				}
+			});
 		}
 	}
 
@@ -1129,105 +1009,38 @@ public class GroupDetailsActivity extends EaseBaseActivity implements OnClickLis
 		new Thread(new Runnable() {
 			public void run() {
 				try {
-					if(pushConfigs == null){
-						EMClient.getInstance().pushManager().getPushConfigsFromServer();
-					}
-
-					try {
-						group = EMClient.getInstance().groupManager().getGroupFromServer(groupId);
-
-						adminList.clear();
-						adminList.addAll(group.getAdminList());
-						memberList.clear();
-						EMCursorResult<String> result = null;
-						do {
-							// page size set to 20 is convenient for testing, should be applied to big value
-							result = EMClient.getInstance().groupManager().fetchGroupMembers(groupId,
-									result != null ? result.getCursor() : "",
-									20);
-							EMLog.d(TAG, "fetchGroupMembers result.size:" + result.getData().size());
-							memberList.addAll(result.getData());
-						} while (result.getData().size() == 20);
-
-						muteList.clear();
-						muteList.addAll(EMClient.getInstance().groupManager().fetchGroupMuteList(groupId, 0, 200).keySet());
-						blackList.clear();
-						blackList.addAll(EMClient.getInstance().groupManager().fetchGroupBlackList(groupId, 0, 200));
-
-					} catch (Exception e) {
-						 //e.printStackTrace();  // User may have no permission for fetch mute, fetch black list operation
-					} finally {
-						memberList.remove(group.getOwner());
-						memberList.removeAll(adminList);
-						memberList.removeAll(muteList);
-					}
-
-					try {
-						EMClient.getInstance().groupManager().fetchGroupAnnouncement(groupId);
-					} catch (HyphenateException e) {
-						e.printStackTrace();
-					}
-
+				    EMClient.getInstance().groupManager().getGroupFromServer(groupId);
+					
 					runOnUiThread(new Runnable() {
 						public void run() {
-							refreshOwnerAdminAdapter();
-							refreshMembersAdapter();
+//							((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "(" + group.getAffiliationsCount() + ")");
+							mTitle.setText(mBean.qun.ud_nickname + "(" + mBean.quners.size() + "人)");
+//							loadingPB.setVisibility(View.INVISIBLE);
 
-//							refreshUIVisibility();
-							((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "(" + group.getMemberCount()
-									+ ")");
-							loadingPB.setVisibility(View.INVISIBLE);
+							refreshMembers();
 
-							if (EMClient.getInstance().getCurrentUser().equals(group.getOwner())) {
-								// 显示解散按钮
-								exitBtn.setVisibility(View.GONE);
-								deleteBtn.setVisibility(View.VISIBLE);
-							} else {
-								// 显示退出按钮
-								exitBtn.setVisibility(View.VISIBLE);
-								deleteBtn.setVisibility(View.GONE);
-							}
-
+							setType();
 							// update block
-							EMLog.d(TAG, "group msg is blocked:" + group.isMsgBlocked());
-							if (group.isMsgBlocked()) {
-								switchButton.openSwitch();
-							} else {
-							    switchButton.closeSwitch();
-							}
-							List<String> disabledIds = EMClient.getInstance().pushManager().getNoPushGroups();
-							if(disabledIds != null && disabledIds.contains(groupId)){
-								offlinePushSwitch.openSwitch();
-							}else{
-								offlinePushSwitch.closeSwitch();
-							}
+//							EMLog.d(TAG, "group msg is blocked:" + group.isMsgBlocked());
 
-							announcementText.setText(group.getAnnouncement());
-
-							RelativeLayout changeGroupNameLayout = (RelativeLayout) findViewById(R.id.rl_change_group_name);
-							RelativeLayout changeGroupDescriptionLayout = (RelativeLayout) findViewById(R.id.rl_change_group_description);
-							boolean isOwner = isCurrentOwner(group);
-							exitBtn.setVisibility(isOwner ? View.GONE : View.VISIBLE);
-							deleteBtn.setVisibility(isOwner ? View.VISIBLE : View.GONE);
 						}
 					});
 
 				} catch (Exception e) {
 					runOnUiThread(new Runnable() {
 						public void run() {
-							loadingPB.setVisibility(View.INVISIBLE);
+//							loadingPB.setVisibility(View.INVISIBLE);
 						}
 					});
 				}
 			}
 		}).start();
-
 	}
 
-	public void back(View view) {
-		setResult(RESULT_OK);
-		finish();
-	}
+//	public void back(View view) {
+//		setResult(RESULT_OK);
+//		finish();
+//	}
 
 	@Override
 	public void onBackPressed() {
@@ -1237,10 +1050,8 @@ public class GroupDetailsActivity extends EaseBaseActivity implements OnClickLis
 
 	@Override
 	protected void onDestroy() {
-		EMClient.getInstance().groupManager().removeGroupChangeListener(groupChangeListener);
 		super.onDestroy();
 		instance = null;
-
 	}
 	
 	private static class ViewHolder{
@@ -1248,113 +1059,193 @@ public class GroupDetailsActivity extends EaseBaseActivity implements OnClickLis
 	    TextView textView;
 	    ImageView badgeDeleteView;
 	}
-    
-    private class GroupChangeListener extends EaseGroupListener {
 
-		@Override
-		public void onInvitationAccepted(String groupId, String inviter, String reason) {
-			runOnUiThread(new Runnable(){
 
-				@Override
-				public void run() {
-					memberList = group.getMembers();
-					memberList.remove(group.getOwner());
-					memberList.removeAll(adminList);
-					memberList.removeAll(muteList);
-					refreshMembersAdapter();
-				}
-            });
+
+	public void setItemClickable(boolean click){
+		if (click){
+			mIvNameArrow.setVisibility(View.VISIBLE);
+			mIvInviteArrow.setVisibility(View.VISIBLE);
+			mIvHyArrow.setVisibility(View.VISIBLE);
+			mIvAddrArrow.setVisibility(View.VISIBLE);
+			mCivPhotoArrow.setVisibility(View.VISIBLE);
+			mChangeGroupNameLayout.setEnabled(true);
+			invite.setEnabled(true);
+			hy.setEnabled(true);
+			addr.setEnabled(true);
+			mPhotoItem.setEnabled(true);
+		}else {
+			mIvNameArrow.setVisibility(View.INVISIBLE);
+			mIvInviteArrow.setVisibility(View.INVISIBLE);
+			mIvHyArrow.setVisibility(View.INVISIBLE);
+			mIvAddrArrow.setVisibility(View.INVISIBLE);
+			mCivPhotoArrow.setVisibility(View.INVISIBLE);
+			mChangeGroupNameLayout.setEnabled(false);
+			invite.setEnabled(false);
+			hy.setEnabled(false);
+			addr.setEnabled(false);
+			mPhotoItem.setEnabled(false);
 		}
 
-		@Override
-		public void onUserRemoved(String groupId, String groupName) {
-			finish();
+
+
+	}
+
+
+	private void setType() {
+		if ("0".equals(mBean.qun.inQun)) {
+			mType = 0;
+			exitBtn.setText("申请加群");
+			groupUp.setVisibility(View.GONE);
+			mClearAllHistory.setVisibility(View.GONE);
+			setItemClickable(false);
+			//群聊名称是否显示，注释掉代表都显示
+//			changeGroupNameLayout.setVisibility(View.GONE);
+		}
+		//如果是群主
+		if (InitInfo.phoneNumber.equals(mBean.qun.master)){
+			mType = 2;
+			exitBtn.setText("修改并保存");
+			groupUp.setVisibility(View.VISIBLE);
+			mClearAllHistory.setVisibility(View.VISIBLE);
+			setItemClickable(true);
 		}
 
-		@Override
-		public void onGroupDestroyed(String groupId, String groupName) {
-			finish();
+
+		//如果在群里并且不是群主
+		if ("1".equals(mBean.qun.inQun) && !InitInfo.phoneNumber.equals(mBean.qun.master)) {
+			mType = 1;
+			exitBtn.setText("删除并退群");
+			groupUp.setVisibility(View.VISIBLE);
+			mClearAllHistory.setVisibility(View.VISIBLE);
+			setItemClickable(false);
 		}
 
-	    @Override
-	    public void onMuteListAdded(String groupId, final List<String> mutes, final long muteExpire) {
-		    updateGroup();
-	    }
-
-	    @Override
-	    public void onMuteListRemoved(String groupId, final List<String> mutes) {
-		    updateGroup();
-	    }
-
-	    @Override
-	    public void onAdminAdded(String groupId, String administrator) {
-		    updateGroup();
-	    }
-
-	    @Override
-	    public void onAdminRemoved(String groupId, String administrator) {
-		    updateGroup();
-	    }
-
-	    @Override
-	    public void onOwnerChanged(String groupId, String newOwner, String oldOwner) {
-		    runOnUiThread(new Runnable() {
-
-			    @Override
-			    public void run() {
-				    Toast.makeText(GroupDetailsActivity.this, "onOwnerChanged", Toast.LENGTH_LONG).show();
-			    }
-		    });
-		    updateGroup();
-	    }
-	    
-	    @Override
-	    public void onMemberJoined(String groupId, String member) {
-	        EMLog.d(TAG, "onMemberJoined");
-	        updateGroup();
-	    }
-	    
-	    @Override
-	    public void onMemberExited(String groupId, String member) {
-	        EMLog.d(TAG, "onMemberExited");
-            updateGroup();
-	    }
-
-		@Override
-		public void onAnnouncementChanged(String groupId, final String announcement) {
-			if(groupId.equals(GroupDetailsActivity.this.groupId)) {
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						announcementText.setText(announcement);
-					}
-				});
-			}
-		}
-
-		@Override
-		public void onSharedFileAdded(String groupId, final EMMucSharedFile sharedFile) {
-			if(groupId.equals(GroupDetailsActivity.this.groupId)) {
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						Toast.makeText(GroupDetailsActivity.this, "Group added a share file", Toast.LENGTH_SHORT).show();
-					}
-				});
-			}
-		}
-
-		@Override
-		public void onSharedFileDeleted(String groupId, String fileId) {
-			if(groupId.equals(GroupDetailsActivity.this.groupId)) {
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						Toast.makeText(GroupDetailsActivity.this, "Group deleted a share file", Toast.LENGTH_SHORT).show();
-					}
-				});
-			}
+		if (mBean.quners != null){
+			nullPic.setVisibility(View.GONE);
+			mUserGridview.setVisibility(View.VISIBLE);
+			llMoreMember.setVisibility(View.VISIBLE);
 		}
 	}
+
+
+	private View contentView;
+	private PopupWindow popupWindow;
+	private void initPopWindow() {
+
+		contentView = LayoutInflater.from(this).inflate(
+				R.layout.activity_pic_pop, null);
+		//设置弹出框的宽度和高度
+		popupWindow = new PopupWindow(contentView,
+				ViewGroup.LayoutParams.MATCH_PARENT,
+				ViewGroup.LayoutParams.WRAP_CONTENT);
+		popupWindow.setOnDismissListener(this);
+		ColorDrawable dw = new ColorDrawable(55000000);
+		popupWindow.setBackgroundDrawable(dw);
+		popupWindow.setFocusable(true);// 取得焦点
+		//进入退出的动画
+		popupWindow.setAnimationStyle(R.style.mypopwindow_anim_style);
+		//注意  要是点击外部空白处弹框消息  那么必须给弹框设置一个背景色  不然是不起作用的
+
+		//点击外部消失
+		popupWindow.setOutsideTouchable(true);
+		//设置可以点击
+		popupWindow.setTouchable(true);
+
+
+	}
+
+	private void getPicture(){
+		backgroundAlpha(0.5f);
+		popupWindow.showAtLocation(contentView, Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0);
+
+		contentView.findViewById(R.id.tv_picture_list).setOnClickListener(this);
+		contentView.findViewById(R.id.tv_takepic).setOnClickListener(this);
+	}
+
+
+	private class GroupChangeListener implements EMGroupChangeListener{
+
+		@Override
+		public void onInvitationReceived(String s, String s1, String s2, String s3) {
+
+		}
+
+		@Override
+		public void onRequestToJoinReceived(String s, String s1, String s2, String s3) {
+
+		}
+
+		@Override
+		public void onRequestToJoinAccepted(String s, String s1, String s2) {
+
+		}
+
+		@Override
+		public void onRequestToJoinDeclined(String s, String s1, String s2, String s3) {
+
+		}
+
+		@Override
+		public void onInvitationAccepted(String s, String s1, String s2) {
+
+		}
+
+		@Override
+		public void onInvitationDeclined(String s, String s1, String s2) {
+
+		}
+
+		@Override
+		public void onUserRemoved(String s, String s1) {
+
+		}
+
+		@Override
+		public void onGroupDestroyed(String s, String s1) {
+
+		}
+
+		@Override
+		public void onAutoAcceptInvitationFromGroup(String s, String s1, String s2) {
+
+		}
+
+		@Override
+		public void onMuteListAdded(String s, List<String> list, long l) {
+
+		}
+
+		@Override
+		public void onMuteListRemoved(String s, List<String> list) {
+
+		}
+
+		@Override
+		public void onAdminAdded(String s, String s1) {
+
+		}
+
+		@Override
+		public void onAdminRemoved(String s, String s1) {
+
+		}
+
+		@Override
+		public void onOwnerChanged(String s, String s1, String s2) {
+
+		}
+	}
+
+	public void setLoadding(boolean isLoadding){
+		if (isLoadding){
+			WindowUtils.backgroundAlpha(this,0.5f);
+			mBar.setVisibility(View.VISIBLE);
+		}else {
+			WindowUtils.backgroundAlpha(this,1f);
+			mBar.setVisibility(View.GONE);
+		}
+	}
+
 
 }

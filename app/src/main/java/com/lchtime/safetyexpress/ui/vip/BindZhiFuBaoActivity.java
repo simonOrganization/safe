@@ -1,6 +1,5 @@
 package com.lchtime.safetyexpress.ui.vip;
 
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -23,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by android-cp on 2017/4/21.
+ * Created by android-cp on 2017/4/21.  绑定支付宝界面
  */
 
 @ContentView(R.layout.vip_bindzhifubao)

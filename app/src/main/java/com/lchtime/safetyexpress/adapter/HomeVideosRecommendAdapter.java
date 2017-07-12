@@ -7,18 +7,13 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.NewsBean;
-import com.lchtime.safetyexpress.ui.circle.VideoConstant;
-import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
-import com.lchtime.safetyexpress.ui.home.HomeUI;
-import com.lchtime.safetyexpress.ui.home.HomeVideosDeatilUI;
-import com.lchtime.safetyexpress.ui.news.MediaActivity;
+import com.lchtime.safetyexpress.H5DetailUI;
+import com.lchtime.safetyexpress.ui.home.HomeVideosUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.squareup.picasso.Picasso;
 
@@ -50,21 +45,21 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
 
         ViewHolder myHolder = (ViewHolder)holder;
         final NewsBean bean = videoList.get(position);
 
         myHolder.tv_title.setText(bean.cc_title);
 //        Picasso.with(context).load(bean.media.get(0)).fit().into(myHolder.iv_img);
-
+//
         myHolder.iv_img.setUp(
                 bean.media.get(1), JCVideoPlayer.SCREEN_LAYOUT_LIST,
                 bean.cc_title);
         Picasso.with(context)
                 .load(bean.media.get(0))
                 .into(myHolder.iv_img.thumbImageView);
-//
+
 //        myHolder.iv_img.setUp(
 //                VideoConstant.videoUrls[0][position], JCVideoPlayer.SCREEN_LAYOUT_LIST,
 //                VideoConstant.videoTitles[0][position]);
@@ -94,13 +89,25 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
                 if ((position - 1) <getItemCount()) {
 //                    Intent intent = new Intent(context, HomeVideosDeatilUI.class);
 //                    context.startActivity(intent);
-                    Intent intent = new Intent(context, HomeNewsDetailUI.class);
+                    Intent intent = new Intent(context, H5DetailUI.class);
                     intent.putExtra("newsId", videoList.get(position).cc_id);
                     intent.putExtra("type","video");
                     context.startActivity(intent);
                 }
             }
         });
+
+
+        ((ViewHolder) holder).ll_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (context instanceof HomeVideosUI){
+                    ((HomeVideosUI) context).showPop(((ViewHolder) holder).ll_share,bean.media.get(1),
+                            bean.cc_title,bean.cc_description);
+                }
+            }
+        });
+
 
     }
 

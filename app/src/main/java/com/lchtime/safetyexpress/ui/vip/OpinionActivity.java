@@ -9,15 +9,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.GridImageAdapter;
 import com.lchtime.safetyexpress.bean.AdviceBean;
-import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
-import com.lchtime.safetyexpress.utils.BitmapUtils;
+import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lchtime.safetyexpress.utils.OpinionProtocal;
 import com.lchtime.safetyexpress.utils.SpTools;
@@ -36,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by android-cp on 2017/4/21.
+ * Created by android-cp on 2017/4/21.意见反馈界面
  */
 @ContentView(R.layout.vip_opinion)
 public class OpinionActivity extends BaseUI{
@@ -242,6 +240,10 @@ public class OpinionActivity extends BaseUI{
             updataImageUtils.upMuchDataPic(fileList, new UpdataImageUtils.UpdataPicListener() {
                 @Override
                 public void onResponse(String response) {
+                    if (TextUtils.isEmpty(response)){
+                        CommonUtils.toastMessage("上传图片失败！");
+                        return;
+                    }
                     UpdataBean updataBean = (UpdataBean) JsonUtils.stringToObject(response, UpdataBean.class);
 
                     filesid = "";

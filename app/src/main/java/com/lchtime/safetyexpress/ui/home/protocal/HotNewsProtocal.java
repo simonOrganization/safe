@@ -49,13 +49,18 @@ public class HotNewsProtocal {
                             listener.hotNewsResponse(null);
                             return;
                         }
-                        NewsListRes newsListRes = (NewsListRes) JsonUtils.stringToObject(response,NewsListRes.class);
-                        if(newsListRes.getResult().getCode().equals("10")){
-                            if (listener != null){
-                                listener.hotNewsResponse(newsListRes);
+
+                        try {
+                            NewsListRes newsListRes = (NewsListRes) JsonUtils.stringToObject(response, NewsListRes.class);
+                            if (newsListRes.getResult().getCode().equals("10")) {
+                                if (listener != null) {
+                                    listener.hotNewsResponse(newsListRes);
+                                }
+                            } else {
+                                CommonUtils.toastMessage(newsListRes.getResult().getInfo());
+                                listener.hotNewsResponse(null);
                             }
-                        }else{
-                            CommonUtils.toastMessage(newsListRes.getResult().getInfo());
+                        }catch (Exception exception){
                             listener.hotNewsResponse(null);
                         }
                     }

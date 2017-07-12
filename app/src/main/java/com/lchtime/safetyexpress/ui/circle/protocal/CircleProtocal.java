@@ -6,6 +6,7 @@ import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.AddSubscribBean;
 import com.lchtime.safetyexpress.bean.CircleItemUpBean;
+import com.lchtime.safetyexpress.bean.CircleRedPointBean;
 import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
 import com.lchtime.safetyexpress.bean.MydyBean;
 import com.lchtime.safetyexpress.bean.Result;
@@ -145,6 +146,7 @@ public class CircleProtocal {
                     public void onResponse(String response, int id) {
                         if (TextUtils.isEmpty(response)) {
                             CommonUtils.toastMessage("没有数据返回");
+                            listener.circleResponse(null);
                             return;
                         }
                         CircleBean circleBean = (CircleBean) JsonUtils.stringToObject(response, CircleBean.class);
@@ -171,7 +173,7 @@ public class CircleProtocal {
                 .post()
                 .addParams("ub_id", ub_id)
                 //新闻id
-                .addParams("qc_id", qc_id);
+                .addParams("cc_id", qc_id);
         if ("1".equals(qc_agr)) {
             builder
                     //同意
@@ -325,14 +327,18 @@ public class CircleProtocal {
                             listener.normalResponse(null);
                             return;
                         }
-                        AddSubscribBean addSubscribBean = (AddSubscribBean) JsonUtils.stringToObject(response, AddSubscribBean.class);
-                        if (addSubscribBean.result.code.equals("10")) {
-                            if (listener != null) {
-                                listener.normalResponse(addSubscribBean);
+                        try {
+                            AddSubscribBean addSubscribBean = (AddSubscribBean) JsonUtils.stringToObject(response, AddSubscribBean.class);
+                            if (addSubscribBean.result.code.equals("10")) {
+                                if (listener != null) {
+                                    listener.normalResponse(addSubscribBean);
+                                }
+                            } else {
+                                listener.normalResponse(null);
+                                CommonUtils.toastMessage(addSubscribBean.result.info);
                             }
-                        } else {
+                        }catch (Exception exception){
                             listener.normalResponse(null);
-                            CommonUtils.toastMessage(addSubscribBean.result.info);
                         }
                     }
                 });
@@ -419,6 +425,7 @@ public class CircleProtocal {
     public void getMyCircleList( String ub_id,String uid,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.normalResponse(null);
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -433,22 +440,28 @@ public class CircleProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        listener.normalResponse(null);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         if (TextUtils.isEmpty(response)) {
                             CommonUtils.toastMessage("没有数据返回");
+                            listener.normalResponse(null);
                             return;
                         }
-                        MyCircleActiveBean bean = (MyCircleActiveBean) JsonUtils.stringToObject(response, MyCircleActiveBean.class);
-                        if (bean.result.code.equals("10")) {
-                            if (listener != null) {
-                                listener.normalResponse(bean);
+                        try {
+                            MyCircleActiveBean bean = (MyCircleActiveBean) JsonUtils.stringToObject(response, MyCircleActiveBean.class);
+                            if (bean.result.code.equals("10")) {
+                                if (listener != null) {
+                                    listener.normalResponse(bean);
+                                }
+                            } else {
+                                CommonUtils.toastMessage(bean.result.info);
+                                listener.normalResponse(null);
                             }
-                        } else {
-                            CommonUtils.toastMessage(bean.result.info);
+                        }catch (Exception exception){
+                            listener.normalResponse(null);
                         }
                     }
                 });
@@ -459,6 +472,7 @@ public class CircleProtocal {
     public void getDeleteCircle( String ub_id,String del_id,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.normalResponse(null);
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -474,13 +488,14 @@ public class CircleProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        listener.normalResponse(null);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         if (TextUtils.isEmpty(response)) {
                             CommonUtils.toastMessage("没有数据返回");
+                            listener.normalResponse(null);
                             return;
                         }
                         Result  bean = (Result) JsonUtils.stringToObject(response, Result.class);
@@ -490,6 +505,7 @@ public class CircleProtocal {
                             }
                         } else {
                             CommonUtils.toastMessage(bean.result.info);
+                            listener.normalResponse(null);
                         }
                     }
                 });
@@ -500,7 +516,9 @@ public class CircleProtocal {
  * */
     public void getSingleInfoList( String ub_id,String uid,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
+
             CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.normalResponse(null);
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -514,22 +532,28 @@ public class CircleProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        listener.normalResponse(null);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         if (TextUtils.isEmpty(response)) {
                             CommonUtils.toastMessage("没有数据返回");
+                            listener.normalResponse(null);
                             return;
                         }
-                        SingleInfoBean bean = (SingleInfoBean) JsonUtils.stringToObject(response, SingleInfoBean.class);
-                        if (bean.result.code.equals("10")) {
-                            if (listener != null) {
-                                listener.normalResponse(bean);
+                        try {
+                            SingleInfoBean bean = (SingleInfoBean) JsonUtils.stringToObject(response, SingleInfoBean.class);
+                            if (bean.result.code.equals("10")) {
+                                if (listener != null) {
+                                    listener.normalResponse(bean);
+                                }
+                            } else {
+                                CommonUtils.toastMessage(bean.result.info);
+                                listener.normalResponse(null);
                             }
-                        } else {
-                            CommonUtils.toastMessage(bean.result.info);
+                        }catch (Exception exception){
+                            listener.normalResponse(null);
                         }
                     }
                 });
@@ -541,6 +565,7 @@ public class CircleProtocal {
     public void getOtherSubscribeList( String ub_id,String uid,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.normalResponse(null);
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -554,22 +579,77 @@ public class CircleProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        listener.normalResponse(null);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         if (TextUtils.isEmpty(response)) {
                             CommonUtils.toastMessage("没有数据返回");
+                            listener.normalResponse(null);
                             return;
                         }
-                        AddSubscribBean bean = (AddSubscribBean) JsonUtils.stringToObject(response, AddSubscribBean.class);
-                        if (bean.result.code.equals("10")) {
-                            if (listener != null) {
-                                listener.normalResponse(bean);
+
+                        try {
+                            AddSubscribBean bean = (AddSubscribBean) JsonUtils.stringToObject(response, AddSubscribBean.class);
+                            if (bean.result.code.equals("10")) {
+                                if (listener != null) {
+                                    listener.normalResponse(bean);
+                                }
+                            } else {
+                                CommonUtils.toastMessage(bean.result.info);
+                                listener.normalResponse(null);
                             }
-                        } else {
-                            CommonUtils.toastMessage(bean.result.info);
+                        }catch (Exception exception){
+                            listener.normalResponse(null);
+                        }
+                    }
+                });
+    }
+
+
+    /*
+* 圈子和订阅上面的小红线
+* */
+    public void getDyIsShowRedPoint( String ub_id,final NormalListener listener) {
+        if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.normalResponse(null);
+            return;
+        }
+        String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
+                .concat(MyApplication.getContext().getResources().getString(R.string.dynotice));
+        OkHttpUtils
+                .post()
+                .addParams("ub_id",ub_id)
+                .url(url)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        listener.normalResponse(null);
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        if (TextUtils.isEmpty(response)) {
+                            CommonUtils.toastMessage("没有数据返回");
+                            listener.normalResponse(null);
+                            return;
+                        }
+
+                        try {
+                            CircleRedPointBean bean = (CircleRedPointBean) JsonUtils.stringToObject(response, CircleRedPointBean.class);
+                            if (bean.result.code.equals("10")) {
+                                if (listener != null) {
+                                    listener.normalResponse(bean);
+                                }
+                            } else {
+                                CommonUtils.toastMessage(bean.result.info);
+                                listener.normalResponse(null);
+                            }
+                        }catch (Exception exception){
+                            listener.normalResponse(null);
                         }
                     }
                 });

@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include layout="@layout/title" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dm016"
-        android:background="@color/page_color"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rc_friend"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"></android.support.v7.widget.RecyclerView>
-</LinearLayout>
+        android:orientation="vertical">
+        <include layout="@layout/title" />
+        <LinearLayout
+            android:id="@+id/success"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm016"
+                android:background="@color/page_color"/>
+            <com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView
+                android:id="@+id/rc_friend"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+            </com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include android:id="@+id/loading" android:visibility="visible" layout="@layout/pager_loading"/>
+    <include android:id="@+id/empty" android:visibility="gone" layout="@layout/pager_empty"/>
+    <include android:id="@+id/error" android:visibility="gone" layout="@layout/pager_error"/>
+
+</RelativeLayout>

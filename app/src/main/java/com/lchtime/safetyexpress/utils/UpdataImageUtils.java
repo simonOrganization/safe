@@ -6,11 +6,9 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
-import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -83,11 +81,14 @@ public class UpdataImageUtils {
             @Override
             public void onError(Call call, Exception e, int id) {
                 Toast.makeText(context,"上传图片失败，请重新上传", Toast.LENGTH_SHORT).show();
+                mListener.onResponse(null);
             }
             @Override
             public void onResponse(String response, int id) {
 
                 if (mListener != null){
+                    mListener.onResponse(response);
+                }else {
                     mListener.onResponse(response);
                 }
                 Toast.makeText(context,"上传图片成功",Toast.LENGTH_SHORT).show();

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+
+    <!--<RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_top_bar"
+        android:background="@color/top_bar_normal_bg"
+        android:gravity="center_vertical">
+
+        <include layout="@layout/ease_commom_back_btn" />
+
+        <TextView
+            android:id="@+id/add_list_friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+        
+        <Button
+            android:id="@+id/search"
+            android:layout_width="54dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ease_common_tab_bg"
+            android:onClick="searchContact"
+            android:text="@string/button_search"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+    </RelativeLayout>-->
+
+    <include layout="@layout/title"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm002"
+        android:background="@color/page_color"/>
+    <RadioGroup
+        android:id="@+id/add_subscirbe_rg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm080"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/add_subscirbe_line_rb_all"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="找人"
+            android:gravity="center"
+            android:textSize="@dimen/dm030"
+            android:button="@null"
+            android:checked="true"
+            android:background="@color/transparent"
+            android:textColor="@drawable/add_subscirbe_text_color"/>
+
+        <RadioButton
+            android:id="@+id/add_subscirbe_line_rb_comm"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="找群"
+            android:gravity="center"
+            android:background="@color/transparent"
+            android:textSize="@dimen/dm030"
+            android:button="@null"
+            android:checked="false"
+            android:textColor="@drawable/add_subscirbe_text_color"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm002"
+        android:orientation="horizontal"
+        android:background="@color/page_color">
+        <View
+            android:id="@+id/add_subscirbe_line_left"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@color/commen_reg"/>
+        <View
+            android:id="@+id/add_subscirbe_line_right"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@color/page_color"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm020"
+        android:background="@color/page_color"/>
+    <EditText
+        android:id="@+id/edit_note"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm080"
+        android:background="@null"
+        android:hint="搜索昵称/手机号"
+        android:singleLine="true"
+        android:textColorHint="#b3b3b3"
+        android:drawableLeft="@drawable/grey_search"
+        android:drawablePadding="@dimen/dm020"
+        android:textSize="@dimen/dm028"
+        android:layout_marginLeft="@dimen/dm020"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm020"
+        android:background="@color/page_color"/>
+
+    <RelativeLayout
+        android:id="@+id/search_button"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_height="@dimen/dm140">
+
+            <RelativeLayout
+                android:id="@+id/search_container"
+                android:layout_width="@dimen/dm099"
+                android:layout_height="@dimen/dm099"
+                android:layout_marginLeft="@dimen/dm020"
+                android:layout_marginTop="@dimen/dm010"
+                android:layout_alignParentLeft="true">
+
+                <ImageView
+                    android:id="@+id/search_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/add_friends_search_pic" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dm020"
+                android:layout_marginTop="@dimen/dm045"
+                android:layout_toRightOf="@id/search_container"
+                android:textColor="@color/title_333"
+                android:textSize="@dimen/dm028"
+                android:text="搜索："/>
+
+            <TextView
+                android:id="@+id/search_content"
+                android:layout_marginTop="@dimen/dm045"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dm020"
+                android:layout_toRightOf="@id/search"
+                android:textColor="@color/commen_reg"
+                android:textSize="@dimen/dm028"
+                android:text="内容"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm020"
+            android:background="@color/page_color"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/search_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/search_result_success"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        <include android:id="@+id/loading" android:visibility="visible" layout="@layout/pager_loading"/>
+        <include android:id="@+id/error" android:visibility="gone" layout="@layout/pager_empty"/>
+        <TextView
+            android:id="@+id/empty"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/dm028"
+            android:textColor="@color/commen_reg"
+            android:layout_marginTop="@dimen/dm020"
+            android:text="用户不存在！"/>
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/ll_user"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ease_mm_listitem"
+        android:duplicateParentState="true"
+        android:visibility="visible">
+
+    </FrameLayout>
+
+
+</LinearLayout>

@@ -1,7 +1,6 @@
 package com.lchtime.safetyexpress.ui.vip;
 
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
@@ -33,7 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by android-cp on 2017/5/18.
+ * Created by android-cp on 2017/5/18.提现界面
  */
 @ContentView(R.layout.vip_inputzhifubao)
 public class OutPutMoneyActivity extends BaseUI implements View.OnClickListener {

@@ -28,6 +28,7 @@ public class VipProtocal {
     public void getMyAcountInfo( String ub_id,final CircleProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.normalResponse(null);
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -40,22 +41,28 @@ public class VipProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        listener.normalResponse(null);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         if (TextUtils.isEmpty(response)) {
                             CommonUtils.toastMessage("没有数据返回");
+                            listener.normalResponse(null);
                             return;
                         }
-                        MyAccountBean bean = (MyAccountBean) JsonUtils.stringToObject(response, MyAccountBean.class);
-                        if (bean.result.code.equals("10")) {
-                            if (listener != null) {
-                                listener.normalResponse(bean);
+                        try {
+                            MyAccountBean bean = (MyAccountBean) JsonUtils.stringToObject(response, MyAccountBean.class);
+                            if (bean.result.code.equals("10")) {
+                                if (listener != null) {
+                                    listener.normalResponse(bean);
+                                }
+                            } else {
+                                CommonUtils.toastMessage(bean.result.info);
+                                listener.normalResponse(null);
                             }
-                        } else {
-                            CommonUtils.toastMessage(bean.result.info);
+                        }catch (Exception exception){
+                            listener.normalResponse(null);
                         }
                     }
                 });

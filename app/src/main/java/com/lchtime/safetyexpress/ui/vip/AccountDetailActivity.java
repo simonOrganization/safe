@@ -1,9 +1,7 @@
 package com.lchtime.safetyexpress.ui.vip;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,9 +12,7 @@ import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.AccountDetailAdapter;
 import com.lchtime.safetyexpress.bean.AcountDetailBean;
 import com.lchtime.safetyexpress.bean.Constants;
-import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
-import com.lchtime.safetyexpress.ui.Const;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.vip.protocal.VipProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
@@ -32,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by android-cp on 2017/5/18.
+ * Created by android-cp on 2017/5/18.账户明细界面
  */
 @ContentView(R.layout.account_detail)
 public class AccountDetailActivity extends BaseUI {

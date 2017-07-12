@@ -2,16 +2,17 @@ package com.lchtime.safetyexpress;
 
 import android.app.Application;
 import android.content.Context;
-import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Process;
+import android.os.StrictMode;
 import android.support.multidex.MultiDex;
-import android.text.TextUtils;
 
 import com.bslee.threelogin.util.UIUtils;
-import com.lchtime.safetyexpress.ui.chat.hx.HuanXinHelper;
+import com.hyphenate.easeui.domain.EaseUser;
+import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 import com.lchtime.safetyexpress.utils.ImageLoaderUtils;
-import com.squareup.picasso.Transformation;
+import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,18 +24,13 @@ import java.util.Map;
 public class MyApplication extends Application {
 
     private static MyApplication instance;
-
-    public static MyApplication getInstance() {
-        return instance;
-    }
+    public static Context applicationContext;
+    public static String currentUserNick = "";
 
 
     private static Context mContext;
     private static Handler mMainThreadHandler;
     private static int mMainThreadId;
-
-
-    public static Context applicationContext;
 
     public Map<String, String> getMemProtocolCacheMap() {
         return MemProtocolCacheMap;
@@ -42,10 +38,9 @@ public class MyApplication extends Application {
 
     private Map<String,String> MemProtocolCacheMap = new HashMap<>();
 
+    private IWeiboShareAPI mWeiboShareAPI;
     @Override
     public void onCreate() {
-        //MultiDex.install(this);
-        super.onCreate();
         UIUtils.initContext(this);
 
         mContext = getApplicationContext();
@@ -53,11 +48,25 @@ public class MyApplication extends Application {
         mMainThreadHandler = new Handler();
 
         mMainThreadId = Process.myTid();
-
-        applicationContext = this;
+        MultiDex.install(this);
+        super.onCreate();
         instance = this;
-        HuanXinHelper.getInstance().init(applicationContext);
+        applicationContext = this;
+
+        DemoHelper.getInstance().init(applicationContext);
+
         ImageLoaderUtils.initImageLoader(this);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+        }
+
+//        mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(this, ShareConstants.WEIBO_APP_KEY);
+//        mWeiboShareAPI.registerApp();
+
+//        // com.getui.demo.DemoPushService 为第三方自定义推送服务
+//        PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
     }
 
     public static Context getContext() {
@@ -72,12 +81,22 @@ public class MyApplication extends Application {
         return mMainThreadId;
     }
 
+    public static MyApplication getInstance() {
+        return instance;
+    }
 
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-       // MultiDex.install(this);
+        MultiDex.install(this);
     }
 
+    public Map<String,EaseUser> getTopUserList(){
+        return DemoHelper.getInstance().getTopUserList();
+    }
+
+    public void setTopUserList(Map<String,EaseUser> contactList){
+        DemoHelper.getInstance().setTopUserList(contactList);
+    }
 
 }

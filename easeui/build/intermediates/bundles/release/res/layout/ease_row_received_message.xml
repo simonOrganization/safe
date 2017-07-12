@@ -3,21 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:gravity="center"
     android:paddingTop="13dp" >
 
-    <TextView
-        android:id="@+id/timestamp"
-        style="@style/chat_text_date_style"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dm020"
+        android:paddingRight="@dimen/dm020"
+        android:layout_marginBottom="@dimen/dm030"
+        android:gravity="center"
+        android:background="@drawable/ease_timestampe_bg">
+        <TextView
+            android:id="@+id/timestamp"
+            style="@style/chat_text_date_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:maxWidth="@dimen/dm294"
+            android:layout_gravity="center"/>
+    </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_chat_activity" >
 
-        <com.hyphenate.easeui.widget.EaseImageView
+        <com.hyphenate.easeui.widget.view.CircleImageView
             android:id="@+id/iv_userhead"
             android:layout_width="@dimen/size_avatar"
             android:layout_height="@dimen/size_avatar"
@@ -25,7 +37,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="@dimen/margin_chat_activity"
             android:src="@drawable/ease_default_avatar"
-            android:scaleType="fitXY" />
+            />
 
         <RelativeLayout
             android:id="@+id/bubble"
@@ -34,6 +46,8 @@
             android:layout_below="@+id/tv_userid"
             android:layout_marginLeft="@dimen/margin_chat_activity"
             android:layout_toRightOf="@id/iv_userhead"
+            android:paddingLeft="@dimen/dm020"
+            android:paddingRight="@dimen/dm020"
             android:background="@drawable/ease_chatfrom_bg"
              >
 
@@ -49,7 +63,7 @@
                 android:lineSpacingExtra="2dp"
                 android:minHeight="38dp"
                 android:maxWidth="225.0dip"
-                android:textColor="#ff000000"
+                android:textColor="@color/title_333"
                 android:textSize="15sp" />
         </RelativeLayout>
 

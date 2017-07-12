@@ -157,7 +157,4 @@ public class CircleHeaderAndFooterWrapper<T> extends RecyclerView.Adapter<Recycl
     public long getItemId(int position) {
         return position;
     }
-
-
-
 }

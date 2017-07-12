@@ -1,45 +1,26 @@
 package com.lchtime.safetyexpress.ui.home.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
 
-import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
 import com.lchtime.safetyexpress.adapter.HomeVideosRecommendAdapter;
 import com.lchtime.safetyexpress.bean.NewsBean;
-import com.lchtime.safetyexpress.bean.res.NewsListRes;
 import com.lchtime.safetyexpress.bean.res.VideoRes;
-import com.lchtime.safetyexpress.ui.Const;
-import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
-import com.lchtime.safetyexpress.ui.home.HomeVideosDeatilUI;
 import com.lchtime.safetyexpress.ui.home.protocal.VideoProtocal;
-import com.lchtime.safetyexpress.ui.news.MediaActivity;
-import com.lchtime.safetyexpress.utils.CommonUtils;
-import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
-
-import okhttp3.Call;
 
 /**
  * 视频- 推荐

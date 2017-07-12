@@ -119,6 +119,8 @@ public class ThirdWeiXinLoginApi {
 			user.unionid = obj.getString("unionid");
 			user.openid = obj.getString("openid");
 			user.nickname = obj.getString("nickname");
+			user.headimgurl = obj.getString("headimgurl");
+			user.sex = obj.getString("sex");
 			if (user != null && user.unionid != null && user.openid != null) {
 				user.authtype = LoginPlatForm.WECHAT_PLATPORM;
 				token.authtype = LoginPlatForm.WECHAT_PLATPORM;

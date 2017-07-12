@@ -34,7 +34,7 @@ public abstract class BaseUI extends FragmentActivity {
         super.onCreate(savedInstanceState);
         ViewUtils.inject(this);
         application = (MyApplication) getApplication();
-        setStatus2();
+//        setStatus2();
         setControlBasis();
         LinearLayout back = (LinearLayout) findViewById(R.id.ll_back);
         if (back != null) {
@@ -120,6 +120,17 @@ public abstract class BaseUI extends FragmentActivity {
         if (iv_right != null) {
             iv_right.setVisibility(View.VISIBLE);
             iv_right.setImageResource(drawable);
+        }
+    }
+
+    protected void rightGone(){
+        LinearLayout ll_right = (LinearLayout) findViewById(R.id.ll_right);
+        if (ll_right != null) {
+            ll_right.setVisibility(View.GONE);
+        }
+        ImageView iv_right = (ImageView) findViewById(R.id.iv_right);
+        if (iv_right != null) {
+            iv_right.setVisibility(View.VISIBLE);
         }
     }
 

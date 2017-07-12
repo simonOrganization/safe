@@ -25,7 +25,7 @@
                 android:layout_width="@dimen/dm138"
                 android:layout_height="@dimen/dm138"
                 android:layout_marginTop="@dimen/dm050"
-                android:background="@drawable/vip_test_icon" />
+                android:src="@drawable/circle_user_image" />
 
             <TextView
                 android:id="@+id/tv_vip_nickname"
@@ -36,7 +36,7 @@
                 android:layout_marginTop="@dimen/dm020"
                 android:gravity="center"
                 android:singleLine="true"
-                android:text="刘荣丽"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/dm026" />
             <LinearLayout
@@ -52,7 +52,7 @@
                     android:layout_marginRight="@dimen/dm020"
                     android:gravity="center"
                     android:singleLine="true"
-                    android:text="机械"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="@dimen/dm026" />
                 <TextView
@@ -62,7 +62,7 @@
                     android:layout_marginRight="@dimen/dm020"
                     android:gravity="center"
                     android:singleLine="true"
-                    android:text="管理"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="@dimen/dm026" />
                 <TextView
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:singleLine="true"
-                    android:text="背景华氏远大集团"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="@dimen/dm026" />
             </LinearLayout>
@@ -101,7 +101,7 @@
                     android:paddingLeft="@dimen/dm020"
                     android:gravity="center"
                     android:singleLine="true"
-                    android:text="去完善"
+                    android:text="未完善"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dm026" />
             </LinearLayout>
@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginTop="@dimen/dm030"
-                android:background="@color/white"
+                android:background="#55ffffff"
                 android:layout_marginLeft="@dimen/dm020"
                 android:layout_marginRight="@dimen/dm020"/>
 
@@ -133,7 +133,7 @@
                         android:layout_height="@dimen/dm050"
                         android:gravity="center"
                         android:singleLine="true"
-                        android:text="10"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="@dimen/dm026" />
                     <TextView
@@ -160,7 +160,7 @@
                         android:layout_height="@dimen/dm050"
                         android:gravity="center"
                         android:singleLine="true"
-                        android:text="22"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="@dimen/dm026" />
                     <TextView

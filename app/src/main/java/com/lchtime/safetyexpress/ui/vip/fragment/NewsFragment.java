@@ -4,19 +4,14 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.Toast;
 
+import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
-import com.lchtime.safetyexpress.adapter.HomeNewsRecommendAdapter;
 import com.lchtime.safetyexpress.bean.Constants;
-import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.bean.res.NewsListRes;
-import com.lchtime.safetyexpress.ui.Const;
-import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.vip.MyConllected;
 import com.lchtime.safetyexpress.utils.CommonUtils;
@@ -25,13 +20,10 @@ import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.lchtime.safetyexpress.views.LoadingPager;
 import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.Call;
 import okhttp3.Response;
 
 /**
@@ -110,8 +102,9 @@ public class NewsFragment extends BaseFragment {
                 homeNewAdapter.setNewItemInterface(new HomeNewAdapter.NewsItemInterface() {
                     @Override
                     public void setNewOnItem(int position) {
-                        Intent intent = new Intent(getContext(), HomeNewsDetailUI.class);
-                        intent.putExtra("newsId","");
+                        Intent intent = new Intent(getContext(), H5DetailUI.class);
+                        intent.putExtra("newsId",commentList.get(position).cc_id);
+                        intent.putExtra("type","news");
                         startActivity(intent);
                     }
 

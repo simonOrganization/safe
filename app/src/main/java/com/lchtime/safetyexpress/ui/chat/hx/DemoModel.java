@@ -2,9 +2,9 @@ package com.lchtime.safetyexpress.ui.chat.hx;
 
 import android.content.Context;
 
-
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
+import com.lchtime.safetyexpress.ui.chat.hx.db.TopUserDao;
 import com.lchtime.safetyexpress.ui.chat.hx.db.UserDao;
 import com.lchtime.safetyexpress.ui.chat.hx.domain.RobotUser;
 import com.lchtime.safetyexpress.ui.chat.hx.utils.PreferenceManager;
@@ -39,7 +39,17 @@ public class DemoModel {
         UserDao dao = new UserDao(context);
         dao.saveContact(user);
     }
-    
+
+
+    public Map<String, EaseUser> getTopUserList() {
+        TopUserDao dao = new TopUserDao(context);
+        return dao.getContactList();
+    }
+
+    public void saveTopUserList(EaseUser user){
+        TopUserDao dao = new TopUserDao(context);
+        dao.saveContact(user);
+    }
     /**
      * save current username
      * @param username

@@ -1,6 +1,5 @@
 package com.lchtime.safetyexpress.ui.circle;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,7 +7,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -24,7 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by yxn on 2017/4/23.
+ * Created by yxn on 2017/4/23. 添加订阅界面
  */
 
 public class AddSubscribeUI extends FragmentActivity {

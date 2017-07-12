@@ -21,6 +21,7 @@ import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.MydyBean;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.pop.VipInfoHintPop;
+import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.login.RegisterUI;
@@ -69,7 +70,15 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
         myViewHolder.tv_hotcircle_name.setText(bean.ud_nickname);
         myViewHolder.cb_hotcircle_subscribe.setChecked(true);
 
-
+        myViewHolder.raiv_hotcircle_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, SingleInfoUI.class);
+                intent.putExtra("uid",bean.ud_ub_id);
+                //是否订阅  热门圈子肯定都是没有订阅的
+                context.startActivity(intent);
+            }
+        });
 
         myViewHolder.cb_hotcircle_subscribe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,28 +87,29 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
                     //弹框
                     if (vipInfoHintPop == null) {
                         vipInfoHintPop = new VipInfoHintPop(myViewHolder.cb_hotcircle_subscribe, context, R.layout.pop_confirm_unsubscribe);
-                        new Handler().post(new Runnable() {
-                            @Override
-                            public void run() {
-                                vipInfoHintPop.showAtLocation();
-                                vipInfoHintPop.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        removeSubscribe(myViewHolder, bean, position);
-                                        vipInfoHintPop.dismiss();
-                                    }
-                                });
-                                vipInfoHintPop.tv_jump.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        myViewHolder.cb_hotcircle_subscribe.setChecked(true);
-                                        vipInfoHintPop.dismiss();
-                                    }
-                                });
-                            }
-                        });
                     }
+                    new Handler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            vipInfoHintPop.showAtLocation();
+                            vipInfoHintPop.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    removeSubscribe(myViewHolder, bean, position);
+                                    vipInfoHintPop.dismiss();
+                                }
+                            });
+                            vipInfoHintPop.tv_jump.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    myViewHolder.cb_hotcircle_subscribe.setChecked(true);
+                                    vipInfoHintPop.dismiss();
+                                }
+                            });
+                        }
+                    });
                 }
+
 
             }
         });
@@ -125,6 +135,13 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
             protocal.changeSubscribe(userid, bean.ud_ub_id, "0" , new CircleProtocal.CircleListener() {
                 @Override
                 public void circleResponse(CircleBean response) {
+
+                    if (response == null){
+                        //订阅或者取消订阅失败了
+                        myViewHolder.cb_hotcircle_subscribe.setChecked(true);
+                        CommonUtils.toastMessage("请重试！");
+                        return;
+                    }
                     if ("10".equals(response.result.code)){
                         //移除操作
                         dy.remove(position);

@@ -1,6 +1,296 @@
 [
     {
-        "outputFile": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+        "outputFile": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 61,
+                    "endOffset": 112
+                },
+                "from": {
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 61,
+                        "endOffset": 112
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 117,
+                    "endColumn": 71,
+                    "endOffset": 184
+                },
+                "from": {
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 117,
+                        "endColumn": 71,
+                        "endOffset": 184
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 189,
+                    "endColumn": 58,
+                    "endOffset": 243
+                },
+                "from": {
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 189,
+                        "endColumn": 58,
+                        "endOffset": 243
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 248,
+                    "endColumn": 70,
+                    "endOffset": 314
+                },
+                "from": {
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 248,
+                        "endColumn": 70,
+                        "endOffset": 314
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 319,
+                    "endColumn": 70,
+                    "endOffset": 385
+                },
+                "from": {
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 319,
+                        "endColumn": 70,
+                        "endOffset": 385
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 390,
+                    "endColumn": 69,
+                    "endOffset": 455
+                },
+                "from": {
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 390,
+                        "endColumn": 69,
+                        "endOffset": 455
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 460,
+                    "endColumn": 69,
+                    "endOffset": 525
+                },
+                "from": {
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 460,
+                        "endColumn": 69,
+                        "endOffset": 525
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 530,
+                    "endColumn": 67,
+                    "endOffset": 593
+                },
+                "from": {
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 530,
+                        "endColumn": 67,
+                        "endOffset": 593
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 598,
+                    "endColumn": 67,
+                    "endOffset": 661
+                },
+                "from": {
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 598,
+                        "endColumn": 67,
+                        "endOffset": 661
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 666,
+                    "endColumn": 63,
+                    "endOffset": 725
+                },
+                "from": {
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 666,
+                        "endColumn": 63,
+                        "endOffset": 725
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 730,
+                    "endColumn": 52,
+                    "endOffset": 778
+                },
+                "from": {
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\res\\values-large\\ease_dimens.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 663,
+                        "endColumn": 52,
+                        "endOffset": 711
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 783,
+                    "endColumn": 53,
+                    "endOffset": 832
+                },
+                "from": {
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\res\\values-large\\ease_dimens.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 716,
+                        "endColumn": 53,
+                        "endOffset": 765
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 837,
+                    "endColumn": 54,
+                    "endOffset": 887
+                },
+                "from": {
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 730,
+                        "endColumn": 54,
+                        "endOffset": 780
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 892,
+                    "endColumn": 103,
+                    "endOffset": 991
+                },
+                "from": {
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 785,
+                        "endColumn": 103,
+                        "endOffset": 884
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 996,
+                    "endColumn": 115,
+                    "endOffset": 1107
+                },
+                "from": {
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 889,
+                        "endColumn": 115,
+                        "endOffset": 1000
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +301,7 @@
                     "endOffset": 109
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -30,7 +320,7 @@
                     "endOffset": 180
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -49,7 +339,7 @@
                     "endOffset": 251
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -68,7 +358,7 @@
                     "endOffset": 321
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -87,7 +377,7 @@
                     "endOffset": 391
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -106,7 +396,7 @@
                     "endOffset": 459
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -125,7 +415,7 @@
                     "endOffset": 527
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -144,7 +434,7 @@
                     "endOffset": 580
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\values-large\\ease_dimens.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\res\\values-large\\ease_dimens.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
@@ -163,7 +453,7 @@
                     "endOffset": 634
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\src\\main\\res\\values-large\\ease_dimens.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\res\\values-large\\ease_dimens.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -182,7 +472,7 @@
                     "endOffset": 738
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -201,7 +491,7 @@
                     "endOffset": 854
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -214,24 +504,24 @@
         ]
     },
     {
-        "outputFile": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+        "outputFile": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
         "map": [
             {
                 "to": {
                     "startLine": 2,
                     "startColumn": 4,
                     "startOffset": 55,
-                    "endColumn": 58,
-                    "endOffset": 109
+                    "endColumn": 61,
+                    "endOffset": 112
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
                         "startOffset": 55,
-                        "endColumn": 58,
-                        "endOffset": 109
+                        "endColumn": 61,
+                        "endOffset": 112
                     }
                 }
             },
@@ -239,18 +529,18 @@
                 "to": {
                     "startLine": 3,
                     "startColumn": 4,
-                    "startOffset": 114,
-                    "endColumn": 70,
-                    "endOffset": 180
+                    "startOffset": 117,
+                    "endColumn": 71,
+                    "endOffset": 184
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
-                        "startOffset": 114,
-                        "endColumn": 70,
-                        "endOffset": 180
+                        "startOffset": 117,
+                        "endColumn": 71,
+                        "endOffset": 184
                     }
                 }
             },
@@ -258,18 +548,18 @@
                 "to": {
                     "startLine": 4,
                     "startColumn": 4,
-                    "startOffset": 185,
-                    "endColumn": 70,
-                    "endOffset": 251
+                    "startOffset": 189,
+                    "endColumn": 58,
+                    "endOffset": 243
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 185,
-                        "endColumn": 70,
-                        "endOffset": 251
+                        "startOffset": 189,
+                        "endColumn": 58,
+                        "endOffset": 243
                     }
                 }
             },
@@ -277,18 +567,18 @@
                 "to": {
                     "startLine": 5,
                     "startColumn": 4,
-                    "startOffset": 256,
-                    "endColumn": 69,
-                    "endOffset": 321
+                    "startOffset": 248,
+                    "endColumn": 70,
+                    "endOffset": 314
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 256,
-                        "endColumn": 69,
-                        "endOffset": 321
+                        "startOffset": 248,
+                        "endColumn": 70,
+                        "endOffset": 314
                     }
                 }
             },
@@ -296,18 +586,18 @@
                 "to": {
                     "startLine": 6,
                     "startColumn": 4,
-                    "startOffset": 326,
-                    "endColumn": 69,
-                    "endOffset": 391
+                    "startOffset": 319,
+                    "endColumn": 70,
+                    "endOffset": 385
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 326,
-                        "endColumn": 69,
-                        "endOffset": 391
+                        "startOffset": 319,
+                        "endColumn": 70,
+                        "endOffset": 385
                     }
                 }
             },
@@ -315,18 +605,18 @@
                 "to": {
                     "startLine": 7,
                     "startColumn": 4,
-                    "startOffset": 396,
-                    "endColumn": 67,
-                    "endOffset": 459
+                    "startOffset": 390,
+                    "endColumn": 69,
+                    "endOffset": 455
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 396,
-                        "endColumn": 67,
-                        "endOffset": 459
+                        "startOffset": 390,
+                        "endColumn": 69,
+                        "endOffset": 455
                     }
                 }
             },
@@ -334,18 +624,18 @@
                 "to": {
                     "startLine": 8,
                     "startColumn": 4,
-                    "startOffset": 464,
-                    "endColumn": 67,
-                    "endOffset": 527
+                    "startOffset": 460,
+                    "endColumn": 69,
+                    "endOffset": 525
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 464,
-                        "endColumn": 67,
-                        "endOffset": 527
+                        "startOffset": 460,
+                        "endColumn": 69,
+                        "endOffset": 525
                     }
                 }
             },
@@ -353,12 +643,69 @@
                 "to": {
                     "startLine": 9,
                     "startColumn": 4,
-                    "startOffset": 532,
-                    "endColumn": 52,
-                    "endOffset": 580
+                    "startOffset": 530,
+                    "endColumn": 67,
+                    "endOffset": 593
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\values-large\\ease_dimens.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 530,
+                        "endColumn": 67,
+                        "endOffset": 593
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 598,
+                    "endColumn": 67,
+                    "endOffset": 661
+                },
+                "from": {
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 598,
+                        "endColumn": 67,
+                        "endOffset": 661
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 666,
+                    "endColumn": 63,
+                    "endOffset": 725
+                },
+                "from": {
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 666,
+                        "endColumn": 63,
+                        "endOffset": 725
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 730,
+                    "endColumn": 52,
+                    "endOffset": 778
+                },
+                "from": {
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\res\\values-large\\ease_dimens.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
@@ -370,14 +717,14 @@
             },
             {
                 "to": {
-                    "startLine": 10,
+                    "startLine": 13,
                     "startColumn": 4,
-                    "startOffset": 585,
+                    "startOffset": 783,
                     "endColumn": 53,
-                    "endOffset": 634
+                    "endOffset": 832
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\src\\main\\res\\values-large\\ease_dimens.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\res\\values-large\\ease_dimens.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -389,253 +736,58 @@
             },
             {
                 "to": {
-                    "startLine": 11,
+                    "startLine": 14,
                     "startColumn": 4,
-                    "startOffset": 639,
+                    "startOffset": 837,
+                    "endColumn": 54,
+                    "endOffset": 887
+                },
+                "from": {
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 730,
+                        "endColumn": 54,
+                        "endOffset": 780
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 892,
                     "endColumn": 103,
-                    "endOffset": 738
+                    "endOffset": 991
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
-                        "startLine": 9,
+                        "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 532,
+                        "startOffset": 785,
                         "endColumn": 103,
-                        "endOffset": 631
+                        "endOffset": 884
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 12,
+                    "startLine": 16,
                     "startColumn": 4,
-                    "startOffset": 743,
+                    "startOffset": 996,
                     "endColumn": 115,
-                    "endOffset": 854
+                    "endOffset": 1107
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-large-v4\\values-large-v4.xml",
                     "position": {
-                        "startLine": 10,
+                        "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 636,
+                        "startOffset": 889,
                         "endColumn": 115,
-                        "endOffset": 747
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/incremental/mergeDebugResources/merged.dir/values-large-v4/values-large-v4.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 58,
-                    "endOffset": 109
-                },
-                "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-large-v4/values-large-v4.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 58,
-                        "endOffset": 109
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 114,
-                    "endColumn": 70,
-                    "endOffset": 180
-                },
-                "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-large-v4/values-large-v4.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 114,
-                        "endColumn": 70,
-                        "endOffset": 180
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 185,
-                    "endColumn": 70,
-                    "endOffset": 251
-                },
-                "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-large-v4/values-large-v4.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 185,
-                        "endColumn": 70,
-                        "endOffset": 251
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 256,
-                    "endColumn": 69,
-                    "endOffset": 321
-                },
-                "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-large-v4/values-large-v4.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 256,
-                        "endColumn": 69,
-                        "endOffset": 321
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 326,
-                    "endColumn": 69,
-                    "endOffset": 391
-                },
-                "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-large-v4/values-large-v4.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 326,
-                        "endColumn": 69,
-                        "endOffset": 391
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 396,
-                    "endColumn": 67,
-                    "endOffset": 459
-                },
-                "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-large-v4/values-large-v4.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 396,
-                        "endColumn": 67,
-                        "endOffset": 459
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 464,
-                    "endColumn": 67,
-                    "endOffset": 527
-                },
-                "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-large-v4/values-large-v4.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 464,
-                        "endColumn": 67,
-                        "endOffset": 527
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 532,
-                    "endColumn": 52,
-                    "endOffset": 580
-                },
-                "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/values-large/ease_dimens.xml",
-                    "position": {
-                        "startLine": 19,
-                        "startColumn": 4,
-                        "startOffset": 663,
-                        "endColumn": 52,
-                        "endOffset": 711
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 10,
-                    "startColumn": 4,
-                    "startOffset": 585,
-                    "endColumn": 53,
-                    "endOffset": 634
-                },
-                "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/src/main/res/values-large/ease_dimens.xml",
-                    "position": {
-                        "startLine": 20,
-                        "startColumn": 4,
-                        "startOffset": 716,
-                        "endColumn": 53,
-                        "endOffset": 765
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 11,
-                    "startColumn": 4,
-                    "startOffset": 639,
-                    "endColumn": 103,
-                    "endOffset": 738
-                },
-                "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-large-v4/values-large-v4.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 532,
-                        "endColumn": 103,
-                        "endOffset": 631
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 12,
-                    "startColumn": 4,
-                    "startOffset": 743,
-                    "endColumn": 115,
-                    "endOffset": 854
-                },
-                "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-large-v4/values-large-v4.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 636,
-                        "endColumn": 115,
-                        "endOffset": 747
+                        "endOffset": 1000
                     }
                 }
             }

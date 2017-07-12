@@ -1,8 +1,6 @@
 package com.lchtime.safetyexpress.ui.vip;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by android-cp on 2017/4/21.
+ * Created by android-cp on 2017/4/21.我的钱包界面
  */
 @ContentView(R.layout.vip_mymoney)
 public class MyMoneyActivity extends BaseUI implements View.OnClickListener {
@@ -99,6 +97,10 @@ public class MyMoneyActivity extends BaseUI implements View.OnClickListener {
         protocal.getMyAcountInfo(userid, new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
+                if (response == null){
+                    CommonUtils.toastMessage("获取账户相关信息失败，请重新获取！");
+                    return;
+                }
                 bean = (MyAccountBean) response;
                 tvAccountBalance.setText("¥" + bean.ud_amount);
                 if ("1".equals(bean.tparty.ud_zfb_account)) {

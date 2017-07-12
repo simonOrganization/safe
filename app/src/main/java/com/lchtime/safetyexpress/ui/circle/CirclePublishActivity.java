@@ -3,13 +3,10 @@ package com.lchtime.safetyexpress.ui.circle;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
-import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,18 +21,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dalong.recordlib.RecordVideoActivity;
-import com.dalong.recordlib.VideoPlayFragment;
 import com.google.gson.Gson;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
-import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
-import com.lchtime.safetyexpress.ui.TabUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
-import com.lchtime.safetyexpress.ui.vip.VipInfoUI;
-import com.lchtime.safetyexpress.utils.BitmapUtils;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
@@ -46,14 +38,13 @@ import com.luck.picture.lib.model.PictureConfig;
 import com.yalantis.ucrop.entity.LocalMedia;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by android-cp on 2017/5/16.
+ * Created by android-cp on 2017/5/16. 发布圈子界面
  */
 @ContentView(R.layout.circle_publish)
 public class CirclePublishActivity extends BaseUI implements PopupWindow.OnDismissListener, View.OnClickListener {
@@ -93,7 +84,7 @@ public class CirclePublishActivity extends BaseUI implements PopupWindow.OnDismi
     protected void setControlBasis() {
         ButterKnife.bind(this);
         rightTextVisible("发送");
-        setTitle("发布圈子");
+        setTitle("发圈子");
         videoPath = getIntent().getStringExtra("path");
         //Toast.makeText(this, "视频路径：" + videoPath, Toast.LENGTH_SHORT).show();
         //得到视频的第一帧图片并且规定大小

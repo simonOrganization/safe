@@ -26,6 +26,7 @@
         android:layout_marginLeft="@dimen/dm020"
         android:layout_marginRight="@dimen/dm020"
         android:hint="请输入编辑的内容"
+        android:background="@null"
         android:textSize="@dimen/dm024"
         android:gravity="top"/>
 

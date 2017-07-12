@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView
+        android:id="@+id/add_friends_group_rc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"></com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView>
+    <include android:id="@+id/loading" android:visibility="visible" layout="@layout/pager_loading"/>
+    <include android:id="@+id/empty" android:visibility="gone" layout="@layout/pager_empty"/>
+    <include android:id="@+id/error" android:visibility="gone" layout="@layout/pager_error"/>
+
+</RelativeLayout>

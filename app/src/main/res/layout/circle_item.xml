@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:paddingBottom="@dimen/dm001">
+
+    <CheckBox
+        android:id="@+id/rb_delete"
+        android:layout_width="@dimen/dm040"
+        android:layout_height="@dimen/dm040"
+        android:text="@null"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:button="@null"
+        android:layout_marginLeft="@dimen/dm020"
+        android:visibility="gone"
+        android:background="@drawable/rb_delete"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,17 +86,35 @@
                 android:textColor="@color/title_333"
                 android:layout_below="@id/circle_item_company_name"
                 android:layout_marginTop="@dimen/dm010"/>
-            <ImageView
-                android:id="@+id/circle_item_shipin"
+
+
+            <RelativeLayout
+                android:id="@+id/circle_item_shipin_1"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dm300"
-                android:layout_marginTop="@dimen/dm010"
-                android:layout_below="@id/circle_item_content"/>
-            <android.support.v7.widget.RecyclerView
+                android:layout_height="wrap_content"
+                android:layout_below="@id/circle_item_content">
+                <ImageView
+                    android:id="@+id/circle_item_shipin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dm300"
+                    android:layout_marginTop="@dimen/dm010"
+                    />
+
+
+                <ImageView
+                    android:id="@+id/iv_recommend_play"
+                    android:layout_width="@dimen/dm059"
+                    android:layout_height="@dimen/dm061"
+                    android:src="@drawable/video_play2"
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
+
+            <com.lchtime.safetyexpress.views.NoTouchRecycler
                 android:id="@+id/circle_item_image_rc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/circle_item_shipin"
+                android:layout_below="@id/circle_item_shipin_1"
                 />
             <LinearLayout
                 android:id="@+id/ll_other"

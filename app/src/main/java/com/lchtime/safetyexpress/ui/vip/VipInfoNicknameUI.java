@@ -1,10 +1,12 @@
 package com.lchtime.safetyexpress.ui.vip;
 
 import android.content.Intent;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.lchtime.safetyexpress.R;
@@ -23,6 +25,11 @@ public class VipInfoNicknameUI extends BaseUI {
 
     @ViewInject(R.id.et_edit_nikname)
     private EditText et_nikname;
+
+    @ViewInject(R.id.del)
+    private ImageView del;
+    private String nick;
+
     @Override
     protected void back() {
         finish();
@@ -32,6 +39,40 @@ public class VipInfoNicknameUI extends BaseUI {
     protected void setControlBasis() {
         setTitle("昵称");
         rightVisible("保存");
+        nick = getIntent().getStringExtra("data");
+        if (!TextUtils.isEmpty(nick)){
+            et_nikname.setText(nick);
+        }
+
+
+        et_nikname.setSelection(et_nikname.getText().toString().length());
+        del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                et_nikname.setText("");
+            }
+        });
+        et_nikname.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 0){
+                    del.setVisibility(View.VISIBLE);
+                }else {
+                    del.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override

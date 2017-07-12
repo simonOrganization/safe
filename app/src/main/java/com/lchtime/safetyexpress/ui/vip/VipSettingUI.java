@@ -3,31 +3,35 @@ package com.lchtime.safetyexpress.ui.vip;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hyphenate.EMCallBack;
+import com.igexin.sdk.PushManager;
+import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
-import com.lchtime.safetyexpress.bean.PostBean;
-import com.lchtime.safetyexpress.bean.ProfessionBean;
-import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
+import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
+import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.cacheutils.AppConfig;
 import com.lchtime.safetyexpress.utils.cacheutils.DataCleanManager;
 import com.lchtime.safetyexpress.utils.cacheutils.FileUtil;
 import com.lchtime.safetyexpress.utils.cacheutils.MethodsCompat;
-import com.lchtime.safetyexpress.views.CircleImageView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -36,6 +40,8 @@ import org.kymjs.kjframe.Core;
 
 import java.io.File;
 import java.util.Properties;
+
+import static com.igexin.sdk.GTServiceManager.context;
 
 /**
  * 设置
@@ -50,6 +56,12 @@ public class VipSettingUI extends BaseUI {
     @ViewInject(R.id.tv_setting_cache)
     private TextView tvCache;
 
+    @ViewInject(R.id.pb_progress)
+    private ProgressBar pb_progress;
+
+
+    @ViewInject(R.id.cb_setting_push)
+    private CheckBox cb_setting_push;
 
     @Override
     protected void back() {
@@ -60,6 +72,11 @@ public class VipSettingUI extends BaseUI {
     protected void setControlBasis() {
         setTitle("设置");
         setVersion();
+        //推送服务初始化
+
+        initListener();
+
+
         long cache = caculateCacheSize();
         long unknowCache = SpTools.getLong(this, "unknowCache", 0L);
         if (unknowCache < 0 ){
@@ -76,10 +93,42 @@ public class VipSettingUI extends BaseUI {
 
     }
 
+    private void initListener() {
+        //初始化推送
+//        PushManager.getInstance().initialize(VipSettingUI.this, DemoPushService.class);
+        final PushManager pushManager = PushManager.getInstance();
+        cb_setting_push.setChecked(pushManager.isPushTurnedOn(this));
+        cb_setting_push.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    pushManager.turnOnPush(VipSettingUI.this);
+                }else {
+                    pushManager.turnOffPush(VipSettingUI.this);
+                }
+            }
+        });
+    }
+
     @Override
     protected void prepareData() {
 
     }
+
+
+
+
+
+//    用户协议
+    @OnClick(R.id.ll_setting_agreement)
+    private void getAgreement(View view){
+        Intent intent = new Intent(VipSettingUI.this,H5DetailUI.class);
+        intent.putExtra("type","agreement");
+        intent.putExtra("url","http://fcar.lchtime.cn:8001/H5/agreement.html");
+        startActivity(intent);
+    }
+
+
 
     @OnClick(R.id.ll_setting_about)
     private void getAbout(View view){
@@ -94,16 +143,69 @@ public class VipSettingUI extends BaseUI {
      * */
     @OnClick(R.id.tv_info_phone_valid)
     private void getOutLog(View view){
-        SpTools.setString(this, Constants.userId, null);//存储用户的ub_id
-        SpTools.setString(this, Constants.phoneNum, null);//存储用户的手机号码
-        SpTools.setString(this, Constants.password, null);//存储用户的密码
-        File file = new File(MyApplication.getContext().getFilesDir(),Constants.photo_name);//将要保存图片的路径
-        file.delete();
-        InitInfo.vipInfoBean = null;
-        InitInfo.isLogin = false;
-        InitInfo.phoneNumber = null;
-        Toast.makeText(this,"正在退出登录",Toast.LENGTH_SHORT).show();
-        finish();
+        backgroundAlpha(0.5f);
+        pb_progress.setVisibility(View.VISIBLE);
+        PushManager.getInstance().unBindAlias(context,SpTools.getString(this,Constants.userId,""),true);
+        logout();
+
+//        Toast.makeText(this,"正在退出登录",Toast.LENGTH_SHORT).show();
+
+    }
+
+    void logout() {
+//        final ProgressDialog pd = new ProgressDialog(this);
+//        String st = getResources().getString(R.string.Are_logged_out);
+//        pd.setMessage(st);
+//        pd.setCanceledOnTouchOutside(false);
+//        pd.show();
+        DemoHelper.getInstance().logout(false,new EMCallBack() {
+
+            @Override
+            public void onSuccess() {
+                runOnUiThread(new Runnable() {
+                    public void run() {
+//                        pd.dismiss();
+                        // show login screen
+//                        finish();
+
+                        SpTools.setString(VipSettingUI.this, Constants.userId, null);//存储用户的ub_id
+                        SpTools.setString(VipSettingUI.this, Constants.phoneNum, null);//存储用户的手机号码
+                        SpTools.setString(VipSettingUI.this, Constants.password, null);//存储用户的密码
+                        File file = new File(MyApplication.getContext().getFilesDir(),Constants.photo_name);//将要保存图片的路径
+                        file.delete();
+
+                        InitInfo.vipInfoBean = null;
+                        InitInfo.isLogin = false;
+                        InitInfo.phoneNumber = null;
+                        startActivity(new Intent(VipSettingUI.this, LoginUI.class));
+                        backgroundAlpha(1f);
+                        pb_progress.setVisibility(View.GONE);
+                        finish();
+
+                    }
+                });
+            }
+
+            @Override
+            public void onProgress(int progress, String status) {
+
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+//                        pd.dismiss();
+                        backgroundAlpha(1f);
+                        pb_progress.setVisibility(View.GONE);
+                        Toast.makeText(VipSettingUI.this, "unbind devicetokens failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
     }
 
     private void setVersion() {
@@ -253,5 +355,11 @@ public class VipSettingUI extends BaseUI {
         };
     };
 
+    public void backgroundAlpha(float bgAlpha)
+    {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = bgAlpha; //0.0-1.0
+        getWindow().setAttributes(lp);
+    }
 
 }

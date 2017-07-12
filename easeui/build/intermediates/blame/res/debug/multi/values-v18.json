@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v18\\values-v18.xml",
+        "outputFile": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v18\\values-v18.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 99
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-v18\\values-v18.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-v18\\values-v18.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -24,7 +24,7 @@
         ]
     },
     {
-        "outputFile": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v18\\values-v18.xml",
+        "outputFile": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v18\\values-v18.xml",
         "map": [
             {
                 "to": {
@@ -35,7 +35,7 @@
                     "endOffset": 99
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-v18\\values-v18.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-v18\\values-v18.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -48,7 +48,7 @@
         ]
     },
     {
-        "outputFile": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v18/values-v18.xml",
+        "outputFile": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v18\\values-v18.xml",
         "map": [
             {
                 "to": {
@@ -59,7 +59,7 @@
                     "endOffset": 99
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v18/values-v18.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-v18\\values-v18.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

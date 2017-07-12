@@ -4,10 +4,12 @@ import android.content.Context;
 
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.bean.ContactBean;
+import com.hyphenate.easeui.bean.EaseInitBean;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.util.EMLog;
-import com.lchtime.safetyexpress.ui.chat.hx.HuanXinHelper;
+import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.Parse;
@@ -17,8 +19,11 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.hyphenate.easeui.bean.EaseInitBean.contactBean;
 
 public class ParseManager {
 
@@ -71,7 +76,7 @@ public class ParseManager {
 			pUser.save();
 			return true;
 		} catch (ParseException e) {
-			if(e.getCode()==ParseException.OBJECT_NOT_FOUND){
+			if(e.getCode()== ParseException.OBJECT_NOT_FOUND){
 				pUser = new ParseObject(CONFIG_TABLE_NAME);
 				pUser.put(CONFIG_USERNAME, username);
 				pUser.put(CONFIG_NICK, nickname);
@@ -109,6 +114,13 @@ public class ParseManager {
 							user.setAvatar(parseFile.getUrl());
 						}
 						user.setNick(pObject.getString(CONFIG_NICK));
+						if (contactBean != null){
+							for (ContactBean bean : EaseInitBean.contactBean.friendlist){
+								if (user.getUsername().equals(bean.hx_account)){
+									user.setExternalNickName(bean.ud_nickname);
+								}
+							}
+						}
 						EaseCommonUtils.setUserInitialLetter(user);
 						mList.add(user);
 					}
@@ -162,7 +174,7 @@ public class ParseManager {
 					String nick = pUser.getString(CONFIG_NICK);
 					ParseFile pFile = pUser.getParseFile(CONFIG_AVATAR);
 					if(callback!=null){
-					    EaseUser user = HuanXinHelper.getInstance().getContactList().get(username);
+					    EaseUser user = DemoHelper.getInstance().getContactList().get(username);
 						if(user!=null){
 							user.setNick(nick);
 							if (pFile != null && pFile.getUrl() != null) {

@@ -1,9 +1,7 @@
 package com.lchtime.safetyexpress.ui.home;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,7 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by android-cp on 2017/5/11.
+ * Created by android-cp on 2017/5/11.           疑难问答的详情界面
  */
 @ContentView(R.layout.home_question_detail)
 public class HomeQuewstionDetail extends BaseUI {
@@ -149,6 +147,7 @@ public class HomeQuewstionDetail extends BaseUI {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeQuewstionDetail.this,InviteFriendActivity.class);
+                intent.putExtra("q_id",qid);
                 startActivity(intent);
             }
         });

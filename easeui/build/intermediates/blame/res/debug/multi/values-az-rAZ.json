@@ -1,23 +1,23 @@
 [
     {
-        "outputFile": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-az-rAZ\\values-az-rAZ.xml",
+        "outputFile": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-az-rAZ\\values-az-rAZ.xml",
         "map": [
             {
                 "to": {
                     "startLine": 2,
                     "startColumn": 4,
                     "startOffset": 55,
-                    "endColumn": 107,
-                    "endOffset": 158
+                    "endColumn": 97,
+                    "endOffset": 148
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
                         "startOffset": 55,
-                        "endColumn": 107,
-                        "endOffset": 158
+                        "endColumn": 97,
+                        "endOffset": 148
                     }
                 }
             },
@@ -25,18 +25,18 @@
                 "to": {
                     "startLine": 3,
                     "startColumn": 4,
-                    "startOffset": 163,
+                    "startOffset": 153,
                     "endColumn": 107,
-                    "endOffset": 266
+                    "endOffset": 256
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
-                        "startOffset": 163,
+                        "startOffset": 153,
                         "endColumn": 107,
-                        "endOffset": 266
+                        "endOffset": 256
                     }
                 }
             },
@@ -44,18 +44,18 @@
                 "to": {
                     "startLine": 4,
                     "startColumn": 4,
-                    "startOffset": 271,
+                    "startOffset": 261,
                     "endColumn": 122,
-                    "endOffset": 389
+                    "endOffset": 379
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 271,
+                        "startOffset": 261,
                         "endColumn": 122,
-                        "endOffset": 389
+                        "endOffset": 379
                     }
                 }
             },
@@ -63,18 +63,18 @@
                 "to": {
                     "startLine": 5,
                     "startColumn": 4,
-                    "startOffset": 394,
+                    "startOffset": 384,
                     "endColumn": 98,
-                    "endOffset": 488
+                    "endOffset": 478
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 394,
+                        "startOffset": 384,
                         "endColumn": 98,
-                        "endOffset": 488
+                        "endOffset": 478
                     }
                 }
             },
@@ -82,18 +82,18 @@
                 "to": {
                     "startLine": 6,
                     "startColumn": 4,
-                    "startOffset": 493,
-                    "endColumn": 111,
-                    "endOffset": 600
+                    "startOffset": 483,
+                    "endColumn": 109,
+                    "endOffset": 588
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 493,
-                        "endColumn": 111,
-                        "endOffset": 600
+                        "startOffset": 483,
+                        "endColumn": 109,
+                        "endOffset": 588
                     }
                 }
             },
@@ -101,18 +101,18 @@
                 "to": {
                     "startLine": 7,
                     "startColumn": 4,
-                    "startOffset": 605,
+                    "startOffset": 593,
                     "endColumn": 87,
-                    "endOffset": 688
+                    "endOffset": 676
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 605,
+                        "startOffset": 593,
                         "endColumn": 87,
-                        "endOffset": 688
+                        "endOffset": 676
                     }
                 }
             },
@@ -120,18 +120,18 @@
                 "to": {
                     "startLine": 8,
                     "startColumn": 4,
-                    "startOffset": 693,
+                    "startOffset": 681,
                     "endColumn": 106,
-                    "endOffset": 795
+                    "endOffset": 783
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 693,
+                        "startOffset": 681,
                         "endColumn": 106,
-                        "endOffset": 795
+                        "endOffset": 783
                     }
                 }
             },
@@ -139,18 +139,18 @@
                 "to": {
                     "startLine": 9,
                     "startColumn": 4,
-                    "startOffset": 800,
+                    "startOffset": 788,
                     "endColumn": 113,
-                    "endOffset": 909
+                    "endOffset": 897
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 800,
+                        "startOffset": 788,
                         "endColumn": 113,
-                        "endOffset": 909
+                        "endOffset": 897
                     }
                 }
             },
@@ -158,18 +158,18 @@
                 "to": {
                     "startLine": 10,
                     "startColumn": 4,
-                    "startOffset": 914,
+                    "startOffset": 902,
                     "endColumn": 80,
-                    "endOffset": 990
+                    "endOffset": 978
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
-                        "startOffset": 914,
+                        "startOffset": 902,
                         "endColumn": 80,
-                        "endOffset": 990
+                        "endOffset": 978
                     }
                 }
             },
@@ -177,18 +177,18 @@
                 "to": {
                     "startLine": 11,
                     "startColumn": 4,
-                    "startOffset": 995,
+                    "startOffset": 983,
                     "endColumn": 78,
-                    "endOffset": 1069
+                    "endOffset": 1057
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
-                        "startOffset": 995,
+                        "startOffset": 983,
                         "endColumn": 78,
-                        "endOffset": 1069
+                        "endOffset": 1057
                     }
                 }
             },
@@ -196,18 +196,18 @@
                 "to": {
                     "startLine": 12,
                     "startColumn": 4,
-                    "startOffset": 1074,
+                    "startOffset": 1062,
                     "endColumn": 84,
-                    "endOffset": 1154
+                    "endOffset": 1142
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
-                        "startOffset": 1074,
+                        "startOffset": 1062,
                         "endColumn": 84,
-                        "endOffset": 1154
+                        "endOffset": 1142
                     }
                 }
             },
@@ -215,18 +215,18 @@
                 "to": {
                     "startLine": 13,
                     "startColumn": 4,
-                    "startOffset": 1159,
+                    "startOffset": 1147,
                     "endColumn": 106,
-                    "endOffset": 1261
+                    "endOffset": 1249
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 1159,
+                        "startOffset": 1147,
                         "endColumn": 106,
-                        "endOffset": 1261
+                        "endOffset": 1249
                     }
                 }
             },
@@ -234,18 +234,18 @@
                 "to": {
                     "startLine": 14,
                     "startColumn": 4,
-                    "startOffset": 1266,
+                    "startOffset": 1254,
                     "endColumn": 106,
-                    "endOffset": 1368
+                    "endOffset": 1356
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 1266,
+                        "startOffset": 1254,
                         "endColumn": 106,
-                        "endOffset": 1368
+                        "endOffset": 1356
                     }
                 }
             },
@@ -253,18 +253,18 @@
                 "to": {
                     "startLine": 15,
                     "startColumn": 4,
-                    "startOffset": 1373,
+                    "startOffset": 1361,
                     "endColumn": 99,
-                    "endOffset": 1468
+                    "endOffset": 1456
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
-                        "startOffset": 1373,
+                        "startOffset": 1361,
                         "endColumn": 99,
-                        "endOffset": 1468
+                        "endOffset": 1456
                     }
                 }
             },
@@ -272,18 +272,18 @@
                 "to": {
                     "startLine": 16,
                     "startColumn": 4,
-                    "startOffset": 1473,
+                    "startOffset": 1461,
                     "endColumn": 108,
-                    "endOffset": 1577
+                    "endOffset": 1565
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
-                        "startOffset": 1473,
+                        "startOffset": 1461,
                         "endColumn": 108,
-                        "endOffset": 1577
+                        "endOffset": 1565
                     }
                 }
             },
@@ -291,18 +291,18 @@
                 "to": {
                     "startLine": 17,
                     "startColumn": 4,
-                    "startOffset": 1582,
+                    "startOffset": 1570,
                     "endColumn": 103,
-                    "endOffset": 1681
+                    "endOffset": 1669
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
-                        "startOffset": 1582,
+                        "startOffset": 1570,
                         "endColumn": 103,
-                        "endOffset": 1681
+                        "endOffset": 1669
                     }
                 }
             },
@@ -310,18 +310,18 @@
                 "to": {
                     "startLine": 18,
                     "startColumn": 4,
-                    "startOffset": 1686,
+                    "startOffset": 1674,
                     "endColumn": 109,
-                    "endOffset": 1791
+                    "endOffset": 1779
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
-                        "startOffset": 1686,
+                        "startOffset": 1674,
                         "endColumn": 109,
-                        "endOffset": 1791
+                        "endOffset": 1779
                     }
                 }
             },
@@ -329,18 +329,18 @@
                 "to": {
                     "startLine": 19,
                     "startColumn": 4,
-                    "startOffset": 1796,
+                    "startOffset": 1784,
                     "endColumn": 96,
-                    "endOffset": 1888
+                    "endOffset": 1876
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
-                        "startOffset": 1796,
+                        "startOffset": 1784,
                         "endColumn": 96,
-                        "endOffset": 1888
+                        "endOffset": 1876
                     }
                 }
             },
@@ -348,61 +348,42 @@
                 "to": {
                     "startLine": 20,
                     "startColumn": 4,
-                    "startOffset": 1893,
-                    "endColumn": 82,
-                    "endOffset": 1971
+                    "startOffset": 1881,
+                    "endColumn": 100,
+                    "endOffset": 1977
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
-                        "startOffset": 1893,
-                        "endColumn": 82,
-                        "endOffset": 1971
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 21,
-                    "startColumn": 4,
-                    "startOffset": 1976,
-                    "endColumn": 100,
-                    "endOffset": 2072
-                },
-                "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
-                    "position": {
-                        "startLine": 21,
-                        "startColumn": 4,
-                        "startOffset": 1976,
+                        "startOffset": 1881,
                         "endColumn": 100,
-                        "endOffset": 2072
+                        "endOffset": 1977
                     }
                 }
             }
         ]
     },
     {
-        "outputFile": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-az-rAZ\\values-az-rAZ.xml",
+        "outputFile": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-az-rAZ\\values-az-rAZ.xml",
         "map": [
             {
                 "to": {
                     "startLine": 2,
                     "startColumn": 4,
                     "startOffset": 55,
-                    "endColumn": 107,
-                    "endOffset": 158
+                    "endColumn": 97,
+                    "endOffset": 148
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
                         "startOffset": 55,
-                        "endColumn": 107,
-                        "endOffset": 158
+                        "endColumn": 97,
+                        "endOffset": 148
                     }
                 }
             },
@@ -410,18 +391,18 @@
                 "to": {
                     "startLine": 3,
                     "startColumn": 4,
-                    "startOffset": 163,
+                    "startOffset": 153,
                     "endColumn": 107,
-                    "endOffset": 266
+                    "endOffset": 256
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
-                        "startOffset": 163,
+                        "startOffset": 153,
                         "endColumn": 107,
-                        "endOffset": 266
+                        "endOffset": 256
                     }
                 }
             },
@@ -429,18 +410,18 @@
                 "to": {
                     "startLine": 4,
                     "startColumn": 4,
-                    "startOffset": 271,
+                    "startOffset": 261,
                     "endColumn": 122,
-                    "endOffset": 389
+                    "endOffset": 379
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 271,
+                        "startOffset": 261,
                         "endColumn": 122,
-                        "endOffset": 389
+                        "endOffset": 379
                     }
                 }
             },
@@ -448,18 +429,18 @@
                 "to": {
                     "startLine": 5,
                     "startColumn": 4,
-                    "startOffset": 394,
+                    "startOffset": 384,
                     "endColumn": 98,
-                    "endOffset": 488
+                    "endOffset": 478
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 394,
+                        "startOffset": 384,
                         "endColumn": 98,
-                        "endOffset": 488
+                        "endOffset": 478
                     }
                 }
             },
@@ -467,18 +448,18 @@
                 "to": {
                     "startLine": 6,
                     "startColumn": 4,
-                    "startOffset": 493,
-                    "endColumn": 111,
-                    "endOffset": 600
+                    "startOffset": 483,
+                    "endColumn": 109,
+                    "endOffset": 588
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 493,
-                        "endColumn": 111,
-                        "endOffset": 600
+                        "startOffset": 483,
+                        "endColumn": 109,
+                        "endOffset": 588
                     }
                 }
             },
@@ -486,18 +467,18 @@
                 "to": {
                     "startLine": 7,
                     "startColumn": 4,
-                    "startOffset": 605,
+                    "startOffset": 593,
                     "endColumn": 87,
-                    "endOffset": 688
+                    "endOffset": 676
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 605,
+                        "startOffset": 593,
                         "endColumn": 87,
-                        "endOffset": 688
+                        "endOffset": 676
                     }
                 }
             },
@@ -505,18 +486,18 @@
                 "to": {
                     "startLine": 8,
                     "startColumn": 4,
-                    "startOffset": 693,
+                    "startOffset": 681,
                     "endColumn": 106,
-                    "endOffset": 795
+                    "endOffset": 783
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 693,
+                        "startOffset": 681,
                         "endColumn": 106,
-                        "endOffset": 795
+                        "endOffset": 783
                     }
                 }
             },
@@ -524,18 +505,18 @@
                 "to": {
                     "startLine": 9,
                     "startColumn": 4,
-                    "startOffset": 800,
+                    "startOffset": 788,
                     "endColumn": 113,
-                    "endOffset": 909
+                    "endOffset": 897
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 800,
+                        "startOffset": 788,
                         "endColumn": 113,
-                        "endOffset": 909
+                        "endOffset": 897
                     }
                 }
             },
@@ -543,18 +524,18 @@
                 "to": {
                     "startLine": 10,
                     "startColumn": 4,
-                    "startOffset": 914,
+                    "startOffset": 902,
                     "endColumn": 80,
-                    "endOffset": 990
+                    "endOffset": 978
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
-                        "startOffset": 914,
+                        "startOffset": 902,
                         "endColumn": 80,
-                        "endOffset": 990
+                        "endOffset": 978
                     }
                 }
             },
@@ -562,18 +543,18 @@
                 "to": {
                     "startLine": 11,
                     "startColumn": 4,
-                    "startOffset": 995,
+                    "startOffset": 983,
                     "endColumn": 78,
-                    "endOffset": 1069
+                    "endOffset": 1057
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
-                        "startOffset": 995,
+                        "startOffset": 983,
                         "endColumn": 78,
-                        "endOffset": 1069
+                        "endOffset": 1057
                     }
                 }
             },
@@ -581,18 +562,18 @@
                 "to": {
                     "startLine": 12,
                     "startColumn": 4,
-                    "startOffset": 1074,
+                    "startOffset": 1062,
                     "endColumn": 84,
-                    "endOffset": 1154
+                    "endOffset": 1142
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
-                        "startOffset": 1074,
+                        "startOffset": 1062,
                         "endColumn": 84,
-                        "endOffset": 1154
+                        "endOffset": 1142
                     }
                 }
             },
@@ -600,18 +581,18 @@
                 "to": {
                     "startLine": 13,
                     "startColumn": 4,
-                    "startOffset": 1159,
+                    "startOffset": 1147,
                     "endColumn": 106,
-                    "endOffset": 1261
+                    "endOffset": 1249
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 1159,
+                        "startOffset": 1147,
                         "endColumn": 106,
-                        "endOffset": 1261
+                        "endOffset": 1249
                     }
                 }
             },
@@ -619,18 +600,18 @@
                 "to": {
                     "startLine": 14,
                     "startColumn": 4,
-                    "startOffset": 1266,
+                    "startOffset": 1254,
                     "endColumn": 106,
-                    "endOffset": 1368
+                    "endOffset": 1356
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 1266,
+                        "startOffset": 1254,
                         "endColumn": 106,
-                        "endOffset": 1368
+                        "endOffset": 1356
                     }
                 }
             },
@@ -638,18 +619,18 @@
                 "to": {
                     "startLine": 15,
                     "startColumn": 4,
-                    "startOffset": 1373,
+                    "startOffset": 1361,
                     "endColumn": 99,
-                    "endOffset": 1468
+                    "endOffset": 1456
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
-                        "startOffset": 1373,
+                        "startOffset": 1361,
                         "endColumn": 99,
-                        "endOffset": 1468
+                        "endOffset": 1456
                     }
                 }
             },
@@ -657,18 +638,18 @@
                 "to": {
                     "startLine": 16,
                     "startColumn": 4,
-                    "startOffset": 1473,
+                    "startOffset": 1461,
                     "endColumn": 108,
-                    "endOffset": 1577
+                    "endOffset": 1565
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
-                        "startOffset": 1473,
+                        "startOffset": 1461,
                         "endColumn": 108,
-                        "endOffset": 1577
+                        "endOffset": 1565
                     }
                 }
             },
@@ -676,18 +657,18 @@
                 "to": {
                     "startLine": 17,
                     "startColumn": 4,
-                    "startOffset": 1582,
+                    "startOffset": 1570,
                     "endColumn": 103,
-                    "endOffset": 1681
+                    "endOffset": 1669
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
-                        "startOffset": 1582,
+                        "startOffset": 1570,
                         "endColumn": 103,
-                        "endOffset": 1681
+                        "endOffset": 1669
                     }
                 }
             },
@@ -695,18 +676,18 @@
                 "to": {
                     "startLine": 18,
                     "startColumn": 4,
-                    "startOffset": 1686,
+                    "startOffset": 1674,
                     "endColumn": 109,
-                    "endOffset": 1791
+                    "endOffset": 1779
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
-                        "startOffset": 1686,
+                        "startOffset": 1674,
                         "endColumn": 109,
-                        "endOffset": 1791
+                        "endOffset": 1779
                     }
                 }
             },
@@ -714,18 +695,18 @@
                 "to": {
                     "startLine": 19,
                     "startColumn": 4,
-                    "startOffset": 1796,
+                    "startOffset": 1784,
                     "endColumn": 96,
-                    "endOffset": 1888
+                    "endOffset": 1876
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
-                        "startOffset": 1796,
+                        "startOffset": 1784,
                         "endColumn": 96,
-                        "endOffset": 1888
+                        "endOffset": 1876
                     }
                 }
             },
@@ -733,44 +714,25 @@
                 "to": {
                     "startLine": 20,
                     "startColumn": 4,
-                    "startOffset": 1893,
-                    "endColumn": 82,
-                    "endOffset": 1971
+                    "startOffset": 1881,
+                    "endColumn": 100,
+                    "endOffset": 1977
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
-                        "startOffset": 1893,
-                        "endColumn": 82,
-                        "endOffset": 1971
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 21,
-                    "startColumn": 4,
-                    "startOffset": 1976,
-                    "endColumn": 100,
-                    "endOffset": 2072
-                },
-                "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-az-rAZ\\values-az-rAZ.xml",
-                    "position": {
-                        "startLine": 21,
-                        "startColumn": 4,
-                        "startOffset": 1976,
+                        "startOffset": 1881,
                         "endColumn": 100,
-                        "endOffset": 2072
+                        "endOffset": 1977
                     }
                 }
             }
         ]
     },
     {
-        "outputFile": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/incremental/mergeDebugResources/merged.dir/values-az-rAZ/values-az-rAZ.xml",
+        "outputFile": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-az-rAZ\\values-az-rAZ.xml",
         "map": [
             {
                 "to": {
@@ -781,7 +743,7 @@
                     "endOffset": 158
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -800,7 +762,7 @@
                     "endOffset": 266
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -819,7 +781,7 @@
                     "endOffset": 389
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -838,7 +800,7 @@
                     "endOffset": 488
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -857,7 +819,7 @@
                     "endOffset": 600
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -876,7 +838,7 @@
                     "endOffset": 688
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -895,7 +857,7 @@
                     "endOffset": 795
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -914,7 +876,7 @@
                     "endOffset": 909
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -933,7 +895,7 @@
                     "endOffset": 990
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -952,7 +914,7 @@
                     "endOffset": 1069
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -971,7 +933,7 @@
                     "endOffset": 1154
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
@@ -990,7 +952,7 @@
                     "endOffset": 1261
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -1009,7 +971,7 @@
                     "endOffset": 1368
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -1028,7 +990,7 @@
                     "endOffset": 1468
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
@@ -1047,7 +1009,7 @@
                     "endOffset": 1577
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
@@ -1066,7 +1028,7 @@
                     "endOffset": 1681
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
@@ -1085,7 +1047,7 @@
                     "endOffset": 1791
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
@@ -1104,7 +1066,7 @@
                     "endOffset": 1888
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
@@ -1123,7 +1085,7 @@
                     "endOffset": 1971
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -1142,7 +1104,7 @@
                     "endOffset": 2072
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-az-rAZ/values-az-rAZ.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-az-rAZ\\values-az-rAZ.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 4,

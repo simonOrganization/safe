@@ -1,20 +1,14 @@
 package com.lchtime.safetyexpress.ui.vip.fragment;
 
-import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
 import com.lchtime.safetyexpress.adapter.MyConllectedVideoAdapter;
 import com.lchtime.safetyexpress.bean.Constants;
-import com.lchtime.safetyexpress.bean.HomeNewsRecommendBean;
 import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.bean.res.NewsListRes;
-import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
-import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.vip.MyConllected;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;

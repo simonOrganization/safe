@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/height_top_bar"-->
+        <!--android:background="@color/top_bar_normal_bg"-->
+        <!--android:gravity="center_vertical" >-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="45dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@drawable/ease_common_tab_bg"-->
+            <!--android:onClick="back" >-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_marginLeft="9dp"-->
+                <!--android:scaleType="centerInside"-->
+                <!--android:src="@drawable/backs" />-->
+        <!--</LinearLayout>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:text="@string/The_new_group_chat"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:textSize="20sp" />-->
+
+        <!--<Button-->
+            <!--android:layout_width="60dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:background="@drawable/ease_common_tab_bg"-->
+            <!--android:onClick="save"-->
+            <!--android:text="@string/button_save"-->
+            <!--android:textColor="#fff"-->
+            <!--android:textSize="18sp" />-->
+    <!--</RelativeLayout>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <include layout="@layout/title"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm020"
+            android:background="@color/page_color"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <!--<EditText-->
+                    <!--android:id="@+id/edit_group_name"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="39dp"-->
+                    <!--android:layout_margin="10dp"-->
+                    <!--android:background="@drawable/em_button_normal_shape"-->
+                    <!--android:hint="@string/group_name"-->
+                    <!--android:paddingLeft="5dp"-->
+                    <!--android:singleLine="true"-->
+                    <!--android:textSize="18sp" />-->
+                <com.hyphenate.easeui.widget.EaseExpandGridView
+                    android:id="@+id/gridview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dm040"
+                    android:layout_marginRight="@dimen/dm040"
+                    android:layout_marginTop="@dimen/dm030"
+                    android:layout_marginBottom="@dimen/dm030"
+                    android:background="@color/white"
+                    android:gravity="start"
+                    android:horizontalSpacing="@dimen/dm030"
+                    android:listSelector="@android:color/transparent"
+                    android:numColumns="4"
+                    android:verticalSpacing="@dimen/dm030"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm020"
+                    android:background="@color/page_color"/>
+
+                <RelativeLayout
+                    android:id="@+id/photo_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm100">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="群头像"
+                        android:textColor="@color/title_333"
+                        android:layout_margin="@dimen/dm020"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/dm030"
+                        />
+                    <com.lchtime.safetyexpress.views.CircleImageView
+                        android:id="@+id/civ_photo"
+                        android:layout_width="@dimen/dm070"
+                        android:layout_height="@dimen/dm070"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/dm020"
+                        android:src="@drawable/qun_list"
+                        android:layout_centerVertical="true"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dm001"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_marginRight="@dimen/dm020"
+                        android:background="@color/line"
+                        android:layout_alignParentBottom="true"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/name_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm100">
+                    <TextView
+                        android:id="@+id/name_title"
+                        android:textColor="@color/title_333"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="群聊名称"
+                        android:layout_margin="@dimen/dm020"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/dm030"
+                        />
+                    <ImageView
+                        android:id="@+id/name_indicater"
+                        android:layout_width="@dimen/dm020"
+                        android:layout_height="@dimen/dm020"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/dm020"
+                        android:src="@drawable/right_indicator"
+                        android:layout_centerVertical="true"/>
+
+                    <TextView
+                        android:id="@+id/name_content"
+                        android:layout_toRightOf="@id/name_title"
+                        android:layout_toLeftOf="@id/name_indicater"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dm010"
+                        android:gravity="right"
+                        android:textSize="@dimen/dm030"
+                        android:textColor="@color/title_999"
+                        android:singleLine="true"
+                        android:layout_centerVertical="true"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dm001"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_marginRight="@dimen/dm020"
+                        android:background="@color/line"
+                        android:layout_alignParentBottom="true"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/invite_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm100">
+                    <TextView
+                        android:id="@+id/invite_title"
+                        android:textColor="@color/title_333"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="群介绍"
+                        android:layout_margin="@dimen/dm020"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/dm030"
+                        />
+                    <ImageView
+                        android:id="@+id/invite_indicater"
+                        android:layout_width="@dimen/dm020"
+                        android:layout_height="@dimen/dm020"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/dm020"
+                        android:src="@drawable/right_indicator"
+                        android:layout_centerVertical="true"/>
+
+                    <TextView
+                        android:id="@+id/invite_content"
+                        android:layout_toRightOf="@id/invite_title"
+                        android:layout_toLeftOf="@id/invite_indicater"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dm010"
+                        android:gravity="right"
+                        android:textSize="@dimen/dm030"
+                        android:textColor="@color/title_999"
+                        android:singleLine="true"
+                        android:layout_centerVertical="true"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dm001"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_marginRight="@dimen/dm020"
+                        android:background="@color/line"
+                        android:layout_alignParentBottom="true"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/hy_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm100">
+                    <TextView
+                        android:id="@+id/hy_title"
+                        android:textColor="@color/title_333"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="所属行业"
+                        android:layout_margin="@dimen/dm020"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/dm030"
+                        />
+                    <ImageView
+                        android:id="@+id/hy_indicater"
+                        android:layout_width="@dimen/dm020"
+                        android:layout_height="@dimen/dm020"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/dm020"
+                        android:src="@drawable/right_indicator"
+                        android:layout_centerVertical="true"/>
+
+                    <TextView
+                        android:id="@+id/hy_content"
+                        android:layout_toRightOf="@id/hy_title"
+                        android:layout_toLeftOf="@id/hy_indicater"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dm010"
+                        android:gravity="right"
+                        android:textSize="@dimen/dm030"
+                        android:textColor="@color/title_999"
+                        android:singleLine="true"
+                        android:layout_centerVertical="true"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dm001"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_marginRight="@dimen/dm020"
+                        android:background="@color/line"
+                        android:layout_alignParentBottom="true"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/addr_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm100">
+                    <TextView
+                        android:id="@+id/addr_title"
+                        android:textColor="@color/title_333"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="所属地区"
+                        android:layout_margin="@dimen/dm020"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/dm030"
+                        />
+                    <ImageView
+                        android:id="@+id/addr_indicater"
+                        android:layout_width="@dimen/dm020"
+                        android:layout_height="@dimen/dm020"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/dm020"
+                        android:src="@drawable/right_indicator"
+                        android:layout_centerVertical="true"/>
+
+                    <TextView
+                        android:id="@+id/addr_content"
+                        android:layout_toRightOf="@id/addr_title"
+                        android:layout_toLeftOf="@id/addr_indicater"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dm010"
+                        android:gravity="right"
+                        android:textSize="@dimen/dm030"
+                        android:textColor="@color/title_999"
+                        android:singleLine="true"
+                        android:layout_centerVertical="true"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dm001"
+                        android:background="@color/line"
+                        android:layout_alignParentBottom="true"/>
+
+                </RelativeLayout>
+
+
+
+                <!--<EditText-->
+                    <!--android:id="@+id/edit_group_introduction"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:background="@drawable/em_button_normal_shape"-->
+                    <!--android:gravity="top"-->
+                    <!--android:hint="@string/Group_chat_profile"-->
+                    <!--android:lines="5"-->
+                    <!--android:paddingLeft="5dp"-->
+                    <!--android:paddingTop="5dp"-->
+                    <!--android:textSize="18sp" />-->
+
+
+
+                <!--<LinearLayout -->
+                    <!--android:layout_width="match_parent"-->
+                   <!--android:layout_height="39dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:background="@drawable/em_button_normal_shape"-->
+                    <!--&gt;-->
+                    <!--<TextView -->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/Whether_the_public"-->
+                        <!--android:textColor="#333"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:textSize="18sp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--/>-->
+                    <!---->
+                    <!--<CheckBox -->
+                        <!--android:id="@+id/cb_public"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="0"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:button="@drawable/em_checkbox_bg_selector"-->
+                        <!--/>-->
+                    <!---->
+                <!--</LinearLayout>-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm100"
+                    >
+                    <TextView
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="群组权限"
+                        android:textColor="@color/title_333"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/dm030"
+
+                        />
+                    <CheckBox
+                        android:id="@+id/cb_public"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dm300"
+                        android:layout_width="@dimen/dm080"
+                        android:layout_height="@dimen/dm040"
+                        android:background="@drawable/sel_toggle"
+                        android:button="@null" />
+                    <TextView
+                        android:id="@+id/private_text"
+                        android:layout_toRightOf="@id/cb_public"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/title_999"
+                        android:text="私有群"/>
+
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm100"
+                    >
+                    <TextView
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="成员邀请权限"
+                        android:textColor="@color/title_333"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/dm030"
+
+                        />
+                    <CheckBox
+                        android:id="@+id/cb_member_inviter"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dm300"
+                        android:layout_width="@dimen/dm080"
+                        android:layout_height="@dimen/dm040"
+                        android:background="@drawable/sel_toggle"
+                        android:button="@null" />
+                    <TextView
+                        android:id="@+id/invite_text"
+                        android:layout_toRightOf="@id/cb_member_inviter"
+                        android:layout_marginLeft="@dimen/dm020"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/title_999"
+                        android:maxLines="2"
+                        android:layout_marginRight="@dimen/dm020"
+                        android:text="不允许群成员邀请其他人"/>
+
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_save"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dm090"
+                    android:layout_marginLeft="@dimen/dm070"
+                    android:layout_marginRight="@dimen/dm070"
+                    android:layout_marginTop="@dimen/dm070"
+                    android:layout_marginBottom="@dimen/dm070"
+                    android:background="@drawable/shape_bg_pink"
+                    android:gravity="center"
+                    android:text="保存"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dm028" />
+
+                <!--<LinearLayout -->
+                    <!--android:id="@+id/ll_open_invite"-->
+                    <!--android:layout_width="match_parent"-->
+                   <!--android:layout_height="39dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:background="@drawable/em_button_normal_shape"-->
+                    <!--&gt;-->
+                    <!--<TextView -->
+                        <!--android:id="@+id/second_desc"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/Open_group_members_invited"-->
+                        <!--android:textColor="#333"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:textSize="18sp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--/>-->
+                    <!---->
+                    <!--<CheckBox -->
+                        <!--android:id="@+id/cb_member_inviter"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="0"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:button="@drawable/em_checkbox_bg_selector"-->
+                        <!--/>-->
+                    <!---->
+                <!--</LinearLayout>-->
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+    <include android:id="@+id/loading" layout="@layout/pager_loading" android:visibility="gone"/>
+</RelativeLayout>

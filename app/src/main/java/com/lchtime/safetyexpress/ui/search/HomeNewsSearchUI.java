@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -31,8 +30,10 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import java.util.HashMap;
 import java.util.Map;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
 /**
- * 新闻 搜索
+ * 搜索界面
  * Created by user on 2017/4/17.
  */
 @ContentView(R.layout.home_news_search_ui)
@@ -373,6 +374,20 @@ public class HomeNewsSearchUI extends BaseUI {
     private String key = "";
     public String getKey(){
         return key;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            boolean flag = JCVideoPlayer.backPress();
+            if (!flag){
+                JCVideoPlayer.releaseAllVideos();
+                finish();
+
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

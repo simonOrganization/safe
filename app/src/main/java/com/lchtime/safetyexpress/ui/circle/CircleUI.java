@@ -3,7 +3,6 @@ package com.lchtime.safetyexpress.ui.circle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -16,11 +15,16 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.gson.Gson;
+import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.CircleAdapter;
 import com.lchtime.safetyexpress.adapter.CircleHeaderAndFooterWrapper;
 import com.lchtime.safetyexpress.bean.CircleItemUpBean;
+import com.lchtime.safetyexpress.bean.CircleRedPointBean;
 import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.FirstPic;
 import com.lchtime.safetyexpress.bean.HomeBannerBean;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.PostBean;
@@ -28,7 +32,10 @@ import com.lchtime.safetyexpress.bean.ProfessionBean;
 import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
+import com.lchtime.safetyexpress.ui.TabUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
+import com.lchtime.safetyexpress.ui.home.GetMoneyActivity;
+import com.lchtime.safetyexpress.ui.home.protocal.PictureAdvantage;
 import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
 import com.lchtime.safetyexpress.ui.vip.SelectCityActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
@@ -39,15 +46,11 @@ import com.lchtime.safetyexpress.views.SpinerPopWindow;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.mzhy.http.okhttp.OkHttpUtils;
-import com.mzhy.http.okhttp.callback.StringCallback;
 import com.sivin.Banner;
 import com.sivin.BannerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import okhttp3.Call;
 
 /**圈子
  * Created by user on 2017/4/14.
@@ -75,6 +78,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     ImageView hy_indicator;
     ImageView gw_indicator;
     ImageView addr_indicator;
+    TextView unread_msg_number;
 
 
     private LinearLayout circle_work1;
@@ -129,6 +133,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRedPoint(false);
     }
 
     @Override
@@ -138,6 +143,30 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
             refreshData("1");
             InitInfo.circleRefresh = false;
         }
+
+        getNotice();
+    }
+
+    private void getNotice() {
+        if (TextUtils.isEmpty(userid)){
+            userid = SpTools.getString(this,Constants.userId,"");
+        }
+        protocal.getDyIsShowRedPoint(userid, new CircleProtocal.NormalListener() {
+            @Override
+            public void normalResponse(Object response) {
+                if (response == null){
+                    CommonUtils.toastMessage("请求网络数据失败，请刷新重试");
+                    return;
+                }
+
+                CircleRedPointBean bean = (CircleRedPointBean) response;
+                if ("0".equals(bean.newqz)){
+                    setRedPoint(false);
+                }else {
+                    setRedPoint(true);
+                }
+            }
+        });
     }
 
     @Override
@@ -147,17 +176,19 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         userid = SpTools.getString(this,Constants.userId,"");
 
         //轮播图
-        BannerAdapter adapter = new BannerAdapter<HomeBannerBean>(mDatas) {
+        BannerAdapter adapter = new BannerAdapter<FirstPic.LunboBean>(lunbo) {
             @Override
-            protected void bindTips(TextView tv, HomeBannerBean homeBannerBean) {
-                tv.setText("");
+            protected void bindTips(TextView tv, FirstPic.LunboBean homeBannerBean) {
+                tv.setText(homeBannerBean.url);
             }
 
             @Override
-            public void bindImage(ImageView imageView, HomeBannerBean homeBannerBean) {
+            public void bindImage(ImageView imageView, FirstPic.LunboBean homeBannerBean) {
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                 Glide.with(CircleUI.this)
-                        .load(homeBannerBean.getImgurl())
+                        .load(homeBannerBean.img)
                         .placeholder(R.drawable.home_banner)
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                         .error(R.drawable.home_banner)
                         .into(imageView);
             }
@@ -166,7 +197,16 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         sb_home_banner.setOnBannerItemClickListener(new Banner.OnBannerItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                makeText("广告" + position);
+//                makeText("广告" + position);
+                if (position == 0){
+                    Intent intent = new Intent(CircleUI.this,GetMoneyActivity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(CircleUI.this,H5DetailUI.class);
+                    intent.putExtra("type","url");
+                    intent.putExtra("url",lunbo.get(position).url);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -215,6 +255,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
             public void onRefresh() {
                 page = 1;
                 refreshData("1");
+                getNotice();
             }
 
             @Override
@@ -237,7 +278,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     }
 
     private void initView() {
-
+        unread_msg_number = (TextView) findViewById(R.id.unread_msg_number);
         circle_rc = (RecyclerView) pullLoadMoreRecyclerView.findViewById(R.id.home_new_fragment_rc);
 
         headerView = View.inflate(this, R.layout.circle_header,null);
@@ -366,42 +407,37 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     /**
      * 获取广告
      */
+
+    private PictureAdvantage picProtocal = new PictureAdvantage();
+    private List<FirstPic.LunboBean> lunbo = new ArrayList<>();
+    private Gson gson = new Gson();
     private void getAdvData() {
         //测试
-//        showProgressDialog();
-        OkHttpUtils.post().url("http://www.baidu.com")
-                .build().execute(new StringCallback() {
+        String ub_id = SpTools.getString(this,Constants.userId,"");
+        picProtocal.getFirstPic(ub_id, new PictureAdvantage.HotNewsListener() {
             @Override
-            public void onError(Call call, Exception e, int i) {
-//                dismissProgressDialog();
-                setTextData();
-            }
+            public void hotNewsResponse(String respose) {
+                if (respose == null){
+                    CommonUtils.toastMessage("请检查网络，获取推荐图片失败！");
+                    return;
+                }
+                FirstPic bean = gson.fromJson(respose,FirstPic.class);
 
-            @Override
-            public void onResponse(String s, int i) {
-                setTextData();
-//                dismissProgressDialog();
+                if ("10".equals(bean.result.code)){
+                    lunbo.clear();
+                    lunbo.addAll(bean.lunbo);
+                    sb_home_banner.notifiDataHasChanged();
+                }else {
+                    CommonUtils.toastMessage("获取推荐图片失败，请刷新重试！");
+                }
+
+
             }
         });
+
     }
 
-    private void setTextData() {
-        mDatas.clear();
-        HomeBannerBean homeBannerBean = null;
-        homeBannerBean = new HomeBannerBean();
-        homeBannerBean.setImgurl("");
-        mDatas.add(homeBannerBean);
-        homeBannerBean = new HomeBannerBean();
-        homeBannerBean.setImgurl("");
-        mDatas.add(homeBannerBean);
-        homeBannerBean = new HomeBannerBean();
-        homeBannerBean.setImgurl("");
-        mDatas.add(homeBannerBean);
-        homeBannerBean = new HomeBannerBean();
-        homeBannerBean.setImgurl("");
-        mDatas.add(homeBannerBean);
-        sb_home_banner.notifiDataHasChanged();
-    }
+
     /**
      * 搜索
      * @param view
@@ -649,6 +685,17 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
 
                 }
             });
+        }
+    }
+
+
+    public void setRedPoint(boolean isShow){
+        if (isShow){
+            unread_msg_number.setVisibility(View.VISIBLE);
+            TabUI.getTabUI().setCircleRedPoint(true);
+        }else {
+            unread_msg_number.setVisibility(View.GONE);
+            TabUI.getTabUI().setCircleRedPoint(false);
         }
     }
 

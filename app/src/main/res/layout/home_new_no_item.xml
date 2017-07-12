@@ -19,9 +19,9 @@
             android:layout_gravity="center_vertical|center_horizontal"
             android:gravity="center"
             android:button="@null"
-            android:visibility="visible"
+            android:visibility="gone"
             android:background="@drawable/rb_delete"
-            android:layout_marginRight="@dimen/dm020" />
+            android:layout_marginLeft="@dimen/dm020"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                     android:id="@+id/home_new_no_item_image"
                     android:layout_width="@dimen/dm230"
                     android:layout_height="@dimen/dm160"
-                    android:background="@drawable/home_test_img6"
+                    android:background="@drawable/home_banner"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"/>
                 <View

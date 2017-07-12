@@ -1,7 +1,6 @@
 apply plugin: 'android-library'
 
 dependencies {
-    testCompile 'junit:junit:4.12'
     compile 'com.android.support:support-v4:19.0.0'
 }
 

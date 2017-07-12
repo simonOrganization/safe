@@ -10,7 +10,7 @@ import android.view.ViewConfiguration;
  * Created by android-cp on 2017/5/31.
  */
 
-class MySwipeRefreshLayout extends SwipeRefreshLayout {
+public class MySwipeRefreshLayout extends SwipeRefreshLayout {
 //    private boolean mIsVpDragger;
     private final int mTouchSlop;
     private float startY;

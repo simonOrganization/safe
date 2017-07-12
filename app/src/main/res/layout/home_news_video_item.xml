@@ -20,7 +20,7 @@
             android:button="@null"
             android:visibility="visible"
             android:background="@drawable/rb_delete"
-            android:layout_marginRight="@dimen/dm020" />
+            android:layout_marginLeft="@dimen/dm020" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
                 android:layout_width="@dimen/dm400"
                 android:layout_height="@dimen/dm200"
                 android:layout_marginTop="@dimen/dm020"
-                android:background="@drawable/vip_test_icon"
+                android:background="@color/grey"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"/>
                 <LinearLayout

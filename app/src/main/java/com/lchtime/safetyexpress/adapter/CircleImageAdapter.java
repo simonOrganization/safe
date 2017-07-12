@@ -6,16 +6,11 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.bean.CircleTwoBean;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.squareup.picasso.Picasso;
 
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -47,11 +42,21 @@ public class CircleImageAdapter extends RecyclerView.Adapter {
         CircleImageHolder holder1 = (CircleImageHolder) holder;
 //        ImageLoader.getInstance().displayImage(circleTwoList.get(position),holder1.circle_image,Option);
         if(!TextUtils.isEmpty(circleTwoList.get(position))){
-            Picasso.with(context).load(circleTwoList.get(position)).fit().into(holder1.circle_image);
+            Picasso.with(context).load(circleTwoList.get(position)).into(holder1.circle_image);
         }else {
-            Picasso.with(context).load(R.drawable.home_banner).fit().into(holder1.circle_image);
+            Picasso.with(context).load(R.drawable.home_banner).into(holder1.circle_image);
         }
+
     }
+
+
+
+//    public void setPicClick(String newsId,String type,String qc_id){
+//        Intent intent = new Intent(context, H5DetailUI.class);
+//        intent.putExtra("newsId",qc_id);
+//        intent.putExtra("type","circle");
+//        context.startActivity(intent);
+//    }
 
     @Override
     public int getItemCount() {

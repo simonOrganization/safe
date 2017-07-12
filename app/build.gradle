@@ -1,83 +1,98 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-
 android {
-//    signingConfigs {
-//        safety {
+    signingConfigs {
+        safety {
+            keyAlias 'safety'
+            keyPassword 'lchtime'
+            storeFile file('D:/work/安全快车最新/safety.jks')
+            storePassword 'lchtime'
+        }
+//        debug {
 //            keyAlias 'safety'
 //            keyPassword 'lchtime'
 //            storeFile file('C:/签名/safety.jks')
 //            storePassword 'lchtime'
+//
+//        }
+//    signingConfigs {
+//        config {
+//            keyAlias 'safety'
+//            keyPassword 'lchtime'
+//            storeFile file('/Users/cp/a我的临时文件/sign/safety.jks')
+//            storePassword 'lchtime'
 //        }
 //    }
-    compileSdkVersion 24
-    buildToolsVersion "24.0.3"
-    defaultConfig {
-        applicationId "com.lchtime.safetyexpress"
-        minSdkVersion 16
-        targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
+        compileSdkVersion 25
+        buildToolsVersion "25.0.2"
+        defaultConfig {
+            applicationId "com.lchtime.safetyexpress"
+            minSdkVersion 16
+            targetSdkVersion 24
+            versionCode 1
+            versionName "1.0"
+            testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 //        signingConfig signingConfigs.safety
-    }
-
-    dexOptions {
-        javaMaxHeapSize "4g"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            multiDexEnabled true
+            manifestPlaceholders = [
+                    GETUI_APP_ID    : "PabE89kS6C7X6SKHL5VDX7",
+                    GETUI_APP_KEY   : "uQSlvoaK2G6DXbrnstZtM6",
+                    GETUI_APP_SECRET: "6JfaGUdsHw5MKFgvOgLa86"
+            ]
+            signingConfig signingConfigs.safety
         }
-//        debug {
-//            signingConfig signingConfigs.safety
-//        }
-    }
-    productFlavors {
-    }
-
-    android{
-        lintOptions {
-            disable "ResourceType"
+        buildTypes {
+            release {
+                minifyEnabled true
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                debuggable true
+                jniDebuggable false
+                signingConfig signingConfigs.safety
+            }
+            debug {
+                signingConfig signingConfigs.safety
+            }
         }
-
-    }
-
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
+        productFlavors {
         }
     }
-}
-
-ext {
-    v_picasso = '2.5.3-SNAPSHOT'
-}
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile project(':mylibrary')
-    compile 'com.xiwenhec:banner:1.0.2'
-    compile 'com.zhy:okhttputils:2.6.2'
-    compile 'com.android.support:recyclerview-v7:25.0.1'
-    compile project(':PagerSlidingTabStrip')
-    compile 'com.contrarywind:Android-PickerView:3.2.4'
-    compile 'com.jakewharton:butterknife:8.5.1'
-    apt 'com.jakewharton:butterknife-compiler:8.5.1'
-    compile 'com.github.LuckSiege.PictureSelector:picture_library:v1.3.1'
-    compile 'com.android.support:design:25.2.0'
+    ext {
+        v_picasso = '2.5.3-SNAPSHOT'
+    }
+    dependencies {
+        compile fileTree(include: ['*.jar'], dir: 'libs')
+        testCompile 'junit:junit:4.12'
+        compile project(':mylibrary')
+        compile "com.squareup.picasso:picasso:$v_picasso"
+        compile 'com.xiwenhec:banner:1.0.2'
+        compile 'com.zhy:okhttputils:2.6.2'
+        compile project(':PagerSlidingTabStrip')
+        compile 'com.contrarywind:Android-PickerView:3.2.4'
+        compile 'com.jakewharton:butterknife:8.5.1'
+        apt 'com.jakewharton:butterknife-compiler:8.5.1'
+        compile 'com.github.LuckSiege.PictureSelector:picture_library:v1.3.1'
+        compile 'com.android.support:design:25.1.1'
         compile 'com.google.code.gson:gson:2.7'
-    //    compile files('libs/picasso-2.5.2.jar')
-    compile 'org.kymjs.kjframe:kjframe:2.6'
-    compile 'com.youth.banner:banner:1.4.9'
-    //最新版本
-    compile project(':recordlib')
-    compile project(':threeLoginFrame')
-    compile project(':jcvideoplayer-lib')
-    compile "com.squareup.picasso:picasso:$v_picasso"
-    compile 'com.parse:parse-android:1.13.1'
-    compile project(':easeui')
+        compile 'org.kymjs.kjframe:kjframe:2.6'
+        //最新版本
+        compile project(':recordlib')
+        compile project(':threeLoginFrame')
+        compile project(':jcvideoplayer-lib')
+        compile project(':easeui')
+        compile files('libs/parse-android-1.13.0.jar')
+        compile files('libs/bolts-tasks-1.4.0.jar')
+        compile files('libs/GetuiSDK2.10.2.0.jar')
+        compile 'com.timehop.stickyheadersrecyclerview:library:0.4.3@aar'
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.safety
+        }
+        release {
+            signingConfig signingConfigs.safety
+        }
+    }
+}
+
+dependencies {
 }

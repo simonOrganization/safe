@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -29,16 +30,13 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 
 /**
- * Created by yxn on 2017/4/21.
+ * Created by yxn on 2017/4/21.    圈子右上角订阅界面
  */
 @ContentView(R.layout.activity_subscribe)
 public class SubscribActivity extends BaseUI {
+
 
     RecyclerView circle_subscribe_rc;
     //订阅页面的圈子布局
@@ -57,6 +55,9 @@ public class SubscribActivity extends BaseUI {
     RelativeLayout error;
     @ViewInject(R.id.success)
     LinearLayout success;
+
+    @ViewInject(R.id.error_btn_retry)
+    Button error_btn_retry;
 
 
     private CircleSubscribAdapter adapter;
@@ -265,6 +266,14 @@ public class SubscribActivity extends BaseUI {
                 }
                 isLoadMore = true;
                 refreshData(page + "");
+            }
+        });
+
+        error_btn_retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setLoadingVisiblity();
+                prepareData();
             }
         });
     }

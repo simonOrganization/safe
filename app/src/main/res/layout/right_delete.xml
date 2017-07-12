@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="@dimen/dm177"
+              android:layout_height="match_parent"
+              android:layout_gravity="center"
+              android:layout_marginLeft="@dimen/dm020"
+              android:gravity="center">
+    <!-- android:background="@drawable/holder_bg" -->
+
+    <TextView
+        android:id="@+id/Delete"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/red"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dm037"
+        android:text="删除"
+        android:gravity="center" />
+
+</LinearLayout>

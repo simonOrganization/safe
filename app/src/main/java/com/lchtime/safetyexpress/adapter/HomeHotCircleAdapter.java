@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
@@ -15,6 +17,7 @@ import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.HotCircleBean;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
+import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
@@ -69,6 +72,7 @@ public class HomeHotCircleAdapter extends BaseAdapter {
             holder.raiv_icon = (ImageView) convertView.findViewById(R.id.raiv_hotcircle_icon);
             holder.tv_name = (TextView) convertView.findViewById(R.id.tv_hotcircle_name);
             holder.iv_subscribe = (CheckBox) convertView.findViewById(R.id.iv_hotcircle_subscribe);
+            holder.hot_circle_item = (LinearLayout) convertView.findViewById(R.id.hot_circle_item);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -94,6 +98,10 @@ public class HomeHotCircleAdapter extends BaseAdapter {
                     protocal.changeSubscribe(userid, list.get(position).ud_ub_id, type , new CircleProtocal.CircleListener() {
                         @Override
                         public void circleResponse(CircleBean response) {
+                            if (response == null){
+                                notifyDataSetChanged();
+                                return;
+                            }
                             if ("10".equals(response.result.code)){
                                 list.get(position).checked =  !list.get(position).checked;
                                 InitInfo.circleRefresh = true;
@@ -108,6 +116,22 @@ public class HomeHotCircleAdapter extends BaseAdapter {
             }
         });
 
+        holder.hot_circle_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userid = SpTools.getString(context, Constants.userId,"");
+                if (TextUtils.isEmpty(userid)){
+                    CommonUtils.toastMessage("请登陆！！！");
+                    return;
+                }
+                Intent intent = new Intent(context, SingleInfoUI.class);
+                intent.putExtra("uid",list.get(position).ud_ub_id);
+                //是否订阅  热门圈子肯定都是没有订阅的
+                context.startActivity(intent);
+            }
+        });
+
+
         return convertView;
     }
 
@@ -115,5 +139,6 @@ public class HomeHotCircleAdapter extends BaseAdapter {
         ImageView raiv_icon;
         TextView tv_name;
         CheckBox iv_subscribe;
+        LinearLayout hot_circle_item;
     }
 }

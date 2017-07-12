@@ -1,35 +1,26 @@
 package com.lchtime.safetyexpress.ui.circle;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.drawable.ColorDrawable;
 import android.hardware.Camera;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-import com.dalong.recordlib.RecordVideoActivity;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.ui.vip.VipInfoUI;
 
 /**
- * 视频播放
+ * 视频播放   播放小视频的界面
  */
 public class VideoPlayActivity extends Activity implements View.OnClickListener{
     public static final String TAG = VideoPlayActivity.class.getSimpleName();

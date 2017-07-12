@@ -8,10 +8,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.igexin.sdk.PushManager;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
-
-import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.LoginResult;
@@ -19,20 +18,16 @@ import com.lchtime.safetyexpress.bean.PostBean;
 import com.lchtime.safetyexpress.bean.ProfessionBean;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.VipInfoBean;
-import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
 import okhttp3.Call;
 
-import static android.R.attr.key;
-import static android.R.attr.value;
+import static com.lchtime.safetyexpress.bean.Constants.password;
 
 /**
  * @author Admin
@@ -59,7 +54,7 @@ public class LoginInternetRequest {
 /**
  *  登录
  *  */
-    public static void login(String phonenumber, String password, ForResultListener listener){
+    public static void login(String phonenumber, final String password, ForResultListener listener){
         mListener = listener;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
@@ -77,11 +72,11 @@ public class LoginInternetRequest {
         }
 
         if(!TextUtils.isEmpty(phonenumber)){
-            if(!CommonUtils.isMobilePhone(phonenumber)){
-                CommonUtils.toastMessage("您输入的手机号有误");
-                mListener.onResponseMessage("");
-                return ;
-            }
+//            if(!CommonUtils.isMobilePhone(phonenumber)){
+//                CommonUtils.toastMessage("您输入的手机号有误");
+//                mListener.onResponseMessage("");
+//                return ;
+//            }
         }
         String url = context.getResources().getString(R.string.service_host_address)
                 .concat(context.getResources().getString(R.string.getLogin));
@@ -97,11 +92,11 @@ public class LoginInternetRequest {
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                Log.d("0000---------------0000",e.getMessage());
+//                Log.d("0000---------------0000",e.getMessage());
                 SpTools.setString(MyApplication.getContext(), Constants.userId, null);//存储用户的ub_id
                 SpTools.setString(MyApplication.getContext(), Constants.phoneNum, null);//存储用户的手机号码
-                SpTools.setString(MyApplication.getContext(), Constants.password, null);//存储用户的密码
-                mListener.onResponseMessage("失败");
+                SpTools.setString(MyApplication.getContext(), password, null);//存储用户的密码
+                mListener.onResponseMessage("");
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
 
@@ -112,12 +107,75 @@ public class LoginInternetRequest {
                 String info = result.result.info;
                 if (code.equals("10")) {
                     SpTools.setString(context, Constants.userId, result.ub_id);//存储用户的ub_id
+                    if (!TextUtils.isEmpty(result.ub_id)){
+                        PushManager.getInstance().bindAlias(MyApplication.getContext(),result.ub_id);
+//                        Tag t = new Tag();
+//                        //name 字段只支持：中文、英文字母（大小写）、数字、除英文逗号以外的其他特殊符号, 具体请看代码示例
+//                        t.setName("Android");
+//                        int i = PushManager.getInstance().setTag(MyApplication.getContext(),new Tag[]{t},
+//                                System.currentTimeMillis() +"");
+                    }
                     mListener.onResponseMessage("成功");
                 } else if (code.equals("20")) {
                     SpTools.setString(MyApplication.getContext(), Constants.userId, null);//存储用户的ub_id
                     SpTools.setString(MyApplication.getContext(), Constants.phoneNum, null);//存储用户的手机号码
-                    SpTools.setString(MyApplication.getContext(), Constants.password, null);//存储用户的密码
+                    SpTools.setString(MyApplication.getContext(), password, null);//存储用户的密码
                     mListener.onResponseMessage("失败");
+                    CommonUtils.toastMessage(info);
+
+
+
+                }
+            }
+        });
+    }
+
+
+    /**
+     *  环信登录
+     *  */
+    public static void getHXinfo(ForResultListener listener){
+        mListener = listener;
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            mListener.onResponseMessage("");
+            return;
+        }
+
+        String ub_id = SpTools.getString(context,Constants.userId,"");
+        if (TextUtils.isEmpty(ub_id)){
+            CommonUtils.toastMessage("您没有登录");
+            return;
+        }
+        String url = context.getResources().getString(R.string.service_host_address)
+                .concat(context.getResources().getString(R.string.hxLogin));
+        Log.d("host",url);
+        OkHttpUtils.post().url(url)
+                .addParams("ub_id",ub_id)
+                .build().execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                //Log.d("0000---------------0000",e.getMessage());
+                SpTools.setString(MyApplication.getContext(), Constants.userId, null);//存储用户的ub_id
+                SpTools.setString(MyApplication.getContext(), Constants.phoneNum, null);//存储用户的手机号码
+                SpTools.setString(MyApplication.getContext(), password, null);//存储用户的密码
+                mListener.onResponseMessage("");
+                CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+                LoginResult result = mGson.fromJson(response, LoginResult.class);
+                String code = result.result.code;
+                String info = result.result.info;
+                if (code.equals("10")) {
+                    SpTools.setString(context, Constants.userId, result.ub_id);//存储用户的ub_id
+                    mListener.onResponseMessage(response);
+                } else if (code.equals("20")) {
+                    SpTools.setString(MyApplication.getContext(), Constants.userId, null);//存储用户的ub_id
+                    SpTools.setString(MyApplication.getContext(), Constants.phoneNum, null);//存储用户的手机号码
+                    SpTools.setString(MyApplication.getContext(), password, null);//存储用户的密码
+                    mListener.onResponseMessage("");
                     CommonUtils.toastMessage(info);
 
 
@@ -517,19 +575,27 @@ public class LoginInternetRequest {
             public void onError(Call call, Exception e, int id) {
                // Log.d("0000---------------0000",e.getMessage());
                 InitInfo.isLogin = false;
+                mListener.onResponseMessage("");
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
 
             @Override
             public void onResponse(String response, int id) {
                 if (!TextUtils.isEmpty(response)) {
-                    VipInfoBean vipInfoBean = mGson.fromJson(response, VipInfoBean.class);
-                    String code = vipInfoBean.result.code;
-                    if (code.equals("10")) {
-                        mListener.onResponseMessage(response);
-                    } else {
-                        CommonUtils.toastMessage("请求网络数据失败，请检查网络");
+                    try {
+                        VipInfoBean vipInfoBean = mGson.fromJson(response, VipInfoBean.class);
+                        String code = vipInfoBean.result.code;
+                        if (code.equals("10")) {
+                            mListener.onResponseMessage(response);
+                        } else {
+                            mListener.onResponseMessage("");
+                            CommonUtils.toastMessage("请求网络数据失败，请检查网络");
+                        }
+                    }catch (Exception exception){
+                        mListener.onResponseMessage("");
                     }
+                }else{
+                    mListener.onResponseMessage("");
                 }
             }
         });
@@ -565,21 +631,29 @@ public class LoginInternetRequest {
             public void onError(Call call, Exception e, int id) {
              //   Log.d("0000---------------0000",e.getMessage());
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
+                listener.onResponseMessage("");
             }
 
             @Override
             public void onResponse(String response, int id) {
-                ProfessionBean professionBean = mGson.fromJson(response, ProfessionBean.class);
-                if (!TextUtils.isEmpty(response) && professionBean != null) {
-                    String code = professionBean.result.code;
-                    if (code.equals("10")) {
+                try {
+                    ProfessionBean professionBean = mGson.fromJson(response, ProfessionBean.class);
+                    if (!TextUtils.isEmpty(response) && professionBean != null) {
+                        String code = professionBean.result.code;
+                        if (code.equals("10")) {
 //                        CommonUtils.toastMessage(professionBean.result.info);
-                        if (listener != null) {
+
                             listener.onResponseMessage(response);
+
+                        } else {
+                            CommonUtils.toastMessage("请求网络数据失败，请检查网络");
+                            listener.onResponseMessage("");
                         }
                     } else {
-                        CommonUtils.toastMessage("请求网络数据失败，请检查网络");
+                        listener.onResponseMessage("");
                     }
+                }catch (Exception exception){
+                    listener.onResponseMessage("");
                 }
             }
         });
@@ -614,21 +688,29 @@ public class LoginInternetRequest {
             public void onError(Call call, Exception e, int id) {
 //                Log.d("0000---------------0000",e.getMessage());
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
+                listener.onResponseMessage("");
             }
 
             @Override
             public void onResponse(String response, int id) {
-                PostBean postBean = mGson.fromJson(response, PostBean.class);
-                if (!TextUtils.isEmpty(response) && postBean != null) {
-                    String code = postBean.result.code;
-                    if (code.equals("10")) {
-           //             CommonUtils.toastMessage(postBean.result.info);
-                        if (listener != null) {
+                try {
+                    PostBean postBean = mGson.fromJson(response, PostBean.class);
+                    if (!TextUtils.isEmpty(response) && postBean != null) {
+                        String code = postBean.result.code;
+                        if (code.equals("10")) {
+                            //             CommonUtils.toastMessage(postBean.result.info);
+
+                            listener.onResponseMessage(response);
+
+                        } else {
+                            CommonUtils.toastMessage("请求网络数据失败，请检查网络");
                             listener.onResponseMessage(response);
                         }
                     } else {
-                        CommonUtils.toastMessage("请求网络数据失败，请检查网络");
+                        listener.onResponseMessage("");
                     }
+                }catch (Exception exception){
+                    listener.onResponseMessage("");
                 }
             }
         });

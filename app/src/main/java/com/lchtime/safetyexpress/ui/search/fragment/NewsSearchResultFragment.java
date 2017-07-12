@@ -15,7 +15,7 @@ import com.lchtime.safetyexpress.R;
 
 import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
 import com.lchtime.safetyexpress.bean.QJSearchBean;
-import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
+import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
 import com.lchtime.safetyexpress.ui.search.protocal.SerchProtocal;
@@ -102,7 +102,7 @@ public class NewsSearchResultFragment extends Fragment {
                         homeNewAdapter.setNewItemInterface(new HomeNewAdapter.NewsItemInterface() {
                             @Override
                             public void setNewOnItem(int position) {
-                                Intent intent = new Intent(getContext(), HomeNewsDetailUI.class);
+                                Intent intent = new Intent(getContext(), H5DetailUI.class);
                                 intent.putExtra("newsId",bean.news.get(position).cc_id);
                                 intent.putExtra("type","news");
                                 startActivity(intent);

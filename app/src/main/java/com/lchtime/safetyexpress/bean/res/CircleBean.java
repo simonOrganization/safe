@@ -27,6 +27,8 @@ public class CircleBean {
 
 
     public List<QzContextBean> qz_context;
+    //收藏里面的圈子
+    public List<QzContextBean> cms_context;
 
     /**
      * qc_id : 10

@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
@@ -20,6 +22,7 @@ import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.ui.circle.CircleUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
+import com.lchtime.safetyexpress.ui.vip.MyCircleActiveActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
@@ -111,6 +114,15 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
             ((MyCircleActiveHodler) holder).circleItemContent.setText(bean.qc_context);
             ((MyCircleActiveHodler) holder).circleItemTalk.setText(bean.qc_pinglun + "评论");
 
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context,H5DetailUI.class);
+                    intent.putExtra("newsId",bean.qc_id);
+                    intent.putExtra("type","circle");
+                    context.startActivity(intent);
+                }
+            });
             //点赞
             setGreate((MyCircleActiveHodler) holder, bean, protocal);
 
@@ -126,12 +138,15 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                     deleteCircle(((MyCircleActiveHodler) holder),position,protocal);
                 }
             });
+
+
         }
 
 
     }
 
     private void deleteCircle(MyCircleActiveHodler holder, final int position, CircleProtocal protocal) {
+        ((MyCircleActiveActivity)context).setIsLoading(true);
         MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);
         String userid = SpTools.getString(context, Constants.userId, "");
         if (TextUtils.isEmpty(userid)) {
@@ -142,10 +157,16 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
         protocal.getDeleteCircle(userid, bean.qc_id, new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
+                if (response == null){
+                    CommonUtils.toastMessage("删除圈子失败，请稍后再试");
+                    ((MyCircleActiveActivity)context).setIsLoading(false);
+                    return;
+                }
                 Result bean = (Result) response;
                 CommonUtils.toastMessage(bean.result.info);
                 circleOneList.remove(position);
                 notifyDataSetChanged();
+                ((MyCircleActiveActivity)context).setIsLoading(false);
             }
         });
     }

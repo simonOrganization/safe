@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/page_color"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <include layout="@layout/title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm300"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/tv_qun_name"
+            android:layout_marginLeft="@dimen/dm020"
+            android:layout_marginRight="@dimen/dm020"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/dm028"
+            android:hint="请输入您的群简介"
+            android:layout_marginBottom="@dimen/dm020"
+            android:layout_marginTop="@dimen/dm020"
+            android:gravity="top"
+            android:singleLine="true"
+            android:background="@color/white"
+
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm020"
+        android:background="@color/page_color"
+        />
+
+</LinearLayout>

@@ -13,195 +13,403 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.utils.EaseUserUtils;
+import com.hyphenate.easeui.widget.EaseAlertDialog;
+import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.ui.chat.hx.HuanXinHelper;
+import com.lchtime.safetyexpress.bean.BasicResult;
+import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.InitInfo;
+import com.lchtime.safetyexpress.bean.Result;
+import com.lchtime.safetyexpress.pop.VipInfoHintPop;
+import com.lchtime.safetyexpress.ui.TabUI;
+import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
+import com.lchtime.safetyexpress.ui.chat.hx.activity.protocal.GetInfoProtocal;
+import com.lchtime.safetyexpress.ui.chat.hx.bean.ProfileInfoBean;
+import com.lchtime.safetyexpress.ui.chat.hx.bean.SingleDetailBean;
+import com.lchtime.safetyexpress.ui.chat.hx.db.InviteMessgeDao;
+import com.lchtime.safetyexpress.ui.chat.hx.db.TopUserDao;
+import com.lchtime.safetyexpress.ui.chat.hx.db.UserDao;
+import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
+import com.lchtime.safetyexpress.ui.chat.hx.utils.WindowUtils;
+import com.lchtime.safetyexpress.ui.home.InviteFriendActivity;
+import com.lchtime.safetyexpress.ui.login.RegisterUI;
+import com.lchtime.safetyexpress.ui.vip.VipInfoUI;
+import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.SpTools;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
-public class UserProfileActivity extends EaseBaseActivity implements OnClickListener{
+import io.reactivex.functions.BiFunction;
+
+import static android.R.attr.type;
+import static com.lchtime.safetyexpress.R.id.invite_item;
+import static com.lchtime.safetyexpress.R.id.start;
+import static com.lchtime.safetyexpress.R.id.tv_gw;
+
+public class UserProfileActivity extends BaseActivity implements OnClickListener{
 	
 	private static final int REQUESTCODE_PICK = 1;
 	private static final int REQUESTCODE_CUTTING = 2;
 	private ImageView headAvatar;
 	private ImageView headPhotoUpdate;
-	private ImageView iconRightArrow;
-	private TextView tvNickName;
 	private TextView tvUsername;
 	private ProgressDialog dialog;
-	private RelativeLayout rlNickName;
-	
-	
-	
+
+	private TextView mTitle;
+	private ImageView mTitleRight;
+	private LinearLayout mTitleLeft;
+	private LinearLayout mLlTitleRight;
+
+	private TextView tvHy;
+	private TextView tvGw;
+	private TextView tvAddr;
+	private TextView tvCompany;
+	private TextView tvSingleInfo;
+	private TextView tvSex;
+	private CheckBox cbChatUp ;
+	private RelativeLayout rlClearChat ;
+	private TextView tvSendMessage ;
+	private TextView tvDeleteFriends;
+	private String mUserid;
+	private String mUsername;
+	private ProgressBar mBar;
+	private VipInfoHintPop popWindow;
+
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setContentView(R.layout.em_activity_user_profile);
-		initView();
-		initListener();
-	}
-	
-	private void initView() {
-		headAvatar = (ImageView) findViewById(R.id.user_head_avatar);
-		headPhotoUpdate = (ImageView) findViewById(R.id.user_head_headphoto_update);
-		tvUsername = (TextView) findViewById(R.id.user_username);
-		tvNickName = (TextView) findViewById(R.id.user_nickname);
-		rlNickName = (RelativeLayout) findViewById(R.id.rl_nickname);
-		iconRightArrow = (ImageView) findViewById(R.id.ic_right_arrow);
-	}
-	
-	private void initListener() {
 		Intent intent = getIntent();
-		String username = intent.getStringExtra("username");
-		boolean enableUpdate = intent.getBooleanExtra("setting", false);
-		if (enableUpdate) {
-			headPhotoUpdate.setVisibility(View.VISIBLE);
-			iconRightArrow.setVisibility(View.VISIBLE);
-			rlNickName.setOnClickListener(this);
-			headAvatar.setOnClickListener(this);
-		} else {
-			headPhotoUpdate.setVisibility(View.GONE);
-			iconRightArrow.setVisibility(View.INVISIBLE);
-		}
-		if(username != null){
-    		if (username.equals(EMClient.getInstance().getCurrentUser())) {
-    			tvUsername.setText(EMClient.getInstance().getCurrentUser());
-    			EaseUserUtils.setUserNick(username, tvNickName);
-                EaseUserUtils.setUserAvatar(this, username, headAvatar);
-    		} else {
-    			tvUsername.setText(username);
-    			EaseUserUtils.setUserNick(username, tvNickName);
-    			EaseUserUtils.setUserAvatar(this, username, headAvatar);
-    			asyncFetchUserInfo(username);
-    		}
-		}
+		mUsername = intent.getStringExtra("username");
+		topMap = MyApplication.getInstance().getTopUserList();
+		initView();
+		setLoadding(true);
+		initListener();
+		initData();
 	}
 
+
+	private void initView() {
+
+		mBar = (ProgressBar) findViewById(R.id.pb_progress);
+		popWindow = new VipInfoHintPop(mBar, this, R.layout.pop_delete_hint);
+		headAvatar = (ImageView) findViewById(R.id.user_head_avatar);
+		headPhotoUpdate = (ImageView) findViewById(R.id.user_head_headphoto_update);
+
+		tvUsername = (TextView) findViewById(R.id.user_username);
+		tvSex = (TextView) findViewById(R.id.tv_profile_sex);
+		tvHy = (TextView) findViewById(R.id.tv_hy);
+		tvGw = (TextView) findViewById(R.id.tv_gw);
+		tvAddr = (TextView) findViewById(R.id.tv_addr);
+		tvCompany = (TextView) findViewById(R.id.tv_company);
+		tvSingleInfo = (TextView) findViewById(R.id.tv_singleinfo);
+		cbChatUp = (CheckBox) findViewById(R.id.cb_chat_up);
+		rlClearChat = (RelativeLayout) findViewById(R.id.rl_clear_chat);
+		tvSendMessage = (TextView) findViewById(R.id.tv_send_message);
+		tvDeleteFriends = (TextView) findViewById(R.id.tv_delete_friends);
+//		tvNickName = (TextView) findViewById(R.id.user_nickname);
+//		rlNickName = (RelativeLayout) findViewById(R.id.rl_nickname);
+//		iconRightArrow = (ImageView) findViewById(R.id.ic_right_arrow);
+
+
+		cbChatUp.setChecked(topMap.containsKey(mUsername));
+
+		initTitle();
+
+
+	}
+
+	private void initTitle() {
+		mTitle = (TextView) findViewById(R.id.title);
+		mTitleRight = (ImageView) findViewById(R.id.iv_right);
+		mTitleLeft = (LinearLayout) findViewById(R.id.ll_back);
+		mLlTitleRight = (LinearLayout) findViewById(R.id.ll_right);
+		mLlTitleRight.setVisibility(View.GONE);
+
+		mTitleRight.setVisibility(View.VISIBLE);
+		mTitleRight.setImageResource(R.drawable.single_info_more);
+		mTitle.setText("个人资料");
+		mLlTitleRight.setOnClickListener(this);
+		mTitleLeft.setOnClickListener(this);
+	}
+
+	private void initListener() {
+
+		headPhotoUpdate.setVisibility(View.GONE);
+
+		cbChatUp.setOnClickListener(this);
+		rlClearChat.setOnClickListener(this);
+		tvSendMessage.setOnClickListener(this);
+		tvDeleteFriends.setOnClickListener(this);
+	}
+
+	private Map<String, EaseUser> topMap;
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.user_head_avatar:
-			uploadHeadPhoto();
-			break;
-		case R.id.rl_nickname:
-			final EditText editText = new EditText(this);
-			new Builder(this).setTitle(R.string.setting_nickname).setIcon(android.R.drawable.ic_dialog_info).setView(editText)
-					.setPositiveButton(R.string.dl_ok, new DialogInterface.OnClickListener() {
 
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							String nickString = editText.getText().toString();
-							if (TextUtils.isEmpty(nickString)) {
-								Toast.makeText(UserProfileActivity.this, getString(R.string.toast_nick_not_isnull), Toast.LENGTH_SHORT).show();
-								return;
-							}
-							updateRemoteNick(nickString);
-						}
-					}).setNegativeButton(R.string.dl_cancel, null).show();
+		case R.id.ll_back:
+			finish();
+			break;
+		case R.id.cb_chat_up:
+//			CommonUtils.toastMessage("聊天置顶");
+			setUpConversation();
+
+
+			break;
+		case R.id.rl_clear_chat:
+//			CommonUtils.toastMessage("清除数据");
+			emptyHistory();
+			break;
+		case R.id.tv_send_message:
+
+			if (TextUtils.isEmpty(mUsername) && type == 5){
+				return;
+			}
+
+			if (type == 0){
+				//不是好友  执行添加好友动作
+				Intent intent = new Intent(this, ApplyMessage.class);
+				intent.putExtra("type", "1");
+				intent.putExtra("master",mUsername);
+				//这个请求码是返回是否finish当前界面的
+				startActivityForResult(intent, 102);
+			}else if(type == 1) {
+				//是好友 进入界面与其聊天
+				Intent intent = new Intent(this,ChatActivity.class);
+				intent.putExtra("userId",mUsername);
+				startActivity(intent);
+			}else if (type == 2){
+				//自己
+				Intent intent = new Intent(this, VipInfoUI.class);
+				startActivity(intent);
+			}
+//			CommonUtils.toastMessage("发送消息");
+			break;
+		case R.id.tv_delete_friends:
+//			CommonUtils.toastMessage("删除好友");
+			popWindow.setPerfect("删除");
+			popWindow.setJump("取消");
+			popWindow.setContent("确定删除好友？");
+			popWindow.showAtLocation();
+			popWindow.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					popWindow.dismiss();
+					deleteFriend();
+				}
+			});
+//			deleteContact(DemoHelper.getInstance().getUserInfo(mUsername));
 			break;
 		default:
 			break;
 		}
 
+
 	}
 
-	public void asyncFetchUserInfo(String username){
-		HuanXinHelper.getInstance().getUserProfileManager().asyncGetUserInfo(username, new EMValueCallBack<EaseUser>() {
+	private void setUpConversation() {
+		setLoadding(true);
+		if (mProtocal == null){
+			mProtocal = new GetInfoProtocal();
+		}
+		if (mUserid == null) {
+			mUserid = SpTools.getString(this, Constants.userId, "");
+		}
+		if (TextUtils.isEmpty(mUserid)){
+			CommonUtils.toastMessage("请重新登录后再尝试！");
+			setLoadding(false);
+			return;
+		}
 
-			@Override
-			public void onSuccess(EaseUser user) {
-				if (user != null) {
-				    HuanXinHelper.getInstance().saveContact(user);
-				    if(isFinishing()){
-				        return;
-				    }
-					tvNickName.setText(user.getNick());
-					if(!TextUtils.isEmpty(user.getAvatar())){
-						 Glide.with(UserProfileActivity.this).load(user.getAvatar()).placeholder(R.drawable.em_default_avatar).into(headAvatar);
-					}else{
-					    Glide.with(UserProfileActivity.this).load(R.drawable.em_default_avatar).into(headAvatar);
+		if (topMap.containsKey(mUsername)){
+//			删除置顶
+			mProtocal.getUp(mUserid, "2", mUsername, new AddCommandProtocal.NormalListener() {
+				@Override
+				public void normalResponse(Object response) {
+					if (response == null){
+						CommonUtils.toastMessage("取消置顶失败，请稍后再试");
+						cbChatUp.setChecked(true);
+						setLoadding(false);
+						return;
 					}
-				}
-			}
 
+					Result result = gson.fromJson((String) response,Result.class);
+					if ("10".equals(result.result.code)){
+						topMap.remove(mUsername);
+						TopUserDao dao = new TopUserDao(UserProfileActivity.this);
+						dao.deleteContact(mUsername);
+						CommonUtils.toastMessage("取消置顶成功");
+					}else {
+						CommonUtils.toastMessage(result.result.info);
+						cbChatUp.setChecked(true);
+					}
+
+					setLoadding(false);
+
+				}
+			});
+
+        }else {
+
+            //1 存入  2 删除
+            mProtocal.getUp(mUserid, "1", mUsername, new AddCommandProtocal.NormalListener() {
+                @Override
+                public void normalResponse(Object response) {
+					if (response == null) {
+						CommonUtils.toastMessage("置顶失败，请稍后再试");
+						cbChatUp.setChecked(false);
+						setLoadding(false);
+						return;
+					}
+
+					Result result = gson.fromJson((String) response,Result.class);
+					if ("10".equals(result.result.code)){
+						EaseUser user = new EaseUser(mUsername);
+						topMap.put(mUsername,user);
+						TopUserDao dao = new TopUserDao(UserProfileActivity.this);
+						dao.saveContact(user);
+						CommonUtils.toastMessage("置顶成功");
+					}else {
+						CommonUtils.toastMessage(result.result.info);
+						cbChatUp.setChecked(false);
+					}
+					setLoadding(false);
+
+                }
+            });
+
+        }
+	}
+
+	//删除好友的方法
+	private void deleteFriend() {
+		setLoadding(true);
+		if (mProtocal == null){
+			mProtocal = new GetInfoProtocal();
+		}
+
+		mProtocal.getDeleteFriends(InitInfo.phoneNumber, mUsername, new AddCommandProtocal.NormalListener() {
 			@Override
-			public void onError(int error, String errorMsg) {
+			public void normalResponse(Object response) {
+				if (response == null){
+					CommonUtils.toastMessage("解除好友关系失败，请重新尝试");
+					setLoadding(false);
+					return;
+				}
+				Result result = gson.fromJson((String) response,Result.class);
+				if ("10".equals(result.result.code)){
+					CommonUtils.toastMessage(result.result.info);
+					Intent intent = new Intent();
+//					EaseUser user = DemoHelper.getInstance().getUserInfo(mUsername);
+					intent.putExtra("tobeDeleteUser",mUsername);
+					setResult(101,intent);
+					setLoadding(false);
+					finish();
+				}else {
+					CommonUtils.toastMessage(result.result.info);
+					setLoadding(false);
+				}
 			}
 		});
 	}
 
 
 
-	private void uploadHeadPhoto() {
-		Builder builder = new Builder(this);
-		builder.setTitle(R.string.dl_title_upload_photo);
-		builder.setItems(new String[] { getString(R.string.dl_msg_take_photo), getString(R.string.dl_msg_local_upload) },
-				new DialogInterface.OnClickListener() {
 
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-						switch (which) {
-						case 0:
-							Toast.makeText(UserProfileActivity.this, getString(R.string.toast_no_support),
-									Toast.LENGTH_SHORT).show();
-							break;
-						case 1:
-							Intent pickIntent = new Intent(Intent.ACTION_PICK,null);
-							pickIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-							startActivityForResult(pickIntent, REQUESTCODE_PICK);
-							break;
-						default:
-							break;
-						}
-					}
-				});
-		builder.create().show();
-	}
-	
-	
-
-	private void updateRemoteNick(final String nickName) {
-		dialog = ProgressDialog.show(this, getString(R.string.dl_update_nick), getString(R.string.dl_waiting));
-		new Thread(new Runnable() {
-
+	private GetInfoProtocal mProtocal;
+	private Gson gson = new Gson();
+	private int type = 0;//0 不是好友  1  是好友  2  自己
+	private void initData() {
+		if (mProtocal == null){
+			mProtocal = new GetInfoProtocal();
+		}
+		if (mUserid == null) {
+			mUserid = SpTools.getString(this, Constants.userId, "");
+		}
+		mProtocal.getInfo(mUserid, "1", mUsername, new AddCommandProtocal.NormalListener() {
 			@Override
-			public void run() {
-				boolean updatenick = HuanXinHelper.getInstance().getUserProfileManager().updateCurrentUserNickName(nickName);
-				if (UserProfileActivity.this.isFinishing()) {
+			public void normalResponse(Object response) {
+				if (response == null){
+					CommonUtils.toastMessage("获取个人信息失败！");
+					setLoadding(false);
+					type = 5;
 					return;
 				}
-				if (!updatenick) {
-					runOnUiThread(new Runnable() {
-						public void run() {
-							Toast.makeText(UserProfileActivity.this, getString(R.string.toast_updatenick_fail), Toast.LENGTH_SHORT)
-									.show();
-							dialog.dismiss();
+
+				ProfileInfoBean profileInfoBean = gson.fromJson((String) response,ProfileInfoBean.class);
+				if ("10".equals(profileInfoBean.result.code)){
+					SingleDetailBean bean = profileInfoBean.user_detail.get(0);
+					if (!TextUtils.isEmpty(bean.ud_photo_fileid)){
+						Picasso.with(UserProfileActivity.this)
+								.load(bean.ud_photo_fileid)
+								.into(headAvatar);
+					}else {
+						Picasso.with(UserProfileActivity.this)
+								.load(R.drawable.circle_user_image)
+								.into(headAvatar);
+					}
+
+					tvUsername.setText(bean.ud_nickname);
+					tvSex.setText(bean.ud_sex);
+					tvHy.setText(bean.ud_profession);
+					tvGw.setText(bean.ud_post);
+					tvAddr.setText(bean.ud_addr);
+					tvCompany.setText(bean.ud_company_name);
+					tvSingleInfo.setText(bean.ud_memo);
+
+					if ("1".equals(bean.is_friend)||TextUtils.isEmpty(bean.is_friend)){
+						//如果是好友关系
+						if (InitInfo.phoneNumber.equals(bean.ub_phone) ){
+							//自己的个人资料
+							type = 2;
+							tvSendMessage.setText("编辑");
+							tvDeleteFriends.setVisibility(View.GONE);
+						}else {
+							type = 1;
+							tvSendMessage.setText("发消息");
+							tvDeleteFriends.setVisibility(View.VISIBLE);
 						}
-					});
-				} else {
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							dialog.dismiss();
-							Toast.makeText(UserProfileActivity.this, getString(R.string.toast_updatenick_success), Toast.LENGTH_SHORT)
-									.show();
-							tvNickName.setText(nickName);
-						}
-					});
+					}else {
+						type = 0;
+						tvSendMessage.setText("申请好友");
+						tvDeleteFriends.setVisibility(View.GONE);
+					}
+
+					setLoadding(false);
+				}else {
+					CommonUtils.toastMessage("获取个人信息失败!请重试！");
+					setLoadding(false);
+					type = 5;
 				}
 			}
-		}).start();
+		});
+
+
+
+
 	}
+
+
+
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -210,11 +418,11 @@ public class UserProfileActivity extends EaseBaseActivity implements OnClickList
 			if (data == null || data.getData() == null) {
 				return;
 			}
-			startPhotoZoom(data.getData());
+//			startPhotoZoom(data.getData());
 			break;
 		case REQUESTCODE_CUTTING:
 			if (data != null) {
-				setPicToView(data);
+//				setPicToView(data);
 			}
 			break;
 		default:
@@ -223,67 +431,31 @@ public class UserProfileActivity extends EaseBaseActivity implements OnClickList
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
-	public void startPhotoZoom(Uri uri) {
-		Intent intent = new Intent("com.android.camera.action.CROP");
-		intent.setDataAndType(uri, "image/*");
-		intent.putExtra("crop", true);
-		intent.putExtra("aspectX", 1);
-		intent.putExtra("aspectY", 1);
-		intent.putExtra("outputX", 300);
-		intent.putExtra("outputY", 300);
-		intent.putExtra("return-data", true);
-		intent.putExtra("noFaceDetection", true);
-		startActivityForResult(intent, REQUESTCODE_CUTTING);
-	}
-	
-	/**
-	 * save the picture data
-	 * 
-	 * @param picdata
-	 */
-	private void setPicToView(Intent picdata) {
-		Bundle extras = picdata.getExtras();
-		if (extras != null) {
-			Bitmap photo = extras.getParcelable("data");
-			Drawable drawable = new BitmapDrawable(getResources(), photo);
-			headAvatar.setImageDrawable(drawable);
-			uploadUserAvatar(Bitmap2Bytes(photo));
-		}
 
-	}
-	
-	private void uploadUserAvatar(final byte[] data) {
-		dialog = ProgressDialog.show(this, getString(R.string.dl_update_photo), getString(R.string.dl_waiting));
-		new Thread(new Runnable() {
+	protected void emptyHistory() {
+		popWindow.setPerfect("清空");
+		popWindow.setJump("取消");
+		popWindow.setContent("确定清空聊天记录？");
 
+		popWindow.showAtLocation();
+		popWindow.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void run() {
-				final String avatarUrl = HuanXinHelper.getInstance().getUserProfileManager().uploadUserAvatar(data);
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						dialog.dismiss();
-						if (avatarUrl != null) {
-							Toast.makeText(UserProfileActivity.this, getString(R.string.toast_updatephoto_success),
-									Toast.LENGTH_SHORT).show();
-						} else {
-							Toast.makeText(UserProfileActivity.this, getString(R.string.toast_updatephoto_fail),
-									Toast.LENGTH_SHORT).show();
-						}
-
-					}
-				});
-
+			public void onClick(View v) {
+				popWindow.dismiss();
+				EMClient.getInstance().chatManager().deleteConversation(mUsername, true);
 			}
-		}).start();
+		});
+	}
 
-		dialog.show();
+	public void setLoadding(boolean isLoadding){
+		if (isLoadding){
+			WindowUtils.backgroundAlpha(this,0.5f);
+			mBar.setVisibility(View.VISIBLE);
+		}else {
+			WindowUtils.backgroundAlpha(this,1f);
+			mBar.setVisibility(View.GONE);
+		}
 	}
-	
-	
-	public byte[] Bitmap2Bytes(Bitmap bm){
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
-		return baos.toByteArray();
-	}
+
+
 }

@@ -2,8 +2,11 @@ package com.lchtime.safetyexpress.ui.vip;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,8 +26,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
 /**
- * Created by android-cp on 2017/5/17.
+ * Created by android-cp on 2017/5/17.我的圈子界面
  */
 @ContentView(R.layout.activity_mycircle_active)
 public class MyCircleActiveActivity extends BaseUI {
@@ -48,6 +52,8 @@ public class MyCircleActiveActivity extends BaseUI {
     RelativeLayout rlTitle;
     @BindView(R.id.rc_mycircle_active)
     RecyclerView rcMycircleActive;
+    @BindView(R.id.pb_progress)
+    ProgressBar pb_progress;
     private CircleProtocal protocal;
     private String userid = "";
     private List<MyCircleActiveBean.QuanziBean> myCircleList = new ArrayList<>();
@@ -65,6 +71,7 @@ public class MyCircleActiveActivity extends BaseUI {
 
     @Override
     protected void prepareData() {
+        setIsLoading(true);
         initData();
     }
 
@@ -76,6 +83,12 @@ public class MyCircleActiveActivity extends BaseUI {
         protocal.getMyCircleList(userid,"", new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
+                if (response == null){
+                    CommonUtils.toastMessage("加载我的动态失败，请稍后再试！");
+                    setIsLoading(false);
+                    return;
+                }
+
                 rcMycircleActive.setLayoutManager(new LinearLayoutManager(MyCircleActiveActivity.this));
                 //我的圈子列表
                 MyCircleActiveBean bean = (MyCircleActiveBean) response;
@@ -88,8 +101,25 @@ public class MyCircleActiveActivity extends BaseUI {
                 }
                 adapter = new MyCircleActiveAdapter(MyCircleActiveActivity.this,myCircleList);
                 rcMycircleActive.setAdapter(adapter);
+                setIsLoading(false);
             }
         });
     }
 
+    public void backgroundAlpha(float bgAlpha)
+    {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = bgAlpha; //0.0-1.0
+        getWindow().setAttributes(lp);
+    }
+
+    public void setIsLoading(boolean isLoading){
+        if (isLoading){
+            pb_progress.setVisibility(View.VISIBLE);
+            backgroundAlpha(0.5f);
+        }else {
+            pb_progress.setVisibility(View.GONE);
+            backgroundAlpha(1f);
+        }
+    }
 }

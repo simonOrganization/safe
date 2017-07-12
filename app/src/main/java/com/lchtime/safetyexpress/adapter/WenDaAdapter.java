@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.MyWenDaBean;
-import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
+import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
 import com.lchtime.safetyexpress.ui.home.fragment.GuanZhuFragment;
 import com.lchtime.safetyexpress.ui.home.fragment.TiWenFragment;
@@ -76,7 +76,7 @@ public class WenDaAdapter extends RecyclerView.Adapter {
                 //问答详情
                 if (context instanceof WenDaFragment){
                     //如果是问答，就跳转h5
-                    Intent intent = new Intent(context.getActivity(),HomeNewsDetailUI.class);
+                    Intent intent = new Intent(context.getActivity(),H5DetailUI.class);
                     //回答id
                     intent.putExtra("a_id",bean.oid);
                     //回答的问题id

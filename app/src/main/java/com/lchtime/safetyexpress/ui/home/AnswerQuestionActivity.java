@@ -7,9 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
+import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
 import com.lchtime.safetyexpress.views.FullyGridLayoutManager;
@@ -38,7 +41,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by android-cp on 2017/5/12.
+ * Created by android-cp on 2017/5/12.  编辑回答问题界面
  */
 @ContentView(R.layout.answer_question_activity)
 public class AnswerQuestionActivity extends BaseUI {
@@ -67,11 +70,14 @@ public class AnswerQuestionActivity extends BaseUI {
     EditText etDescribeText;
     @BindView(R.id.recycler)
     RecyclerView recycler;
+    @BindView(R.id.pb_progress)
+    ProgressBar pb_progress;
     private GridImageAdapter adapter;
     private List<LocalMedia> selectMedia = new ArrayList<>();
     private List<File> fileList;
     private String questionTitle;
     private String q_id;
+    private String a_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,10 +94,17 @@ public class AnswerQuestionActivity extends BaseUI {
     @Override
     protected void setControlBasis() {
         ButterKnife.bind(this);
-        setTitle("撰写回答");
+
         rightTextVisible("发送");
         questionTitle = getIntent().getStringExtra("title");
         q_id = getIntent().getStringExtra("q_id");
+        a_id = getIntent().getStringExtra("a_id");
+
+        if (TextUtils.isEmpty(q_id)){
+            setTitle("编辑回答");
+        }else {
+            setTitle("撰写回答");
+        }
         etQuestionText.setText(questionTitle);
         FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         recycler.setLayoutManager(manager);
@@ -215,6 +228,7 @@ public class AnswerQuestionActivity extends BaseUI {
 
     @Override
     protected void clickEvent() {
+        setLoading(true);
         if (protocal == null) {
             protocal = new HomeQuestionProtocal();
         }
@@ -226,12 +240,18 @@ public class AnswerQuestionActivity extends BaseUI {
         final String answer = etDescribeText.getText().toString().trim();
         if (TextUtils.isEmpty(answer)) {
             Toast.makeText(this, "回答不能为空", Toast.LENGTH_SHORT).show();
+            setLoading(false);
             return;
         }
         if (fileList != null && fileList.size() > 0) {
             updataImageUtils.upMuchDataPic(fileList, new UpdataImageUtils.UpdataPicListener() {
                 @Override
                 public void onResponse(String response) {
+                    if (TextUtils.isEmpty(response)){
+                        CommonUtils.toastMessage("上传图片失败！");
+                        setLoading(false);
+                        return;
+                    }
                     UpdataBean updataBean = (UpdataBean) JsonUtils.stringToObject(response, UpdataBean.class);
 
                     filesid = "";
@@ -246,25 +266,96 @@ public class AnswerQuestionActivity extends BaseUI {
                         }
 
 
-                        protocal.postAnswerContent(q_id, answer, filesid, new HomeQuestionProtocal.QuestionListener() {
-                            @Override
-                            public void questionResponse(Object response) {
-                                Result result = (Result) response;
-                                Toast.makeText(AnswerQuestionActivity.this,result.result.info,Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (TextUtils.isEmpty(a_id)) {
+
+                            protocal.postAnswerContent(q_id, answer, filesid, new HomeQuestionProtocal.QuestionListener() {
+                                @Override
+                                public void questionResponse(Object response) {
+                                    if (response == null) {
+                                        CommonUtils.toastMessage("连接不到服务器，请稍后重试！");
+                                        setLoading(false);
+                                        return;
+                                    }
+                                    Result result = (Result) response;
+                                    Toast.makeText(AnswerQuestionActivity.this, result.result.info, Toast.LENGTH_SHORT).show();
+                                    setLoading(false);
+                                }
+                            });
+
+
+                        }else {
+                            protocal.editAnswerContent(a_id, answer, filesid, new HomeQuestionProtocal.QuestionListener() {
+                                @Override
+                                public void questionResponse(Object response) {
+                                    if (response == null){
+                                        CommonUtils.toastMessage("连接不到服务器，请稍后重试！");
+                                        setLoading(false);
+                                        return;
+                                    }
+
+                                    Result result = (Result) response;
+                                    Toast.makeText(AnswerQuestionActivity.this, result.result.info, Toast.LENGTH_SHORT).show();
+                                    setLoading(false);
+                                }
+                            });
+                        }
+
+
+
+                    }else {
+                        setLoading(false);
                     }
                 }
             });
         } else {
             filesid = "";
-            protocal.postAnswerContent(q_id, answer, filesid, new HomeQuestionProtocal.QuestionListener() {
-                @Override
-                public void questionResponse(Object response) {
-                    Result result = (Result) response;
-                    Toast.makeText(AnswerQuestionActivity.this,result.result.info,Toast.LENGTH_SHORT).show();
-                }
-            });
+            if (TextUtils.isEmpty(a_id)) {
+                protocal.postAnswerContent(q_id, answer, filesid, new HomeQuestionProtocal.QuestionListener() {
+                    @Override
+                    public void questionResponse(Object response) {
+                        if (response == null) {
+                            CommonUtils.toastMessage("连接不到服务器，请稍后重试！");
+                            setLoading(false);
+                            return;
+                        }
+                        Result result = (Result) response;
+                        Toast.makeText(AnswerQuestionActivity.this, result.result.info, Toast.LENGTH_SHORT).show();
+                        setLoading(false);
+                    }
+                });
+            }else {
+                protocal.editAnswerContent(a_id, answer, filesid, new HomeQuestionProtocal.QuestionListener() {
+                    @Override
+                    public void questionResponse(Object response) {
+                        if (response == null){
+                            CommonUtils.toastMessage("连接不到服务器，请稍后重试！");
+                            setLoading(false);
+                            return;
+                        }
+
+                        Result result = (Result) response;
+                        Toast.makeText(AnswerQuestionActivity.this, result.result.info, Toast.LENGTH_SHORT).show();
+                        setLoading(false);
+                    }
+                });
+            }
+
         }
+    }
+
+    public void setLoading(boolean isLoading){
+        if (isLoading){
+            backgroundAlpha(0.5f);
+            pb_progress.setVisibility(View.VISIBLE);
+        }else {
+            backgroundAlpha(1f);
+            pb_progress.setVisibility(View.GONE);
+        }
+    }
+    public void backgroundAlpha(float bgAlpha)
+    {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = bgAlpha; //0.0-1.0
+        getWindow().setAttributes(lp);
     }
 }

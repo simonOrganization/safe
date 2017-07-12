@@ -16,16 +16,12 @@ import android.widget.Toast;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.GridImageAdapter;
-import com.lchtime.safetyexpress.bean.AdviceBean;
-import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
-import com.lchtime.safetyexpress.ui.vip.OpinionActivity;
+import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
-import com.lchtime.safetyexpress.utils.OpinionProtocal;
-import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
 import com.lchtime.safetyexpress.views.FullyGridLayoutManager;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -43,7 +39,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by android-cp on 2017/5/12.
+ * Created by android-cp on 2017/5/12. 问答提问界面
  */
 @ContentView(R.layout.ask_question_activity)
 public class AskQuestionActivity extends BaseUI {
@@ -230,6 +226,10 @@ public class AskQuestionActivity extends BaseUI {
             updataImageUtils.upMuchDataPic(fileList, new UpdataImageUtils.UpdataPicListener() {
                 @Override
                 public void onResponse(String response) {
+                    if (TextUtils.isEmpty(response)){
+                        CommonUtils.toastMessage("上传图片失败");
+                        return;
+                    }
                     UpdataBean updataBean = (UpdataBean) JsonUtils.stringToObject(response, UpdataBean.class);
 
                     filesid = "";

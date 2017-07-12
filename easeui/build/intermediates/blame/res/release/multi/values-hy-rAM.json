@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-hy-rAM\\values-hy-rAM.xml",
+        "outputFile": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-hy-rAM\\values-hy-rAM.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 153
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 261
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -49,7 +49,7 @@
                     "endOffset": 384
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -68,7 +68,7 @@
                     "endOffset": 485
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -87,7 +87,7 @@
                     "endOffset": 595
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -106,7 +106,7 @@
                     "endOffset": 685
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -125,7 +125,7 @@
                     "endOffset": 791
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -144,7 +144,7 @@
                     "endOffset": 906
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -163,7 +163,7 @@
                     "endOffset": 988
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -182,7 +182,7 @@
                     "endOffset": 1069
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -201,7 +201,7 @@
                     "endOffset": 1154
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
@@ -220,7 +220,7 @@
                     "endOffset": 1261
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -239,7 +239,7 @@
                     "endOffset": 1368
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -258,7 +258,7 @@
                     "endOffset": 1467
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
@@ -277,7 +277,7 @@
                     "endOffset": 1577
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
@@ -296,7 +296,7 @@
                     "endOffset": 1684
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
@@ -311,17 +311,17 @@
                     "startLine": 18,
                     "startColumn": 4,
                     "startOffset": 1689,
-                    "endColumn": 99,
-                    "endOffset": 1784
+                    "endColumn": 100,
+                    "endOffset": 1785
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
                         "startOffset": 1689,
-                        "endColumn": 99,
-                        "endOffset": 1784
+                        "endColumn": 100,
+                        "endOffset": 1785
                     }
                 }
             },
@@ -329,18 +329,18 @@
                 "to": {
                     "startLine": 19,
                     "startColumn": 4,
-                    "startOffset": 1789,
-                    "endColumn": 124,
-                    "endOffset": 1909
+                    "startOffset": 1790,
+                    "endColumn": 119,
+                    "endOffset": 1905
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
-                        "startOffset": 1789,
-                        "endColumn": 124,
-                        "endOffset": 1909
+                        "startOffset": 1790,
+                        "endColumn": 119,
+                        "endOffset": 1905
                     }
                 }
             },
@@ -348,18 +348,18 @@
                 "to": {
                     "startLine": 20,
                     "startColumn": 4,
-                    "startOffset": 1914,
+                    "startOffset": 1910,
                     "endColumn": 98,
-                    "endOffset": 2008
+                    "endOffset": 2004
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
-                        "startOffset": 1914,
+                        "startOffset": 1910,
                         "endColumn": 98,
-                        "endOffset": 2008
+                        "endOffset": 2004
                     }
                 }
             },
@@ -367,44 +367,25 @@
                 "to": {
                     "startLine": 21,
                     "startColumn": 4,
-                    "startOffset": 2013,
-                    "endColumn": 81,
-                    "endOffset": 2090
+                    "startOffset": 2009,
+                    "endColumn": 100,
+                    "endOffset": 2105
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 4,
-                        "startOffset": 2013,
-                        "endColumn": 81,
-                        "endOffset": 2090
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 22,
-                    "startColumn": 4,
-                    "startOffset": 2095,
-                    "endColumn": 100,
-                    "endOffset": 2191
-                },
-                "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\gitrepositories\\safe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 22,
-                        "startColumn": 4,
-                        "startOffset": 2095,
+                        "startOffset": 2009,
                         "endColumn": 100,
-                        "endOffset": 2191
+                        "endOffset": 2105
                     }
                 }
             }
         ]
     },
     {
-        "outputFile": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-hy-rAM\\values-hy-rAM.xml",
+        "outputFile": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-hy-rAM\\values-hy-rAM.xml",
         "map": [
             {
                 "to": {
@@ -415,7 +396,7 @@
                     "endOffset": 153
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -434,7 +415,7 @@
                     "endOffset": 261
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -453,7 +434,7 @@
                     "endOffset": 384
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -472,7 +453,7 @@
                     "endOffset": 485
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -491,7 +472,7 @@
                     "endOffset": 595
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -506,17 +487,17 @@
                     "startLine": 7,
                     "startColumn": 4,
                     "startOffset": 600,
-                    "endColumn": 89,
-                    "endOffset": 685
+                    "endColumn": 88,
+                    "endOffset": 684
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
                         "startOffset": 600,
-                        "endColumn": 89,
-                        "endOffset": 685
+                        "endColumn": 88,
+                        "endOffset": 684
                     }
                 }
             },
@@ -524,18 +505,18 @@
                 "to": {
                     "startLine": 8,
                     "startColumn": 4,
-                    "startOffset": 690,
+                    "startOffset": 689,
                     "endColumn": 105,
-                    "endOffset": 791
+                    "endOffset": 790
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 690,
+                        "startOffset": 689,
                         "endColumn": 105,
-                        "endOffset": 791
+                        "endOffset": 790
                     }
                 }
             },
@@ -543,18 +524,18 @@
                 "to": {
                     "startLine": 9,
                     "startColumn": 4,
-                    "startOffset": 796,
+                    "startOffset": 795,
                     "endColumn": 114,
-                    "endOffset": 906
+                    "endOffset": 905
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 796,
+                        "startOffset": 795,
                         "endColumn": 114,
-                        "endOffset": 906
+                        "endOffset": 905
                     }
                 }
             },
@@ -562,18 +543,18 @@
                 "to": {
                     "startLine": 10,
                     "startColumn": 4,
-                    "startOffset": 911,
+                    "startOffset": 910,
                     "endColumn": 81,
-                    "endOffset": 988
+                    "endOffset": 987
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
-                        "startOffset": 911,
+                        "startOffset": 910,
                         "endColumn": 81,
-                        "endOffset": 988
+                        "endOffset": 987
                     }
                 }
             },
@@ -581,18 +562,18 @@
                 "to": {
                     "startLine": 11,
                     "startColumn": 4,
-                    "startOffset": 993,
+                    "startOffset": 992,
                     "endColumn": 80,
-                    "endOffset": 1069
+                    "endOffset": 1068
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
-                        "startOffset": 993,
+                        "startOffset": 992,
                         "endColumn": 80,
-                        "endOffset": 1069
+                        "endOffset": 1068
                     }
                 }
             },
@@ -600,18 +581,18 @@
                 "to": {
                     "startLine": 12,
                     "startColumn": 4,
-                    "startOffset": 1074,
+                    "startOffset": 1073,
                     "endColumn": 84,
-                    "endOffset": 1154
+                    "endOffset": 1153
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
-                        "startOffset": 1074,
+                        "startOffset": 1073,
                         "endColumn": 84,
-                        "endOffset": 1154
+                        "endOffset": 1153
                     }
                 }
             },
@@ -619,18 +600,18 @@
                 "to": {
                     "startLine": 13,
                     "startColumn": 4,
-                    "startOffset": 1159,
+                    "startOffset": 1158,
                     "endColumn": 106,
-                    "endOffset": 1261
+                    "endOffset": 1260
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 1159,
+                        "startOffset": 1158,
                         "endColumn": 106,
-                        "endOffset": 1261
+                        "endOffset": 1260
                     }
                 }
             },
@@ -638,18 +619,18 @@
                 "to": {
                     "startLine": 14,
                     "startColumn": 4,
-                    "startOffset": 1266,
+                    "startOffset": 1265,
                     "endColumn": 106,
-                    "endOffset": 1368
+                    "endOffset": 1367
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 1266,
+                        "startOffset": 1265,
                         "endColumn": 106,
-                        "endOffset": 1368
+                        "endOffset": 1367
                     }
                 }
             },
@@ -657,18 +638,18 @@
                 "to": {
                     "startLine": 15,
                     "startColumn": 4,
-                    "startOffset": 1373,
+                    "startOffset": 1372,
                     "endColumn": 98,
-                    "endOffset": 1467
+                    "endOffset": 1466
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
-                        "startOffset": 1373,
+                        "startOffset": 1372,
                         "endColumn": 98,
-                        "endOffset": 1467
+                        "endOffset": 1466
                     }
                 }
             },
@@ -676,18 +657,18 @@
                 "to": {
                     "startLine": 16,
                     "startColumn": 4,
-                    "startOffset": 1472,
+                    "startOffset": 1471,
                     "endColumn": 109,
-                    "endOffset": 1577
+                    "endOffset": 1576
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
-                        "startOffset": 1472,
+                        "startOffset": 1471,
                         "endColumn": 109,
-                        "endOffset": 1577
+                        "endOffset": 1576
                     }
                 }
             },
@@ -695,18 +676,18 @@
                 "to": {
                     "startLine": 17,
                     "startColumn": 4,
-                    "startOffset": 1582,
+                    "startOffset": 1581,
                     "endColumn": 106,
-                    "endOffset": 1684
+                    "endOffset": 1683
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
-                        "startOffset": 1582,
+                        "startOffset": 1581,
                         "endColumn": 106,
-                        "endOffset": 1684
+                        "endOffset": 1683
                     }
                 }
             },
@@ -714,18 +695,18 @@
                 "to": {
                     "startLine": 18,
                     "startColumn": 4,
-                    "startOffset": 1689,
+                    "startOffset": 1688,
                     "endColumn": 99,
-                    "endOffset": 1784
+                    "endOffset": 1783
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
-                        "startOffset": 1689,
+                        "startOffset": 1688,
                         "endColumn": 99,
-                        "endOffset": 1784
+                        "endOffset": 1783
                     }
                 }
             },
@@ -733,18 +714,18 @@
                 "to": {
                     "startLine": 19,
                     "startColumn": 4,
-                    "startOffset": 1789,
+                    "startOffset": 1788,
                     "endColumn": 124,
-                    "endOffset": 1909
+                    "endOffset": 1908
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
-                        "startOffset": 1789,
+                        "startOffset": 1788,
                         "endColumn": 124,
-                        "endOffset": 1909
+                        "endOffset": 1908
                     }
                 }
             },
@@ -752,18 +733,18 @@
                 "to": {
                     "startLine": 20,
                     "startColumn": 4,
-                    "startOffset": 1914,
+                    "startOffset": 1913,
                     "endColumn": 98,
-                    "endOffset": 2008
+                    "endOffset": 2007
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
-                        "startOffset": 1914,
+                        "startOffset": 1913,
                         "endColumn": 98,
-                        "endOffset": 2008
+                        "endOffset": 2007
                     }
                 }
             },
@@ -771,18 +752,18 @@
                 "to": {
                     "startLine": 21,
                     "startColumn": 4,
-                    "startOffset": 2013,
+                    "startOffset": 2012,
                     "endColumn": 81,
-                    "endOffset": 2090
+                    "endOffset": 2089
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 4,
-                        "startOffset": 2013,
+                        "startOffset": 2012,
                         "endColumn": 81,
-                        "endOffset": 2090
+                        "endOffset": 2089
                     }
                 }
             },
@@ -790,25 +771,25 @@
                 "to": {
                     "startLine": 22,
                     "startColumn": 4,
-                    "startOffset": 2095,
+                    "startOffset": 2094,
                     "endColumn": 100,
-                    "endOffset": 2191
+                    "endOffset": 2190
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/C:\\androidmylib\\huanxin\\examples\\easeui\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "file": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 22,
                         "startColumn": 4,
-                        "startOffset": 2095,
+                        "startOffset": 2094,
                         "endColumn": 100,
-                        "endOffset": 2191
+                        "endOffset": 2190
                     }
                 }
             }
         ]
     },
     {
-        "outputFile": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-hy-rAM/values-hy-rAM.xml",
+        "outputFile": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-hy-rAM\\values-hy-rAM.xml",
         "map": [
             {
                 "to": {
@@ -819,7 +800,7 @@
                     "endOffset": 153
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -838,7 +819,7 @@
                     "endOffset": 261
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -857,7 +838,7 @@
                     "endOffset": 384
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -876,7 +857,7 @@
                     "endOffset": 485
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -895,7 +876,7 @@
                     "endOffset": 595
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -914,7 +895,7 @@
                     "endOffset": 685
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -933,7 +914,7 @@
                     "endOffset": 791
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -952,7 +933,7 @@
                     "endOffset": 906
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -971,7 +952,7 @@
                     "endOffset": 988
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -990,7 +971,7 @@
                     "endOffset": 1069
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -1009,7 +990,7 @@
                     "endOffset": 1154
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
@@ -1028,7 +1009,7 @@
                     "endOffset": 1261
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -1047,7 +1028,7 @@
                     "endOffset": 1368
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -1066,7 +1047,7 @@
                     "endOffset": 1467
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
@@ -1085,7 +1066,7 @@
                     "endOffset": 1577
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
@@ -1104,7 +1085,7 @@
                     "endOffset": 1684
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
@@ -1119,17 +1100,17 @@
                     "startLine": 18,
                     "startColumn": 4,
                     "startOffset": 1689,
-                    "endColumn": 99,
-                    "endOffset": 1784
+                    "endColumn": 100,
+                    "endOffset": 1785
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
                         "startOffset": 1689,
-                        "endColumn": 99,
-                        "endOffset": 1784
+                        "endColumn": 100,
+                        "endOffset": 1785
                     }
                 }
             },
@@ -1137,18 +1118,18 @@
                 "to": {
                     "startLine": 19,
                     "startColumn": 4,
-                    "startOffset": 1789,
-                    "endColumn": 124,
-                    "endOffset": 1909
+                    "startOffset": 1790,
+                    "endColumn": 119,
+                    "endOffset": 1905
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
-                        "startOffset": 1789,
-                        "endColumn": 124,
-                        "endOffset": 1909
+                        "startOffset": 1790,
+                        "endColumn": 119,
+                        "endOffset": 1905
                     }
                 }
             },
@@ -1156,18 +1137,18 @@
                 "to": {
                     "startLine": 20,
                     "startColumn": 4,
-                    "startOffset": 1914,
+                    "startOffset": 1910,
                     "endColumn": 98,
-                    "endOffset": 2008
+                    "endOffset": 2004
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
-                        "startOffset": 1914,
+                        "startOffset": 1910,
                         "endColumn": 98,
-                        "endOffset": 2008
+                        "endOffset": 2004
                     }
                 }
             },
@@ -1175,37 +1156,18 @@
                 "to": {
                     "startLine": 21,
                     "startColumn": 4,
-                    "startOffset": 2013,
-                    "endColumn": 81,
-                    "endOffset": 2090
+                    "startOffset": 2009,
+                    "endColumn": 100,
+                    "endOffset": 2105
                 },
                 "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
+                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-hy-rAM\\values-hy-rAM.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 4,
-                        "startOffset": 2013,
-                        "endColumn": 81,
-                        "endOffset": 2090
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 22,
-                    "startColumn": 4,
-                    "startOffset": 2095,
-                    "endColumn": 100,
-                    "endOffset": 2191
-                },
-                "from": {
-                    "file": "/Users/cp/Android龙创时代/gitsafe/easeui/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-hy-rAM/values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 22,
-                        "startColumn": 4,
-                        "startOffset": 2095,
+                        "startOffset": 2009,
                         "endColumn": 100,
-                        "endOffset": 2191
+                        "endOffset": 2105
                     }
                 }
             }

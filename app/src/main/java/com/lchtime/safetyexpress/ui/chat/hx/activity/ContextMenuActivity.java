@@ -21,7 +21,8 @@ import com.hyphenate.chat.EMMessage;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.ui.chat.hx.Constant;
 
-public class ContextMenuActivity extends EaseBaseActivity {
+
+public class ContextMenuActivity extends BaseActivity {
     public static final int RESULT_CODE_COPY = 1;
     public static final int RESULT_CODE_DELETE = 2;
     public static final int RESULT_CODE_FORWARD = 3;
@@ -34,37 +35,37 @@ public class ContextMenuActivity extends EaseBaseActivity {
 		
 		int type = message.getType().ordinal();
 		if (type == EMMessage.Type.TXT.ordinal()) {
-		    /*if(message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VIDEO_CALL, false)
+		    if(message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VIDEO_CALL, false)
 					|| message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VOICE_CALL, false)
-					//red packet code : 屏蔽红包消息的转发功能
-					|| message.getBooleanAttribute(RPConstant.MESSAGE_ATTR_IS_RED_PACKET_MESSAGE, false)){
+					//red packet code : 屏蔽红包消息、转账消息的转发功能
+					){
 				    //end of red packet code
 				setContentView(R.layout.em_context_menu_for_location);
-		    }else*/ if(message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_BIG_EXPRESSION, false)){
+		    }else if(message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_BIG_EXPRESSION, false)){
 		        setContentView(R.layout.em_context_menu_for_image);
 		    }else{
 		        setContentView(R.layout.em_context_menu_for_text);
 		    }
-		} /*else if (type == EMMessage.Type.LOCATION.ordinal()) {
+		} else if (type == EMMessage.Type.LOCATION.ordinal()) {
 		    setContentView(R.layout.em_context_menu_for_location);
-		} */else if (type == EMMessage.Type.IMAGE.ordinal()) {
+		} else if (type == EMMessage.Type.IMAGE.ordinal()) {
 		    setContentView(R.layout.em_context_menu_for_image);
 		} else if (type == EMMessage.Type.VOICE.ordinal()) {
 		    setContentView(R.layout.em_context_menu_for_voice);
 		} else if (type == EMMessage.Type.VIDEO.ordinal()) {
 			setContentView(R.layout.em_context_menu_for_video);
-		} /*else if (type == EMMessage.Type.FILE.ordinal()) {
+		} else if (type == EMMessage.Type.FILE.ordinal()) {
 		    setContentView(R.layout.em_context_menu_for_location);
-		}*/
-//		if (isChatroom
-//				//red packet code : 屏蔽红包消息的撤回功能
-//				|| message.getBooleanAttribute(RPConstant.MESSAGE_ATTR_IS_RED_PACKET_MESSAGE, false)) {
-//			    //end of red packet code
-//			View v = (View) findViewById(R.id.forward);
-//	        if (v != null) {
-//	            v.setVisibility(View.GONE);
-//	        }
-//		}
+		}
+		if (isChatroom
+				//red packet code : 屏蔽红包消息、转账消息的撤回功能
+				) {
+			    //end of red packet code
+			View v = (View) findViewById(R.id.forward);
+	        if (v != null) {
+	            v.setVisibility(View.GONE);
+	        }
+		}
 	}
 
 	@Override

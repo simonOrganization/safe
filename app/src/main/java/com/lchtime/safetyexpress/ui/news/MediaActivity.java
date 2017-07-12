@@ -3,7 +3,6 @@ package com.lchtime.safetyexpress.ui.news;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.TextUtils;
@@ -20,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by yxn on 2017/4/26.
+ * Created by yxn on 2017/4/26.   小视频界面
  */
 
 public class MediaActivity extends Activity {

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg" >
+    <RelativeLayout
+        android:id="@+id/rv_chat_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm090">
+        <include layout="@layout/title" android:id="@+id/chat_title"/>
+        <TextView
+            android:id="@+id/unread_msg_number"
+            android:layout_width="@dimen/dm020"
+            android:layout_height="@dimen/dm020"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dm020"
+            android:layout_marginTop="@dimen/dm020"
+            android:background="@drawable/shape_bg_circle"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textSize="@dimen/dm024" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rv_chat_title"/>
+
+</RelativeLayout>

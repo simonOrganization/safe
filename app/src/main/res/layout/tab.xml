@@ -218,8 +218,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dm130"
+                android:background="@android:color/transparent"
                 android:layout_alignParentBottom="true"
-                android:background="@android:color/transparent">
+                android:gravity="bottom"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
 
                 <RelativeLayout
                     android:layout_width="0dp"
@@ -228,7 +231,7 @@
 
                 <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/dm100"
                     android:layout_weight="1">
 
                     <Button
@@ -238,20 +241,32 @@
                         android:background="#00000000"
                         android:visibility="gone" />
 
+                    <!--<TextView-->
+                        <!--android:id="@+id/unread_msg_number"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="@dimen/dm028"-->
+                        <!--android:layout_marginLeft="@dimen/dm065"-->
+                        <!--android:layout_marginTop="@dimen/dm005"-->
+                        <!--android:background="@drawable/bubble"-->
+                        <!--android:gravity="center"-->
+                        <!--android:paddingLeft="@dimen/dm008"-->
+                        <!--android:paddingRight="@dimen/dm008"-->
+                        <!--android:text="9"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textSize="@dimen/dm018"-->
+                        <!--android:visibility="gone" />-->
+
                     <TextView
-                        android:id="@+id/unread_msg_number"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/dm028"
-                        android:layout_marginLeft="@dimen/dm065"
-                        android:layout_marginTop="@dimen/dm005"
-                        android:background="@drawable/bubble"
-                        android:gravity="center"
-                        android:paddingLeft="@dimen/dm008"
-                        android:paddingRight="@dimen/dm008"
-                        android:text="9"
+                        android:id="@+id/unread_msg_number_circle"
+                        android:layout_width="@dimen/dm020"
+                        android:layout_height="@dimen/dm020"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/shape_bg_circle"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/dm018"
-                        android:visibility="invisible" />
+                        android:visibility="visible"
+                        android:layout_marginTop="@dimen/dm020"
+                        android:layout_marginRight="@dimen/dm030"
+                        android:textSize="@dimen/dm024" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -271,8 +286,24 @@
 
                 <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_height="@dimen/dm100"
+                    android:layout_weight="1" >
+                    <TextView
+                        android:id="@+id/unread_msg_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dm040"
+                        android:layout_marginTop="@dimen/dm005"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/shape_bg_circle"
+                        android:layout_marginRight="@dimen/dm020"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/dm014"
+                        android:paddingRight="@dimen/dm014"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dm018"
+                        android:visibility="visible" />
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="0dp"
@@ -283,5 +314,22 @@
 
         </RelativeLayout>
     </TabHost>
+
+    <RelativeLayout
+        android:id="@+id/pb_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="#55000000">
+
+    </RelativeLayout>
+
+    <ProgressBar
+    android:visibility="gone"
+    android:id="@+id/progress"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    />
 
 </RelativeLayout>

@@ -50,55 +50,62 @@ public class ThirdQQLoginApi {
 	
 	public static void login(final Activity activity,final OauthListener listener, final OauthLoginListener oauth) {
 		
-		if (!isQQInstalled()) {
-			UIUtils.showToastMessage(R.string.qq_not_install);
-			return;
-		}
+//		if (!isQQInstalled()) {
+//			UIUtils.showToastMessage(R.string.qq_not_install);
+//			return;
+//		}
 		
 		if (mTencent != null) {
 			// 本地配置文件注销
 			mTencent.logout(activity);
-			mTencent.login(activity, ThirdAppKey.QQ_SCOPE, new IUiListener() {
-
-				@Override
-				public void onError(UiError arg0) {
-					listener.OauthFail(arg0);
-				}
-
-				@Override
-				public void onComplete(Object arg0) {
-
-					JSONObject obj = (JSONObject) arg0;
-					Log.v("qq:", obj.toString());
-					try {
-						QQToken token = new QQToken();
-						token.setAccess_token(obj.getString("access_token"));
-						token.setPay_token(obj.getString("pay_token"));
-						token.setOpenid(obj.getString("openid"));
-						token.setExpires_in(obj.getString("expires_in"));
-
-						if (token != null && token.getAccess_token() != null) {
-							listener.OauthSuccess(token);
-							mTencent.setOpenId(token.getOpenid());
-							mTencent.setAccessToken(token.getAccess_token(),
-									token.getExpires_in() + "");
-							ThirdQQLoginApi.getUserInfo(activity, oauth, token);
-						}
-					} catch (Exception e) {
-						listener.OauthFail(null);
-					}
-				}
-
-				@Override
-				public void onCancel() {
-					listener.OauthCancel(null);
-				}
-			});
+			mTencent.login(activity, ThirdAppKey.QQ_SCOPE, getIUiListener(activity,listener,oauth));
 		}
 	}
 
+
+	public static IUiListener getIUiListener(final Activity activity, final OauthListener listener, final OauthLoginListener oauth) {
+		IUiListener iUiListener = new IUiListener() {
+
+			@Override
+			public void onError(UiError arg0) {
+				listener.OauthFail(arg0);
+			}
+
+			@Override
+			public void onComplete(Object arg0) {
+
+				JSONObject obj = (JSONObject) arg0;
+				Log.v("qq:", obj.toString());
+				try {
+					QQToken token = new QQToken();
+					token.setAccess_token(obj.getString("access_token"));
+					token.setPay_token(obj.getString("pay_token"));
+					token.setOpenid(obj.getString("openid"));
+					token.setExpires_in(obj.getString("expires_in"));
+
+					if (token != null && token.getAccess_token() != null) {
+						listener.OauthSuccess(token);
+						mTencent.setOpenId(token.getOpenid());
+						mTencent.setAccessToken(token.getAccess_token(),
+								token.getExpires_in() + "");
+						ThirdQQLoginApi.getUserInfo(activity, oauth, token);
+					}
+				} catch (Exception e) {
+					listener.OauthFail(null);
+				}
+			}
+
+			@Override
+			public void onCancel() {
+				listener.OauthCancel(null);
+			}
+		};
+		return iUiListener;
+	}
+
+
 	public static void getUserInfo(final Activity activity,
-			final OauthLoginListener oauth, final QQToken token) {
+								   final OauthLoginListener oauth, final QQToken token) {
 		UserInfo info = new UserInfo(activity, mTencent.getQQToken());
 		info.getUserInfo(new IUiListener() {
 
@@ -115,7 +122,9 @@ public class ThirdQQLoginApi {
 					QQUserInfo info = new QQUserInfo();
 					info.gender = obj.getString("gender");
 					info.nickname = obj.getString("nickname");
+//					大小为40×40像素的QQ头像URL。
 					info.figureurl_qq_1 = obj.getString("figureurl_qq_1");
+//	大小为100×100像素的QQ头像URL。需要注意，不是所有的用户都拥有QQ的100×100的头像，但40×40像素则是一定会有。
 					info.figureurl_qq_2 = obj.getString("figureurl_qq_2");
 					if (info != null && info.nickname != null) {
 						token.authtype = LoginPlatForm.QQZONE_PLATPORM;
@@ -134,5 +143,7 @@ public class ThirdQQLoginApi {
 				oauth.OauthLoginFail();
 			}
 		});
+
 	}
+
 }

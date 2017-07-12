@@ -37,4 +37,6 @@ public class QzContextBean {
     public String is_dy;
     public String dyNum;
     public ArrayList<String> pic;
+
+    public boolean isCheck;
 }

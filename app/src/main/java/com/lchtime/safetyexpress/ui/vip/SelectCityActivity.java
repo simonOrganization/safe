@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.CitySortAdapter;
@@ -21,7 +20,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by android-cp on 2017/5/1.
+ * Created by android-cp on 2017/5/1.选择城市界面
  */
 @ContentView(R.layout.city_activity)
 public class SelectCityActivity extends BaseUI{

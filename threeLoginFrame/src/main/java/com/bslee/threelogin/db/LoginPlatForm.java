@@ -26,7 +26,7 @@ public class LoginPlatForm {
 		return sp.getInt("PLATPORM", LOCAL_PLATPORM);
 	}
 	
-	public boolean isMiyaLogin() {
+	public boolean isCarLogin() {
 		return sp.getInt("PLATPORM", LOCAL_PLATPORM)==LOCAL_PLATPORM;
 	}
 	

@@ -2,40 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <TextView
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ease_mm_listitem_disable"
-        android:paddingLeft="10dp"
+        android:layout_height="@dimen/dm050"
+        android:background="@color/page_color"
+        android:paddingLeft="@dimen/dm020"
         android:textColor="@android:color/black"
         android:textSize="15sp"
         android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/ease_mm_listitem"
+        android:layout_height="@dimen/dm122"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <CheckBox
             android:id="@+id/checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dm020"
+            android:layout_marginRight="@dimen/dm020"
+            android:layout_width="@dimen/dm030"
+            android:layout_height="@dimen/dm030"
             android:layout_gravity="center_vertical"
+            android:background="@drawable/rb_delete"
             android:focusable="false"
-            android:button="@drawable/em_checkbox_bg_selector" />
+            android:button="@null"
+            android:text="@null"/>
 
-        <ImageView
+        <com.lchtime.safetyexpress.views.CircleImageView
             android:id="@+id/avatar"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="@dimen/dm072"
+            android:layout_height="@dimen/dm072"
             android:layout_gravity="center_vertical"
-            android:scaleType="fitXY"
             android:src="@drawable/em_default_avatar" />
 
         <TextView
@@ -51,5 +54,12 @@
             android:textSize="20sp" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm001"
+        android:background="@color/line"
+        android:layout_marginLeft="@dimen/dm020"
+        android:layout_marginRight="@dimen/dm020"/>
 
 </LinearLayout>

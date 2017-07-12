@@ -2,6 +2,7 @@ package com.lchtime.safetyexpress.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -12,8 +13,10 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
@@ -23,13 +26,15 @@ import com.lchtime.safetyexpress.ui.circle.CircleUI;
 import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
-import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
+import com.lchtime.safetyexpress.ui.news.MediaActivity;
+import com.lchtime.safetyexpress.ui.vip.fragment.CircleFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ImageUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -82,23 +87,24 @@ public class CircleAdapter extends RecyclerView.Adapter  {
 
             //如果有图片
             if (TextUtils.isEmpty(bean.qc_video)) {
-                ((CircleHodler) holder).circle_item_shipin.setVisibility(View.GONE);
+                ((CircleHodler) holder).circle_item_shipin_1.setVisibility(View.GONE);
                 ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.VISIBLE);
                 //一片张图
                 if (bean.pic.size() == 1) {
                     if (isCircle){
                         //如果是圈子界面
-                        ((CircleHodler) holder).circle_item_shipin.setVisibility(View.VISIBLE);
+                        ((CircleHodler) holder).circle_item_shipin_1.setVisibility(View.VISIBLE);
+                        ((CircleHodler) holder).iv_recommend_play.setVisibility(View.GONE);
                         ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.GONE);
                         Picasso.with(context).load(bean.pic.get(0))
                                 .transform(ImageUtils.getTransformation(((CircleHodler) holder).circle_item_shipin))
                                 .into(((CircleHodler) holder).circle_item_shipin);
-                        circleHodler.circle_item_shipin.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-
-                            }
-                        });
+//                        circleHodler.circle_item_shipin.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//
+//                            }
+//                        });
 
                     }else {
                         //如果不是圈子界面，那么取消显示
@@ -123,25 +129,31 @@ public class CircleAdapter extends RecyclerView.Adapter  {
                 //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(3, 5, true));
                 CircleImageAdapter imageAdapter = new CircleImageAdapter(context, bean.pic);
                 circleHodler.circle_item_image_rc.setAdapter(imageAdapter);
+
+                ((CircleHodler) holder).circle_item_image_rc.setEnabled(false);
+                ((CircleHodler) holder).circle_item_image_rc.setClickable(false);
                 //如果没有图片
             }else {
 
                 //视频
                 if (bean.pic.size() > 0) {
-                    ((CircleHodler) holder).circle_item_shipin.setVisibility(View.VISIBLE);
+                    ((CircleHodler) holder).circle_item_shipin_1.setVisibility(View.VISIBLE);
+                    ((CircleHodler) holder).iv_recommend_play.setVisibility(View.VISIBLE);
                     ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.GONE);
                     Picasso.with(context).load(bean.pic.get(0))
                             .transform(ImageUtils.getTransformation(((CircleHodler) holder).circle_item_shipin))
                             .into(((CircleHodler) holder).circle_item_shipin);
                 }else {
-                    ((CircleHodler) holder).circle_item_shipin.setVisibility(View.GONE);
+                    ((CircleHodler) holder).circle_item_shipin_1.setVisibility(View.GONE);
                     ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.GONE);
                 }
 
-                circleHodler.circle_item_shipin.setOnClickListener(new View.OnClickListener() {
+                circleHodler.iv_recommend_play.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        Intent intent = new Intent(context, MediaActivity.class);
+                        intent.putExtra("url",bean.qc_video);
+                        context.startActivity(intent);
                     }
                 });
             }
@@ -177,6 +189,10 @@ public class CircleAdapter extends RecyclerView.Adapter  {
                         protocal.changeSubscribe(userid, bean.qc_ub_id, type , new CircleProtocal.CircleListener() {
                             @Override
                             public void circleResponse(CircleBean response) {
+                                if (response == null){
+                                    CommonUtils.toastMessage("网络请求失败");
+                                    return;
+                                }
                                 if (context instanceof CircleUI) {
                                     ((CircleUI) context).refreshData("1");
                                 }
@@ -189,6 +205,9 @@ public class CircleAdapter extends RecyclerView.Adapter  {
                     }
                 }
             });
+
+            //设置删除按钮
+            setCheckBox(((CircleHodler) holder).rb_delete,position);
             //点赞
             setGreate((CircleHodler) holder, bean, protocal);
 
@@ -201,12 +220,13 @@ public class CircleAdapter extends RecyclerView.Adapter  {
             ((CircleHodler) holder).itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, HomeNewsDetailUI.class);
+                    Intent intent = new Intent(context, H5DetailUI.class);
                     intent.putExtra("newsId",bean.qc_id);
                     intent.putExtra("type","circle");
                     context.startActivity(intent);
                 }
             });
+
         }
 
 
@@ -364,6 +384,13 @@ public class CircleAdapter extends RecyclerView.Adapter  {
         CheckBox circle_item_subscribe;
         @BindView(R.id.circle_item_subscribe_num)
         TextView circle_item_subscribe_num;
+        @BindView(R.id.rb_delete)
+        CheckBox rb_delete;
+        @BindView(R.id.circle_item_shipin_1)
+        RelativeLayout circle_item_shipin_1;
+
+        @BindView(R.id.iv_recommend_play)
+        ImageView iv_recommend_play;
 
         public CircleHodler(View itemView) {
             super(itemView);
@@ -374,5 +401,60 @@ public class CircleAdapter extends RecyclerView.Adapter  {
 
     public void setIsCircle(boolean isCircle){
         this.isCircle = isCircle;
+    }
+
+    public List<QzContextBean> list = new ArrayList<>();
+    public List<QzContextBean> getUpdataList(){
+        return list;
+    }
+
+    private Fragment fragment;
+    private boolean flag = false;
+    public void setCheckBoxShow(Fragment fragment, boolean isShow){
+        this.fragment = fragment;
+        flag = isShow;
+    }
+
+    public void setCheckBox(CheckBox rb, final int position){
+        //设置删除按钮
+        if (flag == true){
+
+            //设置checkbox的自定义背景
+
+            /*Drawable drawable = fragment.getActivity().getResources().getDrawable(R.drawable.rb_delete);
+
+            //设置drawable对象的大小
+            drawable.setBounds(0,0,20,20);
+
+            //设置CheckBox对象的位置，对应为左、上、右、下
+            rb.setCompoundDrawables(drawable,null,null,null);
+            */
+            //显示
+            rb.setVisibility(View.VISIBLE);
+            final QzContextBean bean = circleOneList.get(position);
+            rb.setChecked(bean.isCheck);
+            rb.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (fragment instanceof CircleFragment) {
+                        //如果之前不是选中的状态
+                        if (!bean.isCheck) {
+                            list.add(bean);
+                            ((CircleFragment)fragment).updataDeleteNum(1);
+
+                        } else {
+                            list.remove(bean);
+                            ((CircleFragment)fragment).updataDeleteNum(-1);
+                        }
+                    }
+                    bean.isCheck = !bean.isCheck;
+
+                }
+            });
+
+        }else {
+            //隐藏
+            rb.setVisibility(View.GONE);
+        }
     }
 }

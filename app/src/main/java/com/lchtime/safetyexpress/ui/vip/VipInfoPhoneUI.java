@@ -12,7 +12,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 /**
- * 手机号
+ * 更换手机号一级界面
  * <p>
  * Created by user on 2017/4/17.
  */

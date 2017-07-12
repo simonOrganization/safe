@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/dm001">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/dm020"
+        android:layout_marginRight="@dimen/dm020"
         android:background="@color/white"
         android:paddingTop="@dimen/dm020"
         android:paddingBottom="@dimen/dm020">
@@ -22,7 +23,7 @@
                 android:id="@+id/circle_item_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="超爱戴比尔斯家的产品了戴比尔斯家的产品了专柜正品一比一独家开模专柜正品一比一独家开模制作这款耳钉厚壁结实，佩戴大气上档次成熟技术水平肯定减肥快捷键风光好"
+                android:text=""
                 android:textSize="@dimen/dm030"
                 android:textColor="@color/title_333"
                 android:layout_below="@id/circle_item_company_name"
@@ -188,5 +189,13 @@
         </RelativeLayout>
 
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm001"
+        android:background="@color/line"
+        android:layout_marginLeft="@dimen/dm020"
+        android:layout_marginRight="@dimen/dm020"
+        android:layout_alignParentBottom="true"/>
 
-</LinearLayout>
+
+</RelativeLayout>

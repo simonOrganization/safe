@@ -1,5 +1,8 @@
 package com.lchtime.safetyexpress.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by android-cp on 2017/4/27.
  */
@@ -19,5 +22,13 @@ public class InitInfo {
 
 
     public static boolean circleRefresh = false;
+    public static boolean homeRefresh = false;
     public static boolean wendaDetail = false;
+
+
+
+
+    public static List<String> up_accounts = new ArrayList<>();
+
+    public static boolean isShowJLGZ = true;
 }

@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.easeui.adapter.EaseContactAdapter;
+import com.hyphenate.easeui.bean.ContactBean;
+import com.hyphenate.easeui.bean.EaseInitBean;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.easeui.widget.EaseSidebar;
@@ -22,56 +24,27 @@ import com.lchtime.safetyexpress.R;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class PickAtUserActivity extends EaseBaseActivity{
+public class PickAtUserActivity extends BaseActivity{
     ListView listView;
-    View headerView;
-
-    String groupId;
-    EMGroup group;
+    private Map<String,ContactBean> myMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
         setContentView(R.layout.activity_pick_at_user);
         
-        groupId = getIntent().getStringExtra("groupId");
-        group = EMClient.getInstance().groupManager().getGroup(groupId);
+        String groupId = getIntent().getStringExtra("groupId");
+        EMGroup group = EMClient.getInstance().groupManager().getGroup(groupId);
 
         EaseSidebar sidebar = (EaseSidebar) findViewById(com.hyphenate.easeui.R.id.sidebar);
         listView = (ListView) findViewById(R.id.list);
         sidebar.setListView(listView);
-        updateList();
-
-        updateGroupData();
-    }
-
-    void updateGroupData() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    group = EMClient.getInstance().groupManager().getGroupFromServer(groupId);
-                    EMClient.getInstance().groupManager().fetchGroupMembers(groupId, "", 200);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        updateList();
-                    }
-                });
-            }
-        }).start();
-    }
-
-    void updateList() {
         List<String> members = group.getMembers();
         List<EaseUser> userList = new ArrayList<EaseUser>();
-        members.addAll(group.getAdminList());
-        members.add(group.getOwner());
         for(String username : members){
             EaseUser user = EaseUserUtils.getUserInfo(username);
             userList.add(user);
@@ -97,13 +70,19 @@ public class PickAtUserActivity extends EaseBaseActivity{
         final boolean isOwner = EMClient.getInstance().getCurrentUser().equals(group.getOwner());
         if(isOwner) {
             addHeadView();
-        } else {
-            if (headerView != null) {
-                listView.removeHeaderView(headerView);
-                headerView = null;
-            }
         }
-        listView.setAdapter(new PickUserAdapter(this, 0, userList));
+
+        if (EaseInitBean.map == null) {
+            if (EaseInitBean.contactBean != null) {
+
+                for (ContactBean contactBean : EaseInitBean.contactBean.friendlist) {
+                    myMap.put(contactBean.hx_account, contactBean);
+                }
+            }
+            EaseInitBean.map = myMap;
+        }
+
+        listView.setAdapter(new PickUserAdapter(this, 0, userList,EaseInitBean.map));
         listView.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
@@ -127,18 +106,16 @@ public class PickAtUserActivity extends EaseBaseActivity{
                 finish();
             }
         });
+
     }
 
     private void addHeadView(){
-        if (listView.getHeaderViewsCount() == 0) {
-            View view = LayoutInflater.from(this).inflate(R.layout.ease_row_contact, listView, false);
-            ImageView avatarView = (ImageView) view.findViewById(R.id.avatar);
-            TextView textView = (TextView) view.findViewById(R.id.name);
-            textView.setText(getString(R.string.all_members));
-            avatarView.setImageResource(R.drawable.ease_groups_icon);
-            listView.addHeaderView(view);
-            headerView = view;
-        }
+        View view = LayoutInflater.from(this).inflate(R.layout.ease_row_contact, listView, false);
+        ImageView avatarView = (ImageView) view.findViewById(R.id.avatar);
+        TextView textView = (TextView) view.findViewById(R.id.name);
+        textView.setText(getString(R.string.all_members));
+        avatarView.setImageResource(R.drawable.ease_groups_icon);
+        listView.addHeaderView(view);
     }
 
     public void back(View view) {
@@ -147,8 +124,8 @@ public class PickAtUserActivity extends EaseBaseActivity{
 
     private class PickUserAdapter extends EaseContactAdapter {
 
-        public PickUserAdapter(Context context, int resource, List<EaseUser> objects) {
-            super(context, resource, objects);
+        public PickUserAdapter(Context context, int resource, List<EaseUser> objects,Map<String,ContactBean> userInfo) {
+            super(context, resource, objects,userInfo);
         }
     }
 }

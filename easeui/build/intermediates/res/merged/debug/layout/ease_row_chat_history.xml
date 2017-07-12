@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="59dp"
+    android:layout_height="@dimen/dm160"
      android:id="@+id/list_itease_layout"
      android:background="#fff"
     android:gravity="center_vertical" >
 
     <RelativeLayout
         android:id="@+id/avatar_container"
-        android:layout_width="59dp"
+        android:layout_width="@dimen/dm136"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true" >
 
-      <com.hyphenate.easeui.widget.EaseImageView
+      <com.hyphenate.easeui.widget.view.CircleImageView
             android:id="@+id/avatar"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="@dimen/dm100"
+            android:layout_height="@dimen/dm100"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ease_default_avatar" />
+            android:layout_marginLeft="@dimen/dm020"
+            android:layout_marginTop="@dimen/dm030"
+            android:layout_marginBottom="@dimen/dm030"
+            android:src="@drawable/circle_user_image" />
 
         <TextView
             android:id="@+id/unread_msg_number"
@@ -27,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="2dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="@dimen/dm014"
             android:background="@drawable/ease_unread_count_bg"
             android:gravity="center"
             android:textColor="@android:color/white"
@@ -38,21 +39,13 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginLeft="@dimen/dm010"
+        android:layout_marginTop="@dimen/dm040"
         android:layout_toRightOf="@id/avatar_container"
-        android:textColor="@color/list_itease_primary_color"
-        android:textSize="16sp" />
+        android:textColor="@color/title_333"
+        android:textSize="@dimen/dm030" />
 
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="7dp"
-        android:layout_marginTop="6dp"
-        android:textColor="@color/list_itease_secondary_color"
-        android:textSize="13sp" />
+
 
     <ImageView
         android:id="@+id/msg_state"
@@ -70,7 +63,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:text="@string/were_mentioned"
-        android:textColor="#e84e40"
+        android:textColor="@color/title_333"
         android:id="@+id/mentioned"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@id/msg_state"
@@ -82,15 +75,33 @@
     
     <TextView
         android:id="@+id/message"
-        android:layout_toLeftOf="@id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/name"
         android:layout_toRightOf="@id/mentioned"
+        android:layout_marginTop="@dimen/dm010"
+        android:layout_marginLeft="@dimen/dm010"
         android:singleLine="true"
         android:ellipsize="end"
-        android:padding="7dp"
-        android:textColor="@color/list_itease_secondary_color"
-        android:textSize="14sp" />
+        android:textColor="@color/title_999"
+        android:textSize="@dimen/dm028" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dm020"
+        android:layout_above="@id/message"
+        android:textColor="@color/title_333"
+        android:textSize="@dimen/dm024" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm001"
+        android:background="@color/line"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dm020"
+        android:layout_marginRight="@dimen/dm020"/>
 
 </RelativeLayout>

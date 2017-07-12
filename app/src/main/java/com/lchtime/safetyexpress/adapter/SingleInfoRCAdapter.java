@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
@@ -39,10 +41,12 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
 
     private Activity context;
     private List<MyCircleActiveBean.QuanziBean> circleOneList;
+    private final String ub_id;
 
     public SingleInfoRCAdapter(Activity context, List<MyCircleActiveBean.QuanziBean> circleOneList) {
         this.context = context;
         this.circleOneList = circleOneList;
+        ub_id = SpTools.getString(context, Constants.userId,"");
     }
 
     @Override
@@ -111,6 +115,15 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
 
             ((MyCircleActiveHodler) holder).circleItemContent.setText(bean.qc_context);
             ((MyCircleActiveHodler) holder).circleItemTalk.setText(bean.qc_pinglun + "评论");
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context,H5DetailUI.class);
+                    intent.putExtra("newsId",bean.qc_id);
+                    intent.putExtra("type","circle");
+                    context.startActivity(intent);
+                }
+            });
 
             //点赞
             setGreate((MyCircleActiveHodler) holder, bean, protocal);
@@ -120,27 +133,48 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
 
             ((MyCircleActiveHodler) holder).circleItemTime.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.qc_date)));
 //            circleHodler.circle_item_image_rc.addItemDecoration(new SpacesItemDecoration(10));
-            ((MyCircleActiveHodler) holder).circleItemDelete.setVisibility(View.GONE);
+            if (ub_id.equals(bean.qc_ub_id)){
+                ((MyCircleActiveHodler) holder).circleItemDelete.setVisibility(View.VISIBLE);
+            }else {
+                ((MyCircleActiveHodler) holder).circleItemDelete.setVisibility(View.GONE);
+            }
+
+            ((MyCircleActiveHodler) holder).circleItemDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //删除自己的圈子
+                    deleteCircle((MyCircleActiveHodler) holder,position,protocal);
+                }
+            });
+
         }
 
 
     }
 
     private void deleteCircle(MyCircleActiveHodler holder, final int position, CircleProtocal protocal) {
+        ((SingleInfoUI)context).setIsLoading(true);
         MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);
         String userid = SpTools.getString(context, Constants.userId, "");
         if (TextUtils.isEmpty(userid)) {
             CommonUtils.toastMessage("没有登陆！！");
             holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
+            ((SingleInfoUI)context).setIsLoading(false);
             return;
         }
         protocal.getDeleteCircle(userid, bean.qc_id, new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
+                if (response == null){
+                    CommonUtils.toastMessage("请求数据失败！请稍后再试!");
+                    ((SingleInfoUI)context).setIsLoading(false);
+                    return;
+                }
                 Result bean = (Result) response;
                 CommonUtils.toastMessage(bean.result.info);
                 circleOneList.remove(position);
-                notifyDataSetChanged();
+                ((SingleInfoUI)context).notifyDataSetChange();
+                ((SingleInfoUI)context).setIsLoading(false);
             }
         });
     }
@@ -166,11 +200,15 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                     protocal.updataZanOrCai(userid, bean.qc_id, "1", "0", new CircleProtocal.NormalListener() {
                         @Override
                         public void normalResponse(Object response) {
+                            if (response == null){
+                                CommonUtils.toastMessage("请重新尝试");
+                                return;
+                            }
                             BasicResult result = (BasicResult) response;
                             if (context instanceof SingleInfoUI){
                                 ((SingleInfoUI) context).prepareData();
                             }
-                            CommonUtils.toastMessage(result.getInfo());
+                            CommonUtils.toastMessage(result.getInfo() + "");
                         }
                     });
                     //holder.iv_circle_item_great.setChecked(true);

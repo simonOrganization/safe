@@ -168,6 +168,10 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
         protocal.getAddDyData(ub_id,hy, gw, addr, action, page, new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
+                if (response == null){
+                    CommonUtils.toastMessage("获取数据失败，请稍后再试");
+                    return;
+                }
                 AddSubscribBean bean = (AddSubscribBean) response;
                 totalPage = bean.totalpage;
                 allList.clear();
@@ -196,8 +200,11 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
                 hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
                 tv_adddy_hy.setSelected(true);
                 currentSelected = HANG_YE;
-                cp.setDataAdapter(InitInfo.professionBean.hy);
-                cp.showPopWindow(subscribe_all_ll);
+                if (InitInfo.professionBean != null) {
+                    cp.setDataAdapter(InitInfo.professionBean.hy);
+
+                    cp.showPopWindow(subscribe_all_ll);
+                }
                 break;
             case R.id.subscribe_all_gangwei:
                 //改变ui
@@ -205,17 +212,19 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
                 gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
                 tv_adddy_gw.setSelected(true);
                 currentSelected = GANG_WEI;
-                if (gwList.size() <= 0) {
-                    for (PostBean.PostItemBean bean : InitInfo.postBean.gw) {
-                        ProfessionBean.ProfessionItemBean itemBean = new ProfessionBean.ProfessionItemBean();
-                        itemBean.isSelect = bean.isSelect;
-                        itemBean.hy_name = bean.gw_name;
-                        itemBean.hy_id = bean.gw_id;
-                        gwList.add(itemBean);
+                if (InitInfo.postBean != null) {
+                    if (gwList.size() <= 0) {
+                        for (PostBean.PostItemBean bean : InitInfo.postBean.gw) {
+                            ProfessionBean.ProfessionItemBean itemBean = new ProfessionBean.ProfessionItemBean();
+                            itemBean.isSelect = bean.isSelect;
+                            itemBean.hy_name = bean.gw_name;
+                            itemBean.hy_id = bean.gw_id;
+                            gwList.add(itemBean);
+                        }
                     }
+                    cp.setDataAdapter(gwList);
+                    cp.showPopWindow(subscribe_all_ll);
                 }
-                cp.setDataAdapter(gwList);
-                cp.showPopWindow(subscribe_all_ll);
                 break;
             case R.id.subscribe_all_address:
                 currentSelected = ADDRESS;

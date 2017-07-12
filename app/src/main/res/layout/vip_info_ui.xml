@@ -465,6 +465,7 @@
                         android:layout_weight="1"
                         android:gravity="right"
                         android:singleLine="true"
+                        android:ellipsize="end"
                         android:text="未设置"
                         android:textColor="@color/title_999"
                         android:textSize="@dimen/dm026" />

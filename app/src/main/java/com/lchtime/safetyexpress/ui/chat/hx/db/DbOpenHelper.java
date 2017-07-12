@@ -17,7 +17,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.lchtime.safetyexpress.ui.chat.hx.HuanXinHelper;
+import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 
 
 public class DbOpenHelper extends SQLiteOpenHelper{
@@ -49,6 +49,12 @@ public class DbOpenHelper extends SQLiteOpenHelper{
 			+ UserDao.ROBOT_COLUMN_NAME_ID + " TEXT PRIMARY KEY, "
 			+ UserDao.ROBOT_COLUMN_NAME_NICK + " TEXT, "
 			+ UserDao.ROBOT_COLUMN_NAME_AVATAR + " TEXT);";
+
+	private static final String TOPUSER_TABLE_CREATE = "CREATE TABLE "
+			+ TopUserDao.TABLE_NAME + " ("
+			+ TopUserDao.ROBOT_COLUMN_NAME_ID + " TEXT PRIMARY KEY, "
+			+ TopUserDao.ROBOT_COLUMN_NAME_NICK + " TEXT, "
+			+ TopUserDao.ROBOT_COLUMN_NAME_AVATAR + " TEXT);";
 			
 	private static final String CREATE_PREF_TABLE = "CREATE TABLE "
             + UserDao.PREF_TABLE_NAME + " ("
@@ -67,7 +73,7 @@ public class DbOpenHelper extends SQLiteOpenHelper{
 	}
 	
 	private static String getUserDatabaseName() {
-        return  HuanXinHelper.getInstance().getCurrentUsernName() + "_demo.db";
+        return  DemoHelper.getInstance().getCurrentUsernName() + "_demo.db";
     }
 	
 	@Override
@@ -76,7 +82,8 @@ public class DbOpenHelper extends SQLiteOpenHelper{
 		db.execSQL(INIVTE_MESSAGE_TABLE_CREATE);
 		db.execSQL(CREATE_PREF_TABLE);
 		db.execSQL(ROBOT_TABLE_CREATE);
-		
+		db.execSQL(TOPUSER_TABLE_CREATE);
+
 	}
 
 	@Override

@@ -62,7 +62,7 @@
         tools:ignore="UnusedAttribute">
         <TextView
             android:id="@+id/record_tv"
-            android:text="点击拍照,长按录像"
+            android:text="长按开始录像"
             android:textSize="14sp"
             android:layout_gravity="center"
             android:textColor="@color/white"

@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -61,6 +62,8 @@ public class HomeQuestionUI extends BaseUI {
     RelativeLayout error;
     @ViewInject(R.id.success)
     RelativeLayout success;
+    @ViewInject(R.id.error_btn_retry)
+    Button error_btn_retry;
 
     private HomeQuestionAdapter homeQuestionAdapter;
     private HomeQuestionProtocal protocal;
@@ -203,6 +206,17 @@ public class HomeQuestionUI extends BaseUI {
                 //提问按钮的监听
                 Intent intent = new Intent(HomeQuestionUI.this,AskQuestionActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+        error_btn_retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setLoadingVisiblity();
+                initMyInfo();
+                initListener();
+                prepareData();
             }
         });
     }

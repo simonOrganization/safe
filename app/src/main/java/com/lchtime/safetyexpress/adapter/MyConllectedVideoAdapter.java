@@ -2,27 +2,19 @@ package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.bean.HomeNewsRecommendBean;
 import com.lchtime.safetyexpress.bean.NewsBean;
-import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
-import com.lchtime.safetyexpress.ui.vip.fragment.BaseFragment;
-import com.lchtime.safetyexpress.ui.vip.fragment.NewsFragment;
 import com.lchtime.safetyexpress.ui.vip.fragment.VedioFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.views.MyGridView;
@@ -116,8 +108,9 @@ public class MyConllectedVideoAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, HomeNewsDetailUI.class);
-                intent.putExtra("newsId","");
+                Intent intent = new Intent(context, H5DetailUI.class);
+                intent.putExtra("type","news");
+                intent.putExtra("newsId",bean.cc_id);
                 context.startActivity(intent);
             }
         });

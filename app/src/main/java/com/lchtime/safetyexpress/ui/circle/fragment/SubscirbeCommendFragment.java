@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.lchtime.safetyexpress.R.id.container;
+
 /**
  * Created by yxn on 2017/4/23.
  */
@@ -43,9 +46,9 @@ public class SubscirbeCommendFragment extends Fragment {
 
 
     //默认为个人信息里面的行业岗位地址来筛选
-    private String request_hy = InitInfo.vipInfoBean.user_detail.ud_profession;
-    private String request_gw =InitInfo.vipInfoBean.user_detail.ud_post;
-    private String request_addr = InitInfo.vipInfoBean.user_detail.ud_addr;
+    private String request_hy ;
+    private String request_gw ;
+    private String request_addr ;
     private String request_page = "0";
     private int totalPage = 1;
 
@@ -53,6 +56,18 @@ public class SubscirbeCommendFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
+        initInfo();
+    }
+
+    private void initInfo() {
+        if (InitInfo.vipInfoBean != null ) {
+            if (InitInfo.vipInfoBean.user_detail != null) {
+                request_hy = InitInfo.vipInfoBean.user_detail.ud_profession;
+                request_gw =InitInfo.vipInfoBean.user_detail.ud_post;
+                request_addr = InitInfo.vipInfoBean.user_detail.ud_addr;
+            }
+        }
+
     }
 
     @Nullable
@@ -112,31 +127,34 @@ public class SubscirbeCommendFragment extends Fragment {
         String addr = request_addr;
         //0为推荐1为全部
         String action = "0";
-        protocal.getAddDyData(ub_id, hy, gw, addr, action, page, new CircleProtocal.NormalListener() {
-            @Override
-            public void normalResponse(Object response) {
-                if (response == null){
-                    CommonUtils.toastMessage("加载数据失败");
-                    pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
-                    return;
-                }
-                AddSubscribBean bean = (AddSubscribBean) response;
-                totalPage = bean.totalpage;
-                if (!isLoadMore) {
-                    commendList.clear();
-                }
-                if (bean.tj != null) {
-                    commendList.addAll(bean.tj);
-                }
-                if (addSubscribeAdapter == null){
 
-                    addSubscribeAdapter = new AddSubscribeAdapter(context,commendList,SubscirbeCommendFragment.this);
-                    subscribe_comm_rc.setAdapter(addSubscribeAdapter);
+        if ((!TextUtils.isEmpty(userid))&&(!TextUtils.isEmpty(hy))&&(!TextUtils.isEmpty(gw))&&(!TextUtils.isEmpty(addr))) {
+            protocal.getAddDyData(ub_id, hy, gw, addr, action, page, new CircleProtocal.NormalListener() {
+                @Override
+                public void normalResponse(Object response) {
+                    if (response == null) {
+                        CommonUtils.toastMessage("加载数据失败");
+                        pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                        return;
+                    }
+                    AddSubscribBean bean = (AddSubscribBean) response;
+                    totalPage = bean.totalpage;
+                    if (!isLoadMore) {
+                        commendList.clear();
+                    }
+                    if (bean.tj != null) {
+                        commendList.addAll(bean.tj);
+                    }
+                    if (addSubscribeAdapter == null) {
+
+                        addSubscribeAdapter = new AddSubscribeAdapter(context, commendList, SubscirbeCommendFragment.this);
+                        subscribe_comm_rc.setAdapter(addSubscribeAdapter);
+                    }
+                    addSubscribeAdapter.notifyDataSetChanged();
+                    isLoadMore = false;
+                    pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
                 }
-                addSubscribeAdapter.notifyDataSetChanged();
-                isLoadMore = false;
-                pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
-            }
-        });
+            });
+        }
     }
 }

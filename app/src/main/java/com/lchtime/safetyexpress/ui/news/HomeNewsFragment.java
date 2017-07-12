@@ -5,13 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.lchtime.safetyexpress.MyApplication;
@@ -22,8 +19,7 @@ import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.bean.res.NewsListRes;
 import com.lchtime.safetyexpress.bean.res.NewsRes;
 import com.lchtime.safetyexpress.ui.Const;
-import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
-import com.lchtime.safetyexpress.ui.vip.fragment.*;
+import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.ui.vip.fragment.BaseFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
@@ -33,14 +29,12 @@ import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.lchtime.safetyexpress.views.LoadingPager;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.PostFormBuilder;
-import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.Call;
 import okhttp3.Response;
 
 /**
@@ -76,7 +70,7 @@ public class HomeNewsFragment extends BaseFragment {
         home_new_fragment_rc.setAdapter(homeNewAdapter);
     }
 
-    int footPage = 0;
+    int footPage = 1;
     int headPage = 0;
     @Override
     protected View initSuccessView() {
@@ -98,15 +92,15 @@ public class HomeNewsFragment extends BaseFragment {
             Log.i("yang","position == 0");
 //            commentList = bundle.getParcelableArrayList("comments");
             //推荐
-            initPosition1to2("1", Const.NEW_TYPE,0 + "");
+            initPosition1to2("1", Const.NEW_TYPE,1 + "");
         }else if(position == 1){
             //热点追踪
-            initPosition1to2("2",Const.NEW_TYPE,0 + "");
+            initPosition1to2("2",Const.NEW_TYPE,1 + "");
         }else{
             Log.i("yang","else   ===");
             type_id = bundle.getString("typeId");
             if(!TextUtils.isEmpty(type_id)){
-                getNewsList(type_id, Const.NEW_LIST,0 + "");
+                getNewsList(type_id, Const.NEW_LIST,1 + "");
                 Log.i("yang","isEmpty===="+type_id);
             }
 
@@ -115,7 +109,7 @@ public class HomeNewsFragment extends BaseFragment {
         refreshLayout.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
             @Override
             public void onRefresh() {
-                footPage = 0;
+                footPage = 1;
                 if (commentList == null) {
                     commentList = new ArrayList<NewsBean>();
                 }
@@ -187,7 +181,7 @@ public class HomeNewsFragment extends BaseFragment {
     int totalPage = 1;
     private void initPosition1to2(final String type, String url,String index) {
         String ub_id = SpTools.getString(getContext(),Constants.userId,"");
-        if (Integer.parseInt(index) + 1 > totalPage){
+        if (Integer.parseInt(index)  > totalPage){
             handler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -248,7 +242,7 @@ public class HomeNewsFragment extends BaseFragment {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                Intent intent = new Intent(context, HomeNewsDetailUI.class);
+                                Intent intent = new Intent(context, H5DetailUI.class);
                                 intent.putExtra("newsId",commentList.get(position).cc_id);
                                 intent.putExtra("type","news");
                                 startActivity(intent);
@@ -308,7 +302,7 @@ public class HomeNewsFragment extends BaseFragment {
 
     private void getNewsList(String cid,String url,String index){
         String ub_id = SpTools.getString(getContext(),Constants.userId,"");
-        if (Integer.parseInt(index) + 1 > totalPage){
+        if (Integer.parseInt(index)  > totalPage){
             handler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -364,7 +358,7 @@ public class HomeNewsFragment extends BaseFragment {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                Intent intent = new Intent(context, HomeNewsDetailUI.class);
+                                Intent intent = new Intent(context, H5DetailUI.class);
                                 intent.putExtra("newsId",commentList.get(position).cc_id);
                                 intent.putExtra("type","news");
                                 startActivity(intent);
@@ -426,7 +420,7 @@ public class HomeNewsFragment extends BaseFragment {
         super.onDestroy();
         commentList = null;
         headPage = 0;
-        footPage = 0;
+        footPage = 1;
     }
 
 }

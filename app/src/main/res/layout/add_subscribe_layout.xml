@@ -7,7 +7,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm002"
-        android:background="@color/page_color"/>
+        android:background="@color/line"/>
     <RadioGroup
         android:id="@+id/add_subscirbe_rg"
         android:layout_width="match_parent"

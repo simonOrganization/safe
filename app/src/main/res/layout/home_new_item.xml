@@ -19,9 +19,9 @@
             android:layout_gravity="center_vertical"
             android:gravity="center"
             android:button="@null"
+            android:layout_marginLeft="@dimen/dm020"
             android:visibility="gone"
-            android:background="@drawable/rb_delete"
-            android:layout_marginRight="@dimen/dm020" />
+            android:background="@drawable/rb_delete"/>
 
         <LinearLayout
             android:layout_width="match_parent"

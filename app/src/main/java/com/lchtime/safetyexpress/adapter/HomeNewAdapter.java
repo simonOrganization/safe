@@ -2,31 +2,24 @@ package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.bean.CircleTwoBean;
 import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.vip.fragment.NewsFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
-import com.lchtime.safetyexpress.views.GridSpacingItemDecoration;
 import com.lchtime.safetyexpress.views.NoTouchRecycler;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -176,10 +169,6 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
         if(holder instanceof HomeNewHolder){
             setCheckBox(((HomeNewHolder) holder).rb,position);
             HomeNewHolder homeNewHolder = (HomeNewHolder) holder;
-//            ArrayList<CircleTwoBean> mlist = new ArrayList<CircleTwoBean>();
-//            mlist.add(new CircleTwoBean());
-//            mlist.add(new CircleTwoBean());
-//            mlist.add(new CircleTwoBean());
             homeNewHolder.textViews.get(0).setText(bean.getCc_title());
             if (bean.getMedia().size() == 0){
                 homeNewHolder.home_new_item_rc.setVisibility(View.GONE);
@@ -187,7 +176,7 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
                 homeNewHolder.home_new_item_rc.setVisibility(View.VISIBLE);
             }
             homeNewHolder.home_new_item_rc.setLayoutManager(new GridLayoutManager(context,3));
-            homeNewHolder.home_new_item_rc.addItemDecoration(new GridSpacingItemDecoration(3,0,true));
+//            homeNewHolder.home_new_item_rc.addItemDecoration(new GridSpacingItemDecoration(3,0,true));
             homeNewHolder.home_new_item_rc.setClickable(false);
             homeNewHolder.home_new_item_rc.setPressed(false);
             homeNewHolder.home_new_item_rc.setEnabled(false);

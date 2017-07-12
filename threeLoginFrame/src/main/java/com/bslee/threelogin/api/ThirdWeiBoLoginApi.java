@@ -107,4 +107,7 @@ public class ThirdWeiBoLoginApi {
 		}
 		oauth.OauthLoginFail();
 	}
+
+
+
 }

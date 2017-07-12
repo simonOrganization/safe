@@ -1,6 +1,5 @@
 package com.lchtime.safetyexpress.ui.circle;
 
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,16 +15,13 @@ import android.widget.Toast;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.GridImageAdapter;
-import com.lchtime.safetyexpress.bean.AdviceBean;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
-import com.lchtime.safetyexpress.ui.vip.OpinionActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
-import com.lchtime.safetyexpress.utils.OpinionProtocal;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
 import com.lchtime.safetyexpress.views.FullyGridLayoutManager;
@@ -44,7 +40,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by android-cp on 2017/5/17.
+ * Created by android-cp on 2017/5/17. 发布圈子 文字的发布圈子界面
  */
 @ContentView(R.layout.public_cicle_activity)
 public class PublishCircleUI extends BaseUI {
@@ -237,6 +233,10 @@ public class PublishCircleUI extends BaseUI {
             updataImageUtils.upMuchDataPic(fileList, new UpdataImageUtils.UpdataPicListener() {
                 @Override
                 public void onResponse(String response) {
+                    if (TextUtils.isEmpty(response)){
+                        CommonUtils.toastMessage("上传图片失败");
+                        return;
+                    }
                     UpdataBean updataBean = (UpdataBean) JsonUtils.stringToObject(response, UpdataBean.class);
 
                     filesid = "";
@@ -249,7 +249,9 @@ public class PublishCircleUI extends BaseUI {
                                 filesid = filesid + "," + updataBean.file_ids.get(i);
                             }
                         }
-
+                        Log.d("-----------","----ub_id--="+ub_id);
+                        Log.d("-----------","----content--="+content);
+                        Log.d("-----------","----filesid--="+filesid);
                         protocal.getUpdataCommonData(ub_id, content, filesid, new CircleProtocal.NormalListener() {
                             @Override
                             public void normalResponse(Object response) {

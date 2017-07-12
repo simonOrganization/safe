@@ -31,7 +31,7 @@ import com.lchtime.safetyexpress.R;
 import java.util.Date;
 import java.util.List;
 
-public class GroupSearchMessageActivity extends EaseBaseActivity implements OnClickListener{
+public class GroupSearchMessageActivity extends BaseActivity implements OnClickListener{
     private ImageButton clearSearch;
     private EditText query;
     private ListView listView;

@@ -1,22 +1,14 @@
 package com.lchtime.safetyexpress.utils;
 
-import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
 import com.lchtime.safetyexpress.bean.Constants;
-import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.bean.res.NewsListRes;
-import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
-import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
-
-import java.util.ArrayList;
 
 import okhttp3.Call;
 

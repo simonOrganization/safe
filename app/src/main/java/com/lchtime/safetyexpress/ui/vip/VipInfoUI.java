@@ -3,9 +3,7 @@ package com.lchtime.safetyexpress.ui.vip;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
@@ -26,7 +24,6 @@ import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.CardBean;
 import com.lchtime.safetyexpress.bean.CheckUpdataBean;
-import com.lchtime.safetyexpress.bean.ConfigTable;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.PostBean;
@@ -48,6 +45,7 @@ import com.luck.picture.lib.model.FunctionOptions;
 import com.luck.picture.lib.model.PictureConfig;
 import com.yalantis.ucrop.entity.LocalMedia;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -225,34 +223,53 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
     }
 
     private void initHangYe() {
+
         if (InitInfo.vipInfoBean != null) {
-            LoginInternetRequest.getProfession(SpTools.getString(this, Constants.userId, ""), new LoginInternetRequest.ForResultListener() {
-                @Override
-                public void onResponseMessage(String code) {
-                    ProfessionBean professionBean = gson.fromJson(code, ProfessionBean.class);
-                    if (professionBean != null) {
-                        professionList.addAll(professionBean.hy);
+            if (InitInfo.professionBean == null || InitInfo.professionBean.hy == null||InitInfo.professionBean.hy.size() == 0) {
+                LoginInternetRequest.getProfession(SpTools.getString(this, Constants.userId, ""), new LoginInternetRequest.ForResultListener() {
+                    @Override
+                    public void onResponseMessage(String code) {
+                        if (!TextUtils.isEmpty(code)) {
+                            ProfessionBean professionBean = gson.fromJson(code, ProfessionBean.class);
+                            if (professionBean != null) {
+                                professionList.addAll(professionBean.hy);
+
+                            }
+                        }else {
+                            CommonUtils.toastMessage("初始化行业失败");
+                        }
                         //初始化岗位
                         initGangWei();
                     }
-                }
-            });
+                });
+            }else {
+                professionList.addAll(InitInfo.professionBean.hy);
+                initGangWei();
+            }
         }
     }
 
     private void initGangWei() {
 
         if (InitInfo.vipInfoBean != null ) {
-            LoginInternetRequest.getPost(SpTools.getString(this, Constants.userId, ""), new LoginInternetRequest.ForResultListener() {
-                @Override
-                public void onResponseMessage(String code) {
-                    PostBean postBean = gson.fromJson(code, PostBean.class);
-                    if (postBean != null) {
-                        postList.addAll(postBean.gw);
-                    }
+            if (InitInfo.postBean == null || InitInfo.postBean.gw == null || InitInfo.postBean.gw.size() == 0) {
+                LoginInternetRequest.getPost(SpTools.getString(this, Constants.userId, ""), new LoginInternetRequest.ForResultListener() {
+                    @Override
+                    public void onResponseMessage(String code) {
+                        if (!TextUtils.isEmpty(code)) {
+                            PostBean postBean = gson.fromJson(code, PostBean.class);
+                            if (postBean != null) {
+                                postList.addAll(postBean.gw);
+                            }
+                        }else {
+                            CommonUtils.toastMessage("初始化岗位失败！");
+                        }
 
-                }
-            });
+                    }
+                });
+            }else {
+                postList.addAll(InitInfo.postBean.gw);
+            }
         }
     }
 
@@ -334,6 +351,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
     @OnClick(R.id.ll_info_nickname)
     private void getNickname(View view){
         Intent intent = new Intent(VipInfoUI.this, VipInfoNicknameUI.class);
+        intent.putExtra("data",tv_nikname.getText().toString().trim());
         startActivityForResult(intent,NIKNAME_CODE);
     }
 
@@ -344,6 +362,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
     @OnClick(R.id.ll_info_company)
     private void getCompany(View view){
         Intent intent = new Intent(VipInfoUI.this, VipInfoCompanyUI.class);
+        intent.putExtra("data",tv_company_name.getText().toString().trim());
         startActivityForResult(intent,COMPANY_CODE);
     }
 
@@ -374,6 +393,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
     @OnClick(R.id.ll_info_workpart)
     private void getWorkPart(View view){
         Intent intent = new Intent(this,VipInfoPartUI.class);
+        intent.putExtra("data",tv_workpart.getText().toString().trim());
         startActivityForResult(intent,PART_CODE);
     }
 
@@ -424,6 +444,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
     @OnClick(R.id.ll_info_simple)
     private void getSimple(View view){
         Intent intent = new Intent(VipInfoUI.this, VipInfoSimpleUI.class);
+        intent.putExtra("data",tv_simple.getText().toString().trim());
         startActivityForResult(intent,SIMPLE_CODE);
     }
 
@@ -776,9 +797,22 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
                         allInfo.ud_memo == null ? InitInfo.vipInfoBean.user_detail.ud_memo : allInfo.ud_memo;
                 InitInfo.vipInfoBean.user_detail.ud_photo_fileid =
                         allInfo.ud_photo_fileid == null ? InitInfo.vipInfoBean.user_detail.ud_photo_fileid : allInfo.ud_photo_fileid;
+
                 finish();
+
+
+                //此处可以加上上传图片到环信的过程
+
+
+
             }
         });
+    }
+
+    public byte[] Bitmap2Bytes(Bitmap bm){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        return baos.toByteArray();
     }
 
     @Override

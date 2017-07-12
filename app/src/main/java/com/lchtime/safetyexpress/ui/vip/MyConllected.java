@@ -1,12 +1,10 @@
 package com.lchtime.safetyexpress.ui.vip;
 
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
@@ -16,36 +14,25 @@ import android.widget.Toast;
 import com.astuetz.PagerSlidingTabStrip;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
-import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.NewsBean;
+import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.bean.res.NewsListRes;
 import com.lchtime.safetyexpress.ui.BaseUI;
-import com.lchtime.safetyexpress.ui.home.HomeNewsDetailUI;
-import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.vip.fragment.BaseFragment;
+import com.lchtime.safetyexpress.ui.vip.fragment.CircleFragment;
 import com.lchtime.safetyexpress.ui.vip.fragment.FragmentFactory;
 import com.lchtime.safetyexpress.ui.vip.fragment.NewsFragment;
 import com.lchtime.safetyexpress.ui.vip.fragment.VedioFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
-import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lchtime.safetyexpress.utils.MyConllectedProtocal;
-import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.LoadingPager;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.Call;
-import okhttp3.Response;
-
 /**
- * Created by android-cp on 2017/4/20.
+ * Created by android-cp on 2017/4/20.我的收藏界面 其中有三个fragment
  */
 @ContentView(R.layout.vip_myconllected)
 public class MyConllected extends BaseUI {
@@ -119,6 +106,8 @@ public class MyConllected extends BaseUI {
                         deleteNews();
                     }else if (currentFragment instanceof VedioFragment){
                         deleteVideos();
+                    }else if (currentFragment instanceof CircleFragment){
+                        deleteCircles();
                     }
                 }
 
@@ -196,6 +185,7 @@ public class MyConllected extends BaseUI {
 
         ((VedioFragment)FragmentFactory.createFragment(1)).updataListView(flag);
         ((NewsFragment)FragmentFactory.createFragment(0)).updataListView(flag);
+        ((CircleFragment)FragmentFactory.createFragment(2)).updataListView(flag);
 
     }
 
@@ -284,6 +274,49 @@ public class MyConllected extends BaseUI {
                         Toast.makeText(MyApplication.getContext(),newsListRes.getResult().getInfo(),Toast.LENGTH_SHORT).show();
 
                         ((VedioFragment) FragmentFactory.createFragment(1)).updataDeleteList();
+                        clickEvent();
+                        num = 0;
+                        deleteAll.setText("删除");
+
+                    }else{
+                        Toast.makeText(MyApplication.getContext(),"删除收藏失败！",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }else {
+            CommonUtils.toastMessage("您没有选择要删除的选项");
+        }
+
+    }
+
+
+    //删除视频
+    private void deleteCircles() {
+        List<QzContextBean> list = ((CircleFragment) FragmentFactory.createFragment(2)).getDeleteList();
+
+
+        if (list == null){
+            CommonUtils.toastMessage("您没有选择要删除的选项");
+            return ;
+        }
+        String del_ids = "";
+        for (int i = 0; i < list.size(); i ++){
+            QzContextBean bean = list.get(i);
+            if (i == 0){
+                del_ids = del_ids + bean.qc_id;
+            }else {
+                del_ids = del_ids + ";" + bean.qc_id;
+            }
+        }
+        if (!TextUtils.isEmpty(del_ids)) {
+            MyConllectedProtocal.requestDelete("1", del_ids, "5",new MyConllectedProtocal.DeleteResponse() {
+                @Override
+                public void onDeleteResponse(NewsListRes newsListRes) {
+                    if(newsListRes.getResult().getCode().equals("10")){
+                        //成功
+                        Toast.makeText(MyApplication.getContext(),newsListRes.getResult().getInfo(),Toast.LENGTH_SHORT).show();
+
+                        ((CircleFragment) FragmentFactory.createFragment(2)).updataDeleteList();
                         clickEvent();
                         num = 0;
                         deleteAll.setText("删除");

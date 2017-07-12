@@ -13,15 +13,16 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 /**
- *个人资料-简历
+ *个人资料简介
  *
  * Created by user on 2017/4/17.
  */
 @ContentView(R.layout.vip_info_simple_ui)
 public class VipInfoSimpleUI extends BaseUI {
-
+    String name;
     @ViewInject(R.id.et_info_simple)
     private EditText et_simple;
+
     @Override
     protected void back() {
         finish();
@@ -31,6 +32,12 @@ public class VipInfoSimpleUI extends BaseUI {
     protected void setControlBasis() {
         setTitle("个人简介");
         rightVisible("保存");
+        name = getIntent().getStringExtra("data");
+        if (!TextUtils.isEmpty(name)){
+            et_simple.setText(name);
+        }
+        et_simple.setSelection(et_simple.getText().toString().length());
+
     }
 
     @Override

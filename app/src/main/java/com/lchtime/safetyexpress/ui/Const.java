@@ -5,7 +5,7 @@ package com.lchtime.safetyexpress.ui;
  */
 
 public class Const {
-    public static final String HOST = "http://fcar.lchtime.cn:8001/index.php/";
+    public static final String HOST = "http://47.94.44.84/index.php/";
     //新闻类型
     public static final String NEW_TYPE = HOST+"cms/listdir";
     //根据新闻类型获取新闻列表数据

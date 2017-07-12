@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -19,7 +19,6 @@ import com.lchtime.safetyexpress.bean.res.NewsRes;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.Const;
 import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
-import com.lchtime.safetyexpress.ui.vip.fragment.*;
 import com.lchtime.safetyexpress.ui.vip.fragment.BaseFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
@@ -36,7 +35,7 @@ import okhttp3.Call;
 
 
 /**
- * Created by yxn on 2017/4/25.
+ * Created by yxn on 2017/4/25.主页新闻中心界面
  */
 @ContentView(R.layout.activity_home_news)
 public class HomeNewActivity extends BaseUI {
@@ -53,6 +52,9 @@ public class HomeNewActivity extends BaseUI {
     RelativeLayout error;
     @ViewInject(R.id.success)
     LinearLayout success;
+    @ViewInject(R.id.error_btn_retry)
+    Button error_btn_retry;
+
     private NewsFragmentAdapter fragmentAdapter;
     private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
     private MyOnpageChangeListener listener;
@@ -70,6 +72,14 @@ public class HomeNewActivity extends BaseUI {
 //        setContentView(R.layout.activity_home_news);
 //        ButterKnife.bind(this);
         getTabData();
+
+        error_btn_retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setLoadingVisiblity();
+                getTabData();
+            }
+        });
 
     }
 

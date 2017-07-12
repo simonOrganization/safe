@@ -5,7 +5,7 @@ import android.content.Context;
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.domain.EaseUser;
-import com.lchtime.safetyexpress.ui.chat.hx.HuanXinHelper;
+import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 import com.lchtime.safetyexpress.ui.chat.hx.utils.PreferenceManager;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class UserProfileManager {
 	/**
 	 * HuanXin sync contact nick and avatar listener
 	 */
-	private List<HuanXinHelper.DataSyncListener> syncContactInfosListeners;
+	private List<DemoHelper.DataSyncListener> syncContactInfosListeners;
 
 	private boolean isSyncingContactInfosWithServer = false;
 
@@ -41,12 +41,12 @@ public class UserProfileManager {
 			return true;
 		}
 		ParseManager.getInstance().onInit(context);
-		syncContactInfosListeners = new ArrayList<HuanXinHelper.DataSyncListener>();
+		syncContactInfosListeners = new ArrayList<DemoHelper.DataSyncListener>();
 		sdkInited = true;
 		return true;
 	}
 
-	public void addSyncContactInfoListener(HuanXinHelper.DataSyncListener listener) {
+	public void addSyncContactInfoListener(DemoHelper.DataSyncListener listener) {
 		if (listener == null) {
 			return;
 		}
@@ -55,7 +55,7 @@ public class UserProfileManager {
 		}
 	}
 
-	public void removeSyncContactInfoListener(HuanXinHelper.DataSyncListener listener) {
+	public void removeSyncContactInfoListener(DemoHelper.DataSyncListener listener) {
 		if (listener == null) {
 			return;
 		}
@@ -76,7 +76,7 @@ public class UserProfileManager {
 				isSyncingContactInfosWithServer = false;
 				// in case that logout already before server returns,we should
 				// return immediately
-				if (!HuanXinHelper.getInstance().isLoggedIn()) {
+				if (!DemoHelper.getInstance().isLoggedIn()) {
 					return;
 				}
 				if (callback != null) {
@@ -97,7 +97,7 @@ public class UserProfileManager {
 	}
 
 	public void notifyContactInfosSyncListener(boolean success) {
-		for (HuanXinHelper.DataSyncListener listener : syncContactInfosListeners) {
+		for (DemoHelper.DataSyncListener listener : syncContactInfosListeners) {
 			listener.onSyncComplete(success);
 		}
 	}
