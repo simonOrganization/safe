@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.ui;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,10 +29,14 @@ public abstract class BaseUI extends FragmentActivity {
     private MyApplication application;
     private long exitTime = 0;
     private LinearLayout.LayoutParams params;
+    protected Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         ViewUtils.inject(this);
         application = (MyApplication) getApplication();
 //        setStatus2();

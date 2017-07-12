@@ -5,7 +5,8 @@ android {
         safety {
             keyAlias 'safety'
             keyPassword 'lchtime'
-            storeFile file('D:/work/安全快车最新/safety.jks')
+            //storeFile file('D:/work/安全快车最新/safety.jks')
+            storeFile file('E:/company/jks/safety.jks')
             storePassword 'lchtime'
         }
 //        debug {
@@ -24,11 +25,11 @@ android {
 //        }
 //    }
         compileSdkVersion 25
-        buildToolsVersion "25.0.2"
+        buildToolsVersion "25.0.3"
         defaultConfig {
             applicationId "com.lchtime.safetyexpress"
             minSdkVersion 16
-            targetSdkVersion 24
+            targetSdkVersion 25
             versionCode 1
             versionName "1.0"
             testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -43,7 +44,7 @@ android {
         }
         buildTypes {
             release {
-                minifyEnabled true
+                minifyEnabled false
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
                 debuggable true
                 jniDebuggable false

@@ -38,6 +38,8 @@ import butterknife.ButterKnife;
 @ContentView(R.layout.home_question_detail)
 public class HomeQuewstionDetail extends BaseUI {
 
+    public static final int QUEWSTION_DETAIL_REQUEST = 100;
+    public static final int QUEWSTION_DETAIL_RESULT = 101;
     @BindView(R.id.ll_home)
     LinearLayout llHome;
     @BindView(R.id.v_title)
@@ -119,7 +121,7 @@ public class HomeQuewstionDetail extends BaseUI {
         View view = View.inflate(this,R.layout.qeuwstion_detail_header,null);
         initView(view);
         HuiFuAdapter = new QuetionDetailAdapter(HomeQuewstionDetail.this, huiFuList);
-       wrapperAdapter = new HeaderAndFooterWrapper(HuiFuAdapter);
+        wrapperAdapter = new HeaderAndFooterWrapper(HuiFuAdapter);
         wrapperAdapter.addHeaderView(view);
 //        rcQuestionHuifu.setLayoutManager(new LinearLayoutManager(this));
         rcQuestionHuifu.setLayoutManager(new GridLayoutManager(this,1));
@@ -140,7 +142,7 @@ public class HomeQuewstionDetail extends BaseUI {
                 Intent intent = new Intent(HomeQuewstionDetail.this,AnswerQuestionActivity.class);
                 intent.putExtra("q_id",qid);
                 intent.putExtra("title",detailBean.wenti.q_title);
-                startActivity(intent);
+                startActivityForResult(intent , QUEWSTION_DETAIL_REQUEST);
             }
         });
         llInviteFriend.setOnClickListener(new View.OnClickListener() {
@@ -170,6 +172,16 @@ public class HomeQuewstionDetail extends BaseUI {
 
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == QUEWSTION_DETAIL_RESULT){
+            prepareData();
+        }
+
+
     }
 
     private void initView(View view) {

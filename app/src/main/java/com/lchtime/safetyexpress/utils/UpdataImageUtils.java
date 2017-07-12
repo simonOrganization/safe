@@ -21,8 +21,18 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+import static com.igexin.sdk.GTServiceManager.context;
 
 /**
  * Created by android-cp on 2017/4/26.
@@ -36,6 +46,8 @@ public class UpdataImageUtils {
         mListener = updataPicListener;
         final Context context = MyApplication.getContext();
         File file = new File(filePath);
+        String id = SpTools.getString(context , Constants.userId ,"");
+
         OkHttpUtils.post()
                 .url(context.getResources().getString(R.string.service_host_address).concat(context.getResources().getString(R.string.upload)))
                 .addFile("image[]",file.getName(),file)
@@ -91,7 +103,7 @@ public class UpdataImageUtils {
                 }else {
                     mListener.onResponse(response);
                 }
-                Toast.makeText(context,"上传图片成功",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context,"上传图片成功",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -148,13 +160,15 @@ public class UpdataImageUtils {
     }
 
 
-    public void upDataVideo(final String filePath,File video_pic, final UpdataPicListener updataPicListener){
+    public void upDataVideo(final String filePath , File video_pic, final UpdataPicListener updataPicListener){
         final Context context = MyApplication.getContext();
+        String upLoadUrl = context.getResources().getString(R.string.service_host_address).concat(context.getResources().getString(R.string.upload));
         File file = new File(filePath);
+
         OkHttpUtils.post()
-                .url(context.getResources().getString(R.string.service_host_address).concat(context.getResources().getString(R.string.upload)))
-                .addFile("image[]",file.getName(),file)
-                .addFile("image[]",video_pic.getName() + "jpg",video_pic)
+                .url(upLoadUrl)
+                .addFile("image[]" , file.getName(),file)
+                .addFile("image[]" , video_pic.getName() + ".jpg" , video_pic)
                 .addParams("sid", "")
                 .addParams("index", (index++) + "")
                 .addParams("ub_id", SpTools.getString(context , Constants.userId ,""))

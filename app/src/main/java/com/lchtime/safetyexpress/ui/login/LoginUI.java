@@ -136,6 +136,9 @@ public class LoginUI extends BaseUI {
                                             InitInfo.vipInfoBean = vipInfoBean;
                                             InitInfo.isLogin = true;
                                             SpTools.setString(LoginUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
+                                            SpTools.setString(LoginUI.this, Constants.ud_profession,vipInfoBean.user_detail.ud_profession);
+                                            SpTools.setString(LoginUI.this, Constants.ud_post,vipInfoBean.user_detail.ud_post);
+                                            SpTools.setString(LoginUI.this, Constants.ud_addr,vipInfoBean.user_detail.ud_addr);
                                             //获取环信账号
                                             LoginInternetRequest.getHXinfo(new LoginInternetRequest.ForResultListener() {
                                                 @Override
@@ -169,6 +172,11 @@ public class LoginUI extends BaseUI {
         });
     }
 
+    /**
+     * 登录环信
+     * @param currentUsername
+     * @param currentPassword
+     */
     private void loginHX(String currentUsername,String currentPassword) {
         DemoDBManager.getInstance().closeDB();
 
@@ -183,8 +191,6 @@ public class LoginUI extends BaseUI {
             @Override
             public void onSuccess() {
 //                Log.d(TAG, "login: onSuccess");
-
-
                 // ** manually load all local groups and conversation
                 EMClient.getInstance().groupManager().loadAllGroups();
                 EMClient.getInstance().chatManager().loadAllConversations();

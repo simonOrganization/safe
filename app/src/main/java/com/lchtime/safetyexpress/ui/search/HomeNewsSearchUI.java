@@ -71,10 +71,7 @@ public class HomeNewsSearchUI extends BaseUI {
         super.onResume();
         if (!TextUtils.isEmpty(intentData)){
             et_news_search.setText(intentData);
-
             searchDown();
-
-
         }
     }
     @Override
@@ -278,6 +275,32 @@ public class HomeNewsSearchUI extends BaseUI {
 
     }
 
+
+
+
+    private void addSearchView(String key) {
+        HomeSearchContentFragment fragment = (HomeSearchContentFragment) mCacheFragments.get(7);
+        fragment.addLoacalSearchView(key);
+    }
+
+    /**
+     * 搜索
+     */
+    private void searchDown() {
+        content = et_news_search.getText().toString().trim();
+        this.key = content;
+        if(mCacheFragments.containsKey(7)){
+            Fragment temp = mCacheFragments.get(7);
+            if (temp.isAdded()&&currentFragment == temp){
+                //从词汇界面跳到搜索到的内容界面
+                changeUI(Integer.parseInt(mType));
+                return;
+            }
+        }
+        //如果以上条件不符合，那么就触动搜索
+        getSearch(content);
+    }
+
     private SerchProtocal mProtocal;
     //搜索请求网络数据
     public void getSearch(String key) {
@@ -309,7 +332,7 @@ public class HomeNewsSearchUI extends BaseUI {
             }
 
         }
-//        mProtocal.getSearchResult(key, Integer.parseInt(mType), mType, new SerchProtocal.NormalListener() {
+        //        mProtocal.getSearchResult(key, Integer.parseInt(mType), mType, new SerchProtocal.NormalListener() {
 //            @Override
 //            public void normalResponse(Object response) {
 //                if (response == null){
@@ -333,26 +356,6 @@ public class HomeNewsSearchUI extends BaseUI {
 //                }
 //            }
 //        });
-    }
-
-    private void addSearchView(String key) {
-        HomeSearchContentFragment fragment = (HomeSearchContentFragment) mCacheFragments.get(7);
-        fragment.addLoacalSearchView(key);
-    }
-
-    private void searchDown() {
-        content = et_news_search.getText().toString().trim();
-        this.key = content;
-        if(mCacheFragments.containsKey(7)){
-            Fragment temp = mCacheFragments.get(7);
-            if (temp.isAdded()&&currentFragment == temp){
-                //从词汇界面跳到搜索到的内容界面
-                changeUI(Integer.parseInt(mType));
-                return;
-            }
-        }
-        //如果以上条件不符合，那么就触动搜索
-        getSearch(content);
     }
 
     public void setSearchContent(String key){

@@ -97,6 +97,7 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
     private SharePop sharePop;
 
     public static int flag = 0;
+    public boolean isGetMoney = false; //是否已经领取奖励
 
     @Override
     protected void back() {
@@ -109,7 +110,7 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
         setTitle("");
         sharePop = new SharePop(mIvThird, GetMoneyActivity.this, R.layout.pop_share);
         initWX();
-        ub_id = SpTools.getString(this, userId, "");
+
 
         list.add(mFirst);
         list.add(mSecond);
@@ -127,10 +128,12 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
+
+        ub_id = SpTools.getString(this, userId, "");
+
         if (TextUtils.isEmpty(ub_id)) {
             setSelected(0);
         } else {
-
             getInfo();
         }
 //        setOnclickCheckBox(3);
@@ -176,6 +179,7 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
                             }else if ("已领奖".equals(vipInfoBean.user_detail.share)){
                                 setSelected(4);
                                 mSmallTitle.setText("您已完成任务！");
+                                isGetMoney = true; //表示已经领取过奖励
                             }
 
                         }
@@ -246,11 +250,11 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
         if (num == 0) {
             Intent intent = new Intent(this, LoginUI.class);
             startActivity(intent);
-            finish();
+            //finish();
         } else if (num == 1) {
             Intent intent = new Intent(this, VipInfoUI.class);
             startActivity(intent);
-            finish();
+            //finish();
         } else if (num == 2) {
             //分享到朋友圈 分享网址http://47.94.44.84/download/
 //            标题：注册分享，得百元红包
@@ -296,11 +300,17 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.cb_give_money){
+            mCbGiveMoney.setChecked(true);
+            if(isGetMoney){
+                makeText("您已领取奖励，请在我的钱包查看");
+                return;
+            }
+
             if (!mCbGiveMoney.isChecked()){
-                mCbGiveMoney.setChecked(true);
+                //mCbGiveMoney.setChecked(true);
             }else {
                 //执行去领奖操作
-                mCbGiveMoney.setChecked(true);
+                //mCbGiveMoney.setChecked(true);
 
                 protocal.postGetMoney(new ShareProtocal.ShareInfo() {
                     @Override

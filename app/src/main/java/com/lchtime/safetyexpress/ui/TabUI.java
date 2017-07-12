@@ -67,6 +67,7 @@ import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.home.AskQuestionActivity;
 import com.lchtime.safetyexpress.ui.home.HomeUI;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
+import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.ui.vip.VipUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.LoginInternetRequest;
@@ -77,6 +78,8 @@ import java.util.List;
 import java.util.Map;
 
 import service.DemoPushService;
+
+import static com.lchtime.safetyexpress.bean.InitInfo.vipInfoBean;
 
 
 /**
@@ -210,7 +213,7 @@ public class TabUI extends TabActivity implements OnClickListener {
         });
         initVideoPath();
 
-        initShowWindow();
+        //initShowWindow();
         rb_tab_1 = (RadioButton) findViewById(R.id.rb_tab_1);
         rb_tab_1.setOnClickListener(this);
         rb_tab_1.setText("首页");
@@ -242,10 +245,11 @@ public class TabUI extends TabActivity implements OnClickListener {
         TabHost.TabSpec spec;
         Intent intent = null;
         tabHost = getTabHost();
-
+        //首页
         intent = new Intent().setClass(this, HomeUI.class);
         spec = tabHost.newTabSpec("tab1").setIndicator("tab1").setContent(intent);
         tabHost.addTab(spec);
+        //圈子
         intent = new Intent().setClass(this, CircleUI.class);
         spec = tabHost.newTabSpec("tab2").setIndicator("tab2").setContent(intent);
         tabHost.addTab(spec);
@@ -254,9 +258,11 @@ public class TabUI extends TabActivity implements OnClickListener {
         intent = new Intent().setClass(this, ChatEmptyUI.class);
         spec = tabHost.newTabSpec("tab3").setIndicator("tab3").setContent(intent);
         tabHost.addTab(spec);
+        //聊天登录后显示的界面
         intent = new Intent().setClass(this, HXMainActivity.class);
         spec = tabHost.newTabSpec("tab4").setIndicator("tab4").setContent(intent);
         tabHost.addTab(spec);
+        //我的界面
         intent = new Intent().setClass(this, VipUI.class);
         spec = tabHost.newTabSpec("tab5").setIndicator("tab5").setContent(intent);
         tabHost.addTab(spec);
@@ -357,7 +363,7 @@ public class TabUI extends TabActivity implements OnClickListener {
         videoPath=path.getAbsolutePath()+File.separator+System.currentTimeMillis()+".mp4";
     }
     //拍摄功能
-    private void initShowWindow() {
+    /*private void initShowWindow() {
         publiccamera.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -372,7 +378,7 @@ public class TabUI extends TabActivity implements OnClickListener {
 
             }
         });
-    }
+    }*/
 
     private void getVipInfo() {
         if (gson == null){
@@ -389,7 +395,7 @@ public class TabUI extends TabActivity implements OnClickListener {
                         VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
                         if (vipInfoBean != null) {
                             InitInfo.phoneNumber = vipInfoBean.user_detail.ub_phone;
-                            InitInfo.vipInfoBean = vipInfoBean;
+                            vipInfoBean = vipInfoBean;
                             SpTools.setString(TabUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
                             loginHX(vipInfoBean.user_detail.ub_phone, Constant.HX_PWD);
                         }
@@ -528,25 +534,52 @@ public class TabUI extends TabActivity implements OnClickListener {
                 currentTag = "tab5";
                 setCurrentTabByTag("tab5");
                 break;
-            case R.id.circle_public_tv:
-                startActivity(new Intent(this, PublishCircleUI.class));
+            case R.id.circle_public_tv:  //发布文字
+                if(isFullPersionDate()){
+                    startActivity(new Intent(this, PublishCircleUI.class));
+                }else{
+                    CommonUtils.toastMessage("请完善个人信息");
+                }
                 break;
-            case R.id.circle_public_camera:
+            case R.id.circle_public_camera: //拍摄
                 String ub_id = SpTools.getString(this, Constants.userId,"");
 
                 if (TextUtils.isEmpty(ub_id)){
                     CommonUtils.toastMessage("登录后才能发布圈子！");
                     return;
                 }
+                if(!hasPermission(new String[]{"android.permission.READ_EXTERNAL_STORAGE","android.permission.CAMERA","android.permission.RECORD_AUDIO"})) {
+                    requestPermission(1, new String[]{"android.permission.READ_EXTERNAL_STORAGE","android.permission.CAMERA","android.permission.RECORD_AUDIO"});
+                } else {
+                    if(isFullPersionDate()){
+                        Intent intent=new Intent(TabUI.this, RecordVideoActivity.class);
+                        intent.putExtra(RecordVideoActivity.RECORD_VIDEO_PATH,videoPath);
+                        startActivityForResult(intent,TAKE_DATA);
+                    }else{
+                        CommonUtils.toastMessage("请完善个人信息");
+                    }
+                }
                 break;
-            case R.id.circle_public_question:
-                Intent intent = new Intent(this,AskQuestionActivity.class);
-                startActivity(intent);
+            case R.id.circle_public_question:  //提问
+                if(isFullPersionDate()){
+                    Intent intent = new Intent(this,AskQuestionActivity.class);
+                    startActivity(intent);
+                }else{
+                    CommonUtils.toastMessage("请完善个人信息");
+                }
                 break;
         }
         tab_check.setChecked(false);
     }
 
+    /**
+     * 检查个人资料是否完善，检查行业，岗位，地理位置
+     */
+    private boolean isFullPersionDate(){
+        return (!SpTools.getString(TabUI.this, Constants.ud_profession , "").equals("")&&
+        !SpTools.getString(TabUI.this, Constants.ud_post , "").equals("")&&
+        !SpTools.getString(TabUI.this, Constants.ud_addr , "").equals(""));
+    }
 
     public void setCurrentTabByTag(String tag) {
         rb_tab_1.setChecked("tab1".equals(tag));

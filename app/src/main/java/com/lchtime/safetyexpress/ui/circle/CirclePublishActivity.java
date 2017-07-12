@@ -261,7 +261,7 @@ public class CirclePublishActivity extends BaseUI implements PopupWindow.OnDismi
     private CircleProtocal protocal;
     @Override
     protected void clickEvent() {
-        CommonUtils.toastMessage("发送");
+        //CommonUtils.toastMessage("发送");
         final String text = etDescribeText.getText().toString().trim();
         if (updataImageUtils == null) {
             updataImageUtils = new UpdataImageUtils();
@@ -287,7 +287,7 @@ public class CirclePublishActivity extends BaseUI implements PopupWindow.OnDismi
         }
 
         File file = new File(getFilesDir(),"video_pic");
-        updataImageUtils.upDataVideo(videoPath,file, new UpdataImageUtils.UpdataPicListener() {
+        updataImageUtils.upDataVideo(videoPath , file, new UpdataImageUtils.UpdataPicListener() {
             @Override
             public void onResponse(String response) {
                 String videoId = "";

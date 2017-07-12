@@ -8,6 +8,9 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
+/**
+ * 发布拍摄的视频
+ */
 public class RecordVideoActivity extends AppCompatActivity {
     public final static String RECORD_VIDEO_PATH="video_path";
     public final static String RECORD_MAX_SIZE="max_size";

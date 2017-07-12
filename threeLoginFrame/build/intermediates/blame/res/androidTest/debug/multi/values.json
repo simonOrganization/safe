@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\threeLoginFrame\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+        "outputFile": "E:\\AndroidProjects\\gitsafe\\threeLoginFrame\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 90
                 },
                 "from": {
-                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\threeLoginFrame\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafe\\threeLoginFrame\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 142
                 },
                 "from": {
-                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\threeLoginFrame\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafe\\threeLoginFrame\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -49,7 +49,7 @@
                     "endOffset": 209
                 },
                 "from": {
-                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\threeLoginFrame\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafe\\threeLoginFrame\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -68,88 +68,7 @@
                     "endOffset": 265
                 },
                 "from": {
-                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\threeLoginFrame\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 214,
-                        "endColumn": 55,
-                        "endOffset": 265
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "C:\\gitrepositories\\gitsafe\\threeLoginFrame\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 39,
-                    "endOffset": 90
-                },
-                "from": {
-                    "file": "C:\\gitrepositories\\gitsafe\\threeLoginFrame\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 39,
-                        "endOffset": 90
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 95,
-                    "endColumn": 51,
-                    "endOffset": 142
-                },
-                "from": {
-                    "file": "C:\\gitrepositories\\gitsafe\\threeLoginFrame\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 95,
-                        "endColumn": 51,
-                        "endOffset": 142
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 147,
-                    "endColumn": 66,
-                    "endOffset": 209
-                },
-                "from": {
-                    "file": "C:\\gitrepositories\\gitsafe\\threeLoginFrame\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 147,
-                        "endColumn": 66,
-                        "endOffset": 209
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 214,
-                    "endColumn": 55,
-                    "endOffset": 265
-                },
-                "from": {
-                    "file": "C:\\gitrepositories\\gitsafe\\threeLoginFrame\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "E:\\AndroidProjects\\gitsafe\\threeLoginFrame\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,

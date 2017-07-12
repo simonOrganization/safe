@@ -174,9 +174,17 @@
         <activity
             android:name=".H5DetailUI"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan">
+            android:hardwareAccelerated="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            />
 
-        </activity>
+        <activity
+            android:name=".VideoH5Activity"
+            android:screenOrientation="portrait"
+            android:hardwareAccelerated="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustPan"/>
+
 
 
         <activity

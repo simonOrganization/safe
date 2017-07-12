@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\workgroup\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "outputFile": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,55 +11,7 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "D:\\workgroup\\gitsafe\\easeui\\res\\values-w820dp\\ease_dimens.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 305,
-                        "endColumn": 57,
-                        "endOffset": 358
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 57,
-                    "endOffset": 108
-                },
-                "from": {
-                    "file": "C:\\Users\\cp\\a我的临时文件\\gitsafe\\easeui\\res\\values-w820dp\\ease_dimens.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 305,
-                        "endColumn": 57,
-                        "endOffset": 358
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "C:\\gitrepositories\\gitsafe\\easeui\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 57,
-                    "endOffset": 108
-                },
-                "from": {
-                    "file": "C:\\gitrepositories\\gitsafe\\easeui\\res\\values-w820dp\\ease_dimens.xml",
+                    "file": "E:\\AndroidProjects\\gitsafe\\easeui\\res\\values-w820dp\\ease_dimens.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,

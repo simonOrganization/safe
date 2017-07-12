@@ -24,7 +24,7 @@ public class CircleBean {
      * total : 2
      */
     public int total;
-
+    public int totalpage;
 
     public List<QzContextBean> qz_context;
     //收藏里面的圈子

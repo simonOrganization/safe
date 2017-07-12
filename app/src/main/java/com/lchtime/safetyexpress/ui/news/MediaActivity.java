@@ -1,15 +1,8 @@
 package com.lchtime.safetyexpress.ui.news;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Message;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.widget.Toast;
+import android.support.v7.app.AppCompatActivity;
 
 import com.lchtime.safetyexpress.R;
 
@@ -17,20 +10,29 @@ import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+
+//import static com.lchtime.safetyexpress.R.id.mSurfaceView;
 
 /**
  * Created by yxn on 2017/4/26.   小视频界面
  */
 
-public class MediaActivity extends Activity {
-    @BindView(R.id.mSurfaceView)
-    SurfaceView mSurfaceView;
-    private MediaPlayer mediaPlayer;
-    private SurfaceHolder surfaceHolder;
+public class MediaActivity extends AppCompatActivity {
+    /*@BindView(R.id.mSurfaceView)
+    SurfaceView mSurfaceView;*/
+
+
+    @BindView(R.id.iv_recommend_img)
+    JCVideoPlayerStandard mVideoPlayer;
+
+    //private MediaPlayer mediaPlayer;
+    //private SurfaceHolder surfaceHolder;
 
     private String url;   //视频播放地址
     private boolean flag = true;   //用于判断视频是否在播放中
-    private PlayMovie playmove;
+    //private PlayMovie playmove;
     private String uriStr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +43,40 @@ public class MediaActivity extends Activity {
         if(intent!=null){
             url = intent.getStringExtra("url");
         }
+        if(url != null && !url.equals("")){
+            mVideoPlayer.setUp(
+                    url ,
+                    JCVideoPlayer.SCREEN_LAYOUT_LIST ,
+                    ""
+            );
+        }
+
+
 //        uriStr = "android.resource://" + this.getPackageName() + "/"+R.raw.video_20170209_104311;
-        mediaPlayer = new MediaPlayer();
+        /*mediaPlayer = new MediaPlayer();
         playmove=new PlayMovie(0);
         surfaceHolder=mSurfaceView.getHolder();
         surfaceHolder.setKeepScreenOn(true);
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);   //不缓冲
         surfaceHolder.setKeepScreenOn(true);   //保持屏幕高亮
-        surfaceHolder.addCallback(new surFaceView());   //设置监听事件
+        surfaceHolder.addCallback(new surFaceView());   //设置监听事件*/
 
     }
-    private class surFaceView implements SurfaceHolder.Callback {     //上面绑定的监听的事件
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mVideoPlayer.release();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mVideoPlayer.backPress()){
+            return;
+        }
+        super.onBackPressed();
+    }
+    /*private class surFaceView implements SurfaceHolder.Callback {     //上面绑定的监听的事件
 
         @Override
         public void surfaceChanged(SurfaceHolder holder, int format, int width,
@@ -71,8 +96,8 @@ public class MediaActivity extends Activity {
                 Log.i("yang","surfaceDestroyed======");
             }
         }
-    }
-    class PlayMovie extends Thread {   //播放视频的线程
+    }*/
+    /*class PlayMovie extends Thread {   //播放视频的线程
 
         int post = 0;
 
@@ -103,8 +128,8 @@ public class MediaActivity extends Activity {
             }
             super.run();
         }
-    }
-    class Ok implements MediaPlayer.OnPreparedListener {
+    }*/
+    /*class Ok implements MediaPlayer.OnPreparedListener {
         int postSize;
 
         public Ok(int postSize) {
@@ -122,7 +147,7 @@ public class MediaActivity extends Activity {
             }
             Log.i("yang","onPrepared======");
         }
-    }
+    }*/
 
     public boolean fileIsExists(String strFile) {
         try {

@@ -4,7 +4,7 @@
 
     <!-- 圆角 -->
     <corners
-        android:radius="@dimen/dm005" />
+        android:radius="@dimen/dm010" />
     <!-- 背景颜色 -->
     <solid android:color="@color/white" />
 

@@ -51,13 +51,13 @@ import java.util.Map;
 public class ConversationListFragment extends MyConversationListFragment {
 
     private TextView errorText;
-    private Map<String, EaseUser> topMap;
+    //private Map<String, EaseUser> topMap;
 
 
     @Override
     protected void initView() {
         super.initView();
-        View errorView = (LinearLayout) View.inflate(getActivity(), R.layout.em_chat_neterror_item, null);
+        View errorView = View.inflate(getActivity(), R.layout.em_chat_neterror_item, null);
         errorItemContainer.addView(errorView);
         errorText = (TextView) errorView.findViewById(R.id.tv_connect_errormsg);
 

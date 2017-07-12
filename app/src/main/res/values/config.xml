@@ -2,7 +2,8 @@
 <resources>
     <!--主 -->
     <!--<string name="service_host_address">http://fcar.lchtime.cn:8001/</string>-->
-    <string name="service_host_address">http://47.94.44.84/</string>
+    <!--<string name="service_host_address">http://47.94.44.84/</string>-->
+    <string name="service_host_address">http://www.aqkcw.com/</string>
     <!--登录-->
     <string name="getLogin">index.php/user/login/</string>
 

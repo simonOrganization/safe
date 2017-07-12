@@ -15,6 +15,7 @@ public class VipInfoBean {
         public String ud_profession;
         //岗位
         public String ud_post;
+        //地址
         public String ud_addr;
         public String ud_company_name;
         public String ud_borth;

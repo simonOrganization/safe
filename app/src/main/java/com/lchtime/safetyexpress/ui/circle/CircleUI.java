@@ -179,7 +179,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         BannerAdapter adapter = new BannerAdapter<FirstPic.LunboBean>(lunbo) {
             @Override
             protected void bindTips(TextView tv, FirstPic.LunboBean homeBannerBean) {
-                tv.setText(homeBannerBean.url);
+                //tv.setText(homeBannerBean.url);
             }
 
             @Override
@@ -204,7 +204,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 }else {
                     Intent intent = new Intent(CircleUI.this,H5DetailUI.class);
                     intent.putExtra("type","url");
-                    intent.putExtra("url",lunbo.get(position).url);
+                    intent.putExtra("url",lunbo.get(position).url + "?timestamp=" + System.currentTimeMillis());
                     startActivity(intent);
                 }
             }
@@ -379,7 +379,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         protocal.getCircleList(userid, "1", "4", "0", new CircleProtocal.CircleListener() {
             @Override
             public void circleResponse(CircleBean response) {
-                totalPage = response.total;
+                totalPage = response.totalpage;
                 circleList.clear();
                 circleList.addAll(response.qz_context);
                 Log.d("-------------","response.qz_context="+response.qz_context.size());
@@ -561,7 +561,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                     pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
                     return;
                 }
-                totalPage = response.total;
+                totalPage = response.totalpage;
                 if (!isLoadMore) {
                     circleList.clear();
                 }

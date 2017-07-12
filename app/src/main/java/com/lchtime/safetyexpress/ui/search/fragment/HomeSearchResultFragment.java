@@ -85,6 +85,7 @@ public class HomeSearchResultFragment extends Fragment {
             mProtocal = new SerchProtocal();
         }
         mProtocal.getSearchResult(key, Integer.parseInt(mType), mType, new SerchProtocal.NormalListener() {
+
             @Override
             public void normalResponse(Object response) {
                 if (response == null){

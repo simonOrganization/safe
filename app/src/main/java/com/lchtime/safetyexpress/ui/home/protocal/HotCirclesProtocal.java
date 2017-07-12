@@ -3,6 +3,7 @@ package com.lchtime.safetyexpress.ui.home.protocal;
 
 import android.text.TextUtils;
 
+import com.google.gson.JsonObject;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
@@ -31,6 +32,7 @@ public class HotCirclesProtocal {
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
                 .concat(MyApplication.getContext().getResources().getString(R.string.hotqz));
+
         OkHttpUtils
                 .post()
                 .url(url)
@@ -50,6 +52,7 @@ public class HotCirclesProtocal {
                             return;
                         }
                         HotCircleBean hotCircleBean = (HotCircleBean) JsonUtils.stringToObject(response,HotCircleBean.class);
+
                         if(hotCircleBean.result.code.equals("10")){
                             if (listener != null){
                                 listener.hotNewsResponse(hotCircleBean);

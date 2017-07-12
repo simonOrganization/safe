@@ -19,6 +19,7 @@ import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
+import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.squareup.picasso.Picasso;
@@ -90,7 +91,9 @@ public class HomeHotCircleAdapter extends BaseAdapter {
             public void onClick(View v) {
                 String userid = SpTools.getString(context, Constants.userId,"");
                 if (TextUtils.isEmpty(userid)){
-                    CommonUtils.toastMessage("请登陆！！！");
+                    //CommonUtils.toastMessage("请登陆！！！");
+                    Intent intent = new Intent(context , LoginUI.class);
+                    context.startActivity(intent);
                     finalHolder.iv_subscribe.setChecked(list.get(position).checked);
                     return;
                 }else {

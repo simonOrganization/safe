@@ -74,7 +74,7 @@ public class VipInfoPasswordUI extends BaseUI implements View.OnClickListener {
                 @Override
                 public void onResponseMessage(String code) {
                     VipInfoPasswordUI.this.code = code;
-                    Toast.makeText(VipInfoPasswordUI.this,code + "",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VipInfoPasswordUI.this,"验证码发送成功",Toast.LENGTH_SHORT).show();
                 }
             });
             //修改

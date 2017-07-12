@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.VideoH5Activity;
 import com.lchtime.safetyexpress.adapter.HomeHotCircleAdapter;
 import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
 import com.lchtime.safetyexpress.bean.Constants;
@@ -31,6 +32,7 @@ import com.lchtime.safetyexpress.ui.news.HomeNewActivity;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.utils.cacheutils.ACache;
 import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.lchtime.safetyexpress.views.MyGridView;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -85,6 +87,11 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     private List<List<HotCircleBean.HotBean>> hot;
     private Gson gson = new Gson();
 
+    private ACache aCache;
+    private String hotCircleUrl = "HOT_CIRCLE_CACHE";/*MyApplication.getContext().getResources().getString(R.string.service_host_address)
+            .concat(MyApplication.getContext().getResources().getString(R.string.hotqz));*/
+
+
     @Override
     protected void back() {
         exit();
@@ -135,7 +142,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
                 }else {
                     Intent intent = new Intent(HomeUI.this,H5DetailUI.class);
                     intent.putExtra("type","url");
-                    intent.putExtra("url",lunbo.get(position).url);
+                    intent.putExtra("url",lunbo.get(position).url + "?timestamp=" + System.currentTimeMillis());
                     startActivity(intent);
                 }
             }
@@ -161,7 +168,6 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
                 startActivity(intent);
             }
         });*/
-
 
         //视频热点
         if (vedioNewsList == null){
@@ -438,9 +444,10 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
                             startActivity(intent);
                         }else {
                             //视频
-                            Intent intent = new Intent(HomeUI.this, H5DetailUI.class);
+                            Intent intent = new Intent(HomeUI.this, VideoH5Activity.class);
                             intent.putExtra("newsId", vedioNewsList.get(position).cc_id);
                             intent.putExtra("type","video");
+                            intent.putExtra("videoUrl", vedioNewsList.get(position).media.get(1));
                             startActivity(intent);
                         }
 
@@ -475,50 +482,35 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
 
     private HotCirclesProtocal hotCirclesProtocal;
     private void getHotCircleData(final int page) {
+        aCache = ACache.get(mContext);
         if(hotCirclesProtocal == null){
             hotCirclesProtocal = new HotCirclesProtocal();
+        }
+        HotCircleBean hotCircleBean = (HotCircleBean) aCache.getAsObject(hotCircleUrl);
+        if(hotCircleBean != null){
+            if (hot == null) {
+                hot = hotCircleBean.hot;
+            }else {
+                hot.clear();
+                hot.addAll(hotCircleBean.hot);
+            }
+            //先清除
+            hotList.clear();
+            //添加所有---------------
+            hotList.addAll(hot.get(page));
+            homeHotCircleAdapter.notifyDataSetChanged();
         }
 
         if (hot == null || hot.size() == 0) {
             hotCirclesProtocal.getCirclesList(new HotCirclesProtocal.HotNewsListener() {
                 @Override
                 public void hotNewsResponse(HotCircleBean hotCircleBean) {
-                    if (hotCircleBean == null){
-                        isCircleComplete = true;
-                        if (isNewComplete && isVideoComplete &&isCircleComplete){
-                            isNewComplete = false;
-                            isVideoComplete = false;
-                            isCircleComplete = false;
-                            swipeRefreshLayout.setRefreshing(false);
-                        }
-                        return;
-                    }
-                    if (hot == null) {
-                        hot = hotCircleBean.hot;
-                    }else {
-                        hot.clear();
-                        hot.addAll(hotCircleBean.hot);
-                    }
-
-                    //先清除
-
-                    hotList.clear();
-
-                    //添加所有---------------
-                    hotList.addAll(hot.get(page));
-
-                    homeHotCircleAdapter.notifyDataSetChanged();
-                    if (isNewComplete && isVideoComplete &&isCircleComplete){
-                        isNewComplete = false;
-                        isVideoComplete = false;
-                        isCircleComplete = false;
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
+                    aCache.put(hotCircleUrl , hotCircleBean);
+                    initHotCircleDate(page , hotCircleBean);
                 }
             });
         }else {
             hotList.clear();
-
             //添加所有---------------
             hotList.addAll(hot.get(page));
 
@@ -530,6 +522,44 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
                 isCircleComplete = false;
                 swipeRefreshLayout.setRefreshing(false);
             }
+        }
+    }
+
+    /**
+     * 布置热门圈子数据
+     * @param hotCircleBean
+     */
+    private void initHotCircleDate(int page ,HotCircleBean hotCircleBean) {
+        if (hotCircleBean == null){
+            isCircleComplete = true;
+            if (isNewComplete && isVideoComplete &&isCircleComplete){
+                isNewComplete = false;
+                isVideoComplete = false;
+                isCircleComplete = false;
+                swipeRefreshLayout.setRefreshing(false);
+            }
+            return;
+        }
+        if (hot == null) {
+            hot = hotCircleBean.hot;
+        }else {
+            hot.clear();
+            hot.addAll(hotCircleBean.hot);
+        }
+
+        //先清除
+
+        hotList.clear();
+
+        //添加所有---------------
+        hotList.addAll(hot.get(page));
+
+        homeHotCircleAdapter.notifyDataSetChanged();
+        if (isNewComplete && isVideoComplete &&isCircleComplete){
+            isNewComplete = false;
+            isVideoComplete = false;
+            isCircleComplete = false;
+            swipeRefreshLayout.setRefreshing(false);
         }
     }
 

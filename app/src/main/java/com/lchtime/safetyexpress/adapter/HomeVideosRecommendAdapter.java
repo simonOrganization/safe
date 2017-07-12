@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.VideoH5Activity;
 import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.ui.home.HomeVideosUI;
@@ -52,7 +53,7 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
 
         myHolder.tv_title.setText(bean.cc_title);
 //        Picasso.with(context).load(bean.media.get(0)).fit().into(myHolder.iv_img);
-//
+        //
         myHolder.iv_img.setUp(
                 bean.media.get(1), JCVideoPlayer.SCREEN_LAYOUT_LIST,
                 bean.cc_title);
@@ -89,9 +90,10 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
                 if ((position - 1) <getItemCount()) {
 //                    Intent intent = new Intent(context, HomeVideosDeatilUI.class);
 //                    context.startActivity(intent);
-                    Intent intent = new Intent(context, H5DetailUI.class);
+                    Intent intent = new Intent(context, VideoH5Activity.class);
                     intent.putExtra("newsId", videoList.get(position).cc_id);
                     intent.putExtra("type","video");
+                    intent.putExtra("videoUrl" , videoList.get(position).media.get(1));
                     context.startActivity(intent);
                 }
             }

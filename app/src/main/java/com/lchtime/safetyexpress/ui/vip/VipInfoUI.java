@@ -20,6 +20,7 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
 import com.google.gson.Gson;
+import com.hyphenate.chat.EMClient;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.CardBean;
@@ -278,7 +279,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
         if (bean.user_detail != null) {
             tv_nikname.setText(TextUtils.isEmpty(bean.user_detail.ud_nickname) ? "未设置" : bean.user_detail.ud_nickname);
             //手机号码
-            tv_phone.setText(phoneNum);
+            tv_phone.setText(getPhone(bean.user_detail.ub_phone));
             //岗位
             tv_dowhat.setText(TextUtils.isEmpty(bean.user_detail.ud_post) ? "未设置" : bean.user_detail.ud_post);
             //行业
@@ -319,7 +320,17 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
         }
 
     }
+    /**
+     * 获取加密的手机号
+     */
+    private String getPhone(String phone){
+        if(TextUtils.isEmpty(phone))
+            return "";
+        String head = phone.substring(0 , 3);
+        String end = phone.substring(7);
 
+        return head + "****" + end;
+    }
 
     /**
      * 头像
@@ -332,6 +343,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
 
         contentView.findViewById(R.id.tv_picture_list).setOnClickListener(this);
         contentView.findViewById(R.id.tv_takepic).setOnClickListener(this);
+        contentView.findViewById(R.id.tv_cancel).setOnClickListener(this);
     }
 
     /**
@@ -760,14 +772,15 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
         }
     }
 
-
-
+    /**
+     * 修改个人资料
+     */
     private void changeInfo() {
         String uid = SpTools.getString(this, Constants.userId, "");
         LoginInternetRequest.editVipInfo(InitInfo.phoneNumber, map, uid, new LoginInternetRequest.ForResultListener() {
             @Override
             public void onResponseMessage(String code) {
-                Toast.makeText(VipInfoUI.this, "上传成功", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(VipInfoUI.this, "上传成功", Toast.LENGTH_SHORT).show();
                 //将裁剪得图片转换成bitmap
                 if (!TextUtils.isEmpty(phtotoPath)) {
                     Bitmap zoomBitMap = BitmapFactory.decodeFile(phtotoPath);
@@ -802,7 +815,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
 
 
                 //此处可以加上上传图片到环信的过程
-
+                //EMClient.getInstance().updateCurrentUserNick(allInfo.ud_nickname == null ? InitInfo.vipInfoBean.user_detail.ud_nickname : allInfo.ud_nickname);
 
 
             }

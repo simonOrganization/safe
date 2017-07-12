@@ -185,7 +185,7 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
                 homeNewHolder.home_new_item_rc.setAdapter(imageAdapter);
             }
             homeNewHolder.textViews.get(1).setText(bean.getCc_from());
-            homeNewHolder.textViews.get(2).setText(bean.getCc_count()+"评论");
+            homeNewHolder.textViews.get(2).setText(bean.getPlNum()+"评论");
             if(!TextUtils.isEmpty(bean.getCc_datetime())){
                 homeNewHolder.textViews.get(3).setText(CommonUtils.getSpaceTime(Long.parseLong(bean.getCc_datetime())));
             }
@@ -200,23 +200,24 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
                 Picasso.with(context).load(R.drawable.home_banner).into(homeNewNoHolder.home_new_no_item_image);
             }
             homeNewNoHolder.textViews.get(1).setText(bean.getCc_from());
-            homeNewNoHolder.textViews.get(2).setText(bean.getCc_count()+"评论");
+            homeNewNoHolder.textViews.get(2).setText(bean.getPlNum()+"评论");
+            homeNewNoHolder.playNumTv.setText(bean.cc_count + "次播放");
             if(!TextUtils.isEmpty(bean.getCc_datetime())){
                 homeNewNoHolder.textViews.get(3).setText(CommonUtils.getSpaceTime(Long.parseLong(bean.getCc_datetime())));
             }
 
             String beanType = bean.getCc_mark();
             if (beanType.contains("V")){
-                homeNewNoHolder.home_new_no_item_image.setOnClickListener(new View.OnClickListener() {
+                /*homeNewNoHolder.home_new_no_item_image.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, MediaActivity.class);
                         intent.putExtra("url",bean.media.get(1));
                         context.startActivity(intent);
                     }
-                });
+                });*/
                 //首页视频借用此adapter，因此需要将隐藏的半透明和视频时长显示出来
-                homeNewNoHolder.video_model.setVisibility(View.VISIBLE);
+                //homeNewNoHolder.video_model.setVisibility(View.VISIBLE);
                 homeNewNoHolder.video_time.setVisibility(View.VISIBLE);
                 homeNewNoHolder.video_time.setText(bean.video_time);
 
@@ -233,7 +234,7 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
             HomeNewVideoHolder homeNewVideoHolder = (HomeNewVideoHolder) holder;
             homeNewVideoHolder.textViews.get(0).setText(bean.getCc_title());
             homeNewVideoHolder.textViews.get(1).setText(bean.getCc_from());
-            homeNewVideoHolder.textViews.get(2).setText(bean.getCc_count()+"评论");
+            homeNewVideoHolder.textViews.get(2).setText(bean.getPlNum()+"评论");
             if(!TextUtils.isEmpty(bean.getCc_datetime())){
                 homeNewVideoHolder.textViews.get(3).setText(CommonUtils.getSpaceTime(Long.parseLong(bean.getCc_datetime())));
             }
@@ -286,7 +287,8 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
         View video_model;
         @BindView(R.id.video_time)
         TextView video_time;
-
+        @BindView(R.id.tv_play_num)
+        TextView playNumTv;
 
         public HomeNewNoHolder(View itemView) {
             super(itemView);

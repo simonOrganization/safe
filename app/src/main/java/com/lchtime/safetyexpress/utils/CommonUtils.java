@@ -241,7 +241,8 @@ public class CommonUtils {
         Calendar calendar = Calendar.getInstance();
         Long currentMillisecond = calendar.getTimeInMillis();
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(currentMillisecond);
         String dateStr = simpleDateFormat.format(date);
 

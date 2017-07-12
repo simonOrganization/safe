@@ -247,7 +247,7 @@ public class RegisterUI extends BaseUI {
                     Toast.makeText(RegisterUI.this,"请查看网络",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Toast.makeText(RegisterUI.this,registerCode,Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterUI.this,"验证码发送成功",Toast.LENGTH_SHORT).show();
             }
         });
     }

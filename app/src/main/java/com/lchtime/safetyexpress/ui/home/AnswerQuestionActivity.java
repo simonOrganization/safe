@@ -40,6 +40,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail.QUEWSTION_DETAIL_RESULT;
+
 /**
  * Created by android-cp on 2017/5/12.  编辑回答问题界面
  */
@@ -79,6 +81,8 @@ public class AnswerQuestionActivity extends BaseUI {
     private String q_id;
     private String a_id;
 
+    private boolean isEdit;  //是否是编辑问答
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -99,11 +103,12 @@ public class AnswerQuestionActivity extends BaseUI {
         questionTitle = getIntent().getStringExtra("title");
         q_id = getIntent().getStringExtra("q_id");
         a_id = getIntent().getStringExtra("a_id");
-
         if (TextUtils.isEmpty(q_id)){
             setTitle("编辑回答");
+            isEdit = true;
         }else {
             setTitle("撰写回答");
+            isEdit = false;
         }
         etQuestionText.setText(questionTitle);
         FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
@@ -279,6 +284,8 @@ public class AnswerQuestionActivity extends BaseUI {
                                     Result result = (Result) response;
                                     Toast.makeText(AnswerQuestionActivity.this, result.result.info, Toast.LENGTH_SHORT).show();
                                     setLoading(false);
+                                    setResult(HomeQuewstionDetail.QUEWSTION_DETAIL_RESULT);
+                                    finish();
                                 }
                             });
 
@@ -296,6 +303,8 @@ public class AnswerQuestionActivity extends BaseUI {
                                     Result result = (Result) response;
                                     Toast.makeText(AnswerQuestionActivity.this, result.result.info, Toast.LENGTH_SHORT).show();
                                     setLoading(false);
+                                    setResult(HomeQuewstionDetail.QUEWSTION_DETAIL_RESULT);
+                                    finish();
                                 }
                             });
                         }
@@ -321,6 +330,8 @@ public class AnswerQuestionActivity extends BaseUI {
                         Result result = (Result) response;
                         Toast.makeText(AnswerQuestionActivity.this, result.result.info, Toast.LENGTH_SHORT).show();
                         setLoading(false);
+                        setResult(HomeQuewstionDetail.QUEWSTION_DETAIL_RESULT);
+                        finish();
                     }
                 });
             }else {
@@ -336,6 +347,8 @@ public class AnswerQuestionActivity extends BaseUI {
                         Result result = (Result) response;
                         Toast.makeText(AnswerQuestionActivity.this, result.result.info, Toast.LENGTH_SHORT).show();
                         setLoading(false);
+                        setResult(HomeQuewstionDetail.QUEWSTION_DETAIL_RESULT);
+                        finish();
                     }
                 });
             }

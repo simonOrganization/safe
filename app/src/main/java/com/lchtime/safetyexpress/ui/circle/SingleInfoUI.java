@@ -205,7 +205,7 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
 
 
         if (TextUtils.isEmpty(userid)){
-            tvFriend.setText("+ 添加");
+            tvFriend.setText("+ 好友");
         }else {
             //初始化是否为好友关系，是否订阅
 
@@ -216,11 +216,11 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
                         tvFriend.setText("已添加");
                         break;
                     } else {
-                        tvFriend.setText("+ 添加");
+                        tvFriend.setText("+ 好友");
                     }
                 }
             }else {
-                tvFriend.setText("+ 添加");
+                tvFriend.setText("+ 好友");
             }
         }
 

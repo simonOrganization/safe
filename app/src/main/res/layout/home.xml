@@ -39,7 +39,8 @@
             android:background="@drawable/shape_bg_gray"
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/dm010"
-            android:paddingRight="@dimen/dm010">
+            android:paddingRight="@dimen/dm010"
+            android:layout_marginRight="@dimen/dm015">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -58,6 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dm020"
             android:layout_marginRight="@dimen/dm020"
+            android:visibility="gone"
             android:gravity="center">
 
             <ImageView
