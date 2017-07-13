@@ -81,7 +81,7 @@ public class AnswerQuestionActivity extends BaseUI {
     private String q_id;
     private String a_id;
 
-    private boolean isEdit;  //是否是编辑问答
+    //private boolean isEdit;  //是否是编辑问答
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,10 +105,10 @@ public class AnswerQuestionActivity extends BaseUI {
         a_id = getIntent().getStringExtra("a_id");
         if (TextUtils.isEmpty(q_id)){
             setTitle("编辑回答");
-            isEdit = true;
+            //isEdit = true;
         }else {
             setTitle("撰写回答");
-            isEdit = false;
+            //isEdit = false;
         }
         etQuestionText.setText(questionTitle);
         FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
@@ -270,9 +270,7 @@ public class AnswerQuestionActivity extends BaseUI {
                             }
                         }
 
-
-                        if (TextUtils.isEmpty(a_id)) {
-
+                        if (TextUtils.isEmpty(a_id)) {//如果a_id 是空的
                             protocal.postAnswerContent(q_id, answer, filesid, new HomeQuestionProtocal.QuestionListener() {
                                 @Override
                                 public void questionResponse(Object response) {
@@ -288,10 +286,8 @@ public class AnswerQuestionActivity extends BaseUI {
                                     finish();
                                 }
                             });
-
-
                         }else {
-                            protocal.editAnswerContent(a_id, answer, filesid, new HomeQuestionProtocal.QuestionListener() {
+                            protocal.editAnswerContent(a_id, answer, filesid, 1 ,new HomeQuestionProtocal.QuestionListener() {
                                 @Override
                                 public void questionResponse(Object response) {
                                     if (response == null){
@@ -303,14 +299,11 @@ public class AnswerQuestionActivity extends BaseUI {
                                     Result result = (Result) response;
                                     Toast.makeText(AnswerQuestionActivity.this, result.result.info, Toast.LENGTH_SHORT).show();
                                     setLoading(false);
-                                    setResult(HomeQuewstionDetail.QUEWSTION_DETAIL_RESULT);
+                                    setResult(HomeQuewstionDetail.RESULT_OK);
                                     finish();
                                 }
                             });
                         }
-
-
-
                     }else {
                         setLoading(false);
                     }
@@ -335,7 +328,7 @@ public class AnswerQuestionActivity extends BaseUI {
                     }
                 });
             }else {
-                protocal.editAnswerContent(a_id, answer, filesid, new HomeQuestionProtocal.QuestionListener() {
+                protocal.editAnswerContent(a_id, answer, filesid, 1 , new HomeQuestionProtocal.QuestionListener() {
                     @Override
                     public void questionResponse(Object response) {
                         if (response == null){
@@ -347,7 +340,7 @@ public class AnswerQuestionActivity extends BaseUI {
                         Result result = (Result) response;
                         Toast.makeText(AnswerQuestionActivity.this, result.result.info, Toast.LENGTH_SHORT).show();
                         setLoading(false);
-                        setResult(HomeQuewstionDetail.QUEWSTION_DETAIL_RESULT);
+                        setResult(HomeQuewstionDetail.RESULT_OK);
                         finish();
                     }
                 });

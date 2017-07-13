@@ -149,6 +149,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
         if (TextUtils.isEmpty(ub_id)){
             logIn.setVisibility(View.GONE);
             logOut.setVisibility(View.VISIBLE);
+            tv_money_num.setVisibility(View.INVISIBLE);
         }else {
             //登录的情况下
             logIn.setVisibility(View.VISIBLE);
@@ -242,10 +243,11 @@ public class VipUI extends BaseUI implements View.OnClickListener {
     }
 
     private VipProtocal mVipProtocal = new VipProtocal();
+    //获取余额
     private void initMoneyNum() {
-        if (userid == null) {
-            userid = SpTools.getString(this, Constants.userId, "");
-        }
+
+        userid = SpTools.getString(this, Constants.userId, "");
+
 
         if (TextUtils.isEmpty(userid)){
             tv_money_num.setVisibility(View.GONE);

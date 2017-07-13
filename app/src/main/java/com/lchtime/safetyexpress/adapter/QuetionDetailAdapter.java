@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.WenDaDetailBean;
+import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
 import com.lchtime.safetyexpress.ui.home.MyQuestion;
 import com.lchtime.safetyexpress.views.CircleImageView;
 import com.squareup.picasso.Picasso;
@@ -92,7 +93,7 @@ public class QuetionDetailAdapter extends RecyclerView.Adapter {
                     intent.putExtra("a_id",bean.a_id);
                     intent.putExtra("aq_id",bean.aq_id);
                     intent.putExtra("num",list.size() + "");
-                    context.startActivity(intent);
+                    context.startActivityForResult(intent , HomeQuewstionDetail.QUEWSTION_DETAIL_REQUEST);
                 }
             });
         }

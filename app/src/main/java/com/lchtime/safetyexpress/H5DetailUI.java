@@ -39,6 +39,7 @@ import com.lchtime.safetyexpress.ui.CallBackActivity;
 import com.lchtime.safetyexpress.ui.Const;
 import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.home.AnswerQuestionActivity;
+import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
 import com.lchtime.safetyexpress.ui.home.protocal.H5Protocal;
 import com.lchtime.safetyexpress.ui.home.protocal.ShareProtocal;
 import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
@@ -73,6 +74,8 @@ import static com.lchtime.safetyexpress.R.drawable.qq;
  */
 @ContentView(R.layout.home_news_detail_ui)
 public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
+
+    public static final int EDIT = 105;
 
     //分享
     @ViewInject(R.id.ll_right)
@@ -536,15 +539,16 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
             }
         });
     }
-//问答界面删除
+    //问答界面删除
     @JavascriptInterface
     public void getDelId (final String ub_id){
         runOnUiThread(new Runnable() {
 
             @Override
             public void run() {
-                if (!TextUtils.isEmpty(ub_id)){
+                if (ub_id != null && ub_id.equals("1")){
                     InitInfo.wendaDetail = true;
+                    setResult(HomeQuewstionDetail.QUEWSTION_DETAIL_RESULT);
                     finish();
                 }else {
                     CommonUtils.toastMessage("删除失败");
@@ -566,7 +570,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
                     Intent intent = new Intent(mContext , AnswerQuestionActivity.class);
                     intent.putExtra("a_id",a_id);
                     intent.putExtra("title",title);
-                    startActivity(intent);
+                    startActivityForResult(intent , EDIT);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
@@ -1089,6 +1093,10 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Tencent.onActivityResultData(requestCode, resultCode, data, qqShareListener);
+        if(requestCode == EDIT && resultCode == RESULT_OK){
+            setResult(HomeQuewstionDetail.QUEWSTION_DETAIL_RESULT);
+            finish();
+        }
     }
 
 

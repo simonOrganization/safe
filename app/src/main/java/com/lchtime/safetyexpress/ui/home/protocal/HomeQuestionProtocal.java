@@ -143,7 +143,7 @@ public class HomeQuestionProtocal {
     }
 
     private Gson gson = new Gson();
-    public void postAnswerContent(String q_id,String context,String pic,final QuestionListener listener){
+    public void postAnswerContent(String q_id , String context , String pic , final QuestionListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
@@ -191,21 +191,22 @@ public class HomeQuestionProtocal {
                 });
     }
 
-    public void editAnswerContent(String a_id,String info,String pic,final QuestionListener listener){
+    public void editAnswerContent(String a_id , String info , String pic , int type , final QuestionListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.questionResponse(null);
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
-                .concat(MyApplication.getContext().getResources().getString(R.string.tjanswer));
+                .concat(MyApplication.getContext().getResources().getString(R.string.edit));
         OkHttpUtils
                 .post()
                 .url(url)
                 .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
                 .addParams("a_id", a_id)
-                .addParams("info", info)
+                .addParams("context", info)
                 .addParams("pic", pic)
+                .addParams("type" , type+"")
                 .build()
                 .execute(new StringCallback() {
                     @Override
