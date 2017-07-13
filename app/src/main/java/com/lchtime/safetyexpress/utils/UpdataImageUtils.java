@@ -75,7 +75,7 @@ public class UpdataImageUtils {
  *
  * 上传多张图片
  * */
-    public void upMuchDataPic(List<File> list, UpdataPicListener updataPicListener){
+    public void upMuchDataPic(List<File> list, final DialogUtil mDialog , UpdataPicListener updataPicListener){
         mListener = updataPicListener;
         final Context context = MyApplication.getContext();
 
@@ -92,6 +92,7 @@ public class UpdataImageUtils {
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
+                mDialog.dissmiss();
                 Toast.makeText(context,"上传图片失败，请重新上传", Toast.LENGTH_SHORT).show();
                 mListener.onResponse(null);
             }
@@ -160,7 +161,7 @@ public class UpdataImageUtils {
     }
 
 
-    public void upDataVideo(final String filePath , File video_pic, final UpdataPicListener updataPicListener){
+    public void upDataVideo(final String filePath , File video_pic, final DialogUtil dialog , final UpdataPicListener updataPicListener){
         final Context context = MyApplication.getContext();
         String upLoadUrl = context.getResources().getString(R.string.service_host_address).concat(context.getResources().getString(R.string.upload));
         File file = new File(filePath);
@@ -175,6 +176,7 @@ public class UpdataImageUtils {
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
+                dialog.dissmiss();
                 Log.d("--------","response="+e);
                 Toast.makeText(context,"上传视频失败，请重新上传", Toast.LENGTH_SHORT).show();
             }

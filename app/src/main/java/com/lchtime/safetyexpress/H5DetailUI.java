@@ -1,17 +1,14 @@
 package com.lchtime.safetyexpress;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -62,11 +59,6 @@ import com.tencent.tauth.UiError;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
-
-import static com.lchtime.safetyexpress.R.drawable.qq;
-
 
 /**
  * 所有的详情h5界面
@@ -82,7 +74,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
     private LinearLayout ll_right;
 
     @ViewInject(R.id.home_news_detailed_web)
-    private WebView home_news_detailed_web;
+    private WebView mWebView;
 
     @ViewInject(R.id.bottom_zan_or_common)
     private LinearLayout bottom_zan_or_common;
@@ -128,7 +120,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
 
 
     private SharePop sharePop;
-    private String cc_id;
+    private String cc_id;   //新闻id
     private String a_id;
     private String aq_id;
     private String url;
@@ -140,9 +132,9 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
     private IWeiboShareAPI mWeiboShareAPI;
     public static IWXAPI api;
     private String mUb_id;
-    private String ub_id;
+    private String ub_id;       //用户id
     public static String qc_id;
-    private InsideWebChromeClient mInsideWebChromeClient;
+    //private InsideWebChromeClient mInsideWebChromeClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,7 +168,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
 
     private void myInit(){
         String ub_id = SpTools.getString(this, Constants.userId,"");
-        cc_id = getIntent().getStringExtra("newsId");
+        cc_id = getIntent().getStringExtra("newsId"); //
         a_id = getIntent().getStringExtra("a_id");
         aq_id = getIntent().getStringExtra("aq_id");
         url = getIntent().getStringExtra("url");
@@ -321,7 +313,8 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
      * 初始化webView的参数
      */
     private void initWebView() {
-        WebSettings settings = home_news_detailed_web.getSettings();
+        WebSettings settings = mWebView.getSettings();
+        //启用支持javascript
         settings.setJavaScriptEnabled(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setPluginState(WebSettings.PluginState.ON);
@@ -332,20 +325,22 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
         //settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         settings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
+
+
         settings.setBlockNetworkImage(false);
         settings.setDomStorageEnabled(true);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
-        mInsideWebChromeClient = new InsideWebChromeClient();
+        /*mInsideWebChromeClient = new InsideWebChromeClient();
         InsideWebViewClient mInsideWebViewClient = new InsideWebViewClient();
         //javascriptInterface = new JavascriptInterface();
         //mWebView.addJavascriptInterface(javascriptInterface, "java2js_laole918");
-        home_news_detailed_web.setWebChromeClient(mInsideWebChromeClient);
-        home_news_detailed_web.setWebViewClient(mInsideWebViewClient);
+        mWebView.setWebChromeClient(mInsideWebChromeClient);
+        mWebView.setWebViewClient(mInsideWebViewClient);*/
     }
 
-    private class InsideWebChromeClient extends WebChromeClient {
+   /* private class InsideWebChromeClient extends WebChromeClient {
         private View mCustomView;
         private CustomViewCallback mCustomViewCallback;
 
@@ -359,12 +354,12 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
             mCustomView = view;
             mFrameLayout.addView(mCustomView);
             mCustomViewCallback = callback;
-            home_news_detailed_web.setVisibility(View.GONE);
+            mWebView.setVisibility(View.GONE);
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
 
         public void onHideCustomView() {
-            home_news_detailed_web.setVisibility(View.VISIBLE);
+            mWebView.setVisibility(View.VISIBLE);
             if (mCustomView == null) {
                 return;
             }
@@ -391,7 +386,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
             //mWebView.loadUrl(javascript);
         }
 
-    }
+    }*/
 
     @Override
     public void onConfigurationChanged(Configuration config) {
@@ -411,20 +406,20 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
     @Override
     public void onPause() {
         super.onPause();
-        home_news_detailed_web.onPause();
+        mWebView.onPause();
         //mVideoPaler.release();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        home_news_detailed_web.onResume();
+        mWebView.onResume();
     }
 
     @Override
     public void onBackPressed() {
-        if (home_news_detailed_web.canGoBack()) {
-            home_news_detailed_web.goBack();
+        if (mWebView.canGoBack()) {
+            mWebView.goBack();
             return;
         }
         /*if(mVideoPaler.backPress()){
@@ -435,7 +430,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
 
     @Override
     public void onDestroy() {
-        home_news_detailed_web.destroy();
+        mWebView.destroy();
         super.onDestroy();
     }
 
@@ -447,44 +442,39 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
         initWebView();
 
         //WebView加载web资源
-        home_news_detailed_web.loadUrl(baseUrl);
-
-        //启用支持javascript
-        WebSettings settings = home_news_detailed_web.getSettings();
-        settings.setJavaScriptEnabled(true);
+        //mWebView.loadUrl("http://www.baidu.com");
+        mWebView.loadUrl(baseUrl);
         //覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
-        home_news_detailed_web.setWebViewClient(new WebViewClient(){
+        mWebView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 // TODO Auto-generated method stub
                 //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
-                //view.loadUrl(url);
+                //String u = url;
+                if(!url.equals("wvjbscheme://__BRIDGE_LOADED__")){
+                    mWebView.loadUrl(url);
+                }
                 return true;
             }
 
             @Override
             public void onPageFinished(WebView view, String url)
             {
-
-                //开始
+                //结束
                 super.onPageFinished(view, url);
-                home_news_detailed_web.loadUrl("javascript:info()");
+                mWebView.loadUrl("javascript:info()");
                 setSuccessVisiblity();
 
             }
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon)
             {
-
-                //结束
+                //开始
                 super.onPageStarted(view, url, favicon);
-
-
-
             }
         });
 
-        home_news_detailed_web.addJavascriptInterface(this,"android");
+        mWebView.addJavascriptInterface(this,"android");
 
     }
 
@@ -507,6 +497,19 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
 
             }
         });
+    }
+
+    /**
+     * 点击了新闻界面或者视频界面的  推荐内容
+     * @param cc_id
+     * @param title
+     * @param desc
+     */
+    @JavascriptInterface
+    public void getPageId(String cc_id , String title , String desc){
+        this.cc_id = cc_id;
+        //makeText("cc_id" + cc_id + " title" + title + "desc" + desc);
+        initH5Info();
     }
 
 
@@ -649,7 +652,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
      */
     @OnClick(R.id.rl_news_detail_comment)
     private void getComment(View view) {
-        if (TextUtils.isEmpty(ub_id)) {
+        /*if (TextUtils.isEmpty(ub_id)) {
             ub_id = SpTools.getString(this, Constants.userId, "");
         }
 
@@ -657,8 +660,10 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
             CommonUtils.toastMessage("请登陆后再进行相关操作！");
             return;
         }
-        rl_pl.setVisibility(View.VISIBLE);
+        rl_pl.setVisibility(View.VISIBLE);*/
 //        makeText("评论");
+        //调用JS的方法
+        mWebView.loadUrl("javascript:onclickComments()");
     }
 
     /**
@@ -691,15 +696,15 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
 
         if ("news".equals(type)||"video".equals(type)){
 
-            newsCommon(content,god);
+            newsCommon(content , god);
 
         }else if (("circle".equals(type))){
 
-            circleCommon(content,god);
+            circleCommon( content , god);
 
         }else if (("wenda".equals(type))){
 
-            WDCommon(content,god);
+            WDCommon( content , god);
 
         }
 
@@ -771,7 +776,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
      * @param god
      */
     private void newsCommon(String content,String god) {
-        protocal.setNewsCommen(god, cc_id, content, new H5Protocal.H5Listener() {
+        protocal.setNewsCommen(god , cc_id, content, new H5Protocal.H5Listener() {
             @Override
             public void H5Response(String response) {
                 if (TextUtils.isEmpty(response)){

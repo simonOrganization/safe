@@ -84,6 +84,7 @@
     <string name="qzsearch">index.php/quanzi/qzsearch</string>
     <!--新闻视频搜索-->
     <string name="xwspsearch">index.php/cms/search</string>
+    <!--我的问答-->
     <string name="mywd">index.php/wenda/mywd</string>
     <!--返回点赞单条信息-->
     <string name="clickdz">index.php/quanzi/clickdz</string>

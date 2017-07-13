@@ -262,7 +262,7 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
         }
     }
     class HomeNewHolder extends RecyclerView.ViewHolder{
-        @BindViews({R.id.home_new_item_title,R.id.home_new_item_from,R.id.home_new_item_comment,R.id.home_new_item_time})
+        @BindViews({R.id.home_new_item_title , R.id.home_new_item_from, R.id.home_new_item_comment , R.id.home_new_item_time})
         List<TextView> textViews;
         @BindView(R.id.home_new_item_rc)
         NoTouchRecycler home_new_item_rc;

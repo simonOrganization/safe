@@ -20,11 +20,11 @@ public class DialogUtil {
         mDialog.setMessage(message);
     }
 
-    private void show(){
+    public void show(){
         mDialog.show();
     }
 
-    private void dissmiss(){
+    public void dissmiss(){
         mDialog.dismiss();
     }
 

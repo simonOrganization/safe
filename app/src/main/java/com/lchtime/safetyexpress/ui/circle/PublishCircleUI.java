@@ -28,6 +28,7 @@ import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.vip.VipInfoUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
@@ -81,6 +82,8 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
 
     private View contentView;
     private FunctionOptions options;
+    private DialogUtil mDialog;
+
 
     @Override
     protected void back() {
@@ -89,6 +92,7 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
 
     @Override
     protected void setControlBasis() {
+        mDialog = new DialogUtil(mContext);
         ButterKnife.bind(this);
         setTitle("发圈子");
         rightTextVisible("发送");
@@ -245,9 +249,9 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
             Toast.makeText(this,"圈子内容不能为空！",Toast.LENGTH_SHORT).show();
             return;
         }
-
+        mDialog.show();
         if (fileList != null && fileList.size() > 0){
-            updataImageUtils.upMuchDataPic(fileList, new UpdataImageUtils.UpdataPicListener() {
+            updataImageUtils.upMuchDataPic(fileList, mDialog , new UpdataImageUtils.UpdataPicListener() {
                 @Override
                 public void onResponse(String response) {
                     if (TextUtils.isEmpty(response)){
@@ -269,7 +273,7 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
                         Log.d("-----------","----ub_id--="+ub_id);
                         Log.d("-----------","----content--="+content);
                         Log.d("-----------","----filesid--="+filesid);
-                        protocal.getUpdataCommonData(ub_id, content, filesid, new CircleProtocal.NormalListener() {
+                        protocal.getUpdataCommonData(ub_id, content, filesid, mDialog , new CircleProtocal.NormalListener() {
                             @Override
                             public void normalResponse(Object response) {
                                 Result result = (Result) response;
@@ -282,7 +286,7 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
             });
         }else {
             filesid = "";
-            protocal.getUpdataCommonData(ub_id, content, filesid, new CircleProtocal.NormalListener() {
+            protocal.getUpdataCommonData(ub_id, content, filesid , mDialog ,new CircleProtocal.NormalListener() {
                 @Override
                 public void normalResponse(Object response) {
                     Result result = (Result) response;

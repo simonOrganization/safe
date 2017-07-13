@@ -134,7 +134,7 @@ public class GuanZhuFragment extends BaseFragment {
                     .post()
                     .url(url)
                     .addParams("page", page)
-                    .addParams("type", "1")
+                    .addParams("type", "0")
                     .addParams("ub_id", SpTools.getString(getContext(), Constants.userId, ""));
 
             if (!TextUtils.isEmpty(otherid)){

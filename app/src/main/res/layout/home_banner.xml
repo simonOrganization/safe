@@ -9,7 +9,7 @@
         android:id="@+id/sb_home_banner"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm360"
-        android:background="@drawable/home_banner"
+        android:background="@drawable/banner_default"
         app:banner_pointGravity="center_horizontal"
         app:banner_pointDrawable="@drawable/sel_banner_point"
         app:banner_pointContainerBackground="@android:color/transparent"

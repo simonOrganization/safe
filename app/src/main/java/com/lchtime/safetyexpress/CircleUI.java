@@ -139,8 +139,8 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
             public void bindImage(ImageView imageView, HomeBannerBean homeBannerBean) {
                 Glide.with(CircleUI.this)
                         .load(homeBannerBean.getImgurl())
-                        .placeholder(R.drawable.home_banner)
-                        .error(R.drawable.home_banner)
+                        .placeholder(R.drawable.banner_default)
+                        .error(R.drawable.banner_default)
                         .into(imageView);
             }
         };

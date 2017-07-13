@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="E:\AndroidProjects\gitsafety\threeLoginFrame\src\main\assets"/><source path="E:\AndroidProjects\gitsafety\threeLoginFrame\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="E:\AndroidProjects\gitsafety\threeLoginFrame\src\release\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="E:\AndroidProjects\gitsafe\threeLoginFrame\src\main\assets"/><source path="E:\AndroidProjects\gitsafe\threeLoginFrame\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="E:\AndroidProjects\gitsafe\threeLoginFrame\src\release\assets"/></dataSet></merger>

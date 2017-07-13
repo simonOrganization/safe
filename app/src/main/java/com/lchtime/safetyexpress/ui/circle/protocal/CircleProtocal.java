@@ -13,6 +13,7 @@ import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.SingleInfoBean;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.mzhy.http.okhttp.OkHttpUtils;
 import com.mzhy.http.okhttp.builder.PostFormBuilder;
@@ -344,7 +345,7 @@ public class CircleProtocal {
                 });
     }
 
-    public void getUpdataVideoData( String ub_id,String qc_context,String qc_video,String pic,final NormalListener listener) {
+    public void getUpdataVideoData(String ub_id, String qc_context, String qc_video, String pic, final DialogUtil dialog , final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
@@ -362,11 +363,13 @@ public class CircleProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
+                        dialog.dissmiss();
                         CommonUtils.toastMessage("错误");
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
+                        dialog.dissmiss();
                         if (TextUtils.isEmpty(response)) {
                             CommonUtils.toastMessage("没有数据返回");
                             return;
@@ -383,7 +386,7 @@ public class CircleProtocal {
                 });
     }
 
-    public void getUpdataCommonData( String ub_id,String qc_context,String pic,final NormalListener listener) {
+    public void getUpdataCommonData(String ub_id, String qc_context, String pic , final DialogUtil mDialog , final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
@@ -401,11 +404,13 @@ public class CircleProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
+                        mDialog.dissmiss();
                         CommonUtils.toastMessage("错误");
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
+                        mDialog.dissmiss();
                         if (TextUtils.isEmpty(response)) {
                             CommonUtils.toastMessage("没有数据返回");
                             return;

@@ -23,6 +23,7 @@ import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
 import com.lchtime.safetyexpress.views.FullyGridLayoutManager;
@@ -80,6 +81,7 @@ public class AnswerQuestionActivity extends BaseUI {
     private String questionTitle;
     private String q_id;
     private String a_id;
+    private DialogUtil mDialog;
 
     //private boolean isEdit;  //是否是编辑问答
 
@@ -88,6 +90,7 @@ public class AnswerQuestionActivity extends BaseUI {
 
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
+        mDialog = new DialogUtil(mContext);
     }
 
     @Override
@@ -248,8 +251,9 @@ public class AnswerQuestionActivity extends BaseUI {
             setLoading(false);
             return;
         }
+        mDialog.show();
         if (fileList != null && fileList.size() > 0) {
-            updataImageUtils.upMuchDataPic(fileList, new UpdataImageUtils.UpdataPicListener() {
+            updataImageUtils.upMuchDataPic(fileList, mDialog , new UpdataImageUtils.UpdataPicListener() {
                 @Override
                 public void onResponse(String response) {
                     if (TextUtils.isEmpty(response)){

@@ -133,7 +133,7 @@ public class HomeQuewstionDetail extends BaseUI {
 
     }
 
-    private int page = 0;
+    private int page = 1;
     private int totalPage = 1;
     private void initListner() {
         tvHomeQuestion.setOnClickListener(new View.OnClickListener() {

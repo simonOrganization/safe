@@ -23,6 +23,7 @@ import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.circle.PublishCircleUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lchtime.safetyexpress.utils.OpinionProtocal;
 import com.lchtime.safetyexpress.utils.SpTools;
@@ -65,6 +66,7 @@ public class OpinionActivity extends BaseUI implements PopupWindow.OnDismissList
 
     private View contentView;
     private FunctionOptions options;
+    private DialogUtil mDialog;
     @Override
     protected void back() {
         finish();
@@ -77,6 +79,7 @@ public class OpinionActivity extends BaseUI implements PopupWindow.OnDismissList
 
         initRecyclerView();
         initPopWindow();
+        mDialog = new DialogUtil(mContext);
     }
 
     private void initRecyclerView() {
@@ -203,9 +206,10 @@ public class OpinionActivity extends BaseUI implements PopupWindow.OnDismissList
             Toast.makeText(this,"意见不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
+        mDialog.show();
         final String phone_num = et_phone_num.getText().toString().trim();
         if (fileList != null && fileList.size() > 0){
-            updataImageUtils.upMuchDataPic(fileList, new UpdataImageUtils.UpdataPicListener() {
+            updataImageUtils.upMuchDataPic(fileList, mDialog , new UpdataImageUtils.UpdataPicListener() {
                 @Override
                 public void onResponse(String response) {
                     if (TextUtils.isEmpty(response)){

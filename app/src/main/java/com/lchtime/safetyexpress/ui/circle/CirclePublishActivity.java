@@ -29,6 +29,7 @@ import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -75,6 +76,8 @@ public class CirclePublishActivity extends BaseUI implements PopupWindow.OnDismi
     public static final int REQUEST_CODE = 2000;
     private UpdataImageUtils updataImageUtils;
 
+    private DialogUtil mDialog;
+
     @Override
     protected void back() {
         finish();
@@ -82,6 +85,7 @@ public class CirclePublishActivity extends BaseUI implements PopupWindow.OnDismi
 
     @Override
     protected void setControlBasis() {
+        mDialog = new DialogUtil(mContext);
         ButterKnife.bind(this);
         rightTextVisible("发送");
         setTitle("发圈子");
@@ -285,9 +289,9 @@ public class CirclePublishActivity extends BaseUI implements PopupWindow.OnDismi
             CommonUtils.toastMessage("文字不能为空");
             return;
         }
-
+        mDialog.show();
         File file = new File(getFilesDir(),"video_pic");
-        updataImageUtils.upDataVideo(videoPath , file, new UpdataImageUtils.UpdataPicListener() {
+        updataImageUtils.upDataVideo(videoPath , file, mDialog ,new UpdataImageUtils.UpdataPicListener() {
             @Override
             public void onResponse(String response) {
                 String videoId = "";
@@ -303,7 +307,7 @@ public class CirclePublishActivity extends BaseUI implements PopupWindow.OnDismi
                     videoPicId = updataBean.file_ids.get(1);
 
                     //发送视频id和圈子内容到服务器
-                    protocal.getUpdataVideoData(ub_id, text, videoId, videoPicId, new CircleProtocal.NormalListener() {
+                    protocal.getUpdataVideoData(ub_id, text, videoId, videoPicId, mDialog ,new CircleProtocal.NormalListener() {
                         @Override
                         public void normalResponse(Object response) {
                             Result result = (Result) response;

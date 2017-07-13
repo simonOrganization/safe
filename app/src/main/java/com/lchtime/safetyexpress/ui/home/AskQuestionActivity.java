@@ -28,6 +28,7 @@ import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.circle.PublishCircleUI;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
 import com.lchtime.safetyexpress.views.FullyGridLayoutManager;
@@ -44,6 +45,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.baidu.location.f.mC;
 
 /**
  * Created by android-cp on 2017/5/12. 问答提问界面
@@ -82,7 +85,7 @@ public class AskQuestionActivity extends BaseUI implements PopupWindow.OnDismiss
 
     private View contentView;
     private FunctionOptions options;
-
+    private DialogUtil mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +93,7 @@ public class AskQuestionActivity extends BaseUI implements PopupWindow.OnDismiss
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         initPopWindow();
+        mDialog = new DialogUtil(mContext);
     }
     @Override
     protected void back() {
@@ -230,8 +234,9 @@ public class AskQuestionActivity extends BaseUI implements PopupWindow.OnDismiss
             Toast.makeText(this,"问题不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
+        mDialog.show();
         if (fileList != null && fileList.size() > 0){
-            updataImageUtils.upMuchDataPic(fileList, new UpdataImageUtils.UpdataPicListener() {
+            updataImageUtils.upMuchDataPic(fileList, mDialog ,new UpdataImageUtils.UpdataPicListener() {
                 @Override
                 public void onResponse(String response) {
                     if (TextUtils.isEmpty(response)){

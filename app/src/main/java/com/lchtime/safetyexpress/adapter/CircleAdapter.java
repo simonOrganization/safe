@@ -86,7 +86,7 @@ public class CircleAdapter extends RecyclerView.Adapter  {
             CircleHodler circleHodler = (CircleHodler) holder;
 
             //如果有图片
-            if (bean.qc_video == null || bean.qc_video.equals("0")) {
+            if (bean.qc_video == null || bean.qc_video.equals("0") || bean.qc_video.equals("")) {
                 //if (TextUtils.isEmpty(bean.qc_video)) {
                 ((CircleHodler) holder).circle_item_shipin_1.setVisibility(View.GONE);
                 ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.VISIBLE);

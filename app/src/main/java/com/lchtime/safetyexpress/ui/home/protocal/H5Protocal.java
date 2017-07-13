@@ -272,7 +272,7 @@ public class H5Protocal {
     }
 
 
-    public void setNewsCommen(String ccp_cs_id,String ccp_cc_id,String ccp_info,final H5Listener listener){
+    public void setNewsCommen(String ccp_cs_id , String ccp_cc_id , String ccp_info , final H5Listener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.H5Response(null);
@@ -375,7 +375,7 @@ public class H5Protocal {
     }
 
 
-    public void setWDCommen(String a_id,String info,String ar_cs_id,final H5Listener listener){
+    public void setWDCommen(String a_id , String info , String ar_cs_id , final H5Listener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.H5Response(null);
