@@ -152,9 +152,9 @@ public class CircleAdapter extends RecyclerView.Adapter  {
                 circleHodler.iv_recommend_play.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(context, MediaActivity.class);
+                        /*Intent intent = new Intent(context, MediaActivity.class);
                         intent.putExtra("url",bean.qc_video);
-                        context.startActivity(intent);
+                        context.startActivity(intent);*/
                     }
                 });
             }

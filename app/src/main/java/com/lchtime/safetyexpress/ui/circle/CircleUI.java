@@ -121,7 +121,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     private View headerView;
     private CircleHeaderAndFooterWrapper wapperAdapter;
     private View headerView2;
-
+    private ArrayList<String> Data;
 
 
     @Override
@@ -149,7 +149,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
 
     private void getNotice() {
         if (TextUtils.isEmpty(userid)){
-            userid = SpTools.getString(this,Constants.userId,"");
+            userid = SpTools.getString(this, Constants.userId,"");
         }
         protocal.getDyIsShowRedPoint(userid, new CircleProtocal.NormalListener() {
             @Override
@@ -173,7 +173,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     protected void setControlBasis() {
         initView();
         initListener();
-        userid = SpTools.getString(this,Constants.userId,"");
+        userid = SpTools.getString(this, Constants.userId,"");
 
         //轮播图
         BannerAdapter adapter = new BannerAdapter<FirstPic.LunboBean>(lunbo) {
@@ -391,7 +391,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     //订阅
     @OnClick(R.id.circle_subscribe_but)
     private void getSubmit(View view){
-        userid = SpTools.getString(this,Constants.userId,"");
+        userid = SpTools.getString(this, Constants.userId,"");
         if (TextUtils.isEmpty(userid)){
             CommonUtils.toastMessage("没有登陆");
             return;
@@ -413,7 +413,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     private Gson gson = new Gson();
     private void getAdvData() {
         //测试
-        String ub_id = SpTools.getString(this,Constants.userId,"");
+        String ub_id = SpTools.getString(this, Constants.userId,"");
         picProtocal.getFirstPic(ub_id, new PictureAdvantage.HotNewsListener() {
             @Override
             public void hotNewsResponse(String respose) {
@@ -455,10 +455,22 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         if (requestCode == CITY_REQUEST_CODE){
             if (data != null) {
                 String selectCity = data.getStringExtra("city");
-                request_addr = selectCity;
-                refreshData("1");
-                tv_addr_selected.setText(selectCity);
-                tv_addr_selected1.setText(selectCity);
+                Log.i("----------", "onActivityResult: " + selectCity);
+                if(!"1".equals(selectCity)){
+                    request_addr = selectCity;
+                    refreshData("1");
+                    tv_addr_selected.setText(selectCity);
+                    tv_addr_selected1.setText(selectCity);
+                    Log.i("----------", "onActivityResult: " + selectCity);
+                }else{
+                    request_addr = "";
+                    refreshData("1");
+                    tv_addr_selected.setText("地理位置");
+                    tv_addr_selected1.setText("地理位置");
+                    Log.i("----------", "onActivityResult: " + "地理位置");
+                }
+
+
             }
         }
     }
@@ -665,6 +677,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
             Intent intent = new Intent(this, SelectCityActivity.class);
             startActivityForResult(intent,CITY_REQUEST_CODE);
         }else if (v == circle_more || v == circle_more1){
+
             if (moreData == null){
                 moreData = new ArrayList<String>();
                 moreData.add("按最新排序");
@@ -675,11 +688,14 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
             spinerPopWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
 //            spinerPopWindow.showAsDropDown(circle_more);
             spinerPopWindow.showAsDropDown(v);
+
             spinerPopWindow.setSpinerInterface(new SpinerPopWindow.SpinerInterface() {
                 @Override
                 public void setSpinerInterface(int position) {
+
                     spinerPopWindow.dismiss();
                     request_order = position + "";
+
                     //请求筛选过的数据
                     refreshData("1");
 
