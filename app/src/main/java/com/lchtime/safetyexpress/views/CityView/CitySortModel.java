@@ -4,6 +4,7 @@ public class CitySortModel {
 
     private String name;
     private String sortLetters;
+    public boolean isSelect ;
 
     public String getName() {
         return name;

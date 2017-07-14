@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.ui.vip;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,13 +24,16 @@ import java.util.List;
  * Created by android-cp on 2017/5/1.选择城市界面
  */
 @ContentView(R.layout.city_activity)
-public class SelectCityActivity extends BaseUI{
+public class SelectCityActivity extends BaseUI {
     private ListView sortListView;
     private SideBar sideBar;
     private TextView dialog;
     private CitySortAdapter adapter;
     private CharacterParser characterParser;
     private List<CitySortModel> SourceDateList;
+    private String cityName;
+    private Object oldview;
+
     @Override
     protected void back() {
         finish();
@@ -38,6 +42,7 @@ public class SelectCityActivity extends BaseUI{
     @Override
     protected void setControlBasis() {
         setTitle("选择城市");
+        rightTextVisible("选择");
         initViews();
     }
 
@@ -45,7 +50,27 @@ public class SelectCityActivity extends BaseUI{
     protected void prepareData() {
 
     }
-
+    /**
+     * 修改
+     * @param
+     */
+    @Override
+    protected void clickEvent() {
+        
+        if (cityName != null ) {
+            Intent intent = new Intent();
+            intent.putExtra("city", cityName);
+            setResult(0,intent);
+            finish();
+            Log.i("----------", "clickEvent:1 " +cityName );
+        }else {
+            Intent intent = new Intent();
+            intent.putExtra("city", "1");
+            setResult(0,intent);
+            finish();
+            Log.i("----------", "clickEvent: 2" +"1" );
+        }
+    }
     private void initViews() {
         characterParser = CharacterParser.getInstance();
 
@@ -70,10 +95,27 @@ public class SelectCityActivity extends BaseUI{
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Intent intent = new Intent();
-                intent.putExtra("city",((CitySortModel) adapter.getItem(position)).getName());
-                setResult(0,intent);
-                finish();
+
+
+               // adapter.clearSelection(position);
+                View v= sortListView.getChildAt(position);
+                TextView tx = (TextView) v.findViewById(R.id.tv_city_name);
+                if(((CitySortModel) adapter.getItem(position)).isSelect){
+                    ((CitySortModel) adapter.getItem(position)).isSelect = false;
+                    tx.setTextColor(mContext.getResources().getColor(R.color.black));
+                    cityName = "";
+                    Log.i("----------", "onItemClick: 1" + "点击了 " + cityName);
+                }else{
+                    ((CitySortModel) adapter.getItem(position)).isSelect = true;
+                    tx.setTextColor(mContext.getResources().getColor(R.color.red));
+                    cityName = ((CitySortModel) adapter.getItem(position)).getName();
+                    Log.i("----------", "onItemClick: 2" + "点击了 " + cityName);
+                }
+
+                adapter.notifyDataSetChanged();
+
+
+            ;
             }
         });
 

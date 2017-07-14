@@ -513,7 +513,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 moreData.add("按热门排序");
                 moreData.add("按订阅量排序");
             }
-            spinerPopWindow = new SpinerPopWindow(CircleUI.this,moreData);
+            spinerPopWindow = new SpinerPopWindow(CircleUI.this,moreData ,request_order);
             spinerPopWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
             spinerPopWindow.showAsDropDown(circle_more);
             spinerPopWindow.setSpinerInterface(new SpinerPopWindow.SpinerInterface() {
