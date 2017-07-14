@@ -508,6 +508,8 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
     @JavascriptInterface
     public void getPageId(String cc_id , String title , String desc){
         this.cc_id = cc_id;
+        this.title = title;
+        this.des = desc;
         //makeText("cc_id" + cc_id + " title" + title + "desc" + desc);
         initH5Info();
     }

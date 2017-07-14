@@ -106,7 +106,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
     @ViewInject(R.id.et_common)
     EditText et_common;
 
-//    @ViewInject(R.id.loading)
+    //    @ViewInject(R.id.loading)
 //    ProgressBar loading;
     @ViewInject(R.id.empty)
     RelativeLayout empty;
@@ -136,7 +136,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
     private String mUb_id;
     private String ub_id;
     public static String qc_id;
-    private InsideWebChromeClient mInsideWebChromeClient;
+    //private InsideWebChromeClient mInsideWebChromeClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -325,15 +325,15 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
         settings.setUseWideViewPort(true);
         settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         settings.setCacheMode(WebSettings.LOAD_DEFAULT);
-        mInsideWebChromeClient = new InsideWebChromeClient();
+        /*mInsideWebChromeClient = new InsideWebChromeClient();
         InsideWebViewClient mInsideWebViewClient = new InsideWebViewClient();
         //javascriptInterface = new JavascriptInterface();
         //mWebView.addJavascriptInterface(javascriptInterface, "java2js_laole918");
         mWebView.setWebChromeClient(mInsideWebChromeClient);
-        mWebView.setWebViewClient(mInsideWebViewClient);
+        mWebView.setWebViewClient(mInsideWebViewClient);*/
     }
 
-    private class InsideWebChromeClient extends WebChromeClient {
+   /* private class InsideWebChromeClient extends WebChromeClient {
         private View mCustomView;
         private CustomViewCallback mCustomViewCallback;
 
@@ -379,7 +379,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             //mWebView.loadUrl(javascript);
         }
 
-    }
+    }*/
 
     @Override
     public void onConfigurationChanged(Configuration config) {
@@ -436,10 +436,6 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
 
         //WebView加载web资源
         mWebView.loadUrl(baseUrl);
-
-        //启用支持javascript
-        WebSettings settings = mWebView.getSettings();
-        settings.setJavaScriptEnabled(true);
         //覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
         mWebView.setWebViewClient(new WebViewClient(){
             @Override
@@ -447,6 +443,9 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
                 // TODO Auto-generated method stub
                 //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
                 //view.loadUrl(url);
+                if(!url.equals("wvjbscheme://__BRIDGE_LOADED__")){
+                    mWebView.loadUrl(url);
+                }
                 return true;
             }
 
@@ -463,7 +462,6 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon)
             {
-
                 //开始
                 super.onPageStarted(view, url, favicon);
 
@@ -504,8 +502,11 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
      * @param desc
      */
     @JavascriptInterface
-    public void getPageId(String cc_id , String title , String desc){
+    public void getPageId(String cc_id , String title , String desc , String videoUrl){
         this.cc_id = cc_id;
+        this.videoUrl = videoUrl;
+        this.title = title;
+        this.des = desc;
         //makeText("cc_id" + cc_id + " title" + title + "desc" + desc);
         mVideoPaler.release();
         initH5Info();
@@ -617,11 +618,11 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
                 switch (v.getId()) {
                     case R.id.ll_share_weixin:
                         sharePop.dismiss();
-                        ShareWX.getShareWXInstance(api).share2Wx(true,a,b,baseUrl);
+                        ShareWX.getShareWXInstance(api).share2Wx(true , a , b,baseUrl);
                         break;
                     case R.id.ll_share_friend:
                         sharePop.dismiss();
-                        ShareWX.getShareWXInstance(api).share2Wx(false,a,b,baseUrl);
+                        ShareWX.getShareWXInstance(api).share2Wx(false, a , b,baseUrl);
                         break;
                     case R.id.ll_share_sina:
                         sharePop.dismiss();
