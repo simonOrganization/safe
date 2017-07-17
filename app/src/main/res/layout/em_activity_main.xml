@@ -8,20 +8,20 @@
     <RelativeLayout
         android:id="@+id/rv_chat_title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm090">
+        android:layout_height="@dimen/dm072">
         <include layout="@layout/title" android:id="@+id/chat_title"/>
         <TextView
             android:id="@+id/unread_msg_number"
-            android:layout_width="@dimen/dm020"
-            android:layout_height="@dimen/dm020"
+            android:layout_width="@dimen/dm016"
+            android:layout_height="@dimen/dm016"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/dm020"
-            android:layout_marginTop="@dimen/dm020"
+            android:layout_marginTop="@dimen/dm016"
             android:background="@drawable/shape_bg_circle"
             android:textColor="@color/white"
             android:gravity="center"
             android:visibility="gone"
-            android:textSize="@dimen/dm024" />
+            android:textSize="@dimen/dm020" />
     </RelativeLayout>
 
 

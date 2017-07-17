@@ -8,14 +8,14 @@
     <RelativeLayout
         android:id="@+id/rl_group"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm139" >
+        android:layout_height="@dimen/dm112" >
 
         <ImageView
             android:id="@+id/avatar"
-            android:layout_width="@dimen/dm100"
-            android:layout_height="@dimen/dm100"
+            android:layout_width="@dimen/dm080"
+            android:layout_height="@dimen/dm080"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="@dimen/dm020"
+            android:layout_marginTop="@dimen/dm016"
             android:layout_marginLeft="@dimen/dm020"
             android:src="@drawable/em_roominfo_add_btn" />
 
@@ -27,15 +27,15 @@
             android:layout_marginLeft="@dimen/dm020"
             android:layout_toRightOf="@id/avatar"
             android:text="@string/newchat"
-            android:layout_marginTop="@dimen/dm055"
+            android:layout_marginTop="@dimen/dm044"
             android:textColor="@color/title_333"
-            android:textSize="@dimen/dm028" />
+            android:textSize="@dimen/dm024" />
     </RelativeLayout>
 
     <View
         android:id="@+id/white_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm020"
+        android:layout_height="@dimen/dm016"
         android:background="@color/page_color"
         android:layout_below="@+id/rl_group"
         android:visibility="gone"/>

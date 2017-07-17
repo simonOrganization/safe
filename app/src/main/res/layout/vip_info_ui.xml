@@ -20,13 +20,13 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm020"
+                android:layout_height="@dimen/dm016"
                 android:background="@color/line_big" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dm020"
+                android:layout_marginBottom="@dimen/dm016"
                 android:layout_marginLeft="@dimen/dm020"
                 android:layout_marginRight="@dimen/dm020"
                 android:orientation="vertical">
@@ -37,15 +37,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/dm020"
-                    android:paddingTop="@dimen/dm020">
+                    android:paddingBottom="@dimen/dm016"
+                    android:paddingTop="@dimen/dm016">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="头像"
                         android:textColor="@color/title_666"
-                        android:textSize="@dimen/dm028" />
+                        android:textSize="@dimen/dm024" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -54,14 +54,14 @@
 
                     <com.lchtime.safetyexpress.views.CircleImageView
                         android:id="@+id/viv_info_icon"
-                        android:layout_width="@dimen/dm100"
-                        android:layout_height="@dimen/dm100"
+                        android:layout_width="@dimen/dm080"
+                        android:layout_height="@dimen/dm080"
                         android:layout_marginRight="@dimen/dm010"
                         android:background="@drawable/circle_user_image" />
 
                     <ImageView
-                        android:layout_width="@dimen/dm035"
-                        android:layout_height="@dimen/dm030"
+                        android:layout_width="@dimen/dm028"
+                        android:layout_height="@dimen/dm024"
                         android:src="@drawable/right_next" />
 
                 </LinearLayout>
@@ -77,15 +77,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/dm020"
-                    android:paddingTop="@dimen/dm020">
+                    android:paddingBottom="@dimen/dm016"
+                    android:paddingTop="@dimen/dm016">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="昵称"
                         android:textColor="@color/title_666"
-                        android:textSize="@dimen/dm028" />
+                        android:textSize="@dimen/dm024" />
 
                     <TextView
                         android:id="@+id/tv_info_nickname"
@@ -98,11 +98,11 @@
                         android:singleLine="true"
                         android:text="未设置"
                         android:textColor="@color/title_999"
-                        android:textSize="@dimen/dm026" />
+                        android:textSize="@dimen/dm022" />
 
                     <ImageView
-                        android:layout_width="@dimen/dm035"
-                        android:layout_height="@dimen/dm030"
+                        android:layout_width="@dimen/dm028"
+                        android:layout_height="@dimen/dm024"
                         android:src="@drawable/right_next" />
 
                 </LinearLayout>
@@ -118,15 +118,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/dm020"
-                    android:paddingTop="@dimen/dm020">
+                    android:paddingBottom="@dimen/dm016"
+                    android:paddingTop="@dimen/dm016">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="行业"
                         android:textColor="@color/title_666"
-                        android:textSize="@dimen/dm028" />
+                        android:textSize="@dimen/dm024" />
 
                     <TextView
                         android:id="@+id/tv_info_work"
@@ -139,11 +139,11 @@
                         android:singleLine="true"
                         android:text="未设置"
                         android:textColor="@color/title_999"
-                        android:textSize="@dimen/dm026" />
+                        android:textSize="@dimen/dm022" />
 
                     <ImageView
-                        android:layout_width="@dimen/dm035"
-                        android:layout_height="@dimen/dm030"
+                        android:layout_width="@dimen/dm028"
+                        android:layout_height="@dimen/dm024"
                         android:src="@drawable/right_next" />
 
                 </LinearLayout>
@@ -159,15 +159,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/dm020"
-                    android:paddingTop="@dimen/dm020">
+                    android:paddingBottom="@dimen/dm016"
+                    android:paddingTop="@dimen/dm016">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="岗位"
                         android:textColor="@color/title_666"
-                        android:textSize="@dimen/dm028" />
+                        android:textSize="@dimen/dm024" />
 
                     <TextView
                         android:id="@+id/tv_info_dowhat"
@@ -180,11 +180,11 @@
                         android:singleLine="true"
                         android:text="未设置"
                         android:textColor="@color/title_999"
-                        android:textSize="@dimen/dm026" />
+                        android:textSize="@dimen/dm022" />
 
                     <ImageView
-                        android:layout_width="@dimen/dm035"
-                        android:layout_height="@dimen/dm030"
+                        android:layout_width="@dimen/dm028"
+                        android:layout_height="@dimen/dm024"
                         android:src="@drawable/right_next" />
 
                 </LinearLayout>
@@ -200,15 +200,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/dm020"
-                    android:paddingTop="@dimen/dm020">
+                    android:paddingBottom="@dimen/dm016"
+                    android:paddingTop="@dimen/dm016">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="部门"
                         android:textColor="@color/title_666"
-                        android:textSize="@dimen/dm028" />
+                        android:textSize="@dimen/dm024" />
 
                     <TextView
                         android:id="@+id/tv_info_workpart"
@@ -221,11 +221,11 @@
                         android:singleLine="true"
                         android:text="未设置"
                         android:textColor="@color/title_999"
-                        android:textSize="@dimen/dm026" />
+                        android:textSize="@dimen/dm022" />
 
                     <ImageView
-                        android:layout_width="@dimen/dm035"
-                        android:layout_height="@dimen/dm030"
+                        android:layout_width="@dimen/dm028"
+                        android:layout_height="@dimen/dm024"
                         android:src="@drawable/right_next" />
 
                 </LinearLayout>
@@ -241,15 +241,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/dm020"
-                    android:paddingTop="@dimen/dm020">
+                    android:paddingBottom="@dimen/dm016"
+                    android:paddingTop="@dimen/dm016">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="所在地"
                         android:textColor="@color/title_666"
-                        android:textSize="@dimen/dm028" />
+                        android:textSize="@dimen/dm024" />
 
                     <TextView
                         android:id="@+id/tv_info_address"
@@ -262,11 +262,11 @@
                         android:singleLine="true"
                         android:text="未设置"
                         android:textColor="@color/title_999"
-                        android:textSize="@dimen/dm026" />
+                        android:textSize="@dimen/dm022" />
 
                     <ImageView
-                        android:layout_width="@dimen/dm035"
-                        android:layout_height="@dimen/dm030"
+                        android:layout_width="@dimen/dm028"
+                        android:layout_height="@dimen/dm024"
                         android:src="@drawable/right_next" />
 
                 </LinearLayout>
@@ -282,15 +282,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/dm020"
-                    android:paddingTop="@dimen/dm020">
+                    android:paddingBottom="@dimen/dm016"
+                    android:paddingTop="@dimen/dm016">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="公司名称"
                         android:textColor="@color/title_666"
-                        android:textSize="@dimen/dm028" />
+                        android:textSize="@dimen/dm024" />
 
                     <TextView
                         android:id="@+id/tv_info_company_name"
@@ -303,11 +303,11 @@
                         android:singleLine="true"
                         android:text="未设置"
                         android:textColor="@color/title_999"
-                        android:textSize="@dimen/dm026" />
+                        android:textSize="@dimen/dm024" />
 
                     <ImageView
-                        android:layout_width="@dimen/dm035"
-                        android:layout_height="@dimen/dm030"
+                        android:layout_width="@dimen/dm028"
+                        android:layout_height="@dimen/dm024"
                         android:src="@drawable/right_next" />
 
                 </LinearLayout>
@@ -323,15 +323,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/dm020"
-                    android:paddingTop="@dimen/dm020">
+                    android:paddingBottom="@dimen/dm016"
+                    android:paddingTop="@dimen/dm016">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="手机号"
                         android:textColor="@color/title_666"
-                        android:textSize="@dimen/dm028" />
+                        android:textSize="@dimen/dm024" />
 
                     <TextView
                         android:id="@+id/tv_info_phone"
@@ -344,11 +344,11 @@
                         android:singleLine="true"
                         android:text="未设置"
                         android:textColor="@color/title_999"
-                        android:textSize="@dimen/dm026" />
+                        android:textSize="@dimen/dm022" />
 
                     <ImageView
-                        android:layout_width="@dimen/dm035"
-                        android:layout_height="@dimen/dm030"
+                        android:layout_width="@dimen/dm028"
+                        android:layout_height="@dimen/dm024"
                         android:src="@drawable/right_next" />
 
                 </LinearLayout>
@@ -364,15 +364,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/dm020"
-                    android:paddingTop="@dimen/dm020">
+                    android:paddingBottom="@dimen/dm016"
+                    android:paddingTop="@dimen/dm016">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="生日"
                         android:textColor="@color/title_666"
-                        android:textSize="@dimen/dm028" />
+                        android:textSize="@dimen/dm024" />
 
                     <TextView
                         android:id="@+id/tv_info_birthday"
@@ -385,11 +385,11 @@
                         android:singleLine="true"
                         android:text="未设置"
                         android:textColor="@color/title_999"
-                        android:textSize="@dimen/dm026" />
+                        android:textSize="@dimen/dm022" />
 
                     <ImageView
-                        android:layout_width="@dimen/dm035"
-                        android:layout_height="@dimen/dm030"
+                        android:layout_width="@dimen/dm028"
+                        android:layout_height="@dimen/dm024"
                         android:src="@drawable/right_next" />
 
                 </LinearLayout>
@@ -405,15 +405,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/dm020"
-                    android:paddingTop="@dimen/dm020">
+                    android:paddingBottom="@dimen/dm016"
+                    android:paddingTop="@dimen/dm016">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="性别"
                         android:textColor="@color/title_666"
-                        android:textSize="@dimen/dm028" />
+                        android:textSize="@dimen/dm024" />
 
                     <TextView
                         android:id="@+id/tv_info_sex"
@@ -426,11 +426,11 @@
                         android:singleLine="true"
                         android:text="未设置"
                         android:textColor="@color/title_999"
-                        android:textSize="@dimen/dm026" />
+                        android:textSize="@dimen/dm022" />
 
                     <ImageView
-                        android:layout_width="@dimen/dm035"
-                        android:layout_height="@dimen/dm030"
+                        android:layout_width="@dimen/dm028"
+                        android:layout_height="@dimen/dm024"
                         android:src="@drawable/right_next" />
 
                 </LinearLayout>
@@ -446,8 +446,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/dm020"
-                    android:paddingTop="@dimen/dm020">
+                    android:paddingBottom="@dimen/dm016"
+                    android:paddingTop="@dimen/dm016">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -468,11 +468,11 @@
                         android:ellipsize="end"
                         android:text="未设置"
                         android:textColor="@color/title_999"
-                        android:textSize="@dimen/dm026" />
+                        android:textSize="@dimen/dm022" />
 
                     <ImageView
-                        android:layout_width="@dimen/dm035"
-                        android:layout_height="@dimen/dm030"
+                        android:layout_width="@dimen/dm028"
+                        android:layout_height="@dimen/dm024"
                         android:src="@drawable/right_next" />
 
                 </LinearLayout>
@@ -481,7 +481,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm020"
+                android:layout_height="@dimen/dm016"
                 android:background="@color/line_big" />
 
             <LinearLayout
@@ -492,15 +492,15 @@
                 android:layout_marginRight="@dimen/dm020"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/dm020"
-                android:paddingTop="@dimen/dm020">
+                android:paddingBottom="@dimen/dm016"
+                android:paddingTop="@dimen/dm016">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="密码"
                     android:textColor="@color/title_666"
-                    android:textSize="@dimen/dm028" />
+                    android:textSize="@dimen/dm024" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -512,11 +512,11 @@
                     android:singleLine="true"
                     android:text="设置"
                     android:textColor="@color/title_999"
-                    android:textSize="@dimen/dm026" />
+                    android:textSize="@dimen/dm022" />
 
                 <ImageView
-                    android:layout_width="@dimen/dm035"
-                    android:layout_height="@dimen/dm030"
+                    android:layout_width="@dimen/dm028"
+                    android:layout_height="@dimen/dm024"
                     android:src="@drawable/right_next" />
 
             </LinearLayout>
@@ -524,7 +524,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dm001"
-                android:layout_marginBottom="@dimen/dm020"
+                android:layout_marginBottom="@dimen/dm016"
                 android:layout_marginLeft="@dimen/dm020"
                 android:layout_marginRight="@dimen/dm020"
                 android:background="@color/line" />

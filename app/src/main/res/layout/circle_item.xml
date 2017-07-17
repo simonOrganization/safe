@@ -7,8 +7,8 @@
 
     <CheckBox
         android:id="@+id/rb_delete"
-        android:layout_width="@dimen/dm040"
-        android:layout_height="@dimen/dm040"
+        android:layout_width="@dimen/dm032"
+        android:layout_height="@dimen/dm032"
         android:text="@null"
         android:layout_gravity="center_vertical"
         android:gravity="center"
@@ -24,12 +24,12 @@
         android:background="@color/white"
         android:layout_marginLeft="@dimen/dm020"
         android:layout_marginRight="@dimen/dm020"
-        android:paddingTop="@dimen/dm020"
-        android:paddingBottom="@dimen/dm020">
+        android:paddingTop="@dimen/dm016"
+        >
         <com.lchtime.safetyexpress.views.CircleImageView
             android:id="@+id/iv_circle_photo"
-            android:layout_width="@dimen/dm060"
-            android:layout_height="@dimen/dm060"
+            android:layout_width="@dimen/dm048"
+            android:layout_height="@dimen/dm048"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:background="@drawable/circle_user_image"/>
@@ -37,18 +37,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dm020"
-            android:paddingTop="@dimen/dm010">
+            android:paddingTop="@dimen/dm008">
             <TextView
                 android:id="@+id/circle_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="落日西风"
-                android:textSize="@dimen/dm026"
+                android:textSize="@dimen/dm022"
                 android:textColor="@color/red"/>
             <CheckBox
                 android:id="@+id/circle_item_subscribe"
-                android:layout_width="@dimen/dm110"
-                android:layout_height="@dimen/dm040"
+                android:layout_width="@dimen/dm099"
+                android:layout_height="@dimen/dm032"
                 android:text="@null"
                 android:button="@null"
                 android:gravity="center"
@@ -61,31 +61,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="北京华视远大公司"
-                android:textSize="@dimen/dm026"
+                android:textSize="@dimen/dm022"
                 android:textColor="@color/black"
                 android:layout_below="@id/circle_item_title"
-                android:layout_marginTop="@dimen/dm020"/>
+                android:layout_marginTop="@dimen/dm016"/>
 
             <TextView
                 android:id="@+id/circle_item_subscribe_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="607已订阅"
-                android:textSize="@dimen/dm026"
+                android:textSize="@dimen/dm022"
                 android:textColor="@color/title_999"
                 android:layout_below="@id/circle_item_subscribe"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="@dimen/dm010"/>
+                android:layout_marginTop="@dimen/dm008"/>
 
             <TextView
                 android:id="@+id/circle_item_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="超爱戴比尔斯家的产品了专柜正品一比一独家开模制作这款耳钉厚壁结实，佩戴大气上档次成熟技术水平肯定减肥快捷键风光好"
-                android:textSize="@dimen/dm026"
+                android:textSize="@dimen/dm022"
                 android:textColor="@color/title_333"
                 android:layout_below="@id/circle_item_company_name"
-                android:layout_marginTop="@dimen/dm010"/>
+                android:layout_marginTop="@dimen/dm008"/>
 
 
             <RelativeLayout
@@ -96,15 +96,15 @@
                 <ImageView
                     android:id="@+id/circle_item_shipin"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dm300"
-                    android:layout_marginTop="@dimen/dm010"
+                    android:layout_height="@dimen/dm240"
+                    android:layout_marginTop="@dimen/dm008"
                     />
 
 
                 <ImageView
                     android:id="@+id/iv_recommend_play"
-                    android:layout_width="@dimen/dm059"
-                    android:layout_height="@dimen/dm061"
+                    android:layout_width="@dimen/dm047"
+                    android:layout_height="@dimen/dm054"
                     android:src="@drawable/video_play2"
                     android:layout_centerInParent="true"/>
 
@@ -119,17 +119,16 @@
             <LinearLayout
                 android:id="@+id/ll_other"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm030"
+                android:layout_height="@dimen/dm024"
                 android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/dm012"
+                android:layout_marginTop="@dimen/dm009"
                 android:layout_below="@id/circle_item_image_rc"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="@dimen/dm026"
-                    android:layout_height="@dimen/dm026"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
+                    android:layout_width="@dimen/dm024"
+                    android:layout_height="@dimen/dm024"
+                    android:scaleType="fitXY"
                     android:background="@drawable/circle_item_time"
                     />
                 <TextView
@@ -137,16 +136,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="09:30"
-                    android:textSize="@dimen/dm026"
+                    android:textSize="@dimen/dm020"
                     android:textColor="@color/title_999"
                     android:layout_marginLeft="@dimen/dm010"/>
 
                 <ImageView
                     android:layout_marginLeft="@dimen/dm030"
-                    android:layout_width="@dimen/dm026"
-                    android:layout_height="@dimen/dm026"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
+                    android:layout_width="@dimen/dm024"
+                    android:layout_height="@dimen/dm024"
+                    android:scaleType="fitXY"
                     android:background="@drawable/circle_item_talk"
                     />
                 <TextView
@@ -154,16 +152,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="@dimen/dm026"
+                    android:textSize="@dimen/dm020"
                     android:textColor="@color/title_999"
                     android:layout_marginLeft="@dimen/dm010"/>
 
                 <RadioButton
                     android:id="@+id/iv_circle_item_great"
-                    android:layout_width="@dimen/dm026"
-                    android:layout_height="@dimen/dm026"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
+                    android:layout_width="@dimen/dm024"
+                    android:layout_height="@dimen/dm024"
+                    android:scaleType="fitXY"
                     android:text="@null"
                     android:button="@null"
                     android:gravity="center"
@@ -174,15 +171,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="09:30"
-                    android:textSize="@dimen/dm026"
+                    android:textSize="@dimen/dm020"
                     android:textColor="@color/title_999"
                     android:layout_marginLeft="@dimen/dm010"/>
                 <RadioButton
                     android:id="@+id/iv_circle_item_low"
-                    android:layout_width="@dimen/dm026"
-                    android:layout_height="@dimen/dm026"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
+                    android:layout_width="@dimen/dm024"
+                    android:layout_height="@dimen/dm024"
+                    android:scaleType="fitXY"
                     android:text="@null"
                     android:button="@null"
                     android:gravity="center"
@@ -193,7 +189,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="09:30"
-                    android:textSize="@dimen/dm026"
+                    android:textSize="@dimen/dm020"
                     android:textColor="@color/title_999"
                     android:layout_marginLeft="@dimen/dm010"/>
             </LinearLayout>
@@ -202,7 +198,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dm001"
                 android:background="@color/line"
-                android:layout_marginTop="@dimen/dm030"
+                android:layout_marginTop="@dimen/dm016"
                 />
         </RelativeLayout>
 

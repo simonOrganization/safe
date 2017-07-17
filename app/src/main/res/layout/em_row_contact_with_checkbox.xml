@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm050"
+        android:layout_height="@dimen/dm040"
         android:background="@color/page_color"
         android:paddingLeft="@dimen/dm020"
         android:textColor="@android:color/black"
@@ -17,7 +17,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm122"
+        android:layout_height="@dimen/dm098"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
@@ -26,8 +26,8 @@
             android:id="@+id/checkbox"
             android:layout_marginLeft="@dimen/dm020"
             android:layout_marginRight="@dimen/dm020"
-            android:layout_width="@dimen/dm030"
-            android:layout_height="@dimen/dm030"
+            android:layout_width="@dimen/dm024"
+            android:layout_height="@dimen/dm024"
             android:layout_gravity="center_vertical"
             android:background="@drawable/rb_delete"
             android:focusable="false"
@@ -36,8 +36,8 @@
 
         <com.lchtime.safetyexpress.views.CircleImageView
             android:id="@+id/avatar"
-            android:layout_width="@dimen/dm072"
-            android:layout_height="@dimen/dm072"
+            android:layout_width="@dimen/dm057"
+            android:layout_height="@dimen/dm057"
             android:layout_gravity="center_vertical"
             android:src="@drawable/em_default_avatar" />
 

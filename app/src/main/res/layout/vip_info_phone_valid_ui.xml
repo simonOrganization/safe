@@ -9,15 +9,15 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm020"
+        android:layout_height="@dimen/dm016"
         android:background="@color/line_big" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm090"
-        android:layout_marginLeft="@dimen/dm050"
-        android:layout_marginRight="@dimen/dm050"
-        android:layout_marginTop="@dimen/dm120"
+        android:layout_height="@dimen/dm072"
+        android:layout_marginLeft="@dimen/dm065"
+        android:layout_marginRight="@dimen/dm065"
+        android:layout_marginTop="@dimen/dm096"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/dm020"
@@ -32,7 +32,7 @@
             android:gravity="center|left"
             android:hint="请输入新的手机号"
             android:inputType="number"
-            android:textSize="@dimen/dm026" />
+            android:textSize="@dimen/dm022" />
 
         <TextView
             android:id="@+id/et_info_phone_valid_getcode"
@@ -43,7 +43,7 @@
             android:gravity="right|center"
             android:text="获取验证码"
             android:textColor="@color/commen_reg"
-            android:textSize="@dimen/dm022" />
+            android:textSize="@dimen/dm018" />
 
     </LinearLayout>
 
@@ -56,10 +56,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm090"
-        android:layout_marginLeft="@dimen/dm050"
-        android:layout_marginRight="@dimen/dm050"
-        android:layout_marginTop="@dimen/dm020"
+        android:layout_height="@dimen/dm072"
+        android:layout_marginLeft="@dimen/dm065"
+        android:layout_marginRight="@dimen/dm065"
+        android:layout_marginTop="@dimen/dm016"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/dm020"
@@ -73,7 +73,7 @@
             android:gravity="center|left"
             android:hint="请输入验证码"
             android:inputType="number"
-            android:textSize="@dimen/dm026" />
+            android:textSize="@dimen/dm022" />
     </LinearLayout>
 
     <View
@@ -86,14 +86,14 @@
     <TextView
         android:id="@+id/tv_info_phone_valid"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm090"
-        android:layout_marginLeft="@dimen/dm070"
-        android:layout_marginRight="@dimen/dm070"
-        android:layout_marginTop="@dimen/dm120"
+        android:layout_height="@dimen/dm072"
+        android:layout_marginLeft="@dimen/dm090"
+        android:layout_marginRight="@dimen/dm090"
+        android:layout_marginTop="@dimen/dm096"
         android:background="@drawable/shape_bg_pink"
         android:gravity="center"
         android:text="验证"
         android:textColor="@color/white"
-        android:textSize="@dimen/dm028" />
+        android:textSize="@dimen/dm024" />
 
 </LinearLayout>
