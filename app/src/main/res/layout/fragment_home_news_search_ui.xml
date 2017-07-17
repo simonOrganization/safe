@@ -29,7 +29,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm080"
+                android:layout_height="@dimen/dm064"
                 android:background="@color/line_big"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:text="最近搜索"
                     android:textColor="@color/title_666"
-                    android:textSize="@dimen/dm026" />
+                    android:textSize="@dimen/dm022" />
 
                 <View
                     android:layout_width="0dp"
@@ -57,8 +57,8 @@
 
                     <ImageView
                         android:id="@+id/iv_giveup"
-                        android:layout_width="@dimen/dm043"
-                        android:layout_height="@dimen/dm043"
+                        android:layout_width="@dimen/dm032"
+                        android:layout_height="@dimen/dm032"
                         android:src="@drawable/search_delete" />
 
                 </LinearLayout>
@@ -82,7 +82,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm080"
+                android:layout_height="@dimen/dm064"
                 android:layout_marginTop="@dimen/dm020"
                 android:background="@color/line_big"
                 android:gravity="center_vertical"
@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:text="热门搜索"
                     android:textColor="@color/title_666"
-                    android:textSize="@dimen/dm026" />
+                    android:textSize="@dimen/dm022" />
 
             </LinearLayout>
 
@@ -109,7 +109,7 @@
 
             <com.lchtime.safetyexpress.views.FlowLayout
                 android:id="@+id/slv_news_search_hot"
-                android:layout_marginTop="@dimen/dm020"
+                android:layout_marginTop="@dimen/dm024"
                 android:paddingLeft="@dimen/dm020"
                 android:paddingRight="@dimen/dm020"
                 android:layout_width="wrap_content"

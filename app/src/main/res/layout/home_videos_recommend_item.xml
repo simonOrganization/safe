@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dm020"
+        android:layout_margin="@dimen/dm016"
         android:orientation="vertical">
 
         <LinearLayout
@@ -26,7 +26,7 @@
                 android:singleLine="true"
                 android:text="住房城乡建设部办公厅关于进一步"
                 android:textColor="@color/title_333"
-                android:textSize="@dimen/dm028" />
+                android:textSize="@dimen/dm024" />
 
             <LinearLayout
                 android:id="@+id/ll_recommend_share"
@@ -35,8 +35,8 @@
                 android:paddingLeft="@dimen/dm020">
 
                 <ImageView
-                    android:layout_width="@dimen/dm035"
-                    android:layout_height="@dimen/dm035"
+                    android:layout_width="@dimen/dm028"
+                    android:layout_height="@dimen/dm028"
                     android:src="@drawable/share_gray" />
 
             </LinearLayout>
@@ -46,13 +46,13 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dm300"
-            android:layout_marginTop="@dimen/dm020">
+            android:layout_height="@dimen/dm240"
+            android:layout_marginTop="@dimen/dm016">
 
             <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
                 android:id="@+id/iv_recommend_img"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm300" />
+                android:layout_height="@dimen/dm240" />
             <!--<ImageView-->
                 <!--android:id="@+id/iv_recommend_img"-->
                 <!--android:layout_width="match_parent"-->
@@ -90,10 +90,10 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/dm020"
-                    android:layout_marginBottom="@dimen/dm010"
+                    android:layout_marginBottom="@dimen/dm008"
                     android:text="01:09"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dm024"/>
+                    android:textSize="@dimen/dm020"/>
 
             <!--</RelativeLayout>-->
         </RelativeLayout>
@@ -101,7 +101,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dm020"
+            android:layout_marginTop="@dimen/dm016"
             android:orientation="horizontal">
 
             <TextView
@@ -111,10 +111,10 @@
                 android:singleLine="true"
                 android:drawableLeft="@drawable/video_from"
                 android:gravity="center"
-                android:drawablePadding="@dimen/dm010"
+                android:drawablePadding="@dimen/dm008"
                 android:text="优酷"
                 android:textColor="@color/title_666"
-                android:textSize="@dimen/dm024" />
+                android:textSize="@dimen/dm020" />
 
             <TextView
                 android:id="@+id/tv_recommend_comment"
@@ -123,11 +123,11 @@
                 android:layout_marginLeft="@dimen/dm020"
                 android:drawableLeft="@drawable/video_comment"
                 android:gravity="center"
-                android:drawablePadding="@dimen/dm010"
+                android:drawablePadding="@dimen/dm008"
                 android:singleLine="true"
                 android:text="223评论"
                 android:textColor="@color/title_666"
-                android:textSize="@dimen/dm024" />
+                android:textSize="@dimen/dm020" />
 
             <TextView
                 android:id="@+id/tv_recommend_time2"
@@ -136,11 +136,11 @@
                 android:layout_marginLeft="@dimen/dm020"
                 android:drawableLeft="@drawable/video_time"
                 android:gravity="center"
-                android:drawablePadding="@dimen/dm010"
+                android:drawablePadding="@dimen/dm008"
                 android:singleLine="true"
                 android:text="09:30"
                 android:textColor="@color/title_666"
-                android:textSize="@dimen/dm024" />
+                android:textSize="@dimen/dm020" />
 
             <TextView
                 android:id="@+id/tv_recommend_playnum"
@@ -152,7 +152,7 @@
                 android:singleLine="true"
                 android:text="3045次播放"
                 android:textColor="@color/title_666"
-                android:textSize="@dimen/dm024" />
+                android:textSize="@dimen/dm020" />
 
         </LinearLayout>
 
@@ -160,7 +160,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm020"
+        android:layout_height="@dimen/dm016"
         android:background="@color/line_big" />
 
 </LinearLayout>

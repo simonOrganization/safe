@@ -9,7 +9,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm020"
+        android:layout_height="@dimen/dm016"
         android:background="@color/line_big" />
 
     <LinearLayout
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dm020"
         android:layout_marginRight="@dimen/dm020"
-        android:layout_marginTop="@dimen/dm160"
+        android:layout_marginTop="@dimen/dm128"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:text="您当前的手机号码是"
             android:textColor="@color/title_666"
-            android:textSize="@dimen/dm026" />
+            android:textSize="@dimen/dm022" />
 
         <TextView
             android:id="@+id/tv_info_phone_phone"
@@ -35,7 +35,7 @@
             android:layout_marginLeft="@dimen/dm010"
             android:text="18888888888"
             android:textColor="@color/title_666"
-            android:textSize="@dimen/dm026" />
+            android:textSize="@dimen/dm022" />
 
     </LinearLayout>
 
@@ -48,19 +48,19 @@
         android:gravity="center"
         android:text="更换后，账号信息不变，下次使用新手机号登录"
         android:textColor="@color/title_666"
-        android:textSize="@dimen/dm026" />
+        android:textSize="@dimen/dm022" />
 
     <TextView
         android:id="@+id/tv_info_phone_change"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm090"
-        android:layout_marginLeft="@dimen/dm070"
-        android:layout_marginRight="@dimen/dm070"
-        android:layout_marginTop="@dimen/dm150"
+        android:layout_height="@dimen/dm072"
+        android:layout_marginLeft="@dimen/dm090"
+        android:layout_marginRight="@dimen/dm090"
+        android:layout_marginTop="@dimen/dm120"
         android:background="@drawable/shape_bg_pink"
         android:gravity="center"
         android:text="更换手机号"
         android:textColor="@color/white"
-        android:textSize="@dimen/dm028" />
+        android:textSize="@dimen/dm024" />
 
 </LinearLayout>

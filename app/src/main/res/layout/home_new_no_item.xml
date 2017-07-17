@@ -8,7 +8,7 @@
         android:id="@+id/ll_item_pic_wenzi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dm020"
+
         android:orientation="horizontal">
         <CheckBox
             android:id="@+id/rb_delete"
@@ -33,6 +33,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_gravity="top"
+                android:layout_marginTop="@dimen/dm024"
                 android:orientation="vertical">
 
                 <TextView
@@ -44,7 +45,7 @@
                     android:maxLines="3"
                     android:text="住房城乡建设部办公厅关于进一步加强建筑施工安全生产工作的紧张进行中。住房城乡建设部办公厅关于进一步加强建筑施工安全生产工作的紧张进行中。"
                     android:textColor="@color/title_333"
-                    android:textSize="@dimen/dm028" />
+                    android:textSize="@dimen/dm024" />
 
                 <TextView
                     android:id="@+id/tv_play_num"
@@ -57,6 +58,7 @@
             <RelativeLayout
                 android:layout_width="@dimen/dm230"
                 android:layout_height="@dimen/dm160"
+                android:layout_marginTop="@dimen/dm020"
                 android:layout_marginLeft="@dimen/dm020">
                 <ImageView
                     android:id="@+id/home_new_no_item_image"
@@ -113,7 +115,7 @@
 
         <TextView
             android:id="@+id/home_new_no_item_from"
-            android:layout_marginBottom="@dimen/dm020"
+            android:layout_marginBottom="@dimen/dm016"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"

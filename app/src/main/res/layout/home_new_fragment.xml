@@ -11,8 +11,8 @@
         android:orientation="vertical">
         <com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView
             android:id="@+id/refreshLayout"
-            android:layout_marginLeft="@dimen/dm020"
-            android:layout_marginRight="@dimen/dm020"
+            android:layout_marginLeft="@dimen/dm016"
+            android:layout_marginRight="@dimen/dm016"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView>

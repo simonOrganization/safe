@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/dm096"
         android:background="@drawable/ease_mm_listitem"
         android:duplicateParentState="true" >
 

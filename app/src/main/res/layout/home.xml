@@ -95,7 +95,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dm030"
+                    android:layout_margin="@dimen/dm032"
                     android:background="@color/white"
                     android:orientation="horizontal">
 
@@ -115,7 +115,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dm020"
+                            android:layout_marginTop="@dimen/dm016"
                             android:textStyle="bold"
                             android:text="新闻中心"
                             android:textColor="@color/title_333"
@@ -139,7 +139,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dm020"
+                            android:layout_marginTop="@dimen/dm016"
                             android:textStyle="bold"
                             android:text="视频中心"
                             android:textColor="@color/title_333"
@@ -163,7 +163,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dm020"
+                            android:layout_marginTop="@dimen/dm016"
                             android:textStyle="bold"
                             android:text="安全圈子"
                             android:textColor="@color/title_333"
@@ -187,7 +187,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dm020"
+                            android:layout_marginTop="@dimen/dm016"
                             android:textStyle="bold"
                             android:text="疑难问答"
                             android:textColor="@color/title_333"
@@ -199,17 +199,19 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dm020"
+                    android:layout_height="@dimen/dm016"
                     android:background="@color/line_big"/>
 
                 <LinearLayout
                     android:id="@+id/ll_home_hot_circle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/dm064"
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="@dimen/dm020">
+                    android:layout_marginLeft="@dimen/dm020"
+                    android:layout_marginRight="@dimen/dm020"
+                    >
 
                     <ImageView
                         android:layout_width="@dimen/dm032"
@@ -271,17 +273,19 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dm020"
+                    android:layout_height="@dimen/dm016"
                     android:background="@color/line_big"/>
 
                 <LinearLayout
                     android:id="@+id/ll_home_hot_track"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/dm064"
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="@dimen/dm020">
+                    android:layout_marginLeft="@dimen/dm016"
+                    android:layout_marginRight="@dimen/dm016"
+                    >
 
                     <ImageView
                         android:layout_width="@dimen/dm032"
@@ -342,17 +346,19 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dm020"
+                    android:layout_height="@dimen/dm016"
                     android:background="@color/line_big"/>
 
                 <LinearLayout
                     android:id="@+id/ll_home_hotvideo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/dm064"
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="@dimen/dm020">
+                    android:layout_marginRight="@dimen/dm016"
+                    android:layout_marginLeft="@dimen/dm016"
+                    >
 
                     <ImageView
                         android:layout_width="@dimen/dm032"

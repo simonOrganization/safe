@@ -39,7 +39,7 @@
         <RelativeLayout
             android:id="@+id/rv_delete_all"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dm070"
+            android:layout_height="@dimen/dm056"
             android:layout_alignParentBottom="true"
             android:visibility="gone"
             android:background="#55000000">
@@ -48,7 +48,7 @@
                 android:id="@+id/tv_delete_all"
                 android:layout_alignParentBottom="true"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dm070"
+                android:layout_height="@dimen/dm056"
                 android:gravity="center_vertical"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dm020"

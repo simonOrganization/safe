@@ -14,15 +14,15 @@
     <LinearLayout
         android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm080"
+        android:layout_height="@dimen/dm064"
         android:orientation="horizontal">
         <TextView
-            android:padding="@dimen/dm024"
-            android:textSize="@dimen/dm028"
+            android:padding="@dimen/dm018"
+            android:textSize="@dimen/dm024"
             android:textColor="#333333"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="联系方式"
+            android:text=" 联系方式"
             android:background="@color/white"
 
             />
@@ -30,7 +30,7 @@
             android:id="@+id/et_phone_num"
             android:background="@color/white"
             android:textCursorDrawable="@null"
-            android:textSize="@dimen/dm028"
+            android:textSize="@dimen/dm024"
             android:layout_marginLeft="@dimen/dm024"
             android:textColorHint="@color/title_999"
             android:gravity="top"
@@ -51,7 +51,7 @@
             android:background="@color/page_color"/>
         <TextView
             android:padding="@dimen/dm024"
-            android:textSize="@dimen/dm028"
+            android:textSize="@dimen/dm024"
             android:textColor="#333333"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
             android:id="@+id/et_describe_text"
             android:background="@color/white"
             android:textCursorDrawable="@null"
-            android:textSize="@dimen/dm028"
+            android:textSize="@dimen/dm024"
             android:layout_marginLeft="@dimen/dm024"
             android:textColorHint="@color/title_999"
             android:gravity="top"
@@ -85,7 +85,7 @@
 
         <TextView
             android:padding="@dimen/dm024"
-            android:textSize="@dimen/dm028"
+            android:textSize="@dimen/dm024"
             android:textColor="#666666"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

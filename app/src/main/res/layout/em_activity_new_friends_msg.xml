@@ -27,7 +27,7 @@
     <include layout="@layout/title"/>
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm020"
+        android:layout_height="@dimen/dm016"
         android:background="@color/page_color"/>
 
     <android.support.v4.widget.SwipeRefreshLayout

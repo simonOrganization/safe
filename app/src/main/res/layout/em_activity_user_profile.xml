@@ -12,7 +12,7 @@
         <include layout="@layout/title" />
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dm020"
+            android:layout_height="@dimen/dm016"
             android:background="@color/page_color"/>
 
         <ScrollView
@@ -26,12 +26,12 @@
                 >
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="@dimen/dm150"
+                    android:layout_height="@dimen/dm120"
                     >
                     <com.lchtime.safetyexpress.views.CircleImageView
                         android:id="@+id/user_head_avatar"
-                        android:layout_width="@dimen/dm100"
-                        android:layout_height="@dimen/dm100"
+                        android:layout_width="@dimen/dm080"
+                        android:layout_height="@dimen/dm080"
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="@dimen/dm020"
                         android:layout_centerVertical="true"
@@ -58,7 +58,7 @@
                         <LinearLayout
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dm010"
+                            android:layout_marginTop="@dimen/dm008"
                             android:gravity="center_vertical"
                             android:orientation="horizontal"
                             >
@@ -67,7 +67,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/title_333"
-                                android:textSize="@dimen/dm030"
+                                android:textSize="@dimen/dm026"
                                 android:text="昵称："
                                 android:layout_marginLeft="@dimen/dm020"
                                 />
@@ -76,7 +76,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/title_333"
-                                android:textSize="@dimen/dm030"
+                                android:textSize="@dimen/dm026"
                                 android:layout_marginLeft="@dimen/dm020"
                                 />
                         </LinearLayout>
@@ -86,7 +86,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/title_999"
-                            android:textSize="@dimen/dm030"
+                            android:textSize="@dimen/dm026"
                             android:text="男"
                             android:layout_marginLeft="@dimen/dm020"
                             android:layout_marginTop="@dimen/dm005"
@@ -106,7 +106,7 @@
                     android:layout_marginLeft="@dimen/dm020"
                     android:layout_marginRight="@dimen/dm020"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dm080"
+                    android:layout_height="@dimen/dm064"
                     android:background="#ffffff"
                     android:gravity="center_vertical"
                     >
@@ -115,7 +115,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:text="行业"
-                        android:textSize="@dimen/dm030"
+                        android:textSize="@dimen/dm026"
                         android:gravity="center_vertical"
                         android:textColor="@color/title_666"
                         android:layout_centerVertical="true"
@@ -124,7 +124,7 @@
                         android:id="@+id/tv_hy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/dm030"
+                        android:textSize="@dimen/dm026"
                         android:gravity="center_vertical"
                         android:textColor="@color/title_999"
                         android:layout_marginLeft="@dimen/dm206"
@@ -144,7 +144,7 @@
                     android:layout_marginLeft="@dimen/dm020"
                     android:layout_marginRight="@dimen/dm020"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dm080"
+                    android:layout_height="@dimen/dm064"
                     android:background="#ffffff"
                     android:gravity="center_vertical"
                     >
@@ -153,7 +153,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:text="岗位"
-                        android:textSize="@dimen/dm030"
+                        android:textSize="@dimen/dm026"
                         android:gravity="center_vertical"
                         android:textColor="@color/title_666"
                         android:layout_centerVertical="true"
@@ -162,7 +162,7 @@
                         android:id="@+id/tv_gw"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/dm030"
+                        android:textSize="@dimen/dm026"
                         android:gravity="center_vertical"
                         android:textColor="@color/title_999"
                         android:layout_marginLeft="@dimen/dm206"
@@ -193,7 +193,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:text="所在地"
-                        android:textSize="@dimen/dm030"
+                        android:textSize="@dimen/dm026"
                         android:gravity="center_vertical"
                         android:textColor="@color/title_666"
                         android:layout_centerVertical="true"
@@ -202,7 +202,7 @@
                         android:id="@+id/tv_addr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/dm030"
+                        android:textSize="@dimen/dm026"
                         android:gravity="center_vertical"
                         android:textColor="@color/title_999"
                         android:layout_marginLeft="@dimen/dm206"
@@ -222,7 +222,7 @@
                     android:layout_marginLeft="@dimen/dm020"
                     android:layout_marginRight="@dimen/dm020"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dm080"
+                    android:layout_height="@dimen/dm064"
                     android:background="#ffffff"
                     android:gravity="center_vertical"
                     >
@@ -231,7 +231,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:text="所在公司"
-                        android:textSize="@dimen/dm030"
+                        android:textSize="@dimen/dm026"
                         android:gravity="center_vertical"
                         android:textColor="@color/title_666"
                         android:layout_centerVertical="true"
@@ -240,7 +240,7 @@
                         android:id="@+id/tv_company"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/dm030"
+                        android:textSize="@dimen/dm026"
                         android:gravity="center_vertical"
                         android:textColor="@color/title_999"
                         android:layout_marginLeft="@dimen/dm206"
@@ -261,7 +261,7 @@
                 android:layout_marginLeft="@dimen/dm020"
                 android:layout_marginRight="@dimen/dm020"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm080"
+                android:layout_height="@dimen/dm064"
                 android:background="#ffffff"
                 android:gravity="center_vertical"
                 >
@@ -270,7 +270,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="个人简介"
-                    android:textSize="@dimen/dm030"
+                    android:textSize="@dimen/dm026"
                     android:gravity="center_vertical"
                     android:textColor="@color/title_666"
                     android:layout_centerVertical="true"
@@ -279,7 +279,7 @@
                     android:id="@+id/tv_singleinfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/dm030"
+                    android:textSize="@dimen/dm026"
                     android:gravity="center_vertical"
                     android:textColor="@color/title_999"
                     android:layout_marginLeft="@dimen/dm206"
@@ -289,14 +289,14 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dm020"
+                    android:layout_height="@dimen/dm016"
                     android:background="@color/page_color"/>
 
 
                 <RelativeLayout
                     android:id="@+id/rl_chat_up"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dm080"
+                    android:layout_height="@dimen/dm064"
                     android:layout_marginLeft="@dimen/dm020"
                     android:layout_marginRight="@dimen/dm020"
                     android:background="#ffffff"
@@ -307,7 +307,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:text="聊天置顶"
-                        android:textSize="@dimen/dm030"
+                        android:textSize="@dimen/dm026"
                         android:gravity="center_vertical"
                         android:textColor="@color/title_666"
                         android:layout_centerVertical="true"
@@ -324,14 +324,14 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dm020"
+                    android:layout_height="@dimen/dm016"
                     android:background="@color/page_color"/>
 
 
                 <RelativeLayout
                     android:id="@+id/rl_clear_chat"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dm080"
+                    android:layout_height="@dimen/dm064"
                     android:layout_marginLeft="@dimen/dm020"
                     android:layout_marginRight="@dimen/dm020"
                     android:background="#ffffff"
@@ -342,7 +342,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:text="清空聊天记录"
-                        android:textSize="@dimen/dm030"
+                        android:textSize="@dimen/dm026"
                         android:gravity="center_vertical"
                         android:textColor="@color/title_666"
                         android:layout_centerVertical="true"
@@ -359,30 +359,30 @@
                 <TextView
                     android:id="@+id/tv_send_message"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dm080"
+                    android:layout_height="@dimen/dm064"
                     android:layout_marginLeft="@dimen/dm070"
                     android:layout_marginRight="@dimen/dm070"
-                    android:layout_marginTop="@dimen/dm070"
-                    android:layout_marginBottom="@dimen/dm030"
+                    android:layout_marginTop="@dimen/dm056"
+                    android:layout_marginBottom="@dimen/dm024"
                     android:background="@drawable/shape_bg_pink"
                     android:gravity="center"
                     android:text="申请好友"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dm030" />
+                    android:textSize="@dimen/dm026" />
 
                 <TextView
                     android:id="@+id/tv_delete_friends"
                     android:visibility="gone"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dm080"
+                    android:layout_height="@dimen/dm064"
                     android:layout_marginLeft="@dimen/dm070"
                     android:layout_marginRight="@dimen/dm070"
-                    android:layout_marginBottom="@dimen/dm070"
+                    android:layout_marginBottom="@dimen/dm056"
                     android:background="@drawable/shape_bg_white_delete_friends"
                     android:gravity="center"
                     android:text="删除好友"
                     android:textColor="@color/commen_reg"
-                    android:textSize="@dimen/dm030" />
+                    android:textSize="@dimen/dm026" />
             </LinearLayout>
 
         </ScrollView>

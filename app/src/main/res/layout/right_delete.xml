@@ -1,5 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="@dimen/dm177"
+              android:layout_width="@dimen/dm171"
               android:layout_height="match_parent"
               android:layout_gravity="center"
               android:layout_marginLeft="@dimen/dm020"
@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:background="@color/red"
         android:textColor="@color/white"
-        android:textSize="@dimen/dm037"
+        android:textSize="@dimen/dm033"
         android:text="删除"
         android:gravity="center" />
 

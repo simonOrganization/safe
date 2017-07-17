@@ -7,7 +7,7 @@
     <LinearLayout
 
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm080"
+        android:layout_height="@dimen/dm064"
         android:orientation="horizontal"
         android:background="@color/white">
         <LinearLayout
@@ -26,12 +26,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="行业选择"
-                android:textSize="@dimen/dm030"
+                android:textSize="@dimen/dm026"
                 android:textColor="@color/circle_text_indicator_selector"/>
             <ImageView
                 android:id="@+id/iv_hy_indicator"
-                android:layout_width="@dimen/dm020"
-                android:layout_height="@dimen/dm010"
+                android:layout_width="@dimen/dm028"
+                android:layout_height="@dimen/dm008"
                 android:src="@drawable/circle_indicator_selector"
                 android:layout_marginLeft="@dimen/dm006"/>
 
@@ -53,12 +53,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="岗位选择"
-                android:textSize="@dimen/dm030"
+                android:textSize="@dimen/dm026"
                 android:textColor="@color/circle_text_indicator_selector"/>
             <ImageView
                 android:id="@+id/iv_gw_indicator"
-                android:layout_width="@dimen/dm020"
-                android:layout_height="@dimen/dm010"
+                android:layout_width="@dimen/dm018"
+                android:layout_height="@dimen/dm008"
                 android:src="@drawable/circle_indicator_selector"
                 android:layout_marginLeft="@dimen/dm006"/>
 
@@ -79,12 +79,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="地理位置"
-                android:textSize="@dimen/dm030"
+                android:textSize="@dimen/dm026"
                 android:textColor="@color/circle_text_indicator_selector"/>
             <ImageView
                 android:id="@+id/iv_addr_indicator"
-                android:layout_width="@dimen/dm020"
-                android:layout_height="@dimen/dm010"
+                android:layout_width="@dimen/dm018"
+                android:layout_height="@dimen/dm008"
                 android:src="@drawable/circle_indicator_selector"
                 android:layout_marginLeft="@dimen/dm006"/>
 
@@ -96,8 +96,8 @@
             <!--android:layout_weight="1"/>-->
         <ImageView
             android:id="@+id/circle_more"
-            android:layout_width="@dimen/dm034"
-            android:layout_height="@dimen/dm034"
+            android:layout_width="@dimen/dm028"
+            android:layout_height="@dimen/dm028"
             android:background="@drawable/circle_sort"
             android:layout_marginRight="@dimen/dm020"
             android:layout_marginLeft="@dimen/dm060"

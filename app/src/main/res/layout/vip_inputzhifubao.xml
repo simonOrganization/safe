@@ -9,26 +9,26 @@
 
     <com.lchtime.safetyexpress.views.CircleImageView
         android:id="@+id/civ_vip_icon"
-        android:layout_width="@dimen/dm138"
-        android:layout_height="@dimen/dm138"
-        android:layout_marginTop="@dimen/dm060"
+        android:layout_width="@dimen/dm110"
+        android:layout_height="@dimen/dm110"
+        android:layout_marginTop="@dimen/dm036"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/circle_user_image" />
     <TextView
-        android:layout_marginTop="@dimen/dm020"
+        android:layout_marginTop="@dimen/dm016"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/dm026"
+        android:textSize="@dimen/dm022"
         android:textColor="@color/commen_reg"
         android:layout_gravity="center_horizontal"
         android:text="提现到支付宝账号"
         />
     <TextView
         android:id="@+id/tv_zhifubao_num"
-        android:layout_marginTop="@dimen/dm020"
+        android:layout_marginTop="@dimen/dm016"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/dm026"
+        android:textSize="@dimen/dm022"
         android:textColor="@color/commen_reg"
         android:layout_gravity="center_horizontal"
         android:text="186****3369"
@@ -36,13 +36,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dm060"
+        android:layout_marginTop="@dimen/dm036"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dm070"
-            android:textSize="@dimen/dm030"
+            android:textSize="@dimen/dm026"
             android:textColor="@color/title_666"
             android:text="提现金额"/>
         <LinearLayout
@@ -57,13 +57,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dm020"
-                android:textSize="@dimen/dm026"
+                android:textSize="@dimen/dm022"
                 android:text="¥"/>
 
             <EditText
                 android:id="@+id/et_money_num"
                 android:inputType="number"
-                android:textSize="@dimen/dm026"
+                android:textSize="@dimen/dm022"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
@@ -72,11 +72,11 @@
 
         <TextView
             android:id="@+id/all_output"
-            android:layout_width="@dimen/dm154"
+            android:layout_width="@dimen/dm138"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dm010"
             android:layout_marginRight="@dimen/dm050"
-            android:textSize="@dimen/dm026"
+            android:textSize="@dimen/dm022"
             android:textColor="@color/white"
             android:background="@drawable/shape_bg_pink_small"
             android:gravity="center"
@@ -86,13 +86,13 @@
     <TextView
         android:id="@+id/tv_output"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm090"
+        android:layout_height="@dimen/dm072"
         android:layout_marginLeft="@dimen/dm050"
         android:layout_marginRight="@dimen/dm050"
-        android:layout_marginTop="@dimen/dm070"
+        android:layout_marginTop="@dimen/dm056"
         android:background="@drawable/shape_bg_pink"
         android:gravity="center"
         android:text="确认提现"
         android:textColor="@color/white"
-        android:textSize="@dimen/dm030" />
+        android:textSize="@dimen/dm026" />
 </LinearLayout>
