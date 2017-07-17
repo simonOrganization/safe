@@ -221,6 +221,9 @@ public class CircleAdapter extends RecyclerView.Adapter  {
             ((CircleHodler) holder).itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(flag){
+                        return;
+                    }
                     Intent intent = new Intent(context, H5DetailUI.class);
                     intent.putExtra("newsId",bean.qc_id);
                     intent.putExtra("type","circle");

@@ -2,6 +2,8 @@ package com.lchtime.safetyexpress.bean.res;
 
 import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.NewsBean;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ import java.util.List;
  * Created by yxn on 2017/4/26.
  */
 
-public class NewsListRes {
+public class NewsListRes implements Serializable{
     public BasicResult result;
     public String total;
     public ArrayList<NewsBean> cms_context;

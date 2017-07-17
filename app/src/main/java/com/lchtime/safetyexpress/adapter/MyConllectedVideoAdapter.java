@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.VideoH5Activity;
 import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.vip.fragment.VedioFragment;
@@ -97,20 +98,25 @@ public class MyConllectedVideoAdapter extends BaseAdapter {
 
         }
 
-        holder.iv_oneimg_img.setOnClickListener(new View.OnClickListener() {
+        /*holder.iv_oneimg_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, MediaActivity.class);
                 intent.putExtra("url",bean.media.get(1));
                 context.startActivity(intent);
             }
-        });
+        });*/
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, H5DetailUI.class);
-                intent.putExtra("type","news");
+                if(flag){
+                    return;
+                }
+                Intent intent = new Intent(context, VideoH5Activity.class);
+                //intent.putExtra("type","news");
                 intent.putExtra("newsId",bean.cc_id);
+                intent.putExtra("type","video");
+                intent.putExtra("videoUrl", bean.media.get(1));
                 context.startActivity(intent);
             }
         });

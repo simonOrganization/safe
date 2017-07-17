@@ -25,7 +25,7 @@ public class VipProtocal {
     /*
 * 获取我的账户
 * */
-    public void getMyAcountInfo( String ub_id,final CircleProtocal.NormalListener listener) {
+    public void getMyAcountInfo(String ub_id , final CircleProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);

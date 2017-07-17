@@ -1,12 +1,13 @@
 package com.lchtime.safetyexpress.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Dreamer on 2017/6/19.
  */
 
-public class FirstPic {
+public class FirstPic implements Serializable{
 
     /**
      * code : 10
@@ -21,7 +22,7 @@ public class FirstPic {
 
     public List<LunboBean> lunbo;
 
-    public static class LunboBean {
+    public static class LunboBean implements Serializable{
         public String img;
         public String url;
     }

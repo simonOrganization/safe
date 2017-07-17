@@ -1,12 +1,14 @@
 package com.lchtime.safetyexpress.bean;
 
+import java.io.Serializable;
+
 /**
  * @author Admin
  * @time 2017/4/7 9:41
  * @des ${TODO}
  */
 
-public class BasicResult {
+public class BasicResult implements Serializable{
 
     public String sid;
     public String index;

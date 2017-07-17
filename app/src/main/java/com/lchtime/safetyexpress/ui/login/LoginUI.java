@@ -54,6 +54,7 @@ import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.tauth.Tencent;
 
+import static com.lchtime.safetyexpress.R.layout.vip;
 import static com.lchtime.safetyexpress.bean.Constants.userId;
 
 
@@ -131,34 +132,7 @@ public class LoginUI extends BaseUI {
                                             gson = new Gson();
                                         }
                                         VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
-                                        if (vipInfoBean != null) {
-                                            InitInfo.phoneNumber = vipInfoBean.user_detail.ub_phone;
-                                            InitInfo.vipInfoBean = vipInfoBean;
-                                            InitInfo.isLogin = true;
-                                            SpTools.setString(LoginUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
-                                            SpTools.setString(LoginUI.this, Constants.ud_profession,vipInfoBean.user_detail.ud_profession);
-                                            SpTools.setString(LoginUI.this, Constants.ud_post,vipInfoBean.user_detail.ud_post);
-                                            SpTools.setString(LoginUI.this, Constants.ud_addr,vipInfoBean.user_detail.ud_addr);
-                                            //获取环信账号
-                                            LoginInternetRequest.getHXinfo(new LoginInternetRequest.ForResultListener() {
-                                                @Override
-                                                public void onResponseMessage(String code) {
-                                                    if (TextUtils.isEmpty(code)){
-                                                        CommonUtils.toastMessage("获取聊天信息失败");
-                                                        isLogin = false;
-                                                        backgroundAlpha(1f);
-                                                        pb_progress.setVisibility(View.GONE);
-                                                        return;
-                                                    }
-                                                    HXInfo info = gson.fromJson(code, HXInfo.class);
-                                                    //登录环信
-                                                    loginHX(info.hx_account, Constant.HX_PWD);
-                                                    finish();
-
-                                                }
-                                            });
-
-                                        }
+                                        saveVipInfoBean(vipInfoBean);
                                     }
                                 }
                             });
@@ -170,6 +144,42 @@ public class LoginUI extends BaseUI {
                         }
             }
         });
+    }
+
+    /**
+     * 保存用户信息
+     * @param vipInfoBean
+     */
+    private void saveVipInfoBean(VipInfoBean vipInfoBean) {
+        if (vipInfoBean != null) {
+            InitInfo.phoneNumber = vipInfoBean.user_detail.ub_phone;
+            InitInfo.vipInfoBean = vipInfoBean;
+            InitInfo.isLogin = true;
+            SpTools.setString(mContext , Constants.userId , vipInfoBean.user_detail.ub_id);
+            SpTools.setString(mContext , Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
+            SpTools.setString(mContext , Constants.ud_profession,vipInfoBean.user_detail.ud_profession);
+            SpTools.setString(mContext , Constants.ud_post,vipInfoBean.user_detail.ud_post);
+            SpTools.setString(mContext , Constants.ud_addr,vipInfoBean.user_detail.ud_addr);
+            //获取环信账号
+            LoginInternetRequest.getHXinfo(new LoginInternetRequest.ForResultListener() {
+                @Override
+                public void onResponseMessage(String code) {
+                    if (TextUtils.isEmpty(code)){
+                        CommonUtils.toastMessage("获取聊天信息失败");
+                        isLogin = false;
+                        backgroundAlpha(1f);
+                        pb_progress.setVisibility(View.GONE);
+                        return;
+                    }
+                    HXInfo info = gson.fromJson(code, HXInfo.class);
+                    //登录环信
+                    loginHX(info.hx_account, Constant.HX_PWD);
+                    finish();
+
+                }
+            });
+
+        }
     }
 
     /**
@@ -408,8 +418,17 @@ public class LoginUI extends BaseUI {
 
 
                         }else {
+                            /*VipInfoBean vipInfoBean = new VipInfoBean();
+                            vipInfoBean.user_detail.ud_addr = bean.user.ud_addr;
+                            vipInfoBean.user_detail.ud_nickname = bean.user.ud_nickname;
+                            vipInfoBean.user_detail.ud_photo_fileid = bean.user.ud_photo_fileid;
+                            vipInfoBean.user_detail.ud_post = bean.user.ud_post;
+                            vipInfoBean.user_detail.ud_profession = bean.user.ud_profession;
+                            vipInfoBean.user_detail.ub_phone = bean.userid.phone;
+                            vipInfoBean.user_detail.ud_sex = bean.userid.tp_gender;
+                            vipInfoBean.user_detail.ub_id = bean.user.ud_ub_id;
                             //申请过了 ，直接登录
-
+                            saveVipInfoBean(vipInfoBean);*/
                             thirdLogin(bean.userid.ub_id);
                         }
                     }else {
@@ -574,6 +593,17 @@ public class LoginUI extends BaseUI {
                             isLogin = false;
                             backgroundAlpha(1f);
                             pb_progress.setVisibility(View.GONE);
+
+                            /*VipInfoBean vipInfoBean = new VipInfoBean();
+                            vipInfoBean.user_detail.ud_addr = bean.user.ud_addr;
+                            vipInfoBean.user_detail.ud_nickname = bean.user.ud_nickname;
+                            vipInfoBean.user_detail.ud_photo_fileid = bean.user.ud_photo_fileid;
+                            vipInfoBean.user_detail.ud_post = bean.user.ud_post;
+                            vipInfoBean.user_detail.ud_profession = bean.user.ud_profession;
+                            vipInfoBean.user_detail.ub_phone = bean.userid.phone;
+                            vipInfoBean.user_detail.ud_sex = bean.userid.tp_gender;
+
+                            saveVipInfoBean(vipInfoBean);*/
                             thirdLogin(bean.userid.ub_id);
                         }else {
                             isLogin = false;

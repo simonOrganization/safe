@@ -56,7 +56,7 @@ public class HotCirclesProtocal {
                         if(hotCircleBean.result.code.equals("10")){
                             if (listener != null){
                                 listener.hotNewsResponse(hotCircleBean);
-                                listener.hotNewsResponse(null);
+                                //listener.hotNewsResponse(null);
                             }
                         }else{
                             CommonUtils.toastMessage(hotCircleBean.result.info);

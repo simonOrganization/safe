@@ -637,7 +637,7 @@ public class HXMainActivity extends BaseActivity implements View.OnClickListener
 			exitTime = System.currentTimeMillis();
 		} else {
 			finish();
-			System.exit(0);
+			//System.exit(0);
 		}
 	}
 

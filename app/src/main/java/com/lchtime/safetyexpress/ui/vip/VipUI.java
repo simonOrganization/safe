@@ -636,6 +636,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
                             isLogin = false;
                             backgroundAlpha(1f);
                             pb_progress.setVisibility(View.GONE);
+
                             thirdLogin(bean.userid.ub_id);
                         }
                     }else {

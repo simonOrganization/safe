@@ -23,9 +23,12 @@ import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.bean.WenDaBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.Const;
+import com.lchtime.safetyexpress.ui.TabUI;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
+import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.utils.BitmapUtils;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
 import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.CircleImageView;
@@ -36,6 +39,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.lchtime.safetyexpress.R.id.ll_home_question;
+
 /**
  * 疑难问答
  * Created by user on 2017/4/18.
@@ -43,6 +48,7 @@ import java.util.List;
 @ContentView(R.layout.home_question_ui)
 public class HomeQuestionUI extends BaseUI {
 
+    public static final int LOGIN = 111;
     //列表展示
     @ViewInject(R.id.lv_home_question)
     private PullLoadMoreRecyclerView lv_home_question;
@@ -85,10 +91,17 @@ public class HomeQuestionUI extends BaseUI {
         view = View.inflate(this, R.layout.home_question_header,null);
         civ = (CircleImageView) view.findViewById(R.id.cv_wd_photo);
         nikName = (TextView) view.findViewById(R.id.tv_wd_nikname);
+
         LinearLayout ll_home_question = (LinearLayout) view.findViewById(R.id.ll_home_question);
         ll_home_question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (TextUtils.isEmpty(SpTools.getString(mContext , Constants.userId, ""))){
+                    CommonUtils.toastMessage("登陆后才能看问答");
+                    Intent intent = new Intent(mContext , LoginUI.class);
+                    startActivityForResult(intent , LOGIN);
+                    return;
+                }
                 //我的问答
                 Intent intent = new Intent(HomeQuestionUI.this,MyQuestion.class);
                 startActivity(intent);
@@ -102,33 +115,41 @@ public class HomeQuestionUI extends BaseUI {
     }
 
     public void initMyInfo(){
-        File file = new File(MyApplication.getContext().getFilesDir(), Constants.photo_name);//将要保存图片的路径
-        //如果没有加载过图片了
-        if (!file.exists()){
-            civ.setImageDrawable(getResources().getDrawable(R.drawable.vip_test_icon));
-            if (!TextUtils.isEmpty(InitInfo.vipInfoBean.user_detail.ud_photo_fileid)){
-                UpdataImageUtils.getUrlBitmap(InitInfo.vipInfoBean.user_detail.ud_photo_fileid, new UpdataImageUtils.BitmapListener() {
-                    @Override
-                    public void giveBitmap(final Bitmap bitmap) {
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                UpdataImageUtils.saveBitmapFile(bitmap,Constants.photo_name);
-                                civ.setImageBitmap(bitmap);
-                            }
-                        });
+        //如果没有登录
+        if(TextUtils.isEmpty(SpTools.getString(mContext , Constants.userId, ""))){
+            civ.setVisibility(View.GONE);
+            nikName.setText("马上登录，参与问答");
+        }else{
+            civ.setVisibility(View.VISIBLE);
+            File file = new File(MyApplication.getContext().getFilesDir(), Constants.photo_name);//将要保存图片的路径
+            //如果没有加载过图片了
+            if (!file.exists()){
+                civ.setImageDrawable(getResources().getDrawable(R.drawable.vip_test_icon));
+                if (!TextUtils.isEmpty(InitInfo.vipInfoBean.user_detail.ud_photo_fileid)){
+                    UpdataImageUtils.getUrlBitmap(InitInfo.vipInfoBean.user_detail.ud_photo_fileid, new UpdataImageUtils.BitmapListener() {
+                        @Override
+                        public void giveBitmap(final Bitmap bitmap) {
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    UpdataImageUtils.saveBitmapFile(bitmap,Constants.photo_name);
+                                    civ.setImageBitmap(bitmap);
+                                }
+                            });
 
-                    }
-                });
+                        }
+                    });
 
+                }
+
+            }else {
+                civ.setImageBitmap(BitmapUtils.getBitmap(file.getAbsolutePath()));
             }
+            if (InitInfo.vipInfoBean != null && InitInfo.vipInfoBean.user_detail != null) {
+                nikName.setText(InitInfo.vipInfoBean.user_detail.ud_nickname);
+            }
+        }
 
-        }else {
-            civ.setImageBitmap(BitmapUtils.getBitmap(file.getAbsolutePath()));
-        }
-        if (InitInfo.vipInfoBean != null && InitInfo.vipInfoBean.user_detail != null) {
-            nikName.setText(InitInfo.vipInfoBean.user_detail.ud_nickname);
-        }
     }
 
     private int totalPage = 1;
@@ -203,9 +224,19 @@ public class HomeQuestionUI extends BaseUI {
         tv_home_question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //提问按钮的监听
-                Intent intent = new Intent(HomeQuestionUI.this,AskQuestionActivity.class);
-                startActivity(intent);
+                if (TextUtils.isEmpty(SpTools.getString(mContext , Constants.userId, ""))){
+                    CommonUtils.toastMessage("登陆后才能提问");
+                    Intent intent = new Intent(mContext , LoginUI.class);
+                    startActivityForResult(intent , LOGIN);
+                    return;
+                }
+                if(isFullPersionDate()){//如果资料完善
+                    //提问按钮的监听
+                    Intent intent = new Intent(HomeQuestionUI.this,AskQuestionActivity.class);
+                    startActivity(intent);
+                }else{ //如果资料不完善
+                    CommonUtils.toastMessage("请完善资料后提问");
+                }
             }
         });
 
@@ -220,7 +251,14 @@ public class HomeQuestionUI extends BaseUI {
             }
         });
     }
-
+    /**
+     * 检查个人资料是否完善，检查行业，岗位，地理位置
+     */
+    private boolean isFullPersionDate(){
+        return (!SpTools.getString(mContext , Constants.ud_profession , "").equals("")&&
+                !SpTools.getString(mContext, Constants.ud_post , "").equals("")&&
+                !SpTools.getString(mContext, Constants.ud_addr , "").equals(""));
+    }
 
 
     private HeaderAndFooterWrapper wrapper;
@@ -256,6 +294,13 @@ public class HomeQuestionUI extends BaseUI {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == LOGIN){
+            initMyInfo();
+        }
+    }
 
     public void setLoadingVisiblity(){
         loading.setVisibility(View.VISIBLE);

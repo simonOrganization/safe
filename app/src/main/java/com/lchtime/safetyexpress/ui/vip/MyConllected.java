@@ -172,14 +172,11 @@ public class MyConllected extends BaseUI {
             flag = false;
             //不显示删除小圆点
             rightTextVisible("编辑");
-
             rv_delete.setVisibility(View.GONE);
         }else {
             flag = true;
             //显示删除小圆点
-
             rightTextVisible("取消");
-
             rv_delete.setVisibility(View.VISIBLE);
         }
 

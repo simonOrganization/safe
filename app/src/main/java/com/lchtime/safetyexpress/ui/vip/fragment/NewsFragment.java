@@ -8,10 +8,12 @@ import android.view.View;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.VideoH5Activity;
 import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.bean.res.NewsListRes;
+import com.lchtime.safetyexpress.ui.home.HomeUI;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.vip.MyConllected;
 import com.lchtime.safetyexpress.utils.CommonUtils;
@@ -37,6 +39,7 @@ public class NewsFragment extends BaseFragment {
 
     private LoadingPager.LoadedResult loadedResult;
     private EmptyRecyclerView recyclerView;
+    private boolean isEdit = false;
 
     @Override
     protected View initSuccessView() {
@@ -102,10 +105,15 @@ public class NewsFragment extends BaseFragment {
                 homeNewAdapter.setNewItemInterface(new HomeNewAdapter.NewsItemInterface() {
                     @Override
                     public void setNewOnItem(int position) {
-                        Intent intent = new Intent(getContext(), H5DetailUI.class);
-                        intent.putExtra("newsId",commentList.get(position).cc_id);
-                        intent.putExtra("type","news");
-                        startActivity(intent);
+                        if(isEdit){
+
+                        }else{
+
+                            Intent intent = new Intent(getContext(), H5DetailUI.class);
+                            intent.putExtra("newsId",commentList.get(position).cc_id);
+                            intent.putExtra("type","news");
+                            startActivity(intent);
+                        }
                     }
 
                     @Override
@@ -113,6 +121,12 @@ public class NewsFragment extends BaseFragment {
                         Intent intent = new Intent(getContext(), MediaActivity.class);
                         intent.putExtra("url",url);
                         startActivity(intent);
+                       /* //视频
+                        //Intent intent = new Intent(HomeUI.this, VideoH5Activity.class);
+                        intent.putExtra("newsId", vedioNewsList.get(position).cc_id);
+                        intent.putExtra("type","video");
+                        intent.putExtra("videoUrl", vedioNewsList.get(position).media.get(1));
+                        startActivity(intent);*/
                     }
                 });
 
@@ -133,6 +147,7 @@ public class NewsFragment extends BaseFragment {
 
 
     public void updataListView(boolean isDelete){
+        isEdit = isDelete;
         if(homeNewAdapter != null){
             homeNewAdapter.setCheckBoxShow(this,isDelete);
             homeNewAdapter.notifyDataSetChanged();

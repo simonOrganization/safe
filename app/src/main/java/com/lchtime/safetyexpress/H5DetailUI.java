@@ -1,13 +1,16 @@
 package com.lchtime.safetyexpress;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -1042,11 +1045,16 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
         }
 
         rl_pl.setVisibility(View.VISIBLE);
+        //et_common.setVisibility(View.VISIBLE);
+        //et_common.clearFocus();
+
         et_common.setFocusable(true);
         et_common.setFocusableInTouchMode(true);
         et_common.requestFocus();
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-        et_common.performClick();
+        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0 , InputMethodManager.HIDE_NOT_ALWAYS);
+        //et_common.performClick();
         //bottom_zan_or_common.setVisibility(View.GONE);
 //        makeText("收藏");
     }

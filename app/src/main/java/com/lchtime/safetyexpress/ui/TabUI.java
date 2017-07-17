@@ -47,6 +47,7 @@ import com.lchtime.safetyexpress.bean.CircleRedPointBean;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.hyphenate.easeui.bean.ContactListBean;
 import com.lchtime.safetyexpress.bean.GetUpBean;
+import com.lchtime.safetyexpress.bean.HXInfo;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.PostBean;
 import com.lchtime.safetyexpress.bean.ProfessionBean;
@@ -395,8 +396,12 @@ public class TabUI extends TabActivity implements OnClickListener {
                         VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
                         if (vipInfoBean != null) {
                             InitInfo.phoneNumber = vipInfoBean.user_detail.ub_phone;
+                            InitInfo.vipInfoBean = vipInfoBean;
                             vipInfoBean = vipInfoBean;
                             SpTools.setString(TabUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
+                            SpTools.setString(TabUI.this , Constants.ud_profession,vipInfoBean.user_detail.ud_profession);
+                            SpTools.setString(TabUI.this , Constants.ud_post,vipInfoBean.user_detail.ud_post);
+                            SpTools.setString(TabUI.this , Constants.ud_addr,vipInfoBean.user_detail.ud_addr);
                             loginHX(vipInfoBean.user_detail.ub_phone, Constant.HX_PWD);
                         }
                     }
@@ -422,6 +427,47 @@ public class TabUI extends TabActivity implements OnClickListener {
         });
     }
 
+    /**
+     * 保存用户信息
+     * @param vipInfoBean
+     */
+    /*private void saveVipInfoBean(VipInfoBean vipInfoBean) {
+        if (vipInfoBean != null) {
+            InitInfo.phoneNumber = vipInfoBean.user_detail.ub_phone;
+            InitInfo.vipInfoBean = vipInfoBean;
+            InitInfo.isLogin = true;
+            SpTools.setString(mContext , Constants.userId , vipInfoBean.user_detail.ub_id);
+            SpTools.setString(mContext , Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
+            SpTools.setString(mContext , Constants.ud_profession,vipInfoBean.user_detail.ud_profession);
+            SpTools.setString(mContext , Constants.ud_post,vipInfoBean.user_detail.ud_post);
+            SpTools.setString(mContext , Constants.ud_addr,vipInfoBean.user_detail.ud_addr);
+            //获取环信账号
+            LoginInternetRequest.getHXinfo(new LoginInternetRequest.ForResultListener() {
+                @Override
+                public void onResponseMessage(String code) {
+                    if (TextUtils.isEmpty(code)){
+                        CommonUtils.toastMessage("获取聊天信息失败");
+                        isLogin = false;
+                        backgroundAlpha(1f);
+                        pb_progress.setVisibility(View.GONE);
+                        return;
+                    }
+                    HXInfo info = gson.fromJson(code, HXInfo.class);
+                    //登录环信
+                    loginHX(info.hx_account, Constant.HX_PWD);
+                    finish();
+
+                }
+            });
+
+        }
+    }*/
+
+    /**
+     * 登录环信
+     * @param currentUsername
+     * @param currentPassword
+     */
     private void loginHX(String currentUsername,String currentPassword) {
         DemoDBManager.getInstance().closeDB();
 

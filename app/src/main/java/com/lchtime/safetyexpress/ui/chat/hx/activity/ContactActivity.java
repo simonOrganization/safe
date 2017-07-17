@@ -549,7 +549,7 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
 			exitTime = System.currentTimeMillis();
 		} else {
 			finish();
-			System.exit(0);
+			//System.exit(0);
 		}
 	}
 

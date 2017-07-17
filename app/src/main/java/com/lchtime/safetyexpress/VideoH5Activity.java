@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -21,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.H5Bean;
@@ -184,6 +187,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             baseUrl = Const.HOST+"cms/videoinfo?cc_id=" + cc_id;
             setTitle("视频中心");
             bottom_zan_or_common.setVisibility(View.VISIBLE);
+            videoUrl = getIntent().getStringExtra("videoUrl");
 
         }else if (("circle".equals(type))){
             //圈子的baseurl
@@ -251,10 +255,14 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             param1 = cc_id;
             param2 = "2";
             param3 = "0";
-            videoUrl = getIntent().getStringExtra("videoUrl");
             if(videoUrl != null && !videoUrl.equals("")){
                 mVideoPaler.setVisibility(View.VISIBLE);
                 mVideoPaler.setUp(videoUrl , JCVideoPlayer.SCREEN_LAYOUT_LIST , "");
+                //mVideoPaler.prepareMediaPlayer();
+                mVideoPaler.startVideo();
+                mVideoPaler.performClick();
+                //mVideoPaler.changeUiToPreparingShow(); //修改ui为准备播放
+
             }
         }else if ("circle".equals(type)){
             param1 = cc_id;
@@ -452,7 +460,6 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             @Override
             public void onPageFinished(WebView view, String url)
             {
-
                 //结束
                 super.onPageFinished(view, url);
                 mWebView.loadUrl("javascript:info()");
@@ -464,9 +471,6 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             {
                 //开始
                 super.onPageStarted(view, url, favicon);
-
-
-
             }
         });
 
@@ -507,8 +511,6 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
         this.videoUrl = videoUrl;
         this.title = title;
         this.des = desc;
-        //makeText("cc_id" + cc_id + " title" + title + "desc" + desc);
-        mVideoPaler.release();
         initH5Info();
     }
 
@@ -1033,6 +1035,12 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
         }
 
         rl_pl.setVisibility(View.VISIBLE);
+
+        et_common.setFocusable(true);
+        et_common.setFocusableInTouchMode(true);
+        et_common.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0 , InputMethodManager.HIDE_NOT_ALWAYS);
 //        makeText("收藏");
     }
 
