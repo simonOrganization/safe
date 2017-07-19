@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -175,6 +176,10 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
         holder.circleItemGreat.setText(bean.qc_zc);
         holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
         //点赞逻辑监听
+        if ("1".equals(bean.zan)){
+            holder.ivCircleItemGreat.setClickable(false);
+            return;
+        }
         holder.ivCircleItemGreat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,10 +190,18 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                     return;
                 } else {
                     //请求网络数据
+                    holder.ivCircleItemGreat.setClickable(false);
                     protocal.updataZanOrCai(userid, bean.qc_id, "1", "0", new CircleProtocal.NormalListener() {
                         @Override
                         public void normalResponse(Object response) {
+                            if (response == null){
+                                holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
+                                holder.ivCircleItemGreat.setClickable(true);
+                                CommonUtils.toastMessage("请求网络失败");
+                                return;
+                            }
                             BasicResult result = (BasicResult) response;
+                            Log.i("---------", "normalResponse: " + result + bean.qc_id+"---------" +bean.zan);
                             if (!result.code.equals("10")) {
                                 CommonUtils.toastMessage(result.getInfo());
                                 holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
@@ -197,9 +210,10 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                                     ((CircleUI) context).refreshItemData(bean.qc_id);
                                 }
                             }
+                            holder.ivCircleItemGreat.setChecked(false);
                         }
                     });
-                    holder.ivCircleItemGreat.setChecked(true);
+
                 }
 
             }
@@ -209,6 +223,10 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
     private void setDown(final MyCircleActiveHodler holder, final MyCircleActiveBean.QuanziBean bean, final CircleProtocal protocal) {
         holder.circleItemLow.setText(bean.qc_zc);
         holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
+        if ("1".equals(bean.cai)){
+            holder.ivCircleItemLow.setClickable(false);
+            return;
+        }
         //点赞逻辑监听
         holder.ivCircleItemLow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -224,6 +242,12 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                     protocal.updataZanOrCai(userid, bean.qc_id, "0", "1", new CircleProtocal.NormalListener() {
                         @Override
                         public void normalResponse(Object response) {
+                            if (response == null){
+                                holder.ivCircleItemLow.setChecked("1".equals(bean.zan));
+                                holder.ivCircleItemLow.setClickable(true);
+                                CommonUtils.toastMessage("请求网络失败");
+                                return;
+                            }
                             BasicResult result = (BasicResult) response;
                             if (!result.code.equals("10")) {
                                 CommonUtils.toastMessage(result.getInfo());
@@ -233,10 +257,11 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                                     ((CircleUI) context).refreshItemData(bean.qc_id);
                                 }
                             }
+                            holder.ivCircleItemLow.setChecked(true);
                         }
                     });
 
-                    holder.ivCircleItemLow.setChecked(true);
+
                 }
 
             }

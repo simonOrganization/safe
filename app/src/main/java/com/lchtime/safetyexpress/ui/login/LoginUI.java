@@ -257,6 +257,7 @@ public class LoginUI extends BaseUI {
     private void getRegister(View view){
         Intent intent = new Intent(LoginUI.this, RegisterUI.class);
         startActivity(intent);
+        finish();
     }
 
     /**
@@ -267,6 +268,7 @@ public class LoginUI extends BaseUI {
     private void getForPwd(View view){
         Intent intent = new Intent(LoginUI.this, SetPasswordUI.class);
         startActivity(intent);
+        finish();
     }
 
     /**

@@ -66,7 +66,7 @@ public class MyCircleActiveActivity extends BaseUI {
     @Override
     protected void setControlBasis() {
         ButterKnife.bind(this);
-        setTitle("我的动态");
+        setTitle("我的圈子");
     }
 
     @Override

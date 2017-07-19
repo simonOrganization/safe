@@ -4,15 +4,6 @@ public class CitySortModel {
 
     private String name;
     private String sortLetters;
-
-    public boolean isSelect() {
-        return isSelect;
-    }
-
-    public void setSelect(boolean select) {
-        isSelect = select;
-    }
-
     public boolean isSelect ;
 
     public String getName() {

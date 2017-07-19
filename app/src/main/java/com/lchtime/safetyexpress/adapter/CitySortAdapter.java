@@ -16,7 +16,7 @@ import com.lchtime.safetyexpress.views.CityView.CitySortModel;
 import java.util.List;
 
 public class CitySortAdapter extends BaseAdapter implements SectionIndexer {
-    private  Boolean boo;
+
     private  String city;
     private List<CitySortModel> list = null;
     private Context mContext;
@@ -61,9 +61,10 @@ public class CitySortAdapter extends BaseAdapter implements SectionIndexer {
         } else {
             viewHolder.tvLetter.setVisibility(View.GONE);
         }
-        Log.i("----------", "clickEvent: 2" +city );
+       // Log.i("----------", "clickEvent: 2" +city );
 
         if (list.get(position).getName().equals(city)) {
+            list.get(position).isSelect = true ;
             viewHolder.tvTitle.setText(this.list.get(position).getName());
             viewHolder.tvTitle.setTextColor(mContext.getResources().getColor(R.color.red));
         }else{
@@ -82,11 +83,12 @@ public class CitySortAdapter extends BaseAdapter implements SectionIndexer {
         TextView tvTitle;
     }
 
-
     public int getSectionForPosition(int position) {
         return list.get(position).getSortLetters().charAt(0);
     }
-
+    public String setCity (String city) {
+      return this.city = city ;
+    }
 
     public int getPositionForSection(int section) {
         for (int i = 0; i < getCount(); i++) {

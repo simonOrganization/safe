@@ -166,6 +166,7 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
         //0为推荐1为全部
         String action = "1";
         String page = request_page;
+        Log.i("qaz", "refreshData: 2" + ub_id + hy + gw + addr + action );
         protocal.getAddDyData(ub_id,hy, gw, addr, action, page, new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
@@ -365,10 +366,23 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CITY_REQUEST_CODE){
             if (data != null) {
-                String selectCity = data.getStringExtra("city");
+             /*   String selectCity = data.getStringExtra("city");
                 request_addr = selectCity;
                 refreshData("1");
-                tv_adddy_addr.setText(selectCity);
+                tv_adddy_addr.setText(selectCity);*/
+                String selectCity = data.getStringExtra("city");
+                //  Log.i("----------", "onActivityResult: " + selectCity);
+                if(!"地理位置".equals(selectCity)){
+                    request_addr = selectCity;
+                    refreshData("1");
+                    tv_adddy_addr.setText(selectCity);
+                    //Log.i("----------", "onActivityResult:1 " + selectCity);
+                }else{
+                    request_addr = "";
+                    refreshData("1");
+                    tv_adddy_addr.setText("地理位置");
+                    //  Log.i("----------", "onActivityResult:2 " + "地理位置");
+                }
             }
         }
     }
@@ -381,6 +395,7 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
         String addr = request_addr;
         //0为推荐1为全部
         String action = "1";
+        Log.i("qaz", "refreshData: 3" + ub_id + hy + gw + addr + action );
         protocal.getAddDyData(ub_id, hy, gw, addr, action, page, new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {

@@ -67,7 +67,7 @@ public class MyConllected extends BaseUI {
 
     @Override
     protected void setControlBasis() {
-        setTitle("我的圈子");
+        setTitle("我的收藏");
         rightTextVisible("编辑");
         bindViewPager();
 

@@ -455,19 +455,19 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         if (requestCode == CITY_REQUEST_CODE){
             if (data != null) {
                 String selectCity = data.getStringExtra("city");
-                Log.i("----------", "onActivityResult: " + selectCity);
-                if(!"1".equals(selectCity)){
+              //  Log.i("----------", "onActivityResult: " + selectCity);
+                if(!"地理位置".equals(selectCity)){
                     request_addr = selectCity;
                     refreshData("1");
                     tv_addr_selected.setText(selectCity);
                     tv_addr_selected1.setText(selectCity);
-                    Log.i("----------", "onActivityResult: " + selectCity);
+                    //Log.i("----------", "onActivityResult:1 " + selectCity);
                 }else{
                     request_addr = "";
                     refreshData("1");
                     tv_addr_selected.setText("地理位置");
                     tv_addr_selected1.setText("地理位置");
-                    Log.i("----------", "onActivityResult: " + "地理位置");
+                  //  Log.i("----------", "onActivityResult:2 " + "地理位置");
                 }
 
 
@@ -565,6 +565,8 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         String ud_addr = request_addr;
         //排序类型
         String order = request_order;
+
+       // Log.i("qaz", "refreshData: 2" + ud_addr + ud_post + ud_post + ud_profession + type );
         protocal.getCircleSelectedList(ub_id, page, type, ud_profession, ud_post, ud_addr, order, new CircleProtocal.CircleListener() {
             @Override
             public void circleResponse(CircleBean response) {
@@ -674,7 +676,10 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
 
         }else if (v == circle_address || v == circle_address1){
             currentSelected = ADDRESS;
+            String city = tv_addr_selected.getText().toString();
             Intent intent = new Intent(this, SelectCityActivity.class);
+            intent.putExtra("city" ,city);
+            Log.i("qza", "onClick: " +  city);
             startActivityForResult(intent,CITY_REQUEST_CODE);
         }else if (v == circle_more || v == circle_more1){
 
@@ -685,7 +690,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 moreData.add("按订阅量排序");
             }
             spinerPopWindow = new SpinerPopWindow(CircleUI.this,moreData,request_order);
-            spinerPopWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+            spinerPopWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
 //          spinerPopWindow.showAsDropDown(circle_more);
             spinerPopWindow.showAsDropDown(v);
 
@@ -694,7 +699,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 public void setSpinerInterface( int position) {
                     spinerPopWindow.dismiss();
                     request_order = position + "";
-                    Log.i("qaz", "setSpinerInterface: " + request_order );
+                   // Log.i("qaz", "setSpinerInterface: " + request_order );
                     //请求筛选过的数据
                     refreshData("1");
 

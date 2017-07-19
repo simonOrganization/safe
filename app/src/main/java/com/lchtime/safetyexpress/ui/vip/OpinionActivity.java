@@ -195,6 +195,7 @@ public class OpinionActivity extends BaseUI implements PopupWindow.OnDismissList
     protected void clickEvent() {
         if (protocal == null){
             protocal = new OpinionProtocal();
+            finish();
         }
 
         if (updataImageUtils == null){

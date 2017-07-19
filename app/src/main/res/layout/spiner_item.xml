@@ -6,17 +6,18 @@
 
     >
     <RelativeLayout
-        android:layout_width="@dimen/dm200"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white">
     <TextView
         android:id="@+id/spiner_item_tv"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm048"
-        android:gravity="center"
+        android:gravity="right"
+        android:paddingTop="@dimen/dm010"
         android:textSize="@dimen/dm022"
         android:textColor="@color/black"
-        android:layout_marginLeft="@dimen/dm020"
+        android:layout_marginRight="@dimen/dm020"
        />
     </RelativeLayout>
 </LinearLayout>
