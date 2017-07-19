@@ -99,19 +99,19 @@
     <EditText
         android:id="@+id/edit_note"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm064"
+        android:layout_height="@dimen/dm056"
         android:background="@null"
         android:hint="搜索昵称/手机号"
         android:singleLine="true"
         android:textColorHint="#b3b3b3"
         android:drawableLeft="@drawable/grey_search"
         android:drawablePadding="@dimen/dm020"
-        android:textSize="@dimen/dm024"
+        android:textSize="@dimen/dm020"
         android:layout_marginLeft="@dimen/dm020"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm020"
+        android:layout_height="@dimen/dm016"
         android:background="@color/page_color"/>
 
     <RelativeLayout
@@ -119,12 +119,12 @@
        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_gravity="center_vertical"
-        android:layout_height="@dimen/dm112">
+        android:layout_height="@dimen/dm089">
 
             <RelativeLayout
                 android:id="@+id/search_container"
-                android:layout_width="@dimen/dm080"
-                android:layout_height="@dimen/dm080"
+                android:layout_width="@dimen/dm064"
+                android:layout_height="@dimen/dm064"
                 android:layout_marginLeft="@dimen/dm020"
                 android:layout_marginTop="@dimen/dm008"
                 android:layout_alignParentLeft="true">

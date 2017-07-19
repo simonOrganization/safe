@@ -15,7 +15,7 @@
         <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
             android:id="@+id/iv_recommend_img"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dm300"
+            android:layout_height="@dimen/dm240"
             android:visibility="gone"/>
 
         <RelativeLayout
@@ -29,7 +29,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dm020"
+                    android:layout_height="@dimen/dm016"
                     android:background="@color/line_big" />
 
                 <WebView
@@ -45,7 +45,7 @@
                     <LinearLayout
                         android:id="@+id/bottom_zan_or_common"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dm098"
+                        android:layout_height="@dimen/dm078"
                         android:background="@color/white"
                         android:orientation="vertical"
                         android:visibility="visible">
@@ -65,7 +65,7 @@
                             <TextView
                                 android:id="@+id/tv_common"
                                 android:layout_width="0dp"
-                                android:layout_height="@dimen/dm060"
+                                android:layout_height="@dimen/dm048"
                                 android:layout_marginLeft="@dimen/dm020"
                                 android:layout_marginRight="@dimen/dm020"
                                 android:layout_weight="1"
@@ -75,29 +75,29 @@
                                 android:paddingRight="@dimen/dm020"
                                 android:gravity="center_vertical"
                                 android:textColor="@color/title_999"
-                                android:textSize="@dimen/dm026" />
+                                android:textSize="@dimen/dm022" />
 
                             <RelativeLayout
                                 android:id="@+id/rl_news_detail_comment"
-                                android:layout_width="@dimen/dm070"
-                                android:layout_height="@dimen/dm070"
+                                android:layout_width="@dimen/dm056"
+                                android:layout_height="@dimen/dm056"
                                 android:layout_marginRight="@dimen/dm010">
 
                                 <ImageView
-                                    android:layout_width="@dimen/dm040"
-                                    android:layout_height="@dimen/dm040"
+                                    android:layout_width="@dimen/dm032"
+                                    android:layout_height="@dimen/dm032"
                                     android:layout_centerInParent="true"
                                     android:src="@drawable/circle_item_talk" />
 
                                 <TextView
                                     android:visibility="gone"
                                     android:id="@+id/tv_news_detail_comment"
-                                    android:layout_width="@dimen/dm030"
-                                    android:layout_height="@dimen/dm030"
+                                    android:layout_width="@dimen/dm024"
+                                    android:layout_height="@dimen/dm024"
                                     android:layout_alignParentRight="true"
                                     android:gravity="center"
                                     android:text="26"
-                                    android:textSize="@dimen/dm022"
+                                    android:textSize="@dimen/dm018"
                                     android:textColor="@color/white"
                                     android:background="@drawable/bubble"/>
 
@@ -105,14 +105,14 @@
 
                             <RelativeLayout
                                 android:id="@+id/ll_news_detail_zan"
-                                android:layout_width="@dimen/dm070"
-                                android:layout_height="@dimen/dm070"
-                                android:paddingRight="@dimen/dm010">
+                                android:layout_width="@dimen/dm056"
+                                android:layout_height="@dimen/dm056"
+                                android:paddingRight="@dimen/dm008">
 
                                 <CheckBox
                                     android:id="@+id/cb_news_detail_zan"
-                                    android:layout_width="@dimen/dm040"
-                                    android:layout_height="@dimen/dm040"
+                                    android:layout_width="@dimen/dm032"
+                                    android:layout_height="@dimen/dm032"
                                     android:button="@null"
                                     android:layout_centerVertical="true"
                                     android:text="@null"
@@ -120,12 +120,12 @@
                                 <TextView
                                     android:visibility="gone"
                                     android:id="@+id/tv_news_detail_zan"
-                                    android:layout_width="@dimen/dm030"
-                                    android:layout_height="@dimen/dm030"
+                                    android:layout_width="@dimen/dm024"
+                                    android:layout_height="@dimen/dm024"
                                     android:layout_alignParentRight="true"
                                     android:gravity="center"
                                     android:text="26"
-                                    android:textSize="@dimen/dm022"
+                                    android:textSize="@dimen/dm018"
                                     android:textColor="@color/white"
                                     android:background="@drawable/bubble"/>
 
@@ -138,14 +138,14 @@
 
                             <RelativeLayout
                                 android:id="@+id/ll_news_detail_cai"
-                                android:layout_width="@dimen/dm070"
-                                android:layout_height="@dimen/dm070"
-                                android:paddingRight="@dimen/dm010">
+                                android:layout_width="@dimen/dm056"
+                                android:layout_height="@dimen/dm056"
+                                android:paddingRight="@dimen/dm008">
 
                                 <CheckBox
                                     android:id="@+id/cb_news_detail_cai"
-                                    android:layout_width="@dimen/dm040"
-                                    android:layout_height="@dimen/dm040"
+                                    android:layout_width="@dimen/dm032"
+                                    android:layout_height="@dimen/dm032"
                                     android:button="@null"
                                     android:text="@null"
                                     android:layout_centerVertical="true"
@@ -154,12 +154,12 @@
                                 <TextView
                                     android:visibility="gone"
                                     android:id="@+id/tv_news_detail_fd"
-                                    android:layout_width="@dimen/dm030"
-                                    android:layout_height="@dimen/dm030"
+                                    android:layout_width="@dimen/dm024"
+                                    android:layout_height="@dimen/dm024"
                                     android:layout_alignParentRight="true"
                                     android:gravity="center"
                                     android:text="26"
-                                    android:textSize="@dimen/dm022"
+                                    android:textSize="@dimen/dm018"
                                     android:textColor="@color/white"
                                     android:background="@drawable/bubble"/>
 
@@ -169,12 +169,12 @@
                                 android:id="@+id/ll_collect"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingRight="@dimen/dm020">
+                                android:paddingRight="@dimen/dm016">
 
                                 <CheckBox
                                     android:id="@+id/cb_news_detail_collect"
-                                    android:layout_width="@dimen/dm040"
-                                    android:layout_height="@dimen/dm040"
+                                    android:layout_width="@dimen/dm032"
+                                    android:layout_height="@dimen/dm032"
                                     android:button="@null"
                                     android:text="@null"
                                     android:background="@drawable/news_collect_selector" />
@@ -191,7 +191,7 @@
                         android:id="@+id/rl_pl"
                         android:visibility="gone"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dm300"
+                        android:layout_height="@dimen/dm240"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
@@ -206,7 +206,7 @@
                             android:layout_marginLeft="@dimen/dm020"
                             android:layout_marginTop="@dimen/dm020"
                             android:text="取消"
-                            android:textSize="@dimen/dm028"
+                            android:textSize="@dimen/dm024"
 
                             />
                         <TextView
@@ -215,9 +215,9 @@
                             android:layout_centerHorizontal="true"
                             android:layout_alignParentTop="true"
                             android:layout_marginRight="@dimen/dm020"
-                            android:layout_marginTop="@dimen/dm015"
+                            android:layout_marginTop="@dimen/dm012"
                             android:text="写评论"
-                            android:textSize="@dimen/dm032"
+                            android:textSize="@dimen/dm028"
                             android:textColor="@color/black"/>
                         <TextView
                             android:id="@+id/tv_confirm"
@@ -226,25 +226,25 @@
                             android:layout_alignParentRight="true"
                             android:layout_alignParentTop="true"
                             android:layout_marginRight="@dimen/dm020"
-                            android:layout_marginTop="@dimen/dm017"
+                            android:layout_marginTop="@dimen/dm014"
                             android:text="发送"
                             android:padding="@dimen/dm005"
-                            android:textSize="@dimen/dm028" />
+                            android:textSize="@dimen/dm024" />
 
                         <EditText
                             android:id="@+id/et_common"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentBottom="true"
-                            android:layout_marginBottom="@dimen/dm020"
+                            android:layout_marginBottom="@dimen/dm016"
                             android:layout_marginLeft="@dimen/dm020"
                             android:layout_marginRight="@dimen/dm020"
-                            android:layout_marginTop="@dimen/dm070"
+                            android:layout_marginTop="@dimen/dm056"
                             android:background="@drawable/bg_comment"
                             android:gravity="top"
-                            android:padding="@dimen/dm010"
+                            android:padding="@dimen/dm008"
                             android:textColorHint="@color/title_999"
-                            android:textSize="@dimen/dm028" />
+                            android:textSize="@dimen/dm024" />
 
                     </RelativeLayout>
                 </RelativeLayout>

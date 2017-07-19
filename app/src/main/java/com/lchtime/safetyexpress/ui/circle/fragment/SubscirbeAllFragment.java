@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -227,8 +228,11 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
                 }
                 break;
             case R.id.subscribe_all_address:
+                String city = tv_adddy_addr.getText().toString();
                 currentSelected = ADDRESS;
                 Intent intent = new Intent(getActivity(), SelectCityActivity.class);
+                intent.putExtra("city" ,city);
+                Log.i("qza", "onClick: " +  city);
                 startActivityForResult(intent,CITY_REQUEST_CODE);
                 break;
         }

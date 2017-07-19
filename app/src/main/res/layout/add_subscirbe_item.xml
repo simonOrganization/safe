@@ -4,14 +4,14 @@
     android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm130"
+        android:layout_height="@dimen/dm104"
         android:background="@color/white"
         android:layout_marginLeft="@dimen/dm020"
         android:layout_marginRight="@dimen/dm020">
         <com.lchtime.safetyexpress.views.CircleImageView
             android:id="@+id/add_subscribe_item_image"
-            android:layout_width="@dimen/dm100"
-            android:layout_height="@dimen/dm100"
+            android:layout_width="@dimen/dm080"
+            android:layout_height="@dimen/dm080"
             android:adjustViewBounds="true"
             android:layout_centerVertical="true"
             android:scaleType="centerCrop"
@@ -25,12 +25,12 @@
             android:orientation="vertical"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/dm010"
-            android:layout_marginTop="@dimen/dm020"
+            android:layout_marginTop="@dimen/dm016"
             >
             <CheckBox
                 android:id="@+id/add_subscirbe_item_but"
-                android:layout_width="@dimen/dm090"
-                android:layout_height="@dimen/dm030"
+                android:layout_width="@dimen/dm081"
+                android:layout_height="@dimen/dm024"
                 android:text="@null"
                 android:button="@null"
                 android:gravity="center"
@@ -40,10 +40,10 @@
                 android:id="@+id/add_subscribe_item_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dm022"
+                android:textSize="@dimen/dm018"
                 android:textColor="@color/title_999"
                 android:text="0已订阅"
-                android:layout_marginTop="@dimen/dm010"
+                android:layout_marginTop="@dimen/dm008"
                 />
 
         </LinearLayout>
@@ -60,16 +60,16 @@
                 android:id="@+id/add_subscribe_item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dm026"
+                android:textSize="@dimen/dm022"
                 android:textColor="@color/title_333"
                 android:text=""/>
 
             <TextView
                 android:id="@+id/add_subscribe_item_content"
-                android:layout_marginTop="@dimen/dm010"
+                android:layout_marginTop="@dimen/dm008"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dm022"
+                android:textSize="@dimen/dm018"
                 android:textColor="@color/title_999"
                 android:ellipsize="end"
                 android:singleLine="true"

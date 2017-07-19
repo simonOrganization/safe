@@ -36,13 +36,13 @@
                 android:textSize="@dimen/dm024" />
             <RelativeLayout
                 android:layout_width="@dimen/dm360"
-                android:layout_height="@dimen/dm160"
+                android:layout_height="@dimen/dm240"
                 android:layout_gravity="center_horizontal">
 
             <ImageView
                 android:id="@+id/home_new_video_item_video"
                 android:layout_width="@dimen/dm360"
-                android:layout_height="@dimen/dm160"
+                android:layout_height="@dimen/dm240"
                 android:layout_marginTop="@dimen/dm016"
                 android:background="@color/grey"
                 android:adjustViewBounds="true"

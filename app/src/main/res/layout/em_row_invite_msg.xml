@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dm154"
+    android:layout_height="@dimen/dm098"
     android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm123"
+        android:layout_height="@dimen/dm098"
         >
 
         <RelativeLayout
             android:id="@+id/avatar_container"
-            android:layout_width="@dimen/dm080"
-            android:layout_height="@dimen/dm080"
+            android:layout_width="@dimen/dm064"
+            android:layout_height="@dimen/dm064"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/dm020"
             android:layout_centerVertical="true"
@@ -20,16 +20,16 @@
 
             <ImageView
                 android:id="@+id/avatar"
-                android:layout_width="@dimen/dm080"
-                android:layout_height="@dimen/dm080"
+                android:layout_width="@dimen/dm064"
+                android:layout_height="@dimen/dm064"
                 android:src="@drawable/circle_user_image"
                 android:layout_alignParentTop="true"/>
         </RelativeLayout>
 
         <CheckBox
             android:id="@+id/user_state"
-            android:layout_width="@dimen/dm080"
-            android:layout_height="@dimen/dm040"
+            android:layout_width="@dimen/dm072"
+            android:layout_height="@dimen/dm032"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/dm020"
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/title_333"
                 android:text="1111111111111"
-                android:textSize="@dimen/dm030" />
+                android:textSize="@dimen/dm026" />
 
             <!--
              <TextView
@@ -86,7 +86,7 @@
                 android:singleLine="true"
                 android:textColor="@color/title_999"
                 android:text="111111111111122211111111111"
-                android:textSize="@dimen/dm024" />
+                android:textSize="@dimen/dm020" />
 
         </LinearLayout>
 

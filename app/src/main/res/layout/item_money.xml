@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/dm104">
     <RelativeLayout
-        android:padding="@dimen/dm018"
+        android:padding="@dimen/dm015"
         android:id="@+id/rl_money_zhifubao"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm104"
@@ -29,7 +29,7 @@
                 android:text="提现到支付宝"/>
 
             <TextView
-                android:layout_marginTop="@dimen/dm016"
+                android:layout_marginTop="@dimen/dm012"
                 android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
 
         <LinearLayout
             android:layout_alignParentRight="true"
-
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -55,7 +55,7 @@
 
             <ImageView
                 android:layout_width="@dimen/dm024"
-                android:layout_height="@dimen/dm024"
+                android:layout_height="@dimen/dm022"
                 android:src="@drawable/right_indicator"
                 android:layout_marginLeft="@dimen/dm002"/>
         </LinearLayout>

@@ -9,12 +9,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/white"
-        android:paddingTop="@dimen/dm020"
-        android:paddingBottom="@dimen/dm020">
+        android:paddingTop="@dimen/dm016"
+        android:paddingBottom="@dimen/dm016">
         <com.lchtime.safetyexpress.views.CircleImageView
             android:id="@+id/iv_circle_photo"
-            android:layout_width="@dimen/dm060"
-            android:layout_height="@dimen/dm060"
+            android:layout_width="@dimen/dm048"
+            android:layout_height="@dimen/dm048"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:background="@drawable/circle_user_image"/>
@@ -22,13 +22,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dm010"
-            android:paddingTop="@dimen/dm010">
+            android:paddingTop="@dimen/dm008">
             <TextView
                 android:id="@+id/circle_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="落日西风"
-                android:textSize="@dimen/dm022"
+                android:textSize="@dimen/dm018"
                 android:textColor="@color/red"/>
 
             <TextView
@@ -36,10 +36,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="北京华视远大公司"
-                android:textSize="@dimen/dm022"
+                android:textSize="@dimen/dm018"
                 android:textColor="@color/black"
                 android:layout_below="@id/circle_item_title"
-                android:layout_marginTop="@dimen/dm020"/>
+                android:layout_marginTop="@dimen/dm016"/>
 
 
             <TextView
@@ -47,10 +47,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="超爱戴比尔斯家的产品了专柜正品一比一独家开模制作这款耳钉厚壁结实，佩戴大气上档次成熟技术水平肯定减肥快捷键风光好"
-                android:textSize="@dimen/dm022"
+                android:textSize="@dimen/dm018"
                 android:textColor="@color/title_333"
                 android:layout_below="@id/circle_item_company_name"
-                android:layout_marginTop="@dimen/dm010"/>
+                android:layout_marginTop="@dimen/dm008"/>
             <ImageView
                 android:id="@+id/circle_item_shipin"
                 android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
                 android:scaleType="fitXY"
                 android:background="@color/line_color"
                 android:gravity="left"
-                android:layout_marginTop="@dimen/dm010"
+                android:layout_marginTop="@dimen/dm008"
                 android:layout_below="@id/circle_item_content" />
 
         </RelativeLayout>

@@ -18,11 +18,11 @@
             android:id="@+id/tv_picture_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dm030"
+            android:layout_margin="@dimen/dm024"
             android:gravity="center"
             android:text="从手机相册中选择"
             android:textColor="@color/title_666"
-            android:textSize="@dimen/dm026" />
+            android:textSize="@dimen/dm022" />
 
         <View
             android:layout_width="match_parent"
@@ -33,11 +33,11 @@
             android:id="@+id/tv_takepic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dm030"
+            android:layout_margin="@dimen/dm024"
             android:gravity="center"
             android:text="拍摄"
             android:textColor="@color/title_666"
-            android:textSize="@dimen/dm026" />
+            android:textSize="@dimen/dm022" />
 
         <View
             android:layout_width="match_parent"
@@ -47,11 +47,11 @@
             android:id="@+id/tv_cancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dm030"
+            android:layout_margin="@dimen/dm024"
             android:gravity="center"
             android:text="取消"
             android:textColor="@color/title_666"
-            android:textSize="@dimen/dm026" />
+            android:textSize="@dimen/dm022" />
 
 
     </LinearLayout>

@@ -8,14 +8,14 @@
     <com.lchtime.safetyexpress.ui.chat.hx.widget.ContactItemView
         android:id="@+id/application_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dm096"
         app:contactItemImage="@drawable/new_friends"
         app:contactItemName="新的朋友" />
 
     <com.lchtime.safetyexpress.ui.chat.hx.widget.ContactItemView
         android:id="@+id/group_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dm096"
         app:contactItemImage="@drawable/my_group"
         app:contactItemName="群聊" />
 

@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm260"
+        android:layout_height="@dimen/dm208"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/dm032"
         android:paddingRight="@dimen/dm032"
@@ -18,8 +18,8 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
                 <ImageView
-                    android:layout_width="@dimen/dm100"
-                    android:layout_height="@dimen/dm100"
+                    android:layout_width="@dimen/dm080"
+                    android:layout_height="@dimen/dm080"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     android:background="@drawable/circle_text"/>
@@ -27,8 +27,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="文字"
-                android:layout_marginTop="@dimen/dm010"
-                android:textSize="@dimen/dm022"
+                android:layout_marginTop="@dimen/dm008"
+                android:textSize="@dimen/dm018"
                 android:textColor="@color/title_666"/>
         </LinearLayout>
         <LinearLayout
@@ -39,8 +39,8 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
             <ImageView
-                android:layout_width="@dimen/dm100"
-                android:layout_height="@dimen/dm100"
+                android:layout_width="@dimen/dm080"
+                android:layout_height="@dimen/dm080"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:background="@drawable/circle_camera"/>
@@ -48,8 +48,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="拍摄"
-                android:layout_marginTop="@dimen/dm010"
-                android:textSize="@dimen/dm022"
+                android:layout_marginTop="@dimen/dm008"
+                android:textSize="@dimen/dm018"
                 android:textColor="@color/title_666"/>
         </LinearLayout>
         <LinearLayout
@@ -60,8 +60,8 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
             <ImageView
-                android:layout_width="@dimen/dm100"
-                android:layout_height="@dimen/dm100"
+                android:layout_width="@dimen/dm080"
+                android:layout_height="@dimen/dm080"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:background="@drawable/circle_question"/>
@@ -69,14 +69,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="提问"
-                android:layout_marginTop="@dimen/dm010"
-                android:textSize="@dimen/dm022"
+                android:layout_marginTop="@dimen/dm008"
+                android:textSize="@dimen/dm018"
                 android:textColor="@color/title_666"/>
         </LinearLayout>
         </LinearLayout>
         <View
             android:background="@color/page_color"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dm120"/>
+            android:layout_height="@dimen/dm096"/>
 
 </LinearLayout>

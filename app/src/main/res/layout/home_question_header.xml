@@ -7,23 +7,23 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm020"
+        android:layout_height="@dimen/dm016"
         android:background="@color/line_big" />
 
     <LinearLayout
         android:id="@+id/ll_home_question"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dm120"
         android:gravity="center_vertical"
-        android:layout_marginTop="@dimen/dm010"
-        android:layout_marginBottom="@dimen/dm010"
-        android:padding="@dimen/dm020"
+        android:layout_marginTop="@dimen/dm008"
+        android:layout_marginBottom="@dimen/dm008"
+        android:padding="@dimen/dm016"
         android:orientation="horizontal">
 
         <com.lchtime.safetyexpress.views.CircleImageView
             android:id="@+id/cv_wd_photo"
-            android:layout_width="@dimen/dm080"
-            android:layout_height="@dimen/dm080"
+            android:layout_width="@dimen/dm072"
+            android:layout_height="@dimen/dm072"
             android:background="@drawable/circle_user_image"/>
 
         <TextView
@@ -38,15 +38,15 @@
             android:textColor="@color/title_333"/>
 
         <ImageView
-            android:layout_width="@dimen/dm035"
-            android:layout_height="@dimen/dm030"
+            android:layout_width="@dimen/dm028"
+            android:layout_height="@dimen/dm024"
             android:src="@drawable/right_next" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm020"
+        android:layout_height="@dimen/dm016"
         android:background="@color/line_big" />
 
 </LinearLayout>

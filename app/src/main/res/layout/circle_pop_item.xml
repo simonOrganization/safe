@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm060"
+        android:layout_height="@dimen/dm048"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingRight="@dimen/dm020">
@@ -12,15 +12,15 @@
         android:id="@+id/circle_pop_tv"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:textSize="@dimen/dm020"
+        android:textSize="@dimen/dm016"
         android:textColor="@color/black"
         android:text="报的是(BRITAX)"
         android:gravity="center_vertical"
         />
         <ImageView
             android:id="@+id/circle_pop_image"
-            android:layout_width="@dimen/dm020"
-            android:layout_height="@dimen/dm020"
+            android:layout_width="@dimen/dm016"
+            android:layout_height="@dimen/dm016"
             android:background="@drawable/circle_pop_image"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"

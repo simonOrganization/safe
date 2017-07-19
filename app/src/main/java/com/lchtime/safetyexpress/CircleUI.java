@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -336,9 +337,18 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         if (requestCode == CITY_REQUEST_CODE){
             if (data != null) {
                 String selectCity = data.getStringExtra("city");
-                request_addr = selectCity;
-                refreshData("1");
-                tv_addr_selected.setText(selectCity);
+                Log.i("----------", "onActivityResult: " + selectCity);
+                if(!"1".equals(selectCity)){
+                    request_addr = selectCity;
+                    refreshData("1");
+                    tv_addr_selected.setText(selectCity);
+                    Log.i("----------", "onActivityResult: " + selectCity);
+                }else{
+                    request_addr = "";
+                    refreshData("1");
+                    tv_addr_selected.setText("地理位置");
+                    Log.i("----------", "onActivityResult: " + "地理位置");
+                }
             }
         }
     }

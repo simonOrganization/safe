@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dm140"
+    android:layout_height="@dimen/dm112"
     android:gravity="center_vertical" >
 
     <com.lchtime.safetyexpress.views.CircleImageView
         android:id="@+id/avatar"
-        android:layout_width="@dimen/dm080"
-        android:layout_height="@dimen/dm080"
+        android:layout_width="@dimen/dm064"
+        android:layout_height="@dimen/dm064"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="@dimen/dm020"
         android:layout_marginTop="@dimen/dm016"

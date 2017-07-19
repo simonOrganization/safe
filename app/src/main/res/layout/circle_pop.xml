@@ -11,7 +11,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/circle_pop_rc"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm200"
+        android:layout_height="@dimen/dm160"
         android:layout_marginRight="@dimen/dm010"
         android:layout_marginLeft="@dimen/dm010"
         />
@@ -22,7 +22,7 @@
         />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm080"
+        android:layout_height="@dimen/dm064"
         android:orientation="horizontal">
         <Button
             android:id="@+id/circle_pop_restart"
@@ -31,7 +31,7 @@
             android:layout_weight="1"
             android:text="重置"
             android:textColor="@color/black"
-            android:textSize="@dimen/dm020"
+            android:textSize="@dimen/dm016"
             android:gravity="center"
             android:background="@null"/>
         <Button
@@ -41,7 +41,7 @@
             android:layout_weight="1"
             android:text="确定"
             android:textColor="@color/white"
-            android:textSize="@dimen/dm020"
+            android:textSize="@dimen/dm016"
             android:gravity="center"
             android:background="@color/red"/>
     </LinearLayout>
