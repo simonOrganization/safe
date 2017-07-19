@@ -137,6 +137,8 @@ public class ConversationListFragment extends MyConversationListFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 EMConversation conversation = conversationListView.getItem(position);
                 String username = conversation.conversationId();
+                String s = conversation.getExtField();
+                String s2 = conversation.getMessageAttachmentPath();
                 if (username.equals(EMClient.getInstance().getCurrentUser()))
                     Toast.makeText(getActivity(), R.string.Cant_chat_with_yourself, Toast.LENGTH_SHORT).show();
                 else {

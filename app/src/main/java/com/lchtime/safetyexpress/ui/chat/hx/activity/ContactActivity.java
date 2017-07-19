@@ -57,6 +57,9 @@ import com.lchtime.safetyexpress.ui.login.LoginUI;
 
 import java.util.List;
 
+/**
+ * 环信联系人界面
+ */
 @SuppressLint("NewApi")
 public class ContactActivity extends BaseActivity implements View.OnClickListener {
 

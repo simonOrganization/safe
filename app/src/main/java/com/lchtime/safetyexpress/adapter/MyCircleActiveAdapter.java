@@ -63,7 +63,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
             final MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);
 
             //如果有图片
-            if (TextUtils.isEmpty(bean.qc_video)) {
+            if (TextUtils.isEmpty(bean.qc_video) || bean.qc_video.equals("0")) {
                 ((MyCircleActiveHodler) holder).circleItemShipin.setVisibility(View.GONE);
                 ((MyCircleActiveHodler) holder).circleItemImageRc.setVisibility(View.VISIBLE);
                 //一片张图
@@ -145,6 +145,12 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
 
     }
 
+    /**
+     * 删除圈子
+     * @param holder
+     * @param position
+     * @param protocal
+     */
     private void deleteCircle(MyCircleActiveHodler holder, final int position, CircleProtocal protocal) {
         ((MyCircleActiveActivity)context).setIsLoading(true);
         MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);

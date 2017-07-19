@@ -17,6 +17,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,9 +41,17 @@ import com.hyphenate.easeui.bean.EaseInitBean;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.widget.EaseSidebar;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.ui.chat.hx.Constant;
 import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.BaseActivity;
+import com.lchtime.safetyexpress.ui.chat.hx.activity.protocal.GetInfoProtocal;
+import com.lchtime.safetyexpress.ui.chat.hx.adapter.AllPeopleAdapter;
+import com.lchtime.safetyexpress.ui.chat.hx.bean.InfoBean;
+import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
+import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.JsonUtils;
+import com.lchtime.safetyexpress.utils.SpTools;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,12 +76,15 @@ public class GroupPickDeleteContactsActivity extends BaseActivity implements Vie
 	private ImageButton clearSearch;
 	private ListView listView;
 	private Map<String,ContactBean> myMap = new HashMap<>();
+	private GetInfoProtocal mProtocal;
+	private String mUb_id;
+	private String mGroupId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.em_activity_group_pick_contacts);
-		String groupId = getIntent().getStringExtra("groupId");
+		mGroupId = getIntent().getStringExtra("groupId");
 
 		initTitle();
 
@@ -81,11 +93,11 @@ public class GroupPickDeleteContactsActivity extends BaseActivity implements Vie
 		initListener();
 
 
-		if (groupId == null) {// create new group
+		if (mGroupId == null) {// create new group
 			isCreatingNewGroup = true;
 		} else {
 			// get members of the group
-			EMGroup group = EMClient.getInstance().groupManager().getGroup(groupId);
+			EMGroup group = EMClient.getInstance().groupManager().getGroup(mGroupId);
 			existMembers = group.getMembers();
 		}
 		if(existMembers == null) {
@@ -138,6 +150,25 @@ public class GroupPickDeleteContactsActivity extends BaseActivity implements Vie
 				CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkbox);
 				checkBox.toggle();
 
+			}
+		});
+	}
+
+	private void initData() {
+		if (mProtocal == null){
+			mProtocal = new GetInfoProtocal();
+		}
+		mUb_id = SpTools.getString(this, Constants.userId,"");
+		if (TextUtils.isEmpty(mUb_id) || TextUtils.isEmpty(mGroupId)){
+			CommonUtils.toastMessage("没有获取到群组信息");
+			return;
+		}
+		mProtocal.getQuners(mUb_id, mGroupId, new AddCommandProtocal.NormalListener() {
+			@Override
+			public void normalResponse(Object response) {
+				InfoBean bean = (InfoBean) JsonUtils.stringToObject((String) response, InfoBean.class);
+				AllPeopleAdapter adapter = new AllPeopleAdapter(GroupPickDeleteContactsActivity.this ,1 , bean.quners);
+				listView.setAdapter(adapter);
 			}
 		});
 	}

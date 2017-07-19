@@ -591,4 +591,54 @@ public class GetInfoProtocal {
                 });
     }
 
+    /**
+     * 获取已经加入的群组信息
+     * @param ub_id
+     */
+    public void getJoinGroups(String ub_id , final AddCommandProtocal.NormalListener listener){
+        if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
+            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.normalResponse(null);
+            return;
+        }
+        String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
+                .concat(MyApplication.getContext().getResources().getString(R.string.getqunlist));
+
+        OkHttpUtils.post()
+                .url(url)
+                .addParams("ub_id" , ub_id)
+                .build().execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int i) {
+                if (listener != null){
+                    listener.normalResponse(null);
+                }
+            }
+
+            @Override
+            public void onResponse(String response , int i) {
+                if (TextUtils.isEmpty(response)) {
+                    listener.normalResponse(null);
+                    return;
+                }
+                if (listener != null) {
+                    listener.normalResponse(response);
+                }
+            }
+        });
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

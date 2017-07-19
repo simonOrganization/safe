@@ -20,13 +20,16 @@ import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
 import com.lchtime.safetyexpress.bean.QzContextBean;
+import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.ui.circle.CircleUI;
 import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
+import com.lchtime.safetyexpress.ui.vip.MyCircleActiveActivity;
 import com.lchtime.safetyexpress.ui.vip.fragment.CircleFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ImageUtils;
@@ -48,10 +51,11 @@ public class CircleAdapter extends RecyclerView.Adapter  {
     private Activity context;
     private List<QzContextBean> circleOneList;
     private boolean isCircle = false;
-
+    private String ub_id;
     public CircleAdapter(Activity context, List<QzContextBean> circleOneList) {
         this.context = context;
         this.circleOneList = circleOneList;
+        ub_id = SpTools.getString(context , Constants.userId , "");
     }
 
     private boolean isShowDy = true;
@@ -75,7 +79,7 @@ public class CircleAdapter extends RecyclerView.Adapter  {
     }
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         Log.i("---------------",position + "");
 //        holder.itemView.setTag(position);
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
@@ -230,10 +234,53 @@ public class CircleAdapter extends RecyclerView.Adapter  {
                     context.startActivity(intent);
                 }
             });
+            //如果是本人发的圈子
+            if(bean.qc_ub_id.equals(ub_id)){
+                ((CircleHodler) holder).tv_delete.setVisibility(View.VISIBLE);
+                ((CircleHodler) holder).tv_delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        deleteCircle(position  , bean.qc_id , protocal);
+                    }
+                });
+            }else{
+                ((CircleHodler) holder).tv_delete.setVisibility(View.GONE);
+            }
+
 
         }
 
 
+    }
+
+
+    /**
+     * 删除圈子
+     */
+    private void deleteCircle(final int position , String qc_id , CircleProtocal protocal) {
+        //MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);
+        String userid = SpTools.getString(context, Constants.userId, "");
+        if (TextUtils.isEmpty(userid)) {
+            CommonUtils.toastMessage("没有登陆！！");
+            //holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
+            return;
+        }
+        protocal.getDeleteCircle(userid, qc_id, new CircleProtocal.NormalListener() {
+            @Override
+            public void normalResponse(Object response) {
+                if (response == null){
+                    CommonUtils.toastMessage("删除圈子失败，请稍后再试");
+                    ((MyCircleActiveActivity)context).setIsLoading(false);
+                    return;
+                }
+                Result bean = (Result) response;
+                CommonUtils.toastMessage(bean.result.info);
+                circleOneList.remove(position);
+                ((CircleUI)context).notifyDataSetChange();
+                //notifyDataSetChanged();
+                //((MyCircleActiveActivity)context).setIsLoading(false);
+            }
+        });
     }
     private boolean greate = false;
     private boolean down = false;
@@ -392,6 +439,8 @@ public class CircleAdapter extends RecyclerView.Adapter  {
         CheckBox rb_delete;
         @BindView(R.id.circle_item_shipin_1)
         RelativeLayout circle_item_shipin_1;
+        @BindView(R.id.tv_delete)
+        TextView tv_delete;
 
         @BindView(R.id.iv_recommend_play)
         ImageView iv_recommend_play;

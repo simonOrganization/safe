@@ -42,7 +42,7 @@ public class UpdataImageUtils {
 
     private int index;
     private UpdataPicListener mListener;
-    public void upDataPic(final Bitmap zoomBitMap, final String filePath, UpdataPicListener updataPicListener){
+    public void upDataPic(final String filePath, final DialogUtil dialog , UpdataPicListener updataPicListener){
         mListener = updataPicListener;
         final Context context = MyApplication.getContext();
         File file = new File(filePath);
@@ -58,10 +58,12 @@ public class UpdataImageUtils {
             @Override
             public void onError(Call call, Exception e, int id) {
                 Log.d("--------","response="+e);
+                dialog.dissmiss();
                 Toast.makeText(context,"上传头像失败，请重新上传", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onResponse(String response, int id) {
+                dialog.dissmiss();
                 Log.d("--------","response="+response);
                 if (mListener != null){
                     mListener.onResponse(response);

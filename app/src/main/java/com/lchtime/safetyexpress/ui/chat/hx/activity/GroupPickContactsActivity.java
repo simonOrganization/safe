@@ -16,6 +16,7 @@ package com.lchtime.safetyexpress.ui.chat.hx.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -43,6 +44,7 @@ import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.ui.chat.hx.Constant;
 import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -78,8 +80,6 @@ public class GroupPickContactsActivity extends BaseActivity implements View.OnCl
 		initView();
 
 		initListener();
-
-
 		if (groupId == null) {// create new group
 			isCreatingNewGroup = true;
 		} else {
@@ -123,7 +123,7 @@ public class GroupPickContactsActivity extends BaseActivity implements View.OnCl
 			}
 			EaseInitBean.map = myMap;
 		}
-		contactAdapter = new PickContactAdapter(this, R.layout.em_row_contact_with_checkbox, alluserList,EaseInitBean.map);
+		contactAdapter = new PickContactAdapter(this, R.layout.em_row_contact_with_checkbox, alluserList , EaseInitBean.map);
 		listView.setAdapter(contactAdapter);
 		((EaseSidebar) findViewById(R.id.sidebar)).setListView(listView);
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -198,13 +198,16 @@ public class GroupPickContactsActivity extends BaseActivity implements View.OnCl
 	 * 
 	 * @return
 	 */
-	private List<String> getToBeAddMembers() {
-		List<String> members = new ArrayList<String>();
+	private ArrayList<EaseUser> getToBeAddMembers() {
+		//List<String> members = new ArrayList<String>();
+		ArrayList<EaseUser> members = new ArrayList<EaseUser>();
 		int length = contactAdapter.isCheckedArray.length;
 		for (int i = 0; i < length; i++) {
 			String username = contactAdapter.getItem(i).getUsername();
-			if (contactAdapter.isCheckedArray[i] && !existMembers.contains(username)) {
-				members.add(username);
+
+			//if (contactAdapter.isCheckedArray[i] && !existMembers.contains(username)) {
+			if (contactAdapter.isCheckedArray[i]) {
+				members.add(contactAdapter.getItem(i));
 			}
 		}
 
@@ -214,8 +217,14 @@ public class GroupPickContactsActivity extends BaseActivity implements View.OnCl
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.ll_right){
-			List<String> var = getToBeAddMembers();
-			setResult(RESULT_OK, new Intent().putExtra("newmembers", var.toArray(new String[var.size()])));
+			ArrayList<EaseUser> members = getToBeAddMembers();
+            Intent intent = new Intent();
+
+			Bundle bundle = new Bundle();
+			//bundle.putParcelableArrayList("list",(ArrayList<User>)list);// 序列化,要注意
+			bundle.putParcelableArrayList("newmembers", members);
+			intent.putExtras(bundle);// 发送数据
+			setResult(RESULT_OK, intent);
 			finish();
 		}else if(v.getId() == R.id.ll_back){
 			finish();

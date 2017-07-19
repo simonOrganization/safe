@@ -62,7 +62,7 @@ import java.util.Map;
 
 /**
  * contact list
- * 
+ * 通讯录界面
  */
 public class ContactListFragment extends EaseContactListFragment {
 	
@@ -131,7 +131,7 @@ public class ContactListFragment extends EaseContactListFragment {
                             if (bean.friendlist == null || bean.friendlist.size() == 0){
                                 return;
                             }
-                            EaseInitBean.contactBean= bean;
+                            EaseInitBean.contactBean = bean;
 
 
                             Map<String, EaseUser> m = DemoHelper.getInstance().getContactList();

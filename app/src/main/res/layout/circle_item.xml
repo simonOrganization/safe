@@ -186,12 +186,23 @@
                     android:layout_marginLeft="@dimen/dm030"/>
                 <TextView
                     android:id="@+id/circle_item_low"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="09:30"
                     android:textSize="@dimen/dm020"
                     android:textColor="@color/title_999"
                     android:layout_marginLeft="@dimen/dm010"/>
+
+                <TextView
+                    android:id="@+id/tv_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete"
+                    android:visibility="gone"
+                    android:textSize="@dimen/dm020"
+                    android:textColor="@color/tab_color_true"/>
+
             </LinearLayout>
             <View
                 android:layout_below="@id/ll_other"

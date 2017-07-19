@@ -98,6 +98,8 @@
     <string name="friendInfo">index.php/sns/gzlist/friendInfo</string>
     <!--获取群成员-->
     <string name="getquners">index.php/sns/getquners</string>
+    <!--获取已加入的群列表信息-->
+    <string name="getqunlist">index.php/sns/qunlist/getqunlist</string>
     <!--创建群-->
     <string name="qun">index.php/sns/qun</string>
     <!--群管理员移除成员-->

@@ -41,6 +41,8 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
 import com.google.gson.Gson;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMContact;
+import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.easeui.widget.EaseAlertDialog;
 import com.hyphenate.easeui.widget.EaseExpandGridView;
@@ -57,6 +59,7 @@ import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal
 import com.lchtime.safetyexpress.ui.vip.SelectCityActivity;
 import com.lchtime.safetyexpress.utils.BitmapUtils;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.LoginInternetRequest;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
@@ -69,6 +72,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static android.media.CamcorderProfile.get;
 import static com.lchtime.safetyexpress.bean.InitInfo.professionBean;
 
 
@@ -103,13 +107,15 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 	private RelativeLayout addrItem;
 	private RelativeLayout loading;
 	private GridAdapter adapter;
-	public List<String> members;
+	//public List<String> members;
+	public List<EaseUser> members;
 	private List<ProfessionBean.ProfessionItemBean> professionList = new ArrayList<>();
 	private ArrayList<CardBean> cardItem = new ArrayList<>();
 	private GetInfoProtocal mProtocal;
 	private String mUserid;
 
 	private String type;
+	private DialogUtil mDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +149,9 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 		adapter = new GridAdapter(this, R.layout.em_grid, members);
 		mUserGridview.setAdapter(adapter);
 		type = "0";
+
+		mDialog = new DialogUtil(NewGroupActivity.this);
+
 		initData();
 		initListener();
 		initPopWindow();
@@ -275,11 +284,11 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 //			progressDialog.setCanceledOnTouchOutside(false);
 //			progressDialog.show();
 			if (data != null){
-				picData = data;
 				//回显选择的群成员图片
-				String[] datas = picData.getStringArrayExtra("newmembers");
+				ArrayList<EaseUser> datas = data.getParcelableArrayListExtra("newmembers");
 				members.clear();
-				members.addAll(Arrays.asList(datas));
+				members.addAll(datas);
+                //EaseUser user = members.get(0);
 				adapter.notifyDataSetChanged();
 			}
 
@@ -307,17 +316,19 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 
 
 
-	private class GridAdapter extends ArrayAdapter<String> {
+	private class GridAdapter extends ArrayAdapter<EaseUser> {
 
 		private int res;
 		public boolean isInDeleteMode;
-		private List<String> objects;
+		private List<EaseUser> objects;
 
-		public GridAdapter(Context context, int textViewResourceId, List<String> objects) {
+		public GridAdapter(Context context, int textViewResourceId, List<EaseUser> objects) {
 			super(context, textViewResourceId, objects);
 			this.objects = objects;
 			res = textViewResourceId;
 			isInDeleteMode = false;
+			//int getPaysum = 100;
+			//String transData = "{\"amt\":" + getPaysum + "}" ;
 		}
 
 		@Override
@@ -379,17 +390,25 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 //							startActivityForResult(
 //									(new Intent(NewGroupActivity.this, GroupPickContactsActivity.class).putExtra("groupId", groupId)),
 //									REQUEST_CODE_ADD_USER);
-						startActivityForResult(new Intent(NewGroupActivity.this, GroupPickContactsActivity.class)
-								.putExtra("groupName", mGroupName.getText().toString()), 0);
+						Intent intent = new Intent(NewGroupActivity.this, GroupPickContactsActivity.class);
+						intent.putExtra("groupName" , mGroupName.getText().toString());
+
+						startActivityForResult(intent , 0);
+						/*startActivityForResult(new Intent(NewGroupActivity.this, GroupPickContactsActivity.class)
+								.putExtra("groupName", mGroupName.getText().toString()), 0);*/
 					}
 				});
 
 			} else { // 普通item，显示群组成员
-				final String username = getItem(position);
+				EaseUser easeUser = objects.get(position);
+
+				final String username = easeUser.getExternalNickName();
+				String headUrl = easeUser.getAvatar();
 				convertView.setVisibility(View.VISIBLE);
 				button.setVisibility(View.VISIBLE);
 				EaseUserUtils.setUserNick(username, holder.textView);
-				EaseUserUtils.setUserAvatar(getContext(), username, holder.imageView);
+				EaseUserUtils.setUserAvatar(getContext(), headUrl, holder.imageView);
+
 //				String photoSrc = quners.get(position).ud_photo_fileid;
 //				if (!TextUtils.isEmpty(photoSrc)){
 //					Glide.with(NewGroupActivity.this).load(photoSrc).into(holder.imageView);
@@ -455,7 +474,7 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 										@Override
 										public void run() {
 											for (int i = 0 ; i < objects.size() ; i++){
-												String s = objects.get(i);
+												String s = objects.get(i).getExternalNickName();
 												if (s.equals(username)){
 													objects.remove(i);
 													break;
@@ -550,7 +569,7 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 	}
 
 	private FunctionOptions options;
-	private Intent picData;
+	//private Intent picData;
 	@Override
 	public void onClick(View v) {
 
@@ -620,6 +639,7 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 	private String phtotoPath;
 	private UpdataImageUtils updataImageUtils;
 	private String photoId = "";
+
 	private PictureConfig.OnSelectResultCallback resultCallback = new PictureConfig.OnSelectResultCallback() {
 		@Override
 		public void onSelectSuccess(List<LocalMedia> resultList) {
@@ -631,7 +651,7 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 				if (updataImageUtils == null){
 					updataImageUtils = new UpdataImageUtils();
 				}
-				updataImageUtils.upDataPic(BitmapUtils.getBitmap(phtotoPath), phtotoPath, new UpdataImageUtils.UpdataPicListener() {
+				updataImageUtils.upDataPic(phtotoPath, mDialog , new UpdataImageUtils.UpdataPicListener() {
 					//上传头像的回调
 					@Override
 					public void onResponse(String response) {
@@ -763,9 +783,9 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 		if (members != null && members.size() > 0){
 			for (int i = 0; i < members.size(); i ++){
 				if (i == 0 ){
-					qunMember = qunMember + members.get(i);
+					qunMember = qunMember + members.get(i).getExternalNickName();
 				}else {
-					qunMember = qunMember  + "," + members.get(i);
+					qunMember = qunMember  + "," + members.get(i).getExternalNickName();
 				}
 			}
 		}

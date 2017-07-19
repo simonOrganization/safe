@@ -32,8 +32,10 @@ import com.lchtime.safetyexpress.bean.ProfessionBean;
 import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
+import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 import com.lchtime.safetyexpress.utils.BitmapUtils;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.LoginInternetRequest;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
@@ -143,6 +145,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
 
     private Handler handler ;
     private FunctionOptions options;
+    private DialogUtil mDialog;
 
 
     @Override
@@ -154,7 +157,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
     protected void setControlBasis() {
         setTitle("个人资料");
         rightTextVisible("保存");
-
+        mDialog = new DialogUtil(mContext);
         initPopWindow();
 //        selectPicPop = new SelectPicPop(vip_info_ui, VipInfoUI.this, R.layout.activity_pic_pop);
         handler = new Handler();
@@ -681,7 +684,8 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
             if (media.isCut() && media.isCompressed()) {
                 // 裁剪过
                 phtotoPath = media.getCompressPath();
-                updataImageUtils.upDataPic(BitmapUtils.getBitmap(phtotoPath), phtotoPath, new UpdataImageUtils.UpdataPicListener() {
+                mDialog.show();
+                updataImageUtils.upDataPic(phtotoPath, mDialog ,new UpdataImageUtils.UpdataPicListener() {
                     //上传头像的回调
                     @Override
                     public void onResponse(String response) {
@@ -776,14 +780,16 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
      * 修改个人资料
      */
     private void changeInfo() {
+        mDialog.show();
         String uid = SpTools.getString(this, Constants.userId, "");
-        LoginInternetRequest.editVipInfo(InitInfo.phoneNumber, map, uid, new LoginInternetRequest.ForResultListener() {
+        LoginInternetRequest.editVipInfo(InitInfo.phoneNumber, map, uid, mDialog ,new LoginInternetRequest.ForResultListener() {
             @Override
             public void onResponseMessage(String code) {
                 //Toast.makeText(VipInfoUI.this, "上传成功", Toast.LENGTH_SHORT).show();
                 //将裁剪得图片转换成bitmap
+                Bitmap zoomBitMap = null;
                 if (!TextUtils.isEmpty(phtotoPath)) {
-                    Bitmap zoomBitMap = BitmapFactory.decodeFile(phtotoPath);
+                    zoomBitMap = BitmapFactory.decodeFile(phtotoPath);
                     UpdataImageUtils.saveBitmapFile(zoomBitMap, Constants.photo_name);//先保存文件到本地
                 }
                 InitInfo.vipInfoBean.user_detail.ud_nickname =
@@ -811,13 +817,15 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
                 InitInfo.vipInfoBean.user_detail.ud_photo_fileid =
                         allInfo.ud_photo_fileid == null ? InitInfo.vipInfoBean.user_detail.ud_photo_fileid : allInfo.ud_photo_fileid;
 
-                finish();
 
 
                 //此处可以加上上传图片到环信的过程
                 //EMClient.getInstance().updateCurrentUserNick(allInfo.ud_nickname == null ? InitInfo.vipInfoBean.user_detail.ud_nickname : allInfo.ud_nickname);
-
-
+                if(zoomBitMap != null)
+                DemoHelper.getInstance().getUserProfileManager().uploadUserAvatar(Bitmap2Bytes(zoomBitMap));
+                if(allInfo.ud_nickname != null)
+                DemoHelper.getInstance().getUserProfileManager().updateCurrentUserNickName(allInfo.ud_nickname);
+                finish();
             }
         });
     }

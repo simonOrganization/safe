@@ -16,6 +16,7 @@ package com.lchtime.safetyexpress.ui.chat.hx.adapter;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,19 +27,25 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.hyphenate.chat.EMGroup;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.ui.chat.hx.bean.GroupBean;
+import com.lchtime.safetyexpress.views.CircleImageView;
 
 import java.util.List;
 
-public class GroupAdapter extends ArrayAdapter<EMGroup> {
+import static com.baidu.location.f.mC;
+
+public class GroupAdapter extends ArrayAdapter<GroupBean> {
 
 	private LayoutInflater inflater;
 	private String newGroup;
 	private String addPublicGroup;
-
-	public GroupAdapter(Context context, int res, List<EMGroup> groups) {
+	private Context context;
+	public GroupAdapter(Context context, int res, List<GroupBean> groups) {
 		super(context, res, groups);
+		this.context = context;
 		this.inflater = LayoutInflater.from(context);
 		newGroup = "创建群组";
 		addPublicGroup = "加入群组";
@@ -120,8 +127,15 @@ public class GroupAdapter extends ArrayAdapter<EMGroup> {
 			if (convertView == null) {
 				convertView = inflater.inflate(R.layout.em_row_group, parent, false);
 			}
-			((TextView) convertView.findViewById(R.id.name)).setText(getItem(position - 3).getGroupName());
-
+			CircleImageView imageView = (CircleImageView) convertView.findViewById(R.id.avatar);
+			Glide.with(context)
+					.load(getItem(position -3).sq_fieldid)
+					.placeholder(R.drawable.qun_list)
+					.error(R.drawable.qun_list)
+					.into(imageView);
+			//Log.i("getMuteList==" , group.getMuteList().toString());
+			//group.
+			((TextView) convertView.findViewById(R.id.name)).setText(getItem(position - 3).sq_name);
 		}
 
 		return convertView;

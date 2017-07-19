@@ -102,7 +102,7 @@ public class MyConversationListFragment extends EaseBaseFragment{
     protected void setUpView() {
         topMap = MyApplication.getInstance().getTopUserList();
         conversationList.addAll(loadConversationList());
-        conversationListView.init(getActivity(),conversationList,topList, topMap,userInfo);
+        conversationListView.init(getActivity(),conversationList , topList, topMap , userInfo);
         
         if(listItemClickListener != null){
             conversationListView.setOnItemClickListener(new OnItemClickListener() {

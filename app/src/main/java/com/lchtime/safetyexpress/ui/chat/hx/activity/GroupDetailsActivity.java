@@ -64,6 +64,7 @@ import com.lchtime.safetyexpress.ui.chat.hx.utils.WindowUtils;
 import com.lchtime.safetyexpress.ui.vip.SelectCityActivity;
 import com.lchtime.safetyexpress.utils.BitmapUtils;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
@@ -139,6 +140,8 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 	private ProgressBar mBar;
 	private VipInfoHintPop popWindow;
 
+	private DialogUtil mDialog;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -183,7 +186,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		mIvAddrArrow = (ImageView) findViewById(R.id.iv_arrow_addr);
 		mCivPhotoArrow = (ImageView) findViewById(R.id.photo_arrow);
 
-
+		mDialog = new DialogUtil(GroupDetailsActivity.this);
 		//设置最下面按键的显示字
 
 
@@ -786,8 +789,9 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 				if (updataImageUtils == null){
 					updataImageUtils = new UpdataImageUtils();
 				}
-				updataImageUtils.upDataPic(BitmapUtils.getBitmap(phtotoPath), phtotoPath, new UpdataImageUtils.UpdataPicListener() {
-					//上传头像的回调
+				mDialog.show();
+				updataImageUtils.upDataPic(phtotoPath, mDialog ,new UpdataImageUtils.UpdataPicListener() {
+					//上传头像的回调e
 					@Override
 					public void onResponse(String response) {
 						UpdataBean updataBean = gson.fromJson(response, UpdataBean.class);
@@ -1161,6 +1165,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 
 		contentView.findViewById(R.id.tv_picture_list).setOnClickListener(this);
 		contentView.findViewById(R.id.tv_takepic).setOnClickListener(this);
+		contentView.findViewById(R.id.tv_cancel).setOnClickListener(this);
 	}
 
 

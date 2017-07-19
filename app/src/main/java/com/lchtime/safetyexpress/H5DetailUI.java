@@ -596,6 +596,12 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
             public void run() {
                 rl_pl.setVisibility(View.VISIBLE);
                 god = data;
+                et_common.setFocusable(true);
+                et_common.setFocusableInTouchMode(true);
+                et_common.requestFocus();
+                //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(0 , InputMethodManager.HIDE_NOT_ALWAYS);
             }
         });
     }

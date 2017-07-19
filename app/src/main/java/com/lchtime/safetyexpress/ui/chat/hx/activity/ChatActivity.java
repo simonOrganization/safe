@@ -23,7 +23,7 @@ import com.lchtime.safetyexpress.ui.chat.hx.permission.PermissionsManager;
 
 /**
  * chat activity，EaseChatFragment was used {@link #}
- *
+ *群 聊天界面
  */
 public class ChatActivity extends BaseActivity implements View.OnClickListener {
     public static ChatActivity activityInstance;
@@ -70,7 +70,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
             if(EaseUserUtils.getUserInfo(toChatUsername) != null){
                 EaseUser user = EaseUserUtils.getUserInfo(toChatUsername);
                 if (user != null) {
-                    mTitle.setText(user.getNick());
+                    mTitle.setText(user.getExternalNickName());
                 }
             }
         } else {

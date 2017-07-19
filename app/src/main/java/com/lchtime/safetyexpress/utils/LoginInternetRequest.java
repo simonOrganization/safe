@@ -721,7 +721,7 @@ public class LoginInternetRequest {
     /**
      *  修改个人信息
      *  */
-    public static void editVipInfo(String phoneNum, Map<String,String> map, String ub_id, ForResultListener listener){
+    public static void editVipInfo(String phoneNum, Map<String,String> map, String ub_id , final DialogUtil dialog , ForResultListener listener){
         mListener = listener;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
@@ -766,12 +766,14 @@ public class LoginInternetRequest {
         builder.build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
+                dialog.dissmiss();
                 Log.d("0000---------------0000",e.getMessage());
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
 
             @Override
             public void onResponse(String response, int id) {
+                dialog.dissmiss();
                 if (!TextUtils.isEmpty(response)) {
                     Result result = mGson.fromJson(response, Result.class);
                     String code = result.result.code;

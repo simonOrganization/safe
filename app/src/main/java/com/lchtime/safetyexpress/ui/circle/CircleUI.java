@@ -714,5 +714,12 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         }
     }
 
-
+    /**
+     * 刷新Adapter
+     */
+    public void notifyDataSetChange() {
+        if(wapperAdapter != null){
+            wapperAdapter.notifyDataSetChanged();
+        }
+    }
 }

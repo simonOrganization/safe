@@ -69,7 +69,7 @@ public class AllPeopleActivity extends Activity implements View.OnClickListener 
             @Override
             public void normalResponse(Object response) {
                 InfoBean bean = (InfoBean) JsonUtils.stringToObject((String) response, InfoBean.class);
-                AllPeopleAdapter adapter = new AllPeopleAdapter(AllPeopleActivity.this,1,bean.quners);
+                AllPeopleAdapter adapter = new AllPeopleAdapter(AllPeopleActivity.this,1 , bean.quners);
                 mListView.setAdapter(adapter);
             }
         });

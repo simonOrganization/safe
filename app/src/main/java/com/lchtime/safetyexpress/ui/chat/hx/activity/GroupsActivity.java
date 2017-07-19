@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -31,31 +32,44 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.exceptions.HyphenateException;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.ui.chat.hx.Constant;
+import com.lchtime.safetyexpress.ui.chat.hx.activity.protocal.GetInfoProtocal;
 import com.lchtime.safetyexpress.ui.chat.hx.adapter.GroupAdapter;
+import com.lchtime.safetyexpress.ui.chat.hx.bean.GroupBean;
+import com.lchtime.safetyexpress.ui.chat.hx.bean.JoinGroups;
+import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
+import com.lchtime.safetyexpress.utils.SpTools;
 
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 群聊界面
+ */
 public class GroupsActivity extends BaseActivity implements View.OnClickListener {
 	public static final String TAG = "GroupsActivity";
 	private ListView groupListView;
-	protected List<EMGroup> grouplist;
+	//protected List<EMGroup> grouplist;
 	private GroupAdapter groupAdapter;
 	private InputMethodManager inputMethodManager;
 	public static GroupsActivity instance;
 	private View progressBar;
 	private SwipeRefreshLayout swipeRefreshLayout;
-
+	protected List<GroupBean> mGroupList = new ArrayList<>();
 
 	private TextView mTitle;
 	private TextView mTitleRight;
 	private LinearLayout mTitleLeft;
 	private LinearLayout mLlTitleRight;
-	
+	private GetInfoProtocal protocal;
+
+
 	Handler handler = new Handler(){
 	    public void handleMessage(android.os.Message msg) {
 	        swipeRefreshLayout.setRefreshing(false);
@@ -73,7 +87,7 @@ public class GroupsActivity extends BaseActivity implements View.OnClickListener
 	    }
 	};
 
-		
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -81,10 +95,12 @@ public class GroupsActivity extends BaseActivity implements View.OnClickListener
 		initTitle();
 		instance = this;
 		inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		grouplist = EMClient.getInstance().groupManager().getAllGroups();
+
+		getGroupsData();
+		//grouplist = EMClient.getInstance().groupManager().getAllGroups();
 		groupListView = (ListView) findViewById(R.id.list);
 		//show group list
-        groupAdapter = new GroupAdapter(this, 1, grouplist);
+        groupAdapter = new GroupAdapter(this, 1, mGroupList);
         groupListView.setAdapter(groupAdapter);
 		
 		swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_layout);
@@ -125,7 +141,7 @@ public class GroupsActivity extends BaseActivity implements View.OnClickListener
 					Intent intent = new Intent(GroupsActivity.this, ChatActivity.class);
 					// it is group chat
 					intent.putExtra("chatType", Constant.CHATTYPE_GROUP);
-					intent.putExtra("userId", groupAdapter.getItem(position - 3).getGroupId());
+					intent.putExtra("userId", groupAdapter.getItem(position - 3).sq_group_id);
 					startActivityForResult(intent, 0);
 				}
 			}
@@ -144,6 +160,36 @@ public class GroupsActivity extends BaseActivity implements View.OnClickListener
 			}
 		});
 		
+	}
+
+	/**
+	 * 获取群组信息
+	 */
+	private void getGroupsData() {
+		String ub_id = SpTools.getString(GroupsActivity.this , Constants.userId , "");
+		if(TextUtils.isEmpty(ub_id)) return;
+		if(protocal == null){
+			protocal = new GetInfoProtocal();
+		}
+		final Gson gson = new Gson();
+
+		protocal.getJoinGroups(ub_id, new AddCommandProtocal.NormalListener() {
+			@Override
+			public void normalResponse(Object response) {
+				JoinGroups groups = gson.fromJson((String) response, JoinGroups.class);
+				mGroupList.clear();
+				if(groups != null){
+					if(groups.add_qun!= null)
+						mGroupList.addAll(groups.add_qun);
+					if(groups.create_qun != null)
+						mGroupList.addAll(groups.create_qun);
+				}
+				groupAdapter.notifyDataSetChanged();
+			}
+		});
+
+
+
 	}
 
 	private void initTitle() {
@@ -171,8 +217,9 @@ public class GroupsActivity extends BaseActivity implements View.OnClickListener
 	}
 	
 	private void refresh(){
-	    grouplist = EMClient.getInstance().groupManager().getAllGroups();
-        groupAdapter = new GroupAdapter(this, 1, grouplist);
+	    //grouplist = EMClient.getInstance().groupManager().getAllGroups();
+		getGroupsData();
+        groupAdapter = new GroupAdapter(this, 1, mGroupList);
         groupListView.setAdapter(groupAdapter);
         groupAdapter.notifyDataSetChanged();
 	}
