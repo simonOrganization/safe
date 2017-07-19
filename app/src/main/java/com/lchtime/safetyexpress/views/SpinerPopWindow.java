@@ -47,7 +47,7 @@ public class SpinerPopWindow extends PopupWindow {
         Log.i("yang","init");
         final View view = LayoutInflater.from(mContext).inflate(R.layout.spiner_pop_layout,null);
         this.setContentView(view);
-        this.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+        this.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
         this.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);//
         this.setFocusable(true);
         this.setOutsideTouchable(true);

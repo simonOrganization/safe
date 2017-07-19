@@ -14,7 +14,7 @@
         <LinearLayout
             android:id="@+id/ll_vip_login"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dm530"
+            android:layout_height="@dimen/dm424"
             android:background="@color/commen_reg"
             android:gravity="center_horizontal"
             android:orientation="vertical"
@@ -22,9 +22,9 @@
 
             <com.lchtime.safetyexpress.views.CircleImageView
                 android:id="@+id/civ_vip_icon"
-                android:layout_width="@dimen/dm138"
-                android:layout_height="@dimen/dm138"
-                android:layout_marginTop="@dimen/dm050"
+                android:layout_width="@dimen/dm106"
+                android:layout_height="@dimen/dm106"
+                android:layout_marginTop="@dimen/dm040"
                 android:src="@drawable/circle_user_image" />
 
             <TextView
@@ -33,14 +33,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dm030"
                 android:layout_marginRight="@dimen/dm030"
-                android:layout_marginTop="@dimen/dm020"
+                android:layout_marginTop="@dimen/dm016"
                 android:gravity="center"
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="@dimen/dm026" />
+                android:textSize="@dimen/dm022" />
             <LinearLayout
-                android:layout_marginTop="@dimen/dm020"
+                android:layout_marginTop="@dimen/dm016"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -54,7 +54,7 @@
                     android:singleLine="true"
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dm026" />
+                    android:textSize="@dimen/dm022" />
                 <TextView
                     android:id="@+id/tv_vip_post"
                     android:layout_width="wrap_content"
@@ -64,7 +64,7 @@
                     android:singleLine="true"
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dm026" />
+                    android:textSize="@dimen/dm022" />
                 <TextView
                     android:id="@+id/tv_vip_addr"
                     android:layout_width="wrap_content"
@@ -73,13 +73,13 @@
                     android:singleLine="true"
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dm026" />
+                    android:textSize="@dimen/dm022" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/tv_vip_info"
                 android:gravity="center"
-                android:layout_marginTop="@dimen/dm020"
+                android:layout_marginTop="@dimen/dm016"
                 android:paddingLeft="@dimen/dm030"
                 android:paddingRight="@dimen/dm030"
                 android:layout_width="match_parent"
@@ -87,35 +87,35 @@
                 <TextView
 
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dm050"
+                    android:layout_height="@dimen/dm040"
                     android:gravity="center"
                     android:singleLine="true"
                     android:text="个人简介："
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dm026" />
+                    android:textSize="@dimen/dm022" />
 
                 <TextView
                     android:id="@+id/single_info_content"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dm050"
+                    android:layout_height="@dimen/dm040"
                     android:paddingLeft="@dimen/dm020"
                     android:gravity="center"
                     android:singleLine="true"
                     android:text="未完善"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dm026" />
+                    android:textSize="@dimen/dm022" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:layout_marginTop="@dimen/dm030"
+                android:layout_marginTop="@dimen/dm024"
                 android:background="#55ffffff"
                 android:layout_marginLeft="@dimen/dm020"
                 android:layout_marginRight="@dimen/dm020"/>
 
             <LinearLayout
-                android:layout_marginTop="@dimen/dm020"
+                android:layout_marginTop="@dimen/dm016"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -130,12 +130,12 @@
                     <TextView
                         android:id="@+id/tv_subscribe_num"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/dm050"
+                        android:layout_height="@dimen/dm040"
                         android:gravity="center"
                         android:singleLine="true"
                         android:text=""
                         android:textColor="@color/white"
-                        android:textSize="@dimen/dm026" />
+                        android:textSize="@dimen/dm022" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -143,7 +143,7 @@
                         android:singleLine="true"
                         android:text="订阅"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/dm026" />
+                        android:textSize="@dimen/dm022" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -157,12 +157,12 @@
                     <TextView
                         android:id="@+id/tv_friend_num"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/dm050"
+                        android:layout_height="@dimen/dm040"
                         android:gravity="center"
                         android:singleLine="true"
                         android:text=""
                         android:textColor="@color/white"
-                        android:textSize="@dimen/dm026" />
+                        android:textSize="@dimen/dm022" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -170,7 +170,7 @@
                         android:singleLine="true"
                         android:text="好友"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/dm026" />
+                        android:textSize="@dimen/dm022" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -182,28 +182,28 @@
             android:orientation="vertical"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/dm020"
-            android:layout_marginTop="@dimen/dm020">
+            android:layout_marginTop="@dimen/dm016">
 
             <TextView
                 android:id="@+id/tv_subscribe"
-                android:layout_width="@dimen/dm096"
-                android:layout_height="@dimen/dm052"
+                android:layout_width="@dimen/dm086"
+                android:layout_height="@dimen/dm041"
                 android:background="#302b0404"
                 android:gravity="center"
                 android:text="+ 订阅"
                 android:textColor="@color/white"
-                android:textSize="@dimen/dm026" />
+                android:textSize="@dimen/dm022" />
 
             <TextView
                 android:id="@+id/tv_friend"
-                android:layout_marginTop="@dimen/dm012"
-                android:layout_width="@dimen/dm096"
-                android:layout_height="@dimen/dm052"
+                android:layout_marginTop="@dimen/dm009"
+                android:layout_width="@dimen/dm086"
+                android:layout_height="@dimen/dm041"
                 android:background="#302b0404"
                 android:gravity="center"
                 android:text="+ 好友"
                 android:textColor="@color/white"
-                android:textSize="@dimen/dm026" />
+                android:textSize="@dimen/dm022" />
 
         </LinearLayout>
 

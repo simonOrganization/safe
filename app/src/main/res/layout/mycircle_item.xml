@@ -10,8 +10,8 @@
         android:layout_marginLeft="@dimen/dm020"
         android:layout_marginRight="@dimen/dm020"
         android:background="@color/white"
-        android:paddingTop="@dimen/dm020"
-        android:paddingBottom="@dimen/dm020">
+        android:paddingTop="@dimen/dm016"
+        android:paddingBottom="@dimen/dm016">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

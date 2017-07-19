@@ -83,10 +83,10 @@
                     android:layout_marginBottom="@dimen/dm024"
                     android:background="@color/white"
                     android:gravity="start"
-                    android:horizontalSpacing="@dimen/dm024"
+                    android:horizontalSpacing="@dimen/dm030"
                     android:listSelector="@android:color/transparent"
                     android:numColumns="4"
-                    android:verticalSpacing="@dimen/dm026"
+                    android:verticalSpacing="@dimen/dm030"
                     />
                 <View
                     android:layout_width="match_parent"

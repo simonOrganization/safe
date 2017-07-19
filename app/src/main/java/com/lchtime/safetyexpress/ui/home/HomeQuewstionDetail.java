@@ -3,6 +3,7 @@ package com.lchtime.safetyexpress.ui.home;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,13 +14,16 @@ import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.HeaderAndFooterWrapper;
 import com.lchtime.safetyexpress.adapter.HomeImgAdapter;
 import com.lchtime.safetyexpress.adapter.QuetionDetailAdapter;
+import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.WenDaDetailBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
+import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ImageUtils;
+import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.MyGridView;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -139,18 +143,30 @@ public class HomeQuewstionDetail extends BaseUI {
         tvHomeQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeQuewstionDetail.this,AnswerQuestionActivity.class);
-                intent.putExtra("q_id",qid);
-                intent.putExtra("title",detailBean.wenti.q_title);
-                startActivityForResult(intent , QUEWSTION_DETAIL_REQUEST);
+                if (TextUtils.isEmpty(SpTools.getString(mContext , Constants.userId, ""))) {
+                    Intent intent = new Intent(HomeQuewstionDetail.this,LoginUI.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(HomeQuewstionDetail.this,AnswerQuestionActivity.class);
+                    intent.putExtra("q_id",qid);
+                    intent.putExtra("title",detailBean.wenti.q_title);
+                    startActivityForResult(intent , QUEWSTION_DETAIL_REQUEST);
+                }
+
             }
         });
         llInviteFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeQuewstionDetail.this,InviteFriendActivity.class);
-                intent.putExtra("q_id",qid);
-                startActivity(intent);
+                if (TextUtils.isEmpty(SpTools.getString(mContext , Constants.userId, ""))) {
+                    CommonUtils.toastMessage("您还未登录，暂无数据");
+                }else{
+                    Intent intent = new Intent(HomeQuewstionDetail.this,InviteFriendActivity.class);
+                    intent.putExtra("q_id",qid);
+                    startActivity(intent);
+                }
+
+
             }
         });
         lv_home_question.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
@@ -163,7 +179,7 @@ public class HomeQuewstionDetail extends BaseUI {
             public void onLoadMore() {
                 page++;
                 if (page > totalPage){
-                    CommonUtils.toastMessage("没有更多了");
+                   // CommonUtils.toastMessage("没有更多了");
                     lv_home_question.setPullLoadMoreCompleted();
                     return;
                 }

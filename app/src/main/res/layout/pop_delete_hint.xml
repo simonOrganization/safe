@@ -12,7 +12,7 @@
         android:layout_weight="1"/>
 
     <LinearLayout
-        android:layout_width="@dimen/dm500"
+        android:layout_width="@dimen/dm400"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_bg_white"
         android:gravity="center_horizontal"
@@ -26,7 +26,7 @@
             android:gravity="center"
             android:text="您确定删除该好友？"
             android:textColor="@color/title_333"
-            android:textSize="@dimen/dm026" />
+            android:textSize="@dimen/dm024" />
 
         <View
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dm060"
+            android:layout_height="@dimen/dm048"
             android:layout_margin="@dimen/dm010"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -48,7 +48,7 @@
                 android:gravity="center"
                 android:text="删除"
                 android:textColor="@color/commen_reg"
-                android:textSize="@dimen/dm028" />
+                android:textSize="@dimen/dm024" />
 
             <View
                 android:layout_width="@dimen/dm001"
@@ -63,7 +63,7 @@
                 android:gravity="center"
                 android:text="取消"
                 android:textColor="@color/title_666"
-                android:textSize="@dimen/dm028" />
+                android:textSize="@dimen/dm024" />
         </LinearLayout>
 
     </LinearLayout>

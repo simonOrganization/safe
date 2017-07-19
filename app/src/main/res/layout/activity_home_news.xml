@@ -36,7 +36,7 @@
                 android:id="@+id/activity_new_vp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/dm016"/>
+                />
         </LinearLayout>
 
         <include android:id="@+id/loading" android:visibility="visible" layout="@layout/pager_loading"/>

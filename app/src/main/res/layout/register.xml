@@ -12,15 +12,15 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm020"
+        android:layout_height="@dimen/dm016"
         android:background="@color/line_big" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm090"
+        android:layout_height="@dimen/dm072"
         android:layout_marginLeft="@dimen/dm050"
         android:layout_marginRight="@dimen/dm050"
-        android:layout_marginTop="@dimen/dm100"
+        android:layout_marginTop="@dimen/dm080"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/dm020"
@@ -34,7 +34,7 @@
             android:gravity="center|left"
             android:hint="请输入手机号"
             android:inputType="number"
-            android:textSize="@dimen/dm026" />
+            android:textSize="@dimen/dm022" />
     </LinearLayout>
 
     <View
@@ -46,10 +46,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm090"
+        android:layout_height="@dimen/dm072"
         android:layout_marginLeft="@dimen/dm050"
         android:layout_marginRight="@dimen/dm050"
-        android:layout_marginTop="@dimen/dm020"
+        android:layout_marginTop="@dimen/dm016"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/dm020"
@@ -64,7 +64,7 @@
             android:gravity="center|left"
             android:hint="验证码"
             android:inputType="number"
-            android:textSize="@dimen/dm026" />
+            android:textSize="@dimen/dm022" />
 
         <TextView
             android:id="@+id/tv_register_getcode"
@@ -88,10 +88,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm090"
+        android:layout_height="@dimen/dm072"
         android:layout_marginLeft="@dimen/dm050"
         android:layout_marginRight="@dimen/dm050"
-        android:layout_marginTop="@dimen/dm020"
+        android:layout_marginTop="@dimen/dm016"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/dm020"
@@ -118,15 +118,15 @@
     <TextView
         android:id="@+id/tv_register_reg"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm090"
+        android:layout_height="@dimen/dm072"
         android:layout_marginLeft="@dimen/dm070"
         android:layout_marginRight="@dimen/dm070"
-        android:layout_marginTop="@dimen/dm100"
+        android:layout_marginTop="@dimen/dm080"
         android:background="@drawable/shape_bg_pink"
         android:gravity="center"
         android:text="注册"
         android:textColor="@color/white"
-        android:textSize="@dimen/dm028" />
+        android:textSize="@dimen/dm024" />
 
     </LinearLayout>
     <ProgressBar

@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +16,16 @@ import com.lchtime.safetyexpress.views.CityView.CitySortModel;
 import java.util.List;
 
 public class CitySortAdapter extends BaseAdapter implements SectionIndexer {
+
+    private  String city;
     private List<CitySortModel> list = null;
     private Context mContext;
 
-    public CitySortAdapter(Context mContext, List<CitySortModel> list) {
+    public CitySortAdapter(Context mContext, List<CitySortModel> list ,String city ) {
         this.mContext = mContext;
         this.list = list;
+        this.city = city;
+
     }
 
     public int getCount() {
@@ -56,8 +61,17 @@ public class CitySortAdapter extends BaseAdapter implements SectionIndexer {
         } else {
             viewHolder.tvLetter.setVisibility(View.GONE);
         }
+       // Log.i("----------", "clickEvent: 2" +city );
 
-        viewHolder.tvTitle.setText(this.list.get(position).getName());
+        if (list.get(position).getName().equals(city)) {
+            list.get(position).isSelect = true ;
+            viewHolder.tvTitle.setText(this.list.get(position).getName());
+            viewHolder.tvTitle.setTextColor(mContext.getResources().getColor(R.color.red));
+        }else{
+            viewHolder.tvTitle.setText(this.list.get(position).getName());
+            viewHolder.tvTitle.setTextColor(mContext.getResources().getColor(R.color.black));
+        }
+
 
         return view;
 
@@ -69,11 +83,12 @@ public class CitySortAdapter extends BaseAdapter implements SectionIndexer {
         TextView tvTitle;
     }
 
-
     public int getSectionForPosition(int position) {
         return list.get(position).getSortLetters().charAt(0);
     }
-
+    public String setCity (String city) {
+      return this.city = city ;
+    }
 
     public int getPositionForSection(int section) {
         for (int i = 0; i < getCount(); i++) {

@@ -31,7 +31,7 @@
         android:id="@+id/rl_title"
         android:background="#33000000"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm090">
+        android:layout_height="@dimen/dm072">
 
         <LinearLayout
             android:id="@+id/video_use"
@@ -43,8 +43,8 @@
             android:paddingRight="@dimen/dm030">
 
             <ImageView
-                android:layout_width="@dimen/dm040"
-                android:layout_height="@dimen/dm035"
+                android:layout_width="@dimen/dm032"
+                android:layout_height="@dimen/dm028"
                 android:background="@drawable/backs"
                 android:scaleType="fitXY" />
         </LinearLayout>

@@ -33,6 +33,8 @@ public class SelectCityActivity extends BaseUI {
     private List<CitySortModel> SourceDateList;
     private String cityName;
     private Object oldview;
+    private String city;
+    private boolean boo;
 
     @Override
     protected void back() {
@@ -41,6 +43,9 @@ public class SelectCityActivity extends BaseUI {
 
     @Override
     protected void setControlBasis() {
+         Intent intent = this.getIntent();
+         city = intent.getStringExtra("city");
+       // Log.i("----------", "clickEvent:1 " +city );
         setTitle("选择城市");
         rightTextVisible("选择");
         initViews();
@@ -57,23 +62,22 @@ public class SelectCityActivity extends BaseUI {
     @Override
     protected void clickEvent() {
         
-        if (cityName != null ) {
+        if (!cityName.equals("地理位置") ) {
             Intent intent = new Intent();
             intent.putExtra("city", cityName);
             setResult(0,intent);
             finish();
-            Log.i("----------", "clickEvent:1 " +cityName );
+
         }else {
             Intent intent = new Intent();
-            intent.putExtra("city", "1");
+            intent.putExtra("city", "地理位置");
             setResult(0,intent);
             finish();
-            Log.i("----------", "clickEvent: 2" +"1" );
+
         }
     }
     private void initViews() {
         characterParser = CharacterParser.getInstance();
-
         sideBar = (SideBar) findViewById(R.id.sidrbar);
         dialog = (TextView) findViewById(R.id.dialog);
         sideBar.setTextView(dialog);
@@ -90,6 +94,11 @@ public class SelectCityActivity extends BaseUI {
         });
 
         sortListView = (ListView) findViewById(R.id.country_lvcountry);
+        SourceDateList = filledData(getResources().getStringArray(R.array.provinces));
+        Collections.sort(SourceDateList, new PinyinComparator());
+        adapter = new CitySortAdapter(this, SourceDateList,city);
+        //sortListView.addHeaderView(initHeadView());
+        sortListView.setAdapter(adapter);
         sortListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -103,27 +112,23 @@ public class SelectCityActivity extends BaseUI {
                 if(((CitySortModel) adapter.getItem(position)).isSelect){
                     ((CitySortModel) adapter.getItem(position)).isSelect = false;
                     tx.setTextColor(mContext.getResources().getColor(R.color.black));
-                    cityName = "";
-                    Log.i("----------", "onItemClick: 1" + "点击了 " + cityName);
+                    cityName = "地理位置";
+                    city="地理位置";
+                    adapter.setCity(city);
+                 //   Log.i("----------", "onItemClick: 1" + "点击了 " + city);
                 }else{
                     ((CitySortModel) adapter.getItem(position)).isSelect = true;
                     tx.setTextColor(mContext.getResources().getColor(R.color.red));
                     cityName = ((CitySortModel) adapter.getItem(position)).getName();
-                    Log.i("----------", "onItemClick: 2" + "点击了 " + cityName);
+                    adapter.setCity(cityName);
+                    //Log.i("----------", "onItemClick: 2" + "点击了 " + cityName);
                 }
 
                 adapter.notifyDataSetChanged();
-
-
-            ;
             }
         });
 
-        SourceDateList = filledData(getResources().getStringArray(R.array.provinces));
-        Collections.sort(SourceDateList, new PinyinComparator());
-        adapter = new CitySortAdapter(this, SourceDateList);
-        //sortListView.addHeaderView(initHeadView());
-        sortListView.setAdapter(adapter);
+
     }
 
     private List<CitySortModel> filledData(String[] date) {

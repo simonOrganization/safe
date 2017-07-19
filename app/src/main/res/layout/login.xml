@@ -12,23 +12,23 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm020"
+        android:layout_height="@dimen/dm016"
         android:background="@color/line_big" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm090"
+        android:layout_height="@dimen/dm072"
         android:layout_marginLeft="@dimen/dm050"
         android:layout_marginRight="@dimen/dm050"
-        android:layout_marginTop="@dimen/dm100"
+        android:layout_marginTop="@dimen/dm080"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/dm020"
         android:paddingRight="@dimen/dm020">
 
         <ImageView
-            android:layout_width="@dimen/dm040"
-            android:layout_height="@dimen/dm045"
+            android:layout_width="@dimen/dm036"
+            android:layout_height="@dimen/dm036"
             android:src="@drawable/phone" />
 
         <EditText
@@ -36,11 +36,11 @@
             style="@style/edit_style"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dm020"
+            android:layout_marginLeft="@dimen/dm016"
             android:gravity="center|left"
             android:hint="请输入手机号"
             android:inputType="number"
-            android:textSize="@dimen/dm026" />
+            android:textSize="@dimen/dm022" />
     </LinearLayout>
 
     <View
@@ -52,18 +52,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm090"
+        android:layout_height="@dimen/dm072"
         android:layout_marginLeft="@dimen/dm050"
         android:layout_marginRight="@dimen/dm050"
-        android:layout_marginTop="@dimen/dm020"
+        android:layout_marginTop="@dimen/dm016"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/dm020"
         android:paddingRight="@dimen/dm020">
 
         <ImageView
-            android:layout_width="@dimen/dm040"
-            android:layout_height="@dimen/dm040"
+            android:layout_width="@dimen/dm036"
+            android:layout_height="@dimen/dm036"
             android:src="@drawable/pwd" />
 
         <EditText
@@ -75,7 +75,7 @@
             android:gravity="center|left"
             android:hint="输入密码"
             android:inputType="textPassword"
-            android:textSize="@dimen/dm026" />
+            android:textSize="@dimen/dm022" />
     </LinearLayout>
 
     <View
@@ -99,18 +99,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center|right"
-            android:paddingBottom="@dimen/dm020"
-            android:paddingTop="@dimen/dm020"
+            android:paddingBottom="@dimen/dm016"
+            android:paddingTop="@dimen/dm016"
             android:text="忘记密码?"
             android:textColor="@color/commen_reg"
-            android:textSize="@dimen/dm024" />
+            android:textSize="@dimen/dm020" />
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/tv_login_login"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm090"
+        android:layout_height="@dimen/dm072"
         android:layout_marginLeft="@dimen/dm070"
         android:layout_marginRight="@dimen/dm070"
         android:layout_marginTop="@dimen/dm030"
@@ -118,7 +118,7 @@
         android:gravity="center"
         android:text="登录"
         android:textColor="@color/white"
-        android:textSize="@dimen/dm028" />
+        android:textSize="@dimen/dm024" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -130,7 +130,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dm020"
+            android:layout_marginTop="@dimen/dm016"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -148,7 +148,7 @@
                 android:layout_marginRight="@dimen/dm030"
                 android:text="第三方账号登录"
                 android:textColor="@color/title_999"
-                android:textSize="@dimen/dm024" />
+                android:textSize="@dimen/dm020" />
 
             <View
                 android:layout_width="wrap_content"
@@ -162,10 +162,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dm050"
+            android:layout_marginBottom="@dimen/dm040"
             android:layout_marginLeft="@dimen/dm070"
             android:layout_marginRight="@dimen/dm070"
-            android:layout_marginTop="@dimen/dm050"
+            android:layout_marginTop="@dimen/dm040"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -178,17 +178,17 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/dm060"
-                    android:layout_height="@dimen/dm060"
+                    android:layout_width="@dimen/dm048"
+                    android:layout_height="@dimen/dm048"
                     android:src="@drawable/weixin" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dm020"
+                    android:layout_marginTop="@dimen/dm016"
                     android:text="微信"
                     android:textColor="@color/title_999"
-                    android:textSize="@dimen/dm024" />
+                    android:textSize="@dimen/dm020" />
 
             </LinearLayout>
 
@@ -201,17 +201,17 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/dm060"
-                    android:layout_height="@dimen/dm060"
+                    android:layout_width="@dimen/dm048"
+                    android:layout_height="@dimen/dm048"
                     android:src="@drawable/qq" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dm020"
+                    android:layout_marginTop="@dimen/dm016"
                     android:text="QQ"
                     android:textColor="@color/title_999"
-                    android:textSize="@dimen/dm024" />
+                    android:textSize="@dimen/dm020" />
 
             </LinearLayout>
 
@@ -224,17 +224,17 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/dm060"
-                    android:layout_height="@dimen/dm060"
+                    android:layout_width="@dimen/dm048"
+                    android:layout_height="@dimen/dm048"
                     android:src="@drawable/sina" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dm020"
+                    android:layout_marginTop="@dimen/dm016"
                     android:text="微博"
                     android:textColor="@color/title_999"
-                    android:textSize="@dimen/dm024" />
+                    android:textSize="@dimen/dm020" />
 
             </LinearLayout>
 

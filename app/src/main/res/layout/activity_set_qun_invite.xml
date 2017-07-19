@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm300"
+        android:layout_height="@dimen/dm240"
         android:background="@color/white"
         android:orientation="vertical">
         <EditText
@@ -17,10 +17,10 @@
             android:layout_marginRight="@dimen/dm020"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="@dimen/dm028"
+            android:textSize="@dimen/dm024"
             android:hint="请输入您的群简介"
-            android:layout_marginBottom="@dimen/dm020"
-            android:layout_marginTop="@dimen/dm020"
+            android:layout_marginBottom="@dimen/dm016"
+            android:layout_marginTop="@dimen/dm016"
             android:gravity="top"
             android:singleLine="true"
             android:background="@color/white"
