@@ -504,6 +504,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
                     case SEX:
                         map.put("ud_sex",tx);
                         tv_sex.setText(tx);
+                        allInfo.ud_sex = tx;
                         break;
                 }
             }
@@ -637,7 +638,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
                 break;
             case SEX:
                 cardItem.add(new CardBean(0, "男"));
-                cardItem.add(new CardBean(0, "女"));
+                cardItem.add(new CardBean(1, "女"));
 
                 break;
         }
