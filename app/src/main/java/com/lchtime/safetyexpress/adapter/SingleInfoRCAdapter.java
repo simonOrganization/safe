@@ -99,7 +99,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
 
                         Log.i("qaz", "onItemClick: "+ bean.pic.get(pos));
                         Intent intent = new Intent(context, CirclePhone.class);
-                        intent.putExtra("url",bean.pic.get(pos));
+                        intent.putExtra("url",bean.pic);
 
                         context.startActivity(intent);
                     }

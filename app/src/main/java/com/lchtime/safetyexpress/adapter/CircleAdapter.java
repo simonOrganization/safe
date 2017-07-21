@@ -39,6 +39,7 @@ import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.SpacesItemDecoration;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -145,9 +146,9 @@ public class CircleAdapter extends RecyclerView.Adapter{
                     @Override
                     public void onItemClick(View v, int pos) {
 
-                        Log.i("qaz", "onItemClick: "+ bean.pic.get(pos));
+                        Log.i("qaz", "onItemClick: "+ bean.pic);
                         Intent intent = new Intent(context, CirclePhone.class);
-                        intent.putExtra("url", bean.pic.get(pos));
+                        intent.putExtra("url",  bean.pic);
 
                         context.startActivity(intent);
                     }

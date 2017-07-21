@@ -133,6 +133,6 @@ public class MyCircleActiveActivity extends BaseUI {
     public void refreshItemData(final String qc_id){
 
         initData();
-        
+
     }
 }

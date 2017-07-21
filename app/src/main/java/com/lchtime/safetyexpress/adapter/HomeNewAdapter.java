@@ -190,7 +190,7 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
 
                         Log.i("qaz", "onItemClick: "+ bean.media.get(pos));
                         Intent intent = new Intent(context, CirclePhone.class);
-                        intent.putExtra("url",bean.media.get(pos));
+                        intent.putExtra("url",bean.media);
 
                         context.startActivity(intent);
                     }

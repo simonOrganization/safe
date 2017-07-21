@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical" >
+    android:background="@color/white">
 
-    <include layout="@layout/title"/>
-    <View
+    <TextView
+        android:id="@+id/tv_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:textColor="#ffffff"
+        />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm002"
-        android:background="@color/page_color"/>
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
-       <ImageView
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:id="@+id/iv_circle_photo"/>
-   </LinearLayout>
-
-
-
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_below="@id/tv_indicator"
+        />
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,6 +69,6 @@ public class MyCircleActiveBean {
         public String is_delete;
         public String zan;
         public String cai;
-        public List<String> pic;
+        public ArrayList<String> pic;
     }
 }
