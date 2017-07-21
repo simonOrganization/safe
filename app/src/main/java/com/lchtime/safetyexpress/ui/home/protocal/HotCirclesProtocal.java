@@ -2,6 +2,7 @@ package com.lchtime.safetyexpress.ui.home.protocal;
 
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.gson.JsonObject;
 import com.lchtime.safetyexpress.MyApplication;
@@ -24,7 +25,7 @@ import okhttp3.Call;
 
 public class HotCirclesProtocal {
 
-    public void getCirclesList(final HotNewsListener listener){
+    public void getCirclesList(String ub_id ,final HotNewsListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.hotNewsResponse(null);
@@ -32,11 +33,10 @@ public class HotCirclesProtocal {
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
                 .concat(MyApplication.getContext().getResources().getString(R.string.hotqz));
-
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", ub_id)
                 .build()
                 .execute(new StringCallback() {
                     @Override

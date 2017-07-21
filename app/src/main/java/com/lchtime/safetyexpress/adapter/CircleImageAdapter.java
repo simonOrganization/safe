@@ -1,14 +1,17 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -23,6 +26,7 @@ import butterknife.ButterKnife;
 public class CircleImageAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<String> circleTwoList;
+    private IOnItemSelectListener pListener;
 
     public CircleImageAdapter(Context context, List<String> circleTwoList) {
         this.context = context;
@@ -36,7 +40,7 @@ public class CircleImageAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder,final int position) {
        // ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         //layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         CircleImageHolder holder1 = (CircleImageHolder) holder;
@@ -46,29 +50,40 @@ public class CircleImageAdapter extends RecyclerView.Adapter {
         }else {
             Picasso.with(context).load(R.drawable.banner_default).into(holder1.circle_image);
         }
+        holder1.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              /*  Intent intent = new Intent(context, CirclePhone.class);
+                intent.putExtra("url", circleTwoList.get(position));
+                Log.i("qaz", "onItemClick: "+ circleTwoList.get(position));*/
+                pListener.onItemClick(v, position);
+
+            }
+        });
 
     }
-
-
-
-//    public void setPicClick(String newsId,String type,String qc_id){
-//        Intent intent = new Intent(context, H5DetailUI.class);
-//        intent.putExtra("newsId",qc_id);
-//        intent.putExtra("type","circle");
-//        context.startActivity(intent);
-//    }
 
     @Override
     public int getItemCount() {
         return circleTwoList.size();
     }
+
+
+
     class CircleImageHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.circle_image)
         ImageView circle_image;
-
+        View view;
         public CircleImageHolder(View itemView) {
             super(itemView);
+            view = itemView;
             ButterKnife.bind(this,itemView);
         }
+    }
+    public  interface IOnItemSelectListener{
+        void onItemClick(View v,int pos);
+    }
+    public void setOnItemSelectLs(IOnItemSelectListener pListener){
+        this.pListener = pListener;
     }
 }

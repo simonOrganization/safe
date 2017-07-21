@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.NewsBean;
+import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.vip.fragment.NewsFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
@@ -177,12 +178,23 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
             }
             homeNewHolder.home_new_item_rc.setLayoutManager(new GridLayoutManager(context,3));
 //            homeNewHolder.home_new_item_rc.addItemDecoration(new GridSpacingItemDecoration(3,0,true));
-            homeNewHolder.home_new_item_rc.setClickable(false);
-            homeNewHolder.home_new_item_rc.setPressed(false);
-            homeNewHolder.home_new_item_rc.setEnabled(false);
+          //  homeNewHolder.home_new_item_rc.setClickable(false);
+          //  homeNewHolder.home_new_item_rc.setPressed(false);
+         //   homeNewHolder.home_new_item_rc.setEnabled(false);
             if(bean.getMedia() != null && bean.getMedia().size()>0){
                 CircleImageAdapter imageAdapter = new CircleImageAdapter(context,bean.getMedia());
                 homeNewHolder.home_new_item_rc.setAdapter(imageAdapter);
+                imageAdapter.setOnItemSelectLs(new CircleImageAdapter.IOnItemSelectListener() {
+                    @Override
+                    public void onItemClick(View v, int pos) {
+
+                        Log.i("qaz", "onItemClick: "+ bean.media.get(pos));
+                        Intent intent = new Intent(context, CirclePhone.class);
+                        intent.putExtra("url",bean.media.get(pos));
+
+                        context.startActivity(intent);
+                    }
+                });
             }
             homeNewHolder.textViews.get(1).setText(bean.getCc_from());
             homeNewHolder.textViews.get(2).setText(bean.getPlNum()+"评论");

@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.ui.circle.protocal;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
@@ -126,6 +127,7 @@ public class CircleProtocal {
             listener.circleResponse(null);
             return;
         }
+        Log.i("qaz", "onClick: " +ub_id+"-----"+f_ub_id+"-------"+ action);
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
                 .concat(MyApplication.getContext().getResources().getString(R.string.qzdy));
         OkHttpUtils
@@ -162,12 +164,15 @@ public class CircleProtocal {
                 });
     }
 
-    public void updataZanOrCai( String ub_id,String qc_id,String qc_agr,String qc_aga ,final NormalListener listener) {
+    public void updataZanOrCai( String ub_id,String qc_id,String qc_agr,String qc_aga,String action ,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
+        Log.i("qaz", "onClick: 点赞1" + ub_id  + "---ub_id----" + qc_id  +"-----qc_id----"+ qc_agr  + "----qc_agr----" + qc_aga
+                +"-----qc_aga----"+ action  + "------action" );
+
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
                 .concat(MyApplication.getContext().getResources().getString(R.string.newsdz));
         PostFormBuilder builder = OkHttpUtils
@@ -175,6 +180,8 @@ public class CircleProtocal {
                 .addParams("ub_id", ub_id)
                 //新闻id
                 .addParams("cc_id", qc_id);
+                //
+               // .addParams("action", action);
         if ("1".equals(qc_agr)) {
             builder
                     //同意
@@ -182,8 +189,18 @@ public class CircleProtocal {
 
         }else {
             builder
-                    //反对
+                   // 反对
                     .addParams("qc_aga", qc_aga);
+        }
+        if ("1".equals(action)) {
+            builder
+                    //取消
+                    .addParams("action", action);
+
+        }else {
+          //  builder
+                    //反对
+                  //  .addParams("action", action);
         }
         builder
                 .url(url)

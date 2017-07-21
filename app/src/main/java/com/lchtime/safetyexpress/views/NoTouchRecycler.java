@@ -23,8 +23,4 @@ public class NoTouchRecycler extends RecyclerView {
 //        super(context, attrs, defStyle);
 //    }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        return false;
-    }
 }
