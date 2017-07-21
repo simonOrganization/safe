@@ -12,8 +12,10 @@ import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.MyCircleActiveAdapter;
+import com.lchtime.safetyexpress.bean.CircleItemUpBean;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
+import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
@@ -99,8 +101,14 @@ public class MyCircleActiveActivity extends BaseUI {
                 if (myCircleList.size() == 0){
                     CommonUtils.toastMessage("您还没有发布圈子");
                 }
-                adapter = new MyCircleActiveAdapter(MyCircleActiveActivity.this,myCircleList);
-                rcMycircleActive.setAdapter(adapter);
+                if (adapter ==null) {
+                    adapter = new MyCircleActiveAdapter(MyCircleActiveActivity.this,myCircleList);
+                    rcMycircleActive.setAdapter(adapter);
+                }else {
+                    adapter.notifyDataSetChanged();
+                }
+
+
                 setIsLoading(false);
             }
         });
@@ -121,5 +129,10 @@ public class MyCircleActiveActivity extends BaseUI {
             pb_progress.setVisibility(View.GONE);
             backgroundAlpha(1f);
         }
+    }
+    public void refreshItemData(final String qc_id){
+
+        initData();
+        
     }
 }

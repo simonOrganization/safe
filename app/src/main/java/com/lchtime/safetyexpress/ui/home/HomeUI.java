@@ -95,6 +95,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     private String hotNewsUrl = "HOT_NEWS_CACHE";
     private String hotVideoNewsUrl = "HOT_VIDEO_NEWS_CACHE";
     private String advDataUrl = "ADV_DATA_CACHE";
+    private String ub_id;
 
 
     @Override
@@ -502,12 +503,16 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
 
     private HotCirclesProtocal hotCirclesProtocal;
     private void getHotCircleData(final int page) {
-
+        String userid = SpTools.getString(this, Constants.userId,"");
+        if (!TextUtils.isEmpty(userid)) {
+            ub_id =userid;
+            Log.i("qaz", "getHotCircleData: " + ub_id);
+        }
         if(hotCirclesProtocal == null){
             hotCirclesProtocal = new HotCirclesProtocal();
         }
+        aCache.clear();
         HotCircleBean hotCircleBean = (HotCircleBean) aCache.getAsObject(hotCircleUrl);
-
         if(hotCircleBean != null){
             if (hot == null) {
                 hot = hotCircleBean.hot;
@@ -523,7 +528,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         }
 
         if (hot == null || hot.size() == 0) {
-            hotCirclesProtocal.getCirclesList(new HotCirclesProtocal.HotNewsListener() {
+            hotCirclesProtocal.getCirclesList(ub_id,new HotCirclesProtocal.HotNewsListener() {
                 @Override
                 public void hotNewsResponse(HotCircleBean hotCircleBean) {
                     aCache.put(hotCircleUrl , hotCircleBean);

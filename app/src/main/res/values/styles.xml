@@ -14,7 +14,8 @@
 
         <item
 
-            name="toolbarStyle">@style/MyToolbar</item>
+            name="toolbarStyle">@style/MyToolbar
+        </item>
 
     </style>
     <!-- 底端tab -->
@@ -54,13 +55,20 @@
         <!-- 指定消失的动画xml -->
     </style>
 
-    <style
-        name="MyToolbar"
+    <style name="MyToolbar"
 
         parent="Widget.AppCompat.Toolbar">
 
-        <item
-            name="contentInsetStart">0dp</item>
+        <item name="contentInsetStart">0dp</item>
 
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

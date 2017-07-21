@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,9 @@ import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
 import com.lchtime.safetyexpress.bean.Result;
+import com.lchtime.safetyexpress.ui.circle.CircleUI;
 import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
+import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
@@ -90,6 +93,17 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                 //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(3, 5, true));
                 CircleImageAdapter imageAdapter = new CircleImageAdapter(context, bean.pic);
                 myHodler.circleItemImageRc.setAdapter(imageAdapter);
+                imageAdapter.setOnItemSelectLs(new CircleImageAdapter.IOnItemSelectListener() {
+                    @Override
+                    public void onItemClick(View v, int pos) {
+
+                        Log.i("qaz", "onItemClick: "+ bean.pic.get(pos));
+                        Intent intent = new Intent(context, CirclePhone.class);
+                        intent.putExtra("url",bean.pic.get(pos));
+
+                        context.startActivity(intent);
+                    }
+                });
                 //如果没有图片
             } else {
 
@@ -178,7 +192,9 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
             }
         });
     }
-
+    private boolean greate;
+    private boolean down;
+    private String action;
     private void setGreate(final MyCircleActiveHodler holder, final MyCircleActiveBean.QuanziBean bean, final CircleProtocal protocal) {
         holder.circleItemGreat.setText(bean.qc_zc);
         holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
@@ -187,28 +203,42 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
         holder.ivCircleItemGreat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                greate = !"1".equals(bean.zan);
+                if (greate) {
+                    action = "0";
+                } else {
+                    action = "1";
+                }
                 String userid = SpTools.getString(context, Constants.userId,"");
                 if (TextUtils.isEmpty(userid)){
                     CommonUtils.toastMessage("没有登陆！！");
                     holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
                     return;
                 }else {
-                    //请求网络数据
-                    if ("1".equals(bean.zan)){
-                        holder.ivCircleItemGreat.setChecked(true);
-                    }
-                    protocal.updataZanOrCai(userid, bean.qc_id, "1", "0", new CircleProtocal.NormalListener() {
+
+                    protocal.updataZanOrCai(userid, bean.qc_id, "1", "0","", new CircleProtocal.NormalListener() {
                         @Override
                         public void normalResponse(Object response) {
-                            if (response == null){
-                                CommonUtils.toastMessage("请重新尝试");
+                            if (response == null) {
+                                greate = true;
+                                holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
+                                holder.ivCircleItemGreat.setClickable(true);
+                                CommonUtils.toastMessage("请求网络失败");
                                 return;
                             }
                             BasicResult result = (BasicResult) response;
-                            if (context instanceof SingleInfoUI){
-                                ((SingleInfoUI) context).prepareData();
+                            if (!result.code.equals("10")) {
+                                CommonUtils.toastMessage(result.getInfo());
+                                holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
+                            } else {
+                                greate = false;
+                                holder.ivCircleItemGreat.setChecked("1".equals(bean.cai));
+                                if (context instanceof SingleInfoUI) {
+                                    ((SingleInfoUI) context).prepareData();
+                                }
                             }
-                            CommonUtils.toastMessage(result.getInfo() + "");
+                            holder.ivCircleItemGreat.setChecked(true);
+                            CommonUtils.toastMessage(result.getInfo());
                         }
                     });
                     //holder.iv_circle_item_great.setChecked(true);
@@ -226,23 +256,42 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
         holder.ivCircleItemLow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                down = !"1".equals(bean.cai);
+                if (down) {
+                    action = "0";
+                } else {
+                    action = "1";
+                }
                 String userid = SpTools.getString(context, Constants.userId,"");
                 if (TextUtils.isEmpty(userid)){
                     CommonUtils.toastMessage("没有登陆！！");
                     holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
                     return;
                 }else {
-                    if ("1".equals(bean.zan)){
-                        holder.ivCircleItemLow.setChecked(true);
-                    }
+
                     //请求网络数据
-                    protocal.updataZanOrCai(userid, bean.qc_id, "0", "1", new CircleProtocal.NormalListener() {
+                    protocal.updataZanOrCai(userid, bean.qc_id, "0", "1",action, new CircleProtocal.NormalListener() {
                         @Override
                         public void normalResponse(Object response) {
-                            BasicResult result = (BasicResult) response;
-                            if (context instanceof SingleInfoUI){
-                                ((SingleInfoUI) context).prepareData();
+                            if (response == null){
+                                down = true;
+                                holder.ivCircleItemLow.setChecked("1".equals(bean.zan));
+                                holder.ivCircleItemLow.setClickable(true);
+                                CommonUtils.toastMessage("请求网络失败");
+                                return;
                             }
+                            BasicResult result = (BasicResult) response;
+                            if (!result.code.equals("10")) {
+                                CommonUtils.toastMessage(result.getInfo());
+                                holder.ivCircleItemLow.setChecked("1".equals(bean.zan));
+                            } else {
+                                down = false;
+                                holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
+                                if (context instanceof CircleUI) {
+                                    ((CircleUI) context).refreshItemData(bean.qc_id);
+                                }
+                            }
+                            holder.ivCircleItemLow.setChecked(true);
                             CommonUtils.toastMessage(result.getInfo());
                         }
                     });

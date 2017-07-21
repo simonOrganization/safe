@@ -3,6 +3,7 @@ package com.lchtime.safetyexpress.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,7 +92,7 @@ public class HomeHotCircleAdapter extends BaseAdapter {
             public void onClick(View v) {
                 String userid = SpTools.getString(context, Constants.userId,"");
                 if (TextUtils.isEmpty(userid)){
-                    //CommonUtils.toastMessage("请登陆！！！");
+                    CommonUtils.toastMessage("请登陆！！！");
                     Intent intent = new Intent(context , LoginUI.class);
                     context.startActivity(intent);
                     finalHolder.iv_subscribe.setChecked(list.get(position).checked);
@@ -105,15 +106,25 @@ public class HomeHotCircleAdapter extends BaseAdapter {
                                 notifyDataSetChanged();
                                 return;
                             }
+
                             if ("10".equals(response.result.code)){
-                                list.get(position).checked =  !list.get(position).checked;
+                                list.get(position).checked = !list.get(position).checked;
                                 InitInfo.circleRefresh = true;
-                            }else {
+                                finalHolder.iv_subscribe.setChecked(list.get(position).checked);
+                            }else if("02".equals(response.result.code)){
+                                list.get(position).checked = !list.get(position).checked;
+                                InitInfo.circleRefresh = true;
+                                finalHolder.iv_subscribe.setChecked(list.get(position).checked);
+                            }else{
                                 //订阅或者取消订阅失败了
+                               list.get(position).checked = !list.get(position).checked;
+                                finalHolder.iv_subscribe.setChecked(list.get(position).checked);
                                 notifyDataSetChanged();
                             }
                             CommonUtils.toastMessage(response.result.getInfo());
                         }
+
+
                     });
                 }
             }
