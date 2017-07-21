@@ -160,8 +160,11 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
         } else if (id == R.id.btn_set_mode_voice) {
             setModeVoice();
             showNormalFaceImage();
-            if(listener != null)
+            if(listener != null) {
                 listener.onToggleVoiceBtnClicked();
+            }
+            faceChecked.setVisibility(View.GONE);
+            faceNormal.setVisibility(View.GONE);
         } else if (id == R.id.btn_set_mode_keyboard) {
             setModeKeyboard();
             showNormalFaceImage();
@@ -173,6 +176,7 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
             edittext_layout.setVisibility(View.VISIBLE);
             buttonPressToSpeak.setVisibility(View.GONE);
             showNormalFaceImage();
+            //faceChecked.setVisibility(View.VISIBLE);
             if(listener != null)
                 listener.onToggleExtendClicked();
         } else if (id == R.id.et_sendmessage) {
@@ -203,9 +207,10 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
         buttonSend.setVisibility(View.GONE);
         buttonMore.setVisibility(View.VISIBLE);
         buttonPressToSpeak.setVisibility(View.VISIBLE);
-        faceNormal.setVisibility(View.VISIBLE);
-        faceChecked.setVisibility(View.INVISIBLE);
-
+        faceNormal.setVisibility(View.GONE);
+        //faceChecked.setVisibility(View.INVISIBLE);
+        faceChecked.setVisibility(GONE);
+        //ss
     }
 
     /**

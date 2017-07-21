@@ -2,6 +2,7 @@ package com.hyphenate.easeui.adapter;
 
 import android.content.Context;
 import android.provider.ContactsContract;
+import android.telecom.Call;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -58,6 +59,7 @@ public class ConversationAdapter extends ArrayAdapter<EMConversation> {
     protected List<EMConversation> top_list = new ArrayList<>();
     protected Map<String, EaseUser> topUserMap ;
     protected Map<String,ContactBean> userInfo;
+
 
     public ConversationAdapter(Context context, int resource,
                                List<EMConversation> conversiationList, List<EMConversation> top_list, Map<String, EaseUser> topUserMap, Map<String,ContactBean> userInfo) {
@@ -128,21 +130,11 @@ public class ConversationAdapter extends ArrayAdapter<EMConversation> {
             }else{
                 holder.motioned.setVisibility(View.GONE);
             }
-            // group message, show group avatar
-
-
             //设置群头像昵称  用本地服务器数据
-//            if (userInfo != null && userInfo.size() > position && userInfo.get(username) != null){
-//                if (!TextUtils.isEmpty(userInfo.get(username).ud_photo_fileid)) {
-//                    Glide.with(context).load(userInfo.get(username).ud_photo_fileid).into(holder.avatar);
-//                }else {
-//                    Glide.with(context).load(R.drawable.ease_group_icon).into(holder.avatar);
-//                }
-//                holder.name.setText(userInfo.get(username).ud_nickname);
-//            }
 
             holder.avatar.setImageResource(R.drawable.ease_group_icon);
             EMGroup group = EMClient.getInstance().groupManager().getGroup(username);
+            //group.
             holder.name.setText(group != null ? group.getGroupName() : username);
         } else if(conversation.getType() == EMConversationType.ChatRoom){
             holder.avatar.setImageResource(R.drawable.ease_group_icon);
@@ -204,7 +196,7 @@ public class ConversationAdapter extends ArrayAdapter<EMConversation> {
 
         return convertView;
     }
-    
+
     @Override
     public void notifyDataSetChanged() {
             super.notifyDataSetChanged();

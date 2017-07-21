@@ -13,10 +13,10 @@
  */
 package com.hyphenate.easeui.domain;
 
+
 import com.hyphenate.chat.EMContact;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 
-import static com.hyphenate.easeui.R.string.set;
 
 public class EaseUser extends EMContact {
     

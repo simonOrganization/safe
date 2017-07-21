@@ -41,6 +41,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hyphenate.EMGroupChangeListener;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMContact;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMConversation.EMConversationType;
 import com.hyphenate.easeui.domain.EaseUser;
@@ -309,31 +310,34 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		String st5 = getResources().getString(R.string.is_modify_the_group_name);
 		final String st6 = getResources().getString(R.string.Modify_the_group_name_successful);
 		final String st7 = getResources().getString(R.string.change_the_group_name_failed_please);
-		
 		if (resultCode == RESULT_OK) {
-			String[] newmembers = null;
+			ArrayList<EMContact> members;
+			//String[] newmembers = null;
 			switch (requestCode) {
 			case REQUEST_CODE_ADD_USER:
 				// 添加群成员
-				newmembers = data.getStringArrayExtra("newmembers");
+				//newmembers = data.getStringArrayExtra("newmembers");
+				members = data.getParcelableArrayListExtra("newmembers");
 				setLoadding(true);
-				addMembersToGroup(newmembers);
+				addMembersToGroup(members);
 				break;
-			case REQUEST_CODE_DEL_USER:
-				// 添加群成员
-				newmembers = data.getStringArrayExtra("newmembers");
-				setLoadding(true);
-				String sns_quners = "";
-				for (int i = 0; i < newmembers.length;i++){
-					if ( i == 0){
-						sns_quners = sns_quners + newmembers[i];
-					}else {
-						sns_quners = sns_quners + "," + newmembers[i];
+			case REQUEST_CODE_DEL_USER: //删除群成员
+				members = data.getParcelableArrayListExtra("newmembers");
+				//setLoadding(true);
+				if(members != null && members.size() > 0){
+					String sns_quners = "";
+					for (int i = 0; i < members.size() ; i++){
+						if ( i == 0){
+							//因为传输数据问题 这里将环信id设置给 Username 这个变量。取出来的时候 Username 实际上是环信id
+							sns_quners = sns_quners + members.get(i).getUsername();
+						}else {
+							sns_quners = sns_quners + "," + members.get(i).getUsername();
+						}
 					}
-				}
 
-				if (!TextUtils.isEmpty(sns_quners)) {
-					deleteMembers(sns_quners);
+					if (!TextUtils.isEmpty(sns_quners)) {
+						deleteMembers(sns_quners);
+					}
 				}
 				break;
 			default:
@@ -367,12 +371,18 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		}
 	}
 
+
+	public static void deleteMemberToGroup(){
+
+	}
+
+
 	/**
 	 * 增加群成员
 	 *
-	 * @param newmembers
+	 * @param members
 	 */
-	private void addMembersToGroup(final String[] newmembers) {
+	private void addMembersToGroup(ArrayList<EMContact> members) {
 		if (mProtocal == null){
 			mProtocal = new GetInfoProtocal();
 		}
@@ -383,8 +393,8 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		mAdapterList.clear();
 		mAdapterList.addAll(mBean.quners);
 		String sns_qunser = "";
-		for (int i = 0 ; i < newmembers.length;i++){
-			InfoBean.QunersBean bean = new InfoBean.QunersBean();
+		for (int i = 0 ; i < members.size();i++){
+			/*InfoBean.QunersBean bean = new InfoBean.QunersBean();
 			EaseUser user = EaseUserUtils.getUserInfo(newmembers[i]);
 			if(user != null && user.getNick() != null){
 				bean.ud_nickname = user.getNick();
@@ -398,13 +408,13 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 
 			}else{
 				bean.pic_resource = 0;
-			}
+			}*/
 
 //			mAdapterList.add(bean);
 			if (i == 0){
-				sns_qunser = sns_qunser + newmembers[i];
+				sns_qunser = sns_qunser + members.get(i).getNick();
 			}else {
-				sns_qunser = sns_qunser + "," +newmembers[i];
+				sns_qunser = sns_qunser + "," +members.get(i).getNick();
 			}
 		}
 		adapter.notifyDataSetChanged();
@@ -910,7 +920,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 						public void onClick(View v) {
 							Intent intent = new Intent(GroupDetailsActivity.this, GroupPickDeleteContactsActivity.class);
 							intent.putExtra("groupId", groupId);
-							startActivityForResult(intent,REQUEST_CODE_DEL_USER);
+							startActivityForResult(intent , REQUEST_CODE_DEL_USER);
 						}
 					});
 				}
@@ -926,9 +936,10 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 						@Override
 						public void onClick(View v) {
 							// 进入选人页面
-							startActivityForResult(
-									(new Intent(GroupDetailsActivity.this, GroupPickContactsActivity.class).putExtra("groupId", groupId)),
-									REQUEST_CODE_ADD_USER);
+							Intent intent = new Intent(GroupDetailsActivity.this, GroupPickContactsActivity.class);
+							intent.putExtra("groupId", groupId);
+							intent.putExtra("type" , true);
+							startActivityForResult(intent , REQUEST_CODE_ADD_USER);
 						}
 					});
 				}
@@ -982,7 +993,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 	private void deleteMembers(final String sns_quners) {
 		final String st13 = getResources().getString(R.string.Are_removed);
 		if (!TextUtils.isEmpty(ub_id)) {
-
+			setLoadding(true);
 			mProtocal.getDelMember(ub_id, groupId, sns_quners, new AddCommandProtocal.NormalListener() {
 				@Override
 				public void normalResponse(Object response) {

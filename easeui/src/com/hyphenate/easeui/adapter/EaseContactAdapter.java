@@ -90,10 +90,9 @@ public class EaseContactAdapter extends ArrayAdapter<EaseUser> implements Sectio
             holder.headerView.setVisibility(View.GONE);
         }
 
-
-
         EaseUserUtils.setUserNick(username, holder.nameView);
-        EaseUserUtils.setUserAvatar(getContext(), username, holder.avatar);
+        Glide.with(getContext()).load(user.getAvatar()).into(holder.avatar);
+        //EaseUserUtils.setUserAvatar(getContext(), username, holder.avatar);
         if (userInfo != null && userInfo.size() > position && userInfo.get(username) != null){
             if (!TextUtils.isEmpty(userInfo.get(username).ud_photo_fileid)) {
                 Glide.with(getContext()).load(userInfo.get(username).ud_photo_fileid).into(holder.avatar);

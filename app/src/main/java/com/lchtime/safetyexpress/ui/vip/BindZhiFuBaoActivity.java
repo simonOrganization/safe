@@ -104,7 +104,6 @@ public class BindZhiFuBaoActivity extends BaseUI implements View.OnClickListener
                     MyAccountBean bean = (MyAccountBean)response;
                     if ("10".equals(bean.result.code)){
                         CommonUtils.toastMessage(bean.result.info);
-
                         finish();
                     }else {
                         CommonUtils.toastMessage("失败");

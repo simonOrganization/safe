@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -456,6 +457,14 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
                 //String u = url;
                 if(!url.equals("wvjbscheme://__BRIDGE_LOADED__")){
                     mWebView.loadUrl(url);
+                }
+                if(url.contains(".pdf")){
+                    Intent intent = new Intent();
+                    intent.setAction("android.intent.action.VIEW");
+                    Uri content_url = Uri.parse(url);
+                    intent.setData(content_url);
+                    startActivity(intent);
+                    return false;
                 }
                 return true;
             }

@@ -68,13 +68,14 @@ public class GroupPickContactsActivity extends BaseActivity implements View.OnCl
 	private ImageButton clearSearch;
 	private ListView listView;
 	private Map<String,ContactBean> myMap = new HashMap<>();
+	private boolean type;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.em_activity_group_pick_contacts);
 		String groupId = getIntent().getStringExtra("groupId");
-
+		type = getIntent().getBooleanExtra("type" , true);
 		initTitle();
 
 		initView();
@@ -204,10 +205,15 @@ public class GroupPickContactsActivity extends BaseActivity implements View.OnCl
 		int length = contactAdapter.isCheckedArray.length;
 		for (int i = 0; i < length; i++) {
 			String username = contactAdapter.getItem(i).getUsername();
-
+            ContactBean bean = EaseInitBean.map.get(username);
 			//if (contactAdapter.isCheckedArray[i] && !existMembers.contains(username)) {
 			if (contactAdapter.isCheckedArray[i]) {
-				members.add(contactAdapter.getItem(i));
+                EaseUser user = contactAdapter.getItem(i);
+                user.setAvatar(bean.ud_photo_fileid);
+                user.setExternalNickName(bean.ud_nickname);
+				user.setNick(bean.hx_account);
+				user.setNickname(bean.ud_nickname);
+				members.add(user);
 			}
 		}
 
@@ -218,13 +224,17 @@ public class GroupPickContactsActivity extends BaseActivity implements View.OnCl
 	public void onClick(View v) {
 		if (v.getId() == R.id.ll_right){
 			ArrayList<EaseUser> members = getToBeAddMembers();
-            Intent intent = new Intent();
+			if(type){
+				Intent intent = new Intent();
+				Bundle bundle = new Bundle();
+				//bundle.putParcelableArrayList("list",(ArrayList<User>)list);// 序列化,要注意
+				bundle.putParcelableArrayList("newmembers", members);
+				intent.putExtras(bundle);// 发送数据
+				setResult(RESULT_OK, intent);
 
-			Bundle bundle = new Bundle();
-			//bundle.putParcelableArrayList("list",(ArrayList<User>)list);// 序列化,要注意
-			bundle.putParcelableArrayList("newmembers", members);
-			intent.putExtras(bundle);// 发送数据
-			setResult(RESULT_OK, intent);
+			}else{
+				NewGroupActivity.setSelectData(members);
+			}
 			finish();
 		}else if(v.getId() == R.id.ll_back){
 			finish();
@@ -238,7 +248,7 @@ public class GroupPickContactsActivity extends BaseActivity implements View.OnCl
 
 		private boolean[] isCheckedArray;
 
-		public PickContactAdapter(Context context, int resource, List<EaseUser> users,Map<String,ContactBean> userInfo) {
+		public PickContactAdapter(Context context, int resource, List<EaseUser> users , Map<String,ContactBean> userInfo) {
 
 			super(context, resource, users,userInfo);
 			isCheckedArray = new boolean[users.size()];

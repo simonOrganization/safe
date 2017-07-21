@@ -320,6 +320,7 @@ public class AskQuestionActivity extends BaseUI implements PopupWindow.OnDismiss
         options = new FunctionOptions.Builder()
                 .setType(1) // 图片or视频 FunctionConfig.TYPE_IMAGE  TYPE_VIDEO
                 .setCropMode(FunctionConfig.CROP_MODEL_DEFAULT) // 裁剪模式 默认、1:1、3:4、3:2、16:9
+                //.setCompress(true) //是否压缩
                 .setCompress(true) //是否压缩
                 .setEnablePixelCompress(true) //是否启用像素压缩
                 .setEnableQualityCompress(true) //是否启质量压缩
@@ -335,7 +336,7 @@ public class AskQuestionActivity extends BaseUI implements PopupWindow.OnDismiss
                 .setGif(false)// 是否显示gif图片，默认不显示
 //                            .setCropW(cropW) // cropW-->裁剪宽度 值不能小于100  如果值大于图片原始宽高 将返回原图大小
 //                            .setCropH(cropH) // cropH-->裁剪高度 值不能小于100 如果值大于图片原始宽高 将返回原图大小
-                .setMaxB(200) // 压缩最大值 例如:200kb  就设置202400，202400 / ic_launcher = 200kb
+                .setMaxB(202400) // 压缩最大值 例如:200kb  就设置202400，202400 / ic_launcher = 200kb
                 .setPreviewColor(previewColor) //预览字体颜色
                 .setCompleteColor(completeColor) //已完成字体颜色
                 .setPreviewBottomBgColor(ContextCompat.getColor(AskQuestionActivity.this, R.color.transparent)) //预览底部背景色

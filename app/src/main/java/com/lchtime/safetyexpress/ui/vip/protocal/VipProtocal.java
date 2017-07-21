@@ -11,6 +11,7 @@ import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.mzhy.http.okhttp.OkHttpUtils;
 import com.mzhy.http.okhttp.callback.StringCallback;
@@ -69,8 +70,8 @@ public class VipProtocal {
     }
 
     /*
-* 获取我的账户
-* */
+    * 获取我的账户
+    */
     public void getAddAcount( String ub_id,String type,String name,String account,final CircleProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             CommonUtils.toastMessage("您当前无网络，请联网再试");
@@ -155,7 +156,7 @@ public class VipProtocal {
     /*
 * 提现
 * */
-    public void getTiXian( String ub_id,String num,String account,final CircleProtocal.NormalListener listener) {
+    public void getTiXian(String ub_id , String num , String account , final DialogUtil dialog , final CircleProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
@@ -172,11 +173,12 @@ public class VipProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        dialog.dissmiss();
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
+                        dialog.dissmiss();
                         if (TextUtils.isEmpty(response)) {
                             CommonUtils.toastMessage("没有数据返回");
                             return;

@@ -21,6 +21,7 @@ import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.vip.protocal.VipProtocal;
 import com.lchtime.safetyexpress.utils.BitmapUtils;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
 import com.lchtime.safetyexpress.views.CircleImageView;
@@ -68,6 +69,10 @@ public class OutPutMoneyActivity extends BaseUI implements View.OnClickListener 
     private String accountNum;
     private VipProtocal protocal;
 
+    private DialogUtil mDialog;
+    private String num;
+    private float mAllmoney;
+
     @Override
     protected void back() {
         finish();
@@ -77,7 +82,12 @@ public class OutPutMoneyActivity extends BaseUI implements View.OnClickListener 
     protected void setControlBasis() {
         ButterKnife.bind(this);
         setTitle("提现");
+        mDialog = new DialogUtil(mContext);
         accountNum = getIntent().getStringExtra("ud_zfb_account");
+        num = getIntent().getStringExtra("ud_amount");
+        if(num != null){
+            mAllmoney = Float.valueOf(num);
+        }
         //初始化头像
         initPhoto();
         //初始化支付宝账号
@@ -135,7 +145,15 @@ public class OutPutMoneyActivity extends BaseUI implements View.OnClickListener 
 
         String money = etMoneyNum.getText().toString().trim();
         if (v == allOutput){
-            String num = getIntent().getStringExtra("ud_amount");
+            //String num = getIntent().getStringExtra("ud_amount");
+            if(mAllmoney < 20.00){
+                CommonUtils.toastMessage("提现最低20元");
+                return;
+            }
+            if(mAllmoney > 5000.00){
+                CommonUtils.toastMessage("提现最高5000元");
+                return;
+            }
             if (TextUtils.isEmpty(num)){
                 CommonUtils.toastMessage("全部提现出现问题");
             }else {
@@ -144,6 +162,15 @@ public class OutPutMoneyActivity extends BaseUI implements View.OnClickListener 
 
             }
         }else if (v == tvOutput){
+            float m = Float.valueOf(money);
+            if(m < 20.00){
+                CommonUtils.toastMessage("提现最低20元");
+                return;
+            }
+            if(mAllmoney > 5000.00){
+                CommonUtils.toastMessage("提现最高5000元");
+                return;
+            }
             tiXianInternet(money);
         }
     }
@@ -160,7 +187,8 @@ public class OutPutMoneyActivity extends BaseUI implements View.OnClickListener 
             CommonUtils.toastMessage("请登录后再提现");
             return;
         }
-        protocal.getTiXian(userid, num, accountNum, new CircleProtocal.NormalListener() {
+        mDialog.show();
+        protocal.getTiXian(userid, num, accountNum, mDialog ,new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
                 Result result = (Result) response;

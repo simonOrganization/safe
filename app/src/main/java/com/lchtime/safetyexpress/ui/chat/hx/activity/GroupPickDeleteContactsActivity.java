@@ -60,14 +60,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 选择群成员界面
+ */
 public class GroupPickDeleteContactsActivity extends BaseActivity implements View.OnClickListener {
 	/** if this is a new group */
 	protected boolean isCreatingNewGroup;
 	private PickContactAdapter contactAdapter;
 	/** members already in the group */
-	private List<String> existMembers;
-
-
+	//private List<String> existMembers;
 
 	private TextView mTitle;
 	private TextView mTitleRight;
@@ -79,6 +80,7 @@ public class GroupPickDeleteContactsActivity extends BaseActivity implements Vie
 	private GetInfoProtocal mProtocal;
 	private String mUb_id;
 	private String mGroupId;
+	private ArrayList<EaseUser> alluserList = new ArrayList<EaseUser>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -92,68 +94,34 @@ public class GroupPickDeleteContactsActivity extends BaseActivity implements Vie
 
 		initListener();
 
+		initData();
+
 
 		if (mGroupId == null) {// create new group
 			isCreatingNewGroup = true;
 		} else {
 			// get members of the group
-			EMGroup group = EMClient.getInstance().groupManager().getGroup(mGroupId);
-			existMembers = group.getMembers();
+			/*EMGroup group = EMClient.getInstance().groupManager().getGroup(mGroupId);
+			existMembers = group.getMembers();*/
 		}
-		if(existMembers == null) {
+		/*if(existMembers == null) {
 			existMembers = new ArrayList<String>();
-		}
-		// get contact list
-		final List<EaseUser> alluserList = new ArrayList<EaseUser>();
+		}*/
 
-		for (int i = 0 ; i < existMembers.size();i++){
+		/*for (int i = 0 ; i < existMembers.size();i++){
 
 			EaseUser user = DemoHelper.getInstance().getUserInfo(existMembers.get(i));
 			alluserList.add(user);
-		}
-		// sort the list
-        Collections.sort(alluserList, new Comparator<EaseUser>() {
+		}*/
 
-            @Override
-            public int compare(EaseUser lhs, EaseUser rhs) {
-                if(lhs.getInitialLetter().equals(rhs.getInitialLetter())){
-                    return lhs.getNick().compareTo(rhs.getNick());
-                }else{
-                    if("#".equals(lhs.getInitialLetter())){
-                        return 1;
-                    }else if("#".equals(rhs.getInitialLetter())){
-                        return -1;
-                    }
-                    return lhs.getInitialLetter().compareTo(rhs.getInitialLetter());
-                }
-                
-            }
-        });
 
-		if (EaseInitBean.map == null) {
-			if (EaseInitBean.contactBean != null) {
 
-				for (ContactBean contactBean : EaseInitBean.contactBean.friendlist) {
-					myMap.put(contactBean.hx_account, contactBean);
-				}
-			}
-			EaseInitBean.map = myMap;
-		}
 
-		contactAdapter = new PickContactAdapter(this, R.layout.em_row_contact_with_checkbox, alluserList,myMap);
-		listView.setAdapter(contactAdapter);
-		((EaseSidebar) findViewById(R.id.sidebar)).setListView(listView);
-		listView.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkbox);
-				checkBox.toggle();
-
-			}
-		});
 	}
 
+	/**
+	 * 获取群成员列表
+	 */
 	private void initData() {
 		if (mProtocal == null){
 			mProtocal = new GetInfoProtocal();
@@ -163,12 +131,60 @@ public class GroupPickDeleteContactsActivity extends BaseActivity implements Vie
 			CommonUtils.toastMessage("没有获取到群组信息");
 			return;
 		}
+		alluserList.clear();
 		mProtocal.getQuners(mUb_id, mGroupId, new AddCommandProtocal.NormalListener() {
 			@Override
 			public void normalResponse(Object response) {
 				InfoBean bean = (InfoBean) JsonUtils.stringToObject((String) response, InfoBean.class);
-				AllPeopleAdapter adapter = new AllPeopleAdapter(GroupPickDeleteContactsActivity.this ,1 , bean.quners);
-				listView.setAdapter(adapter);
+				for (InfoBean.QunersBean qunBean : bean.quners){
+					EaseUser user = new EaseUser(qunBean.ud_nickname);
+					user.setAvatar(qunBean.ud_photo_fileid);
+					user.setExternalNickName(qunBean.ud_nickname);
+					//因为传输数据问题 这里将环信id设置给 nick 这个变量
+					user.setNick(qunBean.hx_account);
+					alluserList.add(user);
+				}
+				// sort the list  排序
+				Collections.sort(alluserList, new Comparator<EaseUser>() {
+
+					@Override
+					public int compare(EaseUser lhs, EaseUser rhs) {
+						if(lhs.getInitialLetter().equals(rhs.getInitialLetter())){
+							return lhs.getNick().compareTo(rhs.getNick());
+						}else{
+							if("#".equals(lhs.getInitialLetter())){
+								return 1;
+							}else if("#".equals(rhs.getInitialLetter())){
+								return -1;
+							}
+							return lhs.getInitialLetter().compareTo(rhs.getInitialLetter());
+						}
+
+					}
+				});
+				if (EaseInitBean.map == null) {
+					if (EaseInitBean.contactBean != null) {
+
+						for (ContactBean contactBean : EaseInitBean.contactBean.friendlist) {
+							myMap.put(contactBean.hx_account, contactBean);
+						}
+					}
+					EaseInitBean.map = myMap;
+				}
+
+				contactAdapter = new PickContactAdapter(GroupPickDeleteContactsActivity.this, R.layout.em_row_contact_with_checkbox, alluserList , myMap);
+				listView.setAdapter(contactAdapter);
+				((EaseSidebar) findViewById(R.id.sidebar)).setListView(listView);
+				listView.setOnItemClickListener(new OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+						CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkbox);
+						checkBox.toggle();
+
+					}
+				});
+				contactAdapter.notifyDataSetChanged();
 			}
 		});
 	}
@@ -234,13 +250,17 @@ public class GroupPickDeleteContactsActivity extends BaseActivity implements Vie
 	 * 
 	 * @return
 	 */
-	private List<String> getToBeAddMembers() {
-		List<String> members = new ArrayList<String>();
+	private ArrayList<EaseUser> getToBeAddMembers() {
+
+		//List<String> members = new ArrayList<String>();
+		ArrayList<EaseUser> members = new ArrayList<EaseUser>();
 		int length = contactAdapter.isCheckedArray.length;
 		for (int i = 0; i < length; i++) {
-			String username = contactAdapter.getItem(i).getUsername();
+			//String username = contactAdapter.getItem(i).getUsername();
 			if (contactAdapter.isCheckedArray[i]) {
-				members.add(username);
+				//members.add(contactAdapter.getItem(i));
+				EaseUser user = new EaseUser(alluserList.get(i).getNick());
+                members.add(user);
 			}
 		}
 
@@ -250,8 +270,15 @@ public class GroupPickDeleteContactsActivity extends BaseActivity implements Vie
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.ll_right){
-			List<String> var = getToBeAddMembers();
-			setResult(RESULT_OK, new Intent().putExtra("newmembers", var.toArray(new String[var.size()])));
+			/*List<String> var = getToBeAddMembers();
+			setResult(RESULT_OK, new Intent().putExtra("newmembers", var.toArray(new String[var.size()])));*/
+			//GroupDetailsActivity.deleteMemberToGroup(getToBeAddMembers());
+			Intent intent = new Intent();
+			Bundle bundle = new Bundle();
+			bundle.putParcelableArrayList("newmembers" , getToBeAddMembers());
+			intent.putExtras(bundle);
+			setResult(RESULT_OK , intent);
+
 			finish();
 		}else if(v.getId() == R.id.ll_back){
 			finish();
@@ -265,7 +292,7 @@ public class GroupPickDeleteContactsActivity extends BaseActivity implements Vie
 
 		private boolean[] isCheckedArray;
 
-		public PickContactAdapter(Context context, int resource, List<EaseUser> users,Map<String,ContactBean> userInfo) {
+		public PickContactAdapter(Context context, int resource, List<EaseUser> users , Map<String,ContactBean> userInfo) {
 			super(context, resource, users,userInfo);
 			isCheckedArray = new boolean[users.size()];
 		}

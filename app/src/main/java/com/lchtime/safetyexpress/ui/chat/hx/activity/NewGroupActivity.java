@@ -39,6 +39,7 @@ import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMContact;
@@ -66,6 +67,7 @@ import com.lchtime.safetyexpress.utils.UpdataImageUtils;
 import com.luck.picture.lib.model.FunctionConfig;
 import com.luck.picture.lib.model.FunctionOptions;
 import com.luck.picture.lib.model.PictureConfig;
+import com.squareup.picasso.Picasso;
 import com.yalantis.ucrop.entity.LocalMedia;
 
 import java.util.ArrayList;
@@ -106,9 +108,9 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 	private RelativeLayout hyItem;
 	private RelativeLayout addrItem;
 	private RelativeLayout loading;
-	private GridAdapter adapter;
+	private static GridAdapter adapter;
 	//public List<String> members;
-	public List<EaseUser> members;
+	public static List<EaseUser> members = new ArrayList<>();
 	private List<ProfessionBean.ProfessionItemBean> professionList = new ArrayList<>();
 	private ArrayList<CardBean> cardItem = new ArrayList<>();
 	private GetInfoProtocal mProtocal;
@@ -121,7 +123,7 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.em_activity_new_group);
-		members = new ArrayList<>();
+		//members = ;
 		initTitle();
 //		groupNameEditText = (EditText) findViewById(R.id.edit_group_name);
 //		introductionEditText = (EditText) findViewById(R.id.edit_group_introduction);
@@ -271,6 +273,13 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 
 	}
 
+	public static void setSelectData(ArrayList<EaseUser> datas){
+		members.clear();
+		members.addAll(datas);
+		//EaseUser user = members.get(0);
+		if(adapter != null)
+		adapter.notifyDataSetChanged();
+	}
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
@@ -283,14 +292,14 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 //			progressDialog.setMessage(st1);
 //			progressDialog.setCanceledOnTouchOutside(false);
 //			progressDialog.show();
-			if (data != null){
+			/*if (data != null){
 				//回显选择的群成员图片
 				ArrayList<EaseUser> datas = data.getParcelableArrayListExtra("newmembers");
 				members.clear();
 				members.addAll(datas);
                 //EaseUser user = members.get(0);
 				adapter.notifyDataSetChanged();
-			}
+			}*/
 
 		}else if (requestCode == CITY_CODE){
 			if (data != null) {
@@ -346,7 +355,10 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 			}
 			final LinearLayout button = (LinearLayout) convertView.findViewById(R.id.button_avatar);
 			// 最后一个item，减人按钮
+            /*Log.i("eeeeee" , "getCount==" + getCount());
+			Log.i("eeeeee" , "position==" + position);*/
 			if (position == getCount() - 1) {
+				Log.i("eeeeee" , "设置减号");
 				holder.textView.setText("");
 				// 设置成删除按钮
 				holder.imageView.setImageResource(R.drawable.em_smiley_minus_btn);
@@ -370,7 +382,10 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 				});
 
 			} else if (position == getCount() - 2) { // 添加群组成员按钮
+				Log.i("eeeeee" , "设置加号");
 				holder.textView.setText("");
+				/*Glide.with(NewGroupActivity.this).load(R.drawable.em_smiley_add_btn)
+						.into(holder.imageView);*/
 				holder.imageView.setImageResource(R.drawable.em_smiley_add_btn);
 //				button.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.smiley_add_btn, 0, 0);
 				// 如果不是创建者或者没有相应权限
@@ -392,7 +407,7 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 //									REQUEST_CODE_ADD_USER);
 						Intent intent = new Intent(NewGroupActivity.this, GroupPickContactsActivity.class);
 						intent.putExtra("groupName" , mGroupName.getText().toString());
-
+						intent.putExtra("type" , false);
 						startActivityForResult(intent , 0);
 						/*startActivityForResult(new Intent(NewGroupActivity.this, GroupPickContactsActivity.class)
 								.putExtra("groupName", mGroupName.getText().toString()), 0);*/
@@ -401,20 +416,16 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 
 			} else { // 普通item，显示群组成员
 				EaseUser easeUser = objects.get(position);
-
+				Log.i("eeeeee" , "设置组成员");
 				final String username = easeUser.getExternalNickName();
 				String headUrl = easeUser.getAvatar();
 				convertView.setVisibility(View.VISIBLE);
 				button.setVisibility(View.VISIBLE);
-				EaseUserUtils.setUserNick(username, holder.textView);
-				EaseUserUtils.setUserAvatar(getContext(), headUrl, holder.imageView);
-
-//				String photoSrc = quners.get(position).ud_photo_fileid;
-//				if (!TextUtils.isEmpty(photoSrc)){
-//					Glide.with(NewGroupActivity.this).load(photoSrc).into(holder.imageView);
-//				}else {
-//					Glide.with(NewGroupActivity.this).load(R.drawable.circle_user_image).into(holder.imageView);
-//				}
+				holder.textView.setText(username);
+				Glide.with(NewGroupActivity.this).load(headUrl)
+						.error(R.drawable.circle_user_image).into(holder.imageView);
+				//EaseUserUtils.setUserNick(username, holder.textView);
+				//EaseUserUtils.setUserAvatar(getContext(), headUrl, holder.imageView);
 
 				if (isInDeleteMode) {
 					// 如果是删除模式下，显示减人图标
