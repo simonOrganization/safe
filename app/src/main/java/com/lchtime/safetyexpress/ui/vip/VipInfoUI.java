@@ -637,7 +637,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
                 break;
             case SEX:
                 cardItem.add(new CardBean(0, "男"));
-                cardItem.add(new CardBean(0, "女"));
+                cardItem.add(new CardBean(1, "女"));
 
                 break;
         }

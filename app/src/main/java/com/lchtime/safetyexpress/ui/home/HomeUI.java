@@ -503,11 +503,8 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
 
     private HotCirclesProtocal hotCirclesProtocal;
     private void getHotCircleData(final int page) {
-        String userid = SpTools.getString(this, Constants.userId,"");
-        if (!TextUtils.isEmpty(userid)) {
-            ub_id =userid;
-            Log.i("qaz", "getHotCircleData: " + ub_id);
-        }
+        ub_id = SpTools.getString(this, Constants.userId,"");
+
         if(hotCirclesProtocal == null){
             hotCirclesProtocal = new HotCirclesProtocal();
         }

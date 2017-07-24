@@ -43,27 +43,11 @@ public class CirclePhone extends AppCompatActivity {
          url = getIntent().getStringArrayListExtra("url");
         Log.i("qaz", "onCreate1: "+url);
 
-      /*  if (!TextUtils.isEmpty(url)) {
-            Picasso.with(this).load(url).into(iv_circle_photo);
-        } else {
-            Picasso.with(this).load(R.drawable.banner_default).into(iv_circle_photo);
-        }*/
-      /*  if (url !=null) {
-            final int size =url.size();
-            urls = url.toArray(new String[size]);
-        }else{
-            Log.i("qaz", "onCreate2: "+"11122222");
-        }*/
-      //  Log.i("qaz", "onCreate2: "+urls);
-       // urlList = new ArrayList<>();
-       // Collections.addAll(urlList, urls);
-
-
         viewpager.setAdapter(new PictureSlidePagerAdapter(getSupportFragmentManager(),url));
         viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                tvIndicator.setText(String.valueOf(position + 1) + "/" + urlList.size());
+                tvIndicator.setText(String.valueOf(position + 1) + "/" + url.size());
             }
 
             @Override

@@ -315,14 +315,14 @@ public class LoginInternetRequest {
                 }else if(code.equals("20")){
                     if(info.equals("手机长度不正确")){
                         CommonUtils.toastMessage("您输入的手机号错误");
-                        mListener.onResponseMessage("");
                     }else if(info.equals("手机号已存在！")){
                         CommonUtils.toastMessage("您输入的手机号已注册");
-                        mListener.onResponseMessage("");
                     }else if(info.equals("密码长度不正确！")){
                         CommonUtils.toastMessage("您输入的密码位数不足6位");
-                        mListener.onResponseMessage("");
+                    }else{
+                        CommonUtils.toastMessage("注册失败");
                     }
+                    mListener.onResponseMessage("");
                 }else {
                     CommonUtils.toastMessage("未知错误");
                     mListener.onResponseMessage("");
