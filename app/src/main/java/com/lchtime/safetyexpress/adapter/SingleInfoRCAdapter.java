@@ -98,12 +98,12 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                         Log.i("qaz", "onItemClick: "+ bean.pic.get(pos));
                         Intent intent = new Intent(context, CirclePhone.class);
                         intent.putExtra("url",bean.pic);
+                        intent.putExtra("pos", pos+"");
                         context.startActivity(intent);
                     }
                 });
                 //如果没有图片
             } else {
-
                 //视频
                 if (bean.pic.size() > 0) {
                     ((MyCircleActiveHodler) holder).circleItemShipin.setVisibility(View.VISIBLE);

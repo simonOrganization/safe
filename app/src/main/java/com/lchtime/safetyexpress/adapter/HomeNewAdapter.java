@@ -184,13 +184,15 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
             if(bean.getMedia() != null && bean.getMedia().size()>0){
                 CircleImageAdapter imageAdapter = new CircleImageAdapter(context,bean.getMedia());
                 homeNewHolder.home_new_item_rc.setAdapter(imageAdapter);
-                imageAdapter.setOnItemSelectLs(new CircleImageAdapter.IOnItemSelectListener() {
-                    @Override
-                    public void onItemClick(View v, int pos) {
 
-                        Log.i("qaz", "onItemClick: "+ bean.media.get(pos));
-                        Intent intent = new Intent(context, CirclePhone.class);
-                        intent.putExtra("url",bean.media);
+                imageAdapter.setOnItemSelectLs(new CircleImageAdapter.IOnItemSelectListener() {
+                            @Override
+                            public void onItemClick(View v, int pos) {
+
+                                Log.i("qaz", "onItemClick: "+ bean.media.get(pos));
+                                Intent intent = new Intent(context, CirclePhone.class);
+                                intent.putExtra("pos", pos+"");
+                                intent.putExtra("url",bean.media);
 
                         context.startActivity(intent);
                     }

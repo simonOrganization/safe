@@ -94,11 +94,9 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                 imageAdapter.setOnItemSelectLs(new CircleImageAdapter.IOnItemSelectListener() {
                     @Override
                     public void onItemClick(View v, int pos) {
-
-                        Log.i("qaz", "onItemClick: " + bean.pic.get(pos));
                         Intent intent = new Intent(context, CirclePhone.class);
                         intent.putExtra("url", bean.pic);
-
+                        intent.putExtra("pos", pos + "");
                         context.startActivity(intent);
                     }
                 });
@@ -167,7 +165,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
      * @param protocal
      */
     private void deleteCircle(MyCircleActiveHodler holder, final int position, CircleProtocal protocal) {
-      //  ((MyCircleActiveActivity) context).setIsLoading(true);
+        //  ((MyCircleActiveActivity) context).setIsLoading(true);
         MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);
         String userid = SpTools.getString(context, Constants.userId, "");
         if (TextUtils.isEmpty(userid)) {

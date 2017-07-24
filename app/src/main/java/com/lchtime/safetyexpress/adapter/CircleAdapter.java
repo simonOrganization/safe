@@ -121,11 +121,9 @@ public class CircleAdapter extends RecyclerView.Adapter{
                 imageAdapter.setOnItemSelectLs(new CircleImageAdapter.IOnItemSelectListener() {
                     @Override
                     public void onItemClick(View v, int pos) {
-
-                        Log.i("qaz", "onItemClick: "+ bean.pic);
                         Intent intent = new Intent(context, CirclePhone.class);
                         intent.putExtra("url",  bean.pic);
-
+                        intent.putExtra("pos", pos+"");
                         context.startActivity(intent);
                     }
                 });

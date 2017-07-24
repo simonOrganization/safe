@@ -40,7 +40,7 @@ public class CircleImageAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder,final int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
        // ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         //layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         CircleImageHolder holder1 = (CircleImageHolder) holder;
@@ -53,9 +53,7 @@ public class CircleImageAdapter extends RecyclerView.Adapter {
         holder1.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              /*  Intent intent = new Intent(context, CirclePhone.class);
-                intent.putExtra("url", circleTwoList.get(position));
-                Log.i("qaz", "onItemClick: "+ circleTwoList.get(position));*/
+
                 pListener.onItemClick(v, position);
 
             }
@@ -82,6 +80,7 @@ public class CircleImageAdapter extends RecyclerView.Adapter {
     }
     public  interface IOnItemSelectListener{
         void onItemClick(View v,int pos);
+
     }
     public void setOnItemSelectLs(IOnItemSelectListener pListener){
         this.pListener = pListener;
