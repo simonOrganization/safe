@@ -167,7 +167,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
      * @param protocal
      */
     private void deleteCircle(MyCircleActiveHodler holder, final int position, CircleProtocal protocal) {
-        ((MyCircleActiveActivity) context).setIsLoading(true);
+      //  ((MyCircleActiveActivity) context).setIsLoading(true);
         MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);
         String userid = SpTools.getString(context, Constants.userId, "");
         if (TextUtils.isEmpty(userid)) {

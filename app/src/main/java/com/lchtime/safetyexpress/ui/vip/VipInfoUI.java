@@ -504,6 +504,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
                     case SEX:
                         map.put("ud_sex",tx);
                         tv_sex.setText(tx);
+                        allInfo.ud_sex = tx;
                         break;
                 }
             }

@@ -15,7 +15,7 @@
         <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
             android:id="@+id/iv_recommend_img"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dm240"
+            android:layout_height="@dimen/dm300"
             android:visibility="gone"/>
 
         <RelativeLayout

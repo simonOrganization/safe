@@ -28,6 +28,7 @@ import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.EmptyRecyclerView;
+import com.lchtime.safetyexpress.views.NoTouchRecycler;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -68,7 +69,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
             final MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);
 
             //如果有图片
-            if (TextUtils.isEmpty(bean.qc_video)) {
+            if (TextUtils.isEmpty(bean.qc_video) || bean.qc_video.equals("0")) {
                 ((MyCircleActiveHodler) holder).circleItemShipin.setVisibility(View.GONE);
                 ((MyCircleActiveHodler) holder).circleItemImageRc.setVisibility(View.VISIBLE);
                 //一片张图
@@ -76,21 +77,18 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                     ViewGroup.LayoutParams layoutParamsss = myHodler.circleItemImageRc.getLayoutParams();
                     layoutParamsss.width = screenWith / 3;
                     myHodler.circleItemImageRc.setLayoutManager(new GridLayoutManager(context, 1));
-//                circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(2,10,true));
+//
                 } else if (bean.pic.size() == 4) {
                     //四张图片
                     ViewGroup.LayoutParams layoutParamsss = myHodler.circleItemImageRc.getLayoutParams();
                     layoutParamsss.width = screenWith / 2;
                     myHodler.circleItemImageRc.setLayoutManager(new GridLayoutManager(context, 2));
-                    //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(2, 5, true));
                 } else {
                     //多张图片
                     ViewGroup.LayoutParams layoutParamsss = myHodler.circleItemImageRc.getLayoutParams();
                     layoutParamsss.width = ViewGroup.LayoutParams.MATCH_PARENT;
                     myHodler.circleItemImageRc.setLayoutManager(new GridLayoutManager(context, 3));
-                    //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(3, 5, true));
                 }
-                //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(3, 5, true));
                 CircleImageAdapter imageAdapter = new CircleImageAdapter(context, bean.pic);
                 myHodler.circleItemImageRc.setAdapter(imageAdapter);
                 imageAdapter.setOnItemSelectLs(new CircleImageAdapter.IOnItemSelectListener() {
@@ -100,7 +98,6 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                         Log.i("qaz", "onItemClick: "+ bean.pic.get(pos));
                         Intent intent = new Intent(context, CirclePhone.class);
                         intent.putExtra("url",bean.pic);
-
                         context.startActivity(intent);
                     }
                 });
@@ -232,7 +229,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                                 holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
                             } else {
                                 greate = false;
-                                holder.ivCircleItemGreat.setChecked("1".equals(bean.cai));
+                                holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
                                 if (context instanceof SingleInfoUI) {
                                     ((SingleInfoUI) context).prepareData();
                                 }
@@ -275,7 +272,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                         public void normalResponse(Object response) {
                             if (response == null){
                                 down = true;
-                                holder.ivCircleItemLow.setChecked("1".equals(bean.zan));
+                                holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
                                 holder.ivCircleItemLow.setClickable(true);
                                 CommonUtils.toastMessage("请求网络失败");
                                 return;
@@ -283,12 +280,12 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                             BasicResult result = (BasicResult) response;
                             if (!result.code.equals("10")) {
                                 CommonUtils.toastMessage(result.getInfo());
-                                holder.ivCircleItemLow.setChecked("1".equals(bean.zan));
+                                holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
                             } else {
                                 down = false;
                                 holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
-                                if (context instanceof CircleUI) {
-                                    ((CircleUI) context).refreshItemData(bean.qc_id);
+                                if (context instanceof SingleInfoUI) {
+                                    ((SingleInfoUI) context).prepareData();
                                 }
                             }
                             holder.ivCircleItemLow.setChecked(true);
@@ -326,7 +323,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
         @BindView(R.id.circle_item_shipin)
         RelativeLayout circleItemShipin;
         @BindView(R.id.circle_item_image_rc)
-        EmptyRecyclerView circleItemImageRc;
+        NoTouchRecycler circleItemImageRc;
         @BindView(R.id.circle_item_time)
         TextView circleItemTime;
         @BindView(R.id.circle_item_talk)

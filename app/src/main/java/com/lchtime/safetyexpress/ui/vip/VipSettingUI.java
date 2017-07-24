@@ -180,6 +180,7 @@ public class VipSettingUI extends BaseUI {
                         startActivity(new Intent(VipSettingUI.this, LoginUI.class));
                         backgroundAlpha(1f);
                         pb_progress.setVisibility(View.GONE);
+                        VipUI.isLogin = false;
                         finish();
 
                     }

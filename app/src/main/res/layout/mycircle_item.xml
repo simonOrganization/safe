@@ -7,8 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginLeft="@dimen/dm020"
-        android:layout_marginRight="@dimen/dm020"
+        android:layout_marginLeft="@dimen/dm016"
+        android:layout_marginRight="@dimen/dm016"
         android:background="@color/white"
         android:paddingTop="@dimen/dm016"
         android:paddingBottom="@dimen/dm016">
@@ -34,25 +34,25 @@
             android:layout_marginTop="@dimen/dm030"
             android:id="@+id/circle_item_shipin"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dm300"
+            android:layout_height="@dimen/dm240"
             android:layout_below="@id/circle_item_content">
 
             <ImageView
                 android:id="@+id/iv_recommend_img"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm300"
+                android:layout_height="@dimen/dm240"
                 android:background="@color/title_666" />
 
             <ImageView
                 android:id="@+id/iv_recommend_img_bg"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm300"
+                android:layout_height="@dimen/dm240"
                 android:background="@drawable/video_sel_bg"
                 android:visibility="visible"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm300">
+                android:layout_height="@dimen/dm240">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

@@ -31,8 +31,6 @@ public class CirclePhone extends AppCompatActivity {
     @BindView(R.id.viewpager)
     ViewPager viewpager;
     private ArrayList<String> url;
-    private ArrayList<String> urlList;
-    private String[] urls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -483,7 +483,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
 
 
 
-    boolean isLogin = false;
+    public static boolean isLogin = false;
     private SsoHandler mSsoHandler;
     @Override
     public void onClick(View v) {

@@ -153,10 +153,13 @@ public class UpdataImageUtils {
             if(file.exists()){
                 file.delete();
             }
+
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-            bos.flush();
-            bos.close();
+            if (bitmap != null) {
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+                bos.flush();
+                bos.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

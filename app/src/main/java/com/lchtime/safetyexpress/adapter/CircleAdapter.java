@@ -98,7 +98,6 @@ public class CircleAdapter extends RecyclerView.Adapter{
 
             //如果有图片
             if (bean.qc_video == null || bean.qc_video.equals("0") || bean.qc_video.equals("")) {
-                //if (TextUtils.isEmpty(bean.qc_video)) {
                 ((CircleHodler) holder).circle_item_shipin_1.setVisibility(View.GONE);
                 ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.VISIBLE);
                 //一片张图
@@ -106,40 +105,17 @@ public class CircleAdapter extends RecyclerView.Adapter{
                     ViewGroup.LayoutParams layoutParamsss = circleHodler.circle_item_image_rc.getLayoutParams();
                     layoutParamsss.width = screenWith / 3;
                     circleHodler.circle_item_image_rc.setLayoutManager(new GridLayoutManager(context, 1));
-                    /*if (isCircle) {
-                        //如果是圈子界面
-                        ((CircleHodler) holder).circle_item_shipin_1.setVisibility(View.VISIBLE);
-                        ((CircleHodler) holder).iv_recommend_play.setVisibility(View.GONE);
-                        ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.GONE);
-                        Picasso.with(context).load(bean.pic.get(0))
-                                .transform(ImageUtils.getTransformation(((CircleHodler) holder).circle_item_shipin))
-                                .into(((CircleHodler) holder).circle_item_shipin);
-
-                    } else {
-                        //如果不是圈子界面，那么取消显示
-                        ViewGroup.LayoutParams layoutParamsss = circleHodler.circle_item_image_rc.getLayoutParams();
-                        layoutParamsss.width = screenWith / 3;
-                        circleHodler.circle_item_image_rc.setLayoutManager(new GridLayoutManager(context, 1));
-//                circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(2,10,true));
-                    }*/
                 } else if (bean.pic.size() == 4) {
                     //四张图片
                     ViewGroup.LayoutParams layoutParamsss = circleHodler.circle_item_image_rc.getLayoutParams();
                     layoutParamsss.width = screenWith / 2;
                     circleHodler.circle_item_image_rc.setLayoutManager(new GridLayoutManager(context, 2));
-                    //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(2, 5, true));
                 } else {
                     //多张图片
                     ViewGroup.LayoutParams layoutParamsss = circleHodler.circle_item_image_rc.getLayoutParams();
                     layoutParamsss.width = ViewGroup.LayoutParams.MATCH_PARENT;
                     circleHodler.circle_item_image_rc.setLayoutManager(new GridLayoutManager(context, 3));
-                    //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(3, 5, true));
                 }
-                //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(3, 5, true));
-
-
-                //((CircleHodler) holder).circle_item_image_rc.setEnabled(false);
-                //((CircleHodler) holder).circle_item_image_rc.setClickable(false);
                 CircleImageAdapter imageAdapter = new CircleImageAdapter(context, bean.pic);
                 circleHodler.circle_item_image_rc.setAdapter(imageAdapter);
                 imageAdapter.setOnItemSelectLs(new CircleImageAdapter.IOnItemSelectListener() {
