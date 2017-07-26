@@ -24,6 +24,16 @@ public class EaseUser extends EMContact {
      * initial letter for nickname
      */
 	protected String initialLetter;
+	protected String ub_id;
+
+	public String getUb_id() {
+		return ub_id;
+	}
+
+	public void setUb_id(String ub_id) {
+		this.ub_id = ub_id;
+	}
+
 	/**
 	 * avatar of the user
 	 */

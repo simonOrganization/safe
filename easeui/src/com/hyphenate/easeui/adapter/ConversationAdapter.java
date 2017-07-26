@@ -1,9 +1,6 @@
 package com.hyphenate.easeui.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.provider.ContactsContract;
-import android.telecom.Call;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -27,10 +24,10 @@ import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.bean.ContactBean;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
-import com.hyphenate.easeui.utils.ACache;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.hyphenate.easeui.utils.EaseUserUtils;
+import com.hyphenate.easeui.utils.SPUtils;
 import com.hyphenate.easeui.widget.EaseConversationList.EaseConversationListHelper;
 import com.hyphenate.util.DateUtils;
 
@@ -139,7 +136,8 @@ public class ConversationAdapter extends ArrayAdapter<EMConversation> {
             }else {
                 holder.avatar.setImageResource(R.drawable.ease_group_icon);
             }*/
-            String headUrl = ACache.get(context).getAsString(username);
+            //String headUrl = ACache.get(context).getAsString(username);
+            String headUrl = SPUtils.getString(context , username);
             Glide.with(context).load(headUrl).placeholder(R.drawable.ease_group_icon).into(holder.avatar);
             EMGroup group = EMClient.getInstance().groupManager().getGroup(username);
 
@@ -152,9 +150,10 @@ public class ConversationAdapter extends ArrayAdapter<EMConversation> {
             }else {
                 holder.avatar.setImageResource(R.drawable.ease_group_icon);
             }*/
-            String headUrl = ACache.get(context).getAsString(username);
+            //String headUrl = ACache.get(context).getAsString(username);
+            String headUrl = SPUtils.getString(context , username);
             Glide.with(context).load(headUrl).placeholder(R.drawable.ease_group_icon).into(holder.avatar);
-            
+
             EMChatRoom room = EMClient.getInstance().chatroomManager().getChatRoom(username);
             holder.name.setText(room != null && !TextUtils.isEmpty(room.getName()) ? room.getName() : username);
             holder.motioned.setVisibility(View.GONE);
