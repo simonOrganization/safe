@@ -36,7 +36,7 @@ public class CirclePhone extends AppCompatActivity {
     ViewPager viewpager;
     private ArrayList<String> urlList;
     private ArrayList<PhotoView> viewList = new ArrayList<>();
-    private String pos;
+    private int pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class CirclePhone extends AppCompatActivity {
         ButterKnife.bind(this);
         setTitle("图片预览");
         urlList = getIntent().getStringArrayListExtra("url");
-        pos = getIntent().getStringExtra("pos");
+        pos = getIntent().getIntExtra("pos" , 0);
         Log.i("qaz", "onCreate1: "+pos);
         if(urlList != null){
             for(String imageUrl : urlList){
@@ -56,7 +56,7 @@ public class CirclePhone extends AppCompatActivity {
         }
 
         viewpager.setAdapter(new PhotoAdapter(CirclePhone.this , viewList));
-        viewpager.setCurrentItem(Integer.parseInt(pos));
+        viewpager.setCurrentItem(pos);
         viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

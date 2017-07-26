@@ -20,7 +20,6 @@ import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
-import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
 import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
@@ -29,17 +28,14 @@ import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
-import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.vip.MyCircleActiveActivity;
 import com.lchtime.safetyexpress.ui.vip.fragment.CircleFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ImageUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
-import com.lchtime.safetyexpress.views.SpacesItemDecoration;
 import com.squareup.picasso.Picasso;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,7 +119,7 @@ public class CircleAdapter extends RecyclerView.Adapter{
                     public void onItemClick(View v, int pos) {
                         Intent intent = new Intent(context, CirclePhone.class);
                         intent.putExtra("url",  bean.pic);
-                        intent.putExtra("pos", pos+"");
+                        intent.putExtra("pos", pos);
                         context.startActivity(intent);
                     }
                 });

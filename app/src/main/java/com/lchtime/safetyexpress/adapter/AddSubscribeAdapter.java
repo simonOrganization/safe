@@ -1,7 +1,6 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -17,7 +16,6 @@ import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.ui.circle.OtherPersonSubscribeActivity;
-import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.fragment.SubscirbeAllFragment;
 import com.lchtime.safetyexpress.ui.circle.fragment.SubscirbeCommendFragment;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;

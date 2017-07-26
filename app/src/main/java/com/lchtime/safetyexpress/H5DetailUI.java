@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
@@ -39,6 +38,7 @@ import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.CallBackActivity;
 import com.lchtime.safetyexpress.ui.Const;
 import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
+import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.home.AnswerQuestionActivity;
 import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
 import com.lchtime.safetyexpress.ui.home.protocal.H5Protocal;
@@ -62,6 +62,7 @@ import com.tencent.tauth.UiError;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 
 
 /**
@@ -613,6 +614,23 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
                 imm.toggleSoftInput(0 , InputMethodManager.HIDE_NOT_ALWAYS);
             }
         });
+    }
+
+    /**
+     * 详情点击图片进入预览
+     * @param id
+     * @param urls
+     */
+    @JavascriptInterface
+    public void image(int id , String[] urls){
+        ArrayList<String> urlList = new ArrayList<>();
+        for(String url : urls){
+            urlList.add(url);
+        }
+        Intent intent = new Intent(mContext , CirclePhone.class);
+        intent.putExtra("pos" , id);
+        intent.putExtra("url" , urlList);
+        mContext.startActivity(intent);
     }
     /**
      * 分享

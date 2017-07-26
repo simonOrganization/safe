@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +20,6 @@ import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
 import com.lchtime.safetyexpress.bean.Result;
-import com.lchtime.safetyexpress.ui.circle.CircleUI;
-import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.vip.MyCircleActiveActivity;
@@ -96,7 +93,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                     public void onItemClick(View v, int pos) {
                         Intent intent = new Intent(context, CirclePhone.class);
                         intent.putExtra("url", bean.pic);
-                        intent.putExtra("pos", pos + "");
+                        intent.putExtra("pos", pos);
                         context.startActivity(intent);
                     }
                 });

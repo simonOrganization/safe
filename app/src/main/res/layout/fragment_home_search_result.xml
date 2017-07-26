@@ -6,7 +6,7 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <ScrollView
+    <com.lchtime.safetyexpress.views.MyScrollView
         android:id="@+id/sv_news_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
         android:orientation="vertical"
         android:visibility="visible" />
 </RelativeLayout>
-    </ScrollView>
+    </com.lchtime.safetyexpress.views.MyScrollView>
 
 
 </LinearLayout>

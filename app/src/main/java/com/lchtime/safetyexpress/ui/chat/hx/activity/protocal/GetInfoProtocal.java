@@ -200,9 +200,12 @@ public class GetInfoProtocal {
                 });
     }
 
-
-
-
+    /**
+     * 删除群
+     * @param ub_id
+     * @param groupid
+     * @param listener
+     */
     public void getDeleteGrounp( String ub_id,String groupid,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             CommonUtils.toastMessage("您当前无网络，请联网再试");

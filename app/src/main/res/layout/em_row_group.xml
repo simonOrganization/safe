@@ -23,12 +23,12 @@
         android:textColor="@color/title_333"
         android:textSize="@dimen/dm024" />
 
-    <View
+    <!--<View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm001"
         android:layout_marginLeft="@dimen/dm020"
         android:layout_marginRight="@dimen/dm020"
         android:background="@color/line"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"/>-->
 
 </RelativeLayout>

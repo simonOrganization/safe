@@ -26,7 +26,6 @@ import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
-import com.lchtime.safetyexpress.ui.vip.VipInfoUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.JsonUtils;

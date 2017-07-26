@@ -28,6 +28,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -635,7 +636,9 @@ public class HXMainActivity extends BaseActivity implements View.OnClickListener
 		if ((System.currentTimeMillis() - exitTime) > 2000) {
 			Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
 			exitTime = System.currentTimeMillis();
+			Log.i("fxp==" , "HXMainActivity    start");
 		} else {
+			Log.i("fxp==" , "HXMainActivity    end");
 			finish();
 			//System.exit(0);
 		}

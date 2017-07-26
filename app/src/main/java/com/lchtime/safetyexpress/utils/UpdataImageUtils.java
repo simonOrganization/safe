@@ -21,18 +21,8 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-
-import static com.igexin.sdk.GTServiceManager.context;
 
 /**
  * Created by android-cp on 2017/4/26.

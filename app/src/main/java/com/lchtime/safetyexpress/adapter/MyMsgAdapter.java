@@ -14,25 +14,17 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.ContentValues;
-import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.hyphenate.chat.EMClient;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
@@ -43,7 +35,6 @@ import com.lchtime.safetyexpress.ui.chat.hx.activity.NewFriendsMsgActivity;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.protocal.GetInfoProtocal;
 import com.lchtime.safetyexpress.ui.chat.hx.bean.ApplyMessageBean;
 import com.lchtime.safetyexpress.ui.chat.hx.db.InviteMessgeDao;
-import com.lchtime.safetyexpress.ui.chat.hx.domain.InviteMessage;
 import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Pair;
@@ -33,9 +32,6 @@ import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.ui.EaseBaseFragment;
 import com.hyphenate.easeui.widget.EaseConversationList;
 import com.lchtime.safetyexpress.MyApplication;
-import com.lchtime.safetyexpress.bean.Constants;
-import com.lchtime.safetyexpress.ui.Const;
-import com.lchtime.safetyexpress.utils.SpTools;
 
 import java.util.ArrayList;
 import java.util.Collections;

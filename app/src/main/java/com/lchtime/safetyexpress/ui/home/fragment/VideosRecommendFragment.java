@@ -69,7 +69,7 @@ public class VideosRecommendFragment extends Fragment {
         if (protocal == null){
             protocal = new VideoProtocal();
         }
-        protocal.getVideoList("0", cd_id,new VideoProtocal.VideoListListener() {
+        protocal.getVideoList("0" , cd_id , new VideoProtocal.VideoListListener() {
             @Override
             public void videoListResponse(VideoRes videoRes) {
                 videoList = videoRes.cms_context;

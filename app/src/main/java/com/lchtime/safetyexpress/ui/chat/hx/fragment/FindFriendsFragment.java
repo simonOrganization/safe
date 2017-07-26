@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.lchtime.safetyexpress.R;
@@ -21,9 +20,6 @@ import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
-import com.lidroid.xutils.view.annotation.ViewInject;
-
-import static com.lchtime.safetyexpress.R.id.error;
 
 
 /**

@@ -27,6 +27,7 @@ import android.os.PowerManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -550,8 +551,10 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
 		if ((System.currentTimeMillis() - exitTime) > 2000) {
 			Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
 			exitTime = System.currentTimeMillis();
+			Log.i("fxp==" , "ContactActivity    start");
 		} else {
 			finish();
+			Log.i("fxp==" , "ContactActivity    end");
 			//System.exit(0);
 		}
 	}
