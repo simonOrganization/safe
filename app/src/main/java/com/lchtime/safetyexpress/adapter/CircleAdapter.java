@@ -83,7 +83,7 @@ public class CircleAdapter extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-        Log.i("---------------", position + "");
+      //  Log.i("---------------", position + "");
 //        holder.itemView.setTag(position);
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;

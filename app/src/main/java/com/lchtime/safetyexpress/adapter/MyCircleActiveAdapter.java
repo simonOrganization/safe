@@ -91,9 +91,9 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                 imageAdapter.setOnItemSelectLs(new CircleImageAdapter.IOnItemSelectListener() {
                     @Override
                     public void onItemClick(View v, int pos) {
-                        Intent intent = new Intent(context, CirclePhone.class);
-                        intent.putExtra("url", bean.pic);
-                        intent.putExtra("pos", pos);
+                        Intent intent = new Intent(context, H5DetailUI.class);
+                        intent.putExtra("newsId", bean.qc_id);
+                        intent.putExtra("type", "circle");
                         context.startActivity(intent);
                     }
                 });

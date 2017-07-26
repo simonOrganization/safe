@@ -34,7 +34,7 @@
             android:textSize="@dimen/dm024"
             android:gravity="center"
             android:textColor="@color/white"
-            android:text="¥15.00"/>
+            android:text="¥0.00"/>
         <TextView
             android:id="@+id/tv_change_account"
             android:layout_marginTop="@dimen/dm012"

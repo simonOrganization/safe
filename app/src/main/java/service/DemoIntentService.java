@@ -48,7 +48,7 @@ public class DemoIntentService extends GTIntentService {
 
     @Override
     public void onReceiveServicePid(Context context, int pid) {
-        Log.d(TAG, "onReceiveServicePid -> " + pid);
+        Log.d("qaz", "onReceiveServicePid -> " + pid);
     }
 
     private Gson gson = new Gson();
@@ -62,16 +62,16 @@ public class DemoIntentService extends GTIntentService {
         String cid = msg.getClientId();
         // 第三方回执调用接口，actionid范围为90000-90999，可根据业务场景执行
         boolean result = PushManager.getInstance().sendFeedbackMessage(context, taskid, messageid, 90001);
-        Log.d(TAG, "call sendFeedbackMessage = " + (result ? "success" : "failed"));
+        Log.d("qaz", "call sendFeedbackMessage = " + (result ? "success" : "failed"));
 
-        Log.d(TAG, "onReceiveMessageData -> " + "appid = " + appid + "\ntaskid = " + taskid + "\nmessageid = " + messageid + "\npkg = " + pkg
+        Log.d("qaz", "onReceiveMessageData -> " + "appid = " + appid + "\ntaskid = " + taskid + "\nmessageid = " + messageid + "\npkg = " + pkg
                 + "\ncid = " + cid);
 
         if (payload == null) {
-            Log.e(TAG, "receiver payload = null");
+            Log.e("qaz", "receiver payload = null");
         } else {
             String data = new String(payload);
-            Log.d(TAG, "receiver payload = " + data);
+            Log.d("qaz", "receiver payload = " + data);
 
             //接到通知 跳转到指定的activity
             jumpActivity(data);
@@ -85,13 +85,13 @@ public class DemoIntentService extends GTIntentService {
 //            sendMessage(data, 0);
         }
 //        sendNotification(new String(payload));
-        Log.d(TAG, "----------------------------------------------------------------------------------------------");
+        Log.d("qaz", "----------------------------------------------------------------------------------------------");
     }
 
     private void jumpActivity(String data) {
         try {
             MessageBean bean = gson.fromJson(data,MessageBean.class);
-
+            Log.i("qaz", "jumpActivity: " + bean.locate);
             if ("1".equals(bean.locate)){
                 if (!TextUtils.isEmpty(bean.q_id)){
 
@@ -178,7 +178,7 @@ public class DemoIntentService extends GTIntentService {
 
     @Override
     public void onReceiveClientId(Context context, String clientid) {
-        Log.e(TAG, "onReceiveClientId -> " + "clientid = " + clientid);
+        Log.e("qaz", "onReceiveClientId -> " + "clientid = " + clientid);
 
         Tag t = new Tag();
         //name 字段只支持：中文、英文字母（大小写）、数字、除英文逗号以外的其他特殊符号, 具体请看代码示例
@@ -191,12 +191,12 @@ public class DemoIntentService extends GTIntentService {
 
     @Override
     public void onReceiveOnlineState(Context context, boolean online) {
-        Log.d(TAG, "onReceiveOnlineState -> " + (online ? "online" : "offline"));
+        Log.d("qaz", "onReceiveOnlineState -> " + (online ? "online" : "offline"));
     }
 
     @Override
     public void onReceiveCommandResult(Context context, GTCmdMessage cmdMessage) {
-        Log.d(TAG, "onReceiveCommandResult -> " + cmdMessage);
+        Log.d("qaz", "onReceiveCommandResult -> " + cmdMessage);
 
         int action = cmdMessage.getAction();
 
@@ -257,7 +257,7 @@ public class DemoIntentService extends GTIntentService {
                 break;
         }
 
-        Log.d(TAG, "settag result sn = " + sn + ", code = " + code + ", text = " + text);
+        Log.d("qaz", "settag result sn = " + sn + ", code = " + code + ", text = " + text);
     }
 
     private void feedbackResult(FeedbackCmdMessage feedbackCmdMsg) {
@@ -268,7 +268,7 @@ public class DemoIntentService extends GTIntentService {
         long timestamp = feedbackCmdMsg.getTimeStamp();
         String cid = feedbackCmdMsg.getClientId();
 
-        Log.d(TAG, "onReceiveCommandResult -> " + "appid = " + appid + "\ntaskid = " + taskid + "\nactionid = " + actionid + "\nresult = " + result
+        Log.d("qaz", "onReceiveCommandResult -> " + "appid = " + appid + "\ntaskid = " + taskid + "\nactionid = " + actionid + "\nresult = " + result
                 + "\ncid = " + cid + "\ntimestamp = " + timestamp);
     }
 

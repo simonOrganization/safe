@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
@@ -142,16 +143,13 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
                         }
                     }
                     newsBean.isCheck = !newsBean.isCheck;
-
                 }
             });
-
         } else {
             //隐藏
             rb.setVisibility(View.GONE);
         }
     }
-
 
     /*--------------------------------------------------------------------------------------------------------------------------------------------*/
     @Override
@@ -162,7 +160,6 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
                 newsItemInterface.setNewOnItem(position);
             }
         });
-
 
         final NewsBean bean = mDatas.get(position);
         if (holder instanceof HomeNewHolder) {
@@ -176,9 +173,9 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
             }
             homeNewHolder.home_new_item_rc.setLayoutManager(new GridLayoutManager(context, 3));
 //            homeNewHolder.home_new_item_rc.addItemDecoration(new GridSpacingItemDecoration(3,0,true));
-            //  homeNewHolder.home_new_item_rc.setClickable(false);
-            //  homeNewHolder.home_new_item_rc.setPressed(false);
-            //   homeNewHolder.home_new_item_rc.setEnabled(false);
+              homeNewHolder.home_new_item_rc.setClickable(false);
+              homeNewHolder.home_new_item_rc.setPressed(false);
+               homeNewHolder.home_new_item_rc.setEnabled(false);
             if (bean.getMedia() != null && bean.getMedia().size() > 0) {
                 CircleImageAdapter imageAdapter = new CircleImageAdapter(context, bean.getMedia());
                 homeNewHolder.home_new_item_rc.setAdapter(imageAdapter);
@@ -187,12 +184,9 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
                     @Override
                     public void onItemClick(View v, int pos) {
 
-
-                        Log.i("qaz", "onItemClick: " + bean.media.get(pos));
-                        Intent intent = new Intent(context, CirclePhone.class);
-                        intent.putExtra("pos", pos + "");
-                        intent.putExtra("url", bean.media);
-
+                        Intent intent = new Intent(context, H5DetailUI.class);
+                        intent.putExtra("newsId", bean.cc_id);
+                        intent.putExtra("type", "news");
                         context.startActivity(intent);
                     }
                 });

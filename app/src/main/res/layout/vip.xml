@@ -266,8 +266,8 @@
                        >
 
                         <ImageView
-                            android:layout_width="@dimen/dm041"
-                            android:layout_height="@dimen/dm041"
+                            android:layout_width="@dimen/dm036"
+                            android:layout_height="@dimen/dm036"
                             android:src="@drawable/vip_dongtai" />
 
                         <TextView
@@ -299,8 +299,8 @@
                             android:id="@+id/textView" />
 
                         <ImageView
-                            android:layout_width="@dimen/dm035"
-                            android:layout_height="@dimen/dm030"
+                            android:layout_width="@dimen/dm030"
+                            android:layout_height="@dimen/dm024"
                             android:src="@drawable/right_next" />
 
                     </LinearLayout>
@@ -319,8 +319,8 @@
                        >
 
                         <ImageView
-                            android:layout_width="@dimen/dm041"
-                            android:layout_height="@dimen/dm041"
+                            android:layout_width="@dimen/dm036"
+                            android:layout_height="@dimen/dm036"
                             android:src="@drawable/vip_collection" />
 
                         <TextView
@@ -337,8 +337,8 @@
                             android:layout_weight="1" />
 
                         <ImageView
-                            android:layout_width="@dimen/dm035"
-                            android:layout_height="@dimen/dm030"
+                            android:layout_width="@dimen/dm030"
+                            android:layout_height="@dimen/dm024"
                             android:src="@drawable/right_next" />
 
                     </LinearLayout>
@@ -357,8 +357,8 @@
                         >
 
                         <ImageView
-                            android:layout_width="@dimen/dm041"
-                            android:layout_height="@dimen/dm041"
+                            android:layout_width="@dimen/dm036"
+                            android:layout_height="@dimen/dm036"
                             android:src="@drawable/vip_jianyi" />
 
                         <TextView
@@ -375,8 +375,8 @@
                             android:layout_weight="1" />
 
                         <ImageView
-                            android:layout_width="@dimen/dm035"
-                            android:layout_height="@dimen/dm030"
+                            android:layout_width="@dimen/dm030"
+                            android:layout_height="@dimen/dm024"
                             android:src="@drawable/right_next" />
 
                     </LinearLayout>
@@ -395,8 +395,8 @@
                        >
 
                         <ImageView
-                            android:layout_width="@dimen/dm041"
-                            android:layout_height="@dimen/dm041"
+                            android:layout_width="@dimen/dm036"
+                            android:layout_height="@dimen/dm036"
                             android:src="@drawable/vip_money" />
 
                         <TextView
@@ -422,8 +422,8 @@
                             android:textSize="@dimen/dm024" />
 
                         <ImageView
-                            android:layout_width="@dimen/dm035"
-                            android:layout_height="@dimen/dm030"
+                            android:layout_width="@dimen/dm030"
+                            android:layout_height="@dimen/dm024"
                             android:src="@drawable/right_next" />
 
                     </LinearLayout>
@@ -442,8 +442,8 @@
                         >
 
                         <ImageView
-                            android:layout_width="@dimen/dm041"
-                            android:layout_height="@dimen/dm041"
+                            android:layout_width="@dimen/dm039"
+                            android:layout_height="@dimen/dm039"
                             android:src="@drawable/vip_setting" />
 
                         <TextView
@@ -460,8 +460,8 @@
                             android:layout_weight="1" />
 
                         <ImageView
-                            android:layout_width="@dimen/dm035"
-                            android:layout_height="@dimen/dm030"
+                            android:layout_width="@dimen/dm030"
+                            android:layout_height="@dimen/dm024"
                             android:src="@drawable/right_next" />
 
                     </LinearLayout>

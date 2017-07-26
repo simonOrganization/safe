@@ -1,7 +1,10 @@
 package com.lchtime.safetyexpress.ui.circle;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -82,6 +85,7 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
     private View contentView;
     private FunctionOptions options;
     private DialogUtil mDialog;
+    private String UPDATE_TEXT = "1";
 
 
     @Override
@@ -290,10 +294,16 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
                 public void normalResponse(Object response) {
                     Result result = (Result) response;
                     CommonUtils.toastMessage(result.result.info);
+                    Intent action = new Intent();
+                    action.setAction("ACTION_PUSH_SUCEESS");
+                    action.putExtra("code", UPDATE_TEXT);
+                    LocalBroadcastManager.getInstance(getApplication()).sendBroadcast(action);
                     finish();
                 }
             });
+
         }
+
     }
 
     @Override

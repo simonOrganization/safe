@@ -1,8 +1,13 @@
 package com.lchtime.safetyexpress.ui.circle;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -14,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.bslee.threelogin.api.ThirdWeiXinLoginApi;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
@@ -21,6 +27,7 @@ import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.CircleAdapter;
 import com.lchtime.safetyexpress.adapter.CircleHeaderAndFooterWrapper;
+import com.lchtime.safetyexpress.adapter.MyCircleActiveAdapter;
 import com.lchtime.safetyexpress.bean.CircleItemUpBean;
 import com.lchtime.safetyexpress.bean.CircleRedPointBean;
 import com.lchtime.safetyexpress.bean.Constants;
@@ -37,7 +44,9 @@ import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.home.GetMoneyActivity;
 import com.lchtime.safetyexpress.ui.home.protocal.PictureAdvantage;
 import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
+import com.lchtime.safetyexpress.ui.vip.MyCircleActiveActivity;
 import com.lchtime.safetyexpress.ui.vip.SelectCityActivity;
+import com.lchtime.safetyexpress.ui.vip.VipUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
@@ -122,6 +131,8 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     private CircleHeaderAndFooterWrapper wapperAdapter;
     private View headerView2;
     private ArrayList<String> Data;
+    private static final int UPDATE_TEXT = 1;
+    private UiReceiver mReceiver;
 
 
     @Override
@@ -134,6 +145,8 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRedPoint(false);
+
+
     }
 
     @Override
@@ -145,6 +158,25 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         }
 
         getNotice();
+    }
+    private class UiReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if ("ACTION_PUSH_SUCEESS".equals(intent.getAction())) {
+               final String code = intent.getStringExtra("code" );
+                if (!TextUtils.isEmpty(code)) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.i("qaz", "run: " + "更新ui");
+                            initData();
+                            //refreshData("1");
+                        }
+                    }).start();
+                }
+            }
+        }
     }
 
     private void getNotice() {
@@ -295,8 +327,6 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         gw_indicator = (ImageView) headerView.findViewById(R.id.iv_gw_indicator);
         addr_indicator = (ImageView) headerView.findViewById(R.id.iv_addr_indicator);
 
-
-
         circle_work1 = (LinearLayout)findViewById(R.id.circle_work);
         circle_gangwei1 = (LinearLayout) findViewById(R.id.circle_gangwei);
         circle_address1 = (LinearLayout) findViewById(R.id.circle_address);
@@ -366,6 +396,9 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         circle_address1.setOnClickListener(this);
         circle_more1.setOnClickListener(this);
 
+        mReceiver = new UiReceiver();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver,
+                new IntentFilter("ACTION_PUSH_SUCEESS"));
     }
 
 
@@ -382,8 +415,10 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 totalPage = response.totalpage;
                 circleList.clear();
                 circleList.addAll(response.qz_context);
-                Log.d("-------------","response.qz_context="+response.qz_context.size());
+              //  Log.d("-------------","response.qz_context="+response.qz_context.size());
+                rcAdapter.notifyDataSetChanged();
                 wapperAdapter.notifyDataSetChanged();
+
             }
         });
 
@@ -566,7 +601,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         //排序类型
         String order = request_order;
 
-       // Log.i("qaz", "refreshData: 2" + ud_addr + ud_post + ud_post + ud_profession + type );
+        Log.i("qaz", "refreshData: 2" + ud_addr + ud_post + ud_post + ud_profession + type );
         protocal.getCircleSelectedList(ub_id, page, type, ud_profession, ud_post, ud_addr, order, new CircleProtocal.CircleListener() {
             @Override
             public void circleResponse(CircleBean response) {
@@ -726,5 +761,12 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         if(wapperAdapter != null){
             wapperAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mReceiver);
+        mReceiver = null;
+        super.onDestroy();
     }
 }
