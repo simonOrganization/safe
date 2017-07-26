@@ -19,14 +19,18 @@ import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.modelmsg.SendAuth;
+import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
 
+	private IWXAPI api;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		ThirdWeiXinLoginApi.getWXAPI(getApplicationContext()).handleIntent(
 				getIntent(), this);
 	}
@@ -42,16 +46,15 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 	//授权成功失败回调
 	@Override
 	public void onResp(BaseResp resp) {
-
+		Log.i("qaz","   onResp 1   :"+resp.errCode);
 		//授权
 		if (resp.getType() == ConstantsAPI.COMMAND_SENDAUTH) {
 			String code = ((SendAuth.Resp) resp).code;
+			//Log.i("qaz","   code    :"+code);
 			if (code != null) {
-				Log.v("code:", code);
 				Intent action = new Intent();
 				action.setAction("ACTION_WX_LOGIN_SUCEESS");
 				action.putExtra("code", code);
-
 				LocalBroadcastManager.getInstance(this).sendBroadcast(action);
 				finish();
 				return;

@@ -78,7 +78,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     private HomeToCircleInterface homeToCircleInterface;
     public static HomeUI homeUI_instance = null;
 
-//    private List<HomeBannerBean> mDatas = new ArrayList<>();
+    //    private List<HomeBannerBean> mDatas = new ArrayList<>();
     private HotNewsProtocal protocal;
     //新闻热点的数据
     private NewsListRes newsListRes;
@@ -106,7 +106,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     @Override
     protected void onResume() {
         super.onResume();
-        if (InitInfo.homeRefresh){
+        if (InitInfo.homeRefresh) {
             hotCircleIndex = 0;
             hot.clear();
             getHotCircleData(0);
@@ -142,29 +142,29 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
             @Override
             public void onItemClick(int position) {
 //                makeText("广告" + position);
-                if (position == 0){
-                    Intent intent = new Intent(HomeUI.this,GetMoneyActivity.class);
+                if (position == 0) {
+                    Intent intent = new Intent(HomeUI.this, GetMoneyActivity.class);
                     startActivity(intent);
-                }else {
-                    Intent intent = new Intent(HomeUI.this,H5DetailUI.class);
-                    intent.putExtra("type","url");
-                    intent.putExtra("url",lunbo.get(position).url + "?timestamp=" + System.currentTimeMillis());
+                } else {
+                    Intent intent = new Intent(HomeUI.this, H5DetailUI.class);
+                    intent.putExtra("type", "url");
+                    intent.putExtra("url", lunbo.get(position).url + "?timestamp=" + System.currentTimeMillis());
                     startActivity(intent);
                 }
             }
         });
         //热门圈子
-        if (hotList == null){
+        if (hotList == null) {
             hotList = new ArrayList<>();
         }
-        homeHotCircleAdapter = new HomeHotCircleAdapter(HomeUI.this,hotList);
+        homeHotCircleAdapter = new HomeHotCircleAdapter(HomeUI.this, hotList);
         mgv_home_hot_circle.setAdapter(homeHotCircleAdapter);
 
         //热点追踪
-        if (hotNewsList == null){
+        if (hotNewsList == null) {
             hotNewsList = new ArrayList<>();
         }
-        homeHotTrackAdapter = new HomeNewAdapter(HomeUI.this,hotNewsList);
+        homeHotTrackAdapter = new HomeNewAdapter(HomeUI.this, hotNewsList);
         mlv_home_hot_track.setLayoutManager(new LinearLayoutManager(HomeUI.this));
         mlv_home_hot_track.setAdapter(homeHotTrackAdapter);
         /*mlv_home_hot_track.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -176,10 +176,10 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         });*/
 
         //视频热点
-        if (vedioNewsList == null){
+        if (vedioNewsList == null) {
             vedioNewsList = new ArrayList<>();
         }
-        homeHotVideoAdapter = new HomeNewAdapter(HomeUI.this,vedioNewsList);
+        homeHotVideoAdapter = new HomeNewAdapter(HomeUI.this, vedioNewsList);
         mlv_home_hot_video.setLayoutManager(new LinearLayoutManager(HomeUI.this));
         mlv_home_hot_video.setAdapter(homeHotVideoAdapter);
 //        mlv_home_hot_video.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -205,12 +205,12 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     }
 
 
-
     /**
      * 获取广告
      */
     private PictureAdvantage picProtocal = new PictureAdvantage();
     private List<FirstPic.LunboBean> lunbo = new ArrayList<>();
+
     private void getAdvData() {
         //测试
 //       从缓存中获取数据
@@ -220,22 +220,22 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
             lunbo.addAll(bean.lunbo);
             sb_home_banner.notifiDataHasChanged();
         }
-        String ub_id = SpTools.getString(this,Constants.userId,"");
+        String ub_id = SpTools.getString(this, Constants.userId, "");
         picProtocal.getFirstPic(ub_id, new PictureAdvantage.HotNewsListener() {
             @Override
             public void hotNewsResponse(String respose) {
-                if (respose == null){
+                if (respose == null) {
                     CommonUtils.toastMessage("请检查网络，获取推荐图片失败！");
                     return;
                 }
-                FirstPic bean = gson.fromJson(respose,FirstPic.class);
+                FirstPic bean = gson.fromJson(respose, FirstPic.class);
 
-                if ("10".equals(bean.result.code)){
+                if ("10".equals(bean.result.code)) {
                     lunbo.clear();
                     lunbo.addAll(bean.lunbo);
                     sb_home_banner.notifiDataHasChanged();
-                    aCache.put(advDataUrl , bean);
-                }else {
+                    aCache.put(advDataUrl, bean);
+                } else {
                     CommonUtils.toastMessage("获取推荐图片失败，请刷新重试！");
                 }
 
@@ -245,63 +245,68 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     }
 
 
-
     /**
      * 搜索
+     *
      * @param view
      */
     @OnClick(R.id.ll_home_search)
-    private void getSearch(View view){
+    private void getSearch(View view) {
         Intent intent = new Intent(HomeUI.this, HomeNewsSearchUI.class);
-        intent.putExtra("type","0");
+        intent.putExtra("type", "0");
         startActivity(intent);
     }
 
     /**
      * 扫一扫
+     *
      * @param view
      */
     @OnClick(R.id.ll_home_scan)
-    private void getScan(View view){
+    private void getScan(View view) {
         makeText("扫一扫");
     }
 
     /**
      * 新闻中心
+     *
      * @param view
      */
     @OnClick(R.id.ll_home_news)
-    private void getNews(View view){
+    private void getNews(View view) {
         Intent intent = new Intent(HomeUI.this, HomeNewActivity.class);
         startActivity(intent);
     }
 
     /**
      * 视频中心
+     *
      * @param view
      */
     @OnClick(R.id.ll_home_video)
-    private void getVideo(View view){
+    private void getVideo(View view) {
         Intent intent = new Intent(HomeUI.this, HomeVideosUI.class);
         startActivity(intent);
     }
 
     /**
      * 安全圈子
+     *
      * @param view
      */
     @OnClick(R.id.ll_home_circle)
-    private void getCircle(View view){
-       homeToCircleInterface.toCircleActivity();
+    private void getCircle(View view) {
+        homeToCircleInterface.toCircleActivity();
         makeText("安全圈子");
     }
 
     /**
      * 疑难问答
+     *
      * @param view
      */
     @OnClick(R.id.ll_home_question)
-    private void getQuestion(View view){
+    private void getQuestion(View view) {
         /*if (TextUtils.isEmpty(SpTools.getString(MyApplication.getContext(), Constants.userId, ""))){
             CommonUtils.toastMessage("登陆后才能看问答");
             return;
@@ -309,62 +314,67 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         Intent intent = new Intent(HomeUI.this, HomeQuestionUI.class);
         startActivity(intent);
     }
-
     /**
      * 热点追踪换一换
+     *
      * @param view
      */
     private int hotIndex = 0;
+
     @OnClick(R.id.tv_hotnews_change)
-    private void getHotNews(View view){
-        if (newsListRes != null){
-            if (hotNewsList == null){
+    private void getHotNews(View view) {
+        if (newsListRes != null) {
+            if (hotNewsList == null) {
                 return;
             }
             hotIndex++;
             //先清除
             hotNewsList.clear();
             //添加所有
-            if (hotIndex >= newsListRes.hot.size()){
+            if (hotIndex >= newsListRes.hot.size()) {
                 hotIndex = 0;
             }
             hotNewsList.addAll(newsListRes.hot.get(hotIndex));
             homeHotTrackAdapter.notifyDataSetChanged();
-
 
         }
     }
 
     /**
      * 视频中心换一换
+     *
      * @param view
      */
     private int vedioIndex = 0;
+
     @OnClick(R.id.tv_vedio_change)
-    private void getHotVedio(View view){
-        if (videoListRes != null){
-            if (vedioNewsList == null){
+    private void getHotVedio(View view) {
+        if (videoListRes != null) {
+            if (vedioNewsList == null) {
                 return;
             }
             vedioIndex++;
             //先清除
             vedioNewsList.clear();
             //添加所有
-            if (vedioIndex >= videoListRes.hot.size()){
+            if (vedioIndex >= videoListRes.hot.size()) {
                 vedioIndex = 0;
             }
             vedioNewsList.addAll(videoListRes.hot.get(vedioIndex));
             homeHotVideoAdapter.notifyDataSetChanged();
 
-
         }
-    }/**
+    }
+
+    /**
      * 热门圈子换一换
+     *
      * @param view
      */
     private int hotCircleIndex = 0;
+
     @OnClick(R.id.hot_circle_change)
-    private void getHotCircle(View view){
+    private void getHotCircle(View view) {
         hotCircleIndex++;
         //添加所有
         if (hot != null) {
@@ -375,47 +385,49 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         }
     }
 
-    public interface HomeToCircleInterface{
+    public interface HomeToCircleInterface {
         void toCircleActivity();
     }
-    public void setHomeToCircleInterface(HomeToCircleInterface homeToCircleInterface){
+
+    public void setHomeToCircleInterface(HomeToCircleInterface homeToCircleInterface) {
         this.homeToCircleInterface = homeToCircleInterface;
     }
 
     /**
      * 获取新闻数据
+     *
      * @param type
      */
     private void getHotNewsData(final String type) {
         NewsListRes newsListRes;
         //先从缓存中获取数据
-        if(type.equals("1")){
+        if (type.equals("1")) {
             newsListRes = (NewsListRes) aCache.getAsObject(hotNewsUrl);
-        }else{
+        } else {
             newsListRes = (NewsListRes) aCache.getAsObject(hotVideoNewsUrl);
         }
-        if(newsListRes != null && newsListRes.getResult() != null){
-            initData(newsListRes , type);
+        if (newsListRes != null && newsListRes.getResult() != null) {
+            initData(newsListRes, type);
         }
 
-        if(protocal == null){
+        if (protocal == null) {
             protocal = new HotNewsProtocal();
         }
         protocal.getNewsList(type, new HotNewsProtocal.HotNewsListener() {
             @Override
             public void hotNewsResponse(NewsListRes newsListRes) {
-                if (newsListRes == null){
+                if (newsListRes == null) {
                     String s = "";
-                    if ("1".equals(type)){
+                    if ("1".equals(type)) {
                         s = "获取新闻失败";
                         isNewComplete = true;
-                    }else {
+                    } else {
                         s = "获取视频失败";
                         isVideoComplete = true;
                     }
                     CommonUtils.toastMessage(s);
 
-                    if (isNewComplete && isVideoComplete &&isCircleComplete){
+                    if (isNewComplete && isVideoComplete && isCircleComplete) {
                         isNewComplete = false;
                         isVideoComplete = false;
                         isCircleComplete = false;
@@ -423,16 +435,16 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
                     }
                     return;
                 }
-                initData(newsListRes , type);
+                initData(newsListRes, type);
 
-                if ("1".equals(type)){
+                if ("1".equals(type)) {
                     //热点新闻
                     isNewComplete = true;
-                }else {
+                } else {
                     isVideoComplete = true;
                 }
 
-                if (isNewComplete && isVideoComplete &&isCircleComplete){
+                if (isNewComplete && isVideoComplete && isCircleComplete) {
                     isNewComplete = false;
                     isVideoComplete = false;
                     isCircleComplete = false;
@@ -443,22 +455,22 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         });
     }
 
-    private void initData(NewsListRes newsListRes , final String type){
+    private void initData(NewsListRes newsListRes, final String type) {
         List list = null;
         HomeNewAdapter adapter = null;
-        if (hotNewsList == null){
+        if (hotNewsList == null) {
             return;
         }
-        if("1".equals(type)){
+        if ("1".equals(type)) {
             list = hotNewsList;
             adapter = homeHotTrackAdapter;
             HomeUI.this.newsListRes = newsListRes;
-            aCache.put(hotNewsUrl , newsListRes);
-        }else {
+            aCache.put(hotNewsUrl, newsListRes);
+        } else {
             list = vedioNewsList;
             adapter = homeHotVideoAdapter;
             HomeUI.this.videoListRes = newsListRes;
-            aCache.put(hotVideoNewsUrl , newsListRes);
+            aCache.put(hotVideoNewsUrl, newsListRes);
         }
         //先清除
         list.clear();
@@ -472,17 +484,17 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         adapter.setNewItemInterface(new HomeNewAdapter.NewsItemInterface() {
             @Override
             public void setNewOnItem(int position) {
-                if ("1".equals(type)){
+                if ("1".equals(type)) {
                     //新闻
                     Intent intent = new Intent(HomeUI.this, H5DetailUI.class);
                     intent.putExtra("newsId", hotNewsList.get(position).cc_id);
-                    intent.putExtra("type","news");
+                    intent.putExtra("type", "news");
                     startActivity(intent);
-                }else {
+                } else {
                     //视频
                     Intent intent = new Intent(HomeUI.this, VideoH5Activity.class);
                     intent.putExtra("newsId", vedioNewsList.get(position).cc_id);
-                    intent.putExtra("type","video");
+                    intent.putExtra("type", "video");
                     intent.putExtra("videoUrl", vedioNewsList.get(position).media.get(1));
                     startActivity(intent);
                 }
@@ -492,7 +504,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
             @Override
             public void setVideoPlay(String url) {
                 Intent intent = new Intent(HomeUI.this, MediaActivity.class);
-                intent.putExtra("url",url);
+                intent.putExtra("url", url);
                 startActivity(intent);
             }
         });
@@ -500,20 +512,20 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         adapter.notifyDataSetChanged();
     }
 
-
     private HotCirclesProtocal hotCirclesProtocal;
-    private void getHotCircleData(final int page) {
-        ub_id = SpTools.getString(this, Constants.userId,"");
 
-        if(hotCirclesProtocal == null){
+    private void getHotCircleData(final int page) {
+        ub_id = SpTools.getString(this, Constants.userId, "");
+
+        if (hotCirclesProtocal == null) {
             hotCirclesProtocal = new HotCirclesProtocal();
         }
         aCache.clear();
         HotCircleBean hotCircleBean = (HotCircleBean) aCache.getAsObject(hotCircleUrl);
-        if(hotCircleBean != null){
+        if (hotCircleBean != null) {
             if (hot == null) {
                 hot = hotCircleBean.hot;
-            }else {
+            } else {
                 hot.clear();
                 hot.addAll(hotCircleBean.hot);
             }
@@ -525,21 +537,21 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         }
 
         if (hot == null || hot.size() == 0) {
-            hotCirclesProtocal.getCirclesList(ub_id,new HotCirclesProtocal.HotNewsListener() {
+            hotCirclesProtocal.getCirclesList(ub_id, new HotCirclesProtocal.HotNewsListener() {
                 @Override
                 public void hotNewsResponse(HotCircleBean hotCircleBean) {
-                    aCache.put(hotCircleUrl , hotCircleBean);
-                    initHotCircleDate(page , hotCircleBean);
+                    aCache.put(hotCircleUrl, hotCircleBean);
+                    initHotCircleDate(page, hotCircleBean);
                 }
             });
-        }else {
+        } else {
             hotList.clear();
             //添加所有---------------
             hotList.addAll(hot.get(page));
 
             homeHotCircleAdapter.notifyDataSetChanged();
             isCircleComplete = true;
-            if (isNewComplete && isVideoComplete &&isCircleComplete){
+            if (isNewComplete && isVideoComplete && isCircleComplete) {
                 isNewComplete = false;
                 isVideoComplete = false;
                 isCircleComplete = false;
@@ -550,12 +562,13 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
 
     /**
      * 布置热门圈子数据
+     *
      * @param hotCircleBean
      */
-    private void initHotCircleDate(int page ,HotCircleBean hotCircleBean) {
+    private void initHotCircleDate(int page, HotCircleBean hotCircleBean) {
         isCircleComplete = true;
-        if (hotCircleBean == null){
-            if (isNewComplete && isVideoComplete &&isCircleComplete){
+        if (hotCircleBean == null) {
+            if (isNewComplete && isVideoComplete && isCircleComplete) {
                 isNewComplete = false;
                 isVideoComplete = false;
                 isCircleComplete = false;
@@ -565,7 +578,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         }
         if (hot == null) {
             hot = hotCircleBean.hot;
-        }else {
+        } else {
             hot.clear();
             hot.addAll(hotCircleBean.hot);
         }
@@ -578,7 +591,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         hotList.addAll(hot.get(page));
 
         homeHotCircleAdapter.notifyDataSetChanged();
-        if (isNewComplete && isVideoComplete &&isCircleComplete){
+        if (isNewComplete && isVideoComplete && isCircleComplete) {
             isNewComplete = false;
             isVideoComplete = false;
             isCircleComplete = false;
@@ -590,6 +603,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     private boolean isNewComplete = false;
     private boolean isVideoComplete = false;
     private boolean isCircleComplete = false;
+
     @Override
     public void onRefresh() {
         if (hot != null) {
@@ -598,7 +612,6 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         prepareData();
 
     }
-
 
 
 }

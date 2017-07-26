@@ -801,7 +801,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
                 //岗位
                 InitInfo.vipInfoBean.user_detail.ud_post =
                         allInfo.ud_post == null ? InitInfo.vipInfoBean.user_detail.ud_post : allInfo.ud_post;
-                //岗位
+                //部门
                 InitInfo.vipInfoBean.user_detail.ud_bm =
                         allInfo.ud_bm == null ? InitInfo.vipInfoBean.user_detail.ud_bm : allInfo.ud_bm;
                 InitInfo.vipInfoBean.user_detail.ud_addr =

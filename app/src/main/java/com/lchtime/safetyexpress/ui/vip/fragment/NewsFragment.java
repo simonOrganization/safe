@@ -86,6 +86,7 @@ public class NewsFragment extends BaseFragment {
                     .execute();
 
             Log.i("cui","getNewsList=="+response);
+            Log.i("qaz", "getNewsList: "+ type + "----"+ del_ids);
             String myResponse = response.body().string();
             NewsListRes newsListRes = (NewsListRes) JsonUtils.stringToObject(myResponse,NewsListRes.class);
             if(newsListRes.getResult().getCode().equals("10")){

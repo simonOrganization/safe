@@ -759,15 +759,14 @@ public class LoginInternetRequest {
              }
 
          }
-
-        Log.d("我自己要看的json串",user_detail.toString());
+        Log.i("qaz", "editVipInfo: " +user_detail.toString());
         builder.addParams("user_detail",user_detail.toString());
 
         builder.build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 dialog.dissmiss();
-                Log.d("0000---------------0000",e.getMessage());
+                Log.i("qaz", "onError: " +e.getMessage());
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
 

@@ -213,7 +213,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                     return;
                 }else {
 
-                    protocal.updataZanOrCai(userid, bean.qc_id, "1", "0","", new CircleProtocal.NormalListener() {
+                    protocal.updataZanOrCai(userid, bean.qc_id, "1", "0",action, new CircleProtocal.NormalListener() {
                         @Override
                         public void normalResponse(Object response) {
                             if (response == null) {

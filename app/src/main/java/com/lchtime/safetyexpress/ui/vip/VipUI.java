@@ -747,9 +747,9 @@ public class VipUI extends BaseUI implements View.OnClickListener {
                         isLogin = false;
                         backgroundAlpha(1f);
                         pb_progress.setVisibility(View.GONE);
-                        //微信
+
                         String resid = errorCode == BaseResp.ErrCode.ERR_USER_CANCEL ? "授权取消" : "授";
-                        Toast.makeText(VipUI.this, resid, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VipUI.this, resid, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
