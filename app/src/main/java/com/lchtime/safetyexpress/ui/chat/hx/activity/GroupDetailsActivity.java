@@ -13,7 +13,6 @@
  */
 package com.lchtime.safetyexpress.ui.chat.hx.activity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -46,8 +45,6 @@ import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMConversation.EMConversationType;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.utils.EaseUserUtils;
-import com.hyphenate.easeui.widget.EaseAlertDialog;
-import com.hyphenate.easeui.widget.EaseAlertDialog.AlertDialogUser;
 import com.hyphenate.easeui.widget.EaseExpandGridView;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;

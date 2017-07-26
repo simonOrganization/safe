@@ -28,8 +28,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.lchtime.safetyexpress.R.id.container;
-
 /**
  * Created by yxn on 2017/4/23.
  */

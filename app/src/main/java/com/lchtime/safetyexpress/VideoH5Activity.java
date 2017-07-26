@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -23,7 +24,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.H5Bean;
@@ -139,7 +139,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
     private String mUb_id;
     private String ub_id;
     public static String qc_id;
-    //private InsideWebChromeClient mInsideWebChromeClient;
+    private InsideWebChromeClient mInsideWebChromeClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -259,8 +259,8 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
                 mVideoPaler.setVisibility(View.VISIBLE);
                 mVideoPaler.setUp(videoUrl , JCVideoPlayer.SCREEN_LAYOUT_LIST , "");
                 //mVideoPaler.prepareMediaPlayer();
-                mVideoPaler.startVideo();
-                mVideoPaler.performClick();
+                //mVideoPaler.startVideo();
+                //mVideoPaler.performClick();
                 //mVideoPaler.changeUiToPreparingShow(); //修改ui为准备播放
 
             }
@@ -333,15 +333,15 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
         settings.setUseWideViewPort(true);
         settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         settings.setCacheMode(WebSettings.LOAD_DEFAULT);
-        /*mInsideWebChromeClient = new InsideWebChromeClient();
-        InsideWebViewClient mInsideWebViewClient = new InsideWebViewClient();
+        mInsideWebChromeClient = new InsideWebChromeClient();
+        //InsideWebViewClient mInsideWebViewClient = new InsideWebViewClient();
         //javascriptInterface = new JavascriptInterface();
         //mWebView.addJavascriptInterface(javascriptInterface, "java2js_laole918");
         mWebView.setWebChromeClient(mInsideWebChromeClient);
-        mWebView.setWebViewClient(mInsideWebViewClient);*/
+        //mWebView.setWebViewClient(mInsideWebViewClient);
     }
 
-   /* private class InsideWebChromeClient extends WebChromeClient {
+    private class InsideWebChromeClient extends WebChromeClient {
         private View mCustomView;
         private CustomViewCallback mCustomViewCallback;
 
@@ -372,7 +372,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             super.onHideCustomView();
         }
     }
-    private class InsideWebViewClient extends WebViewClient {
+    /*private class InsideWebViewClient extends WebViewClient {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -432,7 +432,22 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
     @Override
     public void onDestroy() {
         mWebView.destroy();
+        mVideoPaler.release();
         super.onDestroy();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            boolean flag = JCVideoPlayer.backPress();
+            if (!flag){
+                JCVideoPlayer.releaseAllVideos();
+                finish();
+
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     /**

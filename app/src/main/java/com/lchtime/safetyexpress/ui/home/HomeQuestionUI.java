@@ -3,7 +3,6 @@ package com.lchtime.safetyexpress.ui.home;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Handler;
-import android.speech.tts.TextToSpeech;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -19,11 +18,8 @@ import com.lchtime.safetyexpress.adapter.HeaderAndFooterWrapper;
 import com.lchtime.safetyexpress.adapter.HomeQuestionAdapter;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
-import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.bean.WenDaBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
-import com.lchtime.safetyexpress.ui.Const;
-import com.lchtime.safetyexpress.ui.TabUI;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
 import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.utils.BitmapUtils;
@@ -38,8 +34,6 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.lchtime.safetyexpress.R.id.ll_home_question;
 
 /**
  * 疑难问答

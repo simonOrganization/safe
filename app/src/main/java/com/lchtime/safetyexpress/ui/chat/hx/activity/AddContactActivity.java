@@ -15,11 +15,8 @@ package com.lchtime.safetyexpress.ui.chat.hx.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ClipData;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -41,9 +38,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMTextMessageBody;
 import com.hyphenate.easeui.widget.EaseAlertDialog;
-import com.hyphenate.util.PathUtil;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
@@ -55,19 +50,11 @@ import com.lchtime.safetyexpress.ui.chat.hx.fragment.FindGroupsFragment;
 import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
-import com.squareup.picasso.Picasso;
 
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.List;
 
-import butterknife.BindView;
-
-import static android.R.attr.id;
 import static com.lchtime.safetyexpress.R.id.add_subscirbe_rg;
-import static com.lchtime.safetyexpress.R.id.listview;
-import static com.lchtime.safetyexpress.R.id.textview;
 
 public class AddContactActivity extends BaseActivity implements View.OnClickListener {
 	private static final int REQUEST_CODE_GROUP_DETAIL = 13;

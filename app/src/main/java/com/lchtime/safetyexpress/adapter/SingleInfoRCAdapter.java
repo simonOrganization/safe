@@ -20,14 +20,12 @@ import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
 import com.lchtime.safetyexpress.bean.Result;
-import com.lchtime.safetyexpress.ui.circle.CircleUI;
 import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
-import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.lchtime.safetyexpress.views.NoTouchRecycler;
 import com.squareup.picasso.Picasso;
 
@@ -98,7 +96,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                         Log.i("qaz", "onItemClick: "+ bean.pic.get(pos));
                         Intent intent = new Intent(context, CirclePhone.class);
                         intent.putExtra("url",bean.pic);
-                        intent.putExtra("pos", pos+"");
+                        intent.putExtra("pos", pos);
                         context.startActivity(intent);
                     }
                 });

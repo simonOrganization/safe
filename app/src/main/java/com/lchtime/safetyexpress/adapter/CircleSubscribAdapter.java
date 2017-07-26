@@ -1,7 +1,6 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lchtime.safetyexpress.MyApplication;
@@ -24,12 +21,9 @@ import com.lchtime.safetyexpress.pop.VipInfoHintPop;
 import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
-import com.lchtime.safetyexpress.ui.login.RegisterUI;
-import com.lchtime.safetyexpress.ui.vip.VipInfoUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.CircleImageView;
-import com.lidroid.xutils.view.annotation.ContentView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

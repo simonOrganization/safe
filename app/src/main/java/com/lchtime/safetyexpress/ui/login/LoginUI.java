@@ -54,7 +54,6 @@ import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.tauth.Tencent;
 
-import static com.lchtime.safetyexpress.R.layout.vip;
 import static com.lchtime.safetyexpress.bean.Constants.userId;
 
 

@@ -167,15 +167,15 @@ public class Splash extends Activity {
     private boolean upData = false;
     private GetInfoProtocal mProtocal = new GetInfoProtocal();
     private void initUpData() {
-        String ub_id = SpTools.getString(this, Constants.userId,"");
-        if (TextUtils.isEmpty(ub_id)){
-            CommonUtils.toastMessage("聊天置顶信息获取失败，请登录后重试！");
+        //String ub_id = SpTools.getString(this, Constants.userId,"");
+        if (TextUtils.isEmpty(userId)){
+            //CommonUtils.toastMessage("聊天置顶信息获取失败，请登录后重试！");
             upData = true;
             isShowTab();
             return;
         }
         //
-        mProtocal.getUp(ub_id, "0", "", new AddCommandProtocal.NormalListener() {
+        mProtocal.getUp(userId, "0", "", new AddCommandProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
                 if (response == null){
@@ -222,39 +222,44 @@ public class Splash extends Activity {
     private HomeQuestionProtocal protocal = new HomeQuestionProtocal();
     private Gson gson = new Gson();
     private void initHXFriends() {
-        protocal.getMyFriends(new HomeQuestionProtocal.QuestionListener() {
-            @Override
-            public void questionResponse(Object response) {
-                if (response == null){
-                    CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
-                    hx = true;
-                    isShowTab();
-                    return;
-                }
-                try {
-                    ContactListBean bean = gson.fromJson((String) response, ContactListBean.class);
-                    if ("10".equals(bean.result.code)){
-                        if (bean.friendlist == null || bean.friendlist.size() == 0){
-                            hx = true;
-                            isShowTab();
-                            return;
-                        }
-                        EaseInitBean.contactBean= bean;
+        if(!TextUtils.isEmpty(userId)){
+            protocal.getMyFriends(new HomeQuestionProtocal.QuestionListener() {
+                @Override
+                public void questionResponse(Object response) {
+                    if (response == null){
+                        CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                         hx = true;
                         isShowTab();
-                    }else {
+                        return;
+                    }
+                    try {
+                        ContactListBean bean = gson.fromJson((String) response, ContactListBean.class);
+                        if ("10".equals(bean.result.code)){
+                            if (bean.friendlist == null || bean.friendlist.size() == 0){
+                                hx = true;
+                                isShowTab();
+                                return;
+                            }
+                            EaseInitBean.contactBean= bean;
+                            hx = true;
+                            isShowTab();
+                        }else {
+                            CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
+                            hx = true;
+                            isShowTab();
+                        }
+                    }catch (Exception exception){
                         CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                         hx = true;
                         isShowTab();
                     }
-                }catch (Exception exception){
-                    CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
-                    hx = true;
-                    isShowTab();
-                }
 
-            }
-        });
+                }
+            });
+        }else{
+            hx = true;
+            isShowTab();
+        }
 
 
     }

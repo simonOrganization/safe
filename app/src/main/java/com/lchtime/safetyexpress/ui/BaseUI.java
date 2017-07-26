@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -188,9 +189,11 @@ public abstract class BaseUI extends FragmentActivity {
         if ((System.currentTimeMillis() - exitTime) > 2000) {
             Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
             exitTime = System.currentTimeMillis();
+            Log.i("fxp==" , "BaseUI    start");
         } else {
+            Log.i("fxp==" , "BaseUI    start");
             finish();
-            System.exit(0);
+            //System.exit(0);
         }
     }
 

@@ -4,12 +4,9 @@ import android.text.TextUtils;
 
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.bean.Constants;
-import com.lchtime.safetyexpress.bean.res.NewsListRes;
 import com.lchtime.safetyexpress.bean.res.VideoRes;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
-import com.lchtime.safetyexpress.utils.SpTools;
 import com.mzhy.http.okhttp.OkHttpUtils;
 import com.mzhy.http.okhttp.callback.StringCallback;
 

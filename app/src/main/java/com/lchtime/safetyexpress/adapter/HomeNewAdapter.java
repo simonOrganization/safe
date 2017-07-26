@@ -2,6 +2,7 @@ package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -185,6 +186,7 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
                 imageAdapter.setOnItemSelectLs(new CircleImageAdapter.IOnItemSelectListener() {
                     @Override
                     public void onItemClick(View v, int pos) {
+
 
                         Log.i("qaz", "onItemClick: " + bean.media.get(pos));
                         Intent intent = new Intent(context, CirclePhone.class);

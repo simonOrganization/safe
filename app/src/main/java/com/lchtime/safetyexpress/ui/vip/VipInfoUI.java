@@ -20,7 +20,6 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
 import com.google.gson.Gson;
-import com.hyphenate.chat.EMClient;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.CardBean;

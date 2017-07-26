@@ -34,8 +34,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMGroup;
 import com.hyphenate.exceptions.HyphenateException;
+import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.ui.chat.hx.Constant;
@@ -54,7 +54,7 @@ import java.util.List;
  */
 public class GroupsActivity extends BaseActivity implements View.OnClickListener {
 	public static final String TAG = "GroupsActivity";
-	private ListView groupListView;
+	public ListView groupListView;
 	//protected List<EMGroup> grouplist;
 	private GroupAdapter groupAdapter;
 	private InputMethodManager inputMethodManager;
@@ -155,6 +155,7 @@ public class GroupsActivity extends BaseActivity implements View.OnClickListener
 					if (getCurrentFocus() != null)
 						inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
 								InputMethodManager.HIDE_NOT_ALWAYS);
+
 				}
 				return false;
 			}

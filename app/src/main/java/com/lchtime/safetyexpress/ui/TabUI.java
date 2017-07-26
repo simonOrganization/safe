@@ -47,7 +47,6 @@ import com.lchtime.safetyexpress.bean.CircleRedPointBean;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.hyphenate.easeui.bean.ContactListBean;
 import com.lchtime.safetyexpress.bean.GetUpBean;
-import com.lchtime.safetyexpress.bean.HXInfo;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.PostBean;
 import com.lchtime.safetyexpress.bean.ProfessionBean;
@@ -68,7 +67,6 @@ import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.home.AskQuestionActivity;
 import com.lchtime.safetyexpress.ui.home.HomeUI;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
-import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.ui.vip.VipUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.LoginInternetRequest;
@@ -79,8 +77,6 @@ import java.util.List;
 import java.util.Map;
 
 import service.DemoPushService;
-
-import static com.lchtime.safetyexpress.bean.InitInfo.vipInfoBean;
 
 
 /**

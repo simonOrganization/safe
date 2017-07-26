@@ -12,10 +12,8 @@ import android.widget.TextView;
 
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.MyCircleActiveAdapter;
-import com.lchtime.safetyexpress.bean.CircleItemUpBean;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
-import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;

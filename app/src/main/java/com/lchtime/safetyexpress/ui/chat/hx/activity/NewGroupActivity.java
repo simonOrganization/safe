@@ -42,9 +42,7 @@ import com.bigkoo.pickerview.listener.CustomListener;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMContact;
 import com.hyphenate.easeui.domain.EaseUser;
-import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.easeui.widget.EaseAlertDialog;
 import com.hyphenate.easeui.widget.EaseExpandGridView;
 import com.hyphenate.util.NetUtils;
@@ -67,11 +65,9 @@ import com.lchtime.safetyexpress.utils.UpdataImageUtils;
 import com.luck.picture.lib.model.FunctionConfig;
 import com.luck.picture.lib.model.FunctionOptions;
 import com.luck.picture.lib.model.PictureConfig;
-import com.squareup.picasso.Picasso;
 import com.yalantis.ucrop.entity.LocalMedia;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static android.media.CamcorderProfile.get;
@@ -794,9 +790,9 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 		if (members != null && members.size() > 0){
 			for (int i = 0; i < members.size(); i ++){
 				if (i == 0 ){
-					qunMember = qunMember + members.get(i).getExternalNickName();
+					qunMember = qunMember + members.get(i).getNickname();
 				}else {
-					qunMember = qunMember  + "," + members.get(i).getExternalNickName();
+					qunMember = qunMember  + "," + members.get(i).getNickname();
 				}
 			}
 		}

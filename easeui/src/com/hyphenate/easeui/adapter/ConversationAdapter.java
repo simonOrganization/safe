@@ -1,8 +1,6 @@
 package com.hyphenate.easeui.adapter;
 
 import android.content.Context;
-import android.provider.ContactsContract;
-import android.telecom.Call;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -29,6 +27,7 @@ import com.hyphenate.easeui.model.EaseAtMessageHelper;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.hyphenate.easeui.utils.EaseUserUtils;
+import com.hyphenate.easeui.utils.SPUtils;
 import com.hyphenate.easeui.widget.EaseConversationList.EaseConversationListHelper;
 import com.hyphenate.util.DateUtils;
 
@@ -131,13 +130,30 @@ public class ConversationAdapter extends ArrayAdapter<EMConversation> {
                 holder.motioned.setVisibility(View.GONE);
             }
             //设置群头像昵称  用本地服务器数据
-
-            holder.avatar.setImageResource(R.drawable.ease_group_icon);
+            /*Bitmap head = ACache.get(context).getAsBitmap(username);
+            if(head != null){
+                holder.avatar.setImageBitmap(head);
+            }else {
+                holder.avatar.setImageResource(R.drawable.ease_group_icon);
+            }*/
+            //String headUrl = ACache.get(context).getAsString(username);
+            String headUrl = SPUtils.getString(context , username);
+            Glide.with(context).load(headUrl).placeholder(R.drawable.ease_group_icon).into(holder.avatar);
             EMGroup group = EMClient.getInstance().groupManager().getGroup(username);
-            //group.
+
             holder.name.setText(group != null ? group.getGroupName() : username);
         } else if(conversation.getType() == EMConversationType.ChatRoom){
-            holder.avatar.setImageResource(R.drawable.ease_group_icon);
+            //holder.avatar.setImageResource(R.drawable.ease_group_icon);
+            /*Bitmap head = ACache.get(context).getAsBitmap(username);
+            if(head != null){
+                holder.avatar.setImageBitmap(head);
+            }else {
+                holder.avatar.setImageResource(R.drawable.ease_group_icon);
+            }*/
+            //String headUrl = ACache.get(context).getAsString(username);
+            String headUrl = SPUtils.getString(context , username);
+            Glide.with(context).load(headUrl).placeholder(R.drawable.ease_group_icon).into(holder.avatar);
+
             EMChatRoom room = EMClient.getInstance().chatroomManager().getChatRoom(username);
             holder.name.setText(room != null && !TextUtils.isEmpty(room.getName()) ? room.getName() : username);
             holder.motioned.setVisibility(View.GONE);

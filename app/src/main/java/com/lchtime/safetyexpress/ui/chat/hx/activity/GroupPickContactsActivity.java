@@ -212,7 +212,7 @@ public class GroupPickContactsActivity extends BaseActivity implements View.OnCl
                 user.setAvatar(bean.ud_photo_fileid);
                 user.setExternalNickName(bean.ud_nickname);
 				user.setNick(bean.hx_account);
-				user.setNickname(bean.ud_nickname);
+				user.setNickname(bean.hx_account);
 				members.add(user);
 			}
 		}

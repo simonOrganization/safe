@@ -1,68 +1,39 @@
 package com.lchtime.safetyexpress.ui.chat.hx.activity;
 
-import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.domain.EaseUser;
-import com.hyphenate.easeui.utils.EaseUserUtils;
-import com.hyphenate.easeui.widget.EaseAlertDialog;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.pop.VipInfoHintPop;
-import com.lchtime.safetyexpress.ui.TabUI;
-import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.protocal.GetInfoProtocal;
 import com.lchtime.safetyexpress.ui.chat.hx.bean.ProfileInfoBean;
 import com.lchtime.safetyexpress.ui.chat.hx.bean.SingleDetailBean;
-import com.lchtime.safetyexpress.ui.chat.hx.db.InviteMessgeDao;
 import com.lchtime.safetyexpress.ui.chat.hx.db.TopUserDao;
-import com.lchtime.safetyexpress.ui.chat.hx.db.UserDao;
 import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
 import com.lchtime.safetyexpress.ui.chat.hx.utils.WindowUtils;
-import com.lchtime.safetyexpress.ui.home.InviteFriendActivity;
-import com.lchtime.safetyexpress.ui.login.RegisterUI;
 import com.lchtime.safetyexpress.ui.vip.VipInfoUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayOutputStream;
-import java.util.HashMap;
 import java.util.Map;
-
-import io.reactivex.functions.BiFunction;
-
-import static android.R.attr.type;
-import static com.lchtime.safetyexpress.R.id.invite_item;
-import static com.lchtime.safetyexpress.R.id.start;
-import static com.lchtime.safetyexpress.R.id.tv_gw;
 
 public class UserProfileActivity extends BaseActivity implements OnClickListener{
 	

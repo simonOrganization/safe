@@ -3,8 +3,6 @@ package com.lchtime.safetyexpress.ui.home;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,7 +11,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.lchtime.safetyexpress.H5DetailUI;
-import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.VideoH5Activity;
 import com.lchtime.safetyexpress.adapter.HomeHotCircleAdapter;
@@ -33,7 +30,7 @@ import com.lchtime.safetyexpress.ui.news.HomeNewActivity;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
-import com.lchtime.safetyexpress.utils.cacheutils.ACache;
+import com.lchtime.safetyexpress.utils.ACache;
 import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.lchtime.safetyexpress.views.MyGridView;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -44,8 +41,6 @@ import com.sivin.BannerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.attr.type;
 
 /**
  * 首页

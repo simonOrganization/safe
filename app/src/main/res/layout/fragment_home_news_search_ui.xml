@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:visibility="gone" />
 
-    <ScrollView
+    <com.lchtime.safetyexpress.views.MyScrollView
         android:id="@+id/sv_news_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </com.lchtime.safetyexpress.views.MyScrollView>
 
 
 </LinearLayout>

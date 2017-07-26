@@ -33,8 +33,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMGroup;
 import com.hyphenate.easeui.adapter.EaseContactAdapter;
 import com.hyphenate.easeui.bean.ContactBean;
 import com.hyphenate.easeui.bean.EaseInitBean;
@@ -42,11 +40,7 @@ import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.widget.EaseSidebar;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
-import com.lchtime.safetyexpress.ui.chat.hx.Constant;
-import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
-import com.lchtime.safetyexpress.ui.chat.hx.activity.BaseActivity;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.protocal.GetInfoProtocal;
-import com.lchtime.safetyexpress.ui.chat.hx.adapter.AllPeopleAdapter;
 import com.lchtime.safetyexpress.ui.chat.hx.bean.InfoBean;
 import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
@@ -142,6 +136,7 @@ public class GroupPickDeleteContactsActivity extends BaseActivity implements Vie
 					user.setExternalNickName(qunBean.ud_nickname);
 					//因为传输数据问题 这里将环信id设置给 nick 这个变量
 					user.setNick(qunBean.hx_account);
+					user.setUb_id(qunBean.ud_ub_id);
 					alluserList.add(user);
 				}
 				// sort the list  排序
@@ -179,6 +174,10 @@ public class GroupPickDeleteContactsActivity extends BaseActivity implements Vie
 
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+						if(mUb_id.equals(alluserList.get(position).getUb_id())){
+							CommonUtils.toastMessage("不能删除自己");
+							return;
+						}
 						CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkbox);
 						checkBox.toggle();
 
