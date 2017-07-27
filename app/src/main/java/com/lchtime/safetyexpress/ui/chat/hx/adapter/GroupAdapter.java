@@ -41,7 +41,6 @@ import com.lchtime.safetyexpress.ui.chat.hx.bean.GroupBean;
 import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
-import com.lchtime.safetyexpress.utils.ACache;
 import com.lchtime.safetyexpress.views.CircleImageView;
 
 import java.util.List;
@@ -56,7 +55,6 @@ public class GroupAdapter extends ArrayAdapter<GroupBean> {
 	private GetInfoProtocal mProtocal;
 	private Gson gson;
 	private List<GroupBean> groups;
-	private ACache aCache;
 
 
 	public GroupAdapter(Activity context, int res, List<GroupBean> groups) {
@@ -67,7 +65,6 @@ public class GroupAdapter extends ArrayAdapter<GroupBean> {
 		newGroup = "创建群组";
 		addPublicGroup = "加入群组";
 		gson = new Gson();
-		aCache = ACache.get(context);
 		initPop();
 	}
 
@@ -161,22 +158,13 @@ public class GroupAdapter extends ArrayAdapter<GroupBean> {
 			}
 			final GroupBean groupBean = getItem(position -3);
 			final CircleImageView imageView = (CircleImageView) convertView.findViewById(R.id.avatar);
-			/*Glide.with(context).load(groupBean.sq_fieldid).asBitmap().into(new SimpleTarget<Bitmap>() {
-				@Override
-				public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-					imageView.setImageBitmap(resource);
-					aCache.put(groupBean.sq_group_id , resource);
-				}
-			});*/
+
 			Glide.with(context)
 					.load(groupBean.sq_fieldid)
 					.placeholder(R.drawable.qun_list)
 					.error(R.drawable.qun_list)
 					.into(imageView);
 			SpTools.setString(context , groupBean.sq_group_id , groupBean.sq_fieldid);
-			//aCache.put(groupBean.sq_group_id , groupBean.sq_fieldid);
-			//Log.i("getMuteList==" , group.getMuteList().toString());
-			//group.
 			((TextView) convertView.findViewById(R.id.name)).setText(groupBean.sq_name);
 			convertView.findViewById(R.id.delete).setOnClickListener(new OnClickListener() {
 				@Override

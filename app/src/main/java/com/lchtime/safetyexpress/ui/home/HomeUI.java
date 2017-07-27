@@ -28,9 +28,8 @@ import com.lchtime.safetyexpress.ui.home.protocal.HotCirclesProtocal;
 import com.lchtime.safetyexpress.ui.home.protocal.HotNewsProtocal;
 import com.lchtime.safetyexpress.ui.news.HomeNewActivity;
 import com.lchtime.safetyexpress.ui.news.MediaActivity;
-import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
-import com.lchtime.safetyexpress.utils.ACache;
+import com.lchtime.safetyexpress.utils.cacheutils.ACache;
 import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.lchtime.safetyexpress.views.MyGridView;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -86,8 +85,9 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     private Gson gson = new Gson();
 
     private ACache aCache;
-    private String hotCircleUrl = "HOT_CIRCLE_CACHE";
-    private String hotNewsUrl = "HOT_NEWS_CACHE";
+    public final String hotCircleUrl = "HOT_CIRCLE_CACHE";
+    public final String hotNewsUrl = "HOT_NEWS_CACHE";
+    //private String hotNewsUrl = "wsdsfdsfdsfsfdfds";
     private String hotVideoNewsUrl = "HOT_VIDEO_NEWS_CACHE";
     private String advDataUrl = "ADV_DATA_CACHE";
     private String ub_id;
@@ -190,6 +190,11 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     @Override
     protected void prepareData() {
         aCache = ACache.get(mContext);
+
+        /*Log.i("fxp" , "1  == " + aCache.getAsString("111"));
+        aCache.put("111" , "1234");
+        Log.i("fxp" , "2  == " + aCache.getAsString("111"));*/
+
         //获取广告
         getAdvData();
         //首页热门圈子
@@ -220,7 +225,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
             @Override
             public void hotNewsResponse(String respose) {
                 if (respose == null) {
-                    CommonUtils.toastMessage("请检查网络，获取推荐图片失败！");
+                    //CommonUtils.toastMessage("请检查网络，获取推荐图片失败！");
                     return;
                 }
                 FirstPic bean = gson.fromJson(respose, FirstPic.class);
@@ -231,7 +236,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
                     sb_home_banner.notifiDataHasChanged();
                     aCache.put(advDataUrl, bean);
                 } else {
-                    CommonUtils.toastMessage("获取推荐图片失败，请刷新重试！");
+                    //CommonUtils.toastMessage("获取推荐图片失败，请刷新重试！");
                 }
 
 
@@ -414,13 +419,13 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
                 if (newsListRes == null) {
                     String s = "";
                     if ("1".equals(type)) {
-                        s = "获取新闻失败";
+                        //s = "获取新闻失败";
                         isNewComplete = true;
                     } else {
-                        s = "获取视频失败";
+                        //s = "获取视频失败";
                         isVideoComplete = true;
                     }
-                    CommonUtils.toastMessage(s);
+                    //CommonUtils.toastMessage(s);
 
                     if (isNewComplete && isVideoComplete && isCircleComplete) {
                         isNewComplete = false;

@@ -632,6 +632,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
                 if (TextUtils.isEmpty(b)){
                     b = "安全快车";
                 }
+                baseUrl = baseUrl + "&app=1";
                 switch (v.getId()) {
                     case R.id.ll_share_weixin:
                         sharePop.dismiss();

@@ -218,6 +218,7 @@ public class TabUI extends TabActivity implements OnClickListener {
         drawable.setBounds(0, 0, CommonUtils.getDimen(this, R.dimen.dm044), CommonUtils.getDimen(this, R.dimen.dm036));
         //drawable.setBounds(0, 0, right, bottom);
         rb_tab_1.setCompoundDrawables(null, drawable, null, null);
+
         rb_tab_2 = (RadioButton) findViewById(R.id.rb_tab_2);
         rb_tab_2.setOnClickListener(this);
         rb_tab_2.setText("圈子");

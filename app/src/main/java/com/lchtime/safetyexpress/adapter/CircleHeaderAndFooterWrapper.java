@@ -111,6 +111,8 @@ public class CircleHeaderAndFooterWrapper<T> extends RecyclerView.Adapter<Recycl
         });
     }
 
+
+
     @Override
     public void onViewAttachedToWindow(RecyclerView.ViewHolder holder)
     {
@@ -156,5 +158,11 @@ public class CircleHeaderAndFooterWrapper<T> extends RecyclerView.Adapter<Recycl
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    public void upDateLabel() {
+        if(mInnerAdapter instanceof CircleAdapter){
+            ((CircleAdapter)mInnerAdapter).upDateLabel();
+        }
     }
 }

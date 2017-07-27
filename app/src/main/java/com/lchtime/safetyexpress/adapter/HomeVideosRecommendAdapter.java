@@ -61,13 +61,6 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
                 .load(bean.media.get(0))
                 .into(myHolder.iv_img.thumbImageView);
 
-//        myHolder.iv_img.setUp(
-//                VideoConstant.videoUrls[0][position], JCVideoPlayer.SCREEN_LAYOUT_LIST,
-//                VideoConstant.videoTitles[0][position]);
-//        Picasso.with(myHolder.iv_img.getContext())
-//                .load(VideoConstant.videoThumbs[0][position])
-//                .into(myHolder.iv_img.thumbImageView);
-
 
         myHolder.tv_from.setText(bean.cc_from);
         myHolder.tv_comment.setText(bean.plNum);
@@ -76,14 +69,6 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
             myHolder.tv_time2.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.cc_datetime)));
         }
         myHolder.tv_playnum.setText(bean.cc_count + "次播放");
-//        myHolder.rl_play.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context, MediaActivity.class);
-//                intent.putExtra("url",bean.media.get(1));
-//                context.startActivity(intent);
-//            }
-//        });
         myHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +80,7 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
                     intent.putExtra("type","video");
                     intent.putExtra("videoUrl" , videoList.get(position).media.get(1));
                     context.startActivity(intent);
+                    JCVideoPlayer.releaseAllVideos();
                 }
             }
         });

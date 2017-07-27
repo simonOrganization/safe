@@ -106,6 +106,9 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     ImageView addr_indicator1;
     LinearLayout layout_circle_header;
 
+    private ACache aCache;
+    public final String circle_adv = "CIRCLE_ADV";
+    public final String circle_list = "CIRCLE_LIST";
 
     public static final int CITY_REQUEST_CODE = 0;
 
@@ -145,8 +148,6 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRedPoint(false);
-
-
     }
 
     @Override
@@ -415,10 +416,8 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 totalPage = response.totalpage;
                 circleList.clear();
                 circleList.addAll(response.qz_context);
-              //  Log.d("-------------","response.qz_context="+response.qz_context.size());
-                rcAdapter.notifyDataSetChanged();
-                wapperAdapter.notifyDataSetChanged();
-
+                Log.d("-------------","response.qz_context="+response.qz_context.size());
+                notifyDataSetChanged();
             }
         });
 
@@ -437,6 +436,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
 
     @Override
     protected void prepareData() {
+        aCache = ACache.get(mContext);
         getAdvData();
     }
     /**
@@ -447,6 +447,14 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     private List<FirstPic.LunboBean> lunbo = new ArrayList<>();
     private Gson gson = new Gson();
     private void getAdvData() {
+        //先获取缓存数据
+        FirstPic cacheBean = (FirstPic) aCache.getAsObject(circle_adv);
+        if(cacheBean != null){
+            lunbo.clear();
+            lunbo.addAll(cacheBean.lunbo);
+            sb_home_banner.notifiDataHasChanged();
+        }
+
         //测试
         String ub_id = SpTools.getString(this, Constants.userId,"");
         picProtocal.getFirstPic(ub_id, new PictureAdvantage.HotNewsListener() {
@@ -462,6 +470,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                     lunbo.clear();
                     lunbo.addAll(bean.lunbo);
                     sb_home_banner.notifiDataHasChanged();
+                    aCache.put(circle_adv , bean);
                 }else {
                     CommonUtils.toastMessage("获取推荐图片失败，请刷新重试！");
                 }
@@ -618,7 +627,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                     circleList.addAll(response.qz_context);
                 }
                 pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
-                wapperAdapter.notifyDataSetChanged();
+                notifyDataSetChanged();
                 isLoadMore = false;
             }
         });
@@ -646,7 +655,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                         break;
                     }
                 }
-                wapperAdapter.notifyDataSetChanged();
+                notifyDataSetChanged();
 
             }
         });
@@ -757,8 +766,9 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     /**
      * 刷新Adapter
      */
-    public void notifyDataSetChange() {
+    public void notifyDataSetChanged() {
         if(wapperAdapter != null){
+            wapperAdapter.upDateLabel();
             wapperAdapter.notifyDataSetChanged();
         }
     }

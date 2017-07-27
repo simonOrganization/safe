@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
+import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -23,6 +24,9 @@ import java.net.URL;
 import java.util.List;
 
 import okhttp3.Call;
+
+import static com.igexin.push.core.a.i;
+import static com.igexin.sdk.GTServiceManager.context;
 
 /**
  * Created by android-cp on 2017/4/26.
@@ -64,45 +68,62 @@ public class UpdataImageUtils {
     }
 
 /**
- *
  * 上传多张图片
  * */
     public void upMuchDataPic(List<File> list, final DialogUtil mDialog , UpdataPicListener updataPicListener){
+        int count = 0;
         mListener = updataPicListener;
+        String ub_id = SpTools.getString(context , Constants.userId ,"");
         final Context context = MyApplication.getContext();
 
-        PostFormBuilder builder = OkHttpUtils.post()
-                .url(context.getResources().getString(R.string.service_host_address).concat(context.getResources().getString(R.string.upload)));
 
-        for (int i = 0 ;i < list.size(); i ++){
-            builder.addFile("image[]","advice" + i,list.get(i));
-        }
-        builder
-                .addParams("sid", "")
-                .addParams("index", (index++) + "")
-                .addParams("ub_id", SpTools.getString(context , Constants.userId ,""))
-                .build().execute(new StringCallback() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                mDialog.dissmiss();
-                Toast.makeText(context,"上传图片失败，请重新上传", Toast.LENGTH_SHORT).show();
-                mListener.onResponse(null);
+        //if(list.size() <= 3){
+            PostFormBuilder builder = OkHttpUtils.post()
+                    .url(context.getResources().getString(R.string.service_host_address).concat(context.getResources().getString(R.string.upload)));
+            for (int i = 0 ;i < list.size(); i ++){
+                builder.addFile("image[]" , list.get(i).getName() , list.get(i));
             }
-            @Override
-            public void onResponse(String response, int id) {
-
-                if (mListener != null){
-                    mListener.onResponse(response);
-                }else {
-                    mListener.onResponse(response);
+            builder
+                    .addParams("sid", "")
+                    .addParams("index", (index++) + "")
+                    .addParams("ub_id", ub_id)
+                    .build().execute(new StringCallback() {
+                @Override
+                public void onError(Call call, Exception e, int id) {
+                    mDialog.dissmiss();
+                    Toast.makeText(context,"上传图片失败，请重新上传", Toast.LENGTH_SHORT).show();
+                    //mListener.onResponse(null);
                 }
-                //Toast.makeText(context,"上传图片成功",Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onResponse(String response, int id) {
+                    if (mListener != null){
+                        /*UpdataBean updataBean = (UpdataBean) JsonUtils.stringToObject(response, UpdataBean.class);
+                        mListener.onResponse(updataBean);*/
+                        mListener.onResponse(response);
+                    }else {
+                        mListener.onResponse(null);
+                    }
+                    //Toast.makeText(context,"上传图片成功",Toast.LENGTH_SHORT).show();
+                }
+            });
+       /* }else if(list.size() <= 6 ){
+
+
+        }*/
+
+
+        /*int count = list.size() / 3;
+        for(int j = 0 ; j < 3; j++){
+            builder.addFile("image[]" , "advice" + i , list.get(i));
+        }*/
+
+
+
     }
 
     public interface UpdataPicListener{
         void onResponse(String response);
+        //void onResponse(UpdataBean updataBean);
     }
 
     public static void getUrlBitmap(final String url, final BitmapListener listener) {

@@ -154,7 +154,7 @@ public class GetInfoProtocal {
     }
 
 
-    public void getUpdateGrounp( String ub_id,String groupname,String desc,String photo,String profession,String groupid,String addr,final AddCommandProtocal.NormalListener listener) {
+    public void  getUpdateGrounp( String ub_id,String groupname,String desc,String photo,String profession,String groupid,String addr,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);

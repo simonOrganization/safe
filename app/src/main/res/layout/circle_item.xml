@@ -77,7 +77,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/dm008"/>
 
-            <TextView
+            <!--<com.lchtime.safetyexpress.weight.ShowMoreTextView
                 android:id="@+id/circle_item_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,14 +85,39 @@
                 android:textSize="@dimen/dm022"
                 android:textColor="@color/title_333"
                 android:layout_below="@id/circle_item_company_name"
-                android:layout_marginTop="@dimen/dm008"/>
+                android:layout_marginTop="@dimen/dm008"/>-->
+            <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">-->
+                <TextView
+                    android:id="@+id/circle_item_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="超爱戴比尔斯家的产品了专柜正品一比一独家开模制作这款耳钉厚壁结实，佩戴大气上档次成熟技术水平肯定减肥快捷键风光好"
+                    android:textSize="@dimen/dm022"
+                    android:textColor="@color/title_333"
+                    android:layout_below="@id/circle_item_company_name"
+                    android:layout_marginTop="@dimen/dm008"
+                    />
+                <TextView
+                    android:id="@+id/hide_show"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    android:text="展开"
+                    android:padding="3dp"
+                    android:layout_below="@+id/circle_item_content"
+                    />
 
+            <!--</LinearLayout>-->
 
             <RelativeLayout
                 android:id="@+id/circle_item_shipin_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/circle_item_content">
+                android:layout_below="@id/hide_show">
                 <ImageView
                     android:id="@+id/circle_item_shipin"
                     android:layout_width="wrap_content"

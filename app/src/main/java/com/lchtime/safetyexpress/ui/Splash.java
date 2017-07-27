@@ -140,7 +140,7 @@ public class Splash extends Activity {
                 if (!TextUtils.isEmpty(code)) {
                     InitInfo.professionBean = gson.fromJson(code, ProfessionBean.class);
                 }else {
-                    CommonUtils.toastMessage("初始化行业失败！");
+                    //CommonUtils.toastMessage("初始化行业失败！");
                 }
                 initGw();
             }
@@ -154,7 +154,7 @@ public class Splash extends Activity {
                 if (!TextUtils.isEmpty(code)) {
                     InitInfo.postBean = gson.fromJson(code, PostBean.class);
                 }else {
-                    CommonUtils.toastMessage("初始化岗位失败");
+                    //CommonUtils.toastMessage("初始化岗位失败");
                 }
                 info = true;
                 isShowTab();
