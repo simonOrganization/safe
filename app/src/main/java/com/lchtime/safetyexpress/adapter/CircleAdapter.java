@@ -215,6 +215,7 @@ public class CircleAdapter extends RecyclerView.Adapter{
                 }
             });
             //如果是本人发的圈子
+            Log.i("qaz", "onBindViewHolder: "+ bean.qc_ub_id  + "--------" +ub_id );
             if (bean.qc_ub_id.equals(ub_id)) {
                 ((CircleHodler) holder).tv_delete.setVisibility(View.VISIBLE);
                 ((CircleHodler) holder).tv_delete.setOnClickListener(new View.OnClickListener() {

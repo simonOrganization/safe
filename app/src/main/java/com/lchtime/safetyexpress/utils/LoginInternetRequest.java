@@ -732,7 +732,7 @@ public class LoginInternetRequest {
         }
         String url = context.getResources().getString(R.string.service_host_address)
                 .concat(context.getResources().getString(R.string.mycountEdit));
-        Log.d("host",url);
+       // Log.d("host",url);
         PostFormBuilder builder = OkHttpUtils.post().url(url)
                 .addParams("sid","")
                 .addParams("index",(index++)+"")
@@ -759,14 +759,14 @@ public class LoginInternetRequest {
              }
 
          }
-        Log.i("qaz", "editVipInfo: " +user_detail.toString());
+      //  Log.i("qaz", "editVipInfo: " +user_detail.toString());
         builder.addParams("user_detail",user_detail.toString());
 
         builder.build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 dialog.dissmiss();
-                Log.i("qaz", "onError: " +e.getMessage());
+               // Log.i("qaz", "onError: " +e.getMessage());
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
 

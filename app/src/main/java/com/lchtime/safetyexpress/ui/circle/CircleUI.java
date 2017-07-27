@@ -169,7 +169,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            Log.i("qaz", "run: " + "更新ui");
+                        //    Log.i("qaz", "run: " + "更新ui");
                             initData();
                             //refreshData("1");
                         }
@@ -601,7 +601,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         //排序类型
         String order = request_order;
 
-        Log.i("qaz", "refreshData: 2" + ud_addr + ud_post + ud_post + ud_profession + type );
+       // Log.i("qaz", "refreshData: 2" + ud_addr + ud_post + ud_post + ud_profession + type );
         protocal.getCircleSelectedList(ub_id, page, type, ud_profession, ud_post, ud_addr, order, new CircleProtocal.CircleListener() {
             @Override
             public void circleResponse(CircleBean response) {

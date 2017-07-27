@@ -141,7 +141,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dm020"
-                android:layout_marginTop="@dimen/dm036"
+                android:layout_marginTop="@dimen/dm024"
                 android:layout_toRightOf="@id/search_container"
                 android:textColor="@color/title_333"
                 android:textSize="@dimen/dm024"
@@ -149,7 +149,7 @@
 
             <TextView
                 android:id="@+id/search_content"
-                android:layout_marginTop="@dimen/dm036"
+                android:layout_marginTop="@dimen/dm024"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dm020"

@@ -42,7 +42,7 @@ public class QunName extends Activity implements View.OnClickListener {
         mLlTitleRight = (LinearLayout) findViewById(R.id.ll_right);
         mLlTitleRight.setVisibility(View.VISIBLE);
         mTitle.setText("群聊名称");
-        mTitleRight.setText("保存");
+        mTitleRight.setText("修改");
         mTitleRight.setVisibility(View.VISIBLE);
         mLlTitleRight.setOnClickListener(this);
         mTitleLeft.setOnClickListener(this);

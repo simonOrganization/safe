@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Message;
 import android.os.Process;
 import android.os.StrictMode;
 import android.support.multidex.MultiDex;
@@ -98,5 +99,6 @@ public class MyApplication extends Application {
     public void setTopUserList(Map<String,EaseUser> contactList){
         DemoHelper.getInstance().setTopUserList(contactList);
     }
+
 
 }

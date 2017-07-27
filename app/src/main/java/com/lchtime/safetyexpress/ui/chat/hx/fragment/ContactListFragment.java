@@ -18,6 +18,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -56,8 +58,10 @@ import com.lchtime.safetyexpress.ui.chat.hx.widget.ContactItemView;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -75,6 +79,8 @@ public class ContactListFragment extends EaseContactListFragment {
     private InviteMessgeDao inviteMessgeDao;
     public static final int DEL_FRIEND = 127;
     public static final int REFRESH_DATA = 128;
+    private ArrayList<ContactBean> list;
+    private String uid;
 
     @SuppressLint("InflateParams")
     @Override
@@ -116,18 +122,25 @@ public class ContactListFragment extends EaseContactListFragment {
     private HomeQuestionProtocal protocal = new HomeQuestionProtocal();
     @Override
     public void refresh() {
-
+        Log.i("qaz", "refresh: 1");
+        list =  new ArrayList<ContactBean>();
+        list.addAll(EaseInitBean.contactBean.friendlist);
+        Log.i("qaz", "questionResponse: " + list.get(0));
         if (EaseInitBean.contactBean == null){
             protocal.getMyFriends(new HomeQuestionProtocal.QuestionListener() {
                 @Override
                 public void questionResponse(Object response) {
+
                     if (response == null){
                         CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                         return;
                     }
                     try {
                         ContactListBean bean = gson.fromJson((String) response, ContactListBean.class);
+
+
                         if ("10".equals(bean.result.code)){
+
                             if (bean.friendlist == null || bean.friendlist.size() == 0){
                                 return;
                             }
@@ -145,9 +158,11 @@ public class ContactListFragment extends EaseContactListFragment {
 
 
                         }else {
+
                             CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                         }
                     }catch (Exception exception){
+
                         CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                     }
 
@@ -237,17 +252,25 @@ public class ContactListFragment extends EaseContactListFragment {
             EaseInitBean.map = userInfo;
         }
         super.setUpView();
+
         listView.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 EaseUser user = (EaseUser)listView.getItemAtPosition(position);
+
                 if (user != null) {
+                    if (!TextUtils.isEmpty(list.get(position).ud_ub_id)){
+                         uid = list.get(position).ud_ub_id;
+                    }else{
+                        uid = "1";
+                    }
+                    Log.i("qaz", "onItemClick: " +uid );
                     String username = user.getUsername();
                     // demo中直接进入聊天页面，实际一般是进入用户详情页
-//                    startActivity(new Intent(getActivity(), ChatActivity.class).putExtra("userId", username));
                     Intent intent = new Intent(getActivity(),UserProfileActivity.class);
                     intent.putExtra("username",username);
+                    intent.putExtra("uid",uid);
                     startActivityForResult(intent,DEL_FRIEND);
                 }
             }
@@ -389,6 +412,8 @@ public class ContactListFragment extends EaseContactListFragment {
 	class ContactSyncListener implements DemoHelper.DataSyncListener {
         @Override
         public void onSyncComplete(final boolean success) {
+            if (getActivity() ==null)
+                return;
             EMLog.d(TAG, "on contact list sync success:" + success);
             getActivity().runOnUiThread(new Runnable() {
                 public void run() {
@@ -416,6 +441,8 @@ public class ContactListFragment extends EaseContactListFragment {
 
         @Override
         public void onSyncComplete(boolean success) {
+            if (getActivity() ==null)
+                return;
             getActivity().runOnUiThread(new Runnable(){
 
                 @Override
@@ -432,6 +459,8 @@ public class ContactListFragment extends EaseContactListFragment {
         @Override
         public void onSyncComplete(final boolean success) {
             EMLog.d(TAG, "on contactinfo list sync success:" + success);
+            if (getActivity() ==null)
+                return;
             getActivity().runOnUiThread(new Runnable() {
                 
                 @Override

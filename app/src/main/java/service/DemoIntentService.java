@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Message;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,10 +20,13 @@ import com.igexin.sdk.message.GTCmdMessage;
 import com.igexin.sdk.message.GTTransmitMessage;
 import com.igexin.sdk.message.SetTagCmdMessage;
 import com.lchtime.safetyexpress.H5DetailUI;
+import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.MessageBean;
 import com.lchtime.safetyexpress.ui.Splash;
 import com.lchtime.safetyexpress.ui.TabUI;
+import com.lchtime.safetyexpress.ui.chat.hx.activity.ContactActivity;
+import com.lchtime.safetyexpress.ui.chat.hx.activity.NewFriendsMsgActivity;
 import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
 
 
@@ -41,6 +45,7 @@ public class DemoIntentService extends GTIntentService {
      * 为了观察透传数据变化.
      */
     private static int cnt;
+    private String data;
 
     public DemoIntentService() {
 
@@ -52,12 +57,13 @@ public class DemoIntentService extends GTIntentService {
     }
 
     private Gson gson = new Gson();
+
     @Override
     public void onReceiveMessageData(Context context, GTTransmitMessage msg) {
         String appid = msg.getAppid();
         String taskid = msg.getTaskId();
         String messageid = msg.getMessageId();
-        byte[] payload = msg.getPayload();
+          byte[] payload = msg.getPayload();
         String pkg = msg.getPkgName();
         String cid = msg.getClientId();
         // 第三方回执调用接口，actionid范围为90000-90999，可根据业务场景执行
@@ -67,41 +73,46 @@ public class DemoIntentService extends GTIntentService {
         Log.d("qaz", "onReceiveMessageData -> " + "appid = " + appid + "\ntaskid = " + taskid + "\nmessageid = " + messageid + "\npkg = " + pkg
                 + "\ncid = " + cid);
 
+      /*  String payload = new String(msg.getPayload());
+        jumpActivity(payload);
+*/
+
         if (payload == null) {
-            Log.e("qaz", "receiver payload = null");
+            Log.i("qazz", "receiver payload = null");
         } else {
-            String data = new String(payload);
-            Log.d("qaz", "receiver payload = " + data);
-
+             data = new String(payload);
             //接到通知 跳转到指定的activity
+            Log.i("qazz", "receiver payload " +payload);
+            Log.i("qaz", "receiver payload = null  1" + data);
             jumpActivity(data);
-
 
             // 测试消息为了观察数据变化
             if (data.equals("收到一条透传测试消息")) {
                 data = data + "-" + cnt;
                 cnt++;
             }
-//            sendMessage(data, 0);
+          //  sendMessage(data, 0);
         }
-//        sendNotification(new String(payload));
-        Log.d("qaz", "----------------------------------------------------------------------------------------------");
+          //sendNotification(new String(payload));
     }
 
     private void jumpActivity(String data) {
+       // Log.i("qaz", "receiver payload = null  2" + data);
+
         try {
-            MessageBean bean = gson.fromJson(data,MessageBean.class);
-            Log.i("qaz", "jumpActivity: " + bean.locate);
-            if ("1".equals(bean.locate)){
-                if (!TextUtils.isEmpty(bean.q_id)){
+            MessageBean bean = gson.fromJson(data, MessageBean.class);
+            //Log.i("qazz", "jumpActivity: " + bean.locate);
+            if ("1".equals(bean.locate)) {
+                if (!TextUtils.isEmpty(bean.q_id)) {
 
                     //跳转到自己写的界面
                     //跳转到问答详情
+
                     Intent intentHome = new Intent(this, TabUI.class);
                     intentHome.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     Intent intentChild = new Intent(this, HomeQuewstionDetail.class);
                     intentChild.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intentChild.putExtra("q_id",bean.q_id);
+                    intentChild.putExtra("q_id", bean.q_id);
                     Intent[] intents = new Intent[2];
                     intents[0] = intentHome;
                     intents[1] = intentChild;
@@ -110,14 +121,13 @@ public class DemoIntentService extends GTIntentService {
             }
 
 
-            if ("6".equals(bean.locate)){
+            if ("6".equals(bean.locate)) {
                 if (!TextUtils.isEmpty(bean.url)) {
-                    Intent intentHome = new Intent(this, Splash.class);
+                    Intent intentHome = new Intent(this, TabUI.class);
                     intentHome.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    Intent intentChild = new Intent(this, H5DetailUI.class);
+                    Intent intentChild = new Intent(this, HomeQuewstionDetail.class);
                     intentChild.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intentChild.putExtra("urls", bean.url);
-                    intentChild.putExtra("type", "url");
+                    intentChild.putExtra("q_id", bean.q_id);
                     Intent[] intents = new Intent[2];
                     intents[0] = intentHome;
                     intents[1] = intentChild;
@@ -125,15 +135,30 @@ public class DemoIntentService extends GTIntentService {
                 }
             }
 
+            if ("5".equals(bean.locate)) {
+              //  Log.i("qaz", "jumpActivity: "+ bean.url);
 
-            if ("2".equals(bean.locate)||"3".equals(bean.locate)||"4".equals(bean.locate)){
+                   // Log.i("qaz", "jumpActivity: "+ "1111111111111111111" );
+                    /*Intent intentHome = new Intent(this, TabUI.class);
+                    intentHome.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                    Intent intentChild = new Intent(this, NewFriendsMsgActivity.class);
+                    intentChild.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                 /*   Intent[] intents = new Intent[2];
+                    intents[0] = intentHome;
+                    intents[1] = intentChild;*/
+                   startActivity(intentChild);
+
+            }
+
+
+            if ("2".equals(bean.locate) || "3".equals(bean.locate) || "4".equals(bean.locate)) {
                 //新闻推送 圈子 视频
                 Intent intentHome = new Intent(this, TabUI.class);
                 intentHome.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 Intent intentChild = new Intent(this, H5DetailUI.class);
                 intentChild.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intentChild.putExtra("urls",bean.url);
-                intentChild.putExtra("type","url");
+                intentChild.putExtra("url", bean.url);
+                intentChild.putExtra("type", "url");
                 Intent[] intents = new Intent[2];
                 intents[0] = intentHome;
                 intents[1] = intentChild;
@@ -141,14 +166,15 @@ public class DemoIntentService extends GTIntentService {
             }
 
 
-
-        }catch (Exception exception){
-//            sendNotification(data);
+        } catch (Exception exception) {
+           // Log.i("qaz", "jumpActivity: " + data);
+          //  sendNotification(data);
         }
 
     }
 
     int i = 0;
+
     private void sendNotification(String content) {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
@@ -168,35 +194,34 @@ public class DemoIntentService extends GTIntentService {
         mNotificationManager.notify(i++, mBuilder.build());
     }
 
-    public PendingIntent getDefalutIntent(int flags){
+    public PendingIntent getDefalutIntent(int flags) {
 
-        PendingIntent pendingIntent= PendingIntent.getActivity(this, 1, new Intent(this,TabUI.class), flags);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, new Intent(this, TabUI.class), flags);
         return pendingIntent;
     }
 
 
-
     @Override
     public void onReceiveClientId(Context context, String clientid) {
-        Log.e("qaz", "onReceiveClientId -> " + "clientid = " + clientid);
+        //Log.e("qaz", "onReceiveClientId -> " + "clientid = " + clientid);
 
         Tag t = new Tag();
         //name 字段只支持：中文、英文字母（大小写）、数字、除英文逗号以外的其他特殊符号, 具体请看代码示例
         t.setName("Android");
-        PushManager.getInstance().setTag(this,new Tag[]{t},
-                System.currentTimeMillis() +"");
+        PushManager.getInstance().setTag(this, new Tag[]{t},
+                System.currentTimeMillis() + "");
 
 
     }
 
     @Override
     public void onReceiveOnlineState(Context context, boolean online) {
-        Log.d("qaz", "onReceiveOnlineState -> " + (online ? "online" : "offline"));
+        //Log.d("qaz", "onReceiveOnlineState -> " + (online ? "online" : "offline"));
     }
 
     @Override
     public void onReceiveCommandResult(Context context, GTCmdMessage cmdMessage) {
-        Log.d("qaz", "onReceiveCommandResult -> " + cmdMessage);
+       // Log.d("qaz", "onReceiveCommandResult -> " + cmdMessage);
 
         int action = cmdMessage.getAction();
 
@@ -257,7 +282,7 @@ public class DemoIntentService extends GTIntentService {
                 break;
         }
 
-        Log.d("qaz", "settag result sn = " + sn + ", code = " + code + ", text = " + text);
+       // Log.d("qaz", "settag result sn = " + sn + ", code = " + code + ", text = " + text);
     }
 
     private void feedbackResult(FeedbackCmdMessage feedbackCmdMsg) {
@@ -268,14 +293,14 @@ public class DemoIntentService extends GTIntentService {
         long timestamp = feedbackCmdMsg.getTimeStamp();
         String cid = feedbackCmdMsg.getClientId();
 
-        Log.d("qaz", "onReceiveCommandResult -> " + "appid = " + appid + "\ntaskid = " + taskid + "\nactionid = " + actionid + "\nresult = " + result
-                + "\ncid = " + cid + "\ntimestamp = " + timestamp);
+      //  Log.d("qaz", "onReceiveCommandResult -> " + "appid = " + appid + "\ntaskid = " + taskid + "\nactionid = " + actionid + "\nresult = " + result
+             //   + "\ncid = " + cid + "\ntimestamp = " + timestamp);
     }
 
-//    private void sendMessage(String data, int what) {
-//        Message msg = Message.obtain();
-//        msg.what = what;
-//        msg.obj = data;
-//        MyApplication.sendMessage(msg);
-//    }
+ /*   private void sendMessage(String data, int what) {
+        Message msg = Message.obtain();
+        msg.what = what;
+        msg.obj = data;
+        MyApplication.sendMessage(msg);
+    }*/
 }

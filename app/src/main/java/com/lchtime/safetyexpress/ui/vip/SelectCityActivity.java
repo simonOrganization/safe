@@ -109,7 +109,7 @@ public class SelectCityActivity extends BaseUI {
                // adapter.clearSelection(position);
                // View v= sortListView.getChildAt(position);
                 TextView tx = (TextView) view.findViewById(R.id.tv_city_name);
-                Log.i("qaz", "onItemClick: "+ view + "------" +tx +"-----"+ position);
+               // Log.i("qaz", "onItemClick: "+ view + "------" +tx +"-----"+ position);
                 if(((CitySortModel) adapter.getItem(position)).isSelect){
                     ((CitySortModel) adapter.getItem(position)).isSelect = false;
                     tx.setTextColor(mContext.getResources().getColor(R.color.black));

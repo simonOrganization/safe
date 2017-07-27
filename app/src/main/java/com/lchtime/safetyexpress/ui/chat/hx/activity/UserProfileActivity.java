@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
@@ -28,12 +29,15 @@ import com.lchtime.safetyexpress.ui.chat.hx.bean.SingleDetailBean;
 import com.lchtime.safetyexpress.ui.chat.hx.db.TopUserDao;
 import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
 import com.lchtime.safetyexpress.ui.chat.hx.utils.WindowUtils;
+import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.vip.VipInfoUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.squareup.picasso.Picasso;
 
 import java.util.Map;
+
+import static com.igexin.sdk.GTServiceManager.context;
 
 public class UserProfileActivity extends BaseActivity implements OnClickListener{
 	
@@ -63,6 +67,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	private String mUsername;
 	private ProgressBar mBar;
 	private VipInfoHintPop popWindow;
+	private String uid;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -70,6 +75,8 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 		setContentView(R.layout.em_activity_user_profile);
 		Intent intent = getIntent();
 		mUsername = intent.getStringExtra("username");
+		uid = intent.getStringExtra("uid");
+
 		topMap = MyApplication.getInstance().getTopUserList();
 		initView();
 		setLoadding(true);
@@ -130,13 +137,23 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 		rlClearChat.setOnClickListener(this);
 		tvSendMessage.setOnClickListener(this);
 		tvDeleteFriends.setOnClickListener(this);
+		headAvatar.setOnClickListener(this);
 	}
 
 	private Map<String, EaseUser> topMap;
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-
+			case R.id.user_head_avatar : //头像跳转个人主页
+				Log.i("qaz", "-------------"+    uid);
+				if (uid.equals(1)) {
+					return;
+				}
+				Intent inti = new Intent(this, SingleInfoUI.class);
+				inti.putExtra("uid", uid);
+				//Log.i("qaz", "onClick: "+SpTools.getString(context, Constants.userId, ""));
+				this.startActivity(inti);
+				break;
 		case R.id.ll_back:
 			finish();
 			break;
