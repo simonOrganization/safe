@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.utils;
 
+import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -71,15 +72,14 @@ public class UpdataImageUtils {
  * 上传多张图片
  * */
     public void upMuchDataPic(List<File> list, final DialogUtil mDialog , UpdataPicListener updataPicListener){
-        int count = 0;
         mListener = updataPicListener;
-        String ub_id = SpTools.getString(context , Constants.userId ,"");
+        String ub_id = SpTools.getString(MyApplication.getContext(), Constants.userId ,"");
         final Context context = MyApplication.getContext();
-
 
         //if(list.size() <= 3){
             PostFormBuilder builder = OkHttpUtils.post()
                     .url(context.getResources().getString(R.string.service_host_address).concat(context.getResources().getString(R.string.upload)));
+        //PostFormBuilder builder = OkHttpUtils.post().url("http://fcar.lchtime.cn:8001/index.php/system/uploads");
             for (int i = 0 ;i < list.size(); i ++){
                 builder.addFile("image[]" , list.get(i).getName() , list.get(i));
             }
@@ -106,7 +106,7 @@ public class UpdataImageUtils {
                     //Toast.makeText(context,"上传图片成功",Toast.LENGTH_SHORT).show();
                 }
             });
-       /* }else if(list.size() <= 6 ){
+        /*}else if(list.size() <= 6 ){
 
 
         }*/

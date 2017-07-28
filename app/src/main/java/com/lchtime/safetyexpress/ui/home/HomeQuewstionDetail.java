@@ -5,6 +5,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -65,7 +66,6 @@ public class HomeQuewstionDetail extends BaseUI {
     @BindView(R.id.tv_home_question)
     TextView tvHomeQuestion;
 
-
     @ViewInject(R.id.loading)
     RelativeLayout loading;
     @ViewInject(R.id.empty)
@@ -100,7 +100,7 @@ public class HomeQuewstionDetail extends BaseUI {
     private LinearLayout ll_guanzhu;
     private LinearLayout ll_yiguanzhu;
     private RelativeLayout rl_isguanzhu;
-
+    private ImageView openIv;
 
     @Override
     protected void back() {
@@ -201,16 +201,17 @@ public class HomeQuewstionDetail extends BaseUI {
     }
 
     private void initView(View view) {
-         tvHomeQuestionTitle = (TextView) view.findViewById(R.id.tv_home_question_title);
-         tvHomeQuestionDescrib = (TextView) view.findViewById(R.id.tv_home_question_describ);
-         mgvHomeQuestion = (MyGridView) view.findViewById(R.id.mgv_home_question);
-         onePicHomeQuestion = (ImageView) view.findViewById(R.id.one_pic_home_question);
-         tvHomeQuestionNum = (TextView) view.findViewById(R.id.tv_home_question_num);
-         tvHomeFocusNum = (TextView) view.findViewById(R.id.tv_home_focus_num);
-         llInviteFriend = (LinearLayout) view.findViewById(R.id.ll_invite_friend);
+        tvHomeQuestionTitle = (TextView) view.findViewById(R.id.tv_home_question_title);
+        tvHomeQuestionDescrib = (TextView) view.findViewById(R.id.tv_home_question_describ);
+        mgvHomeQuestion = (MyGridView) view.findViewById(R.id.mgv_home_question);
+        onePicHomeQuestion = (ImageView) view.findViewById(R.id.one_pic_home_question);
+        tvHomeQuestionNum = (TextView) view.findViewById(R.id.tv_home_question_num);
+        tvHomeFocusNum = (TextView) view.findViewById(R.id.tv_home_focus_num);
+        llInviteFriend = (LinearLayout) view.findViewById(R.id.ll_invite_friend);
         ll_guanzhu = (LinearLayout) view.findViewById(R.id.ll_guanzhu);
         ll_yiguanzhu = (LinearLayout) view.findViewById(R.id.ll_yiguanzhu);
         rl_isguanzhu = (RelativeLayout) view.findViewById(R.id.rl_isguanzhu);
+        openIv = (ImageView) view.findViewById(R.id.iv_open);
     }
 
 
@@ -284,6 +285,31 @@ public class HomeQuewstionDetail extends BaseUI {
                             mgvHomeQuestion.setAdapter(adapter);
                         }
                     }
+                    tvHomeQuestionDescrib.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                        @Override
+                        public boolean onPreDraw() {
+                            //会重复执行，获取到行数马上移除监听
+                            tvHomeQuestionDescrib.getViewTreeObserver().removeOnPreDrawListener(this);
+                            if(tvHomeQuestionDescrib.getLineCount() > 1){
+                                openIv.setVisibility(View.VISIBLE);
+                                openIv.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        tvHomeQuestionDescrib.setMaxLines(1000);
+                                        openIv.setVisibility(View.GONE);
+                                    }
+                                });
+                            }
+
+
+
+                            return false;
+                        }
+                    });
+
+
+
+
                 }
                 //初始化评论
                 if (!isLoadMore) {

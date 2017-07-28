@@ -215,6 +215,8 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         //测试
 //       从缓存中获取数据
         FirstPic bean = (FirstPic) aCache.getAsObject(advDataUrl);
+        //String advdata = SpTools.getString(mContext , advDataUrl , "");
+        //FirstPic bean = gson.fromJson(advdata , FirstPic.class);
         if (bean != null && bean.result != null && "10".equals(bean.result.code)) {
             lunbo.clear();
             lunbo.addAll(bean.lunbo);
@@ -231,6 +233,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
                 FirstPic bean = gson.fromJson(respose, FirstPic.class);
 
                 if ("10".equals(bean.result.code)) {
+                    SpTools.setString(mContext , advDataUrl , gson.toJson(bean));
                     lunbo.clear();
                     lunbo.addAll(bean.lunbo);
                     sb_home_banner.notifiDataHasChanged();
@@ -403,8 +406,10 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         //先从缓存中获取数据
         if (type.equals("1")) {
             newsListRes = (NewsListRes) aCache.getAsObject(hotNewsUrl);
+            //newsListRes = gson.fromJson(SpTools.getString(mContext , hotNewsUrl , "") , NewsListRes.class);
         } else {
             newsListRes = (NewsListRes) aCache.getAsObject(hotVideoNewsUrl);
+            //newsListRes = gson.fromJson(SpTools.getString(mContext , hotVideoNewsUrl , "") , NewsListRes.class);
         }
         if (newsListRes != null && newsListRes.getResult() != null) {
             initData(newsListRes, type);
@@ -466,10 +471,12 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
             adapter = homeHotTrackAdapter;
             HomeUI.this.newsListRes = newsListRes;
             aCache.put(hotNewsUrl, newsListRes);
+            //SpTools.setString(mContext , hotNewsUrl , gson.toJson(newsListRes));
         } else {
             list = vedioNewsList;
             adapter = homeHotVideoAdapter;
             HomeUI.this.videoListRes = newsListRes;
+            //SpTools.setString(mContext , hotVideoNewsUrl , gson.toJson(newsListRes));
             aCache.put(hotVideoNewsUrl, newsListRes);
         }
         //先清除
@@ -520,7 +527,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         if (hotCirclesProtocal == null) {
             hotCirclesProtocal = new HotCirclesProtocal();
         }
-        aCache.clear();
+        //aCache.clear();
         HotCircleBean hotCircleBean = (HotCircleBean) aCache.getAsObject(hotCircleUrl);
         if (hotCircleBean != null) {
             if (hot == null) {
@@ -534,8 +541,8 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
             //添加所有---------------
             hotList.addAll(hot.get(page));
             homeHotCircleAdapter.notifyDataSetChanged();
+            hot.clear();
         }
-
         if (hot == null || hot.size() == 0) {
             hotCirclesProtocal.getCirclesList(ub_id, new HotCirclesProtocal.HotNewsListener() {
                 @Override

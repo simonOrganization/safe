@@ -3,13 +3,14 @@ package com.lchtime.safetyexpress.bean.res;
 import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.QzContextBean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by android-cp on 2017/5/8.
  */
 
-public class CircleBean {
+public class CircleBean implements Serializable{
 
 
     /**

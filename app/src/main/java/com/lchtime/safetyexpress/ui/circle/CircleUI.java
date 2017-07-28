@@ -49,6 +49,7 @@ import com.lchtime.safetyexpress.ui.vip.SelectCityActivity;
 import com.lchtime.safetyexpress.ui.vip.VipUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.utils.cacheutils.ACache;
 import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.CirclePopView;
 import com.lchtime.safetyexpress.views.SpinerPopWindow;
@@ -404,6 +405,16 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
 
 
     private void initData(){
+        aCache = ACache.get(mContext);
+        //String cache_list = SpTools.getString(mContext , circle_list , "");
+        //CircleBean circleBean = gson.fromJson(cache_list , CircleBean.class);
+        CircleBean circleBean = (CircleBean) aCache.getAsObject(circle_list);
+        if(circleBean != null){
+            totalPage = circleBean.totalpage;
+            circleList.clear();
+            circleList.addAll(circleBean.qz_context);
+            notifyDataSetChanged();
+        }
 
         if (protocal == null) {
             protocal = new CircleProtocal();
@@ -413,10 +424,11 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         protocal.getCircleList(userid, "1", "4", "0", new CircleProtocal.CircleListener() {
             @Override
             public void circleResponse(CircleBean response) {
+                aCache.put(circle_list , response);
+                //SpTools.setString(mContext , circle_list , gson.toJson(response));
                 totalPage = response.totalpage;
                 circleList.clear();
                 circleList.addAll(response.qz_context);
-                Log.d("-------------","response.qz_context="+response.qz_context.size());
                 notifyDataSetChanged();
             }
         });
@@ -436,7 +448,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
 
     @Override
     protected void prepareData() {
-        aCache = ACache.get(mContext);
+
         getAdvData();
     }
     /**
@@ -449,6 +461,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     private void getAdvData() {
         //先获取缓存数据
         FirstPic cacheBean = (FirstPic) aCache.getAsObject(circle_adv);
+        //FirstPic cacheBean = gson.fromJson(SpTools.getString(mContext , circle_adv , ""),FirstPic.class);
         if(cacheBean != null){
             lunbo.clear();
             lunbo.addAll(cacheBean.lunbo);
@@ -464,6 +477,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                     CommonUtils.toastMessage("请检查网络，获取推荐图片失败！");
                     return;
                 }
+                //SpTools.setString(mContext , circle_adv , respose);
                 FirstPic bean = gson.fromJson(respose,FirstPic.class);
 
                 if ("10".equals(bean.result.code)){
@@ -474,8 +488,6 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 }else {
                     CommonUtils.toastMessage("获取推荐图片失败，请刷新重试！");
                 }
-
-
             }
         });
 
@@ -499,21 +511,17 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         if (requestCode == CITY_REQUEST_CODE){
             if (data != null) {
                 String selectCity = data.getStringExtra("city");
-              //  Log.i("----------", "onActivityResult: " + selectCity);
                 if(!"地理位置".equals(selectCity)){
                     request_addr = selectCity;
                     refreshData("1");
                     tv_addr_selected.setText(selectCity);
                     tv_addr_selected1.setText(selectCity);
-                    //Log.i("----------", "onActivityResult:1 " + selectCity);
                 }else{
                     request_addr = "";
                     refreshData("1");
                     tv_addr_selected.setText("地理位置");
                     tv_addr_selected1.setText("地理位置");
-                  //  Log.i("----------", "onActivityResult:2 " + "地理位置");
                 }
-
 
             }
         }

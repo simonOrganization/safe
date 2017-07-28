@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by android-cp on 2017/5/10.
  */
 
-public class QzContextBean {
+public class QzContextBean  implements Serializable {
     //新闻id
     public String qc_id;
     public String qc_ub_id;
