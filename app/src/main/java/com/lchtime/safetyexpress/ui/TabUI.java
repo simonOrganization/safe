@@ -384,6 +384,7 @@ public class TabUI extends TabActivity implements OnClickListener {
         userId = SpTools.getString(this, Constants.userId,"");
         if (!TextUtils.isEmpty(userId)){
             PushManager.getInstance().bindAlias(this,userId);
+            PushManager.getInstance().turnOnPush(this);
             //登录操作
             LoginInternetRequest.getVipInfo(userId, new LoginInternetRequest.ForResultListener() {
                 @Override

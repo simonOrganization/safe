@@ -109,6 +109,7 @@ public class LoginInternetRequest {
                     SpTools.setString(context, Constants.userId, result.ub_id);//存储用户的ub_id
                     if (!TextUtils.isEmpty(result.ub_id)){
                         PushManager.getInstance().bindAlias(MyApplication.getContext(),result.ub_id);
+                        PushManager.getInstance().turnOnPush(MyApplication.getContext());
 //                        Tag t = new Tag();
 //                        //name 字段只支持：中文、英文字母（大小写）、数字、除英文逗号以外的其他特殊符号, 具体请看代码示例
 //                        t.setName("Android");
