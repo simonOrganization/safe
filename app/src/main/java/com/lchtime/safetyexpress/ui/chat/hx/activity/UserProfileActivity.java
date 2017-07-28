@@ -75,7 +75,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 		setContentView(R.layout.em_activity_user_profile);
 		Intent intent = getIntent();
 		mUsername = intent.getStringExtra("username");
-		uid = intent.getStringExtra("uid");
+
 
 		topMap = MyApplication.getInstance().getTopUserList();
 		initView();
@@ -146,9 +146,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 		switch (v.getId()) {
 			case R.id.user_head_avatar : //头像跳转个人主页
 				Log.i("qaz", "-------------"+    uid);
-				if (uid.equals(1)) {
-					return;
-				}
+
 				Intent inti = new Intent(this, SingleInfoUI.class);
 				inti.putExtra("uid", uid);
 				//Log.i("qaz", "onClick: "+SpTools.getString(context, Constants.userId, ""));
@@ -355,7 +353,8 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 								.load(R.drawable.circle_user_image)
 								.into(headAvatar);
 					}
-
+					uid = bean.ud_ub_id;
+					Log.i("qaz", "normalResponse: "+ uid  + "----"+mUserid );
 					tvUsername.setText(bean.ud_nickname);
 					tvSex.setText(bean.ud_sex);
 					tvHy.setText(bean.ud_profession);

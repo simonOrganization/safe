@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
@@ -146,6 +147,9 @@ public class VipSettingUI extends BaseUI {
         backgroundAlpha(0.5f);
         pb_progress.setVisibility(View.VISIBLE);
         PushManager.getInstance().unBindAlias(context,SpTools.getString(this,Constants.userId,""),true);
+        Log.i("qaz", "getOutLog: "+ "--------------------");
+        PushManager.getInstance().turnOffPush(VipSettingUI.this);
+        PushManager.getInstance().stopService(VipSettingUI.this);
         logout();
 
 //        Toast.makeText(this,"正在退出登录",Toast.LENGTH_SHORT).show();

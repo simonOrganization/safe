@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.bean.ContactBean;
+import com.hyphenate.easeui.bean.EaseInitBean;
 import com.hyphenate.easeui.widget.EaseAlertDialog;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.ui.chat.hx.Constant;
@@ -29,6 +32,7 @@ import com.lchtime.safetyexpress.ui.chat.hx.fragment.FindGroupsFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -51,6 +55,7 @@ public class AddFriendsCommendAdapter extends RecyclerView.Adapter {
     private List<UserBean> user;
     private int type;
     private static final int REQUEST_CODE_GROUP_DETAIL = 13;
+    private ArrayList<ContactBean> list;
 
     public AddFriendsCommendAdapter(Fragment fragment, List<UserBean> user,int type) {
         this.mFragment = fragment;
@@ -68,15 +73,13 @@ public class AddFriendsCommendAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         MyHolder myHolder = (MyHolder) holder;
         final UserBean bean = user.get(position);
-        if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {
+
             Picasso.with(mFragment.getActivity())
                     .load(bean.ud_photo_fileid)
+                    .placeholder(R.drawable.circle_user_image)
+                    .error(R.drawable.circle_user_image)
                     .into(myHolder.mAvatar);
-        }else {
-            Picasso.with(mFragment.getActivity())
-                    .load(R.drawable.circle_user_image)
-                    .into(myHolder.mAvatar);
-        }
+
 
         myHolder.mName.setText(bean.ud_nickname);
         myHolder.mMessage.setText(bean.user);
@@ -203,6 +206,7 @@ public class AddFriendsCommendAdapter extends RecyclerView.Adapter {
     }
 
     private void toSingleDetails(UserBean bean) {
+
         Intent intent = new Intent(mFragment.getActivity(), UserProfileActivity.class);
         intent.putExtra("username", bean.hx_account);
         mFragment.getActivity().startActivity(intent);

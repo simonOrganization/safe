@@ -122,10 +122,7 @@ public class ContactListFragment extends EaseContactListFragment {
     private HomeQuestionProtocal protocal = new HomeQuestionProtocal();
     @Override
     public void refresh() {
-        Log.i("qaz", "refresh: 1");
-        list =  new ArrayList<ContactBean>();
-        list.addAll(EaseInitBean.contactBean.friendlist);
-        Log.i("qaz", "questionResponse: " + list.get(0));
+
         if (EaseInitBean.contactBean == null){
             protocal.getMyFriends(new HomeQuestionProtocal.QuestionListener() {
                 @Override
@@ -135,6 +132,7 @@ public class ContactListFragment extends EaseContactListFragment {
                         CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                         return;
                     }
+
                     try {
                         ContactListBean bean = gson.fromJson((String) response, ContactListBean.class);
 
@@ -260,17 +258,11 @@ public class ContactListFragment extends EaseContactListFragment {
                 EaseUser user = (EaseUser)listView.getItemAtPosition(position);
 
                 if (user != null) {
-                    if (!TextUtils.isEmpty(list.get(position).ud_ub_id)){
-                         uid = list.get(position).ud_ub_id;
-                    }else{
-                        uid = "1";
-                    }
-                    Log.i("qaz", "onItemClick: " +uid );
+
                     String username = user.getUsername();
                     // demo中直接进入聊天页面，实际一般是进入用户详情页
                     Intent intent = new Intent(getActivity(),UserProfileActivity.class);
                     intent.putExtra("username",username);
-                    intent.putExtra("uid",uid);
                     startActivityForResult(intent,DEL_FRIEND);
                 }
             }
