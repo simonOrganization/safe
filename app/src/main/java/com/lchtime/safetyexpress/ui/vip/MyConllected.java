@@ -158,6 +158,9 @@ public class MyConllected extends BaseUI {
             currentFragment = FragmentFactory.createFragment(position);
             LoadingPager loadingPager = currentFragment.getLoadingPager();
             loadingPager.triggerLoadData();
+            if(flag){
+                clickEvent();
+            }
         }
 
         @Override

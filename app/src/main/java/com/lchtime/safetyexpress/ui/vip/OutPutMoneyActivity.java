@@ -162,6 +162,10 @@ public class OutPutMoneyActivity extends BaseUI implements View.OnClickListener 
 
             }
         }else if (v == tvOutput){
+            if(TextUtils.isEmpty(money)){
+                CommonUtils.toastMessage("请输入金额");
+                return;
+            }
             float m = Float.valueOf(money);
             if(m < 20.00){
                 CommonUtils.toastMessage("提现最低20元");
