@@ -1,14 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 android {
-    signingConfigs {
-        safety {
-            keyAlias 'safety'
-            keyPassword 'lchtime'
-            //storeFile file('D:/work/安全快车最新/safety.jks')
-            storeFile file('E:/company/jks/safety.jks')
-            storePassword 'lchtime'
-        }
+
 //        debug {
 //            keyAlias 'safety'
 //            keyPassword 'lchtime'
@@ -40,7 +33,7 @@ android {
                     GETUI_APP_KEY   : "uQSlvoaK2G6DXbrnstZtM6",
                     GETUI_APP_SECRET: "6JfaGUdsHw5MKFgvOgLa86"
             ]
-            signingConfig signingConfigs.safety
+//            signingConfig signingConfigs.safety
         }
         buildTypes {
             release {
@@ -48,10 +41,10 @@ android {
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
                 debuggable true
                 jniDebuggable false
-                signingConfig signingConfigs.safety
+//                signingConfig signingConfigs.safety
             }
             debug {
-                signingConfig signingConfigs.safety
+//                signingConfig signingConfigs.safety
             }
         }
         productFlavors {
@@ -85,15 +78,13 @@ android {
         compile files('libs/GetuiSDK2.10.2.0.jar')
         compile 'com.timehop.stickyheadersrecyclerview:library:0.4.3@aar'
     }
-    buildTypes {
-        debug {
-            signingConfig signingConfigs.safety
-        }
-        release {
-            signingConfig signingConfigs.safety
-        }
-    }
-}
+//    buildTypes {
+//        debug {
+//        }
+//        release {
+//        }
+//    }
+
 
 dependencies {
 }

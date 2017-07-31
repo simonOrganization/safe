@@ -5,7 +5,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Message;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,12 +21,12 @@ import com.igexin.sdk.message.SetTagCmdMessage;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.MessageBean;
-import com.lchtime.safetyexpress.ui.Splash;
 import com.lchtime.safetyexpress.ui.TabUI;
-import com.lchtime.safetyexpress.ui.chat.hx.activity.ContactActivity;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.NewFriendsMsgActivity;
 import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
+import com.lchtime.safetyexpress.utils.SpTools;
 
 
 /**
@@ -54,6 +53,7 @@ public class DemoIntentService extends GTIntentService {
     @Override
     public void onReceiveServicePid(Context context, int pid) {
         Log.d("qaz", "onReceiveServicePid -> " + pid);
+
     }
 
     private Gson gson = new Gson();
@@ -76,7 +76,7 @@ public class DemoIntentService extends GTIntentService {
       /*  String payload = new String(msg.getPayload());
         jumpActivity(payload);
 */
-
+        PushManager.getInstance().getClientid(MyApplication.getContext());
         if (payload == null) {
             Log.i("qazz", "receiver payload = null");
         } else {
@@ -211,7 +211,7 @@ public class DemoIntentService extends GTIntentService {
         PushManager.getInstance().setTag(this, new Tag[]{t},
                 System.currentTimeMillis() + "");
 
-
+        SpTools.setString(this.getApplicationContext(), Constants.clientId, clientid);
     }
 
     @Override

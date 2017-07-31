@@ -54,6 +54,7 @@ import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.tauth.Tencent;
 
+import static com.lchtime.safetyexpress.bean.Constants.clientId;
 import static com.lchtime.safetyexpress.bean.Constants.userId;
 
 
@@ -79,6 +80,7 @@ public class LoginUI extends BaseUI {
     private MyReceiver mReceiver;
 
     private MutiLoginProtocal protocal = new MutiLoginProtocal();
+    private String Clientid;
 
     @Override
     protected void back() {
@@ -397,7 +399,7 @@ public class LoginUI extends BaseUI {
     //获取到三方登录的相关信息，连接到自己的服务器传送资料
     private void MuTiLogin(final String uuid, final String name, final String header, final String gender, final String loginType) {
 
-        protocal.postMutiLogin(uuid, name, header, gender, loginType, new MutiLoginProtocal.MutiLoginListener() {
+        protocal.postMutiLogin(uuid, name, header, gender, loginType, Clientid, new MutiLoginProtocal.MutiLoginListener() {
             @Override
             public void normalResponse(Object response) {
                 if (response == null){
@@ -572,13 +574,17 @@ public class LoginUI extends BaseUI {
         if (mSsoHandler != null) {
             mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
+        if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, null))){
 
+             Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, null);
+            Log.i("qaz", "login: 5" + Clientid);
+        }
         if (requestCode == 333 && resultCode == 333&& data != null){
             //三方登录注册回来的
             String phone = data.getStringExtra("phone");
             String pwd = data.getStringExtra("pwd");
 
-            protocal.postMutiNewLogin(tp_openid, tp_username, tp_head, tp_gender, type, phone, pwd, new MutiLoginProtocal.MutiLoginListener() {
+            protocal.postMutiNewLogin(tp_openid, tp_username, tp_head, tp_gender, type, phone, pwd,Clientid , new MutiLoginProtocal.MutiLoginListener() {
                 @Override
                 public void normalResponse(Object response) {
                     if (response == null){

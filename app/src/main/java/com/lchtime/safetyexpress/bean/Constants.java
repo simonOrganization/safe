@@ -21,6 +21,6 @@ public class Constants {
     public static final String SHARE_TITLE = "注册分享，得百元红包";
     public static final String SHARE_DES = "下载安全快车APP,注册完善信息并分享给好友，现金红包马上到账！";
 
-
+    public static String clientId = "clientid";
 
 }

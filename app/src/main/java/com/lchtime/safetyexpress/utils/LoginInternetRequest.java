@@ -27,6 +27,7 @@ import java.util.Set;
 
 import okhttp3.Call;
 
+import static com.lchtime.safetyexpress.bean.Constants.clientId;
 import static com.lchtime.safetyexpress.bean.Constants.password;
 
 /**
@@ -44,6 +45,8 @@ public class LoginInternetRequest {
     private static TimeCount timeCount;
     private static TextView mTextView;
     private static boolean isRun = false;
+    private static String Clientid;
+
     static {
         mGson = new Gson();
         context = MyApplication.getContext();
@@ -71,13 +74,12 @@ public class LoginInternetRequest {
             return;
         }
 
-        if(!TextUtils.isEmpty(phonenumber)){
-//            if(!CommonUtils.isMobilePhone(phonenumber)){
-//                CommonUtils.toastMessage("您输入的手机号有误");
-//                mListener.onResponseMessage("");
-//                return ;
-//            }
+        if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, null))){
+
+            Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, null);
+            Log.i("qaz", "login: 1" + Clientid);
         }
+
         String url = context.getResources().getString(R.string.service_host_address)
                 .concat(context.getResources().getString(R.string.getLogin));
         Log.d("host",url);
@@ -89,6 +91,7 @@ public class LoginInternetRequest {
                 .addParams("uo_long","")
                 .addParams("uo_lat","")
                 .addParams("uo_high","")
+                .addParams("cid",Clientid)
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -288,6 +291,11 @@ public class LoginInternetRequest {
             mListener.onResponseMessage("");
             return;
         }
+        if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, null))){
+
+            Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, null);
+            Log.i("qaz", "login: 3" + Clientid);
+        }
         String url = context.getResources().getString(R.string.service_host_address)
                 .concat(context.getResources().getString(R.string.reg));
         OkHttpUtils.post().url(url)
@@ -296,6 +304,7 @@ public class LoginInternetRequest {
                 .addParams("index",(index++)+"")
                 .addParams("ud_pwd",password)
                 .addParams("vc_code",vc_code)
+                .addParams("cid",Clientid)
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -760,14 +769,14 @@ public class LoginInternetRequest {
              }
 
          }
-      //  Log.i("qaz", "editVipInfo: " +user_detail.toString());
+
         builder.addParams("user_detail",user_detail.toString());
 
         builder.build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 dialog.dissmiss();
-               // Log.i("qaz", "onError: " +e.getMessage());
+
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
 

@@ -20,7 +20,8 @@ import okhttp3.Call;
 public class MutiLoginProtocal {
     private Gson gson = new Gson();
 
-    public void postMutiLogin(String tp_openid,String tp_username,String tp_head,String tp_gender,String type,final MutiLoginListener listener){
+    public void postMutiLogin(String tp_openid,String tp_username,String tp_head,
+                              String tp_gender,String type,String clientid,final MutiLoginListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
@@ -36,6 +37,7 @@ public class MutiLoginProtocal {
                 .addParams("tp_head", tp_head)
                 .addParams("tp_gender", tp_gender)
                 .addParams("type", type)
+                .addParams("cid",clientid)
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -71,7 +73,8 @@ public class MutiLoginProtocal {
     }
 
 
-    public void postMutiNewLogin(String tp_openid,String tp_username,String tp_head,String tp_gender,String type,String ub_phone,String ud_pwd,final MutiLoginListener listener){
+    public void postMutiNewLogin(String tp_openid,String tp_username,String tp_head,String tp_gender,String type,String ub_phone,
+                                 String ud_pwd,String clientid ,final MutiLoginListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
@@ -89,6 +92,7 @@ public class MutiLoginProtocal {
                 .addParams("ub_phone", ub_phone)
                 .addParams("ud_pwd", ud_pwd)
                 .addParams("type", type)
+                .addParams("cid",clientid)
                 .build()
                 .execute(new StringCallback() {
                     @Override
