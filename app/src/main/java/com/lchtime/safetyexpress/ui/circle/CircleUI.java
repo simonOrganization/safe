@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.bslee.threelogin.api.ThirdWeiXinLoginApi;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
@@ -27,7 +25,6 @@ import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.CircleAdapter;
 import com.lchtime.safetyexpress.adapter.CircleHeaderAndFooterWrapper;
-import com.lchtime.safetyexpress.adapter.MyCircleActiveAdapter;
 import com.lchtime.safetyexpress.bean.CircleItemUpBean;
 import com.lchtime.safetyexpress.bean.CircleRedPointBean;
 import com.lchtime.safetyexpress.bean.Constants;
@@ -44,9 +41,7 @@ import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.home.GetMoneyActivity;
 import com.lchtime.safetyexpress.ui.home.protocal.PictureAdvantage;
 import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
-import com.lchtime.safetyexpress.ui.vip.MyCircleActiveActivity;
 import com.lchtime.safetyexpress.ui.vip.SelectCityActivity;
-import com.lchtime.safetyexpress.ui.vip.VipUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.cacheutils.ACache;
@@ -168,14 +163,15 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
             if ("ACTION_PUSH_SUCEESS".equals(intent.getAction())) {
                final String code = intent.getStringExtra("code" );
                 if (!TextUtils.isEmpty(code)) {
-                    new Thread(new Runnable() {
+                    initData();
+                    /*new Thread(new Runnable() {
                         @Override
                         public void run() {
                         //    Log.i("qaz", "run: " + "更新ui");
                             initData();
                             //refreshData("1");
                         }
-                    }).start();
+                    }).start();*/
                 }
             }
         }

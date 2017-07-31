@@ -73,13 +73,12 @@ public class LoginInternetRequest {
             mListener.onResponseMessage("");
             return;
         }
-
+        Log.i("qaz", "login: 1" + SpTools.getString(MyApplication.getContext() , clientId, null));
         if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, null))){
 
             Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, null);
-            Log.i("qaz", "login: 1" + Clientid);
-        }
 
+        }
         String url = context.getResources().getString(R.string.service_host_address)
                 .concat(context.getResources().getString(R.string.getLogin));
         Log.d("host",url);
