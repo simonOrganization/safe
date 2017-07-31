@@ -88,18 +88,13 @@ public class NewsFragment extends BaseFragment {
             String myResponse = response.body().string();
             NewsListRes newsListRes = (NewsListRes) JsonUtils.stringToObject(myResponse,NewsListRes.class);
             if(newsListRes.getResult().getCode().equals("10")){
-                if(commentList!=null){
-                    commentList.clear();
-                    commentList = null;
+                if(commentList == null){
                     commentList = new ArrayList<NewsBean>();
                 }
-                Log.i("yang","onResponse===="+newsListRes.getCms_context().size());
-                commentList = newsListRes.getCms_context();
-                Log.i("yang","onResponse===="+commentList.size());
-
+                commentList.clear();
+                commentList.addAll(newsListRes.getCms_context());
 
                 homeNewAdapter = new HomeNewAdapter(getContext(), commentList);
-
 
                 homeNewAdapter.setNewItemInterface(new HomeNewAdapter.NewsItemInterface() {
                     @Override
