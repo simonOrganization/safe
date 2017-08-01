@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
 import com.lchtime.safetyexpress.bean.Result;
@@ -198,6 +197,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
         holder.ivCircleItemGreat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               // holder.ivCircleItemGreat.setEnabled(false);
                 greate = !"1".equals(bean.zan);
                 if (greate) {
                     action = "0";
@@ -207,7 +207,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                 String userid = SpTools.getString(context, Constants.userId,"");
                 if (TextUtils.isEmpty(userid)){
                     CommonUtils.toastMessage("没有登陆！！");
-                    holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
+                  //  holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
                     return;
                 }else {
 
@@ -216,24 +216,28 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                         public void normalResponse(Object response) {
                             if (response == null) {
                                 greate = true;
-                                holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
+                              //  holder.ivCircleItemGreat.setEnabled(true);
+                              //  holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
                                 holder.ivCircleItemGreat.setClickable(true);
                                 CommonUtils.toastMessage("请求网络失败");
                                 return;
                             }
-                            BasicResult result = (BasicResult) response;
-                            if (!result.code.equals("10")) {
-                                CommonUtils.toastMessage(result.getInfo());
-                                holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
+                            Result result = (Result) response;
+                            if (!result.result.code.equals("10")) {
+                               // holder.ivCircleItemGreat.setEnabled(true);
+                                CommonUtils.toastMessage(result.result.getInfo());
+                              //  holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
                             } else {
                                 greate = false;
-                                holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
+                                holder.circleItemGreat.setText(result.dzNum);
+                               // holder.ivCircleItemGreat.setEnabled(true);
+                               // holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
                                 if (context instanceof SingleInfoUI) {
                                     ((SingleInfoUI) context).prepareData();
                                 }
                             }
                             holder.ivCircleItemGreat.setChecked(true);
-                            CommonUtils.toastMessage(result.getInfo());
+                            CommonUtils.toastMessage(result.result.getInfo());
                         }
                     });
                     //holder.iv_circle_item_great.setChecked(true);
@@ -251,6 +255,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
         holder.ivCircleItemLow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                holder.ivCircleItemLow.setEnabled(false);
                 down = !"1".equals(bean.cai);
                 if (down) {
                     action = "0";
@@ -270,24 +275,28 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                         public void normalResponse(Object response) {
                             if (response == null){
                                 down = true;
-                                holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
+                              //  holder.ivCircleItemLow.setEnabled(true);
+                               // holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
                                 holder.ivCircleItemLow.setClickable(true);
                                 CommonUtils.toastMessage("请求网络失败");
                                 return;
                             }
-                            BasicResult result = (BasicResult) response;
-                            if (!result.code.equals("10")) {
-                                CommonUtils.toastMessage(result.getInfo());
-                                holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
+                            Result result = (Result) response;
+                            if (!result.result.code.equals("10")) {
+                               // holder.ivCircleItemLow.setEnabled(true);
+                                CommonUtils.toastMessage(result.result.getInfo());
+                              //  holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
                             } else {
                                 down = false;
-                                holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
+                                holder.circleItemLow.setText(bean.qc_fd);
+                               // holder.ivCircleItemLow.setEnabled(true);
+                               // holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
                                 if (context instanceof SingleInfoUI) {
                                     ((SingleInfoUI) context).prepareData();
                                 }
                             }
-                            holder.ivCircleItemLow.setChecked(true);
-                            CommonUtils.toastMessage(result.getInfo());
+                           // holder.ivCircleItemLow.setChecked(true);
+                            CommonUtils.toastMessage(result.result.getInfo());
                         }
                     });
 

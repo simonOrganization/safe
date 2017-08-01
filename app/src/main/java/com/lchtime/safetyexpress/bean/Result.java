@@ -6,4 +6,5 @@ package com.lchtime.safetyexpress.bean;
 
 public class Result {
     public BasicResult result;
+    public String dzNum;
 }

@@ -1,13 +1,17 @@
 package com.lchtime.safetyexpress.ui.vip;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -63,6 +67,7 @@ public class VipSettingUI extends BaseUI {
 
     @ViewInject(R.id.cb_setting_push)
     private CheckBox cb_setting_push;
+    private UiReceiver mReceiver;
 
     @Override
     protected void back() {
@@ -91,7 +96,9 @@ public class VipSettingUI extends BaseUI {
             cacheSize = "0KB";
         }
         tvCache.setText(cacheSize);
-
+        mReceiver = new UiReceiver();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver,
+                new IntentFilter("ACTION_LOGIN_SUCEESS"));
     }
 
     private void initListener() {
@@ -137,6 +144,19 @@ public class VipSettingUI extends BaseUI {
         startActivity(intent);
     }
 
+    private class UiReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if ("ACTION_LOGIN_SUCEESS".equals(intent.getAction())) {
+                final String code = intent.getStringExtra("code" );
+                if (!TextUtils.isEmpty(code)) {
+
+                    Log.i("qaz", "onReceive: " + "2----------------");
+                }
+            }
+        }
+    }
     /**
      *
      * 退出登录

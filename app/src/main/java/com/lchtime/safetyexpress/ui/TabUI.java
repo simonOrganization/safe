@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.ui;
 
+import android.app.ProgressDialog;
 import android.app.TabActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -38,6 +39,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMCmdMessageBody;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
+import com.hyphenate.easeui.bean.ContactListBean;
 import com.hyphenate.easeui.bean.EaseInitBean;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.igexin.sdk.PushManager;
@@ -45,7 +47,6 @@ import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.CircleRedPointBean;
 import com.lchtime.safetyexpress.bean.Constants;
-import com.hyphenate.easeui.bean.ContactListBean;
 import com.lchtime.safetyexpress.bean.GetUpBean;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.PostBean;
@@ -274,9 +275,13 @@ public class TabUI extends TabActivity implements OnClickListener {
         updateUnreadLabel();
         init(true);
 
+       /* mReceiver = new UiReceiver();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver,
+                new IntentFilter("ACTION_LOGIN_SUCEESS"));*/
 
     }
-
+   // private UiReceiver mReceiver;
+    private ProgressDialog mDialog;
     //只是splash 使用
     public void init(boolean flag) {
         initRedPoint();
@@ -337,7 +342,7 @@ public class TabUI extends TabActivity implements OnClickListener {
                         CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                     }
                 }catch (Exception exception){
-                    CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
+                 //   CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                 }
 
             }
@@ -345,11 +350,20 @@ public class TabUI extends TabActivity implements OnClickListener {
 
 
     }
+ /*   private class UiReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if ("ACTION_LOGIN_SUCEESS".equals(intent.getAction())) {
+                final String code = intent.getStringExtra("code" );
+                if (!TextUtils.isEmpty(code)) {
+                    Log.i("qaz", "onReceive: " + "1----------------");
 
 
-
-
-
+                }
+            }
+        }
+    }*/
 
 
     private void initVideoPath() {

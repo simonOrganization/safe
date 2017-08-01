@@ -170,8 +170,8 @@ public class CircleProtocal {
             listener.normalResponse(null);
             return;
         }
-       // Log.i("qaz", "onClick: 点赞1" + ub_id  + "---ub_id----" + qc_id  +"-----qc_id----"+ qc_agr  + "----qc_agr----" + qc_aga
-              //  +"-----qc_aga----"+ action  + "------action" );
+        Log.i("qaz", "onClick: 点赞1" + ub_id  + "---ub_id----" + qc_id  +"-----qc_id----"+ qc_agr  + "----qc_agr----" + qc_aga
+                +"-----qc_aga----"+ action  + "------action" );
 
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
                 .concat(MyApplication.getContext().getResources().getString(R.string.newsdz));
@@ -221,7 +221,7 @@ public class CircleProtocal {
                         Result result = (Result) JsonUtils.stringToObject(response, Result.class);
                         if (result.result.code.equals("10")) {
                             if (listener != null) {
-                                listener.normalResponse(result.result);
+                                listener.normalResponse(result);
                             }
                         } else {
                             listener.normalResponse(null);

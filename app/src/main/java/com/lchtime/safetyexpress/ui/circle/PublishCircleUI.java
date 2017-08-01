@@ -1,6 +1,5 @@
 package com.lchtime.safetyexpress.ui.circle;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.content.ContextCompat;
@@ -8,7 +7,6 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -233,6 +231,8 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
     @Override
     protected void clickEvent() {
         //发送按钮点击事件
+        final LinearLayout ll_right = (LinearLayout) findViewById(R.id.ll_right);
+        ll_right.setEnabled(false);
         if (protocal == null){
             protocal = new CircleProtocal();
         }
@@ -258,6 +258,7 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
                 @Override
                 public void onResponse(String response) {
                     if (TextUtils.isEmpty(response)){
+                        ll_right.setEnabled(true);
                         CommonUtils.toastMessage("上传图片失败");
                         return;
                     }
@@ -277,6 +278,7 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
                             @Override
                             public void normalResponse(Object response) {
                                 Result result = (Result) response;
+                                ll_right.setEnabled(true);
                                 CommonUtils.toastMessage(result.result.info);
                                 finish();
                             }
@@ -289,6 +291,7 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
             protocal.getUpdataCommonData(ub_id, content, filesid , mDialog ,new CircleProtocal.NormalListener() {
                 @Override
                 public void normalResponse(Object response) {
+                    ll_right.setEnabled(true);
                     Result result = (Result) response;
                     CommonUtils.toastMessage(result.result.info);
                     Intent action = new Intent();
@@ -300,7 +303,7 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
             });
 
         }
-
+        ll_right.setEnabled(false);
     }
 
     @Override

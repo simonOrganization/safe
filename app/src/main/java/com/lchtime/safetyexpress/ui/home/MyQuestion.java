@@ -184,4 +184,8 @@ public class MyQuestion extends BaseUI {
         tvTitleshow.setText(text);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }

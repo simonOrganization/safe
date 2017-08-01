@@ -321,4 +321,11 @@ public class HomeQuestionUI extends BaseUI {
         success.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    protected void onResume() {
+        initMyInfo();
+        initListener();
+        prepareData();
+        super.onResume();
+    }
 }

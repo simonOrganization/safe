@@ -196,4 +196,9 @@ public class TiWenFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        getData("1");
+        super.onResume();
+    }
 }
