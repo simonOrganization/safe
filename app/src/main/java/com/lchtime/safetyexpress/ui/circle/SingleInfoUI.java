@@ -369,7 +369,7 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
                 if ("1".equals(result)){
                     tvFriend.setText("已添加");
                     tvFriend.setEnabled(false);
-                    CommonUtils.toastMessage("添加好友成功！");
+                    //CommonUtils.toastMessage("添加好友成功！");
                 }
             }
         }

@@ -51,7 +51,7 @@
                 android:textColor="@color/title_333"
                 android:layout_below="@id/circle_item_company_name"
                 android:layout_marginTop="@dimen/dm008"/>
-            <ImageView
+            <!--<ImageView
                 android:id="@+id/circle_item_shipin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -60,7 +60,14 @@
                 android:background="@color/line_color"
                 android:gravity="left"
                 android:layout_marginTop="@dimen/dm008"
-                android:layout_below="@id/circle_item_content" />
+                android:layout_below="@id/circle_item_content"
+                />-->
+            <com.lchtime.safetyexpress.views.NoTouchRecycler
+                android:id="@+id/circle_item_image_rc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/circle_item_content"
+                />
 
         </RelativeLayout>
 

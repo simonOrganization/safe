@@ -53,8 +53,9 @@ public class CircleImageAdapter extends RecyclerView.Adapter {
         holder1.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                pListener.onItemClick(v, position);
+                if(pListener != null){
+                    pListener.onItemClick(v, position);
+                }
 
             }
         });

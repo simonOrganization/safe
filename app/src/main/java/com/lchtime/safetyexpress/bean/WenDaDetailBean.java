@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -66,7 +67,7 @@ public class WenDaDetailBean {
         public List<String> pic;
     }
 
-    public static class HdinfoBean {
+    public static class HdinfoBean implements Serializable{
         public String a_id;
         public String aq_id;
         public String aq_title;

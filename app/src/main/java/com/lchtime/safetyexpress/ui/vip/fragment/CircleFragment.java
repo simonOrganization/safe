@@ -42,7 +42,7 @@ public class CircleFragment extends BaseFragment {
 
     @Override
     public LoadingPager.LoadedResult initData() {
-        getCircleList("","");
+        getCircleList("0","");
 
         if (loadedResult == null) {
             loadedResult = checkResult(list);

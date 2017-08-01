@@ -2,6 +2,7 @@ package com.lchtime.safetyexpress.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -13,11 +14,13 @@ import android.widget.TextView;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.WenDaDetailBean;
+import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
 import com.lchtime.safetyexpress.ui.home.MyQuestion;
 import com.lchtime.safetyexpress.views.CircleImageView;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -48,23 +51,37 @@ public class QuetionDetailAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
 
         final WenDaDetailBean.HdinfoBean bean = list.get(position);
+        final ArrayList<String> picList = (ArrayList<String>) bean.pic;
         if (holder instanceof CircleHodler) {
             CircleHodler myHolder = (CircleHodler) holder;
 
-            ViewGroup.LayoutParams lp =  myHolder.circleItemShipin.getLayoutParams();
+            /*ViewGroup.LayoutParams lp =  myHolder.circleItemShipin.getLayoutParams();
             lp.width = 600;
             lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             myHolder.circleItemShipin.setLayoutParams(lp);
             myHolder.circleItemShipin.setMaxWidth(600);
             //context.getWindowManager().getDefaultDisplay().getWidth() - 100
-            myHolder.circleItemShipin.setMaxHeight(1200);
+            myHolder.circleItemShipin.setMaxHeight(1200);*/
+
             //如果有图片
-            if (bean.pic.size() != 0 && !TextUtils.isEmpty(bean.pic.get(0))) {
-                myHolder.circleItemShipin.setVisibility(View.VISIBLE);
-                Picasso.with(context).load(bean.pic.get(0)).into(myHolder.circleItemShipin);
+            if (picList.size() != 0 && !TextUtils.isEmpty(picList.get(0))) {
+                myHolder.circle_item_image_rc.setVisibility(View.VISIBLE);
+                CircleImageAdapter imageAdapter = new CircleImageAdapter(context, bean.pic);
+                myHolder.circle_item_image_rc.setLayoutManager(new GridLayoutManager(context, 3));
+                myHolder.circle_item_image_rc.setAdapter(imageAdapter);
+                //Picasso.with(context).load(bean.pic.get(0)).into(myHolder.circleItemShipin);
+                imageAdapter.setOnItemSelectLs(new CircleImageAdapter.IOnItemSelectListener() {
+                    @Override
+                    public void onItemClick(View v, int pos) {
+                        Intent intent = new Intent(context, CirclePhone.class);
+                        intent.putExtra("url",  picList);
+                        intent.putExtra("pos", pos);
+                        context.startActivity(intent);
+                    }
+                });
             } else {
                 //如果没有图片
-                ((CircleHodler) holder).circleItemShipin.setVisibility(View.GONE);
+                ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.GONE);
             }
             if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {
                 Picasso.with(context).load(bean.ud_photo_fileid).into(((CircleHodler) holder).ivCirclePhoto);
@@ -110,6 +127,8 @@ public class QuetionDetailAdapter extends RecyclerView.Adapter {
 
     class CircleHodler extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.circle_item_image_rc)
+        RecyclerView circle_item_image_rc;
         @BindView(R.id.iv_circle_photo)
         CircleImageView ivCirclePhoto;
         @BindView(R.id.circle_item_title)
@@ -118,8 +137,8 @@ public class QuetionDetailAdapter extends RecyclerView.Adapter {
         TextView circleItemCompanyName;
         @BindView(R.id.circle_item_content)
         TextView circleItemContent;
-        @BindView(R.id.circle_item_shipin)
-        ImageView circleItemShipin;
+        /*@BindView(R.id.circle_item_shipin)
+        ImageView circleItemShipin;*/
         public CircleHodler(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

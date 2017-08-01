@@ -117,7 +117,7 @@ public class AnswerQuestionActivity extends BaseUI {
         FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         recycler.setLayoutManager(manager);
         adapter = new GridImageAdapter(this, onAddPicClickListener);
-        adapter.setSelectMax(1);//最多选择的个数
+        adapter.setSelectMax(3);//最多选择的个数
         recycler.setAdapter(adapter);
         adapter.setOnItemClickListener(new GridImageAdapter.OnItemClickListener() {
             @Override
@@ -154,7 +154,7 @@ public class AnswerQuestionActivity extends BaseUI {
                             .setCompress(true) //是否压缩
                             .setEnablePixelCompress(true) //是否启用像素压缩
                             .setEnableQualityCompress(true) //是否启质量压缩
-                            .setMaxSelectNum(1) // 可选择图片的数量
+                            .setMaxSelectNum(3) // 可选择图片的数量
                             .setSelectMode(FunctionConfig.MODE_MULTIPLE) // 单选 or 多选
                             .setShowCamera(false) //是否显示拍照选项 这里自动根据type 启动拍照或录视频
                             .setEnablePreview(true) // 是否打开预览选项

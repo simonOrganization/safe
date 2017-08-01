@@ -291,6 +291,7 @@ public class HomeQuewstionDetail extends BaseUI {
                             //会重复执行，获取到行数马上移除监听
                             tvHomeQuestionDescrib.getViewTreeObserver().removeOnPreDrawListener(this);
                             if(tvHomeQuestionDescrib.getLineCount() > 1){
+                                tvHomeQuestionDescrib.setMaxLines(1);
                                 openIv.setVisibility(View.VISIBLE);
                                 openIv.setOnClickListener(new View.OnClickListener() {
                                     @Override

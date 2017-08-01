@@ -275,9 +275,6 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
 
         holder.circle_item_time.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.qc_date)));
         holder.circle_item_subscribe_num.setText(bean.dyNum + "已订阅");
-            //circleHodler.circle_item_image_rc.addItemDecoration(new SpacesItemDecoration(10));
-
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

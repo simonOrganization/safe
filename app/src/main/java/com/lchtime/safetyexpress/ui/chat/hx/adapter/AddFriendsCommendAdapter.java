@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.easeui.EaseConstant;
@@ -74,7 +75,7 @@ public class AddFriendsCommendAdapter extends RecyclerView.Adapter {
         MyHolder myHolder = (MyHolder) holder;
         final UserBean bean = user.get(position);
 
-            Picasso.with(mFragment.getActivity())
+            Glide.with(mFragment)
                     .load(bean.ud_photo_fileid)
                     .placeholder(R.drawable.circle_user_image)
                     .error(R.drawable.circle_user_image)
