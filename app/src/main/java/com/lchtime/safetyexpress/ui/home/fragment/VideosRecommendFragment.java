@@ -73,9 +73,11 @@ public class VideosRecommendFragment extends Fragment {
             @Override
             public void videoListResponse(VideoRes videoRes) {
                 videoList = videoRes.cms_context;
-                homeVideosRecommendAdapter = new HomeVideosRecommendAdapter(getActivity(),videoList);
-                home_new_fragment_rc.setLayoutManager(new LinearLayoutManager(getContext()));
-                refreshLayout.setAdapter(homeVideosRecommendAdapter);
+                if(getActivity() != null){
+                    homeVideosRecommendAdapter = new HomeVideosRecommendAdapter(getActivity(),videoList);
+                    home_new_fragment_rc.setLayoutManager(new LinearLayoutManager(getContext()));
+                    refreshLayout.setAdapter(homeVideosRecommendAdapter);
+                }
             }
         });
 

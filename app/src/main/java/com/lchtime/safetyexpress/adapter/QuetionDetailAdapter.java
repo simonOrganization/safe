@@ -59,7 +59,7 @@ public class QuetionDetailAdapter extends RecyclerView.Adapter {
             //context.getWindowManager().getDefaultDisplay().getWidth() - 100
             myHolder.circleItemShipin.setMaxHeight(1200);
             //如果有图片
-            if (bean.pic.size() != 0) {
+            if (bean.pic.size() != 0 && !TextUtils.isEmpty(bean.pic.get(0))) {
                 myHolder.circleItemShipin.setVisibility(View.VISIBLE);
                 Picasso.with(context).load(bean.pic.get(0)).into(myHolder.circleItemShipin);
             } else {

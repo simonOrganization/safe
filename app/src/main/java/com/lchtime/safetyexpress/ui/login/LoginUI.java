@@ -574,9 +574,9 @@ public class LoginUI extends BaseUI {
         if (mSsoHandler != null) {
             mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
-        if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, null))){
+        if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, ""))){
 
-             Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, null);
+             Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, "");
             Log.i("qaz", "login: 5" + Clientid);
         }
         if (requestCode == 333 && resultCode == 333&& data != null){

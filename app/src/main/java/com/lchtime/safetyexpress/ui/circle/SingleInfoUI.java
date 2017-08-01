@@ -187,11 +187,12 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
                         setIsLoading(false);
                     }
                     CommonUtils.toastMessage("加载个人圈子信息失败");
+                    return;
                 }
                 //我的圈子列表
                 MyCircleActiveBean bean = (MyCircleActiveBean) response;
                 myCircleList.clear();
-                if (bean.quanzi!= null) {
+                if (bean != null && bean.quanzi!= null) {
                     myCircleList.addAll(bean.quanzi);
                 }
                 if (myCircleList.size() == 0){

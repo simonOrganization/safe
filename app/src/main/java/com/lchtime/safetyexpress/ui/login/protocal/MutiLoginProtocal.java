@@ -29,6 +29,7 @@ public class MutiLoginProtocal {
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
                 .concat(MyApplication.getContext().getResources().getString(R.string.tparty));
+        if(clientid == null) clientid = "";
         OkHttpUtils
                 .post()
                 .url(url)
@@ -54,7 +55,7 @@ public class MutiLoginProtocal {
                         }
                         Third1Bean bean = null;
                         try {
-                            bean = (Third1Bean) gson.fromJson(response, Third1Bean.class);
+                            bean = gson.fromJson(response, Third1Bean.class);
 //                        Result bean = (Result) JsonUtils.stringToObject(response,Result.class);
                             if(bean.result.code.equals("10")){
                                 if (listener != null){

@@ -37,6 +37,7 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
     public HomeVideosRecommendAdapter(Context context, ArrayList<NewsBean> videoList) {
         this.context = context;
         this.videoList = videoList;
+        if(context != null)
         inflater = LayoutInflater.from(context);
     }
     @Override

@@ -74,9 +74,9 @@ public class LoginInternetRequest {
             return;
         }
         Log.i("qaz", "login: 1" + SpTools.getString(MyApplication.getContext() , clientId, null));
-        if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, null))){
+        if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, ""))){
 
-            Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, null);
+            Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, "");
 
         }
         String url = context.getResources().getString(R.string.service_host_address)
@@ -290,9 +290,9 @@ public class LoginInternetRequest {
             mListener.onResponseMessage("");
             return;
         }
-        if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, null))){
+        if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, ""))){
 
-            Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, null);
+            Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, "");
             Log.i("qaz", "login: 3" + Clientid);
         }
         String url = context.getResources().getString(R.string.service_host_address)

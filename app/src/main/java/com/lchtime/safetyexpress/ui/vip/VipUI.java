@@ -614,7 +614,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
     //获取到三方登录的相关信息，连接到自己的服务器传送资料
     private void MuTiLogin(final String uuid, final String name, final String header, final String gender, final String loginType) {
 
-        protocal.postMutiLogin(uuid, name, header, gender, loginType,Clientid, new MutiLoginProtocal.MutiLoginListener() {
+        protocal.postMutiLogin(uuid, name, header, gender, loginType ,Clientid , new MutiLoginProtocal.MutiLoginListener() {
             @Override
             public void normalResponse(Object response) {
                 if (response == null){
@@ -776,9 +776,9 @@ public class VipUI extends BaseUI implements View.OnClickListener {
         if (mSsoHandler != null) {
             mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
-        if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, null))){
+        if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, ""))){
 
-            Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, null);
+            Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, "");
             Log.i("qaz", "login: 4" + Clientid);
         }
         if (requestCode == 333 && resultCode == 333&& data != null){
