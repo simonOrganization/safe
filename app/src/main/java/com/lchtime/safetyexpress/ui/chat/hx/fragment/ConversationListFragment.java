@@ -1,6 +1,8 @@
 package com.lchtime.safetyexpress.ui.chat.hx.fragment;
 
 import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.util.Pair;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -9,8 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,34 +18,23 @@ import com.google.gson.Gson;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMConversation.EMConversationType;
-import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.bean.ContactBean;
 import com.hyphenate.easeui.bean.ContactListBean;
 import com.hyphenate.easeui.bean.EaseInitBean;
-import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
-import com.hyphenate.easeui.ui.EaseConversationListFragment;
-import com.hyphenate.easeui.widget.EaseConversationList.EaseConversationListHelper;
 import com.hyphenate.util.NetUtils;
-import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.bean.InitInfo;
-import com.lchtime.safetyexpress.bean.MyAccountBean;
 import com.lchtime.safetyexpress.ui.TabUI;
 import com.lchtime.safetyexpress.ui.chat.hx.Constant;
-import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.ChatActivity;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.HXMainActivity;
 import com.lchtime.safetyexpress.ui.chat.hx.db.InviteMessgeDao;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
 
 
 public class ConversationListFragment extends MyConversationListFragment {
@@ -163,11 +152,18 @@ public class ConversationListFragment extends MyConversationListFragment {
         super.setUpView();
         //end of red packet code
     }
+    private String UPDATE_TEXT = "1";
 
     @Override
     protected void onConnectionDisconnected() {
         super.onConnectionDisconnected();
         if (NetUtils.hasNetwork(getActivity())){
+
+            Intent action = new Intent();
+            action.setAction("ACTION_LOGIB_SUCEESS");
+            action.putExtra("code", UPDATE_TEXT);
+            LocalBroadcastManager.getInstance(getContext()).sendBroadcast(action);
+            Log.i("qaz", "onConnectionDisconnected: " + "--------------");
          errorText.setText(R.string.can_not_connect_chat_server_connection);
         } else {
           errorText.setText(R.string.the_current_network);

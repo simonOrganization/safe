@@ -195,4 +195,9 @@ public class GuanZhuFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        getData("1");
+        super.onResume();
+    }
 }

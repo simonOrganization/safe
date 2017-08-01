@@ -16,11 +16,9 @@ import android.widget.TextView;
 
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.bean.BasicResult;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
 import com.lchtime.safetyexpress.bean.Result;
-import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.vip.MyCircleActiveActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
@@ -114,7 +112,10 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                 myHodler.circleItemShipin.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        Intent intent = new Intent(context, H5DetailUI.class);
+                        intent.putExtra("newsId", bean.qc_id);
+                        intent.putExtra("type", "circle");
+                        context.startActivity(intent);
                     }
                 });
             }
@@ -198,6 +199,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View v) {
                 greate = !"1".equals(bean.zan);
+                holder.ivCircleItemGreat.setEnabled(false);
                 if (greate) {
                     action = "0";
                 } else {
@@ -215,26 +217,29 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                         public void normalResponse(Object response) {
                             if (response == null) {
                                 greate = true;
-                                holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
+                              //  holder.ivCircleItemGreat.setEnabled(true);
+                              //  holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
                                 // holder.ivCircleItemGreat.setClickable(true);
                                 CommonUtils.toastMessage("请求网络失败");
                                 return;
                             }
-                            BasicResult result = (BasicResult) response;
-                            if (!result.code.equals("10")) {
-                                CommonUtils.toastMessage(result.getInfo());
+                            Result result = (Result) response;
+                            if (!result.result.code.equals("10")) {
+                              //  holder.ivCircleItemGreat.setEnabled(true);
+                                CommonUtils.toastMessage(result.result.getInfo());
                                 //  holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
                             } else {
                                 greate = false;
-                                holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
+                                holder.circleItemGreat.setText(result.dzNum);
+                              //  holder.ivCircleItemGreat.setEnabled(true);
+                              //  holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
                                 if (context instanceof MyCircleActiveActivity) {
                                     ((MyCircleActiveActivity) context).refreshItemData(bean.qc_id);
-
                                 }
 
                             }
-                            holder.ivCircleItemGreat.setChecked(true);
-                            CommonUtils.toastMessage(result.getInfo());
+                           // holder.ivCircleItemGreat.setChecked(true);
+                            CommonUtils.toastMessage(result.result.getInfo());
                         }
                     });
 
@@ -253,6 +258,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View v) {
                 down = !"1".equals(bean.cai);
+              //  holder.ivCircleItemLow.setEnabled(false);
                 if (down) {
                     action = "0";
                 } else {
@@ -261,7 +267,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                 String userid = SpTools.getString(context, Constants.userId, "");
                 if (TextUtils.isEmpty(userid)) {
                     CommonUtils.toastMessage("没有登陆！！");
-                    holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
+                  //  holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
                     return;
                 } else {
                     //请求网络数据
@@ -270,24 +276,28 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                         public void normalResponse(Object response) {
                             if (response == null) {
                                 down = true;
-                                holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
+                             //   holder.ivCircleItemLow.setEnabled(true);
+                              //  holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
                                 holder.ivCircleItemLow.setClickable(true);
                                 CommonUtils.toastMessage("请求网络失败");
                                 return;
                             }
-                            BasicResult result = (BasicResult) response;
-                            if (!result.code.equals("10")) {
-                                CommonUtils.toastMessage(result.getInfo());
-                                holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
+                            Result result = (Result) response;
+                            if (!result.result.code.equals("10")) {
+                                //holder.ivCircleItemLow.setEnabled(true);
+                                CommonUtils.toastMessage(result.result.getInfo());
+                              //  holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
                             } else {
                                 down = false;
-                                holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
+                                holder.circleItemLow.setText(result.dzNum);
+                               // holder.ivCircleItemLow.setEnabled(true);
+                               // holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
                                 if (context instanceof MyCircleActiveActivity) {
                                     ((MyCircleActiveActivity) context).refreshItemData(bean.qc_id);
                                 }
                             }
-                            holder.ivCircleItemLow.setChecked(true);
-                            CommonUtils.toastMessage(result.getInfo());
+                            //holder.ivCircleItemLow.setChecked(true);
+                            CommonUtils.toastMessage(result.result.getInfo());
                         }
                     });
 
