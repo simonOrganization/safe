@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Process;
 import android.os.StrictMode;
-import android.support.multidex.MultiDex;
 
 import com.bslee.threelogin.util.UIUtils;
 import com.hyphenate.easeui.domain.EaseUser;
@@ -49,7 +48,7 @@ public class MyApplication extends Application {
         mMainThreadHandler = new Handler();
 
         mMainThreadId = Process.myTid();
-        MultiDex.install(this);
+        //MultiDex.install(this);
         super.onCreate();
         instance = this;
         applicationContext = this;
@@ -89,7 +88,7 @@ public class MyApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        MultiDex.install(this);
+        //MultiDex.install(this);
     }
 
     public Map<String,EaseUser> getTopUserList(){

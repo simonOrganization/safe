@@ -120,7 +120,7 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
             myViewHolder.cb_hotcircle_subscribe.setChecked(true);
             return;
         }
-        String userid = SpTools.getString(context, Constants.userId,"");
+        String userid = SpTools.getUserId(context);
         if (TextUtils.isEmpty(userid)){
             CommonUtils.toastMessage("请登陆！！！");
             myViewHolder.cb_hotcircle_subscribe.setChecked(true);

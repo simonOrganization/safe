@@ -172,7 +172,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
     }
 
     private void myInit(){
-        String ub_id = SpTools.getString(this, Constants.userId,"");
+        String ub_id = SpTools.getUserId(this);
         cc_id = getIntent().getStringExtra("newsId"); //
         a_id = getIntent().getStringExtra("a_id");
         aq_id = getIntent().getStringExtra("aq_id");
@@ -692,7 +692,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
     @OnClick(R.id.rl_news_detail_comment)
     private void getComment(View view) {
         /*if (TextUtils.isEmpty(ub_id)) {
-            ub_id = SpTools.getString(this, Constants.userId, "");
+            ub_id = SpTools.getUserId(this);
         }
 
         if (TextUtils.isEmpty(ub_id)){
@@ -847,7 +847,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
      */@OnClick(R.id.cb_news_detail_zan)
     private void getZan(View view) {
         if (TextUtils.isEmpty(ub_id)) {
-            ub_id = SpTools.getString(this, Constants.userId, "");
+            ub_id = SpTools.getUserId(this);
         }
 
         if ("news".equals(type) || "video".equals(type)){
@@ -881,7 +881,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
     @OnClick(R.id.cb_news_detail_cai)
     private void getCai(View view) {
         if (TextUtils.isEmpty(ub_id)) {
-            ub_id = SpTools.getString(this, Constants.userId, "");
+            ub_id = SpTools.getUserId(this);
         }
         if ("news".equals(type) || "video".equals(type)){
             //如果是新闻或者是视频
@@ -1048,7 +1048,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
     @OnClick(R.id.cb_news_detail_collect)
     private void getCollect(View view) {
         if (TextUtils.isEmpty(ub_id)) {
-            ub_id = SpTools.getString(this, Constants.userId, "");
+            ub_id = SpTools.getUserId(this);
         }
 
         if (TextUtils.isEmpty(ub_id)){
@@ -1070,7 +1070,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
     @OnClick(R.id.tv_common)
     private void getCommon(View view) {
         if (TextUtils.isEmpty(ub_id)) {
-            ub_id = SpTools.getString(this, Constants.userId, "");
+            ub_id = SpTools.getUserId(this);
         }
 
         if (TextUtils.isEmpty(ub_id)){

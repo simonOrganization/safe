@@ -276,7 +276,7 @@ public class CirclePublishActivity extends BaseUI implements PopupWindow.OnDismi
         if (protocal == null){
             protocal = new CircleProtocal();
         }
-        final String ub_id = SpTools.getString(CirclePublishActivity.this, Constants.userId,"");
+        final String ub_id = SpTools.getUserId(CirclePublishActivity.this);
         if (TextUtils.isEmpty(ub_id)){
             CommonUtils.toastMessage("登录后才能发布圈子！");
             return;

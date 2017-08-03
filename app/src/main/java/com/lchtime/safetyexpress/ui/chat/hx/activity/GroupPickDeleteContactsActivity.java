@@ -120,7 +120,7 @@ public class GroupPickDeleteContactsActivity extends BaseActivity implements Vie
 		if (mProtocal == null){
 			mProtocal = new GetInfoProtocal();
 		}
-		mUb_id = SpTools.getString(this, Constants.userId,"");
+		mUb_id = SpTools.getUserId(this);
 		if (TextUtils.isEmpty(mUb_id) || TextUtils.isEmpty(mGroupId)){
 			CommonUtils.toastMessage("没有获取到群组信息");
 			return;

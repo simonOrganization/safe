@@ -28,6 +28,7 @@ import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
+import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 import com.lchtime.safetyexpress.ui.login.LoginUI;
@@ -187,19 +188,10 @@ public class VipSettingUI extends BaseUI {
             public void onSuccess() {
                 runOnUiThread(new Runnable() {
                     public void run() {
-//                        pd.dismiss();
-                        // show login screen
-//                        finish();
-
-                        SpTools.setString(VipSettingUI.this, Constants.userId, null);//存储用户的ub_id
-                        SpTools.setString(VipSettingUI.this, Constants.phoneNum, null);//存储用户的手机号码
-                        SpTools.setString(VipSettingUI.this, Constants.password, null);//存储用户的密码
+                        SpTools.saveUser(mContext , new VipInfoBean());
                         File file = new File(MyApplication.getContext().getFilesDir(),Constants.photo_name);//将要保存图片的路径
                         file.delete();
 
-                        InitInfo.vipInfoBean = null;
-                        InitInfo.isLogin = false;
-                        InitInfo.phoneNumber = null;
                         startActivity(new Intent(VipSettingUI.this, LoginUI.class));
                         backgroundAlpha(1f);
                         pb_progress.setVisibility(View.GONE);

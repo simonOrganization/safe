@@ -29,6 +29,7 @@ import okhttp3.Call;
 
 import static com.lchtime.safetyexpress.bean.Constants.clientId;
 import static com.lchtime.safetyexpress.bean.Constants.password;
+import static com.lchtime.safetyexpress.bean.Constants.phoneNum;
 
 /**
  * @author Admin
@@ -59,7 +60,7 @@ public class LoginInternetRequest {
  *  */
     public static void login(String phonenumber, final String password, ForResultListener listener){
         mListener = listener;
-        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+        if(!CommonUtils.isNetworkAvailable(context)){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("");
             return;
@@ -73,9 +74,9 @@ public class LoginInternetRequest {
             mListener.onResponseMessage("");
             return;
         }
-        if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, ""))){
+        if(!TextUtils.isEmpty(SpTools.getString(context , Constants.clientId))){
 
-            Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, "");
+            Clientid   =  SpTools.getString(context , Constants.clientId);
 
         }
         String url = context.getResources().getString(R.string.service_host_address)
@@ -94,9 +95,9 @@ public class LoginInternetRequest {
             @Override
             public void onError(Call call, Exception e, int id) {
 //                Log.d("0000---------------0000",e.getMessage());
-                SpTools.setString(MyApplication.getContext(), Constants.userId, null);//存储用户的ub_id
-                SpTools.setString(MyApplication.getContext(), Constants.phoneNum, null);//存储用户的手机号码
-                SpTools.setString(MyApplication.getContext(), password, null);//存储用户的密码
+                SpTools.setUserId(context, "");//存储用户的ub_id
+                SpTools.setString(context, phoneNum, "");//存储用户的手机号码
+                SpTools.setString(context, password, "");//存储用户的密码
                 mListener.onResponseMessage("");
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
@@ -107,21 +108,21 @@ public class LoginInternetRequest {
                 String code = result.result.code;
                 String info = result.result.info;
                 if (code.equals("10")) {
-                    SpTools.setString(context, Constants.userId, result.ub_id);//存储用户的ub_id
+                    SpTools.setUserId(context , result.ub_id);//存储用户的ub_id
                     if (!TextUtils.isEmpty(result.ub_id)){
-                        PushManager.getInstance().bindAlias(MyApplication.getContext(),result.ub_id);
-                        PushManager.getInstance().turnOnPush(MyApplication.getContext());
+                        PushManager.getInstance().bindAlias(context,result.ub_id);
+                        PushManager.getInstance().turnOnPush(context);
 //                        Tag t = new Tag();
 //                        //name 字段只支持：中文、英文字母（大小写）、数字、除英文逗号以外的其他特殊符号, 具体请看代码示例
 //                        t.setName("Android");
-//                        int i = PushManager.getInstance().setTag(MyApplication.getContext(),new Tag[]{t},
+//                        int i = PushManager.getInstance().setTag(context,new Tag[]{t},
 //                                System.currentTimeMillis() +"");
                     }
                     mListener.onResponseMessage("成功");
                 } else if (code.equals("20")) {
-                    SpTools.setString(MyApplication.getContext(), Constants.userId, null);//存储用户的ub_id
-                    SpTools.setString(MyApplication.getContext(), Constants.phoneNum, null);//存储用户的手机号码
-                    SpTools.setString(MyApplication.getContext(), password, null);//存储用户的密码
+                    SpTools.setUserId(context, "");//存储用户的ub_id
+                    SpTools.setString(context, phoneNum, "");//存储用户的手机号码
+                    SpTools.setString(context, password, "");//存储用户的密码
                     mListener.onResponseMessage("失败");
                     CommonUtils.toastMessage(info);
 
@@ -138,13 +139,13 @@ public class LoginInternetRequest {
      *  */
     public static void getHXinfo(ForResultListener listener){
         mListener = listener;
-        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+        if(!CommonUtils.isNetworkAvailable(context)){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("");
             return;
         }
 
-        String ub_id = SpTools.getString(context,Constants.userId,"");
+        String ub_id = SpTools.getUserId(context);
         if (TextUtils.isEmpty(ub_id)){
             CommonUtils.toastMessage("您没有登录");
             return;
@@ -158,9 +159,9 @@ public class LoginInternetRequest {
             @Override
             public void onError(Call call, Exception e, int id) {
                 //Log.d("0000---------------0000",e.getMessage());
-                SpTools.setString(MyApplication.getContext(), Constants.userId, null);//存储用户的ub_id
-                SpTools.setString(MyApplication.getContext(), Constants.phoneNum, null);//存储用户的手机号码
-                SpTools.setString(MyApplication.getContext(), password, null);//存储用户的密码
+                SpTools.setUserId(context,  "");//存储用户的ub_id
+                SpTools.setString(context, phoneNum, null);//存储用户的手机号码
+                SpTools.setString(context, password, null);//存储用户的密码
                 mListener.onResponseMessage("");
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
@@ -171,12 +172,12 @@ public class LoginInternetRequest {
                 String code = result.result.code;
                 String info = result.result.info;
                 if (code.equals("10")) {
-                    SpTools.setString(context, Constants.userId, result.ub_id);//存储用户的ub_id
+                    SpTools.setUserId(context , result.ub_id);//存储用户的ub_id
                     mListener.onResponseMessage(response);
                 } else if (code.equals("20")) {
-                    SpTools.setString(MyApplication.getContext(), Constants.userId, null);//存储用户的ub_id
-                    SpTools.setString(MyApplication.getContext(), Constants.phoneNum, null);//存储用户的手机号码
-                    SpTools.setString(MyApplication.getContext(), password, null);//存储用户的密码
+                    SpTools.setUserId(context , "");//存储用户的ub_id
+                    SpTools.setString(context, phoneNum, "");//存储用户的手机号码
+                    SpTools.setString(context, password, "");//存储用户的密码
                     mListener.onResponseMessage("");
                     CommonUtils.toastMessage(info);
 
@@ -195,7 +196,7 @@ public class LoginInternetRequest {
     public static void verificationCode(String phoneNumber, TextView view, ForResultListener listener){
         mListener = listener;
         mTextView = view;
-        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+        if(!CommonUtils.isNetworkAvailable(context)){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("net");
             return;
@@ -259,7 +260,7 @@ public class LoginInternetRequest {
     public static void register(String phoneNumber, String vc_code, String password, String code, TextView view, ForResultListener listener){
         mListener = listener;
         mTextView = view;
-        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+        if(!CommonUtils.isNetworkAvailable(context)){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("");
             return;
@@ -289,9 +290,9 @@ public class LoginInternetRequest {
             mListener.onResponseMessage("");
             return;
         }
-        if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, ""))){
+        if(!TextUtils.isEmpty(SpTools.getString(context , Constants.clientId))){
 
-            Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, "");
+            Clientid   =  SpTools.getString(context , Constants.clientId);
         }
         String url = context.getResources().getString(R.string.service_host_address)
                 .concat(context.getResources().getString(R.string.reg));
@@ -354,7 +355,7 @@ public class LoginInternetRequest {
     public static void forgetPassword(String phoneNumber, String vc_code, String code, String password, String nextPassword, TextView view, final EditText passport, final EditText nextPassport, ForResultListener listener){
         mListener = listener;
         mTextView = view;
-        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+        if(!CommonUtils.isNetworkAvailable(context)){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("");
             return;
@@ -449,7 +450,7 @@ public class LoginInternetRequest {
      * @param listener listener
      */
     public static void reviseCode(String newpassword, String confirmpassword, EditText editnewpass, ForResultListener listener) {
-        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+        if(!CommonUtils.isNetworkAvailable(context)){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
@@ -512,7 +513,7 @@ public class LoginInternetRequest {
      * 更换手机号
      */
     public static void ChangePhone(String code, String ub_id, String phoneNum, ForResultListener listener) {
-        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+        if(!CommonUtils.isNetworkAvailable(context)){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
@@ -561,8 +562,7 @@ public class LoginInternetRequest {
      *  */
     public static void getVipInfo(String ub_id,ForResultListener listener){
         mListener = listener;
-        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            InitInfo.isLogin = false;
+        if(!CommonUtils.isNetworkAvailable(context)){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("");
             return;
@@ -581,7 +581,6 @@ public class LoginInternetRequest {
             @Override
             public void onError(Call call, Exception e, int id) {
                // Log.d("0000---------------0000",e.getMessage());
-                InitInfo.isLogin = false;
                 mListener.onResponseMessage("");
                 CommonUtils.toastMessage("您网络信号不稳定，请稍后再试");
             }
@@ -594,6 +593,8 @@ public class LoginInternetRequest {
                         String code = vipInfoBean.result.code;
                         if (code.equals("10")) {
                             mListener.onResponseMessage(response);
+                            //刷新主页数据
+                            InitInfo.homeRefresh = true;
                         } else {
                             mListener.onResponseMessage("");
                             CommonUtils.toastMessage("请求网络数据失败，请检查网络");
@@ -614,8 +615,7 @@ public class LoginInternetRequest {
      *  */
     public static void getProfession(String ub_id, final ForResultListener listener){
         //mListener = listener;
-        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            InitInfo.isLogin = false;
+        if(!CommonUtils.isNetworkAvailable(context)){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             if (listener != null){
                 listener.onResponseMessage("");
@@ -671,8 +671,7 @@ public class LoginInternetRequest {
      *  */
     public static void getPost(String ub_id, final ForResultListener listener){
         //mListener = listener;
-        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            InitInfo.isLogin = false;
+        if(!CommonUtils.isNetworkAvailable(context)){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             if (listener != null){
                 listener.onResponseMessage("");
@@ -730,7 +729,7 @@ public class LoginInternetRequest {
      *  */
     public static void editVipInfo(String phoneNum, Map<String,String> map, String ub_id , final DialogUtil dialog , ForResultListener listener){
         mListener = listener;
-        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+        if(!CommonUtils.isNetworkAvailable(context)){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             if (mListener != null){
                 mListener.onResponseMessage("");

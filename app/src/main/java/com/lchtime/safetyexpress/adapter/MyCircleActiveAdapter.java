@@ -165,7 +165,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
     private void deleteCircle(MyCircleActiveHodler holder, final int position, CircleProtocal protocal) {
         //  ((MyCircleActiveActivity) context).setIsLoading(true);
         MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);
-        String userid = SpTools.getString(context, Constants.userId, "");
+        String userid = SpTools.getUserId(context);
         if (TextUtils.isEmpty(userid)) {
             CommonUtils.toastMessage("没有登陆！！");
             holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
@@ -205,7 +205,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                 } else {
                     action = "1";
                 }
-                String userid = SpTools.getString(context, Constants.userId, "");
+                String userid = SpTools.getUserId(context);
                 if (TextUtils.isEmpty(userid)) {
                     CommonUtils.toastMessage("没有登陆！！");
                     holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
@@ -264,7 +264,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                 } else {
                     action = "1";
                 }
-                String userid = SpTools.getString(context, Constants.userId, "");
+                String userid = SpTools.getUserId(context);
                 if (TextUtils.isEmpty(userid)) {
                     CommonUtils.toastMessage("没有登陆！！");
                   //  holder.ivCircleItemLow.setChecked("1".equals(bean.cai));

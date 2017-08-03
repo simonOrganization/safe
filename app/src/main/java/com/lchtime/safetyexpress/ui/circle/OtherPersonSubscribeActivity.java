@@ -84,7 +84,7 @@ public class OtherPersonSubscribeActivity extends BaseUI {
             protocal = new CircleProtocal();
         }
         if (userid == null) {
-            userid = SpTools.getString(this, Constants.userId, "");
+            userid = SpTools.getUserId(this);
         }
         protocal.getOtherSubscribeList(userid, uid, new CircleProtocal.NormalListener() {
             @Override

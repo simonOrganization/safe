@@ -396,7 +396,7 @@ public class TabUI extends TabActivity implements OnClickListener {
         if (gson == null){
             gson = new Gson();
         }
-        userId = SpTools.getString(this, Constants.userId,"");
+        userId = SpTools.getUserId(this);
         if (!TextUtils.isEmpty(userId)){
             PushManager.getInstance().bindAlias(this,userId);
             PushManager.getInstance().turnOnPush(this);
@@ -407,15 +407,7 @@ public class TabUI extends TabActivity implements OnClickListener {
                     if(!TextUtils.isEmpty(code)) {
                         VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
                         if (vipInfoBean != null) {
-                            InitInfo.phoneNumber = vipInfoBean.user_detail.ub_phone;
-                            InitInfo.vipInfoBean = vipInfoBean;
-                           // vipInfoBean = vipInfoBean;
-                            SpTools.setString(TabUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
-                            SpTools.setString(TabUI.this , Constants.ud_profession,vipInfoBean.user_detail.ud_profession);
-                            SpTools.setString(TabUI.this , Constants.ud_post,vipInfoBean.user_detail.ud_post);
-                            SpTools.setString(TabUI.this , Constants.ud_addr,vipInfoBean.user_detail.ud_addr);
-                           /* Log.i("qaz", "onResponseMessage: " + vipInfoBean.user_detail.ud_profession +
-                                    vipInfoBean.user_detail.ud_post + vipInfoBean.user_detail.ud_addr);*/
+                            SpTools.saveUser(TabUI.this , vipInfoBean);
                             loginHX(vipInfoBean.user_detail.ub_phone, Constant.HX_PWD);
 
                         }
@@ -603,7 +595,7 @@ public class TabUI extends TabActivity implements OnClickListener {
                 }
                 break;
             case R.id.circle_public_camera: //拍摄
-                String ub_id = SpTools.getString(this, Constants.userId,"");
+                String ub_id = SpTools.getUserId(this);
 
                 if (TextUtils.isEmpty(ub_id)){
                     CommonUtils.toastMessage("登录后才能发布圈子！");
@@ -637,14 +629,15 @@ public class TabUI extends TabActivity implements OnClickListener {
      * 检查个人资料是否完善，检查行业，岗位，地理位置
      */
     private boolean isFullPersionDate(){
-        String  profession = SpTools.getString(this, Constants.ud_profession , "") ;
-        String post  = SpTools.getString(this, Constants.ud_post , "");
-        String addr = SpTools.getString(this, Constants.ud_addr , "");
+        VipInfoBean vipInfoBean = SpTools.getUser(this);
+        String  profession = vipInfoBean.user_detail.ud_profession ;
+        String post  = vipInfoBean.user_detail.ud_post;
+        String addr = vipInfoBean.user_detail.ud_addr;
         /*Log.i("qaz", "isFullPersionDate: "  + profession +post
                 + addr);*/
-        return (!SpTools.getString(TabUI.this, Constants.ud_profession , "").equals("")&&
-        !SpTools.getString(TabUI.this, Constants.ud_post , "").equals("")&&
-        !SpTools.getString(TabUI.this, Constants.ud_addr , "").equals(""));
+        return (!profession.equals("")&&
+        !post.equals("")&&
+        !addr.equals(""));
 
 
     }
@@ -742,7 +735,7 @@ public class TabUI extends TabActivity implements OnClickListener {
     private GetInfoProtocal mProtocal = new GetInfoProtocal();
 
     private void initUpData() {
-        String ub_id = SpTools.getString(this, Constants.userId,"");
+        String ub_id = SpTools.getUserId(this);
         if (TextUtils.isEmpty(ub_id)){
             CommonUtils.toastMessage("聊天置顶信息获取失败，请登录后重试！");
             return;

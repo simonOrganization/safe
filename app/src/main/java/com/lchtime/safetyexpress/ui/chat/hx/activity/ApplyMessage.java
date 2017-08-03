@@ -15,6 +15,7 @@ import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.Result;
+import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.protocal.GetInfoProtocal;
 import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
 import com.lchtime.safetyexpress.ui.chat.hx.utils.WindowUtils;
@@ -37,11 +38,14 @@ public class ApplyMessage extends Activity implements View.OnClickListener {
     private String groupId;
     private String mMaster;
     private ProgressBar mBar;
+    private VipInfoBean mVipInfoBean;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_qun_name);
+        mVipInfoBean = SpTools.getUser(this);
         initTitle();
         initView();
         initData();
@@ -64,18 +68,20 @@ public class ApplyMessage extends Activity implements View.OnClickListener {
     }
 
     private void initView() {
+
         mEtName = (EditText) findViewById(R.id.tv_qun_name);
         mEtName.setHint("请输入验证消息");
-        mEtName.setText("我是" + InitInfo.vipInfoBean.user_detail.ud_nickname + ",请加我为好友吧！");
+        mEtName.setText("我是" + mVipInfoBean.user_detail.ud_nickname + ",请加我为好友吧！");
         mEtName.setSelection(mEtName.getText().toString().length());
     }
 
     private void initData() {
+
         //0为群，1位好友
         mType = getIntent().getStringExtra("type");
         groupId = getIntent().getStringExtra("groupid");
         mMaster = getIntent().getStringExtra("master");
-        mUserid = SpTools.getString(this, Constants.userId,"");
+        mUserid = SpTools.getUserId(this);
     }
 
     private GetInfoProtocal mProtocal;
@@ -92,7 +98,7 @@ public class ApplyMessage extends Activity implements View.OnClickListener {
                 setLoadding(true);
                 String message = mEtName.getText().toString().trim();
                 if (TextUtils.isEmpty(message)){
-                    message = "我是" + InitInfo.vipInfoBean.user_detail.ud_nickname + ",请加我为好友吧！";
+                    message = "我是" + mVipInfoBean.user_detail.ud_nickname + ",请加我为好友吧！";
                 }
                 //发送验证消息
                 if (TextUtils.isEmpty(mUserid)){
@@ -111,7 +117,7 @@ public class ApplyMessage extends Activity implements View.OnClickListener {
                 }
 
 
-                mProtocal.getApply(InitInfo.phoneNumber, groupId,mType,message, mMaster, new AddCommandProtocal.NormalListener() {
+                mProtocal.getApply(mVipInfoBean.user_detail.ub_phone, groupId,mType,message, mMaster, new AddCommandProtocal.NormalListener() {
                     @Override
                     public void normalResponse(Object response) {
                         if (response == null){

@@ -17,6 +17,7 @@ import com.lchtime.safetyexpress.adapter.AddSubscribeAdapter;
 import com.lchtime.safetyexpress.bean.AddSubscribBean;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
+import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
@@ -58,11 +59,12 @@ public class SubscirbeCommendFragment extends Fragment {
     }
 
     private void initInfo() {
-        if (InitInfo.vipInfoBean != null ) {
-            if (InitInfo.vipInfoBean.user_detail != null) {
-                request_hy = InitInfo.vipInfoBean.user_detail.ud_profession;
-                request_gw =InitInfo.vipInfoBean.user_detail.ud_post;
-                request_addr = InitInfo.vipInfoBean.user_detail.ud_addr;
+        VipInfoBean vipInfoBean = SpTools.getUser(getActivity());
+        if (vipInfoBean != null ) {
+            if (vipInfoBean.user_detail != null) {
+                request_hy = vipInfoBean.user_detail.ud_profession;
+                request_gw = vipInfoBean.user_detail.ud_post;
+                request_addr = vipInfoBean.user_detail.ud_addr;
             }
         }
 
@@ -115,7 +117,7 @@ public class SubscirbeCommendFragment extends Fragment {
     private boolean isLoadMore = false;
     private int page = 1;
     public void initData(String page) {
-        userid = SpTools.getString(getContext(), Constants.userId,"");
+        userid = SpTools.getUserId(getContext());
         if (protocal == null){
             protocal = new CircleProtocal();
         }

@@ -171,7 +171,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
 
     private void getNotice() {
         if (TextUtils.isEmpty(userid)){
-            userid = SpTools.getString(this, Constants.userId,"");
+            userid = SpTools.getUserId(this);
         }
         protocal.getDyIsShowRedPoint(userid, new CircleProtocal.NormalListener() {
             @Override
@@ -195,7 +195,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     protected void setControlBasis() {
         initView();
         initListener();
-        userid = SpTools.getString(this, Constants.userId,"");
+        userid = SpTools.getUserId(this);
 
         //轮播图
         BannerAdapter adapter = new BannerAdapter<FirstPic.LunboBean>(lunbo) {
@@ -408,7 +408,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
             protocal = new CircleProtocal();
         }
 
-        userid = SpTools.getString(this, Constants.userId,"");
+        userid = SpTools.getUserId(this);
         protocal.getCircleList(userid, "1", "4", "0", new CircleProtocal.CircleListener() {
             @Override
             public void circleResponse(CircleBean response) {
@@ -425,7 +425,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     //订阅
     @OnClick(R.id.circle_subscribe_but)
     private void getSubmit(View view){
-        userid = SpTools.getString(this, Constants.userId,"");
+        userid = SpTools.getUserId(this);
         if (TextUtils.isEmpty(userid)){
             CommonUtils.toastMessage("没有登陆");
             return;
@@ -457,7 +457,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         }
 
         //测试
-        String ub_id = SpTools.getString(this, Constants.userId,"");
+        String ub_id = SpTools.getUserId(this);
         picProtocal.getFirstPic(ub_id, new PictureAdvantage.HotNewsListener() {
             @Override
             public void hotNewsResponse(String respose) {
@@ -633,7 +633,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         if (protocal == null){
             protocal = new CircleProtocal();
         }
-        userid = SpTools.getString(this, Constants.userId,"");
+        userid = SpTools.getUserId(this);
         protocal.getItemInfo(userid, qc_id, new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {

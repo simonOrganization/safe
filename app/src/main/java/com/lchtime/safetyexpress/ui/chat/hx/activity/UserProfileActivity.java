@@ -23,6 +23,7 @@ import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.pop.VipInfoHintPop;
+import com.lchtime.safetyexpress.ui.chat.hx.Constant;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.protocal.GetInfoProtocal;
 import com.lchtime.safetyexpress.ui.chat.hx.bean.ProfileInfoBean;
 import com.lchtime.safetyexpress.ui.chat.hx.bean.SingleDetailBean;
@@ -66,6 +67,8 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	private ProgressBar mBar;
 	private VipInfoHintPop popWindow;
 	private String uid;
+	private String phoneNumber;
+
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -73,7 +76,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 		setContentView(R.layout.em_activity_user_profile);
 		Intent intent = getIntent();
 		mUsername = intent.getStringExtra("username");
-
+		phoneNumber = SpTools.getString(this , Constants.phoneNum);
 
 		topMap = MyApplication.getInstance().getTopUserList();
 		initView();
@@ -216,7 +219,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 			mProtocal = new GetInfoProtocal();
 		}
 		if (mUserid == null) {
-			mUserid = SpTools.getString(this, Constants.userId, "");
+			mUserid = SpTools.getUserId(this);
 		}
 		if (TextUtils.isEmpty(mUserid)){
 			CommonUtils.toastMessage("请重新登录后再尝试！");
@@ -291,7 +294,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 			mProtocal = new GetInfoProtocal();
 		}
 
-		mProtocal.getDeleteFriends(InitInfo.phoneNumber, mUsername, new AddCommandProtocal.NormalListener() {
+		mProtocal.getDeleteFriends(phoneNumber, mUsername, new AddCommandProtocal.NormalListener() {
 			@Override
 			public void normalResponse(Object response) {
 				if (response == null){
@@ -327,7 +330,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 			mProtocal = new GetInfoProtocal();
 		}
 		if (mUserid == null) {
-			mUserid = SpTools.getString(this, Constants.userId, "");
+			mUserid = SpTools.getUserId(this);
 		}
 		mProtocal.getInfo(mUserid, "1", mUsername, new AddCommandProtocal.NormalListener() {
 			@Override
@@ -362,7 +365,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 
 					if ("1".equals(bean.is_friend)||TextUtils.isEmpty(bean.is_friend)){
 						//如果是好友关系
-						if (InitInfo.phoneNumber.equals(bean.ub_phone) ){
+						if (phoneNumber.equals(bean.ub_phone) ){
 							//自己的个人资料
 							type = 2;
 							tvSendMessage.setText("编辑");

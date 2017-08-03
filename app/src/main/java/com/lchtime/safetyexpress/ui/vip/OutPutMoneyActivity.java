@@ -108,7 +108,7 @@ public class OutPutMoneyActivity extends BaseUI implements View.OnClickListener 
 
     //头像初始化
     private void initPhoto() {
-        VipInfoBean bean = InitInfo.vipInfoBean;
+        VipInfoBean bean = SpTools.getUser(this);
         File file = new File(MyApplication.getContext().getFilesDir(), Constants.photo_name);//将要保存图片的路径
         //如果没有加载过图片了
         if (!file.exists()){

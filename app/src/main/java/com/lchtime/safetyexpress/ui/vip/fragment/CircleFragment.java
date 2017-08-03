@@ -72,7 +72,7 @@ public class CircleFragment extends BaseFragment {
                     .post()
                     .url(url)
                     .addParams("module", 5 + "")
-                    .addParams("ub_id", SpTools.getString(getContext(), Constants.userId, ""))
+                    .addParams("ub_id", SpTools.getUserId(getContext()))
                     .addParams("type", type)
                     .addParams("del_ids", del_ids)
                     .build()
@@ -131,7 +131,7 @@ public class CircleFragment extends BaseFragment {
         if (protocal == null) {
             protocal = new CircleProtocal();
         }
-        userid = SpTools.getString(getActivity(), Constants.userId, "");
+        userid = SpTools.getUserId(getActivity());
         protocal.getItemInfo(userid, qc_id, new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {

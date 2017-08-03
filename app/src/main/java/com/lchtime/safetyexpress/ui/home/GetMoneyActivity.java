@@ -40,7 +40,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.lchtime.safetyexpress.bean.Constants.userId;
+import static com.hyphenate.easeui.bean.EaseConstants.userId;
+
 
 /**
  * Created by Dreamer on 2017/6/14. 轮播图分享得奖界面
@@ -129,7 +130,7 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
 
-        ub_id = SpTools.getString(this, userId, "");
+        ub_id = SpTools.getUserId(this);
 
         if (TextUtils.isEmpty(ub_id)) {
             setSelected(0);

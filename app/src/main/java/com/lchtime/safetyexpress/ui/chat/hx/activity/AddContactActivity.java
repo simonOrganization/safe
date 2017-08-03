@@ -99,7 +99,7 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
 		if (mProtocal == null){
 			mProtocal = new AddCommandProtocal();
 		}
-		mUb_id = SpTools.getString(this, Constants.userId,"");
+		mUb_id = SpTools.getUserId(this);
 		initTitle();
 //		TextView mTextView = (TextView) findViewById(R.id.add_list_friends);
 		

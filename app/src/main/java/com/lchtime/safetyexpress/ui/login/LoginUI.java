@@ -54,9 +54,6 @@ import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.tauth.Tencent;
 
-import static com.lchtime.safetyexpress.bean.Constants.clientId;
-import static com.lchtime.safetyexpress.bean.Constants.userId;
-
 
 /**
  * 登录
@@ -123,9 +120,9 @@ public class LoginUI extends BaseUI {
             @Override
                     public void onResponseMessage(String code) {
                         if (code.equals("成功")){
-                            SpTools.setString(LoginUI.this, Constants.phoneNum,phonenumber);
-                            SpTools.setString(LoginUI.this, Constants.password,password);
-                            LoginInternetRequest.getVipInfo(SpTools.getString(LoginUI.this, userId, ""), new LoginInternetRequest.ForResultListener() {
+                            SpTools.setPassword(LoginUI.this, phonenumber);
+                            SpTools.setPhone(LoginUI.this,password);
+                            LoginInternetRequest.getVipInfo(SpTools.getUserId(LoginUI.this), new LoginInternetRequest.ForResultListener() {
                                 @Override
                                 public void onResponseMessage(String code) {
                                     if(!TextUtils.isEmpty(code)) {
@@ -153,14 +150,7 @@ public class LoginUI extends BaseUI {
      */
     private void saveVipInfoBean(VipInfoBean vipInfoBean) {
         if (vipInfoBean != null) {
-            InitInfo.phoneNumber = vipInfoBean.user_detail.ub_phone;
-            InitInfo.vipInfoBean = vipInfoBean;
-            InitInfo.isLogin = true;
-            SpTools.setString(mContext , Constants.userId , vipInfoBean.user_detail.ub_id);
-            SpTools.setString(mContext , Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
-            SpTools.setString(mContext , Constants.ud_profession,vipInfoBean.user_detail.ud_profession);
-            SpTools.setString(mContext , Constants.ud_post,vipInfoBean.user_detail.ud_post);
-            SpTools.setString(mContext , Constants.ud_addr,vipInfoBean.user_detail.ud_addr);
+            SpTools.saveUser(mContext , vipInfoBean);
             //获取环信账号
             LoginInternetRequest.getHXinfo(new LoginInternetRequest.ForResultListener() {
                 @Override
@@ -474,7 +464,7 @@ public class LoginUI extends BaseUI {
 
     //第三方登录成功
     private void thirdLogin(String ub_id) {
-        SpTools.setString(LoginUI.this, Constants.userId, ub_id);//存储用户的ub_id
+        SpTools.setUserId(LoginUI.this , ub_id);//存储用户的ub_id
         TabUI.getTabUI().init();
         finish();
     }
@@ -574,9 +564,8 @@ public class LoginUI extends BaseUI {
         if (mSsoHandler != null) {
             mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
-        if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, ""))){
-
-             Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, "");
+        if(!TextUtils.isEmpty(SpTools.getUserId(mContext))){
+             Clientid   =  SpTools.getUserId(mContext);
 
         }
         if (requestCode == 333 && resultCode == 333&& data != null){

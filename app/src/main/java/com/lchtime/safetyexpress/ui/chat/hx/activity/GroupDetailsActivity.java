@@ -139,6 +139,8 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 	private VipInfoHintPop popWindow;
 
 	private DialogUtil mDialog;
+	private String phoneNumber = "";
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +149,8 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
         groupId = getIntent().getStringExtra("groupId");
 		topMap = MyApplication.getInstance().getTopUserList();
 		setContentView(R.layout.em_activity_group_details);
-		ub_id = SpTools.getString(this, Constants.userId,"");
+		ub_id = SpTools.getUserId(this);
+		phoneNumber = SpTools.getString(this , Constants.phoneNum);
 		if (mProtocal == null){
 			mProtocal = new GetInfoProtocal();
 		}
@@ -202,7 +205,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		}
 
 		initPopWindow();
-		String ub_id = SpTools.getString(this, Constants.userId,"");
+		String ub_id = SpTools.getUserId(this);
 		mProtocal.getInfo(ub_id, "0", groupId, new AddCommandProtocal.NormalListener() {
 			@Override
 			public void normalResponse(Object response) {
@@ -421,7 +424,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		if (!TextUtils.isEmpty(sns_qunser)) {
 
 			String message = "";
-			mProtocal.getApply(InitInfo.phoneNumber, groupId, "0", message, sns_qunser, new AddCommandProtocal.NormalListener() {
+			mProtocal.getApply(phoneNumber, groupId, "0", message, sns_qunser, new AddCommandProtocal.NormalListener() {
 				@Override
 				public void normalResponse(Object response) {
 					if (response == null){
@@ -633,7 +636,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 			}
 
 			if (TextUtils.isEmpty(mUserid)) {
-				mUserid = SpTools.getString(this, Constants.userId, "");
+				mUserid = SpTools.getUserId(this);
 			}
 
 			if (mType == 0) {
@@ -676,7 +679,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 			mProtocal = new GetInfoProtocal();
 		}
 		if (mUserid == null) {
-			mUserid = SpTools.getString(this, Constants.userId, "");
+			mUserid = SpTools.getUserId(this);
 		}
 		if (TextUtils.isEmpty(mUserid)){
 			CommonUtils.toastMessage("请重新登录后再尝试！");
@@ -908,7 +911,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 				// 设置成删除按钮
 			    holder.imageView.setImageResource(R.drawable.em_smiley_minus_btn);
 				// 如果不是创建者或者没有相应权限，不提供加减人按钮
-				if (!InitInfo.phoneNumber.equals(mBean.qun.master)) {
+				if (!phoneNumber.equals(mBean.qun.master)) {
 					// if current user is not group admin, hide add/remove btn
 					convertView.setVisibility(View.GONE);
 				} else { // 显示删除按钮
@@ -925,7 +928,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 			    holder.textView.setText("");
 			    holder.imageView.setImageResource(R.drawable.em_smiley_add_btn);
 				// 如果不是创建者或者没有相应权限
-				if (!InitInfo.phoneNumber.equals(mBean.qun.master)) {
+				if (!phoneNumber.equals(mBean.qun.master)) {
 					// if current user is not group admin, hide add/remove btn
 					convertView.setVisibility(View.GONE);
 				} else {
@@ -1115,7 +1118,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 //			changeGroupNameLayout.setVisibility(View.GONE);
 		}
 		//如果是群主
-		if (InitInfo.phoneNumber.equals(mBean.qun.master)){
+		if (phoneNumber.equals(mBean.qun.master)){
 			mType = 2;
 			exitBtn.setText("修改并保存");
 			groupUp.setVisibility(View.VISIBLE);
@@ -1125,7 +1128,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 
 
 		//如果在群里并且不是群主
-		if ("1".equals(mBean.qun.inQun) && !InitInfo.phoneNumber.equals(mBean.qun.master)) {
+		if ("1".equals(mBean.qun.inQun) && !phoneNumber.equals(mBean.qun.master)) {
 			mType = 1;
 			exitBtn.setText("删除并退群");
 			groupUp.setVisibility(View.VISIBLE);

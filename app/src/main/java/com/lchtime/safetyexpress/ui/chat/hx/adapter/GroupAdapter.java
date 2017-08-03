@@ -202,7 +202,7 @@ public class GroupAdapter extends ArrayAdapter<GroupBean> {
 	 * @param groupBean
 	 */
 	private void deleteGroup(final GroupBean groupBean) {
-		String userId = SpTools.getString(context , Constants.userId , "");
+		String userId = SpTools.getUserId(context);
 		if(mProtocal == null){
 			mProtocal = new GetInfoProtocal();
 		}

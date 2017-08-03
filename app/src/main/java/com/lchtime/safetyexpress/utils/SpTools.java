@@ -10,20 +10,17 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.lchtime.safetyexpress.bean.InitInfo.vipInfoBean;
 
 public class SpTools {
-	public static String USER_DATA = "user_data";
-
 	
 	public static void setString(Context context,String key,String value){
 		SharedPreferences sp = context.getSharedPreferences(Constants.CONFIGFILE, Context.MODE_PRIVATE);
 		sp.edit().putString(key, value).commit();
 	}
 	
-	public static String getString(Context context,String key,String value){
+	public static String getString(Context context,String key){
 		SharedPreferences sp = context.getSharedPreferences(Constants.CONFIGFILE, Context.MODE_PRIVATE);
-		return sp.getString(key, value);
+		return sp.getString(key, "");
 	}
 	
 	public static void setBoolean(Context context,String key,boolean value){
@@ -78,7 +75,7 @@ public class SpTools {
 	 * 保存用户信息
 	 */
 	public static void saveUser(Context context , VipInfoBean vipInfoBean){
-		SharedPreferences sp = context.getSharedPreferences(USER_DATA , Context.MODE_APPEND);
+		SharedPreferences sp = context.getSharedPreferences(Constants.CONFIGFILE , Context.MODE_APPEND);
 		SharedPreferences.Editor editor = sp.edit();
 		editor.putString("ub_id" , vipInfoBean.user_detail.ub_id);
 		editor.putString("ub_phone" , vipInfoBean.user_detail.ub_phone);
@@ -103,7 +100,7 @@ public class SpTools {
 	 */
 	public static VipInfoBean getUser(Context context){
 		VipInfoBean.UserDetail detail = new VipInfoBean.UserDetail();
-		SharedPreferences sp = context.getSharedPreferences(USER_DATA , Context.MODE_APPEND);
+		SharedPreferences sp = context.getSharedPreferences(Constants.CONFIGFILE , Context.MODE_APPEND);
 		detail.ub_id = sp.getString("ub_id" , "");
 		detail.ub_phone = sp.getString("ub_phone" , "");
 		detail.ud_addr = sp.getString("ud_addr" , "");
@@ -127,7 +124,7 @@ public class SpTools {
 	 * @return
 	 */
 	public static String getUserId(Context context){
-		SharedPreferences sp = context.getSharedPreferences(USER_DATA , Context.MODE_APPEND);
+		SharedPreferences sp = context.getSharedPreferences(Constants.CONFIGFILE, Context.MODE_APPEND);
 		return sp.getString("ub_id" , "");
 	}
 
@@ -137,12 +134,46 @@ public class SpTools {
 	 * @param ub_id
 	 */
 	public static void setUserId(Context context , String ub_id){
-		SharedPreferences sp = context.getSharedPreferences(USER_DATA , Context.MODE_APPEND);
+		SharedPreferences sp = context.getSharedPreferences(Constants.CONFIGFILE , Context.MODE_APPEND);
 		SharedPreferences.Editor editor = sp.edit();
 		editor.putString("ub_id" , ub_id);
 		editor.commit();
 	}
 
+	/**
+	 * 保存密码
+	 * @param context
+	 * @param password
+	 */
+	public static void setPassword(Context context, String password) {
+		SharedPreferences sp = context.getSharedPreferences(Constants.CONFIGFILE , Context.MODE_APPEND);
+		SharedPreferences.Editor editor = sp.edit();
+		editor.putString(Constants.password , password);
+		editor.commit();
+	}
 
+	/**
+	 * 保存手机
+	 * @param context
+	 * @param phone
+	 */
+	public static void setPhone(Context context, String phone) {
+		SharedPreferences sp = context.getSharedPreferences(Constants.CONFIGFILE , Context.MODE_APPEND);
+		SharedPreferences.Editor editor = sp.edit();
+		editor.putString(Constants.phoneNum , phone);
+		editor.commit();
+	}
+
+	/**
+	 * 是否登录
+	 * @return
+	 */
+	public static boolean isLogin(Context context){
+		VipInfoBean vipInfoBean = getUser(context);
+		if(vipInfoBean.user_detail.ub_id != null && !vipInfoBean.user_detail.ub_id.equals("")){
+			return true;
+		}
+		return false;
+	}
 
 }

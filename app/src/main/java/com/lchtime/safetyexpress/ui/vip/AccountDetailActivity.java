@@ -118,7 +118,7 @@ public class AccountDetailActivity extends BaseUI {
         if (protocal == null){
             protocal = new VipProtocal();
         }
-        userid = SpTools.getString(this, Constants.userId,"");
+        userid = SpTools.getUserId(this);
         if (TextUtils.isEmpty(userid)){
             CommonUtils.toastMessage("您没有登陆，请登陆后再试");
             return;

@@ -128,7 +128,7 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
     @ViewInject(R.id.vip_info_ui)
     private View vip_info_ui;
 
-
+    private VipInfoBean vipInfoBean;
     private String updateDate;
     private String userId;
     private Gson gson;
@@ -188,12 +188,12 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
 
     @Override
     protected void prepareData() {
-
+        vipInfoBean = SpTools.getUser(mContext);
         if (map == null) {
             map = new HashMap<>();
         }
 
-        userId = SpTools.getString(this, Constants.userId,"");
+        userId = SpTools.getUserId(this);
         gson = new Gson();
         updataImageUtils = new UpdataImageUtils();
         professionList = new ArrayList<>();
@@ -214,22 +214,22 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
         //初始化行业、岗位、所在地的记录
         initCheckOptions();
 
-        if (InitInfo.vipInfoBean != null) {
-            initVipInfo(InitInfo.vipInfoBean);
+        if (vipInfoBean != null) {
+            initVipInfo(vipInfoBean);
         }
     }
 
     private void initCheckOptions() {
-        CheckUpdataBean.ud_addr = InitInfo.vipInfoBean.user_detail.ud_addr;
-        CheckUpdataBean.ud_profession = InitInfo.vipInfoBean.user_detail.ud_profession;
-        CheckUpdataBean.ud_post = InitInfo.vipInfoBean.user_detail.ud_post;
+        CheckUpdataBean.ud_addr = vipInfoBean.user_detail.ud_addr;
+        CheckUpdataBean.ud_profession = vipInfoBean.user_detail.ud_profession;
+        CheckUpdataBean.ud_post = vipInfoBean.user_detail.ud_post;
     }
 
     private void initHangYe() {
 
-        if (InitInfo.vipInfoBean != null) {
+        if (vipInfoBean != null) {
             if (InitInfo.professionBean == null || InitInfo.professionBean.hy == null||InitInfo.professionBean.hy.size() == 0) {
-                LoginInternetRequest.getProfession(SpTools.getString(this, Constants.userId, ""), new LoginInternetRequest.ForResultListener() {
+                LoginInternetRequest.getProfession(SpTools.getUserId(this), new LoginInternetRequest.ForResultListener() {
                     @Override
                     public void onResponseMessage(String code) {
                         if (!TextUtils.isEmpty(code)) {
@@ -254,9 +254,9 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
 
     private void initGangWei() {
 
-        if (InitInfo.vipInfoBean != null ) {
+        if (vipInfoBean != null ) {
             if (InitInfo.postBean == null || InitInfo.postBean.gw == null || InitInfo.postBean.gw.size() == 0) {
-                LoginInternetRequest.getPost(SpTools.getString(this, Constants.userId, ""), new LoginInternetRequest.ForResultListener() {
+                LoginInternetRequest.getPost(SpTools.getUserId(this), new LoginInternetRequest.ForResultListener() {
                     @Override
                     public void onResponseMessage(String code) {
                         if (!TextUtils.isEmpty(code)) {
@@ -787,8 +787,8 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
         SpTools.setString(this , Constants.ud_profession,CheckUpdataBean.ud_profession);
         SpTools.setString(this , Constants.ud_post,CheckUpdataBean.ud_post);
         SpTools.setString(this , Constants.ud_addr,CheckUpdataBean.ud_addr);
-        String uid = SpTools.getString(this, Constants.userId, "");
-        LoginInternetRequest.editVipInfo(InitInfo.phoneNumber, map, uid, mDialog ,new LoginInternetRequest.ForResultListener() {
+        String uid = SpTools.getUserId(this);
+        LoginInternetRequest.editVipInfo(vipInfoBean.user_detail.ub_phone , map, uid, mDialog ,new LoginInternetRequest.ForResultListener() {
             @Override
             public void onResponseMessage(String code) {
                 //Toast.makeText(VipInfoUI.this, "上传成功", Toast.LENGTH_SHORT).show();
@@ -798,35 +798,35 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
                     zoomBitMap = BitmapFactory.decodeFile(phtotoPath);
                     UpdataImageUtils.saveBitmapFile(zoomBitMap, Constants.photo_name);//先保存文件到本地
                 }
-                InitInfo.vipInfoBean.user_detail.ud_nickname =
-                        allInfo.ud_nickname == null ? InitInfo.vipInfoBean.user_detail.ud_nickname : allInfo.ud_nickname;
+                vipInfoBean.user_detail.ud_nickname =
+                        allInfo.ud_nickname == null ? vipInfoBean.user_detail.ud_nickname : allInfo.ud_nickname;
                 //行业
-                InitInfo.vipInfoBean.user_detail.ud_profession =
-                        allInfo.ud_profession == null ? InitInfo.vipInfoBean.user_detail.ud_profession : allInfo.ud_profession;
+                vipInfoBean.user_detail.ud_profession =
+                        allInfo.ud_profession == null ? vipInfoBean.user_detail.ud_profession : allInfo.ud_profession;
                 //岗位
-                InitInfo.vipInfoBean.user_detail.ud_post =
-                        allInfo.ud_post == null ? InitInfo.vipInfoBean.user_detail.ud_post : allInfo.ud_post;
+                vipInfoBean.user_detail.ud_post =
+                        allInfo.ud_post == null ? vipInfoBean.user_detail.ud_post : allInfo.ud_post;
                 //部门
-                InitInfo.vipInfoBean.user_detail.ud_bm =
-                        allInfo.ud_bm == null ? InitInfo.vipInfoBean.user_detail.ud_bm : allInfo.ud_bm;
-                InitInfo.vipInfoBean.user_detail.ud_addr =
-                        allInfo.ud_addr == null ? InitInfo.vipInfoBean.user_detail.ud_addr : allInfo.ud_addr;
-                InitInfo.vipInfoBean.user_detail.ud_company_name =
-                        allInfo.ud_company_name == null ? InitInfo.vipInfoBean.user_detail.ud_company_name : allInfo.ud_company_name;
-                InitInfo.vipInfoBean.user_detail.ud_borth =
-                        allInfo.ud_borth == null ? InitInfo.vipInfoBean.user_detail.ud_borth : allInfo.ud_borth;
-                InitInfo.vipInfoBean.user_detail.ud_sex =
-                        allInfo.ud_sex == null ? InitInfo.vipInfoBean.user_detail.ud_sex : allInfo.ud_sex;
+                vipInfoBean.user_detail.ud_bm =
+                        allInfo.ud_bm == null ? vipInfoBean.user_detail.ud_bm : allInfo.ud_bm;
+                vipInfoBean.user_detail.ud_addr =
+                        allInfo.ud_addr == null ? vipInfoBean.user_detail.ud_addr : allInfo.ud_addr;
+                vipInfoBean.user_detail.ud_company_name =
+                        allInfo.ud_company_name == null ? vipInfoBean.user_detail.ud_company_name : allInfo.ud_company_name;
+                vipInfoBean.user_detail.ud_borth =
+                        allInfo.ud_borth == null ? vipInfoBean.user_detail.ud_borth : allInfo.ud_borth;
+                vipInfoBean.user_detail.ud_sex =
+                        allInfo.ud_sex == null ? vipInfoBean.user_detail.ud_sex : allInfo.ud_sex;
                 //备注
-                InitInfo.vipInfoBean.user_detail.ud_memo =
-                        allInfo.ud_memo == null ? InitInfo.vipInfoBean.user_detail.ud_memo : allInfo.ud_memo;
-                InitInfo.vipInfoBean.user_detail.ud_photo_fileid =
-                        allInfo.ud_photo_fileid == null ? InitInfo.vipInfoBean.user_detail.ud_photo_fileid : allInfo.ud_photo_fileid;
+                vipInfoBean.user_detail.ud_memo =
+                        allInfo.ud_memo == null ? vipInfoBean.user_detail.ud_memo : allInfo.ud_memo;
+                vipInfoBean.user_detail.ud_photo_fileid =
+                        allInfo.ud_photo_fileid == null ? vipInfoBean.user_detail.ud_photo_fileid : allInfo.ud_photo_fileid;
 
-
-
+                //保存用户信息到本地
+                SpTools.saveUser(mContext , vipInfoBean);
                 //此处可以加上上传图片到环信的过程
-                //EMClient.getInstance().updateCurrentUserNick(allInfo.ud_nickname == null ? InitInfo.vipInfoBean.user_detail.ud_nickname : allInfo.ud_nickname);
+                //EMClient.getInstance().updateCurrentUserNick(allInfo.ud_nickname == null ? vipInfoBean.user_detail.ud_nickname : allInfo.ud_nickname);
                 if(zoomBitMap != null)
                 DemoHelper.getInstance().getUserProfileManager().uploadUserAvatar(Bitmap2Bytes(zoomBitMap));
                 if(allInfo.ud_nickname != null)

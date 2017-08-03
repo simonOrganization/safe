@@ -117,7 +117,7 @@ public class SubscribActivity extends BaseUI {
         if (protocal == null){
             protocal = new CircleProtocal();
         }
-        userid = SpTools.getString(this, Constants.userId,"");
+        userid = SpTools.getUserId(this);
         protocal.getMySubscribe("1",userid, new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
@@ -158,7 +158,7 @@ public class SubscribActivity extends BaseUI {
         if (protocal == null){
             protocal = new CircleProtocal();
         }
-        userid = SpTools.getString(this, Constants.userId,"");
+        userid = SpTools.getUserId(this);
         protocal.getMySubscribe(page,userid, new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
@@ -205,7 +205,7 @@ public class SubscribActivity extends BaseUI {
         if (protocal == null){
             protocal = new CircleProtocal();
         }
-        userid = SpTools.getString(this, Constants.userId,"");
+        userid = SpTools.getUserId(this);
        protocal.getItemInfo(userid, qc_id, new CircleProtocal.NormalListener() {
            @Override
            public void normalResponse(Object response) {
