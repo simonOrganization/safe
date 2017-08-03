@@ -472,7 +472,7 @@ public class HXMainActivity extends BaseActivity implements View.OnClickListener
 		EMClient.getInstance().chatManager().addMessageListener(messageListener);
 
 
-		ub_id = SpTools.getString(this,Constants.userId,"");
+		ub_id = SpTools.getUserId(this);
 		if (TextUtils.isEmpty(ub_id)) {
 			if (mLlTitleRight != null) {
 				mLlTitleRight.setEnabled(false);

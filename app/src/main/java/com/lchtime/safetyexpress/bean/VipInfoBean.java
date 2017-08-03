@@ -14,6 +14,10 @@ public class VipInfoBean {
         user_detail = new UserDetail();
     }
 
+    public VipInfoBean(UserDetail user_detail) {
+        this.user_detail = user_detail;
+    }
+
     public static class UserDetail{
         public String ud_nickname;
         //行业

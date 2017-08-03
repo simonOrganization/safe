@@ -300,7 +300,7 @@ public class TabUI extends TabActivity implements OnClickListener {
     private CircleProtocal mCircleProtocal = new CircleProtocal();
     private void initRedPoint() {
         if (TextUtils.isEmpty(ub_id)){
-            ub_id = SpTools.getString(this,Constants.userId,"");
+            ub_id = SpTools.getUserId(this);
         }
         mCircleProtocal.getDyIsShowRedPoint(ub_id, new CircleProtocal.NormalListener() {
             @Override
@@ -580,7 +580,7 @@ public class TabUI extends TabActivity implements OnClickListener {
             case R.id.rb_tab_4:
                 currentTag = "tab4";
                 if (TextUtils.isEmpty(ub_id)){
-                    ub_id = SpTools.getString(this,Constants.userId,"");
+                    ub_id = SpTools.getUserId(this);
                 }
 
                 if (TextUtils.isEmpty(ub_id)){
@@ -932,7 +932,7 @@ public class TabUI extends TabActivity implements OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
-        ub_id = SpTools.getString(this,Constants.userId,"");
+        ub_id = SpTools.getUserId(this);
         if ("tab4".equals(currentTag)){
 
 
@@ -949,7 +949,7 @@ public class TabUI extends TabActivity implements OnClickListener {
 
 
         if (TextUtils.isEmpty(ub_id)){
-            ub_id = SpTools.getString(this,Constants.userId,"");
+            ub_id = SpTools.getUserId(this);
         }
 
         if (!TextUtils.isEmpty(ub_id)){

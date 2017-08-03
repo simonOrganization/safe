@@ -182,7 +182,7 @@ public class OutPutMoneyActivity extends BaseUI implements View.OnClickListener 
     private String userid;
     private void tiXianInternet(String num) {
         if (userid == null){
-            userid = SpTools.getString(this,Constants.userId,"");
+            userid = SpTools.getUserId(this);
         }
         if (protocal == null){
             protocal = new VipProtocal();

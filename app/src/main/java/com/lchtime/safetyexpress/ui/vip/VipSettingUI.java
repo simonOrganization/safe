@@ -166,7 +166,7 @@ public class VipSettingUI extends BaseUI {
     private void getOutLog(View view){
         backgroundAlpha(0.5f);
         pb_progress.setVisibility(View.VISIBLE);
-        PushManager.getInstance().unBindAlias(context,SpTools.getString(this,Constants.userId,""),true);
+        PushManager.getInstance().unBindAlias(context,SpTools.getUserId(mContext),true);
         Log.i("qaz", "getOutLog: "+ "--------------------");
         PushManager.getInstance().turnOffPush(VipSettingUI.this);
         PushManager.getInstance().stopService(VipSettingUI.this);

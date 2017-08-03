@@ -211,7 +211,7 @@ public class RegisterUI extends BaseUI {
             gson = new Gson();
         }
         if (TextUtils.isEmpty(userId)){
-            userId = SpTools.getString(this,Constants.userId,"");
+            userId = SpTools.getUserId(mContext);
         }
 
         //登录操作
