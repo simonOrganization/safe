@@ -47,7 +47,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
     public SingleInfoRCAdapter(Activity context, List<MyCircleActiveBean.QuanziBean> circleOneList) {
         this.context = context;
         this.circleOneList = circleOneList;
-        ub_id = SpTools.getString(context, Constants.userId,"");
+        ub_id = SpTools.getUserId(context);
     }
 
     @Override
@@ -162,7 +162,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
     private void deleteCircle(MyCircleActiveHodler holder, final int position, CircleProtocal protocal) {
         ((SingleInfoUI)context).setIsLoading(true);
         MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);
-        String userid = SpTools.getString(context, Constants.userId, "");
+        String userid = SpTools.getUserId(context);
         if (TextUtils.isEmpty(userid)) {
             CommonUtils.toastMessage("没有登陆！！");
             holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
@@ -203,7 +203,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                 } else {
                     action = "1";
                 }
-                String userid = SpTools.getString(context, Constants.userId,"");
+                String userid = SpTools.getUserId(context);
                 if (TextUtils.isEmpty(userid)){
                     CommonUtils.toastMessage("没有登陆！！");
                   //  holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
@@ -261,7 +261,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                 } else {
                     action = "1";
                 }
-                String userid = SpTools.getString(context, Constants.userId,"");
+                String userid = SpTools.getUserId(context);
                 if (TextUtils.isEmpty(userid)){
                     CommonUtils.toastMessage("没有登陆！！");
                     holder.ivCircleItemLow.setChecked("1".equals(bean.cai));

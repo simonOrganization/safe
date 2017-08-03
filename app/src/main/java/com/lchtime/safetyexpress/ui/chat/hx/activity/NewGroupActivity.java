@@ -53,6 +53,7 @@ import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.ProfessionBean;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.UpdataBean;
+import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.protocal.GetInfoProtocal;
 import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
 import com.lchtime.safetyexpress.ui.vip.SelectCityActivity;
@@ -70,17 +71,11 @@ import com.yalantis.ucrop.entity.LocalMedia;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.media.CamcorderProfile.get;
-import static com.lchtime.safetyexpress.bean.InitInfo.professionBean;
 
 
 public class NewGroupActivity extends BaseActivity implements View.OnClickListener, PopupWindow.OnDismissListener {
-//	private EditText groupNameEditText;
 	private ProgressDialog progressDialog;
-//	private EditText introductionEditText;
-//	private CheckBox publibCheckBox;
-//	private CheckBox memberCheckbox;
-//	private TextView secondTextView;
+
 	private static final int CITY_CODE = 588;
 	private TextView mTitle;
 	private TextView mTitleRight;
@@ -698,9 +693,10 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 
 	private Gson gson = new Gson();
 	private void initHangYe() {
-		if (InitInfo.vipInfoBean != null) {
-			if (professionBean == null || professionBean.hy == null|| professionBean.hy.size() == 0) {
-				LoginInternetRequest.getProfession(SpTools.getString(this, Constants.userId, ""), new LoginInternetRequest.ForResultListener() {
+		VipInfoBean  vipInfoBean = SpTools.getUser(this);
+		if (vipInfoBean != null) {
+			if (InitInfo.professionBean == null || InitInfo.professionBean.hy == null|| InitInfo.professionBean.hy.size() == 0) {
+				LoginInternetRequest.getProfession(SpTools.getUserId(this), new LoginInternetRequest.ForResultListener() {
 					@Override
 					public void onResponseMessage(String code) {
 						if (!TextUtils.isEmpty(code)) {
@@ -715,7 +711,7 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 					}
 				});
 			}else {
-				professionList.addAll(professionBean.hy);
+				professionList.addAll(InitInfo.professionBean.hy);
 			}
 		}
 	}
@@ -778,7 +774,7 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 			mProtocal = new GetInfoProtocal();
 		}
 		if (TextUtils.isEmpty(mUserid)) {
-			mUserid = SpTools.getString(this, Constants.userId, "");
+			mUserid = SpTools.getUserId(this);
 		}
 		String name = mGroupName.getText().toString().trim();
 		if (TextUtils.isEmpty(name)){

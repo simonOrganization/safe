@@ -81,7 +81,7 @@ public class MyMoneyActivity extends BaseUI implements View.OnClickListener {
             protocal = new VipProtocal();
         }
         if (userid == null) {
-            userid = SpTools.getString(this, Constants.userId, "");
+            userid = SpTools.getUserId(this);
         }
 
 

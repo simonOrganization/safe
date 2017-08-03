@@ -155,7 +155,7 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
 
 
     private void initData() {
-        userid = SpTools.getString(getContext(), Constants.userId,"");
+        userid = SpTools.getUserId(getContext());
         if (protocal == null){
             protocal = new CircleProtocal();
         }

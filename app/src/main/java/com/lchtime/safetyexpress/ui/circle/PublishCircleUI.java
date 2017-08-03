@@ -241,7 +241,7 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
             updataImageUtils = new UpdataImageUtils();
         }
 
-        final String ub_id = SpTools.getString(this, Constants.userId,"");
+        final String ub_id = SpTools.getUserId(this);
         if (TextUtils.isEmpty(ub_id)){
             CommonUtils.toastMessage("登录后才能发布圈子！");
             return;

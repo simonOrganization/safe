@@ -41,6 +41,7 @@ import com.hyphenate.easeui.ui.EaseContactListFragment;
 import com.hyphenate.util.EMLog;
 import com.hyphenate.util.NetUtils;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.AddContactActivity;
@@ -57,6 +58,7 @@ import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal
 import com.lchtime.safetyexpress.ui.chat.hx.widget.ContactItemView;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.SpTools;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -195,7 +197,8 @@ public class ContactListFragment extends EaseContactListFragment {
         if (mProtocal == null){
             mProtocal = new GetInfoProtocal();
         }
-        mProtocal.getApplyNum(InitInfo.phoneNumber, new AddCommandProtocal.NormalListener() {
+        String phoneNumber = SpTools.getString(getActivity() , Constants.phoneNum);
+        mProtocal.getApplyNum(phoneNumber, new AddCommandProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
                 if (response == null){

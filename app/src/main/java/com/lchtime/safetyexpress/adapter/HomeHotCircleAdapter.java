@@ -89,7 +89,7 @@ public class HomeHotCircleAdapter extends BaseAdapter {
         holder.iv_subscribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userid = SpTools.getString(context, Constants.userId,"");
+                String userid = SpTools.getUserId(context);
                 if (TextUtils.isEmpty(userid)){
                     CommonUtils.toastMessage("请登陆！！！");
                     Intent intent = new Intent(context , LoginUI.class);
@@ -132,7 +132,7 @@ public class HomeHotCircleAdapter extends BaseAdapter {
         holder.hot_circle_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userid = SpTools.getString(context, Constants.userId,"");
+                String userid = SpTools.getUserId(context);
                 if (TextUtils.isEmpty(userid)){
                     CommonUtils.toastMessage("请登陆！！！");
                     return;

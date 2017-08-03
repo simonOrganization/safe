@@ -31,7 +31,7 @@ public class ShareProtocal {
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId,""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -71,7 +71,7 @@ public class ShareProtocal {
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId,""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -111,7 +111,7 @@ public class ShareProtocal {
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId,""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .addParams("qc_id", qc_id)
                 .build()
                 .execute(new StringCallback() {

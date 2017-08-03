@@ -14,14 +14,13 @@ import com.lchtime.safetyexpress.bean.CardBean;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.ProfessionBean;
+import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.LoginInternetRequest;
 import com.lchtime.safetyexpress.utils.SpTools;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.lchtime.safetyexpress.bean.InitInfo.professionBean;
 
 /**
  * Created by Dreamer on 2017/6/9.
@@ -36,7 +35,7 @@ public class CardUtils {
 
     public static void show(TextView callBackView,Activity activity){
         //初始化行业
-        initHangYe();
+        initHangYe(activity);
 
         //初始化自定义选项卡
         initCustomOptionPicker(callBackView,activity);
@@ -97,10 +96,11 @@ public class CardUtils {
 
     private static Gson gson = new Gson();
     private static List<ProfessionBean.ProfessionItemBean> professionList = new ArrayList<>();
-    private static void initHangYe() {
-        if (InitInfo.vipInfoBean != null) {
-            if (professionBean == null || professionBean.hy == null|| professionBean.hy.size() == 0) {
-                LoginInternetRequest.getProfession(SpTools.getString(MyApplication.getContext(), Constants.userId, ""), new LoginInternetRequest.ForResultListener() {
+    private static void initHangYe(Activity activity) {
+        VipInfoBean vipInfoBean = SpTools.getUser(activity);
+        if (vipInfoBean != null) {
+            if (InitInfo.professionBean == null || InitInfo.professionBean.hy == null|| InitInfo.professionBean.hy.size() == 0) {
+                LoginInternetRequest.getProfession(SpTools.getUserId(MyApplication.getContext()), new LoginInternetRequest.ForResultListener() {
                     @Override
                     public void onResponseMessage(String code) {
                         if (!TextUtils.isEmpty(code)) {
@@ -115,7 +115,7 @@ public class CardUtils {
                     }
                 });
             }else {
-                professionList.addAll(professionBean.hy);
+                professionList.addAll(InitInfo.professionBean.hy);
             }
         }
     }

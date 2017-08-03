@@ -11,6 +11,7 @@ import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.ui.BaseUI;
+import com.lchtime.safetyexpress.ui.chat.hx.Constant;
 import com.lchtime.safetyexpress.utils.LoginInternetRequest;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -32,6 +33,7 @@ public class VipInfoPhoneValidUI extends BaseUI {
     public static String currentType ;
     public static String currentCode ;
 
+    private String phoneNumber;
     //手机号
     @ViewInject(R.id.et_info_valid_phone)
     private EditText et_info_phone_valid_phone;
@@ -56,10 +58,10 @@ public class VipInfoPhoneValidUI extends BaseUI {
     @Override
     protected void setControlBasis() {
         currentType = getIntent().getStringExtra("type");
-
+        phoneNumber = SpTools.getString(mContext , Constants.phoneNum);
         if (TYPE_VALID.equals(currentType)){
             setTitle("手机验证");
-            et_info_phone_valid_phone.setText(InitInfo.phoneNumber);
+            et_info_phone_valid_phone.setText(phoneNumber);
             et_info_phone_valid_phone.setFocusable(false);
             tv_info_phone_valid.setText("验证");
         }else if(TYPE_CHANGE.equals(currentType)){
@@ -85,7 +87,7 @@ public class VipInfoPhoneValidUI extends BaseUI {
         if (TYPE_CHANGE.equals(currentType)){
             phonenum = et_info_phone_valid_phone.getText().toString().trim();
         }else {
-            phonenum = InitInfo.phoneNumber;
+            phonenum = phoneNumber;
         }
         if (TextUtils.isEmpty(code)){
             Toast.makeText(VipInfoPhoneValidUI.this,"验证码不能为空",Toast.LENGTH_SHORT).show();
@@ -105,11 +107,11 @@ public class VipInfoPhoneValidUI extends BaseUI {
                 }else if(TYPE_CHANGE.equals(currentType)) {
                     if (!TextUtils.isEmpty(phonenum)) {
 
-                        LoginInternetRequest.ChangePhone(code, SpTools.getString(this, Constants.userId, ""), phonenum, new LoginInternetRequest.ForResultListener() {
+                        LoginInternetRequest.ChangePhone(code, SpTools.getUserId(this), phonenum, new LoginInternetRequest.ForResultListener() {
                             @Override
                             public void onResponseMessage(String code) {
                                 Toast.makeText(VipInfoPhoneValidUI.this,"修改成功",Toast.LENGTH_SHORT).show();
-                                InitInfo.phoneNumber = phonenum;
+                                SpTools.setString(mContext , Constants.phoneNum , phonenum);
                                 finish();
                             }
                         });
@@ -139,7 +141,7 @@ public class VipInfoPhoneValidUI extends BaseUI {
         if (TYPE_CHANGE.equals(currentType)){
             phonenum = et_info_phone_valid_phone.getText().toString().trim();
         }else {
-            phonenum = InitInfo.phoneNumber;
+            phonenum = phoneNumber;
         }
         if (!TextUtils.isEmpty(phonenum)) {
             LoginInternetRequest.verificationCode(phonenum, tv_info_phone_valid_code, new LoginInternetRequest.ForResultListener() {

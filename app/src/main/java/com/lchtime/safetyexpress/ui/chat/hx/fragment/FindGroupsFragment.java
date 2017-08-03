@@ -59,7 +59,7 @@ public class FindGroupsFragment extends Fragment {
         if (mProtocal == null){
             mProtocal = new AddCommandProtocal();
         }
-        mUb_id = SpTools.getString(context, Constants.userId,"");
+        mUb_id = SpTools.getUserId(context);
         initData();
         initListener();
 

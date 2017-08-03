@@ -33,7 +33,7 @@ public class HomeQuestionProtocal {
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .addParams("page", page)
                 .build()
                 .execute(new StringCallback() {
@@ -73,7 +73,7 @@ public class HomeQuestionProtocal {
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .addParams("q_id", q_id)
                 .addParams("page", page)
                 .build()
@@ -113,7 +113,7 @@ public class HomeQuestionProtocal {
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .addParams("q_title", q_title)
                 .addParams("q_description", q_description)
                 .addParams("pic", pic)
@@ -153,7 +153,7 @@ public class HomeQuestionProtocal {
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .addParams("q_id", q_id)
                 .addParams("context", context)
                 .addParams("pic", pic)
@@ -202,7 +202,7 @@ public class HomeQuestionProtocal {
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .addParams("a_id", a_id)
                 .addParams("context", info)
                 .addParams("pic", pic)
@@ -251,7 +251,7 @@ public class HomeQuestionProtocal {
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .addParams("q_id", q_id)
                 .addParams("type", type)
                 .build()
@@ -289,7 +289,7 @@ public class HomeQuestionProtocal {
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .addParams("q_id", q_id)
                 .addParams("friend_username", friend_username)
                 .build()
@@ -335,7 +335,7 @@ public class HomeQuestionProtocal {
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .build()
                 .execute(new StringCallback() {
                     @Override

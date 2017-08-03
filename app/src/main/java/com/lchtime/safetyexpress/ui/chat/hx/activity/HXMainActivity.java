@@ -131,7 +131,7 @@ public class HXMainActivity extends BaseActivity implements View.OnClickListener
 		setContentView(R.layout.em_activity_main);
 		// runtime permission for android 6.0, just require all permissions here for simple
 
-		ub_id = SpTools.getString(this, Constants.userId,"");
+		ub_id = SpTools.getUserId(this);
 
 		requestPermissions();
 
@@ -472,7 +472,7 @@ public class HXMainActivity extends BaseActivity implements View.OnClickListener
 		EMClient.getInstance().chatManager().addMessageListener(messageListener);
 
 
-		ub_id = SpTools.getString(this,Constants.userId,"");
+		ub_id = SpTools.getUserId(this);
 		if (TextUtils.isEmpty(ub_id)) {
 			if (mLlTitleRight != null) {
 				mLlTitleRight.setEnabled(false);
@@ -665,9 +665,9 @@ public class HXMainActivity extends BaseActivity implements View.OnClickListener
 		if (mProtocal == null) {
 			mProtocal = new GetInfoProtocal();
 		}
-
-		if (InitInfo.phoneNumber != null) {
-			mProtocal.getApplyNum(InitInfo.phoneNumber, new AddCommandProtocal.NormalListener() {
+		String phoneNumber = SpTools.getString(this , Constants.phoneNum);
+		if (phoneNumber != null) {
+			mProtocal.getApplyNum(phoneNumber, new AddCommandProtocal.NormalListener() {
 				@Override
 				public void normalResponse(Object response) {
 					if (response == null) {

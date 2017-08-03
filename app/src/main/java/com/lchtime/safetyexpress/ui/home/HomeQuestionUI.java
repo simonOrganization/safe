@@ -18,6 +18,7 @@ import com.lchtime.safetyexpress.adapter.HeaderAndFooterWrapper;
 import com.lchtime.safetyexpress.adapter.HomeQuestionAdapter;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
+import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.bean.WenDaBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
@@ -34,6 +35,8 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.lchtime.safetyexpress.R.id.ll_home_question;
 
 /**
  * 疑难问答
@@ -73,6 +76,8 @@ public class HomeQuestionUI extends BaseUI {
     private Handler handler = new Handler();
     private int footPage = 0;
     private View view;
+    private VipInfoBean vipInfoBean;
+
 
     @Override
     protected void back() {
@@ -85,12 +90,12 @@ public class HomeQuestionUI extends BaseUI {
         view = View.inflate(this, R.layout.home_question_header,null);
         civ = (CircleImageView) view.findViewById(R.id.cv_wd_photo);
         nikName = (TextView) view.findViewById(R.id.tv_wd_nikname);
-
+        vipInfoBean = SpTools.getUser(mContext);
         LinearLayout ll_home_question = (LinearLayout) view.findViewById(R.id.ll_home_question);
         ll_home_question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(SpTools.getString(mContext , Constants.userId, ""))){
+                if (TextUtils.isEmpty(SpTools.getUserId(mContext))){
                     CommonUtils.toastMessage("登陆后才能看问答");
                     Intent intent = new Intent(mContext , LoginUI.class);
                     startActivityForResult(intent , LOGIN);
@@ -110,7 +115,7 @@ public class HomeQuestionUI extends BaseUI {
 
     public void initMyInfo(){
         //如果没有登录
-        if(TextUtils.isEmpty(SpTools.getString(mContext , Constants.userId, ""))){
+        if(TextUtils.isEmpty(SpTools.getUserId(mContext))){
             civ.setVisibility(View.GONE);
             nikName.setText("马上登录，参与问答");
         }else{
@@ -119,8 +124,8 @@ public class HomeQuestionUI extends BaseUI {
             //如果没有加载过图片了
             if (!file.exists()){
                 civ.setImageDrawable(getResources().getDrawable(R.drawable.vip_test_icon));
-                if (!TextUtils.isEmpty(InitInfo.vipInfoBean.user_detail.ud_photo_fileid)){
-                    UpdataImageUtils.getUrlBitmap(InitInfo.vipInfoBean.user_detail.ud_photo_fileid, new UpdataImageUtils.BitmapListener() {
+                if (!TextUtils.isEmpty(vipInfoBean.user_detail.ud_photo_fileid)){
+                    UpdataImageUtils.getUrlBitmap(vipInfoBean.user_detail.ud_photo_fileid, new UpdataImageUtils.BitmapListener() {
                         @Override
                         public void giveBitmap(final Bitmap bitmap) {
                             handler.post(new Runnable() {
@@ -139,8 +144,8 @@ public class HomeQuestionUI extends BaseUI {
             }else {
                 civ.setImageBitmap(BitmapUtils.getBitmap(file.getAbsolutePath()));
             }
-            if (InitInfo.vipInfoBean != null && InitInfo.vipInfoBean.user_detail != null) {
-                nikName.setText(InitInfo.vipInfoBean.user_detail.ud_nickname);
+            if (vipInfoBean != null && vipInfoBean.user_detail != null) {
+                nikName.setText(vipInfoBean.user_detail.ud_nickname);
             }
         }
 
@@ -218,7 +223,7 @@ public class HomeQuestionUI extends BaseUI {
         tv_home_question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(SpTools.getString(mContext , Constants.userId, ""))){
+                if (TextUtils.isEmpty(SpTools.getUserId(mContext))){
                     CommonUtils.toastMessage("登陆后才能提问");
                     Intent intent = new Intent(mContext , LoginUI.class);
                     startActivityForResult(intent , LOGIN);
@@ -249,9 +254,10 @@ public class HomeQuestionUI extends BaseUI {
      * 检查个人资料是否完善，检查行业，岗位，地理位置
      */
     private boolean isFullPersionDate(){
-        return (!SpTools.getString(mContext , Constants.ud_profession , "").equals("")&&
-                !SpTools.getString(mContext, Constants.ud_post , "").equals("")&&
-                !SpTools.getString(mContext, Constants.ud_addr , "").equals(""));
+        VipInfoBean vipInfoBean = SpTools.getUser(mContext);
+        return (!vipInfoBean.user_detail.ud_profession.equals("")&&
+                !vipInfoBean.user_detail.ud_post.equals("")&&
+                !vipInfoBean.user_detail.ud_addr.equals(""));
     }
 
 

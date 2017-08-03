@@ -6,15 +6,15 @@ package com.lchtime.safetyexpress.bean;
 
 public class Constants {
 
-    public static String userId = "userId";
-    public static String phoneNum = "phoneNum";
+    //public static String userId = "userId";
+    public static String phoneNum = "ub_phone";
     public static String password = "pwd";
     public static String ud_profession = "ud_profession";
     public static String ud_post = "ud_post";
     public static String ud_addr = "ud_addr";
-    public static final String CONFIGFILE = "login";
+    public static final String CONFIGFILE = "user_data";
     public static final String photo_name = "my_icon";
-    public static final String nik_name = "nik_name";
+    public static final String nik_name = "ud_nickname";
 
 
     public static final String SHARE = "http://47.94.44.84/download/";

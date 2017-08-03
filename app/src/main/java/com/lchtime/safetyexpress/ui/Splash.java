@@ -94,7 +94,7 @@ public class Splash extends Activity {
         if (gson == null){
             gson = new Gson();
         }
-        userId = SpTools.getString(this, Constants.userId,"");
+        userId = SpTools.getUserId(this);
         if (!TextUtils.isEmpty(userId)){
             PushManager.getInstance().bindAlias(this,userId);
             PushManager.getInstance().turnOnPush(this);
@@ -105,9 +105,7 @@ public class Splash extends Activity {
                     if(!TextUtils.isEmpty(code)) {
                         VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
                         if (vipInfoBean != null) {
-                            InitInfo.phoneNumber = vipInfoBean.user_detail.ub_phone;
-                            InitInfo.vipInfoBean = vipInfoBean;
-                            SpTools.setString(Splash.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
+                            SpTools.saveUser(Splash.this , vipInfoBean);
                             loginHX(vipInfoBean.user_detail.ub_phone, Constant.HX_PWD);
                         }else {
                             loginHx = true;

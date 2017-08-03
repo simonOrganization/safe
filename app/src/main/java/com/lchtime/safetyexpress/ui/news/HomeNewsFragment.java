@@ -180,7 +180,7 @@ public class HomeNewsFragment extends BaseFragment {
 
     int totalPage = 1;
     private void initPosition1to2(final String type, String url,String index) {
-        String ub_id = SpTools.getString(getContext(),Constants.userId,"");
+        String ub_id = SpTools.getUserId(getContext());
         if (Integer.parseInt(index)  > totalPage){
             handler.post(new Runnable() {
                 @Override
@@ -301,7 +301,7 @@ public class HomeNewsFragment extends BaseFragment {
     }
 
     private void getNewsList(String cid,String url,String index){
-        String ub_id = SpTools.getString(getContext(),Constants.userId,"");
+        String ub_id = SpTools.getUserId(getContext());
         if (Integer.parseInt(index)  > totalPage){
             handler.post(new Runnable() {
                 @Override

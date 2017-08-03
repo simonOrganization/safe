@@ -11,11 +11,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.utils.LoginInternetRequest;
+import com.lchtime.safetyexpress.utils.SpTools;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
+
+import static android.R.attr.phoneNumber;
 
 /**
  * 修改密码
@@ -23,6 +27,8 @@ import com.lidroid.xutils.view.annotation.ViewInject;
  */
 @ContentView(R.layout.vip_info_password_ui)
 public class VipInfoPasswordUI extends BaseUI implements View.OnClickListener {
+
+    private String phoneNumber;
 
     @ViewInject(R.id.tv_password_phone_num)
     private TextView phoneNum;
@@ -51,7 +57,7 @@ public class VipInfoPasswordUI extends BaseUI implements View.OnClickListener {
     @Override
     protected void setControlBasis() {
         setTitle("修改密码");
-        String phoneNumber = InitInfo.phoneNumber;
+        phoneNumber = SpTools.getString(mContext , Constants.phoneNum);
         String head=phoneNumber.substring(0,3);
         String tail=phoneNumber.substring(7);
         String s=head+"****"+tail;
@@ -70,7 +76,7 @@ public class VipInfoPasswordUI extends BaseUI implements View.OnClickListener {
     public void onClick(View v) {
         //获取验证码
         if (v == tv_getCode){
-            LoginInternetRequest.verificationCode(InitInfo.phoneNumber, tv_getCode, new LoginInternetRequest.ForResultListener() {
+            LoginInternetRequest.verificationCode(phoneNumber, tv_getCode, new LoginInternetRequest.ForResultListener() {
                 @Override
                 public void onResponseMessage(String code) {
                     VipInfoPasswordUI.this.code = code;
@@ -93,7 +99,7 @@ public class VipInfoPasswordUI extends BaseUI implements View.OnClickListener {
             if (!TextUtils.isEmpty(code)){
                 //如果验证码正确
                 if (code.equals(getCode)){
-                    LoginInternetRequest.forgetPassword(InitInfo.phoneNumber, code, getCode, pwd, pwd, tv_getCode, et_Code, et_Code, new LoginInternetRequest.ForResultListener() {
+                    LoginInternetRequest.forgetPassword(phoneNumber, code, getCode, pwd, pwd, tv_getCode, et_Code, et_Code, new LoginInternetRequest.ForResultListener() {
                         @Override
                         public void onResponseMessage(String code) {
                             if("成功".equals(code)){

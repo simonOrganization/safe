@@ -143,7 +143,7 @@ public class HomeQuewstionDetail extends BaseUI {
         tvHomeQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(SpTools.getString(mContext , Constants.userId, ""))) {
+                if (TextUtils.isEmpty(SpTools.getUserId(mContext))) {
                     Intent intent = new Intent(HomeQuewstionDetail.this,LoginUI.class);
                     startActivity(intent);
                 }else{
@@ -158,7 +158,7 @@ public class HomeQuewstionDetail extends BaseUI {
         llInviteFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(SpTools.getString(mContext , Constants.userId, ""))) {
+                if (TextUtils.isEmpty(SpTools.getUserId(mContext))) {
                     CommonUtils.toastMessage("您还未登录，暂无数据");
                 }else{
                     Intent intent = new Intent(HomeQuewstionDetail.this,InviteFriendActivity.class);

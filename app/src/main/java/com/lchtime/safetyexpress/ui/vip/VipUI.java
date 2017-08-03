@@ -30,6 +30,7 @@ import com.bslee.threelogin.model.QQUserInfo;
 import com.bslee.threelogin.model.WeiBoToken;
 import com.bslee.threelogin.model.WeiBoUserInfo;
 import com.bslee.threelogin.model.WeiXinUserInfo;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
@@ -116,6 +117,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
     private TextView tv_money_num;
     private String userid;
     private String Clientid;
+    private VipInfoBean vipInfoBean;
 
     @Override
     protected void back() {
@@ -135,6 +137,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
 
     @Override
     protected void prepareData() {
+
         ll_vip_weixin.setOnClickListener(this);
         ll_login_qq.setOnClickListener(this);
         ll_login_sina.setOnClickListener(this);
@@ -148,16 +151,18 @@ public class VipUI extends BaseUI implements View.OnClickListener {
     }
 
     private void refreshVip() {
-        String ub_id = SpTools.getString(this, Constants.userId,"");
+        String ub_id = SpTools.getUserId(this);
+        vipInfoBean = SpTools.getUser(mContext);
         if (TextUtils.isEmpty(ub_id)){
             logIn.setVisibility(View.GONE);
             logOut.setVisibility(View.VISIBLE);
             tv_money_num.setVisibility(View.INVISIBLE);
         }else {
             //登录的情况下
+            isLogin = true;
             logIn.setVisibility(View.VISIBLE);
             logOut.setVisibility(View.GONE);
-            if (InitInfo.vipInfoBean != null) {
+            if (vipInfoBean != null) {
                 initVipInfo();
             }
         }
@@ -165,12 +170,12 @@ public class VipUI extends BaseUI implements View.OnClickListener {
 
     //设置个人相关信息
     private void initVipInfo() {
-        File file = new File(MyApplication.getContext().getFilesDir(),Constants.photo_name);//将要保存图片的路径
+        /*File file = new File(MyApplication.getContext().getFilesDir(),Constants.photo_name);//将要保存图片的路径
         //如果没有加载过图片了
         if (!file.exists()){
             civ_vip_icon.setImageDrawable(getResources().getDrawable(R.drawable.circle_user_image));
-            if (!TextUtils.isEmpty(InitInfo.vipInfoBean.user_detail.ud_photo_fileid)){
-                UpdataImageUtils.getUrlBitmap(InitInfo.vipInfoBean.user_detail.ud_photo_fileid, new UpdataImageUtils.BitmapListener() {
+            if (!TextUtils.isEmpty(vipInfoBean.user_detail.ud_photo_fileid)){
+                UpdataImageUtils.getUrlBitmap(vipInfoBean.user_detail.ud_photo_fileid, new UpdataImageUtils.BitmapListener() {
                     @Override
                     public void giveBitmap(final Bitmap bitmap) {
                         handler.post(new Runnable() {
@@ -188,16 +193,16 @@ public class VipUI extends BaseUI implements View.OnClickListener {
 
         }else {
             civ_vip_icon.setImageBitmap(BitmapUtils.getBitmap(file.getAbsolutePath()));
-        }
-
+        }*/
+        Glide.with(this).load(vipInfoBean.user_detail.ud_photo_fileid).into(civ_vip_icon);
         if (isLogin) {
-            tv_vip_nickname.setText(TextUtils.isEmpty(InitInfo.vipInfoBean.user_detail.ud_nickname) ? "设置昵称" : InitInfo.vipInfoBean.user_detail.ud_nickname);
+            tv_vip_nickname.setText(TextUtils.isEmpty(vipInfoBean.user_detail.ud_nickname) ? "设置昵称" : vipInfoBean.user_detail.ud_nickname);
         }else {
-            String name = SpTools.getString(this,Constants.nik_name,"");
+            String name = SpTools.getString(this , Constants.nik_name);
             tv_vip_nickname.setText(TextUtils.isEmpty(name) ? "设置昵称" : name);
         }
 
-        String[] arr = {InitInfo.vipInfoBean.user_detail.ud_post,InitInfo.vipInfoBean.user_detail.ud_profession,InitInfo.vipInfoBean.user_detail.ud_addr};
+        String[] arr = {vipInfoBean.user_detail.ud_post , vipInfoBean.user_detail.ud_profession , vipInfoBean.user_detail.ud_addr};
         if (!(TextUtils.isEmpty(arr[0])||
                 TextUtils.isEmpty(arr[1])||
                 TextUtils.isEmpty(arr[2]))){
@@ -249,7 +254,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
     //获取余额
     private void initMoneyNum() {
 
-        userid = SpTools.getString(this, Constants.userId, "");
+        userid = SpTools.getUserId(this);
 
 
         if (TextUtils.isEmpty(userid)){
@@ -305,10 +310,9 @@ public class VipUI extends BaseUI implements View.OnClickListener {
         //有网络的情况下
         if (CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             //没有个人信息的情况下
-            if (InitInfo.vipInfoBean == null){
-                Toast.makeText(this,"网络异常",Toast.LENGTH_SHORT).show();
-                return;
-            }else if(InitInfo.vipInfoBean.user_detail == null){
+            if (vipInfoBean == null || vipInfoBean.user_detail == null
+                    || vipInfoBean.user_detail.ub_id == null
+                    || vipInfoBean.user_detail.ub_id.equals("")){
                 Toast.makeText(this,"网络异常",Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -333,10 +337,9 @@ public class VipUI extends BaseUI implements View.OnClickListener {
         //有网络的情况下
         if (CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             //没有个人信息的情况下
-            if (InitInfo.vipInfoBean == null){
-                Toast.makeText(this,"网络异常",Toast.LENGTH_SHORT).show();
-                return;
-            }else if(InitInfo.vipInfoBean.user_detail == null){
+            if (vipInfoBean == null || vipInfoBean.user_detail == null
+                    || vipInfoBean.user_detail.ub_id == null
+                    || vipInfoBean.user_detail.ub_id.equals("")){
                 Toast.makeText(this,"网络异常",Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -360,10 +363,9 @@ public class VipUI extends BaseUI implements View.OnClickListener {
         //有网络的情况下
         if (CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
             //没有个人信息的情况下
-            if (InitInfo.vipInfoBean == null){
-                Toast.makeText(this,"网络异常",Toast.LENGTH_SHORT).show();
-                return;
-            }else if(InitInfo.vipInfoBean.user_detail == null){
+            if (vipInfoBean == null || vipInfoBean.user_detail == null
+                    || vipInfoBean.user_detail.ub_id == null
+                    || vipInfoBean.user_detail.ub_id.equals("")){
                 Toast.makeText(this,"网络异常",Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -384,7 +386,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
      */
     @OnClick(R.id.ll_vip_mycircle_active)
     private void getMyActive(View view) {
-        String ub_id = SpTools.getString(this, Constants.userId,"");
+        String ub_id = SpTools.getUserId(this);
         if (TextUtils.isEmpty(ub_id)){
             Intent intent = new Intent(this, LoginUI.class);
             startActivity(intent);
@@ -401,7 +403,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
      */
     @OnClick(R.id.tv_vip_collected)
     private void getMyConllected(View view) {
-        String ub_id = SpTools.getString(this, Constants.userId,"");
+        String ub_id = SpTools.getUserId(this);
         if (TextUtils.isEmpty(ub_id)){
             Intent intent = new Intent(this, LoginUI.class);
             startActivity(intent);
@@ -435,7 +437,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
      */
     @OnClick(R.id.ll_vip_mymoney)
     private void getMyMoney(View view) {
-        String ub_id = SpTools.getString(this, Constants.userId,"");
+        String ub_id = SpTools.getUserId(this);
         if (TextUtils.isEmpty(ub_id)){
             Intent intent = new Intent(this, LoginUI.class);
             startActivity(intent);
@@ -452,7 +454,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
      */
     @OnClick(R.id.ll_vip_setting)
     private void getSetting(View view) {
-        String ub_id = SpTools.getString(this, Constants.userId,"");
+        String ub_id = SpTools.getUserId(this);
         if (TextUtils.isEmpty(ub_id)){
             Intent intent = new Intent(this, LoginUI.class);
             startActivity(intent);
@@ -466,7 +468,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
         if (gson == null) {
             gson = new Gson();
         }
-        String userId = SpTools.getString(this, Constants.userId, "");
+        String userId = SpTools.getUserId(this);
         //登录操作
         LoginInternetRequest.getVipInfo(userId, new LoginInternetRequest.ForResultListener() {
             @Override
@@ -474,8 +476,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
                 if (!TextUtils.isEmpty(code)) {
                     VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
                     if (vipInfoBean != null) {
-                        InitInfo.phoneNumber = vipInfoBean.user_detail.ub_phone;
-                        InitInfo.vipInfoBean = vipInfoBean;
+                        SpTools.saveUser(mContext , vipInfoBean);
                         isLogin = true;
                         SpTools.setString(VipUI.this, Constants.nik_name, vipInfoBean.user_detail.ud_nickname);
                     }
@@ -630,10 +631,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
                     if ("10".equals(bean.result.code)){
                         //没有申请过
                         if ("0".equals(bean.userid.ub_id)){
-
                             registerNewThird(uuid, name, header, gender, loginType);
-
-
                         }else {
                             //申请过了 ，直接登录
                             isLogin = false;
@@ -684,7 +682,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
 
     //第三方登录成功
     private void thirdLogin(String ub_id) {
-        SpTools.setString(this, Constants.userId, ub_id);//存储用户的ub_id
+        SpTools.setUserId(this,ub_id);//存储用户的ub_id
         TabUI.getTabUI().init();
         TabUI.getTabUI().setCurrentTabByTag("tab1");
     }
@@ -775,9 +773,9 @@ public class VipUI extends BaseUI implements View.OnClickListener {
         if (mSsoHandler != null) {
             mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
-        if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, ""))){
+        if(!TextUtils.isEmpty(SpTools.getUserId(MyApplication.getContext()))){
 
-            Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, "");
+            Clientid   =  SpTools.getUserId(MyApplication.getContext());
         }
         if (requestCode == 333 && resultCode == 333&& data != null){
             //三方登录注册回来的

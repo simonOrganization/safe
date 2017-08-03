@@ -33,7 +33,7 @@ public class H5Protocal {
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 //新闻id  type=3时是圈子id type=4是问题id
                 .addParams("cc_id", cc_id)
 //              1 新闻  2 视频   3 圈子  4问答
@@ -82,7 +82,7 @@ public class H5Protocal {
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .addParams("cc_id", cc_id)
 //              0赞  1踩
                 .addParams("type", type)
@@ -131,7 +131,7 @@ public class H5Protocal {
         PostFormBuilder builder = OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .addParams("cc_id", cc_id);
                 //0 执行   1 取消
 //              0赞  1踩
@@ -194,7 +194,7 @@ public class H5Protocal {
         PostFormBuilder builder = OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .addParams("a_id", a_id);
 //              0赞  1踩
         builder.addParams("type",type)
@@ -244,7 +244,7 @@ public class H5Protocal {
         PostFormBuilder builder = OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .addParams("cc_id", cc_id);
 //              0收藏  1取消收藏
         builder.addParams("type",type)
@@ -294,7 +294,7 @@ public class H5Protocal {
         PostFormBuilder builder = OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 //回复评论上级ID，如果一级评论为0
                 .addParams("ccp_cs_id", ccp_cs_id)
                 //新闻或视频ID
@@ -345,7 +345,7 @@ public class H5Protocal {
         PostFormBuilder builder = OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 //圈子ID
                 .addParams("qc_id", qc_id)
                 //评论内容
@@ -397,7 +397,7 @@ public class H5Protocal {
         PostFormBuilder builder = OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 //回答ID
                 .addParams("a_id", a_id)
                 //评论内容

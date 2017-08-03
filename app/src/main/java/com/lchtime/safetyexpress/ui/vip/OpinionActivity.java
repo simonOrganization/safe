@@ -229,7 +229,7 @@ public class OpinionActivity extends BaseUI implements PopupWindow.OnDismissList
                             }
                         }
 
-                        protocal.getDataInternet(advice, filesid, SpTools.getString(OpinionActivity.this, Constants.userId, ""), phone_num,new OpinionProtocal.OpinionResultListener() {
+                        protocal.getDataInternet(advice, filesid, SpTools.getUserId(OpinionActivity.this), phone_num,new OpinionProtocal.OpinionResultListener() {
                             @Override
                             public void onResponseMessage(Object result) {
                                 AdviceBean adviceBean = (AdviceBean) result;
@@ -242,7 +242,7 @@ public class OpinionActivity extends BaseUI implements PopupWindow.OnDismissList
             });
         }else {
             filesid = "";
-            protocal.getDataInternet(advice, filesid, SpTools.getString(OpinionActivity.this, Constants.userId, ""),phone_num, new OpinionProtocal.OpinionResultListener() {
+            protocal.getDataInternet(advice, filesid, SpTools.getUserId(OpinionActivity.this),phone_num, new OpinionProtocal.OpinionResultListener() {
                 @Override
                 public void onResponseMessage(Object result) {
                     AdviceBean adviceBean = (AdviceBean) result;

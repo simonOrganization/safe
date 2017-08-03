@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.MyMsgAdapter;
+import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.protocal.GetInfoProtocal;
 import com.lchtime.safetyexpress.ui.chat.hx.bean.ApplyMessageBean;
@@ -33,6 +34,7 @@ import com.lchtime.safetyexpress.ui.chat.hx.db.InviteMessgeDao;
 import com.lchtime.safetyexpress.ui.chat.hx.domain.InviteMessage;
 import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.SpTools;
 
 import java.io.Reader;
 import java.util.ArrayList;
@@ -94,7 +96,8 @@ public class NewFriendsMsgActivity extends BaseActivity implements View.OnClickL
 		if (mProtocal == null){
 			mProtocal = new GetInfoProtocal();
 		}
-		mProtocal.getApplyMessage(InitInfo.phoneNumber, new AddCommandProtocal.NormalListener() {
+		String phoneNumber = SpTools.getString(this , Constants.phoneNum);
+		mProtocal.getApplyMessage(phoneNumber, new AddCommandProtocal.NormalListener() {
 			@Override
 			public void normalResponse(Object response) {
 				if (response == null){

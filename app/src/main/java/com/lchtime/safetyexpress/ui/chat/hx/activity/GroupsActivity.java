@@ -167,7 +167,7 @@ public class GroupsActivity extends BaseActivity implements View.OnClickListener
 	 * 获取群组信息
 	 */
 	private void getGroupsData() {
-		String ub_id = SpTools.getString(GroupsActivity.this , Constants.userId , "");
+		String ub_id = SpTools.getUserId(GroupsActivity.this);
 		if(TextUtils.isEmpty(ub_id)) return;
 		if(protocal == null){
 			protocal = new GetInfoProtocal();

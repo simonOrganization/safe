@@ -120,7 +120,7 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
         if (protocal == null) {
             protocal = new CircleProtocal();
         }
-        userid = SpTools.getString(this, Constants.userId,"");
+        userid = SpTools.getUserId(this);
 
         protocal.getSingleInfoList(userid, uid, new CircleProtocal.NormalListener() {
             @Override
@@ -277,7 +277,7 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
             }
             dyClick = true;
             //订阅
-            String userid = SpTools.getString(this, Constants.userId,"");
+            String userid = SpTools.getUserId(this);
             if (TextUtils.isEmpty(userid)){
                 CommonUtils.toastMessage("请登陆！！！");
                 return;

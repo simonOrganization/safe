@@ -105,6 +105,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
             hotCircleIndex = 0;
             hot.clear();
             getHotCircleData(0);
+            InitInfo.homeRefresh = false;
         }
     }
 
@@ -222,7 +223,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
             lunbo.addAll(bean.lunbo);
             sb_home_banner.notifiDataHasChanged();
         }
-        String ub_id = SpTools.getString(this, Constants.userId, "");
+        String ub_id = SpTools.getUserId(this);
         picProtocal.getFirstPic(ub_id, new PictureAdvantage.HotNewsListener() {
             @Override
             public void hotNewsResponse(String respose) {
@@ -522,7 +523,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     private HotCirclesProtocal hotCirclesProtocal;
 
     private void getHotCircleData(final int page) {
-        ub_id = SpTools.getString(this, Constants.userId, "");
+        ub_id = SpTools.getUserId(this);
 
         if (hotCirclesProtocal == null) {
             hotCirclesProtocal = new HotCirclesProtocal();

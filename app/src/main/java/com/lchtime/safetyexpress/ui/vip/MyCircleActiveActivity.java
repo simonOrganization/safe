@@ -79,7 +79,7 @@ public class MyCircleActiveActivity extends BaseUI {
         if (protocal == null) {
             protocal = new CircleProtocal();
         }
-        userid = SpTools.getString(this, Constants.userId,"");
+        userid = SpTools.getUserId(this);
         protocal.getMyCircleList(userid,"", new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {

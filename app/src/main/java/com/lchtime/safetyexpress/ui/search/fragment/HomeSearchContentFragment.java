@@ -90,7 +90,7 @@ public class HomeSearchContentFragment extends Fragment {
         mType = activity.mType;
 
         //初始化历史搜索记录
-        localContent = SpTools.getString(activity,LOCAL_CONTENT_KEY + mType,"");
+        localContent = SpTools.getString(activity , LOCAL_CONTENT_KEY + mType);
 
         String[] arr = localContent.split(",");
         for (String word:arr) {
@@ -147,7 +147,7 @@ public class HomeSearchContentFragment extends Fragment {
     public void addLoacalSearchView(String key){
         //先保存
         //去重
-        localContent = SpTools.getString(activity,LOCAL_CONTENT_KEY + mType,"");
+        localContent = SpTools.getString(activity,LOCAL_CONTENT_KEY + mType);
         String[] arr = localContent.split(",");
         boolean equal = false;
         for (String s:arr){

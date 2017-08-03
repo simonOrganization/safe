@@ -76,7 +76,7 @@ public class NewsFragment extends BaseFragment {
                     .post()
                     .url(url)
                     .addParams("module", 0 + "")
-                    .addParams("ub_id", SpTools.getString(getContext(), Constants.userId, ""))
+                    .addParams("ub_id", SpTools.getUserId(getContext()))
                     .addParams("type", type)
                     .addParams("del_ids", del_ids)
                     .build()

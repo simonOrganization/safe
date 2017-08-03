@@ -67,7 +67,7 @@ public class BindZhiFuBaoActivity extends BaseUI implements View.OnClickListener
         if (protocal == null){
             protocal = new VipProtocal();
         }
-        userid = SpTools.getString(this, Constants.userId,"");
+        userid = SpTools.getUserId(this);
         titleText = getIntent().getStringExtra("title");
         if ("更换提现账号".equals(titleText)) {
             isChange = true;

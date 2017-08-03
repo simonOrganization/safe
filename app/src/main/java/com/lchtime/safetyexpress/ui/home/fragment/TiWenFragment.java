@@ -135,7 +135,7 @@ public class TiWenFragment extends BaseFragment {
                     .url(url)
                     .addParams("page", page)
                     .addParams("type", "2")
-                    .addParams("ub_id", SpTools.getString(getContext(), Constants.userId, ""));
+                    .addParams("ub_id", SpTools.getUserId(getContext()));
 
             if (!TextUtils.isEmpty(otherid)){
                 builder.addParams("otherid",otherid);

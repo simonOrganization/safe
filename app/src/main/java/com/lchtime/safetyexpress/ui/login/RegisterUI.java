@@ -26,7 +26,6 @@ import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
-import static com.lchtime.safetyexpress.bean.InitInfo.phoneNumber;
 
 /**
  * 注册
@@ -123,7 +122,7 @@ public class RegisterUI extends BaseUI {
                 public void onResponseMessage(String code) {
                     if (!TextUtils.isEmpty(code)) {
                         //存储用户的ub_id
-                        SpTools.setString(RegisterUI.this, Constants.userId, code);
+                        SpTools.setUserId(RegisterUI.this , code);
                         userId = code;
                         getVipInfo();
                         //显示不全信息对话框
@@ -142,7 +141,6 @@ public class RegisterUI extends BaseUI {
                                 });
                             }
                         }, 1000);
-                        InitInfo.isShowed = false;
                         isLogin = false;
                         backgroundAlpha(1f);
                         pb_progress.setVisibility(View.GONE);
@@ -211,7 +209,7 @@ public class RegisterUI extends BaseUI {
             gson = new Gson();
         }
         if (TextUtils.isEmpty(userId)){
-            userId = SpTools.getString(this,Constants.userId,"");
+            userId = SpTools.getUserId(mContext);
         }
 
         //登录操作
@@ -221,10 +219,7 @@ public class RegisterUI extends BaseUI {
                 if(!TextUtils.isEmpty(code)) {
                     VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
                     if (vipInfoBean != null) {
-                        phoneNumber = vipInfoBean.user_detail.ub_phone;
-                        InitInfo.vipInfoBean = vipInfoBean;
-                        InitInfo.isLogin = true;
-                        SpTools.setString(RegisterUI.this, Constants.nik_name,vipInfoBean.user_detail.ud_nickname);
+                        SpTools.saveUser(mContext , vipInfoBean);
                     }
                 }
             }

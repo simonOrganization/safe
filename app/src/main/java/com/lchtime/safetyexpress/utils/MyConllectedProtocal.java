@@ -30,7 +30,7 @@ public class MyConllectedProtocal {
                 .post()
                 .url(url)
                 .addParams("module", module + "")
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .addParams("type", type)
                 .addParams("del_ids", del_ids)
                 .build()

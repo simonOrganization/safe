@@ -41,14 +41,14 @@ public class UpdataImageUtils {
         mListener = updataPicListener;
         final Context context = MyApplication.getContext();
         File file = new File(filePath);
-        String id = SpTools.getString(context , Constants.userId ,"");
+        String ub_id = SpTools.getUserId(context);
 
         OkHttpUtils.post()
                 .url(context.getResources().getString(R.string.service_host_address).concat(context.getResources().getString(R.string.upload)))
                 .addFile("image[]",file.getName(),file)
                 .addParams("sid", "")
                 .addParams("index", (index++) + "")
-                .addParams("ub_id", SpTools.getString(context , Constants.userId ,""))
+                .addParams("ub_id", ub_id)
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -73,7 +73,7 @@ public class UpdataImageUtils {
  * */
     public void upMuchDataPic(List<File> list, final DialogUtil mDialog , UpdataPicListener updataPicListener){
         mListener = updataPicListener;
-        String ub_id = SpTools.getString(MyApplication.getContext(), Constants.userId ,"");
+        String ub_id = SpTools.getUserId(MyApplication.getContext());
         final Context context = MyApplication.getContext();
 
         //if(list.size() <= 3){
@@ -188,7 +188,7 @@ public class UpdataImageUtils {
                 .addFile("image[]" , video_pic.getName() + ".jpg" , video_pic)
                 .addParams("sid", "")
                 .addParams("index", (index++) + "")
-                .addParams("ub_id", SpTools.getString(context , Constants.userId ,""))
+                .addParams("ub_id", SpTools.getUserId(context))
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {

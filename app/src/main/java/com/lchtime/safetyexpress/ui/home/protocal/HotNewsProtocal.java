@@ -33,7 +33,7 @@ public class HotNewsProtocal {
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
                 .addParams("type", type)
                 .build()
                 .execute(new StringCallback() {

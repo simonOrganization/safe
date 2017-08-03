@@ -57,7 +57,7 @@ public class MyMsgAdapter extends ArrayAdapter<ApplyMessageBean.ApplyListBean> {
 		this.objects = objects;
 		this.context = context;
 		messgeDao = new InviteMessgeDao(context);
-		userid = SpTools.getString(MyApplication.getContext(), Constants.userId,"");
+		userid = SpTools.getUserId(MyApplication.getContext());
 		initPop();
 	}
 
@@ -189,9 +189,10 @@ public class MyMsgAdapter extends ArrayAdapter<ApplyMessageBean.ApplyListBean> {
 
 	private void accept(final ApplyMessageBean.ApplyListBean msg, final CheckBox checkBox) {
 
+		String phoneNumber = SpTools.getString(context , Constants.phoneNum);
 		if ("0".equals(msg.qun)) {
 			//如果不是群，接收好友
-			mProtocal.getAccept(InitInfo.phoneNumber, msg.hx_account, new AddCommandProtocal.NormalListener() {
+			mProtocal.getAccept(phoneNumber, msg.hx_account, new AddCommandProtocal.NormalListener() {
 				@Override
 				public void normalResponse(Object response) {
 					if (response == null) {
@@ -219,7 +220,7 @@ public class MyMsgAdapter extends ArrayAdapter<ApplyMessageBean.ApplyListBean> {
 				checkBox.setChecked(false);
 				return;
 			}
-			mProtocal.getAcceptQun("1", userid, msg.groupid, InitInfo.phoneNumber, msg.hx_account, new AddCommandProtocal.NormalListener() {
+			mProtocal.getAcceptQun("1", userid, msg.groupid, phoneNumber, msg.hx_account, new AddCommandProtocal.NormalListener() {
 				@Override
 				public void normalResponse(Object response) {
 					if (response == null){

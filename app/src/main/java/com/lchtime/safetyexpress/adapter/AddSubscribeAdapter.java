@@ -67,7 +67,7 @@ public class AddSubscribeAdapter extends RecyclerView.Adapter {
                     myHolder.add_subscirbe_item_but.setChecked("1".equals(bean.is_dy));
                     return;
                 }
-                String userid = SpTools.getString(context, Constants.userId,"");
+                String userid = SpTools.getUserId(context);
                 if (TextUtils.isEmpty(userid)){
                     CommonUtils.toastMessage("请登陆！！！");
                     myHolder.add_subscirbe_item_but.setChecked("1".equals(bean.is_dy));
