@@ -577,7 +577,7 @@ public class LoginUI extends BaseUI {
         if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, ""))){
 
              Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, "");
-            Log.i("qaz", "login: 5" + Clientid);
+
         }
         if (requestCode == 333 && resultCode == 333&& data != null){
             //三方登录注册回来的

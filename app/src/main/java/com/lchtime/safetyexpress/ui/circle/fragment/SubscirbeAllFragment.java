@@ -166,7 +166,7 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
         //0为推荐1为全部
         String action = "1";
         String page = request_page;
-        Log.i("qaz", "refreshData: 2" + ub_id + hy + gw + addr + action );
+
         protocal.getAddDyData(ub_id,hy, gw, addr, action, page, new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
@@ -395,7 +395,7 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
         String addr = request_addr;
         //0为推荐1为全部
         String action = "1";
-        Log.i("qaz", "refreshData: 3" + ub_id + hy + gw + addr + action );
+
         protocal.getAddDyData(ub_id, hy, gw, addr, action, page, new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {

@@ -331,5 +331,7 @@ public class MyConllected extends BaseUI {
         }
 
     }
-
+    public  void refreshItemData( String qc_id ){
+        ((CircleFragment) FragmentFactory.createFragment(2)).refreshItemData(qc_id);
+    }
 }

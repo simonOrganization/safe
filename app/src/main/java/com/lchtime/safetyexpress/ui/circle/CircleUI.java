@@ -164,14 +164,6 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                final String code = intent.getStringExtra("code" );
                 if (!TextUtils.isEmpty(code)) {
                     initData();
-                    /*new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                        //    Log.i("qaz", "run: " + "更新ui");
-                            initData();
-                            //refreshData("1");
-                        }
-                    }).start();*/
                 }
             }
         }
@@ -614,7 +606,6 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         //排序类型
         String order = request_order;
 
-       // Log.i("qaz", "refreshData: 2" + ud_addr + ud_post + ud_post + ud_profession + type );
         protocal.getCircleSelectedList(ub_id, page, type, ud_profession, ud_post, ud_addr, order, new CircleProtocal.CircleListener() {
             @Override
             public void circleResponse(CircleBean response) {
@@ -747,7 +738,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 public void setSpinerInterface( int position) {
                     spinerPopWindow.dismiss();
                     request_order = position + "";
-                   // Log.i("qaz", "setSpinerInterface: " + request_order );
+
                     //请求筛选过的数据
                     refreshData("1");
 

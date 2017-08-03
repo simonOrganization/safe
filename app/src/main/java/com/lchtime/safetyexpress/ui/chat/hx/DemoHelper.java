@@ -9,7 +9,6 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
-
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMContactListener;
@@ -26,7 +25,6 @@ import com.hyphenate.chat.EMMessage.Status;
 import com.hyphenate.chat.EMMessage.Type;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.chat.EMTextMessageBody;
-
 import com.hyphenate.easeui.bean.ContactBean;
 import com.hyphenate.easeui.bean.EaseInitBean;
 import com.hyphenate.easeui.controller.EaseUI;
@@ -34,7 +32,6 @@ import com.hyphenate.easeui.controller.EaseUI.EaseEmojiconInfoProvider;
 import com.hyphenate.easeui.controller.EaseUI.EaseSettingsProvider;
 import com.hyphenate.easeui.controller.EaseUI.EaseUserProfileProvider;
 import com.hyphenate.easeui.domain.EaseEmojicon;
-import com.hyphenate.easeui.domain.EaseEmojiconGroupEntity;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
 import com.hyphenate.easeui.model.EaseNotifier;
@@ -43,7 +40,6 @@ import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.EMLog;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.ui.TabUI;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.ChatActivity;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.VideoCallActivity;
@@ -391,6 +387,7 @@ public class DemoHelper {
                 if (error == EMError.USER_REMOVED) {
                     onUserException(Constant.ACCOUNT_REMOVED);
                 } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
+
                     onUserException(Constant.ACCOUNT_CONFLICT);
                 } else if (error == EMError.SERVER_SERVICE_RESTRICTED) {
                     onUserException(Constant.ACCOUNT_FORBIDDEN);

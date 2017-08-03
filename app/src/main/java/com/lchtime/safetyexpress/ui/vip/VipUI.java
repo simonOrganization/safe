@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -779,7 +778,6 @@ public class VipUI extends BaseUI implements View.OnClickListener {
         if(!TextUtils.isEmpty(SpTools.getString(MyApplication.getContext() , clientId, ""))){
 
             Clientid   =  SpTools.getString(MyApplication.getContext() , clientId, "");
-            Log.i("qaz", "login: 4" + Clientid);
         }
         if (requestCode == 333 && resultCode == 333&& data != null){
             //三方登录注册回来的

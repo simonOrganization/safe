@@ -37,8 +37,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Map;
 
-import static com.igexin.sdk.GTServiceManager.context;
-
 public class UserProfileActivity extends BaseActivity implements OnClickListener{
 	
 	private static final int REQUESTCODE_PICK = 1;
@@ -145,7 +143,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.user_head_avatar : //头像跳转个人主页
-				Log.i("qaz", "-------------"+    uid);
+
 
 				Intent inti = new Intent(this, SingleInfoUI.class);
 				inti.putExtra("uid", uid);
@@ -354,7 +352,6 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 								.into(headAvatar);
 					}
 					uid = bean.ud_ub_id;
-					Log.i("qaz", "normalResponse: "+ uid  + "----"+mUserid );
 					tvUsername.setText(bean.ud_nickname);
 					tvSex.setText(bean.ud_sex);
 					tvHy.setText(bean.ud_profession);

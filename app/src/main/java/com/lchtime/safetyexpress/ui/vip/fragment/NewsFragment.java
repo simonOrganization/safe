@@ -2,7 +2,6 @@ package com.lchtime.safetyexpress.ui.vip.fragment;
 
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 
 import com.lchtime.safetyexpress.H5DetailUI;
@@ -83,8 +82,7 @@ public class NewsFragment extends BaseFragment {
                     .build()
                     .execute();
 
-            Log.i("cui","getNewsList=="+response);
-            Log.i("qaz", "getNewsList: "+ type + "----"+ del_ids);
+
             String myResponse = response.body().string();
             NewsListRes newsListRes = (NewsListRes) JsonUtils.stringToObject(myResponse,NewsListRes.class);
             if(newsListRes.getResult().getCode().equals("10")){

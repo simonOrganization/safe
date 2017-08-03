@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.VideoH5Activity;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.bean.Result;
@@ -30,6 +31,7 @@ import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.vip.MyCircleActiveActivity;
+import com.lchtime.safetyexpress.ui.vip.MyConllected;
 import com.lchtime.safetyexpress.ui.vip.fragment.CircleFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ImageUtils;
@@ -42,6 +44,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 /**
  * Created by yxn on 2017/4/20.
@@ -62,6 +65,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
     private String action;
 
     private SparseArray<Integer> mTextStateList;
+    private String UPDATE_TEXT = "";
 
 
     public CircleAdapter(Activity context, List<QzContextBean> circleOneList) {
@@ -143,6 +147,17 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
                 Picasso.with(context).load(bean.pic.get(0))
                         .transform(ImageUtils.getTransformation(holder.circle_item_shipin))
                         .into(holder.circle_item_shipin);
+                holder.circle_item_shipin_1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, VideoH5Activity.class);
+                        intent.putExtra("newsId", bean.qc_id);
+                        intent.putExtra("type","circle");
+                       // intent.putExtra("videoUrl" , bean.qc_video);
+                        context.startActivity(intent);
+                        JCVideoPlayer.releaseAllVideos();
+                    }
+                });
             } else {
                 holder.circle_item_shipin_1.setVisibility(View.GONE);
                 holder.circle_item_image_rc.setVisibility(View.GONE);
@@ -337,18 +352,20 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
 
     private void setGreate(final CircleHodler holder, final QzContextBean bean, final CircleProtocal protocal) {
         holder.circle_item_great.setText(bean.qc_zc);
+        Log.i("qaz", "setGreate: " + bean.qc_zc + "bean.qc_zc");
         holder.iv_circle_item_great.setChecked("1".equals(bean.zan));
         //点赞逻辑监听
         holder.iv_circle_item_great.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 greate = !"1".equals(bean.zan);
-                Log.i("qaz", "onClick: " + bean.qc_zc +"-----"+ bean.zan);
                 if (greate) {
                     action = "0";
                 } else {
                     action = "1";
                 }
+                Log.i("qaz", "onClick: "+action );
+                Log.i("qaz", "onClick: "+bean.zan  + "bean.zan");
                 String userid = SpTools.getString(context, Constants.userId, "");
                 if (TextUtils.isEmpty(userid)) {
                     CommonUtils.toastMessage("没有登陆！！");
@@ -366,6 +383,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
                                 return;
                             }
                             Result result = (Result) response;
+                            Log.i("qaz", "normalResponse: " + result.dzNum + "------" + result.result.code);
                             if (!result.result.code.equals("10")) {
                                // holder.iv_circle_item_great.setChecked("1".equals(bean.zan));
                                 if (context instanceof CircleUI) {
@@ -381,7 +399,10 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
                                     ((CircleUI) context).refreshItemData(bean.qc_id);
                                 } else if (context instanceof SubscribActivity) {
                                     ((SubscribActivity) context).refreshItemData(bean.qc_id);
+                                } else if (context instanceof MyConllected){
+                                    ((MyConllected) context).refreshItemData(bean.qc_id);
                                 }
+
                             }
                            // holder.iv_circle_item_great.setClickable("1".equals(bean.zan));
                             CommonUtils.toastMessage(result.result.getInfo());
@@ -443,6 +464,8 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
                                     ((CircleUI) context).refreshItemData(bean.qc_id);
                                 } else if (context instanceof SubscribActivity) {
                                     ((SubscribActivity) context).refreshItemData(bean.qc_id);
+                                }else if (context instanceof MyConllected){
+                                    ((MyConllected) context).refreshItemData(bean.qc_id);
                                 }
                             }
                            // holder.iv_circle_item_low.setClickable(true);

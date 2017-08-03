@@ -58,7 +58,6 @@ public class SpinerPopWindow extends PopupWindow {
         recyclerView = (RecyclerView) view.findViewById(R.id.spiner_pop_rc);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
 
-        Log.i("qaz","setLayoutManager==="+type);
         spinerAdapter = new SpinerAdapter(mDatas,mContext,type);
         spinerAdapter.setOnItemSelectLs(new SpinerAdapter.IOnItemSelectListener() {
             @Override

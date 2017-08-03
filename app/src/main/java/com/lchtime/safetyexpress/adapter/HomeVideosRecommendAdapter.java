@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.VideoH5Activity;
 import com.lchtime.safetyexpress.bean.NewsBean;
-import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.ui.home.HomeVideosUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.squareup.picasso.Picasso;
@@ -65,7 +64,7 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
 
         myHolder.tv_from.setText(bean.cc_from);
         myHolder.tv_comment.setText(bean.plNum);
-
+        myHolder.tv_time1.setText(bean.video_time);
         if (!TextUtils.isEmpty(bean.cc_datetime)) {
             myHolder.tv_time2.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.cc_datetime)));
         }

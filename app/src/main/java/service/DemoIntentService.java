@@ -68,22 +68,22 @@ public class DemoIntentService extends GTIntentService {
         String cid = msg.getClientId();
         // 第三方回执调用接口，actionid范围为90000-90999，可根据业务场景执行
         boolean result = PushManager.getInstance().sendFeedbackMessage(context, taskid, messageid, 90001);
-        Log.d("qaz", "call sendFeedbackMessage = " + (result ? "success" : "failed"));
+     //   Log.d("qaz", "call sendFeedbackMessage = " + (result ? "success" : "failed"));
 
-        Log.d("qaz", "onReceiveMessageData -> " + "appid = " + appid + "\ntaskid = " + taskid + "\nmessageid = " + messageid + "\npkg = " + pkg
-                + "\ncid = " + cid);
+      //  Log.d("qaz", "onReceiveMessageData -> " + "appid = " + appid + "\ntaskid = " + taskid + "\nmessageid = " + messageid + "\npkg = " + pkg
+            //    + "\ncid = " + cid);
 
       /*  String payload = new String(msg.getPayload());
         jumpActivity(payload);
 */
         PushManager.getInstance().getClientid(MyApplication.getContext());
         if (payload == null) {
-            Log.i("qazz", "receiver payload = null");
+          //  Log.i("qazz", "receiver payload = null");
         } else {
              data = new String(payload);
             //接到通知 跳转到指定的activity
-            Log.i("qazz", "receiver payload " +payload);
-            Log.i("qaz", "receiver payload = null  1" + data);
+           // Log.i("qazz", "receiver payload " +payload);
+           // Log.i("qaz", "receiver payload = null  1" + data);
             jumpActivity(data);
 
             // 测试消息为了观察数据变化
