@@ -21,7 +21,6 @@ import android.widget.TextView;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.VideoH5Activity;
-import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
@@ -71,7 +70,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
     public CircleAdapter(Activity context, List<QzContextBean> circleOneList) {
         this.context = context;
         this.circleOneList = circleOneList;
-        ub_id = SpTools.getString(context, Constants.userId, "");
+        ub_id = SpTools.getUserId(context);
         mTextStateList = new SparseArray<>();
     }
 
@@ -189,7 +188,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
         holder.circle_item_subscribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userid = SpTools.getString(context, Constants.userId, "");
+                String userid = SpTools.getUserId(context);
                 if (TextUtils.isEmpty(userid)) {
                     CommonUtils.toastMessage("请登陆！！！");
                     holder.circle_item_subscribe.setChecked("1".equals(bean.is_dy));
@@ -323,7 +322,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
      */
     private void deleteCircle(final int position, String qc_id, CircleProtocal protocal) {
         //MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);
-        String userid = SpTools.getString(context, Constants.userId, "");
+        String userid = SpTools.getUserId(context);
         if (TextUtils.isEmpty(userid)) {
             CommonUtils.toastMessage("没有登陆！！");
             //holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
@@ -364,9 +363,12 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
                 } else {
                     action = "1";
                 }
-               // Log.i("qaz", "onClick: "+action );
-                //Log.i("qaz", "onClick: "+bean.zan  + "bean.zan");
-                String userid = SpTools.getString(context, Constants.userId, "");
+
+
+                Log.i("qaz", "onClick: "+action );
+                Log.i("qaz", "onClick: "+bean.zan  + "bean.zan");
+                String userid = SpTools.getUserId(context);
+
                 if (TextUtils.isEmpty(userid)) {
                     CommonUtils.toastMessage("没有登陆！！");
                     holder.iv_circle_item_great.setChecked("1".equals(bean.zan));
@@ -432,7 +434,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
                 } else {
                     action = "1";
                 }
-                String userid = SpTools.getString(context, Constants.userId, "");
+                String userid = SpTools.getUserId(context);
                 if (TextUtils.isEmpty(userid)) {
                     CommonUtils.toastMessage("没有登陆！！");
                     holder.iv_circle_item_low.setChecked("1".equals(bean.cai));
