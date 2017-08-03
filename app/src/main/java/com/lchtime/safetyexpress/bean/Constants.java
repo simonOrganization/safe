@@ -6,7 +6,7 @@ package com.lchtime.safetyexpress.bean;
 
 public class Constants {
 
-    //public static String userId = "userId";
+    public static String userId = "userId";
     public static String phoneNum = "ub_phone";
     public static String password = "pwd";
     public static String ud_profession = "ud_profession";
