@@ -2,12 +2,10 @@ package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 
 import com.lchtime.safetyexpress.R;
 
@@ -63,7 +61,6 @@ public class SpinerAdapter extends RecyclerView.Adapter<SpinerAdapter.SpinerHold
         if (type.equals(pos)) {
             holder.spiner_tv.setTextColor(mContext.getResources().getColor(R.color.red));
         }
-        Log.i("qaz", "setSpinerInterface: " +type + pos);
        /* if(vector.get(position) ){
             holder.spiner_tv.setTextColor(mContext.getResources().getColor(R.color.red));
             Log.i("qaz", "setSpinerInterface: 红色" );

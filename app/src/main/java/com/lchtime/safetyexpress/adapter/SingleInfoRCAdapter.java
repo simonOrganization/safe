@@ -92,7 +92,6 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                     @Override
                     public void onItemClick(View v, int pos) {
 
-                        Log.i("qaz", "onItemClick: "+ bean.pic.get(pos));
                         Intent intent = new Intent(context, CirclePhone.class);
                         intent.putExtra("url",bean.pic);
                         intent.putExtra("pos", pos);

@@ -170,7 +170,7 @@ public class CircleProtocal {
             listener.normalResponse(null);
             return;
         }
-        Log.i("qaz", "onClick: 点赞1" + ub_id  + "---ub_id----" + qc_id  +"-----qc_id----"+ qc_agr  + "----qc_agr----" + qc_aga
+        Log.i("qaz", "onClick: 点赞" + ub_id  + "---ub_id----" + qc_id  +"-----qc_id----"+ qc_agr  + "----qc_agr----" + qc_aga
                 +"-----qc_aga----"+ action  + "------action" );
 
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)

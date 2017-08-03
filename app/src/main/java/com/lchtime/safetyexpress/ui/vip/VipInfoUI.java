@@ -31,7 +31,6 @@ import com.lchtime.safetyexpress.bean.ProfessionBean;
 import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
-import com.lchtime.safetyexpress.ui.TabUI;
 import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 import com.lchtime.safetyexpress.utils.BitmapUtils;
 import com.lchtime.safetyexpress.utils.CommonUtils;
@@ -766,8 +765,8 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
      */
     @Override
     protected void clickEvent() {
-        Log.i("qaz", "clickEvent: "  + CheckUpdataBean.ud_addr +CheckUpdataBean.ud_post
-                + CheckUpdataBean.ud_profession);
+        /*Log.i("qaz", "clickEvent: "  + CheckUpdataBean.ud_addr +CheckUpdataBean.ud_post
+                + CheckUpdataBean.ud_profession);*/
        if (TextUtils.isEmpty(CheckUpdataBean.ud_addr)||TextUtils.isEmpty(CheckUpdataBean.ud_post)||TextUtils.isEmpty(CheckUpdataBean.ud_profession)){
            Toast.makeText(this,"填写行业、岗位、地址三个必填选项才可上传",Toast.LENGTH_SHORT).show();
            return;

@@ -1,27 +1,14 @@
 package com.lchtime.safetyexpress.ui.circle.protocal;
 
-import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.PhotoAdapter;
-import com.lchtime.safetyexpress.adapter.PictureSlidePagerAdapter;
-import com.lchtime.safetyexpress.ui.circle.fragment.PictureSlideFragment;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -46,7 +33,6 @@ public class CirclePhone extends AppCompatActivity {
         setTitle("图片预览");
         urlList = getIntent().getStringArrayListExtra("url");
         pos = getIntent().getIntExtra("pos" , 0);
-        Log.i("qaz", "onCreate1: "+pos);
         if(urlList != null){
             for(String imageUrl : urlList){
                 PhotoView photoView = new PhotoView(CirclePhone.this);

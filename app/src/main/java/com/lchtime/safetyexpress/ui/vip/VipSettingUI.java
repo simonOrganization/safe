@@ -152,7 +152,6 @@ public class VipSettingUI extends BaseUI {
                 final String code = intent.getStringExtra("code" );
                 if (!TextUtils.isEmpty(code)) {
 
-                    Log.i("qaz", "onReceive: " + "2----------------");
                 }
             }
         }

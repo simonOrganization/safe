@@ -159,11 +159,7 @@ public class ConversationListFragment extends MyConversationListFragment {
         super.onConnectionDisconnected();
         if (NetUtils.hasNetwork(getActivity())){
 
-            Intent action = new Intent();
-            action.setAction("ACTION_LOGIB_SUCEESS");
-            action.putExtra("code", UPDATE_TEXT);
-            LocalBroadcastManager.getInstance(getContext()).sendBroadcast(action);
-            Log.i("qaz", "onConnectionDisconnected: " + "--------------");
+
          errorText.setText(R.string.can_not_connect_chat_server_connection);
         } else {
           errorText.setText(R.string.the_current_network);

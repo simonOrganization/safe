@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.bslee.threelogin.api.ThirdWeiXinLoginApi;
@@ -46,7 +45,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 	//授权成功失败回调
 	@Override
 	public void onResp(BaseResp resp) {
-		Log.i("qaz","   onResp 1   :"+resp.errCode);
+
 		//授权
 		if (resp.getType() == ConstantsAPI.COMMAND_SENDAUTH) {
 			String code = ((SendAuth.Resp) resp).code;
