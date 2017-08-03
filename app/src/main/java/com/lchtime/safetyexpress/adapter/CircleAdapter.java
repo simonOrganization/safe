@@ -364,8 +364,8 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
                 } else {
                     action = "1";
                 }
-                Log.i("qaz", "onClick: "+action );
-                Log.i("qaz", "onClick: "+bean.zan  + "bean.zan");
+               // Log.i("qaz", "onClick: "+action );
+                //Log.i("qaz", "onClick: "+bean.zan  + "bean.zan");
                 String userid = SpTools.getString(context, Constants.userId, "");
                 if (TextUtils.isEmpty(userid)) {
                     CommonUtils.toastMessage("没有登陆！！");

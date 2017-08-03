@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -139,6 +140,8 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
     private String mUb_id;
     private String ub_id;       //用户id
     public static String qc_id;
+    private String action;
+    private boolean greate;
     //private InsideWebChromeClient mInsideWebChromeClient;
 
     @Override
@@ -849,7 +852,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
         if (TextUtils.isEmpty(ub_id)) {
             ub_id = SpTools.getString(this, Constants.userId, "");
         }
-
+        Log.i("qaz", "getZan: "+ "-------------");
         if ("news".equals(type) || "video".equals(type)){
             //如果是新闻或者是视频
             requestNewsData(cb_news_detail_zan,"0");
@@ -859,10 +862,10 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
                 cb_news_detail_zan.setChecked(false);
                 return;
             }
-            if (!cb_news_detail_zan.isChecked()){
+            /*if (!cb_news_detail_zan.isChecked()){
                 cb_news_detail_zan.setChecked(true);
                 //return;
-            }
+            }*/
             requestNewsDataCicle(cb_news_detail_zan,"0");
 
         }else if (("wenda".equals(type))){
@@ -892,10 +895,10 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
                 cb_news_detail_cai.setChecked(false);
                 return;
             }
-            if (!cb_news_detail_cai.isChecked()){
+           /* if (!cb_news_detail_cai.isChecked()){
                 cb_news_detail_cai.setChecked(true);
                 return;
-            }
+            }*/
             requestNewsDataCicle(cb_news_detail_cai,"1");
 
         }else if (("wenda".equals(type))){
@@ -966,7 +969,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
             public void H5Response(String response) {
                 if (response == null){
                     CommonUtils.toastMessage("操作失败，请重试！");
-                    cb.setChecked(!cb.isChecked());
+                  //  cb.setChecked(!cb.isChecked());
                     return;
                 }
                 H5BottomBean bean = gson.fromJson(response,H5BottomBean.class);
@@ -1002,8 +1005,14 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
      * @param type
      */
     private void requestNewsDataCicle(final CheckBox cb, final String type) {
-        //type 0是赞
-        protocal.setQZDzDc(cc_id, type, new H5Protocal.H5Listener() {
+        action = "0";
+        if (!cb.isChecked()){
+            //取消赞
+            action = "1";
+        }
+        //type 0赞  1踩
+        Log.i("qaz", "requestNewsDataCicle: " +  action);
+        protocal.setQZDzDc(cc_id, type, action , new H5Protocal.H5Listener() {
             @Override
             public void H5Response(String response) {
                 if (TextUtils.isEmpty(response)){
@@ -1013,8 +1022,13 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
                 }
                 H5BottomBean bean = gson.fromJson(response,H5BottomBean.class);
                 if ("10".equals(bean.result.code)){
-                    //CommonUtils.toastMessage(bean.result.info);
-                    cb.setChecked(true);
+                    CommonUtils.toastMessage(bean.result.info);
+                    if ( action.equals("1")) {
+                        cb.setChecked(false);
+                    }else{
+                        cb.setChecked(true);
+                    }
+
                     if ("0".equals(type)){
                         //赞
                         if (Integer.parseInt(bean.dzNum) > 0){
@@ -1033,7 +1047,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
                     }
                 }else {
                     CommonUtils.toastMessage(bean.result.info);
-                    cb.setChecked(!cb.isChecked());
+                    cb.setChecked(cb.isChecked());
                 }
             }
         });

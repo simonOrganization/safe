@@ -26,7 +26,7 @@ import static android.R.attr.type;
 public class GetInfoProtocal {
     public void getInfo( String ub_id,String type,String idOrPhone,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -70,7 +70,7 @@ public class GetInfoProtocal {
 
     public void getQuners( String ub_id,String groupid,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -109,7 +109,7 @@ public class GetInfoProtocal {
 
     public void getCreateGrounp( String ub_id,String groupname,String desc,String publics,String members,String photo,String profession,String addr,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -156,7 +156,7 @@ public class GetInfoProtocal {
 
     public void  getUpdateGrounp( String ub_id,String groupname,String desc,String photo,String profession,String groupid,String addr,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -208,7 +208,7 @@ public class GetInfoProtocal {
      */
     public void getDeleteGrounp( String ub_id,String groupid,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -251,7 +251,7 @@ public class GetInfoProtocal {
 
     public void getDelMember( String ub_id,String groupid,String sns_quser,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -290,7 +290,7 @@ public class GetInfoProtocal {
 
     public void getApply( String username,String groupid,String action,String message,String targetname,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -334,7 +334,7 @@ public class GetInfoProtocal {
 
     public void getDeleteFriends(String owner_username,String friend_username,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -371,7 +371,7 @@ public class GetInfoProtocal {
 
     public void getApplyMessage(String username,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -407,7 +407,7 @@ public class GetInfoProtocal {
 
     public void getApplyNum(String username,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -443,7 +443,7 @@ public class GetInfoProtocal {
 
     public void getAccept( String owner_username,String friend_username,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -479,7 +479,7 @@ public class GetInfoProtocal {
 
     public void getAcceptQun( String type,String ub_id,String groupid,String sns_quser,String friend_username,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -521,7 +521,7 @@ public class GetInfoProtocal {
 
     public void getDelapply( String applyid,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -556,7 +556,7 @@ public class GetInfoProtocal {
 
     public void getUp( String ub_id, String action,String account,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -600,7 +600,7 @@ public class GetInfoProtocal {
      */
     public void getJoinGroups(String ub_id , final AddCommandProtocal.NormalListener listener){
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
