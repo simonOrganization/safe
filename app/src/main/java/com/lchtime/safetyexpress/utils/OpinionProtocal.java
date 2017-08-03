@@ -30,7 +30,7 @@ public class OpinionProtocal {
     public OpinionResultListener mListener;
     public void getDataInternet(String advice,String filedid,String userID,String phone,OpinionResultListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         this.mListener = listener;

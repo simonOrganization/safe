@@ -60,7 +60,7 @@ public class LoginInternetRequest {
     public static void login(String phonenumber, final String password, ForResultListener listener){
         mListener = listener;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("");
             return;
         }
@@ -93,7 +93,7 @@ public class LoginInternetRequest {
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-//                Log.d("0000---------------0000",e.getMessage());
+
                 SpTools.setString(MyApplication.getContext(), Constants.userId, null);//存储用户的ub_id
                 SpTools.setString(MyApplication.getContext(), Constants.phoneNum, null);//存储用户的手机号码
                 SpTools.setString(MyApplication.getContext(), password, null);//存储用户的密码
@@ -139,7 +139,7 @@ public class LoginInternetRequest {
     public static void getHXinfo(ForResultListener listener){
         mListener = listener;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("");
             return;
         }
@@ -196,7 +196,7 @@ public class LoginInternetRequest {
         mListener = listener;
         mTextView = view;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("net");
             return;
         }
@@ -260,7 +260,7 @@ public class LoginInternetRequest {
         mListener = listener;
         mTextView = view;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("");
             return;
         }
@@ -355,7 +355,7 @@ public class LoginInternetRequest {
         mListener = listener;
         mTextView = view;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("");
             return;
         }
@@ -450,7 +450,7 @@ public class LoginInternetRequest {
      */
     public static void reviseCode(String newpassword, String confirmpassword, EditText editnewpass, ForResultListener listener) {
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         mListener = listener;
@@ -513,7 +513,7 @@ public class LoginInternetRequest {
      */
     public static void ChangePhone(String code, String ub_id, String phoneNum, ForResultListener listener) {
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         mListener = listener;
@@ -563,7 +563,7 @@ public class LoginInternetRequest {
         mListener = listener;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             InitInfo.isLogin = false;
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+          //  CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("");
             return;
         }
@@ -616,7 +616,7 @@ public class LoginInternetRequest {
         //mListener = listener;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             InitInfo.isLogin = false;
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             if (listener != null){
                 listener.onResponseMessage("");
             }
@@ -673,7 +673,7 @@ public class LoginInternetRequest {
         //mListener = listener;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             InitInfo.isLogin = false;
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             if (listener != null){
                 listener.onResponseMessage("");
             }
@@ -731,7 +731,7 @@ public class LoginInternetRequest {
     public static void editVipInfo(String phoneNum, Map<String,String> map, String ub_id , final DialogUtil dialog , ForResultListener listener){
         mListener = listener;
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+          //  CommonUtils.toastMessage("您当前无网络，请联网再试");
             if (mListener != null){
                 mListener.onResponseMessage("");
             }

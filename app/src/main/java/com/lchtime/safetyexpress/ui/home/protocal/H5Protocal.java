@@ -24,7 +24,7 @@ public class H5Protocal {
 
     public void getH5Info(String cc_id,String type,String a_id,final H5Listener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.H5Response(null);
             return;
         }
@@ -73,7 +73,7 @@ public class H5Protocal {
 
     public void setDzDc(String cc_id,String type,String action,final H5Listener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.H5Response(null);
             return;
         }
@@ -120,9 +120,9 @@ public class H5Protocal {
     }
 
 
-    public void setQZDzDc(String cc_id,String type,final H5Listener listener){
+    public void setQZDzDc(String cc_id,String type ,String action ,final H5Listener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.H5Response(null);
             return;
         }
@@ -133,13 +133,24 @@ public class H5Protocal {
                 .url(url)
                 .addParams("ub_id", SpTools.getString(MyApplication.getContext(), Constants.userId, ""))
                 .addParams("cc_id", cc_id);
+                //0 执行   1 取消
 //              0赞  1踩
                 if ("0".equals(type)){
-                    builder.addParams("qc_agr","1");
+                    builder.addParams("qc_agr","0");
                 }else {
-                    builder.addParams("qc_aga","1");
+                   // builder.addParams("qc_aga","0");
                 }
-                //0 执行   1 取消
+                if ("1".equals(action)) {
+                     builder
+                //取消
+                .addParams("action", action);
+
+                 }else {
+        //  builder
+        //反对
+        //  .addParams("action", action);
+                }
+
                 builder.build()
                 .execute(new StringCallback() {
                     @Override
@@ -174,7 +185,7 @@ public class H5Protocal {
 
     public void setWDDzDc(String a_id,String type,String action,final H5Listener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.H5Response(null);
             return;
         }
@@ -224,7 +235,7 @@ public class H5Protocal {
 
     public void setCollect(String cc_id,String type,String uc_module,final H5Listener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.H5Response(null);
             return;
         }
@@ -274,7 +285,7 @@ public class H5Protocal {
 
     public void setNewsCommen(String ccp_cs_id , String ccp_cc_id , String ccp_info , final H5Listener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.H5Response(null);
             return;
         }
@@ -325,7 +336,7 @@ public class H5Protocal {
 
     public void setCircleCommen(String qc_id,String qz_pinglun,String qp_hf_param,final H5Listener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.H5Response(null);
             return;
         }
@@ -377,7 +388,7 @@ public class H5Protocal {
 
     public void setWDCommen(String a_id , String info , String ar_cs_id , final H5Listener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.H5Response(null);
             return;
         }

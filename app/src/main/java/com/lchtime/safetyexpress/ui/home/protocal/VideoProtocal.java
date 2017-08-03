@@ -19,7 +19,7 @@ import okhttp3.Call;
 public class VideoProtocal {
     public void getVideoDir( final VideoDirListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.videoDirResponse(null);
             return;
         }
@@ -56,7 +56,7 @@ public class VideoProtocal {
 
     public void getVideoList( String page,String cd_id,final VideoListListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)

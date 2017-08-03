@@ -29,7 +29,7 @@ import okhttp3.Call;
 public class CircleProtocal {
     public void getCircleList( String ub_id,String page,String type,String order,final CircleListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -72,7 +72,7 @@ public class CircleProtocal {
 
     public void getCircleSelectedList( String ub_id,String page,String type,String ud_profession,String ud_post,String ud_addr,String order,final CircleListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.circleResponse(null);
             return;
         }
@@ -123,7 +123,7 @@ public class CircleProtocal {
 
     public void changeSubscribe( String ub_id,String f_ub_id,String action,final CircleListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.circleResponse(null);
             return;
         }
@@ -166,7 +166,7 @@ public class CircleProtocal {
 
     public void updataZanOrCai( String ub_id,String qc_id,String qc_agr,String qc_aga,String action ,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -234,7 +234,7 @@ public class CircleProtocal {
 
     public void getItemInfo( String ub_id,String qc_id,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -276,7 +276,7 @@ public class CircleProtocal {
 
     public void getMySubscribe( String page,String ub_id,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -316,7 +316,7 @@ public class CircleProtocal {
 
     public void getAddDyData( String ub_id,String hy,String gw,String addr,String action,String page,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -364,7 +364,7 @@ public class CircleProtocal {
 
     public void getUpdataVideoData(String ub_id, String qc_context, String qc_video, String pic, final DialogUtil dialog , final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -405,7 +405,7 @@ public class CircleProtocal {
 
     public void getUpdataCommonData(String ub_id, String qc_context, String pic , final DialogUtil mDialog , final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -446,7 +446,7 @@ public class CircleProtocal {
 
     public void getMyCircleList( String ub_id,String uid,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -493,7 +493,7 @@ public class CircleProtocal {
 * */
     public void getDeleteCircle( String ub_id,String del_id,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -539,7 +539,7 @@ public class CircleProtocal {
     public void getSingleInfoList( String ub_id,String uid,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
 
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+          //  CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -586,7 +586,7 @@ public class CircleProtocal {
  * */
     public void getOtherSubscribeList( String ub_id,String uid,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -635,7 +635,7 @@ public class CircleProtocal {
 * */
     public void getDyIsShowRedPoint( String ub_id,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }

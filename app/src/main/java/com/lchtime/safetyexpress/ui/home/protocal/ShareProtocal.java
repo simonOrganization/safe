@@ -22,7 +22,7 @@ public class ShareProtocal {
 
     public void postShare( final ShareInfo listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.shareResponse(null);
             return;
         }
@@ -62,7 +62,7 @@ public class ShareProtocal {
 
     public void postGetMoney( final ShareInfo listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+          //  CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.shareResponse(null);
             return;
         }
@@ -102,7 +102,7 @@ public class ShareProtocal {
 
     public void postCircleShare( String qc_id,final ShareInfo listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.shareResponse(null);
             return;
         }

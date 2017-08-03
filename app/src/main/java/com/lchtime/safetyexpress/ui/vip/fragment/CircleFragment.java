@@ -136,7 +136,7 @@ public class CircleFragment extends BaseFragment {
             @Override
             public void normalResponse(Object response) {
                 if (response == null) {
-                    CommonUtils.toastMessage("更新数据失败");
+                   // CommonUtils.toastMessage("更新数据失败");
                     return;
                 }
                 CircleItemUpBean circleItemUpBean = (CircleItemUpBean) response;

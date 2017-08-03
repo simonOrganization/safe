@@ -24,7 +24,7 @@ public class HotNewsProtocal {
 
     public void getNewsList(String type, final HotNewsListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.hotNewsResponse(null);
             return;
         }

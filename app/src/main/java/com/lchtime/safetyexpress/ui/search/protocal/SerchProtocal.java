@@ -22,7 +22,7 @@ import okhttp3.Call;
 public class SerchProtocal {
     public void getHotSerchData(String type, final NormalListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
 
@@ -62,7 +62,7 @@ public class SerchProtocal {
     //搜索
     public void getSearchResult(String search, final int urlType, String type, final NormalListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
 

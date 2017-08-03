@@ -19,7 +19,7 @@ import okhttp3.Call;
 public class PictureAdvantage {
     public void getFirstPic(String ub_id, final HotNewsListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.hotNewsResponse(null);
             return;
         }
@@ -59,7 +59,7 @@ public class PictureAdvantage {
 
     public void getQZPic(String ub_id, final HotNewsListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.hotNewsResponse(null);
             return;
         }

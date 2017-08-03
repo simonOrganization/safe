@@ -196,7 +196,7 @@ public class HomeNewsFragment extends BaseFragment {
                 @Override
                 public void run() {
                     refreshLayout.setPullLoadMoreCompleted();
-                    CommonUtils.toastMessage("您当前无网络，请联网再试");
+                    //CommonUtils.toastMessage("您当前无网络，请联网再试");
                 }
             });
 
@@ -317,7 +317,7 @@ public class HomeNewsFragment extends BaseFragment {
                 @Override
                 public void run() {
                     refreshLayout.setPullLoadMoreCompleted();
-                    CommonUtils.toastMessage("您当前无网络，请联网再试");
+                   // CommonUtils.toastMessage("您当前无网络，请联网再试");
                 }
             });
             currentResult = LoadingPager.LoadedResult.ERRO;
