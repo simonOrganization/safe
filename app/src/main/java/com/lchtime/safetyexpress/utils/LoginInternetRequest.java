@@ -544,13 +544,7 @@ public class LoginInternetRequest {
                 if(code.equals("10")){
                     mListener.onResponseMessage("成功");
                 }else if(code.equals("20")){
-//                    if(info.equals("ub_phone error!")){
-//                        CommonUtils.toastMessage("您输入的手机号错误");
-//                    }else if(info.equals("ub_phone exist!")){
-//                        CommonUtils.toastMessage("您输入的手机号已注册");
-//                    }else if(info.equals("ud_pwd error!")){
-//                        CommonUtils.toastMessage("您输入的密码位数不足6位");
-//                    }
+
                 }
             }
         });
