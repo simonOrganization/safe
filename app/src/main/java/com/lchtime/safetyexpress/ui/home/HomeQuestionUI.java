@@ -1,8 +1,12 @@
 package com.lchtime.safetyexpress.ui.home;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -17,7 +21,6 @@ import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.HeaderAndFooterWrapper;
 import com.lchtime.safetyexpress.adapter.HomeQuestionAdapter;
 import com.lchtime.safetyexpress.bean.Constants;
-import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.bean.WenDaBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
@@ -35,8 +38,6 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.lchtime.safetyexpress.R.id.ll_home_question;
 
 /**
  * 疑难问答
@@ -77,6 +78,7 @@ public class HomeQuestionUI extends BaseUI {
     private int footPage = 0;
     private View view;
     private VipInfoBean vipInfoBean;
+    private UiReceiver mReceiver;
 
 
     @Override
@@ -106,6 +108,9 @@ public class HomeQuestionUI extends BaseUI {
                 startActivity(intent);
             }
         });
+        mReceiver = new UiReceiver();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver,
+                new IntentFilter("ACTION_ASK_SUCEESS"));
 
         initMyInfo();
         initListener();
@@ -233,6 +238,7 @@ public class HomeQuestionUI extends BaseUI {
                     //提问按钮的监听
                     Intent intent = new Intent(HomeQuestionUI.this,AskQuestionActivity.class);
                     startActivity(intent);
+
                 }else{ //如果资料不完善
                     CommonUtils.toastMessage("请完善资料后提问");
                 }
@@ -331,7 +337,20 @@ public class HomeQuestionUI extends BaseUI {
     protected void onResume() {
         initMyInfo();
         initListener();
-        prepareData();
+      //  prepareData();
+
         super.onResume();
+    }
+    private class UiReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if ("ACTION_ASK_SUCEESS".equals(intent.getAction())) {
+                final String code = intent.getStringExtra("code" );
+                if (!TextUtils.isEmpty(code)) {
+                    prepareData();
+                }
+            }
+        }
     }
 }

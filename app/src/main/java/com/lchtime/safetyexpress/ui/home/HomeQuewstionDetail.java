@@ -16,15 +16,14 @@ import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.HeaderAndFooterWrapper;
 import com.lchtime.safetyexpress.adapter.HomeImgAdapter;
 import com.lchtime.safetyexpress.adapter.QuetionDetailAdapter;
-import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.WenDaDetailBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
+import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
 import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
-import com.lchtime.safetyexpress.utils.ImageUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.MyGridView;
@@ -36,6 +35,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.igexin.sdk.GTServiceManager.context;
 
 /**
  * Created by android-cp on 2017/5/11.           疑难问答的详情界面
@@ -150,6 +151,7 @@ public class HomeQuewstionDetail extends BaseUI {
                     Intent intent = new Intent(HomeQuewstionDetail.this,AnswerQuestionActivity.class);
                     intent.putExtra("q_id",qid);
                     intent.putExtra("title",detailBean.wenti.q_title);
+
                     startActivityForResult(intent , QUEWSTION_DETAIL_REQUEST);
                 }
 
@@ -276,15 +278,27 @@ public class HomeQuewstionDetail extends BaseUI {
                                 .load(bean.wenti.pic.get(0))
                                 //.transform(ImageUtils.getTransformation(onePicHomeQuestion))
                                 .into(onePicHomeQuestion);
+                        final ArrayList<String> picList = (ArrayList<String>)  bean.wenti.pic;
+
+                        onePicHomeQuestion.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(context, CirclePhone.class);
+                                intent.putExtra("url", picList);
+                                intent.putExtra("pos", "1");
+                                context.startActivity(intent);
+                            }
+                        });
                     } else {
                         //多张图或者没图
                         if (bean.wenti.pic.size() == 0) {
                             mgvHomeQuestion.setVisibility(View.GONE);
                             onePicHomeQuestion.setVisibility(View.GONE);
                         } else {
+                            final ArrayList<String> picList = (ArrayList<String>) bean.wenti.pic;
                             onePicHomeQuestion.setVisibility(View.GONE);
                             mgvHomeQuestion.setVisibility(View.VISIBLE);
-                            HomeImgAdapter adapter = new HomeImgAdapter(HomeQuewstionDetail.this, bean.wenti.pic);
+                            HomeImgAdapter adapter = new HomeImgAdapter(HomeQuewstionDetail.this, picList);
                             mgvHomeQuestion.setAdapter(adapter);
                         }
                     }

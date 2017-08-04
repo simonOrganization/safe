@@ -41,8 +41,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail.QUEWSTION_DETAIL_RESULT;
-
 /**
  * Created by android-cp on 2017/5/12.  编辑回答问题界面
  */
@@ -82,6 +80,8 @@ public class AnswerQuestionActivity extends BaseUI {
     private String q_id;
     private String a_id;
     private DialogUtil mDialog;
+    private String context;
+    private ArrayList<String> pic;
 
     //private boolean isEdit;  //是否是编辑问答
 
@@ -106,6 +106,8 @@ public class AnswerQuestionActivity extends BaseUI {
         questionTitle = getIntent().getStringExtra("title");
         q_id = getIntent().getStringExtra("q_id");
         a_id = getIntent().getStringExtra("a_id");
+        context = getIntent().getStringExtra("context");
+        pic = getIntent().getStringArrayListExtra("pic");
         if (TextUtils.isEmpty(q_id)){
             setTitle("编辑回答");
             //isEdit = true;
@@ -114,19 +116,29 @@ public class AnswerQuestionActivity extends BaseUI {
             //isEdit = false;
         }
         etQuestionText.setText(questionTitle);
-        FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
-        recycler.setLayoutManager(manager);
-        adapter = new GridImageAdapter(this, onAddPicClickListener);
-        adapter.setSelectMax(3);//最多选择的个数
-        recycler.setAdapter(adapter);
-        adapter.setOnItemClickListener(new GridImageAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, View v) {
 
-                PictureConfig.getPictureConfig().externalPicturePreview(AnswerQuestionActivity.this, position, selectMedia);
+        if (context == null) {
+            Log.i("qaz", "aaaaaaaaaaaaaaa " );
+        }else {
+                etDescribeText.setText(context);
 
+                FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
+                recycler.setLayoutManager(manager);
+                adapter = new GridImageAdapter(this, onAddPicClickListener);
+                adapter.setSelectMax(3);//最多选择的个数
+                recycler.setAdapter(adapter);
+
+
+                adapter.setOnItemClickListener(new GridImageAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position, View v) {
+
+                        PictureConfig.getPictureConfig().externalPicturePreview(AnswerQuestionActivity.this, position, selectMedia);
+
+                    }
+                });
             }
-        });
+
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -13,10 +14,10 @@ import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.AddSubscribBean;
-import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.ui.circle.OtherPersonSubscribeActivity;
+import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.circle.fragment.SubscirbeAllFragment;
 import com.lchtime.safetyexpress.ui.circle.fragment.SubscirbeCommendFragment;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
@@ -102,6 +103,14 @@ public class AddSubscribeAdapter extends RecyclerView.Adapter {
         myHolder.add_subscribe_item_count.setText( bean.dy+"已订阅");
         if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {
             Glide.with(context).load(bean.ud_photo_fileid).into(myHolder.add_subscribe_item_image);
+            myHolder.add_subscribe_item_image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, SingleInfoUI.class);
+                    intent.putExtra("uid", bean.ud_ub_id);
+                    context.startActivity(intent);
+                }
+            });
         }
 
     }

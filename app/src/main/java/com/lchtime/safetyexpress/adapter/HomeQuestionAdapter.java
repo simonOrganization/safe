@@ -12,12 +12,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.WenDaBean;
-<<<<<<< HEAD
+
 import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
-=======
->>>>>>> 717038468199931acd24852ee19d69def607f5db
+
 import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
-import com.lchtime.safetyexpress.utils.ImageUtils;
+
 import com.lchtime.safetyexpress.views.MyGridView;
 
 import java.util.ArrayList;
