@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.VideoH5Activity;
 import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.ui.home.HomeVideosUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -57,7 +57,7 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
         myHolder.iv_img.setUp(
                 bean.media.get(1), JCVideoPlayer.SCREEN_LAYOUT_LIST,
                 bean.cc_title);
-        Picasso.with(context)
+        Glide.with(context)
                 .load(bean.media.get(0))
                 .into(myHolder.iv_img.thumbImageView);
 

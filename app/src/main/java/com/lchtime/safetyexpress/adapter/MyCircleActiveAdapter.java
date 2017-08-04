@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
@@ -24,7 +25,6 @@ import com.lchtime.safetyexpress.ui.vip.MyCircleActiveActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -102,7 +102,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                 if (bean.pic.size() > 0) {
                     ((MyCircleActiveHodler) holder).circleItemShipin.setVisibility(View.VISIBLE);
                     ((MyCircleActiveHodler) holder).circleItemImageRc.setVisibility(View.GONE);
-                    Picasso.with(context).load(bean.pic.get(0)).fit().into(((MyCircleActiveHodler) holder).ivRecommendImg);
+                    Glide.with(context).load(bean.pic.get(0)).into(((MyCircleActiveHodler) holder).ivRecommendImg);
                 } else {
                     ((MyCircleActiveHodler) holder).circleItemShipin.setVisibility(View.GONE);
                     ((MyCircleActiveHodler) holder).circleItemImageRc.setVisibility(View.GONE);

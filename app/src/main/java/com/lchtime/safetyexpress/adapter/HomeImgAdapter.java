@@ -8,8 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -58,7 +58,7 @@ public class HomeImgAdapter  extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Picasso.with(context).load(list.get(position)).fit().into(holder.iv_img);
+        Glide.with(context).load(list.get(position)).into(holder.iv_img);
         return convertView;
     }
 

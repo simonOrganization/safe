@@ -4,43 +4,27 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMGroup;
-import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.bean.ContactBean;
-import com.hyphenate.easeui.bean.EaseInitBean;
-import com.hyphenate.easeui.widget.EaseAlertDialog;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.ui.chat.hx.Constant;
-import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.ApplyMessage;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.GroupDetailsActivity;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.UserProfileActivity;
-import com.lchtime.safetyexpress.ui.chat.hx.bean.AddBean;
 import com.lchtime.safetyexpress.ui.chat.hx.bean.UserBean;
 import com.lchtime.safetyexpress.ui.chat.hx.fragment.FindFriendsFragment;
 import com.lchtime.safetyexpress.ui.chat.hx.fragment.FindGroupsFragment;
-import com.lchtime.safetyexpress.utils.CommonUtils;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static android.R.attr.type;
-import static com.lchtime.safetyexpress.utils.UIUtils.getResources;
 
 /**
  * Created by Dreamer on 2017/6/7.

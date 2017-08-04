@@ -11,14 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.WenDaBean;
-import com.lchtime.safetyexpress.ui.Const;
-import com.lchtime.safetyexpress.ui.home.HomeQuestionUI;
 import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
 import com.lchtime.safetyexpress.utils.ImageUtils;
 import com.lchtime.safetyexpress.views.MyGridView;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -80,7 +78,8 @@ public class HomeQuestionAdapter extends RecyclerView.Adapter {
             //一张图
             myHolder.iv_question.setVisibility(View.VISIBLE);
             myHolder.mgv_question.setVisibility(View.GONE);
-            Picasso.with(context).load(bean.pic.get(0)).transform(ImageUtils.getTransformation(myHolder.iv_question))
+            Glide.with(context).load(bean.pic.get(0))
+                    //.transform(ImageUtils.getTransformation(myHolder.iv_question))
             .into(myHolder.iv_question);
         } else {
             //多张图或者没图

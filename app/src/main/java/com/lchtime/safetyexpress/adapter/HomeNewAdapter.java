@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.NewsBean;
@@ -23,7 +24,6 @@ import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.vip.fragment.NewsFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.views.NoTouchRecycler;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -202,9 +202,9 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
             HomeNewNoHolder homeNewNoHolder = (HomeNewNoHolder) holder;
             homeNewNoHolder.textViews.get(0).setText(bean.getCc_title());
             if (bean.getMedia().size() > 0) {
-                Picasso.with(context).load(bean.getMedia().get(0)).into(homeNewNoHolder.home_new_no_item_image);
+                Glide.with(context).load(bean.getMedia().get(0)).into(homeNewNoHolder.home_new_no_item_image);
             } else {
-                Picasso.with(context).load(R.drawable.home_banner).into(homeNewNoHolder.home_new_no_item_image);
+                Glide.with(context).load(R.drawable.home_banner).into(homeNewNoHolder.home_new_no_item_image);
             }
             homeNewNoHolder.textViews.get(1).setText(bean.getCc_from());
             homeNewNoHolder.textViews.get(2).setText(bean.getPlNum() + "评论");
@@ -247,7 +247,7 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
             }
 
             if (mDatas.get(position).getMedia().size() > 0) {
-                Picasso.with(context).load(mDatas.get(position).getMedia().get(0)).into(homeNewVideoHolder.home_new_video_item_video);
+                Glide.with(context).load(mDatas.get(position).getMedia().get(0)).into(homeNewVideoHolder.home_new_video_item_video);
             }
             homeNewVideoHolder.home_new_video_item_video.setOnClickListener(new View.OnClickListener() {
                 @Override

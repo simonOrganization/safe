@@ -18,6 +18,7 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.VideoH5Activity;
@@ -37,7 +38,6 @@ import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ImageUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,8 +142,8 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
                 holder.circle_item_shipin_1.setVisibility(View.VISIBLE);
                 holder.iv_recommend_play.setVisibility(View.VISIBLE);
                 holder.circle_item_image_rc.setVisibility(View.GONE);
-                Picasso.with(context).load(bean.pic.get(0))
-                        .transform(ImageUtils.getTransformation(holder.circle_item_shipin))
+                Glide.with(context).load(bean.pic.get(0))
+                        //.transform(ImageUtils.getTransformation(holder.circle_item_shipin))
                         .into(holder.circle_item_shipin);
                 holder.circle_item_shipin_1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -164,9 +164,9 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
         }
         final CircleProtocal protocal = new CircleProtocal();
         if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {
-            Picasso.with(context).load(bean.ud_photo_fileid).into(holder.iv_circle_photo);
+            Glide.with(context).load(bean.ud_photo_fileid).into(holder.iv_circle_photo);
         } else {
-            Picasso.with(context).load(R.drawable.circle_user_image).into(holder.iv_circle_photo);
+            Glide.with(context).load(R.drawable.circle_user_image).into(holder.iv_circle_photo);
         }
         if (!TextUtils.isEmpty( bean.qc_ub_id)) {
             holder.iv_circle_photo.setOnClickListener(new View.OnClickListener() {

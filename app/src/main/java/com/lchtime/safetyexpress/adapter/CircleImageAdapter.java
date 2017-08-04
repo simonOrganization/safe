@@ -10,9 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -46,9 +45,9 @@ public class CircleImageAdapter extends RecyclerView.Adapter {
         CircleImageHolder holder1 = (CircleImageHolder) holder;
 //        ImageLoader.getInstance().displayImage(circleTwoList.get(position),holder1.circle_image,Option);
         if(!TextUtils.isEmpty(circleTwoList.get(position))){
-            Picasso.with(context).load(circleTwoList.get(position)).into(holder1.circle_image);
+            Glide.with(context).load(circleTwoList.get(position)).into(holder1.circle_image);
         }else {
-            Picasso.with(context).load(R.drawable.banner_default).into(holder1.circle_image);
+            Glide.with(context).load(R.drawable.banner_default).into(holder1.circle_image);
         }
         holder1.view.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.WenDaDetailBean;
@@ -18,7 +19,6 @@ import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
 import com.lchtime.safetyexpress.ui.home.MyQuestion;
 import com.lchtime.safetyexpress.views.CircleImageView;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,9 +84,9 @@ public class QuetionDetailAdapter extends RecyclerView.Adapter {
                 ((CircleHodler) holder).circle_item_image_rc.setVisibility(View.GONE);
             }
             if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {
-                Picasso.with(context).load(bean.ud_photo_fileid).into(((CircleHodler) holder).ivCirclePhoto);
+                Glide.with(context).load(bean.ud_photo_fileid).into(((CircleHodler) holder).ivCirclePhoto);
             }else {
-                Picasso.with(context).load(R.drawable.circle_user_image).into(((CircleHodler) holder).ivCirclePhoto);
+                Glide.with(context).load(R.drawable.circle_user_image).into(((CircleHodler) holder).ivCirclePhoto);
             }
             ((CircleHodler) holder).ivCirclePhoto.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
@@ -38,7 +39,6 @@ import com.lchtime.safetyexpress.ui.chat.hx.db.InviteMessgeDao;
 import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -94,11 +94,11 @@ public class MyMsgAdapter extends ArrayAdapter<ApplyMessageBean.ApplyListBean> {
 			holder.reason.setText(msg.message);
 			holder.name.setText(msg.ud_nickname);
 			if (!TextUtils.isEmpty(msg.ud_photo_fileid)) {
-				Picasso.with(MyApplication.getContext())
+				Glide.with(MyApplication.getContext())
 				.load(msg.ud_photo_fileid)
 				.into(holder.avator);
 			}else {
-				Picasso.with(MyApplication.getContext())
+				Glide.with(MyApplication.getContext())
 						.load(R.drawable.circle_user_image)
 						.into(holder.avator);
 			}

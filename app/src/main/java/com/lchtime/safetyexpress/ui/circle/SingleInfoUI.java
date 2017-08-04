@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hyphenate.easeui.bean.ContactBean;
 import com.hyphenate.easeui.bean.EaseInitBean;
@@ -31,7 +32,6 @@ import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.CircleImageView;
 import com.lidroid.xutils.view.annotation.ContentView;
-import com.squareup.picasso.Picasso;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -136,7 +136,7 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
                 SingleInfoBean infoBean = (SingleInfoBean) response;
                 String[] arr = infoBean.user.user.split("\\s+");
                 if (infoBean != null && !TextUtils.isEmpty(infoBean.user.ud_photo_fileid)){
-                    Picasso.with(SingleInfoUI.this).load(infoBean.user.ud_photo_fileid).fit().into(civVipIcon);
+                    Glide.with(SingleInfoUI.this).load(infoBean.user.ud_photo_fileid).into(civVipIcon);
                 }
                 tvVipNickname.setText(infoBean.user.ud_nickname);
                 if (arr.length == 3) {

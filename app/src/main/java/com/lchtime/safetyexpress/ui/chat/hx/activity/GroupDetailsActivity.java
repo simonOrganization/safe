@@ -69,7 +69,6 @@ import com.lchtime.safetyexpress.utils.UpdataImageUtils;
 import com.luck.picture.lib.model.FunctionConfig;
 import com.luck.picture.lib.model.FunctionOptions;
 import com.luck.picture.lib.model.PictureConfig;
-import com.squareup.picasso.Picasso;
 import com.yalantis.ucrop.entity.LocalMedia;
 
 import java.util.ArrayList;
@@ -226,11 +225,11 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 					mProfessionContent.setText(mBean.qun.sq_profession);
 					mAddrContent.setText(mBean.qun.sq_addr);
 					if (!TextUtils.isEmpty(mBean.qun.ud_photo_fileid)){
-						Picasso.with(GroupDetailsActivity.this)
+						Glide.with(GroupDetailsActivity.this)
 								.load(mBean.qun.ud_photo_fileid)
 								.into(mCivPhoto);
 					}else {
-						Picasso.with(GroupDetailsActivity.this)
+						Glide.with(GroupDetailsActivity.this)
 								.load(R.drawable.qun_list)
 								.into(mCivPhoto);
 					}

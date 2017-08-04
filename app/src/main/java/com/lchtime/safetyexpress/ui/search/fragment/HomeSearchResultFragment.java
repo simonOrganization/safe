@@ -23,6 +23,8 @@ import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
 /**
  * Created by Dreamer on 2017/5/20.
  */
@@ -124,4 +126,10 @@ public class HomeSearchResultFragment extends Fragment {
         });
     }
 
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        JCVideoPlayer.releaseAllVideos();
+    }
 }

@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.HeaderAndFooterWrapper;
 import com.lchtime.safetyexpress.adapter.HomeImgAdapter;
@@ -29,7 +30,6 @@ import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.MyGridView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -272,7 +272,10 @@ public class HomeQuewstionDetail extends BaseUI {
                         //一张图
                         mgvHomeQuestion.setVisibility(View.GONE);
                         onePicHomeQuestion.setVisibility(View.VISIBLE);
-                        Picasso.with(HomeQuewstionDetail.this).load(bean.wenti.pic.get(0)).transform(ImageUtils.getTransformation(onePicHomeQuestion)).into(onePicHomeQuestion);
+                        Glide.with(HomeQuewstionDetail.this)
+                                .load(bean.wenti.pic.get(0))
+                                //.transform(ImageUtils.getTransformation(onePicHomeQuestion))
+                                .into(onePicHomeQuestion);
                     } else {
                         //多张图或者没图
                         if (bean.wenti.pic.size() == 0) {

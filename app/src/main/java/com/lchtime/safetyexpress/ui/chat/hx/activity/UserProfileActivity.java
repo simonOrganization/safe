@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.domain.EaseUser;
@@ -34,7 +35,6 @@ import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.vip.VipInfoUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
-import com.squareup.picasso.Picasso;
 
 import java.util.Map;
 
@@ -346,11 +346,11 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 				if ("10".equals(profileInfoBean.result.code)){
 					SingleDetailBean bean = profileInfoBean.user_detail.get(0);
 					if (!TextUtils.isEmpty(bean.ud_photo_fileid)){
-						Picasso.with(UserProfileActivity.this)
+                        Glide.with(UserProfileActivity.this)
 								.load(bean.ud_photo_fileid)
 								.into(headAvatar);
 					}else {
-						Picasso.with(UserProfileActivity.this)
+                        Glide.with(UserProfileActivity.this)
 								.load(R.drawable.circle_user_image)
 								.into(headAvatar);
 					}
