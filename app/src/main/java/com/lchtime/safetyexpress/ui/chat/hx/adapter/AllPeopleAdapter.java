@@ -23,20 +23,14 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Filter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMConversation;
-import com.hyphenate.chat.EMGroup;
-import com.hyphenate.easeui.domain.EaseUser;
-import com.hyphenate.easeui.utils.EaseUserUtils;
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.ui.chat.hx.bean.InfoBean;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,13 +102,13 @@ public class AllPeopleAdapter extends ArrayAdapter<InfoBean.QunersBean> {
 			((TextView) convertView.findViewById(R.id.name)).setText(getItem(position - 1).ud_nickname);
 			if (TextUtils.isEmpty(getItem(position - 1).ud_photo_fileid)){
 
-				Picasso.with(MyApplication
+				Glide.with(MyApplication
 						.getContext()).load(R.drawable.circle_user_image)
 						.into((ImageView)convertView.findViewById(R.id.avatar));
 
 			}else {
 
-				Picasso.with(MyApplication
+				Glide.with(MyApplication
 						.getContext()).load(getItem(position - 1).ud_photo_fileid)
 						.into((ImageView)convertView.findViewById(R.id.avatar));
 			}

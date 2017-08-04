@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
@@ -24,7 +25,6 @@ import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.CircleImageView;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -57,9 +57,9 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
         final CircleSubscribeHolder myViewHolder = (CircleSubscribeHolder) holder;
         final MydyBean.DyBean bean = dy.get(position);
         if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {
-            Picasso.with(context).load(bean.ud_photo_fileid).fit().into(myViewHolder.raiv_hotcircle_icon);
+            Glide.with(context).load(bean.ud_photo_fileid).into(myViewHolder.raiv_hotcircle_icon);
         }else {
-            Picasso.with(context).load(R.drawable.circle_user_image).fit().into(myViewHolder.raiv_hotcircle_icon);
+            Glide.with(context).load(R.drawable.circle_user_image).into(myViewHolder.raiv_hotcircle_icon);
         }
         myViewHolder.tv_hotcircle_name.setText(bean.ud_nickname);
         myViewHolder.cb_hotcircle_subscribe.setChecked(true);

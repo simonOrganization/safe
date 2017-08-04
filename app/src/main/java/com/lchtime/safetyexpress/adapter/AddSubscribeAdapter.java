@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.AddSubscribBean;
@@ -22,7 +23,6 @@ import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.CircleImageView;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -101,7 +101,7 @@ public class AddSubscribeAdapter extends RecyclerView.Adapter {
         //是否已阅读
         myHolder.add_subscribe_item_count.setText( bean.dy+"已订阅");
         if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {
-            Picasso.with(context).load(bean.ud_photo_fileid).fit().into(myHolder.add_subscribe_item_image);
+            Glide.with(context).load(bean.ud_photo_fileid).into(myHolder.add_subscribe_item_image);
         }
 
     }

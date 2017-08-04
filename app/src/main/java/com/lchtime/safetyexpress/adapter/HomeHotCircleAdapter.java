@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.HotCircleBean;
@@ -22,7 +23,6 @@ import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -79,9 +79,9 @@ public class HomeHotCircleAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         if (!TextUtils.isEmpty(list.get(position).ud_photo_fileid)) {
-            Picasso.with(context).load(list.get(position).ud_photo_fileid).into(holder.raiv_icon);
+            Glide.with(context).load(list.get(position).ud_photo_fileid).into(holder.raiv_icon);
         }else {
-            Picasso.with(context).load(R.drawable.circle_user_image).into(holder.raiv_icon);
+            Glide.with(context).load(R.drawable.circle_user_image).into(holder.raiv_icon);
         }
         holder.iv_subscribe.setChecked(list.get(position).checked);
         holder.tv_name.setText(list.get(position).ud_nickname);

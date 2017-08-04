@@ -10,16 +10,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.VideoH5Activity;
 import com.lchtime.safetyexpress.bean.NewsBean;
-import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.vip.fragment.VedioFragment;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.views.MyGridView;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +92,7 @@ public class MyConllectedVideoAdapter extends BaseAdapter {
         holder.tv_time.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.getCc_datetime())));
         holder.tv_title.setText(bean.getCc_title());
         if (bean.getMedia() != null) {
-            Picasso.with(MyApplication.getContext()).load(bean.getMedia().get(0)).into(holder.iv_oneimg_img);
+            Glide.with(MyApplication.getContext()).load(bean.getMedia().get(0)).into(holder.iv_oneimg_img);
         }else {
 
         }

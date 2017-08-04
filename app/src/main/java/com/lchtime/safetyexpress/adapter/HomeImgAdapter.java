@@ -8,9 +8,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.R;
+<<<<<<< HEAD
 import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.squareup.picasso.Picasso;
+=======
+>>>>>>> 717038468199931acd24852ee19d69def607f5db
 
 import java.util.ArrayList;
 
@@ -70,7 +74,11 @@ public class HomeImgAdapter  extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+<<<<<<< HEAD
         Picasso.with(context).load(lists.get(position)).fit().into(holder.iv_img);
+=======
+        Glide.with(context).load(list.get(position)).into(holder.iv_img);
+>>>>>>> 717038468199931acd24852ee19d69def607f5db
         return convertView;
     }
 

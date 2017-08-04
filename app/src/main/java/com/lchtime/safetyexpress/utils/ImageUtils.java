@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.widget.ImageView;
 
-import com.squareup.picasso.Transformation;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -112,7 +110,7 @@ public class ImageUtils {
     }
 
 
-    public static Transformation getTransformation(final ImageView mImg) {
+    /*public static Transformation getTransformation(final ImageView mImg) {
         Transformation transformation = new Transformation() {
 
             @Override
@@ -153,6 +151,6 @@ public class ImageUtils {
         };
 
         return transformation;
-    }
+    }*/
 
 }

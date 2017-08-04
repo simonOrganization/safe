@@ -8,6 +8,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
@@ -15,7 +16,6 @@ import com.lchtime.safetyexpress.ui.chat.hx.bean.ContactBean;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -52,12 +52,12 @@ public class InviteFriendAdapter extends RecyclerView.Adapter {
         holder1.invite.setChecked(bean.isCheck);
         holder1.nickName.setText(bean.ud_nickname);
         if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {
-            Picasso.with(MyApplication.getContext())
+            Glide.with(MyApplication.getContext())
                     .load(bean.ud_photo_fileid)
                     .error(R.drawable.circle_user_image)
                     .into(holder1.photo);
         }else {
-            Picasso.with(MyApplication.getContext())
+            Glide.with(MyApplication.getContext())
                     .load(R.drawable.circle_user_image)
                     .error(R.drawable.circle_user_image)
                     .into(holder1.photo);
