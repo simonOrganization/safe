@@ -5,10 +5,8 @@ import android.text.TextUtils;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.AcountDetailBean;
-import com.lchtime.safetyexpress.bean.AddSubscribBean;
 import com.lchtime.safetyexpress.bean.MyAccountBean;
 import com.lchtime.safetyexpress.bean.Result;
-import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.DialogUtil;
@@ -28,7 +26,7 @@ public class VipProtocal {
 * */
     public void getMyAcountInfo(String ub_id , final CircleProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -74,7 +72,7 @@ public class VipProtocal {
     */
     public void getAddAcount( String ub_id,String type,String name,String account,final CircleProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -117,7 +115,7 @@ public class VipProtocal {
 * */
     public void getAcountDetail( String ub_id,String page,final CircleProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -158,7 +156,7 @@ public class VipProtocal {
 * */
     public void getTiXian(String ub_id , String num , String account , final DialogUtil dialog , final CircleProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)

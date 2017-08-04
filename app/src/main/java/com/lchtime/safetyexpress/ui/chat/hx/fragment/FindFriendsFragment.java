@@ -73,7 +73,7 @@ public class FindFriendsFragment extends Fragment {
                 public void normalResponse(Object response) {
                     if (response == null){
                         setErrorVisiblity();
-                        CommonUtils.toastMessage("网络异常");
+                      //  CommonUtils.toastMessage("网络异常");
                         mPmRc.setPullLoadMoreCompleted();
                         return;
                     }else {

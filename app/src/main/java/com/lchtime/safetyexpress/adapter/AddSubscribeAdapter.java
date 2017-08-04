@@ -63,7 +63,7 @@ public class AddSubscribeAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View v) {
                 if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-                    CommonUtils.toastMessage("您当前无网络，请联网再试");
+                 //   CommonUtils.toastMessage("您当前无网络，请联网再试");
                     myHolder.add_subscirbe_item_but.setChecked("1".equals(bean.is_dy));
                     return;
                 }

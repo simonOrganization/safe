@@ -27,7 +27,6 @@ import java.util.Set;
 
 import okhttp3.Call;
 
-import static com.lchtime.safetyexpress.bean.Constants.clientId;
 import static com.lchtime.safetyexpress.bean.Constants.password;
 import static com.lchtime.safetyexpress.bean.Constants.phoneNum;
 

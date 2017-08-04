@@ -20,7 +20,7 @@ import okhttp3.Call;
 public class AddCommandProtocal {
     public void getFriendsCommend( String ub_id,String type,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -57,7 +57,7 @@ public class AddCommandProtocal {
 
     public void getSearchFriends( String ub_id,String type,String word,final NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)

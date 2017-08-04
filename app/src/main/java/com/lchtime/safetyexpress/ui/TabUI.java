@@ -306,7 +306,7 @@ public class TabUI extends TabActivity implements OnClickListener {
             @Override
             public void normalResponse(Object response) {
                 if (response == null){
-                    CommonUtils.toastMessage("请求网络数据失败，请刷新重试");
+                    //CommonUtils.toastMessage("请求网络数据失败，请刷新重试");
                     return;
                 }
 
@@ -328,7 +328,7 @@ public class TabUI extends TabActivity implements OnClickListener {
             @Override
             public void questionResponse(Object response) {
                 if (response == null){
-                    CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
+                   // CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                     return;
                 }
                 try {

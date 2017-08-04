@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
@@ -336,7 +335,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 			@Override
 			public void normalResponse(Object response) {
 				if (response == null){
-					CommonUtils.toastMessage("获取个人信息失败！");
+					//CommonUtils.toastMessage("获取个人信息失败！");
 					setLoadding(false);
 					type = 5;
 					return;

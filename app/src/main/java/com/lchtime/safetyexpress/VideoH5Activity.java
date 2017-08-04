@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -64,6 +65,8 @@ import java.net.URLDecoder;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+
+import static android.R.attr.action;
 
 /**
  * Created by android-cp on 2017/7/6.
@@ -140,6 +143,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
     private String ub_id;
     public static String qc_id;
     private InsideWebChromeClient mInsideWebChromeClient;
+    private String actions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -812,12 +816,11 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
      * @param view
      */@OnClick(R.id.cb_news_detail_zan)
     private void getZan(View view) {
+
+        Log.i("qaz", "getZan: "+ "-------------");
         if (TextUtils.isEmpty(ub_id)) {
             ub_id = SpTools.getUserId(this);
         }
-
-
-
         if ("news".equals(type) || "video".equals(type)){
             //如果是新闻或者是视频
             requestNewsData(cb_news_detail_zan,"0");
@@ -827,10 +830,10 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
                 //cb_news_detail_zan.setChecked(!cb_news_detail_zan.isChecked());
                 return;
             }
-            if (!cb_news_detail_zan.isChecked()){
+           /* if (!cb_news_detail_zan.isChecked()){
                 cb_news_detail_zan.setChecked(true);
                 return;
-            }
+            }*/
             requestNewsDataCicle(cb_news_detail_zan,"0");
 
         }else if (("wenda".equals(type))){ //问答
@@ -860,10 +863,10 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
                 CommonUtils.toastMessage("请登陆后再进行相关操作！");
                 //cb_news_detail_cai.setChecked(!cb_news_detail_cai.isChecked());
             }
-            if (!cb_news_detail_cai.isChecked()){
+           /* if (!cb_news_detail_cai.isChecked()){
                 cb_news_detail_cai.setChecked(true);
                 return;
-            }
+            }*/
             requestNewsDataCicle(cb_news_detail_cai,"1");
 
         }else if (("wenda".equals(type))){
@@ -975,7 +978,13 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
      */
     private void requestNewsDataCicle(final CheckBox cb, final String type) {
         //type 0是赞
-        protocal.setQZDzDc(cc_id, type, new H5Protocal.H5Listener() {
+         actions = "0";
+        if (!cb.isChecked()){
+            //取消赞
+            actions = "1";
+        }
+        Log.i("qaz", "requestNewsDataCicle: " +  actions);
+        protocal.setQZDzDc(cc_id, type, actions, new H5Protocal.H5Listener() {
             @Override
             public void H5Response(String response) {
                 if (TextUtils.isEmpty(response)){
@@ -986,7 +995,12 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
                 H5BottomBean bean = gson.fromJson(response,H5BottomBean.class);
                 if ("10".equals(bean.result.code)){
                     CommonUtils.toastMessage(bean.result.info);
-                    cb.setChecked(true);
+                    if ( actions.equals("1")) {
+                        cb.setChecked(false);
+                    }else{
+                        cb.setChecked(true);
+                    }
+
                     if ("0".equals(type)){
                         //赞
                         if (Integer.parseInt(bean.dzNum) > 0){

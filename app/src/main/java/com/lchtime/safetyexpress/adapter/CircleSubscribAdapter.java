@@ -116,7 +116,7 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
 
     private void removeSubscribe(final CircleSubscribeHolder myViewHolder, MydyBean.DyBean bean, final int position) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             myViewHolder.cb_hotcircle_subscribe.setChecked(true);
             return;
         }

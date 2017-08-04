@@ -104,7 +104,7 @@ public class HomeNewActivity extends BaseUI {
     private void getTabData(){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             setErrorVisiblity();
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         OkHttpUtils

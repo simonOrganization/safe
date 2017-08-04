@@ -22,7 +22,6 @@ import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.VideoH5Activity;
-import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.res.CircleBean;

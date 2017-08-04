@@ -154,7 +154,7 @@ public class RegisterUI extends BaseUI {
         }else {
             //三方登录过来的
             if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-                CommonUtils.toastMessage("您当前无网络，请联网再试");
+              //  CommonUtils.toastMessage("您当前无网络，请联网再试");
                 isLogin = false;
                 backgroundAlpha(1f);
                 pb_progress.setVisibility(View.GONE);

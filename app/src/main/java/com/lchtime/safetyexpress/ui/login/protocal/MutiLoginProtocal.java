@@ -23,7 +23,7 @@ public class MutiLoginProtocal {
     public void postMutiLogin(String tp_openid,String tp_username,String tp_head,
                               String tp_gender,String type,String clientid,final MutiLoginListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+          //  CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }
@@ -77,7 +77,7 @@ public class MutiLoginProtocal {
     public void postMutiNewLogin(String tp_openid,String tp_username,String tp_head,String tp_gender,String type,String ub_phone,
                                  String ud_pwd,String clientid ,final MutiLoginListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
             return;
         }

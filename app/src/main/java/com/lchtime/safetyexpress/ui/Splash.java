@@ -274,7 +274,7 @@ public class Splash extends Activity {
         // call login method
 //        Log.d(TAG, "EMClient.getInstance().login");
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             loginHx = true;
             isShowTab();
             return;

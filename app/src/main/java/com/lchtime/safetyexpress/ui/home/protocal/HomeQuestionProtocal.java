@@ -24,7 +24,7 @@ import okhttp3.Call;
 public class HomeQuestionProtocal {
     public void getWenDaList( String page,final QuestionListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.questionResponse(null);
             return;
         }
@@ -64,7 +64,7 @@ public class HomeQuestionProtocal {
 
     public void getWenDaDetail(String page,String q_id ,final QuestionListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.questionResponse(null);
             return;
         }
@@ -105,7 +105,7 @@ public class HomeQuestionProtocal {
 
     public void postTiWenContent(String q_title,String q_description,String pic,final QuestionListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -145,7 +145,7 @@ public class HomeQuestionProtocal {
     private Gson gson = new Gson();
     public void postAnswerContent(String q_id , String context , String pic , final QuestionListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -193,7 +193,7 @@ public class HomeQuestionProtocal {
 
     public void editAnswerContent(String a_id , String info , String pic , int type , final QuestionListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.questionResponse(null);
             return;
         }
@@ -243,7 +243,7 @@ public class HomeQuestionProtocal {
 
     public void postGuanZhu(String q_id,String type,final QuestionListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -281,7 +281,7 @@ public class HomeQuestionProtocal {
 
     public void postInviteFriends(String q_id,String friend_username,final QuestionListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+           // CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -326,7 +326,7 @@ public class HomeQuestionProtocal {
 
     public void getMyFriends(final QuestionListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            CommonUtils.toastMessage("您当前无网络，请联网再试");
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.questionResponse(null);
             return;
         }

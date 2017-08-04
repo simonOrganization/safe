@@ -672,7 +672,7 @@ public class HXMainActivity extends BaseActivity implements View.OnClickListener
 				public void normalResponse(Object response) {
 					if (response == null) {
 						isShowMsgView(false);
-						CommonUtils.toastMessage("请求未读消息数量失败，请手动刷新重试！");
+						//CommonUtils.toastMessage("请求未读消息数量失败，请手动刷新重试！");
 						return;
 					}
 					ApplyNum bean = gson.fromJson((String) response, ApplyNum.class);
