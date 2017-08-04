@@ -64,8 +64,6 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
     private String action;
 
     private SparseArray<Integer> mTextStateList;
-    private String UPDATE_TEXT = "";
-
 
     public CircleAdapter(Activity context, List<QzContextBean> circleOneList) {
         this.context = context;
