@@ -78,7 +78,7 @@ public class LoginInternetRequest {
         }
         String url = context.getResources().getString(R.string.service_host_address)
                 .concat(context.getResources().getString(R.string.getLogin));
-        Log.d("host",url);
+
         OkHttpUtils.post().url(url)
                 .addParams("sid","")
                 .addParams("ub_phone",phonenumber)
@@ -140,7 +140,7 @@ public class LoginInternetRequest {
             return;
         }
 
-        String ub_id = SpTools.getString(context,Constants.userId,"");
+        
         if (TextUtils.isEmpty(ub_id)){
             CommonUtils.toastMessage("您没有登录");
             return;
