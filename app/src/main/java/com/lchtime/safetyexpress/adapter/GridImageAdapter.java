@@ -29,6 +29,7 @@ public class GridImageAdapter extends
         RecyclerView.Adapter<GridImageAdapter.ViewHolder> {
     public final int TYPE_CAMERA = 1;
     public final int TYPE_PICTURE = 2;
+
     private LayoutInflater mInflater;
     private Context mContext;
     private List<LocalMedia> list = new ArrayList<>();
@@ -38,6 +39,7 @@ public class GridImageAdapter extends
      */
     private onAddPicClickListener mOnAddPicClickListener;
 
+
     public interface onAddPicClickListener {
         void onAddPicClick(int type, int position);
     }
@@ -46,6 +48,7 @@ public class GridImageAdapter extends
         mInflater = LayoutInflater.from(context);
         this.mContext = context;
         this.mOnAddPicClickListener = mOnAddPicClickListener;
+
     }
 
     public void setSelectMax(int selectMax) {
@@ -117,6 +120,7 @@ public class GridImageAdapter extends
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
         //少于8张，显示继续添加的图标
+
         if (getItemViewType(position) == TYPE_CAMERA) {
             viewHolder.mImg.setImageResource(R.drawable.updata_img_btn);
             viewHolder.mImg.setOnClickListener(new View.OnClickListener() {

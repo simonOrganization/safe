@@ -4,9 +4,9 @@ import android.text.TextUtils;
 
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
-import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.H5Bean;
 import com.lchtime.safetyexpress.bean.Result;
+import com.lchtime.safetyexpress.bean.WdMessageBean;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
@@ -386,7 +386,7 @@ public class H5Protocal {
     }
 
 
-    public void setWDCommen(String a_id , String info , String ar_cs_id , final H5Listener listener){
+    public void setWDCommen(String a_id , String info , String ar_cs_id  , final H5Listener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             //CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.H5Response(null);
@@ -439,6 +439,50 @@ public class H5Protocal {
     public interface H5Listener{
         void H5Response(String response);
     }
+    public void getWDMessage(String a_id  , final H5Listener listener){
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.H5Response(null);
+            return;
+        }
+        String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
+                .concat(MyApplication.getContext().getResources().getString(R.string.xiangqing));
+        PostFormBuilder builder = OkHttpUtils
+                .post()
+                .url(url)
+                .addParams("ub_id", SpTools.getUserId(MyApplication.getContext()))
+                //回答ID
+                .addParams("a_id", a_id);
+//
+        builder.build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        listener.H5Response(null);
+                    }
 
+                    @Override
+                    public void onResponse(String response, int id) {
+                        if (TextUtils.isEmpty(response)){
+                            CommonUtils.toastMessage("没有数据返回");
+                            listener.H5Response(null);
+                            return;
+                        }
+                        try {
+                            WdMessageBean bean = (WdMessageBean) JsonUtils.stringToObject(response, WdMessageBean.class);
+                            if (bean.getResult().getCode().equals("10")) {
+                                if (listener != null) {
+                                    listener.H5Response(response);
+                                }
+                            } else {
+                                //CommonUtils.toastMessage(bean.WdMessageBean.info);
+                                listener.H5Response(null);
+                            }
+                        }catch (Exception exception){
+                            listener.H5Response(null);
+                        }
+                    }
+                });
+    }
 
 }

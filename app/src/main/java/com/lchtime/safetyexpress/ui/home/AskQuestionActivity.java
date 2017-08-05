@@ -1,8 +1,10 @@
 package com.lchtime.safetyexpress.ui.home;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -25,7 +27,6 @@ import com.lchtime.safetyexpress.adapter.GridImageAdapter;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
-import com.lchtime.safetyexpress.ui.circle.PublishCircleUI;
 import com.lchtime.safetyexpress.ui.home.protocal.HomeQuestionProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.DialogUtil;
@@ -45,8 +46,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.baidu.location.f.mC;
 
 /**
  * Created by android-cp on 2017/5/12. 问答提问界面
@@ -86,6 +85,7 @@ public class AskQuestionActivity extends BaseUI implements PopupWindow.OnDismiss
     private View contentView;
     private FunctionOptions options;
     private DialogUtil mDialog;
+    private String UPDATE_TEXT = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +105,7 @@ public class AskQuestionActivity extends BaseUI implements PopupWindow.OnDismiss
         ButterKnife.bind(this);
         setTitle("提问");
         rightTextVisible("发送");
+
         FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         recycler.setLayoutManager(manager);
         adapter = new GridImageAdapter(this, onAddPicClickListener);
@@ -260,7 +261,8 @@ public class AskQuestionActivity extends BaseUI implements PopupWindow.OnDismiss
                             @Override
                             public void questionResponse(Object response) {
                                 Result result = (Result) response;
-                                Toast.makeText(AskQuestionActivity.this,result.result.info,Toast.LENGTH_SHORT).show();
+                                Log.i("qaz", "questionResponse:1 ");
+                               // Toast.makeText(AskQuestionActivity.this,result.result.info,Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                         });
@@ -273,7 +275,12 @@ public class AskQuestionActivity extends BaseUI implements PopupWindow.OnDismiss
                 @Override
                 public void questionResponse(Object response) {
                     Result result = (Result) response;
-                    Toast.makeText(AskQuestionActivity.this,result.result.info,Toast.LENGTH_SHORT).show();
+                    Log.i("qaz", "questionResponse:2 ");
+                    Intent action = new Intent();
+                    action.setAction("ACTION_ASK_SUCEESS");
+                    action.putExtra("code", UPDATE_TEXT);
+                    LocalBroadcastManager.getInstance(getApplication()).sendBroadcast(action);
+                 //   Toast.makeText(AskQuestionActivity.this,result.result.info,Toast.LENGTH_SHORT).show();
                     finish();
                 }
             });

@@ -1,17 +1,20 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.R;
 
-import java.util.List;
+import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
+
+
+import java.util.ArrayList;
 
 /**
  * Created by user on 2017/4/18.
@@ -19,14 +22,15 @@ import java.util.List;
 
 public class HomeImgAdapter  extends BaseAdapter {
 
+    private final ArrayList<String> lists;
     private Context context;
     private LayoutInflater inflater;
-    private List<String> list;
+
     //private int[] imgs;
 
-    public HomeImgAdapter(Context context,List<String> list) {
+    public HomeImgAdapter(Context context, ArrayList<String> list) {
         this.context = context;
-        this.list = list;
+        this.lists  = list;
         inflater = LayoutInflater.from(context);
         //测试
         //imgs = new int[]{R.drawable.home_test_img6, R.drawable.home_test_img6, R.drawable.home_test_img6};
@@ -34,12 +38,12 @@ public class HomeImgAdapter  extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return list == null ? 0 : list.size();
+        return lists == null ? 0 : lists.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return list.get(position);
+        return lists.get(position);
     }
 
     @Override
@@ -48,17 +52,28 @@ public class HomeImgAdapter  extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.home_img_item, null);
             holder = new ViewHolder();
             holder.iv_img = (ImageView) convertView.findViewById(R.id.iv_img_img);
+
+            holder.iv_img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, CirclePhone.class);
+                    intent.putExtra("url", lists);
+                    intent.putExtra("pos", position);
+                    context.startActivity(intent);
+                }
+            });
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Glide.with(context).load(list.get(position)).into(holder.iv_img);
+
+        Glide.with(context).load(lists.get(position)).into(holder.iv_img);
         return convertView;
     }
 

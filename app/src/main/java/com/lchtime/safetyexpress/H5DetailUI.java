@@ -25,11 +25,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.H5Bean;
 import com.lchtime.safetyexpress.bean.H5BottomBean;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.Result;
+import com.lchtime.safetyexpress.bean.WdMessageBean;
 import com.lchtime.safetyexpress.pop.SharePop;
 import com.lchtime.safetyexpress.shareapi.ShareConstants;
 import com.lchtime.safetyexpress.shareapi.Util;
@@ -142,6 +142,8 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
     public static String qc_id;
     private String action;
     private boolean greate;
+    private String contexts;
+    private ArrayList<String> pic;
     //private InsideWebChromeClient mInsideWebChromeClient;
 
     @Override
@@ -214,7 +216,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
             baseUrl = Const.HOST + "wenda/myhuida?a_id= "+a_id+"&q_id=" + aq_id + "&timestamp=" + System.currentTimeMillis();
             bottom_zan_or_common.setVisibility(View.VISIBLE);
             ll_collect.setVisibility(View.GONE);
-
+            Message();
         }
         if (!TextUtils.isEmpty(ub_id)){
             baseUrl = baseUrl + "&ub_id=" +ub_id + "&timestamp=" + System.currentTimeMillis();
@@ -300,8 +302,32 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
 
             }
         });
-    }
 
+    }
+    private void Message(){
+        protocal.getWDMessage(a_id  ,new H5Protocal.H5Listener(){
+
+            @Override
+            public void H5Response(String response) {
+                if (TextUtils.isEmpty(response)){
+                    //   CommonUtils.toastMessage("加载评论和赞失败！");
+                //    Log.i("qaz", "H5Response: " + "-----------");
+                    return;
+                }
+                WdMessageBean bean = gson.fromJson(response, WdMessageBean.class);
+                if ("10".equals(bean.getResult().getCode())){
+
+                    contexts = bean.getA_info().getA_context();
+                    pic = bean.getA_info().getPic();
+                    Log.i("qaz", "H5Response: " + "-----------"+ contexts);
+
+
+                }else {
+                    // CommonUtils.toastMessage("加载评论和赞失败！");
+                }
+            }
+        });
+    }
     @Override
     protected void back() {
         finish();
@@ -582,15 +608,20 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
     //问答界面编辑
     @JavascriptInterface
     public void getWdEditId (final String eid){
+
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 String title = "";
+                Message();
+                Log.i("qaz", "getWdEditId: " + "-----------"+ contexts);
                 try {
                     title = URLDecoder.decode(eid, "UTF-8");
                     Intent intent = new Intent(mContext , AnswerQuestionActivity.class);
                     intent.putExtra("a_id",a_id);
                     intent.putExtra("title",title);
+                    intent.putExtra("context",contexts);
+                    intent.putExtra("pic",pic);
                     startActivityForResult(intent , EDIT);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
@@ -852,7 +883,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
         if (TextUtils.isEmpty(ub_id)) {
             ub_id = SpTools.getUserId(this);
         }
-        Log.i("qaz", "getZan: "+ "-------------");
+       // Log.i("qaz", "getZan: "+ "-------------");
         if ("news".equals(type) || "video".equals(type)){
             //如果是新闻或者是视频
             requestNewsData(cb_news_detail_zan,"0");
@@ -1011,7 +1042,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
             action = "1";
         }
         //type 0赞  1踩
-        Log.i("qaz", "requestNewsDataCicle: " +  action);
+       // Log.i("qaz", "requestNewsDataCicle: " +  action);
         protocal.setQZDzDc(cc_id, type, action , new H5Protocal.H5Listener() {
             @Override
             public void H5Response(String response) {

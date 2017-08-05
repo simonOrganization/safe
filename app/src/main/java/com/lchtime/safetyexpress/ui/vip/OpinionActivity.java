@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.GridImageAdapter;
 import com.lchtime.safetyexpress.bean.AdviceBean;
-import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;

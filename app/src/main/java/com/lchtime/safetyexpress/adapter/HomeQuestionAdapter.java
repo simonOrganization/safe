@@ -1,10 +1,8 @@
 package com.lchtime.safetyexpress.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +12,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.WenDaBean;
+
+import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
+
 import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
-import com.lchtime.safetyexpress.utils.ImageUtils;
+
 import com.lchtime.safetyexpress.views.MyGridView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -81,16 +83,29 @@ public class HomeQuestionAdapter extends RecyclerView.Adapter {
             Glide.with(context).load(bean.pic.get(0))
                     //.transform(ImageUtils.getTransformation(myHolder.iv_question))
             .into(myHolder.iv_question);
+            final ArrayList<String> picList = (ArrayList<String>) list.get(position).pic;
+
+            myHolder.iv_question.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, CirclePhone.class);
+                    intent.putExtra("url", picList);
+                    intent.putExtra("pos", "1");
+                    context.startActivity(intent);
+                }
+            });
         } else {
             //多张图或者没图
             if (list.size() == 0) {
                 myHolder.iv_question.setVisibility(View.GONE);
                 myHolder.mgv_question.setVisibility(View.GONE);
             } else {
+                final ArrayList<String> picList = (ArrayList<String>) list.get(position).pic;
                 myHolder.iv_question.setVisibility(View.GONE);
                 myHolder.mgv_question.setVisibility(View.VISIBLE);
-                HomeImgAdapter adapter = new HomeImgAdapter(context, bean.pic);
+                HomeImgAdapter adapter = new HomeImgAdapter(context, picList);
                 myHolder.mgv_question.setAdapter(adapter);
+
             }
         }
 
