@@ -343,32 +343,49 @@ public class HXMainActivity extends BaseActivity implements View.OnClickListener
     }
 	
 	public class MyContactListener implements EMContactListener {
-        @Override
-        public void onContactAdded(String username) {}
-        @Override
-        public void onContactDeleted(final String username) {
-            runOnUiThread(new Runnable() {
-                public void run() {
+		@Override
+		public void onContactAdded(String username) {
+		}
+		@Override
+		public void onContactDeleted(final String username) {
+			runOnUiThread(new Runnable() {
+				public void run() {
 					if (ChatActivity.activityInstance != null && ChatActivity.activityInstance.toChatUsername != null &&
 							username.equals(ChatActivity.activityInstance.toChatUsername)) {
-					    String st10 = getResources().getString(R.string.have_you_removed);
-					    Toast.makeText(HXMainActivity.this, ChatActivity.activityInstance.getToChatUsername() + st10, Toast.LENGTH_LONG)
-					    .show();
-					    ChatActivity.activityInstance.finish();
+						String st10 = getResources().getString(R.string.have_you_removed);
+						Toast.makeText(HXMainActivity.this, ChatActivity.activityInstance.getToChatUsername() + st10, Toast.LENGTH_LONG)
+								.show();
+						ChatActivity.activityInstance.finish();
 					}
-                }
-            });
-        }
-        @Override
-        public void onContactInvited(String username, String reason) {}
+				}
+			});
+		}
+		@Override
+		public void onContactInvited(String username, String reason) {
+		}
 
 		@Override
-		public void onFriendRequestAccepted(String s) {
+		public void onFriendRequestAccepted(final String s) {
+			//CommonUtils.toastMessage(s + "已同意您的好友申请");
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					Toast.makeText(HXMainActivity.this, s + "已同意您的好友申请" , Toast.LENGTH_LONG)
+							.show();
+				}
+			});
 
 		}
 
 		@Override
-		public void onFriendRequestDeclined(String s) {
+		public void onFriendRequestDeclined(final String s) {
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					Toast.makeText(HXMainActivity.this, s + "已拒绝您的好友申请" , Toast.LENGTH_LONG)
+							.show();
+				}
+			});
 
 		}
 
@@ -636,9 +653,7 @@ public class HXMainActivity extends BaseActivity implements View.OnClickListener
 		if ((System.currentTimeMillis() - exitTime) > 2000) {
 			Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
 			exitTime = System.currentTimeMillis();
-			Log.i("fxp==" , "HXMainActivity    start");
 		} else {
-			Log.i("fxp==" , "HXMainActivity    end");
 			finish();
 			//System.exit(0);
 		}

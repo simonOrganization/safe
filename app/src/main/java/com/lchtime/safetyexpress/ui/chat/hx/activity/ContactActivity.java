@@ -55,6 +55,7 @@ import com.lchtime.safetyexpress.ui.chat.hx.fragment.ConversationListFragment;
 import com.lchtime.safetyexpress.ui.chat.hx.permission.PermissionsManager;
 import com.lchtime.safetyexpress.ui.chat.hx.permission.PermissionsResultAction;
 import com.lchtime.safetyexpress.ui.login.LoginUI;
+import com.lchtime.safetyexpress.utils.CommonUtils;
 
 import java.util.List;
 
@@ -274,7 +275,8 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
 	
 	public class MyContactListener implements EMContactListener {
         @Override
-        public void onContactAdded(String username) {}
+        public void onContactAdded(String username) {
+		}
         @Override
         public void onContactDeleted(final String username) {
             runOnUiThread(new Runnable() {
@@ -290,16 +292,18 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
             });
         }
         @Override
-        public void onContactInvited(String username, String reason) {}
-
-		@Override
-		public void onFriendRequestAccepted(String s) {
+        public void onContactInvited(String username, String reason) {
 
 		}
 
 		@Override
-		public void onFriendRequestDeclined(String s) {
+		public void onFriendRequestAccepted(String s) {
+			CommonUtils.toastMessage(s + "已同意您的好友申请");
+		}
 
+		@Override
+		public void onFriendRequestDeclined(String s) {
+			CommonUtils.toastMessage(s + "已拒绝您的好友申请");
 		}
 
 	}
@@ -551,10 +555,8 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
 		if ((System.currentTimeMillis() - exitTime) > 2000) {
 			Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
 			exitTime = System.currentTimeMillis();
-			Log.i("fxp==" , "ContactActivity    start");
 		} else {
 			finish();
-			Log.i("fxp==" , "ContactActivity    end");
 			//System.exit(0);
 		}
 	}

@@ -125,7 +125,7 @@ public class ContactListFragment extends EaseContactListFragment {
     @Override
     public void refresh() {
 
-        if (EaseInitBean.contactBean == null){
+        //if (EaseInitBean.contactBean == null){
             protocal.getMyFriends(new HomeQuestionProtocal.QuestionListener() {
                 @Override
                 public void questionResponse(Object response) {
@@ -145,7 +145,6 @@ public class ContactListFragment extends EaseContactListFragment {
                                 return;
                             }
                             EaseInitBean.contactBean = bean;
-
 
                             Map<String, EaseUser> m = DemoHelper.getInstance().getContactList();
                             if (m instanceof Hashtable<?, ?>) {
@@ -168,7 +167,7 @@ public class ContactListFragment extends EaseContactListFragment {
 
                 }
             });
-        }
+       // }
 
 
 

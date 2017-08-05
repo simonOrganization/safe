@@ -185,7 +185,6 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
         @Override
         public void onSelectSuccess(List<LocalMedia> resultList) {
             if(resultList != null && resultList.size() > 1){
-                //Log.i("fxp" ,"type" + resultList.get(0).getType());
                 selectMedia = resultList;
             }else if(resultList != null && resultList.size() == 1){
                 if(selectMedia.contains(resultList.get(0))){
