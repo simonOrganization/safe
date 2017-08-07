@@ -295,6 +295,7 @@ public class HomeQuestionUI extends BaseUI {
                 wrapper.addHeaderView(view);
                 recyclerView.setLayoutManager(new LinearLayoutManager(HomeQuestionUI.this));
                 lv_home_question.setAdapter(wrapper);
+                wrapper.notifyDataSetChanged();
                 setSuccessVisiblity();
             }
         });

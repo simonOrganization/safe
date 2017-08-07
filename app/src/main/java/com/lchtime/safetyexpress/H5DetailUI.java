@@ -621,7 +621,6 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
                     intent.putExtra("a_id",a_id);
                     intent.putExtra("title",title);
                     intent.putExtra("context",contexts);
-                    intent.putExtra("pic",pic);
                     startActivityForResult(intent , EDIT);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();

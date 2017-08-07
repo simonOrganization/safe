@@ -29,7 +29,6 @@ public class GridImageAdapter extends
         RecyclerView.Adapter<GridImageAdapter.ViewHolder> {
     public final int TYPE_CAMERA = 1;
     public final int TYPE_PICTURE = 2;
-
     private LayoutInflater mInflater;
     private Context mContext;
     private List<LocalMedia> list = new ArrayList<>();
@@ -38,7 +37,7 @@ public class GridImageAdapter extends
      * 点击添加图片跳转
      */
     private onAddPicClickListener mOnAddPicClickListener;
-
+    private String path;
 
     public interface onAddPicClickListener {
         void onAddPicClick(int type, int position);

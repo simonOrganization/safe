@@ -120,24 +120,23 @@ public class AnswerQuestionActivity extends BaseUI {
         if (context == null) {
             Log.i("qaz", "aaaaaaaaaaaaaaa " );
         }else {
-                etDescribeText.setText(context);
-
-                FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
-                recycler.setLayoutManager(manager);
-                adapter = new GridImageAdapter(this, onAddPicClickListener);
-                adapter.setSelectMax(3);//最多选择的个数
-                recycler.setAdapter(adapter);
-
-
-                adapter.setOnItemClickListener(new GridImageAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(int position, View v) {
-
-                        PictureConfig.getPictureConfig().externalPicturePreview(AnswerQuestionActivity.this, position, selectMedia);
-
-                    }
-                });
+            etDescribeText.setText(context);
             }
+        FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
+        recycler.setLayoutManager(manager);
+        adapter = new GridImageAdapter(this, onAddPicClickListener);
+        adapter.setSelectMax(3);//最多选择的个数
+        recycler.setAdapter(adapter);
+
+
+        adapter.setOnItemClickListener(new GridImageAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+
+                PictureConfig.getPictureConfig().externalPicturePreview(AnswerQuestionActivity.this, position, selectMedia);
+
+            }
+        });
 
     }
 
