@@ -57,6 +57,8 @@
     <string name="edit">index.php/wenda/edit</string>
     <!--关注-->
     <string name="guanzhu">index.php/wenda/guanzhu</string>
+    <!--回答详情-->
+    <string name="xiangqing">index.php/wenda/showwdinfo</string>
     <!--上传文字视频圈子-->
     <string name="qzfb">index.php/quanzi/qzfb</string>
     <!--我的动态-->
