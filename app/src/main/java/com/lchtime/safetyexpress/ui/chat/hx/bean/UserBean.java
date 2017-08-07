@@ -11,4 +11,17 @@ public class UserBean {
     public String ud_photo_fileid;
     public String user;
     public String hx_account;
+    public int is_friend = 0;
+
+
+
+
+
+    public boolean isHave(){
+        if(is_friend == 0){
+            return false;
+        }
+        return true;
+    }
+
 }

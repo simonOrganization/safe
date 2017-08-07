@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Looper;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import com.hyphenate.EMMessageListener;
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMCmdMessageBody;
+import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMMessage.ChatType;
@@ -53,6 +55,7 @@ import com.lchtime.safetyexpress.ui.chat.hx.domain.RobotUser;
 import com.lchtime.safetyexpress.ui.chat.hx.parse.UserProfileManager;
 import com.lchtime.safetyexpress.ui.chat.hx.receiver.CallReceiver;
 import com.lchtime.safetyexpress.ui.chat.hx.utils.PreferenceManager;
+import com.lchtime.safetyexpress.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,6 +69,8 @@ import static com.hyphenate.easeui.bean.EaseInitBean.contactBean;
 public class DemoHelper {
 
     private TopUserDao topUserDao;
+
+
 
     /**
      * data sync listener
@@ -582,10 +587,21 @@ public class DemoHelper {
             broadcastManager.sendBroadcast(new Intent(Constant.ACTION_GROUP_CHANAGED));
         }
 
+        /**
+         * 群销毁的时候
+         * @param groupId
+         * @param groupName
+         */
         @Override
         public void onGroupDestroyed(String groupId, String groupName) {
         	// group is dismissed, 
             broadcastManager.sendBroadcast(new Intent(Constant.ACTION_GROUP_CHANAGED));
+
+            //删除群消息记录
+            EMConversation conversation = EMClient.getInstance().chatManager().getConversation(groupId, EMConversation.EMConversationType.GroupChat);
+            if (conversation != null) {
+                conversation.clearAllMessages();
+            }
         }
 
 //        @Override
@@ -629,7 +645,7 @@ public class DemoHelper {
         @Override
         public void onAutoAcceptInvitationFromGroup(String groupId, String inviter, String inviteMessage) {
             // got an invitation
-            String st3 = appContext.getString(R.string.Invite_you_to_join_a_group_chat);
+            /*String st3 = appContext.getString(R.string.Invite_you_to_join_a_group_chat);
             EMMessage msg = EMMessage.createReceiveMessage(Type.TXT);
             msg.setChatType(ChatType.GroupChat);
             msg.setFrom(inviter);
@@ -640,34 +656,33 @@ public class DemoHelper {
             // save invitation as messages
             EMClient.getInstance().chatManager().saveMessage(msg);
             // notify invitation message
-            getNotifier().vibrateAndPlayTone(msg);
-            EMLog.d(TAG, "onAutoAcceptInvitationFromGroup groupId:" + groupId);
+            getNotifier().vibrateAndPlayTone(msg);*/
+            //EMLog.d(TAG, "onAutoAcceptInvitationFromGroup groupId:" + groupId);
+            /*Looper.prepare();
+            CommonUtils.toastMessage("创建群组成功");
+            Looper.loop();*/
+
             broadcastManager.sendBroadcast(new Intent(Constant.ACTION_GROUP_CHANAGED));
         }
 
         @Override
         public void onMuteListAdded(String s, List<String> list, long l) {
-
         }
 
         @Override
         public void onMuteListRemoved(String s, List<String> list) {
-
         }
 
         @Override
         public void onAdminAdded(String s, String s1) {
-
         }
 
         @Override
         public void onAdminRemoved(String s, String s1) {
-
         }
 
         @Override
         public void onOwnerChanged(String s, String s1, String s2) {
-
         }
     }
     
@@ -984,9 +999,9 @@ public class DemoHelper {
      * @return
      */
     public Map<String, EaseUser> getContactList() {
-        if (isLoggedIn() && contactList == null) {
+        //if (isLoggedIn() && contactList == null) {
             contactList = demoModel.getContactList();
-        }
+        //}
         
         // return a empty non-null object to avoid app crash
         if(contactList == null){
@@ -1044,7 +1059,7 @@ public class DemoHelper {
 
 	 /**
      * update user list to cache and database
-     *
+     * 更新好友列表数据库
      * @param contactInfoList
      */
     public void updateContactList(List<EaseUser> contactInfoList) {
@@ -1126,6 +1141,7 @@ public class DemoHelper {
     }
 	
 	/**
+     * 从环信服务器获取群组列表
     * Get group list from server
     * This method will save the sync state
     * @throws HyphenateException
@@ -1181,7 +1197,7 @@ public class DemoHelper {
            listener.onSyncComplete(success);
        }
    }
-   
+
    public void asyncFetchContactsFromServer(final EMValueCallBack<List<String>> callback){
        if(isSyncingContactsWithServer){
            return;
@@ -1268,7 +1284,11 @@ public class DemoHelper {
            listener.onSyncComplete(success);
        }
    }
-   
+
+    /**
+     * 从环信服务器获取黑名单列表
+     * @param callback
+     */
    public void asyncFetchBlackListFromServer(final EMValueCallBack<List<String>> callback){
        
        if(isSyncingBlackListWithServer){

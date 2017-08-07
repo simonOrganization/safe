@@ -28,10 +28,12 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.bean.ContactBean;
+import com.hyphenate.easeui.bean.EaseInitBean;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.ui.EaseBaseFragment;
 import com.hyphenate.easeui.widget.EaseConversationList;
 import com.lchtime.safetyexpress.MyApplication;
+import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,6 +41,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.hyphenate.easeui.bean.EaseInitBean.contactBean;
 
 /**
  * conversation list fragment
@@ -223,6 +227,10 @@ public class MyConversationListFragment extends EaseBaseFragment{
         conversations = EMClient.getInstance().chatManager().getAllConversations();
         sortList = new ArrayList<Pair<Long, EMConversation>>();
         top_list = new ArrayList<>();
+        //获取好友列表
+        Map<String, EaseUser> friendList = DemoHelper.getInstance().getContactList();
+
+
         /**
          * lastMsgTime will change if there is new message during sorting
          * so use synchronized to make sure timestamp of last message won't change.
@@ -231,8 +239,12 @@ public class MyConversationListFragment extends EaseBaseFragment{
             for (EMConversation conversation : conversations.values()) {
                 if (!topMap.containsKey(conversation.conversationId())) {
                     if (conversation != null &&conversation.getLastMessage() != null) {
+                        if(friendList.size() > 0 && friendList.get(conversation.conversationId()) == null && !conversation.isGroup()){
+                            continue;
+                        }
                         sortList.add(new Pair<Long, EMConversation>(conversation.getLastMessage().getMsgTime(), conversation));
-                        Log.i("ceshiceswwwwww", conversation + " " + conversation.getLastMessage() + " " + conversation.getLastMessage().getMsgTime());
+                        Log.i("fxp---", conversation + " " + conversation.getLastMessage() + " " + conversation.getLastMessage().getMsgTime());
+
                     }
                 }else {
                     top_list.add(conversation);

@@ -192,9 +192,6 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     protected void prepareData() {
         aCache = ACache.get(mContext);
 
-        /*Log.i("fxp" , "1  == " + aCache.getAsString("111"));
-        aCache.put("111" , "1234");
-        Log.i("fxp" , "2  == " + aCache.getAsString("111"));*/
 
         //获取广告
         getAdvData();

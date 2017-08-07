@@ -492,7 +492,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		if (conversation != null) {
 			conversation.clearAllMessages();
 		}
-		Toast.makeText(this, R.string.messages_are_empty, Toast.LENGTH_SHORT).show();
+
 	}
 
 	/**
@@ -770,6 +770,8 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 						Result result = gson.fromJson((String) response, Result.class);
 						if ("10".equals(result.result.code)){
 							CommonUtils.toastMessage(result.result.info);
+							//删除聊天记录
+							clearGroupHistory();
 							finish();
 						}else {
 							CommonUtils.toastMessage(result.result.info);

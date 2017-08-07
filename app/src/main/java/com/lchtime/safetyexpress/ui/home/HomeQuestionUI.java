@@ -75,7 +75,7 @@ public class HomeQuestionUI extends BaseUI {
     private CircleImageView civ;
     private TextView nikName;
     private Handler handler = new Handler();
-    private int footPage = 0;
+    private int footPage = 1;
     private View view;
     private VipInfoBean vipInfoBean;
     private UiReceiver mReceiver;
@@ -164,11 +164,11 @@ public class HomeQuestionUI extends BaseUI {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        footPage = 0;
+                        footPage = 1;
                         if (protocal == null){
                             protocal = new HomeQuestionProtocal();
                         }
-                        protocal.getWenDaList("0",new HomeQuestionProtocal.QuestionListener() {
+                        protocal.getWenDaList("1",new HomeQuestionProtocal.QuestionListener() {
                             @Override
                             public void questionResponse(Object response) {
                                 if(response == null){
@@ -273,7 +273,7 @@ public class HomeQuestionUI extends BaseUI {
         if (protocal == null){
             protocal = new HomeQuestionProtocal();
         }
-        protocal.getWenDaList("0",new HomeQuestionProtocal.QuestionListener() {
+        protocal.getWenDaList("1",new HomeQuestionProtocal.QuestionListener() {
             @Override
             public void questionResponse(Object response) {
                 if (response == null){

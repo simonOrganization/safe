@@ -90,22 +90,26 @@ public class AddFriendsCommendAdapter extends RecyclerView.Adapter {
 
             }
         });
-        myHolder.mIndicator.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //加群
-                if (mFragment instanceof FindGroupsFragment) {
-                    Intent intent = new Intent(mFragment.getActivity(), ApplyMessage.class);
-                    intent.putExtra("groupid", bean.hx_account);
-                    intent.putExtra("master",bean.master);
-                    intent.putExtra("type", "0");
-                    mFragment.getActivity().startActivityForResult(intent, 102);
-                }else if (mFragment instanceof FindFriendsFragment){
-                    Intent intent = new Intent(mFragment.getActivity(), ApplyMessage.class);
-                    intent.putExtra("type", "1");
-                    intent.putExtra("master",bean.hx_account);
-                    mFragment.getActivity().startActivityForResult(intent, 102);
-                }
+        if(bean.isHave()){
+            myHolder.mIndicator.setVisibility(View.INVISIBLE);
+        }else{
+            myHolder.mIndicator.setVisibility(View.VISIBLE);
+            myHolder.mIndicator.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //加群
+                    if (mFragment instanceof FindGroupsFragment) {
+                        Intent intent = new Intent(mFragment.getActivity(), ApplyMessage.class);
+                        intent.putExtra("groupid", bean.hx_account);
+                        intent.putExtra("master",bean.master);
+                        intent.putExtra("type", "0");
+                        mFragment.getActivity().startActivityForResult(intent, 102);
+                    }else if (mFragment instanceof FindFriendsFragment){
+                        Intent intent = new Intent(mFragment.getActivity(), ApplyMessage.class);
+                        intent.putExtra("type", "1");
+                        intent.putExtra("master",bean.hx_account);
+                        mFragment.getActivity().startActivityForResult(intent, 102);
+                    }
                 /*if(EMClient.getInstance().getCurrentUser().equals(bean.hx_account)){
                     new EaseAlertDialog(mFragment.getActivity(), R.string.not_add_myself).show();
                     return;
@@ -155,8 +159,9 @@ public class AddFriendsCommendAdapter extends RecyclerView.Adapter {
                 }).start();
 
                 */
-            }
-        });
+                }
+            });
+        }
 
 
 

@@ -139,6 +139,7 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 		addrItem = (RelativeLayout) findViewById(R.id.addr_item);
 		loading = (RelativeLayout) findViewById(R.id.loading);
 		tvSave = (TextView) findViewById(R.id.tv_save);
+		members.clear();
 		adapter = new GridAdapter(this, R.layout.em_grid, members);
 		mUserGridview.setAdapter(adapter);
 		type = "0";
@@ -264,6 +265,10 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 
 	}
 
+	/**
+	 * 设置成员的信息
+	 * @param datas
+	 */
 	public static void setSelectData(ArrayList<EaseUser> datas){
 		members.clear();
 		members.addAll(datas);
@@ -769,7 +774,6 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 
 	public void save(){
 		loading.setVisibility(View.VISIBLE);
-		backgroundAlpha(0.5f);
 		if (mProtocal == null){
 			mProtocal = new GetInfoProtocal();
 		}
@@ -782,6 +786,7 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 			loading.setVisibility(View.GONE);
 			return;
 		}
+		backgroundAlpha(0.5f);
 		String qunMember = "";
 		if (members != null && members.size() > 0){
 			for (int i = 0; i < members.size(); i ++){

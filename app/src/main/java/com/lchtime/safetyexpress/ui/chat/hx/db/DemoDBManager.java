@@ -61,7 +61,6 @@ public class DemoDBManager {
 
     /**
      * get contact list
-     * 
      * @return
      */
     synchronized public Map<String, EaseUser> getContactList() {

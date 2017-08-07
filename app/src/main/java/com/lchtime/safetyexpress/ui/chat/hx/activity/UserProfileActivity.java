@@ -304,6 +304,9 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 				Result result = gson.fromJson((String) response,Result.class);
 				if ("10".equals(result.result.code)){
 					CommonUtils.toastMessage(result.result.info);
+					//清除聊天记录
+					EMClient.getInstance().chatManager().deleteConversation(mUsername, true);
+
 					Intent intent = new Intent();
 //					EaseUser user = DemoHelper.getInstance().getUserInfo(mUsername);
 					intent.putExtra("tobeDeleteUser",mUsername);
