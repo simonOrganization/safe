@@ -210,25 +210,15 @@ public class LoginUI extends BaseUI {
                 }
                 // get user's info (this should be get from App's server or 3rd party service)
                 DemoHelper.getInstance().getUserProfileManager().asyncGetCurrentUserInfo();
-
-//                Intent intent = new Intent(this,
-//                        MainActivity.class);
-//                startActivity(intent);
-
                 finish();
             }
 
             @Override
             public void onProgress(int progress, String status) {
-//                Log.d(TAG, "login: onProgress");
             }
 
             @Override
             public void onError(final int code, final String message) {
-//                Log.d(TAG, "login: onError: " + code);
-//                if (!progressShow) {
-//                    return;
-//                }
                 runOnUiThread(new Runnable() {
                     public void run() {
 //                        pd.dismiss();
@@ -406,22 +396,8 @@ public class LoginUI extends BaseUI {
                     if ("10".equals(bean.result.code)){
                         //没有申请过
                         if ("0".equals(bean.userid.ub_id)){
-
                             registerNewThird(uuid, name, header, gender, loginType);
-
-
                         }else {
-                            /*VipInfoBean vipInfoBean = new VipInfoBean();
-                            vipInfoBean.user_detail.ud_addr = bean.user.ud_addr;
-                            vipInfoBean.user_detail.ud_nickname = bean.user.ud_nickname;
-                            vipInfoBean.user_detail.ud_photo_fileid = bean.user.ud_photo_fileid;
-                            vipInfoBean.user_detail.ud_post = bean.user.ud_post;
-                            vipInfoBean.user_detail.ud_profession = bean.user.ud_profession;
-                            vipInfoBean.user_detail.ub_phone = bean.userid.phone;
-                            vipInfoBean.user_detail.ud_sex = bean.userid.tp_gender;
-                            vipInfoBean.user_detail.ub_id = bean.user.ud_ub_id;
-                            //申请过了 ，直接登录
-                            saveVipInfoBean(vipInfoBean);*/
                             thirdLogin(bean.userid.ub_id);
                         }
                     }else {

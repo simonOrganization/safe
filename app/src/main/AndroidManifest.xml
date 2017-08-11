@@ -475,7 +475,12 @@
             android:name=".ui.chat.hx.activity.ContextMenuActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MyDialogStyle" />
-
+        <activity android:name=".ui.chat.hx.activity.ForwardMessageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <activity android:name=".ui.chat.hx.activity.PickAtUserActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
         <!-- choose video -->
         <activity
             android:name=".ui.chat.hx.activity.ImageGridActivity"

@@ -458,14 +458,13 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
 
         //测试
         String ub_id = SpTools.getUserId(this);
-        picProtocal.getFirstPic(ub_id, new PictureAdvantage.HotNewsListener() {
+        picProtocal.getQZPic(ub_id, new PictureAdvantage.HotNewsListener() {
             @Override
             public void hotNewsResponse(String respose) {
                 if (respose == null){
                     CommonUtils.toastMessage("请检查网络，获取推荐图片失败！");
                     return;
                 }
-                //SpTools.setString(mContext , circle_adv , respose);
                 FirstPic bean = gson.fromJson(respose,FirstPic.class);
 
                 if ("10".equals(bean.result.code)){

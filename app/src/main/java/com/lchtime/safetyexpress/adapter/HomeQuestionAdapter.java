@@ -15,6 +15,7 @@ import com.lchtime.safetyexpress.bean.WenDaBean;
 
 import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 
+import com.lchtime.safetyexpress.ui.home.HomeQuestionUI;
 import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
 
 import com.lchtime.safetyexpress.views.MyGridView;
@@ -117,7 +118,7 @@ public class HomeQuestionAdapter extends RecyclerView.Adapter {
                 //问答详情
                 Intent intent = new Intent(context,HomeQuewstionDetail.class);
                 intent.putExtra("q_id",bean.q_id);
-                context.startActivity(intent);
+                context.startActivityForResult(intent , HomeQuestionUI.HOME_QUESTION);
             }
         });
     }

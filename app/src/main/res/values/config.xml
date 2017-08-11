@@ -134,6 +134,8 @@
     <string name="invite">index.php/sns/invite</string>
     <!--问答详情界面好友列表接口-->
     <string name="gzlist">index.php/sns/gzlist</string>
+    <!--删除我的问题-->
+    <string name="delete_my_q">index.php/wenda/mytiwen</string>
     <!--圈子和订阅上面是否显示小红点-->
     <string name="dynotice">index.php/quanzi/dynotice</string>
     <!--h5界面相关信息-->

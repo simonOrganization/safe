@@ -219,7 +219,8 @@
                         android:src="@drawable/home_circle_img" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dm010"
                         android:text="热门圈子"
@@ -229,9 +230,8 @@
 
                     <LinearLayout
                         android:id="@+id/hot_circle_change"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:orientation="horizontal"
                         android:gravity="right|center">
 
@@ -293,7 +293,8 @@
                         android:src="@drawable/home_track_img" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dm010"
                         android:text="热点追踪"
@@ -302,9 +303,9 @@
                         android:textSize="@dimen/dm028" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:id="@+id/ll_hotnews_change"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:orientation="horizontal"
                         android:gravity="right|center">
 
@@ -314,7 +315,6 @@
                             android:src="@drawable/home_refresh" />
 
                         <TextView
-                            android:id="@+id/tv_hotnews_change"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dm010"
@@ -366,7 +366,8 @@
                         android:src="@drawable/home_video_img" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dm010"
                         android:text="视频热点"
@@ -375,9 +376,9 @@
                         android:textSize="@dimen/dm028" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:id="@+id/ll_vedio_change"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:orientation="horizontal"
                         android:gravity="right|center">
 
@@ -387,7 +388,6 @@
                             android:src="@drawable/home_refresh" />
 
                         <TextView
-                            android:id="@+id/tv_vedio_change"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dm010"

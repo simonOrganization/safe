@@ -12,7 +12,7 @@ import static android.R.attr.value;
 public class SPUtils {
 
     private static String LOGIN = "login";
-
+    public static final String CONFIGFILE = "user_data";
     /**
      * 保存
      * @param context
@@ -32,6 +32,14 @@ public class SPUtils {
         return sharedPreferences.getString(key , "");
     }
 
-
+    /**
+     * 获取用户头像
+     * @param context
+     * @return
+     */
+    public static String getUserHead(Context context){
+        SharedPreferences sp = context.getSharedPreferences(CONFIGFILE , Context.MODE_APPEND);
+        return sp.getString("ud_photo_fileid" , "");
+    }
 
 }

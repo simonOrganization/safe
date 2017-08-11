@@ -81,7 +81,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     private ArrayList<NewsBean> vedioNewsList;
     //首页热门圈子的数据
     private List<HotCircleBean.HotBean> hotList;
-    private List<List<HotCircleBean.HotBean>> hot;
+    private List<List<HotCircleBean.HotBean>> hot = new ArrayList<>();
     private Gson gson = new Gson();
 
     private ACache aCache;
@@ -322,7 +322,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
      */
     private int hotIndex = 0;
 
-    @OnClick(R.id.tv_hotnews_change)
+    @OnClick(R.id.ll_hotnews_change)
     private void getHotNews(View view) {
         if (newsListRes != null) {
             if (hotNewsList == null) {
@@ -348,7 +348,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
      */
     private int vedioIndex = 0;
 
-    @OnClick(R.id.tv_vedio_change)
+    @OnClick(R.id.ll_vedio_change)
     private void getHotVedio(View view) {
         if (videoListRes != null) {
             if (vedioNewsList == null) {

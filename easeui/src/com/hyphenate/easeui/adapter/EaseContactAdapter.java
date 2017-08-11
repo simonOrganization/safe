@@ -76,7 +76,8 @@ public class EaseContactAdapter extends ArrayAdapter<EaseUser> implements Sectio
         EaseUser user = getItem(position);
         if(user == null)
             Log.d("ContactAdapter", position + "");
-        String username = user.getUsername();
+        //String username = user.getUsername();
+        String username = user.getExternalNickName();
         String header = user.getInitialLetter();
         if (position == 0 || header != null && !header.equals(getItem(position - 1).getInitialLetter())) {
             if (TextUtils.isEmpty(header)) {
@@ -89,15 +90,19 @@ public class EaseContactAdapter extends ArrayAdapter<EaseUser> implements Sectio
             holder.headerView.setVisibility(View.GONE);
         }
 
-        EaseUserUtils.setUserNick(username, holder.nameView);
-        Glide.with(getContext()).load(user.getAvatar()).into(holder.avatar);
+        //EaseUserUtils.setUserNick(username, holder.nameView);
+        holder.nameView.setText(username);
+        Glide.with(getContext()).load(user.getAvatar())
+                .placeholder(R.drawable.circle_user_image)
+                .error(R.drawable.circle_user_image)
+                .into(holder.avatar);
 
-        if (userInfo != null && userInfo.size() > position && userInfo.get(username) != null){
+        /*if (userInfo != null && userInfo.size() > position && userInfo.get(username) != null){
             if (!TextUtils.isEmpty(userInfo.get(username).ud_photo_fileid)) {
                 Glide.with(getContext()).load(userInfo.get(username).ud_photo_fileid).into(holder.avatar);
             }
             holder.nameView.setText(userInfo.get(username).ud_nickname);
-        }
+        }*/
 
         if(primaryColor != 0)
             holder.nameView.setTextColor(primaryColor);

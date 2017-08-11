@@ -106,24 +106,11 @@ public class UpdataImageUtils {
                     //Toast.makeText(context,"上传图片成功",Toast.LENGTH_SHORT).show();
                 }
             });
-        /*}else if(list.size() <= 6 ){
-
-
-        }*/
-
-
-        /*int count = list.size() / 3;
-        for(int j = 0 ; j < 3; j++){
-            builder.addFile("image[]" , "advice" + i , list.get(i));
-        }*/
-
-
 
     }
 
     public interface UpdataPicListener{
         void onResponse(String response);
-        //void onResponse(UpdataBean updataBean);
     }
 
     public static void getUrlBitmap(final String url, final BitmapListener listener) {
@@ -159,7 +146,7 @@ public class UpdataImageUtils {
     public static void saveBitmapFile(Bitmap bitmap , String str){
 
         File file = new File(MyApplication.getContext().getFilesDir(),str);//将要保存图片的路径
-        Log.d("------------","file="+file.getName());
+        Log.d("fxp","file="+file.getName());
         try {
             if(file.exists()){
                 file.delete();

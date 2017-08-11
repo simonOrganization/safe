@@ -28,6 +28,7 @@ import com.hyphenate.easeui.bean.ContactBean;
 import com.hyphenate.easeui.bean.EaseConstants;
 import com.hyphenate.easeui.bean.EaseInitBean;
 import com.hyphenate.easeui.utils.EaseUserUtils;
+import com.hyphenate.easeui.utils.SPUtils;
 import com.hyphenate.easeui.widget.EaseChatMessageList;
 import com.hyphenate.easeui.widget.EaseChatMessageList.MessageListItemClickListener;
 import com.hyphenate.util.DateUtils;
@@ -145,7 +146,7 @@ public abstract class EaseChatRow extends LinearLayout {
 
         //set nickname and avatar
         if(message.direct() == Direct.SEND){
-            String currentUser = EMClient.getInstance().getCurrentUser();
+            /*String currentUser = EMClient.getInstance().getCurrentUser();
             EaseUserUtils.setUserAvatar(context, currentUser, userAvatarView);
             File file = new File(context.getFilesDir(), EaseConstants.photo_name);//将要保存图片的路径
             //如果没有加载过图片了
@@ -153,7 +154,8 @@ public abstract class EaseChatRow extends LinearLayout {
                 EaseUserUtils.setUserAvatar(context, currentUser, userAvatarView);
             }else {
                 Glide.with(context).load(file).into(userAvatarView);
-            }
+            }*/
+            Glide.with(context).load(SPUtils.getUserHead(context)).placeholder(R.drawable.circle_user_image).error(R.drawable.circle_user_image).into(userAvatarView);
         }else{
             String user = message.getFrom();
             EaseUserUtils.setUserAvatar(context, user, userAvatarView);

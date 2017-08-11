@@ -39,5 +39,7 @@ public class ApplyMessageBean {
         public String applyid;
         public String qun;
         public String groupid;
+        public String master;
+        public String groupimg;
     }
 }

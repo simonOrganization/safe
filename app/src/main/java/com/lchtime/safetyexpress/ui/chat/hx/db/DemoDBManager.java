@@ -83,10 +83,14 @@ public class DemoDBManager {
                         for (ContactBean bean : EaseInitBean.contactBean.friendlist){
                             if (user.getUsername().equals(bean.hx_account)){
                                 user.setExternalNickName(bean.ud_nickname);
+                                user.setAvatar(bean.ud_photo_fileid);
+                                user.setUb_id(bean.ud_ub_id);
+                                user.setNickname(bean.ud_nickname);
+                                break;
                             }
                         }
                     }
-                    EaseCommonUtils.setUserInitialLetter(user);
+                    EaseCommonUtils.setUserInitialLetter(user);//设置用户初始昵称
                 }
                 users.put(username, user);
             }

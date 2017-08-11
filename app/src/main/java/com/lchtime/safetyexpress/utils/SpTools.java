@@ -176,4 +176,14 @@ public class SpTools {
 		return false;
 	}
 
+	/**
+	 * 获取用户头像
+	 * @param context
+	 * @return
+	 */
+	public static String getUserHead(Context context){
+		SharedPreferences sp = context.getSharedPreferences(Constants.CONFIGFILE , Context.MODE_APPEND);
+		return sp.getString("ud_photo_fileid" , "");
+	}
+
 }

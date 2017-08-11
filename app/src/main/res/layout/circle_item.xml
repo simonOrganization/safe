@@ -104,7 +104,7 @@
                     android:id="@+id/hide_show"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/commen_reg"
                     android:textSize="16sp"
                     android:text="展开"
                     android:padding="3dp"

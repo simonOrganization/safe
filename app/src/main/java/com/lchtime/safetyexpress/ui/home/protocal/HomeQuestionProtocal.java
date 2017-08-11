@@ -367,6 +367,43 @@ public class HomeQuestionProtocal {
                 });
     }
 
+    /**
+     * 删除我的问题
+     * @param ub_id
+     * @param qid
+     * @param listener
+     */
+    public void deleteQuestion(String ub_id , String qid , final QuestionListener listener) {
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+            //CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.questionResponse(null);
+            return;
+        }
+        String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
+                .concat(MyApplication.getContext().getResources().getString(R.string.delete_my_q));
+        OkHttpUtils.post()
+                .url(url)
+                .addParams("ub_id" , ub_id)
+                .addParams("type" , "0")
+                .addParams("q_id" , qid)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int i) {
+                        listener.questionResponse(null);
+                    }
+
+                    @Override
+                    public void onResponse(String response, int i) {
+                        Result bean = (Result) JsonUtils.stringToObject(response,Result.class);
+                        listener.questionResponse(bean);
+                    }
+                });
+
+
+
+    }
+
     public interface QuestionListener{
         void questionResponse(Object response);
     }

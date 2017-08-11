@@ -137,8 +137,6 @@ public class ContactListFragment extends EaseContactListFragment {
 
                     try {
                         ContactListBean bean = gson.fromJson((String) response, ContactListBean.class);
-
-
                         if ("10".equals(bean.result.code)){
 
                             if (bean.friendlist == null || bean.friendlist.size() == 0){
@@ -150,6 +148,15 @@ public class ContactListFragment extends EaseContactListFragment {
                             if (m instanceof Hashtable<?, ?>) {
                                 //noinspection unchecked
                                 m = (Map<String, EaseUser>) ((Hashtable<String, EaseUser>)m).clone();
+                            }
+                            if (EaseInitBean.map == null) {
+                                if (EaseInitBean.contactBean != null) {
+                                    userInfo.clear();
+                                    for (ContactBean contactBean : EaseInitBean.contactBean.friendlist) {
+                                        userInfo.put(contactBean.hx_account, contactBean);
+                                    }
+                                }
+                                EaseInitBean.map = userInfo;
                             }
                             setContactsMap(m);
                             ContactListFragment.super.refresh();
@@ -171,7 +178,7 @@ public class ContactListFragment extends EaseContactListFragment {
 
 
 
-        Map<String, EaseUser> m = DemoHelper.getInstance().getContactList();
+        /*Map<String, EaseUser> m = DemoHelper.getInstance().getContactList();
         if (m instanceof Hashtable<?, ?>) {
             //noinspection unchecked
             m = (Map<String, EaseUser>) ((Hashtable<String, EaseUser>)m).clone();
@@ -187,7 +194,7 @@ public class ContactListFragment extends EaseContactListFragment {
 //        }else{
 //            applicationItem.hideUnreadMsgView();
 //        }
-        getApplyNum();
+        getApplyNum();*/
     }
 
     private GetInfoProtocal mProtocal;

@@ -47,6 +47,7 @@ import java.util.List;
 public class HomeQuestionUI extends BaseUI {
 
     public static final int LOGIN = 111;
+    public static final int HOME_QUESTION = 112;
     //列表展示
     @ViewInject(R.id.lv_home_question)
     private PullLoadMoreRecyclerView lv_home_question;
@@ -305,6 +306,10 @@ public class HomeQuestionUI extends BaseUI {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == LOGIN){
+            initMyInfo();
+        }
+        //页面删除提问之后
+        if(resultCode == RESULT_OK && requestCode == HOME_QUESTION){
             initMyInfo();
         }
     }

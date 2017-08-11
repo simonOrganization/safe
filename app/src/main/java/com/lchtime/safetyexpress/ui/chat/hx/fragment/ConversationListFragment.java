@@ -68,7 +68,7 @@ public class ConversationListFragment extends MyConversationListFragment {
     protected void setUpView() {
     //初始化本地资料  使其显示本地的相关信息
 
-        if (EaseInitBean.contactBean == null){
+        //if (EaseInitBean.contactBean == null){
 
             protocal.getMyFriends(new HomeQuestionProtocal.QuestionListener() {
                 @Override
@@ -84,17 +84,6 @@ public class ConversationListFragment extends MyConversationListFragment {
                                 return;
                             }
                             EaseInitBean.contactBean= bean;
-                            if (EaseInitBean.map == null) {
-                                if (EaseInitBean.contactBean != null) {
-
-                                    for (ContactBean contactBean : EaseInitBean.contactBean.friendlist) {
-                                        userInfo.put(contactBean.hx_account, contactBean);
-                                    }
-                                }
-                                EaseInitBean.map = userInfo;
-                            }
-
-                            ConversationListFragment.super.setUpView();
                         }else {
                             CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                         }
@@ -105,11 +94,11 @@ public class ConversationListFragment extends MyConversationListFragment {
                 }
             });
 
-        }
+        //}
 
         if (EaseInitBean.map == null) {
             if (EaseInitBean.contactBean != null) {
-
+                userInfo.clear();
                 for (ContactBean contactBean : EaseInitBean.contactBean.friendlist) {
                     userInfo.put(contactBean.hx_account, contactBean);
                 }
@@ -117,7 +106,7 @@ public class ConversationListFragment extends MyConversationListFragment {
             EaseInitBean.map = userInfo;
         }
 
-        super.setUpView();
+        //super.setUpView();
         // register context menu
         registerForContextMenu(conversationListView);
         conversationListView.setOnItemClickListener(new OnItemClickListener() {

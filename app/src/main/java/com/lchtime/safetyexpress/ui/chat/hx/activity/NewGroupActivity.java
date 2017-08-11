@@ -100,7 +100,7 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 	private RelativeLayout addrItem;
 	private RelativeLayout loading;
 	private static GridAdapter adapter;
-	//public List<String> members;
+	public static ArrayList<String> memberList = new ArrayList<>();
 	public static List<EaseUser> members = new ArrayList<>();
 	private List<ProfessionBean.ProfessionItemBean> professionList = new ArrayList<>();
 	private ArrayList<CardBean> cardItem = new ArrayList<>();
@@ -114,7 +114,6 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.em_activity_new_group);
-		//members = ;
 		initTitle();
 //		groupNameEditText = (EditText) findViewById(R.id.edit_group_name);
 //		introductionEditText = (EditText) findViewById(R.id.edit_group_introduction);
@@ -139,7 +138,6 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 		addrItem = (RelativeLayout) findViewById(R.id.addr_item);
 		loading = (RelativeLayout) findViewById(R.id.loading);
 		tvSave = (TextView) findViewById(R.id.tv_save);
-		members.clear();
 		adapter = new GridAdapter(this, R.layout.em_grid, members);
 		mUserGridview.setAdapter(adapter);
 		type = "0";
@@ -179,18 +177,6 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 				return false;
 			}
 		});
-
-//		publibCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-//
-//		    @Override
-//		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//		        if(isChecked){
-//		            secondTextView.setText(R.string.join_need_owner_approval);
-//		        }else{
-//                    secondTextView.setText(R.string.Open_group_members_invited);
-//		        }
-//		    }
-//		});
 
 		mCbPublic.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -272,7 +258,10 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 	public static void setSelectData(ArrayList<EaseUser> datas){
 		members.clear();
 		members.addAll(datas);
-		//EaseUser user = members.get(0);
+		memberList.clear();
+		for(EaseUser user : members){
+			memberList.add(user.getUsername());
+		}
 		if(adapter != null)
 		adapter.notifyDataSetChanged();
 	}
@@ -283,19 +272,6 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 //		String st1 = getResources().getString(R.string.Is_to_create_a_group_chat);
 //		final String st2 = getResources().getString(R.string.Failed_to_create_groups);
 		if (resultCode == RESULT_OK) {
-			//new group
-//			progressDialog = new ProgressDialog(this);
-//			progressDialog.setMessage(st1);
-//			progressDialog.setCanceledOnTouchOutside(false);
-//			progressDialog.show();
-			/*if (data != null){
-				//回显选择的群成员图片
-				ArrayList<EaseUser> datas = data.getParcelableArrayListExtra("newmembers");
-				members.clear();
-				members.addAll(datas);
-                //EaseUser user = members.get(0);
-				adapter.notifyDataSetChanged();
-			}*/
 
 		}else if (requestCode == CITY_CODE){
 			if (data != null) {
@@ -398,15 +374,11 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 					@Override
 					public void onClick(View v) {
 						// 进入选人页面
-//							startActivityForResult(
-//									(new Intent(NewGroupActivity.this, GroupPickContactsActivity.class).putExtra("groupId", groupId)),
-//									REQUEST_CODE_ADD_USER);
 						Intent intent = new Intent(NewGroupActivity.this, GroupPickContactsActivity.class);
 						intent.putExtra("groupName" , mGroupName.getText().toString());
 						intent.putExtra("type" , false);
+						intent.putExtra("members" , memberList);
 						startActivityForResult(intent , 0);
-						/*startActivityForResult(new Intent(NewGroupActivity.this, GroupPickContactsActivity.class)
-								.putExtra("groupName", mGroupName.getText().toString()), 0);*/
 					}
 				});
 
@@ -829,5 +801,15 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 			}
 		});
 
+	}
+
+	/**
+	 * 销毁得时候
+	 */
+	@Override
+	protected void onDestroy() {
+		memberList.clear();
+		members.clear();
+		super.onDestroy();
 	}
 }

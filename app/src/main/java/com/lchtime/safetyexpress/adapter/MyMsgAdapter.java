@@ -90,18 +90,18 @@ public class MyMsgAdapter extends ArrayAdapter<ApplyMessageBean.ApplyListBean> {
 
 		final ApplyMessageBean.ApplyListBean msg = getItem(position);
 		if (msg != null) {
-
-			holder.reason.setText(msg.message);
-			holder.name.setText(msg.ud_nickname);
-			if (!TextUtils.isEmpty(msg.ud_photo_fileid)) {
-				Glide.with(MyApplication.getContext())
-				.load(msg.ud_photo_fileid)
-				.into(holder.avator);
-			}else {
-				Glide.with(MyApplication.getContext())
-						.load(R.drawable.circle_user_image)
-						.into(holder.avator);
+			if(msg.message != null && !msg.message.equals("")){
+				holder.reason.setText(msg.message);
+			}else{
+				holder.reason.setText(msg.ud_nickname + "邀请你进群");
 			}
+			holder.name.setText(msg.ud_nickname);
+			Glide.with(MyApplication.getContext())
+					.load(msg.ud_photo_fileid)
+					.placeholder(R.drawable.circle_user_image)
+					.error(R.drawable.circle_user_image)
+					.into(holder.avator);
+
 
 			if ("1".equals(msg.status)){
 				//如果是已读的消息
@@ -111,8 +111,6 @@ public class MyMsgAdapter extends ArrayAdapter<ApplyMessageBean.ApplyListBean> {
 				holder.status.setChecked(false);
 				holder.status.setText("添加");
 			}
-
-
 			holder.status.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -126,20 +124,6 @@ public class MyMsgAdapter extends ArrayAdapter<ApplyMessageBean.ApplyListBean> {
 					}
 				}
 			});
-
-//			holder.status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//				@Override
-//				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//					if ("1".equals(msg.status)){
-//						holder.status.setChecked(true);
-//					}else {
-//						//请求网络数据
-//						if (isChecked) {
-//							accept(msg, holder.status);
-//						}
-//					}
-//				}
-//			});
 
 			holder.delete.setOnClickListener(new OnClickListener() {
 				@Override

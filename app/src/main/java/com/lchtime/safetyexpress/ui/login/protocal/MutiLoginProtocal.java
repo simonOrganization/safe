@@ -83,6 +83,7 @@ public class MutiLoginProtocal {
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
                 .concat(MyApplication.getContext().getResources().getString(R.string.addtparty));
+        if(clientid == null) clientid = "";
         OkHttpUtils
                 .post()
                 .url(url)

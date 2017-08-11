@@ -20,14 +20,17 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
 import com.google.gson.Gson;
+import com.hyphenate.chat.EMClient;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.CardBean;
+import com.lchtime.safetyexpress.bean.ChangeHeadBean;
 import com.lchtime.safetyexpress.bean.CheckUpdataBean;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.PostBean;
 import com.lchtime.safetyexpress.bean.ProfessionBean;
+import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.UpdataBean;
 import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
@@ -700,9 +703,9 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
                         }
 
                         if (updataBean != null&& updataBean.file_ids != null) {
-                            allInfo.ud_photo_fileid = updataBean.file_ids.get(0);
+                            //allInfo.ud_photo_fileid = updataBean.file_ids.get(0);
                             //上传编辑信息
-                            map.put("ud_photo_fileid", allInfo.ud_photo_fileid + "");
+                            map.put("ud_photo_fileid", updataBean.file_ids.get(0) + "");
                         }
                     }
                 });
@@ -790,7 +793,14 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
         String uid = SpTools.getUserId(this);
         LoginInternetRequest.editVipInfo(vipInfoBean.user_detail.ub_phone , map, uid, mDialog ,new LoginInternetRequest.ForResultListener() {
             @Override
-            public void onResponseMessage(String code) {
+            public void onResponseMessage(String response) {
+                ChangeHeadBean bean = new Gson().fromJson(response, ChangeHeadBean.class);
+                String code = bean.result.code;
+                if(!code.equals("10")){
+                    CommonUtils.toastMessage(bean.result.info);
+                    return;
+                }
+
                 //Toast.makeText(VipInfoUI.this, "上传成功", Toast.LENGTH_SHORT).show();
                 //将裁剪得图片转换成bitmap
                 Bitmap zoomBitMap = null;
@@ -821,14 +831,15 @@ public class VipInfoUI extends BaseUI implements View.OnClickListener,PopupWindo
                 vipInfoBean.user_detail.ud_memo =
                         allInfo.ud_memo == null ? vipInfoBean.user_detail.ud_memo : allInfo.ud_memo;
                 vipInfoBean.user_detail.ud_photo_fileid =
-                        allInfo.ud_photo_fileid == null ? vipInfoBean.user_detail.ud_photo_fileid : allInfo.ud_photo_fileid;
+                        bean.pic == null ? vipInfoBean.user_detail.ud_photo_fileid : bean.pic;
 
                 //保存用户信息到本地
                 SpTools.saveUser(mContext , vipInfoBean);
                 //此处可以加上上传图片到环信的过程
                 //EMClient.getInstance().updateCurrentUserNick(allInfo.ud_nickname == null ? vipInfoBean.user_detail.ud_nickname : allInfo.ud_nickname);
-                if(zoomBitMap != null)
-                DemoHelper.getInstance().getUserProfileManager().uploadUserAvatar(Bitmap2Bytes(zoomBitMap));
+                //if(zoomBitMap != null)
+                //DemoHelper.getInstance().getUserProfileManager().uploadUserAvatar(Bitmap2Bytes(zoomBitMap));
+                //UpdataImageUtils.saveBitmapFile(zoomBitMap, Constants.photo_name);
                 if(allInfo.ud_nickname != null)
                 DemoHelper.getInstance().getUserProfileManager().updateCurrentUserNickName(allInfo.ud_nickname);
                 finish();

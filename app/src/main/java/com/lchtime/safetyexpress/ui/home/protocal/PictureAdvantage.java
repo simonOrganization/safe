@@ -56,7 +56,11 @@ public class PictureAdvantage {
                 });
     }
 
-
+    /**
+     * 获取圈子首页的轮播图
+     * @param ub_id
+     * @param listener
+     */
     public void getQZPic(String ub_id, final HotNewsListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
            // CommonUtils.toastMessage("您当前无网络，请联网再试");

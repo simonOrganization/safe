@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.HeaderAndFooterWrapper;
 import com.lchtime.safetyexpress.adapter.HomeImgAdapter;
@@ -102,6 +103,7 @@ public class HomeQuewstionDetail extends BaseUI {
     private LinearLayout ll_yiguanzhu;
     private RelativeLayout rl_isguanzhu;
     private ImageView openIv;
+    private TextView mDeleteTv;
 
     @Override
     protected void back() {
@@ -123,7 +125,7 @@ public class HomeQuewstionDetail extends BaseUI {
     protected void setControlBasis() {
         ButterKnife.bind(this);
         setTitle("问答");
-        View view = View.inflate(this,R.layout.qeuwstion_detail_header,null);
+        View view = View.inflate(this,R.layout.qeuwstion_detail_header , null);
         initView(view);
         HuiFuAdapter = new QuetionDetailAdapter(HomeQuewstionDetail.this, huiFuList);
         wrapperAdapter = new HeaderAndFooterWrapper(HuiFuAdapter);
@@ -214,20 +216,22 @@ public class HomeQuewstionDetail extends BaseUI {
         ll_yiguanzhu = (LinearLayout) view.findViewById(R.id.ll_yiguanzhu);
         rl_isguanzhu = (RelativeLayout) view.findViewById(R.id.rl_isguanzhu);
         openIv = (ImageView) view.findViewById(R.id.iv_open);
+        mDeleteTv = (TextView) view.findViewById(R.id.tv_delete);
+
     }
 
 
     @Override
     protected void prepareData() {
-        String page = "1";
-        refresh(page);
+        page = 1;
+        refresh(page + "");
     }
     private boolean isLoadMore = false;
     private void refresh(final String page) {
         if (protocal == null) {
             protocal = new HomeQuestionProtocal();
         }
-        protocal.getWenDaDetail(page,qid, new HomeQuestionProtocal.QuestionListener() {
+        protocal.getWenDaDetail(page , qid, new HomeQuestionProtocal.QuestionListener() {
             @Override
             public void questionResponse(Object response) {
                 if (response == null){
@@ -236,120 +240,148 @@ public class HomeQuewstionDetail extends BaseUI {
                     return;
                 }
                 final WenDaDetailBean bean = (WenDaDetailBean) response;
-                detailBean = bean;
-                totalPage = bean.totalpage;
-                if (Integer.parseInt(page) == 0 || Integer.parseInt(page) == 1) {
-                    tvHomeQuestionTitle.setText(bean.wenti.q_title);
-                    tvHomeQuestionDescrib.setText(bean.wenti.q_description);
-                    tvHomeQuestionNum.setText(bean.wenti.hdNum + "回答");
-                    tvHomeFocusNum.setText(bean.wenti.gzNum + "人关注");
-                    if ("0".equals(bean.wenti.is_gz)) {
-                        ll_guanzhu.setVisibility(View.VISIBLE);
-                        ll_yiguanzhu.setVisibility(View.GONE);
-                    } else {
-                        ll_guanzhu.setVisibility(View.GONE);
-                        ll_yiguanzhu.setVisibility(View.VISIBLE);
-                    }
-
-
-                    rl_isguanzhu.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //点击关注按钮
-                            protocal.postGuanZhu(bean.wenti.q_id, bean.wenti.is_gz, new HomeQuestionProtocal.QuestionListener() {
-                                @Override
-                                public void questionResponse(Object response) {
-                                    Result result = (Result) response;
-                                    if ("10".equals(result.result.code)) {
-                                        //刷新数据
-                                        prepareData();
-                                    }
-                                    CommonUtils.toastMessage(result.result.getInfo());
-                                }
-                            });
-
-                        }
-                    });
-                    if (bean.wenti.pic.size() == 1) {
-                        //一张图
-                        mgvHomeQuestion.setVisibility(View.GONE);
-                        onePicHomeQuestion.setVisibility(View.VISIBLE);
-                        Glide.with(HomeQuewstionDetail.this)
-                                .load(bean.wenti.pic.get(0))
-                                //.transform(ImageUtils.getTransformation(onePicHomeQuestion))
-                                .into(onePicHomeQuestion);
-                        final ArrayList<String> picList = (ArrayList<String>)  bean.wenti.pic;
-
-                        onePicHomeQuestion.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(context, CirclePhone.class);
-                                intent.putExtra("url", picList);
-                                intent.putExtra("pos", "1");
-                                context.startActivity(intent);
-                            }
-                        });
-                    } else {
-                        //多张图或者没图
-                        if (bean.wenti.pic.size() == 0) {
-                            mgvHomeQuestion.setVisibility(View.GONE);
-                            onePicHomeQuestion.setVisibility(View.GONE);
-                        } else {
-                            final ArrayList<String> picList = (ArrayList<String>) bean.wenti.pic;
-                            onePicHomeQuestion.setVisibility(View.GONE);
-                            mgvHomeQuestion.setVisibility(View.VISIBLE);
-                            HomeImgAdapter adapter = new HomeImgAdapter(HomeQuewstionDetail.this, picList);
-                            mgvHomeQuestion.setAdapter(adapter);
-                        }
-                    }
-                    tvHomeQuestionDescrib.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                        @Override
-                        public boolean onPreDraw() {
-                            //会重复执行，获取到行数马上移除监听
-                            tvHomeQuestionDescrib.getViewTreeObserver().removeOnPreDrawListener(this);
-                            if(tvHomeQuestionDescrib.getLineCount() > 1){
-                                tvHomeQuestionDescrib.setMaxLines(1);
-                                openIv.setVisibility(View.VISIBLE);
-                                openIv.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        tvHomeQuestionDescrib.setMaxLines(1000);
-                                        openIv.setVisibility(View.GONE);
-                                    }
-                                });
-                            }
-
-
-
-                            return false;
-                        }
-                    });
-
-
-
-
-                }
-                //初始化评论
-                if (!isLoadMore) {
-                    huiFuList.clear();
-                }
-                huiFuList.addAll(bean.hdinfo);
-//                if (huiFuList.size() == 0 ){
-//                    setEmptyVisiblity();
-//                    return;
-//                }
-                wrapperAdapter.notifyDataSetChanged();
-                setSuccessVisiblity();
-                lv_home_question.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        lv_home_question.setPullLoadMoreCompleted();
-                    }
-                },500);
-
-                isLoadMore = false;
+                initData(page ,bean);
             }
         });
+
+
+
+    }
+
+    /**
+     * 初始化数据
+     * @param bean
+     */
+    private void initData(String page ,WenDaDetailBean bean) {
+        detailBean = bean;
+        totalPage = detailBean.totalpage;
+        if (Integer.parseInt(page) == 0 || Integer.parseInt(page) == 1) {
+            tvHomeQuestionTitle.setText(detailBean.wenti.q_title);
+            tvHomeQuestionDescrib.setText(detailBean.wenti.q_description);
+            tvHomeQuestionNum.setText(detailBean.wenti.hdNum + "回答");
+            tvHomeFocusNum.setText(detailBean.wenti.gzNum + "人关注");
+            if ("0".equals(detailBean.wenti.is_gz)) {
+                ll_guanzhu.setVisibility(View.VISIBLE);
+                ll_yiguanzhu.setVisibility(View.GONE);
+            } else {
+                ll_guanzhu.setVisibility(View.GONE);
+                ll_yiguanzhu.setVisibility(View.VISIBLE);
+            }
+
+
+            rl_isguanzhu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //点击关注按钮
+                    protocal.postGuanZhu(detailBean.wenti.q_id, detailBean.wenti.is_gz, new HomeQuestionProtocal.QuestionListener() {
+                        @Override
+                        public void questionResponse(Object response) {
+                            Result result = (Result) response;
+                            if ("10".equals(result.result.code)) {
+                                //刷新数据
+                                prepareData();
+                            }
+                            CommonUtils.toastMessage(result.result.getInfo());
+                        }
+                    });
+
+                }
+            });
+            if (detailBean.wenti.pic.size() == 1) {
+                //一张图
+                mgvHomeQuestion.setVisibility(View.GONE);
+                onePicHomeQuestion.setVisibility(View.VISIBLE);
+                Glide.with(HomeQuewstionDetail.this)
+                        .load(detailBean.wenti.pic.get(0))
+                        //.transform(ImageUtils.getTransformation(onePicHomeQuestion))
+                        .into(onePicHomeQuestion);
+                final ArrayList<String> picList = (ArrayList<String>)  detailBean.wenti.pic;
+
+                onePicHomeQuestion.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, CirclePhone.class);
+                        intent.putExtra("url", picList);
+                        intent.putExtra("pos", "1");
+                        context.startActivity(intent);
+                    }
+                });
+            } else {
+                //多张图或者没图
+                if (detailBean.wenti.pic.size() == 0) {
+                    mgvHomeQuestion.setVisibility(View.GONE);
+                    onePicHomeQuestion.setVisibility(View.GONE);
+                } else {
+                    final ArrayList<String> picList = (ArrayList<String>) detailBean.wenti.pic;
+                    onePicHomeQuestion.setVisibility(View.GONE);
+                    mgvHomeQuestion.setVisibility(View.VISIBLE);
+                    HomeImgAdapter adapter = new HomeImgAdapter(HomeQuewstionDetail.this, picList);
+                    mgvHomeQuestion.setAdapter(adapter);
+                }
+            }
+            tvHomeQuestionDescrib.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public boolean onPreDraw() {
+                    //会重复执行，获取到行数马上移除监听
+                    tvHomeQuestionDescrib.getViewTreeObserver().removeOnPreDrawListener(this);
+                    if(tvHomeQuestionDescrib.getLineCount() > 1){
+                        tvHomeQuestionDescrib.setMaxLines(1);
+                        openIv.setVisibility(View.VISIBLE);
+                        openIv.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                tvHomeQuestionDescrib.setMaxLines(1000);
+                                openIv.setVisibility(View.GONE);
+                            }
+                        });
+                    }
+                    return false;
+                }
+            });
+            final String ub_id = SpTools.getUserId(mContext);
+            if(ub_id.equals(bean.wenti.q_ub_id)){
+                mDeleteTv.setVisibility(View.VISIBLE);
+                mDeleteTv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        protocal.deleteQuestion(ub_id , qid , new HomeQuestionProtocal.QuestionListener(){
+
+                            @Override
+                            public void questionResponse(Object response) {
+                                if(response != null){
+                                    Result result = (Result) response;
+                                    if(result.result.code.equals("10")){
+                                        CommonUtils.toastMessage(result.result.info);
+                                        setResult(RESULT_OK);
+                                        finish();
+                                    }
+                                }
+
+                            }
+                        });
+                    }
+                });
+            }else{
+                mDeleteTv.setVisibility(View.INVISIBLE);
+            }
+
+
+        }
+        //初始化评论
+        if (!isLoadMore) {
+            huiFuList.clear();
+        }
+        huiFuList.addAll(detailBean.hdinfo);
+        wrapperAdapter.notifyDataSetChanged();
+        setSuccessVisiblity();
+        lv_home_question.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                lv_home_question.setPullLoadMoreCompleted();
+            }
+        },500);
+
+        isLoadMore = false;
     }
 
 

@@ -77,6 +77,7 @@ import java.util.Map;
 
 import static com.lchtime.safetyexpress.R.id.ll_more_member;
 import static com.lchtime.safetyexpress.R.id.rl_change_group_invite;
+import static com.lchtime.safetyexpress.ui.chat.hx.activity.NewGroupActivity.members;
 
 public class GroupDetailsActivity extends BaseActivity implements OnClickListener, PopupWindow.OnDismissListener {
 	private static final String TAG = "GroupDetailsActivity";
@@ -90,16 +91,12 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 
 
 	private String groupId;
-//	private ProgressBar loadingPB;
 	private Button exitBtn;
-//	private EMGroup group;
 	private GridAdapter adapter;
 
 	public static GroupDetailsActivity instance;
 	
 	String st = "";
-
-//	private EaseSwitchButton switchButton;
 
 
 	private TextView mTitle;
@@ -192,9 +189,6 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 
 		initTitle();
 		initData();
-
-		// show dismiss button if you are owner of group
-
 
 	}
 
@@ -310,27 +304,27 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		final String st6 = getResources().getString(R.string.Modify_the_group_name_successful);
 		final String st7 = getResources().getString(R.string.change_the_group_name_failed_please);
 		if (resultCode == RESULT_OK) {
-			ArrayList<EMContact> members;
+			ArrayList<EMContact> selectedMembers;
 			//String[] newmembers = null;
 			switch (requestCode) {
 			case REQUEST_CODE_ADD_USER:
 				// 添加群成员
 				//newmembers = data.getStringArrayExtra("newmembers");
-				members = data.getParcelableArrayListExtra("newmembers");
+				selectedMembers = data.getParcelableArrayListExtra("newmembers");
 				setLoadding(true);
-				addMembersToGroup(members);
+				addMembersToGroup(selectedMembers);
 				break;
 			case REQUEST_CODE_DEL_USER: //删除群成员
-				members = data.getParcelableArrayListExtra("newmembers");
+				selectedMembers = data.getParcelableArrayListExtra("newmembers");
 				//setLoadding(true);
-				if(members != null && members.size() > 0){
+				if(selectedMembers != null && selectedMembers.size() > 0){
 					String sns_quners = "";
-					for (int i = 0; i < members.size() ; i++){
+					for (int i = 0; i < selectedMembers.size() ; i++){
 						if ( i == 0){
 							//因为传输数据问题 这里将环信id设置给 Username 这个变量。取出来的时候 Username 实际上是环信id
-							sns_quners = sns_quners + members.get(i).getUsername();
+							sns_quners = sns_quners + selectedMembers.get(i).getUsername();
 						}else {
-							sns_quners = sns_quners + "," + members.get(i).getUsername();
+							sns_quners = sns_quners + "," + selectedMembers.get(i).getUsername();
 						}
 					}
 
@@ -371,11 +365,6 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 	}
 
 
-	public static void deleteMemberToGroup(){
-
-	}
-
-
 	/**
 	 * 增加群成员
 	 *
@@ -389,8 +378,8 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 			CommonUtils.toastMessage("请重新登录后重新操作！");
 			return;
 		}
-		mAdapterList.clear();
-		mAdapterList.addAll(mBean.quners);
+		/*mAdapterList.clear();
+		mAdapterList.addAll(mBean.quners);*/
 		String sns_qunser = "";
 		for (int i = 0 ; i < members.size();i++){
 			/*InfoBean.QunersBean bean = new InfoBean.QunersBean();
@@ -416,7 +405,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 				sns_qunser = sns_qunser + "," +members.get(i).getNick();
 			}
 		}
-		adapter.notifyDataSetChanged();
+		//adapter.notifyDataSetChanged();
 
 		//执行网络添加群成员操作
 
@@ -495,39 +484,6 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 
 	}
 
-	/**
-	 * 退出群组
-	 * 
-	 * @param
-	 */
-	private void exitGrop() {
-		String st1 = getResources().getString(R.string.Exit_the_group_chat_failure);
-		new Thread(new Runnable() {
-			public void run() {
-				try {
-					EMClient.getInstance().groupManager().leaveGroup(groupId);
-					runOnUiThread(new Runnable() {
-						public void run() {
-							setLoadding(false);
-							setResult(RESULT_OK);
-							finish();
-							if(ChatActivity.activityInstance != null)
-							    ChatActivity.activityInstance.finish();
-						}
-					});
-				} catch (final Exception e) {
-					runOnUiThread(new Runnable() {
-						public void run() {
-							setLoadding(false);
-							Toast.makeText(getApplicationContext(), getResources().getString(R.string.Exit_the_group_chat_failure) + " " + e.getMessage(), Toast.LENGTH_LONG).show();
-						}
-					});
-				}
-			}
-		}).start();
-	}
-
-
 
 	private FunctionOptions options;
 	private Intent picData;
@@ -548,10 +504,6 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 					.create();
 		}
 		switch (v.getId()) {
-//		case R.id.rl_switch_block_groupmsg: // 屏蔽或取消屏蔽群组
-//			toggleBlockGroup();
-//			break;
-
 		case R.id.clear_all_history: // 清空聊天记录
 
 			popWindow.setPerfect("删除");
@@ -568,14 +520,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 			);
 
 			break;
-
-//		case R.id.rl_blacklist: // 黑名单列表
-//			startActivity(new Intent(GroupDetailsActivity.this, GroupBlacklistActivity.class).putExtra("groupId", groupId));
-//			break;
-
-		case R.id.rl_change_group_name:
-//			startActivityForResult(new Intent(this, EditActivity.class).putExtra("data", mBean.qun.ud_nickname), REQUEST_CODE_EDIT_GROUPNAME);
-			//更改群名
+		case R.id.rl_change_group_name://修改群名称
 			String name = qunName.getText().toString().trim();
 			if (TextUtils.isEmpty(name)){
 				name = "";
@@ -629,7 +574,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 			//弹框 更换群头像
 			getPicture();
 			break;
-		case R.id.btn_exit_grp:
+		case R.id.btn_exit_grp: //
 			if (mProtocal == null){
 				mProtocal = new GetInfoProtocal();
 			}
@@ -652,14 +597,8 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 			}else if(mType == 2){
 //				CommonUtils.toastMessage("修改");
 				upDataInfo();
-
 			}
 			break;
-//		case R.id.rl_search:
-//            startActivity(new Intent(this, GroupSearchMessageActivity.class).putExtra("groupId", groupId));
-//
-//            break;
-
 		case R.id.ll_back: // 后退键
 			setResult(RESULT_OK);
 			finish();
@@ -669,7 +608,6 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		}
 
 	}
-
 
 	private Map<String, EaseUser> topMap;
 	private void setUpConversation() {
@@ -746,8 +684,10 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		}
 	}
 
+	/**
+	 * 退群
+	 */
 	private void deleteGroup() {
-
 		popWindow.setPerfect("删除");
 		popWindow.setJump("取消");
 		popWindow.setContent("确定退出群聊？");
@@ -870,13 +810,9 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		getWindow().setAttributes(lp);
 	}
 
-
-
 	/**
 	 * 群组成员gridadapter
-	 * 
 	 * @author admin_new
-	 * 
 	 */
 	public boolean isInDeleteMode;
 	private class GridAdapter extends ArrayAdapter<InfoBean.QunersBean> {
@@ -884,12 +820,16 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		private int res;
 
 		private List<InfoBean.QunersBean> objects;
+		//private ArrayList<String> members = new ArrayList<>();
 
 		public GridAdapter(Context context, int textViewResourceId, List<InfoBean.QunersBean> objects) {
 			super(context, textViewResourceId, objects);
 			this.objects = objects;
 			res = textViewResourceId;
 			isInDeleteMode = false;
+			/*for(InfoBean.QunersBean bean : objects){
+				members.add(bean.hx_account);
+			}*/
 		}
 
 		@Override
@@ -940,6 +880,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 							Intent intent = new Intent(GroupDetailsActivity.this, GroupPickContactsActivity.class);
 							intent.putExtra("groupId", groupId);
 							intent.putExtra("type" , true);
+							//intent.putExtra("members" , members);
 							startActivityForResult(intent , REQUEST_CODE_ADD_USER);
 						}
 					});
@@ -1021,43 +962,6 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		}
 	}
 
-	protected void updateGroup() {
-		new Thread(new Runnable() {
-			public void run() {
-				try {
-				    EMClient.getInstance().groupManager().getGroupFromServer(groupId);
-					
-					runOnUiThread(new Runnable() {
-						public void run() {
-//							((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "(" + group.getAffiliationsCount() + ")");
-							mTitle.setText(mBean.qun.ud_nickname + "(" + mBean.quners.size() + "人)");
-//							loadingPB.setVisibility(View.INVISIBLE);
-
-							refreshMembers();
-
-							setType();
-							// update block
-//							EMLog.d(TAG, "group msg is blocked:" + group.isMsgBlocked());
-
-						}
-					});
-
-				} catch (Exception e) {
-					runOnUiThread(new Runnable() {
-						public void run() {
-//							loadingPB.setVisibility(View.INVISIBLE);
-						}
-					});
-				}
-			}
-		}).start();
-	}
-
-//	public void back(View view) {
-//		setResult(RESULT_OK);
-//		finish();
-//	}
-
 	@Override
 	public void onBackPressed() {
 		setResult(RESULT_OK);
@@ -1075,8 +979,6 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 	    TextView textView;
 	    ImageView badgeDeleteView;
 	}
-
-
 
 	public void setItemClickable(boolean click){
 		if (click){
@@ -1107,7 +1009,9 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 
 	}
 
-
+	/**
+	 * 设置 删除 或者加群 按钮样式
+	 */
 	private void setType() {
 		if ("0".equals(mBean.qun.inQun)) {
 			mType = 0;

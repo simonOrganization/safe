@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.PhotoAdapter;
+import com.lchtime.safetyexpress.weight.ImageViewPager;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class CirclePhone extends AppCompatActivity {
     @BindView(R.id.tv_indicator)
     TextView tvIndicator;
     @BindView(R.id.viewpager)
-    ViewPager viewpager;
+    ImageViewPager viewpager;
     private ArrayList<String> urlList;
     private ArrayList<PhotoView> viewList = new ArrayList<>();
     private int pos;

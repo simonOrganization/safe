@@ -284,14 +284,20 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
 
                     if (Integer.parseInt(bean.plNum) > 0){
                         tv_news_detail_comment.setVisibility(View.VISIBLE);
+                    }else{
+                        tv_news_detail_comment.setVisibility(View.GONE);
                     }
 
                     if (Integer.parseInt(bean.dzNum) > 0){
                         tv_news_detail_zan.setVisibility(View.VISIBLE);
+                    }else{
+                        tv_news_detail_zan.setVisibility(View.GONE);
                     }
 
                     if (Integer.parseInt(bean.dcNum) > 0){
                         tv_news_detail_fd.setVisibility(View.VISIBLE);
+                    }else{
+                        tv_news_detail_fd.setVisibility(View.GONE);
                     }
                     cb_news_detail_zan.setChecked("1".equals(bean.dz));
                     cb_news_detail_cai.setChecked("1".equals(bean.dc));
@@ -593,10 +599,14 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
 
             @Override
             public void run() {
-                if (ub_id != null && ub_id.equals("1")){
-                    InitInfo.wendaDetail = true;
-                    setResult(HomeQuewstionDetail.QUEWSTION_DETAIL_RESULT);
-                    finish();
+                if (ub_id != null){
+                    if(ub_id.equals("1")){ //表示问答界面删除
+                        InitInfo.wendaDetail = true;
+                        setResult(HomeQuewstionDetail.QUEWSTION_DETAIL_RESULT);
+                        finish();
+                    }else if(ub_id.equals("2")){//表示圈子详情界面删除评论
+                        initH5Info();
+                    }
                 }else {
                     CommonUtils.toastMessage("删除失败");
                 }
@@ -1075,6 +1085,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
                         }
                         tv_news_detail_fd.setText(bean.dcNum);
                     }
+                    mWebView.loadUrl(baseUrl);
                 }else {
                     CommonUtils.toastMessage(bean.result.info);
                     cb.setChecked(cb.isChecked());

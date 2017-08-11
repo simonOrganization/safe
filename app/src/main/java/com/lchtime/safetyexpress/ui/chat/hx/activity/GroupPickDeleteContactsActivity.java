@@ -308,14 +308,14 @@ public class GroupPickDeleteContactsActivity extends BaseActivity implements Vie
 			
 			if (checkBox != null) {
 				checkBox.setClickable(false);
-				/*checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 					@Override
 					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 						// check the exist members
 						isCheckedArray[position] = isChecked;
 
 					}
-				});*/
+				});
 				// keep exist members checked
 //				if (existMembers.contains(username)) {
 //						checkBox.setChecked(true);

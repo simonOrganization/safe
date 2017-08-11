@@ -278,6 +278,7 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
                                 Result result = (Result) response;
                                 ll_right.setEnabled(true);
                                 CommonUtils.toastMessage(result.result.info);
+                                sendMyBroadcast();
                                 finish();
                             }
                         });
@@ -292,16 +293,23 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
                     ll_right.setEnabled(true);
                     Result result = (Result) response;
                     CommonUtils.toastMessage(result.result.info);
-                    Intent action = new Intent();
-                    action.setAction("ACTION_PUSH_SUCEESS");
-                    action.putExtra("code", UPDATE_TEXT);
-                    LocalBroadcastManager.getInstance(getApplication()).sendBroadcast(action);
+                    sendMyBroadcast();
                     finish();
                 }
             });
 
         }
         ll_right.setEnabled(false);
+    }
+
+    /**
+     * 发送广播刷新圈子界面
+     */
+    private void sendMyBroadcast() {
+        Intent action = new Intent();
+        action.setAction("ACTION_PUSH_SUCEESS");
+        action.putExtra("code", UPDATE_TEXT);
+        LocalBroadcastManager.getInstance(getApplication()).sendBroadcast(action);
     }
 
     @Override
@@ -348,8 +356,8 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
                 .setType(1) // 图片or视频 FunctionConfig.TYPE_IMAGE  TYPE_VIDEO
                 .setCropMode(FunctionConfig.CROP_MODEL_DEFAULT) // 裁剪模式 默认、1:1、3:4、3:2、16:9
                 .setCompress(true) //是否压缩
-                .setEnablePixelCompress(true) //是否启用像素压缩
-                .setEnableQualityCompress(true) //是否启质量压缩
+                .setEnablePixelCompress(false) //是否启用像素压缩
+                .setEnableQualityCompress(false) //是否启质量压缩
                 .setMaxSelectNum(9) // 可选择图片的数量
                 .setSelectMode(FunctionConfig.MODE_MULTIPLE) // 单选 or 多选
                 .setShowCamera(false) //是否显示拍照选项 这里自动根据type 启动拍照或录视频
@@ -358,7 +366,7 @@ public class PublishCircleUI extends BaseUI implements PopupWindow.OnDismissList
                 .setCheckedBoxDrawable( R.drawable.select_cb)
 //                            .setCropW(cropW) // cropW-->裁剪宽度 值不能小于100  如果值大于图片原始宽高 将返回原图大小
 //                            .setCropH(cropH) // cropH-->裁剪高度 值不能小于100 如果值大于图片原始宽高 将返回原图大小
-                .setMaxB(202400) // 压缩最大值 例如:200kb  就设置202400，202400 / ic_launcher = 200kb
+                .setMaxB(2048000) // 压缩最大值 例如:200kb  就设置202400，202400 / ic_launcher = 200kb
                 .setPreviewColor(previewColor) //预览字体颜色
                 .setCompleteColor(completeColor) //已完成字体颜色
                 .setPreviewBottomBgColor(ContextCompat.getColor(PublishCircleUI.this, R.color.transparent)) //预览底部背景色

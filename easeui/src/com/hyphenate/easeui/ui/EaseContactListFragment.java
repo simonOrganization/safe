@@ -224,7 +224,7 @@ public class EaseContactListFragment extends EaseBaseFragment {
     
     // refresh ui
     public void refresh() {
-        getContactList();
+        //getContactList();
         setUpView();
         contactListLayout.refresh();
     }

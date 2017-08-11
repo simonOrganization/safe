@@ -34,6 +34,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMContact;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.easeui.adapter.EaseContactAdapter;
 import com.hyphenate.easeui.bean.ContactBean;
@@ -46,6 +47,7 @@ import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -57,9 +59,7 @@ public class GroupPickContactsActivity extends BaseActivity implements View.OnCl
 	protected boolean isCreatingNewGroup;
 	private PickContactAdapter contactAdapter;
 	/** members already in the group */
-	private List<String> existMembers;
-
-
+	private List<String> existMembers ;
 
 	private TextView mTitle;
 	private TextView mTitleRight;
@@ -76,6 +76,8 @@ public class GroupPickContactsActivity extends BaseActivity implements View.OnCl
 		setContentView(R.layout.em_activity_group_pick_contacts);
 		String groupId = getIntent().getStringExtra("groupId");
 		type = getIntent().getBooleanExtra("type" , true);
+		existMembers = getIntent().getStringArrayListExtra("members");
+		if(existMembers == null) existMembers = new ArrayList<>();
 		initTitle();
 
 		initView();
@@ -83,16 +85,16 @@ public class GroupPickContactsActivity extends BaseActivity implements View.OnCl
 		initListener();
 		if (groupId == null) {// create new group
 			isCreatingNewGroup = true;
-		} else {
+		} /*else {
 			// get members of the group
 			EMGroup group = EMClient.getInstance().groupManager().getGroup(groupId);
 			existMembers = group.getMembers();
-		}
-		if(existMembers == null)
-			existMembers = new ArrayList<String>();
+		}*/
+
 		// get contact list
 		final List<EaseUser> alluserList = new ArrayList<EaseUser>();
-		for (EaseUser user : DemoHelper.getInstance().getContactList().values()) {
+		Collection<EaseUser> userList = DemoHelper.getInstance().getContactList().values();
+		for (EaseUser user : userList) {
 			if (!user.getUsername().equals(Constant.NEW_FRIENDS_USERNAME) & !user.getUsername().equals(Constant.GROUP_USERNAME) & !user.getUsername().equals(Constant.CHAT_ROOM) & !user.getUsername().equals(Constant.CHAT_ROBOT))
 				alluserList.add(user);
 		}
@@ -250,7 +252,7 @@ public class GroupPickContactsActivity extends BaseActivity implements View.OnCl
 
 		public PickContactAdapter(Context context, int resource, List<EaseUser> users , Map<String,ContactBean> userInfo) {
 
-			super(context, resource, users,userInfo);
+			super(context, resource, users ,userInfo);
 			isCheckedArray = new boolean[users.size()];
 		}
 

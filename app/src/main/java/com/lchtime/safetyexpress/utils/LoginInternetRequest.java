@@ -54,9 +54,9 @@ public class LoginInternetRequest {
     }
 
 
-/**
- *  登录
- *  */
+    /**
+     *  登录
+     */
     public static void login(String phonenumber, final String password, ForResultListener listener){
         mListener = listener;
         if(!CommonUtils.isNetworkAvailable(context)){
@@ -773,16 +773,10 @@ public class LoginInternetRequest {
             public void onResponse(String response, int id) {
                 dialog.dissmiss();
                 if (!TextUtils.isEmpty(response)) {
-                    Result result = mGson.fromJson(response, Result.class);
-                    String code = result.result.code;
-                    if ("10".equals(code)) {
-                        CommonUtils.toastMessage(result.result.info);
-                        if (mListener != null) {
-                            mListener.onResponseMessage(code);
-                        }
-                    } else {
-                        CommonUtils.toastMessage(result.result.info);
+                    if (mListener != null) {
+                        mListener.onResponseMessage(response);
                     }
+
                 }else {
                     CommonUtils.toastMessage("上传失败");
                 }
