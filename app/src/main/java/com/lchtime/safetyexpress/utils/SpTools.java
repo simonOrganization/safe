@@ -185,5 +185,12 @@ public class SpTools {
 		SharedPreferences sp = context.getSharedPreferences(Constants.CONFIGFILE , Context.MODE_APPEND);
 		return sp.getString("ud_photo_fileid" , "");
 	}
-
+	/**
+	 * 获取用户头像
+	 * @param context
+	 * @return
+	 */
+	public static String getHXID(Context context){
+		return "aqkc" + getUserId(context);
+	}
 }

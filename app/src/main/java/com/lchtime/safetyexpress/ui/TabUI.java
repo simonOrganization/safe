@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.ui;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.app.TabActivity;
 import android.content.BroadcastReceiver;
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -130,6 +132,21 @@ public class TabUI extends TabActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.tab);
+
+        //检测权限
+        PackageManager pkgManager = getPackageManager();
+
+        // 读写 sd card 权限非常重要, android6.0默认禁止的, 建议初始化之前就弹窗让用户赋予该权限
+        boolean sdCardWritePermission =
+                pkgManager.checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, getPackageName()) == PackageManager.PERMISSION_GRANTED;
+
+        // read phone state用于获取 imei 设备信息
+        boolean phoneSatePermission =
+                pkgManager.checkPermission(Manifest.permission.READ_PHONE_STATE, getPackageName()) == PackageManager.PERMISSION_GRANTED;
+
+        if (Build.VERSION.SDK_INT >= 23 && !sdCardWritePermission || !phoneSatePermission) {
+            requestPermission();
+        }
 
         mTabUI = this;
 
@@ -320,6 +337,13 @@ public class TabUI extends TabActivity implements OnClickListener {
         });
     }
 
+    /**
+     * 申请权限
+     */
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE},
+                REQUEST_PERMISSION);
+    }
 
     private HomeQuestionProtocal protocal = new HomeQuestionProtocal();
     private Gson gson = new Gson();
@@ -408,7 +432,7 @@ public class TabUI extends TabActivity implements OnClickListener {
                         VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
                         if (vipInfoBean != null) {
                             SpTools.saveUser(TabUI.this , vipInfoBean);
-                            loginHX(vipInfoBean.user_detail.ub_phone, Constant.HX_PWD);
+                            loginHX(vipInfoBean.user_detail.getHXId(), Constant.HX_PWD);
 
                         }
                     }

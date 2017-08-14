@@ -96,8 +96,8 @@ public class NewFriendsMsgActivity extends BaseActivity implements View.OnClickL
 		if (mProtocal == null){
 			mProtocal = new GetInfoProtocal();
 		}
-		String phoneNumber = SpTools.getString(this , Constants.phoneNum);
-		mProtocal.getApplyMessage(phoneNumber, new AddCommandProtocal.NormalListener() {
+		String HXID = "aqkc" + SpTools.getUserId(this);
+		mProtocal.getApplyMessage(HXID, new AddCommandProtocal.NormalListener() {
 			@Override
 			public void normalResponse(Object response) {
 				if (response == null){
@@ -108,7 +108,7 @@ public class NewFriendsMsgActivity extends BaseActivity implements View.OnClickL
 				ApplyMessageBean bean = gson.fromJson((String) response,ApplyMessageBean.class);
 				if ("10".equals(bean.result.code)){
 					if (bean.applyList == null){
-						bean.applyList = new ArrayList<ApplyMessageBean.ApplyListBean>();
+						bean.applyList = new ArrayList<>();
 					}
 					applyList.clear();
 					applyList.addAll(bean.applyList);

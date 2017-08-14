@@ -117,7 +117,7 @@ public class ApplyMessage extends Activity implements View.OnClickListener {
                 }
 
 
-                mProtocal.getApply(mVipInfoBean.user_detail.ub_phone, groupId,mType,message, mMaster, new AddCommandProtocal.NormalListener() {
+                mProtocal.getApply(mVipInfoBean.user_detail.getHXId() , groupId , mType,message , mMaster, new AddCommandProtocal.NormalListener() {
                     @Override
                     public void normalResponse(Object response) {
                         if (response == null){

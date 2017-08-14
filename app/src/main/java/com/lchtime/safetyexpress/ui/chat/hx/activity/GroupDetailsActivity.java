@@ -146,7 +146,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		topMap = MyApplication.getInstance().getTopUserList();
 		setContentView(R.layout.em_activity_group_details);
 		ub_id = SpTools.getUserId(this);
-		phoneNumber = SpTools.getString(this , Constants.phoneNum);
+		phoneNumber = SpTools.getHXID(this);
 		if (mProtocal == null){
 			mProtocal = new GetInfoProtocal();
 		}

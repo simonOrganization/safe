@@ -117,7 +117,7 @@ public class GroupPickContactsActivity extends BaseActivity implements View.OnCl
             }
         });
 
-		if (EaseInitBean.map == null) {
+		//if (EaseInitBean.map == null) {
 			if (EaseInitBean.contactBean != null) {
 
 				for (ContactBean contactBean : EaseInitBean.contactBean.friendlist) {
@@ -125,7 +125,7 @@ public class GroupPickContactsActivity extends BaseActivity implements View.OnCl
 				}
 			}
 			EaseInitBean.map = myMap;
-		}
+		//}
 		contactAdapter = new PickContactAdapter(this, R.layout.em_row_contact_with_checkbox, alluserList , EaseInitBean.map);
 		listView.setAdapter(contactAdapter);
 		((EaseSidebar) findViewById(R.id.sidebar)).setListView(listView);

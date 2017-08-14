@@ -123,7 +123,7 @@ public class InviteFriendActivity extends BaseUI {
             @Override
             public void questionResponse(Object response) {
                 if (response == null){
-                    CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
+                    //CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                     rcFriend.setPullLoadMoreCompleted();
                     setErrorVisiblity();
                     return;
@@ -141,7 +141,7 @@ public class InviteFriendActivity extends BaseUI {
                         rcFriend.setPullLoadMoreCompleted();
                         setSuccessVisiblity();
                     }else {
-                        CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
+                        //CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                         setErrorVisiblity();
                         rcFriend.setPullLoadMoreCompleted();
                     }

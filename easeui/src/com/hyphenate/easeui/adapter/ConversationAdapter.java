@@ -120,6 +120,7 @@ public class ConversationAdapter extends ArrayAdapter<EMConversation> {
         EMConversation conversation = getItem(position);
         // get username or group id
 //        String username = conversation.getUserName();
+        //会话列表群头像获取
         String username = conversation.conversationId();
 
         if (conversation.getType() == EMConversationType.GroupChat) {
@@ -130,7 +131,7 @@ public class ConversationAdapter extends ArrayAdapter<EMConversation> {
                 holder.motioned.setVisibility(View.GONE);
             }
             //设置群头像昵称  用本地服务器数据
-            String headUrl = SPUtils.getString(context , username);
+            String headUrl = SPUtils.getString(context , groupId);
             Glide.with(context).load(headUrl).placeholder(R.drawable.ease_group_icon).into(holder.avatar);
             EMGroup group = EMClient.getInstance().groupManager().getGroup(username);
 

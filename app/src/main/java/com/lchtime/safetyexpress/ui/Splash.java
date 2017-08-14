@@ -61,7 +61,7 @@ public class Splash extends Activity {
 
 
     private void initData() {
-        PackageManager pkgManager = getPackageManager();
+        /*PackageManager pkgManager = getPackageManager();
 
         // 读写 sd card 权限非常重要, android6.0默认禁止的, 建议初始化之前就弹窗让用户赋予该权限
         boolean sdCardWritePermission =
@@ -76,8 +76,7 @@ public class Splash extends Activity {
         }else {
             // com.getui.demo.DemoPushService 为第三方自定义推送服务
             PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
-        }
-
+        }*/
         // com.getui.demo.DemoIntentService 为第三方自定义的推送服务事件接收类
         PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
 
@@ -87,6 +86,9 @@ public class Splash extends Activity {
         topMap = MyApplication.getInstance().getTopUserList();
         initUpData();
         initHXFriends();
+
+
+
     }
 
     private boolean info = false;
@@ -106,7 +108,7 @@ public class Splash extends Activity {
                         VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
                         if (vipInfoBean != null) {
                             SpTools.saveUser(Splash.this , vipInfoBean);
-                            loginHX(vipInfoBean.user_detail.ub_phone, Constant.HX_PWD);
+                            loginHX(vipInfoBean.user_detail.getHXId(), Constant.HX_PWD);
                         }else {
                             loginHx = true;
                             isShowTab();
@@ -226,7 +228,7 @@ public class Splash extends Activity {
                 @Override
                 public void questionResponse(Object response) {
                     if (response == null){
-                        CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
+                        //CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                         hx = true;
                         isShowTab();
                         return;
@@ -243,12 +245,12 @@ public class Splash extends Activity {
                             hx = true;
                             isShowTab();
                         }else {
-                            CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
+                            //CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                             hx = true;
                             isShowTab();
                         }
                     }catch (Exception exception){
-                        CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
+                        //CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                         hx = true;
                         isShowTab();
                     }

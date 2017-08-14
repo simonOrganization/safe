@@ -680,7 +680,7 @@ public class HXMainActivity extends BaseActivity implements View.OnClickListener
 		if (mProtocal == null) {
 			mProtocal = new GetInfoProtocal();
 		}
-		String phoneNumber = SpTools.getString(this , Constants.phoneNum);
+		String phoneNumber = SpTools.getHXID(this);
 		if (phoneNumber != null) {
 			mProtocal.getApplyNum(phoneNumber, new AddCommandProtocal.NormalListener() {
 				@Override

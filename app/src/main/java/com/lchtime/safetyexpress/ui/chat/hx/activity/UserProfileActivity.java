@@ -75,7 +75,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 		setContentView(R.layout.em_activity_user_profile);
 		Intent intent = getIntent();
 		mUsername = intent.getStringExtra("username");
-		phoneNumber = SpTools.getString(this , Constants.phoneNum);
+		phoneNumber = SpTools.getHXID(this);
 
 		topMap = MyApplication.getInstance().getTopUserList();
 		initView();

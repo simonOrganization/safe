@@ -131,7 +131,7 @@ public class ContactListFragment extends EaseContactListFragment {
                 public void questionResponse(Object response) {
 
                     if (response == null){
-                        CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
+                        //CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                         return;
                     }
 
@@ -165,7 +165,7 @@ public class ContactListFragment extends EaseContactListFragment {
 
                         }else {
 
-                            CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
+                            //CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                         }
                     }catch (Exception exception){
 
@@ -203,7 +203,8 @@ public class ContactListFragment extends EaseContactListFragment {
         if (mProtocal == null){
             mProtocal = new GetInfoProtocal();
         }
-        String phoneNumber = SpTools.getString(getActivity() , Constants.phoneNum);
+        //String phoneNumber = SpTools.getString(getActivity() , Constants.phoneNum);
+        String phoneNumber = SpTools.getHXID(getActivity());
         mProtocal.getApplyNum(phoneNumber, new AddCommandProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {

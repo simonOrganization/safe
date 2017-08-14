@@ -30,4 +30,5 @@ public class Constant extends EaseConstant {
 
 
 	public static final String HX_PWD = "Long123";
+	public static final String HX_ID = "aqkc";
 }

@@ -73,11 +73,9 @@ public class LoginInternetRequest {
             mListener.onResponseMessage("");
             return;
         }
-        if(!TextUtils.isEmpty(SpTools.getString(context , Constants.clientId))){
+        Clientid   =  SpTools.getString(context , Constants.clientId);
 
-            Clientid   =  SpTools.getString(context , Constants.clientId);
 
-        }
         String url = context.getResources().getString(R.string.service_host_address)
                 .concat(context.getResources().getString(R.string.getLogin));
         Log.d("host",url);
@@ -289,10 +287,8 @@ public class LoginInternetRequest {
             mListener.onResponseMessage("");
             return;
         }
-        if(!TextUtils.isEmpty(SpTools.getString(context , Constants.clientId))){
+        Clientid   =  SpTools.getString(context , Constants.clientId);
 
-            Clientid   =  SpTools.getString(context , Constants.clientId);
-        }
         String url = context.getResources().getString(R.string.service_host_address)
                 .concat(context.getResources().getString(R.string.reg));
         OkHttpUtils.post().url(url)

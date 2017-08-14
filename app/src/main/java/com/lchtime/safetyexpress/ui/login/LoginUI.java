@@ -266,7 +266,15 @@ public class LoginUI extends BaseUI {
         pb_progress.setVisibility(View.VISIBLE);
         backgroundAlpha(0.5f);
         ThirdWeiXinLoginApi.getWXAPI(getApplicationContext());
-        ThirdWeiXinLoginApi.login(getApplicationContext());
+        ThirdWeiXinLoginApi.login(getApplicationContext() , new ThirdWeiXinLoginApi.WXLoginListener(){
+
+            @Override
+            public void onFail() {
+                isLogin = false;
+                backgroundAlpha(1f);
+                pb_progress.setVisibility(View.GONE);
+            }
+        });
     }
 
     /**
@@ -313,7 +321,6 @@ public class LoginUI extends BaseUI {
 
         @Override
         public void OauthLoginSuccess(final AuthToken token, final AuthUser user) {
-
             handler.post(new Runnable() {
 
                 @Override
@@ -369,7 +376,7 @@ public class LoginUI extends BaseUI {
                     isLogin = false;
                     backgroundAlpha(1f);
                     pb_progress.setVisibility(View.GONE);
-                    CommonUtils.toastMessage("授权失败，请重试！");
+                    //CommonUtils.toastMessage("授权失败，请重试！");
                 }
             });
 
@@ -442,6 +449,8 @@ public class LoginUI extends BaseUI {
     private void thirdLogin(String ub_id) {
         SpTools.setUserId(LoginUI.this , ub_id);//存储用户的ub_id
         TabUI.getTabUI().init();
+        TabUI.getTabUI().setCurrentTabByTag("tab1");
+        //setResult(RESULT_OK);
         finish();
     }
 
@@ -452,11 +461,6 @@ public class LoginUI extends BaseUI {
 
         @Override
         public void OauthSuccess(Object obj) {
-//            mProressbar.setText("正在为你登录");
-//            mProressbar.setVisibility(View.VISIBLE);
-//            isLogin = false;
-//            backgroundAlpha(1f);
-//            pb_progress.setVisibility(View.GONE);
             Toast.makeText(getApplicationContext(), "授权成功,请稍后...", Toast.LENGTH_SHORT)
                     .show();
         }
@@ -495,7 +499,6 @@ public class LoginUI extends BaseUI {
                 final String code = intent.getStringExtra("code");
                 if (!TextUtils.isEmpty(code)) {
                     new Thread(new Runnable() {
-
                         @Override
                         public void run() {
                             ThirdWeiXinLoginApi.getOauthAcces(code, oauthlogin);
@@ -535,7 +538,6 @@ public class LoginUI extends BaseUI {
     //一定要！！！！
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         super.onActivityResult(requestCode, resultCode, data);
         if (mSsoHandler != null) {
             mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
@@ -556,7 +558,7 @@ public class LoginUI extends BaseUI {
                         isLogin = false;
                         backgroundAlpha(1f);
                         pb_progress.setVisibility(View.GONE);
-                        CommonUtils.toastMessage("登录失败，请重新尝试");
+                        //CommonUtils.toastMessage("登录失败，请重新尝试");
                         return;
                     }
                     try {
@@ -565,23 +567,12 @@ public class LoginUI extends BaseUI {
                             isLogin = false;
                             backgroundAlpha(1f);
                             pb_progress.setVisibility(View.GONE);
-
-                            /*VipInfoBean vipInfoBean = new VipInfoBean();
-                            vipInfoBean.user_detail.ud_addr = bean.user.ud_addr;
-                            vipInfoBean.user_detail.ud_nickname = bean.user.ud_nickname;
-                            vipInfoBean.user_detail.ud_photo_fileid = bean.user.ud_photo_fileid;
-                            vipInfoBean.user_detail.ud_post = bean.user.ud_post;
-                            vipInfoBean.user_detail.ud_profession = bean.user.ud_profession;
-                            vipInfoBean.user_detail.ub_phone = bean.userid.phone;
-                            vipInfoBean.user_detail.ud_sex = bean.userid.tp_gender;
-
-                            saveVipInfoBean(vipInfoBean);*/
                             thirdLogin(bean.userid.ub_id);
                         }else {
                             isLogin = false;
                             backgroundAlpha(1f);
                             pb_progress.setVisibility(View.GONE);
-                            CommonUtils.toastMessage("登录失败，请重新尝试");
+                            CommonUtils.toastMessage(bean.result.info);
                         }
                         finish();
                     }catch (Exception exception) {

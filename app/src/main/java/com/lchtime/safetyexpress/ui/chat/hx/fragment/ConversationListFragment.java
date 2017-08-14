@@ -74,7 +74,7 @@ public class ConversationListFragment extends MyConversationListFragment {
                 @Override
                 public void questionResponse(Object response) {
                     if (response == null){
-                        CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
+                        //CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                         return;
                     }
                     try {

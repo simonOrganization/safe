@@ -1,5 +1,7 @@
 package com.lchtime.safetyexpress.bean;
 
+import android.text.TextUtils;
+
 /**
  * Created by android-cp on 2017/4/26.
  */
@@ -38,5 +40,14 @@ public class VipInfoBean {
         public String ub_id;
         //是否分享  未分享  已分享,未领奖  已领奖
         public String share;
+
+
+        public String getHXId(){
+            if(TextUtils.isEmpty(ub_id)){
+                return "";
+            }
+            return "aqkc" + ub_id;
+        }
+
     }
 }

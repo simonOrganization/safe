@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
@@ -35,7 +34,6 @@ import com.google.gson.Gson;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
-import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.MyAccountBean;
 import com.lchtime.safetyexpress.bean.Third1Bean;
 import com.lchtime.safetyexpress.bean.Third2Bean;
@@ -47,11 +45,9 @@ import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.ui.login.RegisterUI;
 import com.lchtime.safetyexpress.ui.login.protocal.MutiLoginProtocal;
 import com.lchtime.safetyexpress.ui.vip.protocal.VipProtocal;
-import com.lchtime.safetyexpress.utils.BitmapUtils;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.LoginInternetRequest;
 import com.lchtime.safetyexpress.utils.SpTools;
-import com.lchtime.safetyexpress.utils.UpdataImageUtils;
 import com.lchtime.safetyexpress.views.CircleImageView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -59,10 +55,6 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.tauth.Tencent;
-
-import java.io.File;
-
-import static com.lchtime.safetyexpress.bean.Constants.clientId;
 
 
 /**
@@ -108,7 +100,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
     @ViewInject(R.id.ll_login_sina)
     private LinearLayout ll_login_sina;
 
-
+    public static final int LOGIN = 111;
     private Gson gson = new Gson();
 
     private Handler handler;
@@ -170,30 +162,6 @@ public class VipUI extends BaseUI implements View.OnClickListener {
 
     //设置个人相关信息
     private void initVipInfo() {
-        /*File file = new File(MyApplication.getContext().getFilesDir(),Constants.photo_name);//将要保存图片的路径
-        //如果没有加载过图片了
-        if (!file.exists()){
-            civ_vip_icon.setImageDrawable(getResources().getDrawable(R.drawable.circle_user_image));
-            if (!TextUtils.isEmpty(vipInfoBean.user_detail.ud_photo_fileid)){
-                UpdataImageUtils.getUrlBitmap(vipInfoBean.user_detail.ud_photo_fileid, new UpdataImageUtils.BitmapListener() {
-                    @Override
-                    public void giveBitmap(final Bitmap bitmap) {
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                UpdataImageUtils.saveBitmapFile(bitmap,Constants.photo_name);
-                                civ_vip_icon.setImageBitmap(bitmap);
-                            }
-                        });
-
-                    }
-                });
-
-            }
-
-        }else {
-            civ_vip_icon.setImageBitmap(BitmapUtils.getBitmap(file.getAbsolutePath()));
-        }*/
         Glide.with(this).load(vipInfoBean.user_detail.ud_photo_fileid).into(civ_vip_icon);
         if (isLogin) {
             tv_vip_nickname.setText(TextUtils.isEmpty(vipInfoBean.user_detail.ud_nickname) ? "设置昵称" : vipInfoBean.user_detail.ud_nickname);
@@ -283,8 +251,8 @@ public class VipUI extends BaseUI implements View.OnClickListener {
     @OnClick(R.id.tv_phonenum_login)
     private void getLoginActivity(View view) {
         Intent intent = new Intent(VipUI.this, LoginUI.class);
+        //startActivityForResult(intent , LOGIN);
         startActivity(intent);
-
     }
 
     /**
@@ -501,7 +469,15 @@ public class VipUI extends BaseUI implements View.OnClickListener {
             pb_progress.setVisibility(View.VISIBLE);
             backgroundAlpha(0.5f);
             ThirdWeiXinLoginApi.getWXAPI(getApplicationContext());
-            ThirdWeiXinLoginApi.login(getApplicationContext());
+            ThirdWeiXinLoginApi.login(getApplicationContext() , new ThirdWeiXinLoginApi.WXLoginListener(){
+
+                @Override
+                public void onFail() {
+                    isLogin = false;
+                    backgroundAlpha(1f);
+                    pb_progress.setVisibility(View.GONE);
+                }
+            });
 
         }else if (v.getId() == R.id.ll_login_qq){
 
@@ -602,7 +578,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
                     isLogin = false;
                     backgroundAlpha(1f);
                     pb_progress.setVisibility(View.GONE);
-                    CommonUtils.toastMessage("授权失败，请重试！");
+                    //CommonUtils.toastMessage("授权失败，请重试！");
                 }
             });
 
@@ -770,6 +746,10 @@ public class VipUI extends BaseUI implements View.OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        /*if(requestCode == LOGIN && resultCode == RESULT_OK){
+            refreshVip();
+            return;
+        }*/
         if (mSsoHandler != null) {
             mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
@@ -789,7 +769,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
                         isLogin = false;
                         backgroundAlpha(1f);
                         pb_progress.setVisibility(View.GONE);
-                        CommonUtils.toastMessage("登录失败，请重新尝试");
+                        //CommonUtils.toastMessage("登录失败，请重新尝试");
                         return;
                     }
                     try {
