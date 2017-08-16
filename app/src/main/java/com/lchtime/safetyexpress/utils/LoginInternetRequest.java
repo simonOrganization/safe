@@ -42,7 +42,7 @@ public class LoginInternetRequest {
     private static Context context;
     private static Gson mGson;
     private static ForResultListener mListener;
-    private static TimeCount timeCount;
+    public static TimeCount timeCount;
     private static TextView mTextView;
     private static boolean isRun = false;
     private static String Clientid;
@@ -196,17 +196,20 @@ public class LoginInternetRequest {
         if(!CommonUtils.isNetworkAvailable(context)){
             CommonUtils.toastMessage("您当前无网络，请联网再试");
             mListener.onResponseMessage("net");
+            mTextView = null;
             return;
         }
         if(TextUtils.isEmpty(phoneNumber)){
             CommonUtils.toastMessage("您输入的手机号为空");
             //mListener.onResponseMessage("");
+            mTextView = null;
             return ;
         }
         if(!TextUtils.isEmpty(phoneNumber)){
             if(!CommonUtils.isMobilePhone(phoneNumber)){
                 CommonUtils.toastMessage("您输入的手机号有误");
                 //mListener.onResponseMessage("");
+                mTextView = null;
                 return ;
             }
         }

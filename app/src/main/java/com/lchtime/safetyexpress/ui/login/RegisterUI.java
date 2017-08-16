@@ -234,6 +234,10 @@ public class RegisterUI extends BaseUI {
     @OnClick(R.id.tv_register_getcode)
     private void getRegisterGetCode(View view){
         String phoneNum = et_register_username.getText().toString();
+        if(phoneNum == null || phoneNum.equals("") || phoneNum.length() != 11){
+            CommonUtils.toastMessage("手机号不规范");
+            return;
+        }
         LoginInternetRequest.verificationCode(phoneNum, register_getcode, new LoginInternetRequest.ForResultListener() {
             @Override
             public void onResponseMessage(String code) {

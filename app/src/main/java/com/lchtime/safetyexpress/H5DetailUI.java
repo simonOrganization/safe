@@ -218,9 +218,9 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
             ll_collect.setVisibility(View.GONE);
             Message();
         }
-        if (!TextUtils.isEmpty(ub_id)){
+        /*if (!TextUtils.isEmpty(ub_id)){
             baseUrl = baseUrl + "&ub_id=" +ub_id + "&timestamp=" + System.currentTimeMillis();
-        }
+        }*/
 
         if ("url".equals(type)){
             if (!TextUtils.isEmpty(url)) {
@@ -326,7 +326,6 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
                     contexts = bean.getA_info().getA_context();
                     pic = bean.getA_info().getPic();
                     Log.i("qaz", "H5Response: " + "-----------"+ contexts);
-
 
                 }else {
                     // CommonUtils.toastMessage("加载评论和赞失败！");
@@ -813,7 +812,8 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
                         tv_news_detail_comment.setVisibility(View.GONE);
                     }
                     tv_news_detail_comment.setText(bean.plNum);
-                    init();
+                    //init();
+                    mWebView.loadUrl(baseUrl + "&comment_area");
                 }else {
                     CommonUtils.toastMessage(bean.result.info);
                 }
@@ -844,7 +844,8 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
                         tv_news_detail_comment.setVisibility(View.GONE);
                     }
                     tv_news_detail_comment.setText(bean.plNum);
-                    init();
+                    //init();
+                    mWebView.loadUrl(baseUrl + "&comment_area");
                 }else {
                     CommonUtils.toastMessage(bean.result.info);
                 }
@@ -875,7 +876,8 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
                         tv_news_detail_comment.setVisibility(View.GONE);
                     }
                     tv_news_detail_comment.setText(bean.plNum);
-                    init();
+                    //init();
+                    mWebView.loadUrl(baseUrl + "&comment_area");
                 }else {
                     CommonUtils.toastMessage(bean.result.info);
                 }

@@ -138,7 +138,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
             @Override
             public void onItemClick(int position) {
 //                makeText("广告" + position);
-                if (position == 0) {
+                if (lunbo.get(position).url.equals("1")) {
                     Intent intent = new Intent(HomeUI.this, GetMoneyActivity.class);
                     startActivity(intent);
                 } else {

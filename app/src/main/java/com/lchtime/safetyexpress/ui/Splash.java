@@ -70,13 +70,11 @@ public class Splash extends Activity {
         // read phone state用于获取 imei 设备信息
         boolean phoneSatePermission =
                 pkgManager.checkPermission(Manifest.permission.READ_PHONE_STATE, getPackageName()) == PackageManager.PERMISSION_GRANTED;
-
-        if (Build.VERSION.SDK_INT >= 23 && !sdCardWritePermission || !phoneSatePermission) {
-            requestPermission();
-        }else {
+*/
+        if (Build.VERSION.SDK_INT <= 23 ) {
             // com.getui.demo.DemoPushService 为第三方自定义推送服务
             PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
-        }*/
+        }
         // com.getui.demo.DemoIntentService 为第三方自定义的推送服务事件接收类
         PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
 
