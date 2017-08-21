@@ -30,5 +30,5 @@ public class InitInfo {
 
     public static List<String> up_accounts = new ArrayList<>();
 
-    public static boolean isShowJLGZ = true;
+    //public static boolean isShowJLGZ = true;
 }

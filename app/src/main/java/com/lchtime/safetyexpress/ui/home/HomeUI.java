@@ -269,7 +269,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     }
 
     /**
-     * 新闻中心
+     * 安全头条
      *
      * @param view
      */
@@ -280,7 +280,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     }
 
     /**
-     * 视频中心
+     * 视频
      *
      * @param view
      */
@@ -291,18 +291,18 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     }
 
     /**
-     * 安全圈子
+     * 微安全
      *
      * @param view
      */
     @OnClick(R.id.ll_home_circle)
     private void getCircle(View view) {
         homeToCircleInterface.toCircleActivity();
-        makeText("安全圈子");
+        makeText("微安全");
     }
 
     /**
-     * 疑难问答
+     * 问答
      *
      * @param view
      */
@@ -342,7 +342,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     }
 
     /**
-     * 视频中心换一换
+     * 视频换一换
      *
      * @param view
      */

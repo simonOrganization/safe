@@ -51,7 +51,7 @@ public class HomeHotVideoAdapter extends BaseAdapter {
             holder.iv_img = (ImageView) convertView.findViewById(R.id.iv_hotvideo_img);
             holder.tv_title = (TextView) convertView.findViewById(R.id.tv_hotvideo_title);
             holder.tv_play = (TextView) convertView.findViewById(R.id.tv_hotvideo_play);
-            holder.tv_time = (TextView) convertView.findViewById(R.id.tv_hotvideo_time);
+            //holder.tv_time = (TextView) convertView.findViewById(R.id.tv_hotvideo_time);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

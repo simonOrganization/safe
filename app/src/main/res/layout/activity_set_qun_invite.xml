@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="@dimen/dm024"
-            android:hint="请输入您的群简介"
+            android:hint="点击此处进行编辑"
             android:layout_marginBottom="@dimen/dm016"
             android:layout_marginTop="@dimen/dm016"
             android:gravity="top"

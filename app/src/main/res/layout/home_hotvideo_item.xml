@@ -12,30 +12,31 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <TextView
                 android:id="@+id/tv_hotvideo_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="@dimen/dm008"
+                android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="主人趁狗狗睡觉偷走了怀里的骨头，结果狗狗醒来后瞬间"
                 android:textColor="@color/title_333"
-                android:textSize="@dimen/dm024" />
+                android:textSize="@dimen/dm030" />
 
             <TextView
                 android:id="@+id/tv_hotvideo_play"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dm040"
                 android:singleLine="true"
                 android:text="34.7万次播放"
-                android:textColor="@color/title_666"
-                android:textSize="@dimen/dm020" />
+                android:textColor="@color/text_9d9e9e"
+                android:textSize="@dimen/dm022" />
 
         </LinearLayout>
 
@@ -50,7 +51,12 @@
                 android:layout_height="@dimen/dm160"
                 android:background="@drawable/home_test_img7" />
 
-            <LinearLayout
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/icon_video" />
+            <!--<LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -74,7 +80,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/dm020" />
 
-            </LinearLayout>
+            </LinearLayout>-->
 
         </RelativeLayout>
 

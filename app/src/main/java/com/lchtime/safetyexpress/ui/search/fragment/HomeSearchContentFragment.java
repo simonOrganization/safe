@@ -3,7 +3,10 @@ package com.lchtime.safetyexpress.ui.search.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.HomeNewsRecommendAdapter;
 import com.lchtime.safetyexpress.adapter.NewSearchStringAdapter;
+import com.lchtime.safetyexpress.adapter.SearchHistoryAdapter;
 import com.lchtime.safetyexpress.bean.WordSerchBean;
 import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
 import com.lchtime.safetyexpress.ui.search.protocal.SerchProtocal;
@@ -25,6 +29,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -42,7 +47,7 @@ public class HomeSearchContentFragment extends Fragment {
     private TextView tv_home_search_tip;
     //历史记录展示
     @ViewInject(R.id.slv_news_search_history)
-    private FlowLayout slv_news_search_history;
+    private RecyclerView slv_news_search_history;
     //清除搜索历史
     @ViewInject(R.id.ll_news_search_clear)
     private LinearLayout ll_news_search_clear;
@@ -50,15 +55,17 @@ public class HomeSearchContentFragment extends Fragment {
     FlowLayout slv_news_search_hot;
 
     public static String LOCAL_CONTENT_KEY = "localSerchWord";
-    private NewSearchStringAdapter historyAdapter;
-    private NewSearchStringAdapter hotAdapter;
+    //private NewSearchStringAdapter historyAdapter;
+    //private NewSearchStringAdapter hotAdapter;
     private ArrayList<String> historyList;
-    private ArrayList<String> hotList;
+    //private ArrayList<String> hotList;
     private SerchProtocal mProtocal;
 
-    private HomeNewsRecommendAdapter homeNewsRecommendAdapter;
+    //private HomeNewsRecommendAdapter homeNewsRecommendAdapter;
 
-    private String content;
+    private SearchHistoryAdapter mHistoryAdapter;
+
+    //private String content;
     private String localContent;
     private String mType;
     private HomeNewsSearchUI activity;
@@ -85,15 +92,27 @@ public class HomeSearchContentFragment extends Fragment {
 
 
     private void initBasic() {
-        slv_news_search_history.setSpace(20,20);
+        //slv_news_search_history.setSpace(20,20);
         activity = (HomeNewsSearchUI) getActivity();
         mType = activity.mType;
 
         //初始化历史搜索记录
         localContent = SpTools.getString(activity , LOCAL_CONTENT_KEY + mType);
+        historyList = getHistoryList(localContent.split(","));
+        mHistoryAdapter = new SearchHistoryAdapter(activity , historyList);
+        Log.e("fxp","----------"+mHistoryAdapter.getItemCount());
+        slv_news_search_history.setLayoutManager(new LinearLayoutManager(activity));
+        slv_news_search_history.setAdapter(mHistoryAdapter);
+        mHistoryAdapter.setOnItemClickListener(new SearchHistoryAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, String content) {
+                //每一个text进行搜索
+                activity.setSearchContent(content);
+            }
+        });
 
-        String[] arr = localContent.split(",");
-        for (String word:arr) {
+
+        /*for (String word : historyList) {
             if (TextUtils.isEmpty(word)){
                 continue;
             }
@@ -111,7 +130,7 @@ public class HomeSearchContentFragment extends Fragment {
                 }
             });
             slv_news_search_history.addView(tv);
-        }
+        }*/
     }
 
     private void initData() {
@@ -147,7 +166,7 @@ public class HomeSearchContentFragment extends Fragment {
     public void addLoacalSearchView(String key){
         //先保存
         //去重
-        localContent = SpTools.getString(activity,LOCAL_CONTENT_KEY + mType);
+        localContent = SpTools.getString(activity , LOCAL_CONTENT_KEY + mType);
         String[] arr = localContent.split(",");
         boolean equal = false;
         for (String s:arr){
@@ -159,7 +178,7 @@ public class HomeSearchContentFragment extends Fragment {
         //如果没有重复的再保存，并且及时添加到view中
         if (!equal) {
             SpTools.setString(activity, LOCAL_CONTENT_KEY + mType, localContent + "," + key);
-            final TextView tv = new TextView(activity);
+            /*final TextView tv = new TextView(activity);
             tv.setText(key);
             tv.setPadding(20,10,20,10);
             tv.setGravity(Gravity.CENTER);
@@ -172,7 +191,9 @@ public class HomeSearchContentFragment extends Fragment {
                     activity.setSearchContent(tv.getText().toString().trim());
                 }
             });
-            slv_news_search_history.addView(tv);
+            slv_news_search_history.addView(tv);*/
+            historyList.add(key);
+            mHistoryAdapter.notifyDataSetChanged();
 
         }
     }
@@ -184,9 +205,19 @@ public class HomeSearchContentFragment extends Fragment {
     @OnClick(R.id.ll_news_search_clear)
     private void getGiveUp(View view){
         SpTools.setString(activity, LOCAL_CONTENT_KEY + mType, "");
-        content = "";
+        //content = "";
         localContent = "";
-        slv_news_search_history.removeAllViews();
+        //slv_news_search_history.removeAllViews();
+        historyList.clear();
+        mHistoryAdapter.notifyDataSetChanged();
+    }
+
+    private ArrayList<String> getHistoryList(String[] arr){
+        ArrayList<String> list = new ArrayList<>();
+        for (String str : arr){
+            if(!str.equals(""))list.add(str);
+        }
+        return list;
     }
 
 }

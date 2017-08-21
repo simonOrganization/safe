@@ -23,6 +23,7 @@ import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.weight.GlideCircleTransform;
 
 import java.util.List;
 
@@ -72,21 +73,24 @@ public class HomeHotCircleAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.raiv_icon = (ImageView) convertView.findViewById(R.id.raiv_hotcircle_icon);
             holder.tv_name = (TextView) convertView.findViewById(R.id.tv_hotcircle_name);
-            holder.iv_subscribe = (CheckBox) convertView.findViewById(R.id.iv_hotcircle_subscribe);
+            //holder.iv_subscribe = (CheckBox) convertView.findViewById(R.id.iv_hotcircle_subscribe);
             holder.hot_circle_item = (LinearLayout) convertView.findViewById(R.id.hot_circle_item);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        if (!TextUtils.isEmpty(list.get(position).ud_photo_fileid)) {
-            Glide.with(context).load(list.get(position).ud_photo_fileid).into(holder.raiv_icon);
-        }else {
-            Glide.with(context).load(R.drawable.circle_user_image).into(holder.raiv_icon);
-        }
-        holder.iv_subscribe.setChecked(list.get(position).checked);
+
+        Glide.with(context)
+                .load(list.get(position).ud_photo_fileid)
+                .bitmapTransform(new GlideCircleTransform(context , 8))
+                .placeholder(R.drawable.circle_user_image)
+                .error(R.drawable.circle_user_image)
+                .into(holder.raiv_icon);
+
+        //holder.iv_subscribe.setChecked(list.get(position).checked);
         holder.tv_name.setText(list.get(position).ud_nickname);
         final ViewHolder finalHolder = holder;
-        holder.iv_subscribe.setOnClickListener(new View.OnClickListener() {
+        /*holder.iv_subscribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String userid = SpTools.getUserId(context);
@@ -128,7 +132,7 @@ public class HomeHotCircleAdapter extends BaseAdapter {
                 }
             }
         });
-
+*/
         holder.hot_circle_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,7 +155,7 @@ public class HomeHotCircleAdapter extends BaseAdapter {
     class ViewHolder {
         ImageView raiv_icon;
         TextView tv_name;
-        CheckBox iv_subscribe;
+        //CheckBox iv_subscribe;
         LinearLayout hot_circle_item;
     }
 }

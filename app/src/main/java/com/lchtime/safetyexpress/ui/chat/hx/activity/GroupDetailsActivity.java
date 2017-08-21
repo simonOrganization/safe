@@ -66,6 +66,7 @@ import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
+import com.lchtime.safetyexpress.weight.GlideCircleTransform;
 import com.luck.picture.lib.model.FunctionConfig;
 import com.luck.picture.lib.model.FunctionOptions;
 import com.luck.picture.lib.model.PictureConfig;
@@ -78,6 +79,7 @@ import java.util.Map;
 import static com.lchtime.safetyexpress.R.id.ll_more_member;
 import static com.lchtime.safetyexpress.R.id.rl_change_group_invite;
 import static com.lchtime.safetyexpress.ui.chat.hx.activity.NewGroupActivity.members;
+import static java.lang.System.load;
 
 public class GroupDetailsActivity extends BaseActivity implements OnClickListener, PopupWindow.OnDismissListener {
 	private static final String TAG = "GroupDetailsActivity";
@@ -893,7 +895,10 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 				String photoSrc = objects.get(position).ud_photo_fileid;
 				int localPhotoSrc = objects.get(position).pic_resource;
 				if (!TextUtils.isEmpty(photoSrc)){
-					Glide.with(GroupDetailsActivity.this).load(photoSrc).into(holder.imageView);
+					Glide.with(GroupDetailsActivity.this)
+							.load(photoSrc)
+							.bitmapTransform(new GlideCircleTransform(GroupDetailsActivity.this , 8))
+							.into(holder.imageView);
 				}else if(localPhotoSrc != 0){
 					//如果有本地资源，那么就设置本地资源
 					Glide.with(GroupDetailsActivity.this).load(localPhotoSrc).into(holder.imageView);

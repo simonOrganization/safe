@@ -48,7 +48,7 @@ import java.util.List;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 /**
- * 视频中心
+ * 视频
  * Created by user on 2017/4/18.
  */
 @ContentView(R.layout.home_videos_ui)
@@ -90,7 +90,7 @@ public class HomeVideosUI extends BaseUI implements IWeiboHandler.Response {
 
     @Override
     protected void setControlBasis() {
-        setTitle("视频中心");
+        setTitle("视频");
         rightVisible(R.drawable.news_search);
         error_btn_retry.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -107,7 +107,7 @@ public class GetInfoProtocal {
     }
 
 
-    public void getCreateGrounp( String ub_id,String groupname,String desc,String publics,String members,String photo,String profession,String addr,final AddCommandProtocal.NormalListener listener) {
+    public void getCreateGrounp( String ub_id,String groupname,String desc,String publics, String members , String photo,String profession,String addr,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
            // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);

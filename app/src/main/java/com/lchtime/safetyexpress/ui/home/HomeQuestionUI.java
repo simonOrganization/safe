@@ -40,7 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 疑难问答
+ * 问答
  * Created by user on 2017/4/18.
  */
 @ContentView(R.layout.home_question_ui)

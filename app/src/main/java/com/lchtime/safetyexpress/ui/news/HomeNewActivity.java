@@ -35,7 +35,7 @@ import okhttp3.Call;
 
 
 /**
- * Created by yxn on 2017/4/25.主页新闻中心界面
+ * Created by yxn on 2017/4/25.主页安全头条界面
  */
 @ContentView(R.layout.activity_home_news)
 public class HomeNewActivity extends BaseUI {
@@ -67,7 +67,7 @@ public class HomeNewActivity extends BaseUI {
     @Override
     protected void setControlBasis() {
         //布局设置
-        setTitle("新闻中心");
+        setTitle("安全头条");
         rightVisible(R.drawable.news_search);
 //        setContentView(R.layout.activity_home_news);
 //        ButterKnife.bind(this);

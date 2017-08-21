@@ -196,8 +196,9 @@ public class HXMainActivity extends BaseActivity implements View.OnClickListener
 		mLlTitleRight.setVisibility(View.VISIBLE);
 		mTitleLeft.setVisibility(View.GONE);
 		mTitle.setText("聊天");
+		mTitle.setTextColor(getResources().getColor(R.color.black));
 		mTitleRight.setVisibility(View.VISIBLE);
-		mTitleRight.setImageResource(R.drawable.conversition);
+		mTitleRight.setImageResource(R.drawable.icon_persion_list);
 		mLlTitleRight.setOnClickListener(this);
 
 

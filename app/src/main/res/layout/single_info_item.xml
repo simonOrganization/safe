@@ -99,20 +99,20 @@
                 android:layout_height="@dimen/dm030"
                 android:layout_below="@id/circle_item_image_rc"
                 android:layout_marginTop="@dimen/dm018"
-
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <ImageView
+               <!-- <ImageView
                     android:layout_width="@dimen/dm024"
                     android:layout_height="@dimen/dm024"
                     android:adjustViewBounds="true"
                     android:background="@drawable/circle_item_time"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="centerCrop" />-->
 
                 <TextView
                     android:id="@+id/circle_item_time"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dm010"
                     android:text="09:30"

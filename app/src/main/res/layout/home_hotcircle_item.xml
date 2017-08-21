@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.lchtime.safetyexpress.views.CircleImageView
+        <ImageView
             android:id="@+id/raiv_hotcircle_icon"
             android:layout_width="@dimen/dm080"
             android:layout_height="@dimen/dm080"
@@ -25,10 +25,11 @@
             android:layout_marginTop="@dimen/dm020"
             android:singleLine="true"
             android:text="万家灯火"
+            android:gravity="center"
             android:textSize="@dimen/dm026"
             android:textColor="@color/title_333"/>
 
-        <CheckBox
+        <!--<CheckBox
             android:id="@+id/iv_hotcircle_subscribe"
             android:layout_width="@dimen/dm090"
             android:layout_height="@dimen/dm032"
@@ -36,7 +37,7 @@
             android:text="@null"
             android:button="@null"
             android:gravity="center"
-            android:background="@drawable/circle_item_subscribe_selector" />
+            android:background="@drawable/circle_item_subscribe_selector" />-->
     </LinearLayout>
 
 </LinearLayout>

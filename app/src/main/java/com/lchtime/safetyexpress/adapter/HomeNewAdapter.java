@@ -63,7 +63,8 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
             return new HomeNewNoHolder(view);
         } else if (viewType == ITEM_VIEW_TYPE_VIDEO) {
             Log.i("yang", "ITEM_VIEW_TYPE_VIDEO----");
-            View view = LayoutInflater.from(context).inflate(R.layout.home_news_video_item, parent, false);
+            //View view = LayoutInflater.from(context).inflate(R.layout.home_news_video_item, parent, false);
+            View view = LayoutInflater.from(context).inflate(R.layout.home_hotvideo_item , parent, false);
             return new HomeNewVideoHolder(view);
         }
         return null;
@@ -88,7 +89,7 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
                 itemViewType = ITEM_VIEW_TYPE_IMAGE;
             } else if (beanType.contains("V")) {
                 //视频
-                itemViewType = ITEM_VIEW_TYPE_ONE;
+                itemViewType = ITEM_VIEW_TYPE_VIDEO;
             } else {
                 itemViewType = ITEM_VIEW_TYPE_IMAGE;
             }
@@ -236,16 +237,17 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
             }
 
         } else if (holder instanceof HomeNewVideoHolder) {
-            setCheckBox(((HomeNewVideoHolder) holder).rb, position);
+            //setCheckBox(((HomeNewVideoHolder) holder).rb, position);
             Log.i("yang", "HomeNewVideoHolder----");
             HomeNewVideoHolder homeNewVideoHolder = (HomeNewVideoHolder) holder;
-            homeNewVideoHolder.textViews.get(0).setText(bean.getCc_title());
+           /* homeNewVideoHolder.textViews.get(0).setText(bean.getCc_title());
             homeNewVideoHolder.textViews.get(1).setText(bean.getCc_from());
-            homeNewVideoHolder.textViews.get(2).setText(bean.getPlNum() + "评论");
-            if (!TextUtils.isEmpty(bean.getCc_datetime())) {
+            homeNewVideoHolder.textViews.get(2).setText(bean.getPlNum() + "评论");*/
+            /*if (!TextUtils.isEmpty(bean.getCc_datetime())) {
                 homeNewVideoHolder.textViews.get(3).setText(CommonUtils.getSpaceTime(Long.parseLong(bean.getCc_datetime())));
-            }
-
+            }*/
+            homeNewVideoHolder.titleTv.setText(bean.getCc_title());
+            homeNewVideoHolder.playNumTv.setText(bean.getPlNum() + "次播放");
             if (mDatas.get(position).getMedia().size() > 0) {
                 Glide.with(context).load(mDatas.get(position).getMedia().get(0)).into(homeNewVideoHolder.home_new_video_item_video);
             }
@@ -306,12 +308,18 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
     }
 
     class HomeNewVideoHolder extends RecyclerView.ViewHolder {
-        @BindViews({R.id.home_new_video_item_title, R.id.home_new_video_item_from, R.id.home_new_video_item_comment, R.id.home_new_video_item_time})
+        /*@BindViews({R.id.home_new_video_item_title, R.id.home_new_video_item_from, R.id.home_new_video_item_comment, R.id.home_new_video_item_time})
         List<TextView> textViews;
         @BindView(R.id.home_new_video_item_video)
         ImageView home_new_video_item_video;
         @BindView(R.id.rb_delete)
-        CheckBox rb;
+        CheckBox rb;*/
+        @BindView(R.id.iv_hotvideo_img)
+        ImageView home_new_video_item_video;
+        @BindView(R.id.tv_hotvideo_title)
+        TextView titleTv;
+        @BindView(R.id.tv_hotvideo_play)
+        TextView playNumTv;
 
         public HomeNewVideoHolder(View itemView) {
             super(itemView);

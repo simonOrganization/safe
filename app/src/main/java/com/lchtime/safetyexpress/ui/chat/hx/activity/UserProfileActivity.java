@@ -68,7 +68,6 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	private String uid;
 	private String phoneNumber;
 
-
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);

@@ -743,7 +743,9 @@ public class NewGroupActivity extends BaseActivity implements View.OnClickListen
 
 	}
 
-
+	/**
+	 *保存
+	 */
 	public void save(){
 		loading.setVisibility(View.VISIBLE);
 		if (mProtocal == null){

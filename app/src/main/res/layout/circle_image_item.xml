@@ -13,7 +13,7 @@
         android:id="@+id/circle_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="center"
+        android:scaleType="centerCrop"
         android:background="@drawable/home_banner"/>
     </RelativeLayout>
     <!--<TextView-->

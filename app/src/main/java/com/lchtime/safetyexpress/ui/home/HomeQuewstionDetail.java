@@ -40,7 +40,7 @@ import butterknife.ButterKnife;
 import static com.igexin.sdk.GTServiceManager.context;
 
 /**
- * Created by android-cp on 2017/5/11.           疑难问答的详情界面
+ * Created by android-cp on 2017/5/11.           问答的详情界面
  */
 @ContentView(R.layout.home_question_detail)
 public class HomeQuewstionDetail extends BaseUI {

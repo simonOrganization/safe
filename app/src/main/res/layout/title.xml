@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="标题"
-            android:textColor="@color/commen_reg"
+            android:textColor="@color/black"
             android:textSize="@dimen/dm032" />
 
         <LinearLayout
@@ -46,7 +46,7 @@
             <ImageView
                 android:layout_width="@dimen/dm040"
                 android:layout_height="@dimen/dm035"
-                android:background="@drawable/backs"
+                android:background="@drawable/icon_back_gray"
                 android:scaleType="fitXY" />
         </LinearLayout>
 
@@ -67,7 +67,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="右侧"
-                android:textColor="@color/commen_reg"
+                android:textColor="@color/black"
                 android:textSize="@dimen/dm028"
                 android:visibility="gone" />
 
@@ -88,7 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dm010"
-                    android:textColor="@color/commen_reg"
+                    android:textColor="@color/black"
                     android:text="删除"
                     android:visibility="gone" />
             </RelativeLayout>

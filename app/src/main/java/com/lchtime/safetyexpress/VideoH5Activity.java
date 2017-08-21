@@ -185,11 +185,11 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
         rightVisible(R.drawable.news_share);
         if ("news".equals(type)){
             baseUrl = Const.HOST+"cms/pagenews?cc_id=" + cc_id;
-            setTitle("新闻中心");
+            setTitle("安全头条");
             bottom_zan_or_common.setVisibility(View.VISIBLE);
         }else if ("video".equals(type)){
             baseUrl = Const.HOST+"cms/videoinfo?cc_id=" + cc_id;
-            setTitle("视频中心");
+            setTitle("视频");
             bottom_zan_or_common.setVisibility(View.VISIBLE);
             videoUrl = getIntent().getStringExtra("videoUrl");
 
@@ -750,7 +750,8 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
                         tv_news_detail_comment.setVisibility(View.GONE);
                     }
                     tv_news_detail_comment.setText(bean.plNum);
-                    init();
+                    //init();
+                    mWebView.loadUrl(baseUrl + "&comment_area");
                 }else {
                     CommonUtils.toastMessage(bean.result.info);
                 }
@@ -776,7 +777,8 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
                         tv_news_detail_comment.setVisibility(View.GONE);
                     }
                     tv_news_detail_comment.setText(bean.plNum);
-                    init();
+                    //init();
+                    mWebView.loadUrl(baseUrl + "&comment_area");
                 }else {
                     CommonUtils.toastMessage(bean.result.info);
                 }
@@ -802,7 +804,8 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
                         tv_news_detail_comment.setVisibility(View.GONE);
                     }
                     tv_news_detail_comment.setText(bean.plNum);
-                    init();
+                    //init();
+                    mWebView.loadUrl(baseUrl + "&comment_area");
                 }else {
                     CommonUtils.toastMessage(bean.result.info);
                 }

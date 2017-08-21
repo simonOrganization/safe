@@ -47,15 +47,15 @@ import okhttp3.Call;
  */
 @ContentView(R.layout.single_info)
 public class SingleInfoUI extends BaseUI implements View.OnClickListener {
-    @BindView(R.id.ll_home)
+    /*@BindView(R.id.ll_home)
     LinearLayout llHome;
     @BindView(R.id.v_title)
     TextView vTitle;
     @BindView(R.id.title)
-    TextView title;
-    @BindView(R.id.ll_back)
-    LinearLayout llBack;
-    @BindView(R.id.tv_right)
+    TextView title;*/
+    //@BindView(R.id.ll_back)
+    //LinearLayout llBack;
+    /*@BindView(R.id.tv_right)
     TextView tvRight;
     @BindView(R.id.iv_right)
     ImageView ivRight;
@@ -64,7 +64,7 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
     @BindView(R.id.ll_right)
     LinearLayout llRight;
     @BindView(R.id.rl_title)
-    RelativeLayout rlTitle;
+    RelativeLayout rlTitle;*/
     @BindView(R.id.single_info_list)
     RecyclerView singleInfoList;
     @BindView(R.id.pb_progress)
@@ -78,7 +78,8 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
     private TextView tvVipProfession;
     private TextView tvVipPost;
     private TextView tVipAddr ;
-    private TextView singleInfoContent;
+    private ImageView mBackIv;
+    //private TextView singleInfoContent;
     private TextView tvSubscribeNum ;
     private TextView tvFriendNum ;
     private LinearLayout llSubscribe;
@@ -98,7 +99,7 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
     protected void setControlBasis() {
         ButterKnife.bind(this);
         setIsLoading(true);
-        setTitle("个人主页");
+        //setTitle("个人主页");
         uid = getIntent().getStringExtra("uid");
        // Log.i("qaz", "setControlBasis: " + uid);
         View view = View.inflate(this,R.layout.single_info_header,null);
@@ -156,7 +157,7 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
                     tvVipPost.setText("");
                     tVipAddr.setText("");
                 }
-                singleInfoContent.setText(TextUtils.isEmpty(infoBean.user.ud_memo) ?  "未完善" : infoBean.user.ud_memo);
+                //singleInfoContent.setText(TextUtils.isEmpty(infoBean.user.ud_memo) ?  "未完善" : infoBean.user.ud_memo);
                 tvSubscribeNum.setText(TextUtils.isEmpty(infoBean.user.dyNum) ? 0 + "" : infoBean.user.dyNum);
                 tvFriendNum.setText(TextUtils.isEmpty(infoBean.user.friendNum) ? 0 + "" : infoBean.user.friendNum);
                 llSubscribe.setOnClickListener(SingleInfoUI.this);
@@ -248,13 +249,16 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
         tvVipProfession = (TextView) view.findViewById(R.id.tv_vip_profession);
         tvVipPost = (TextView) view.findViewById(R.id.tv_vip_post);
         tVipAddr = (TextView) view.findViewById(R.id.tv_vip_addr);
-        singleInfoContent = (TextView) view.findViewById(R.id.single_info_content);
+        //singleInfoContent = (TextView) view.findViewById(R.id.single_info_content);
         tvSubscribeNum = (TextView) view.findViewById(R.id.tv_subscribe_num);
         tvFriendNum = (TextView) view.findViewById(R.id.tv_friend_num);
         llSubscribe = (LinearLayout) view.findViewById(R.id.ll_subscribe);
         llFriends = (LinearLayout) view.findViewById(R.id.ll_friends);
         tvSubscribe = (TextView) view.findViewById(R.id.tv_subscribe);
         tvFriend = (TextView) view.findViewById(R.id.tv_friend);
+        mBackIv = (ImageView) view.findViewById(R.id.iv_back);
+
+        mBackIv.setOnClickListener(this);
     }
 
     private boolean dyClick = false;
@@ -355,6 +359,8 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
 
             }
 
+        }else if(v==mBackIv){
+            finish();
         }
     }
 

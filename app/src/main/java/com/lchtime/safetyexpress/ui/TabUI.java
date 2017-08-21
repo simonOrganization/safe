@@ -577,8 +577,8 @@ public class TabUI extends TabActivity implements OnClickListener {
 
 
                 //如果是第一次那么就显示奖励规则
-                if (InitInfo.isShowJLGZ){
-                    InitInfo.isShowJLGZ = false;
+                if (!SpTools.getString(TabUI.this , "isShowJLGZ").equals("true")){
+                    SpTools.setString(TabUI.this , "isShowJLGZ" , "true");
                     guiZePop = new GuiZePop(jiangli_guize, TabUI.this, R.layout.pop_guize);
                     guiZePop.showAtLocation();
                     guiZePop.setOnClickListener(new View.OnClickListener() {

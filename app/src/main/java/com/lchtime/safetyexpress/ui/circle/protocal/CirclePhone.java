@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.PhotoAdapter;
 import com.lchtime.safetyexpress.weight.ImageViewPager;
@@ -37,7 +38,10 @@ public class CirclePhone extends AppCompatActivity {
         if(urlList != null){
             for(String imageUrl : urlList){
                 PhotoView photoView = new PhotoView(CirclePhone.this);
-                Glide.with(CirclePhone.this).load(imageUrl).into(photoView);
+                Glide.with(CirclePhone.this).load(imageUrl)
+                        .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .into(photoView);
                 viewList.add(photoView);
             }
         }

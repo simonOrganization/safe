@@ -16,9 +16,10 @@
             android:layout_gravity="center_vertical"
             android:gravity="center"
             android:button="@null"
-            android:visibility="visible"
+            android:visibility="gone"
             android:background="@drawable/rb_delete"
-            android:layout_marginLeft="@dimen/dm020" />
+            android:layout_marginLeft="@dimen/dm020"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +75,18 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:text="未来新闻"
-                    android:textColor="@color/title_666"
+                    android:textColor="@color/text_9d9e9e"
+                    android:textSize="@dimen/dm020" />
+
+                <TextView
+                    android:id="@+id/home_new_video_item_time"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dm020"
+                    android:singleLine="true"
+                    android:text="09:30"
+                    android:textColor="@color/text_9d9e9e"
                     android:textSize="@dimen/dm020" />
 
                 <TextView
@@ -84,17 +96,7 @@
                     android:layout_marginLeft="@dimen/dm020"
                     android:singleLine="true"
                     android:text="223评论"
-                    android:textColor="@color/title_666"
-                    android:textSize="@dimen/dm020" />
-
-                <TextView
-                    android:id="@+id/home_new_video_item_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dm020"
-                    android:singleLine="true"
-                    android:text="09:30"
-                    android:textColor="@color/title_666"
+                    android:textColor="@color/text_9d9e9e"
                     android:textSize="@dimen/dm020" />
 
             </LinearLayout>
