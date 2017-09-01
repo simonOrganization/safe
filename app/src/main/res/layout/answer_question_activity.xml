@@ -71,9 +71,9 @@
                             android:layout_marginTop="@dimen/dm019"
                             android:background="@color/white"
                             android:gravity="top"
-                            android:hint="撰写您的回答"
+                            android:hint="点击此处进行编辑"
                             android:textColor="@color/title_666"
-                            android:textColorHint="@color/title_666"
+                            android:textColorHint="@color/color_bc"
                             android:textCursorDrawable="@null"
                             android:textSize="@dimen/dm022" />
 

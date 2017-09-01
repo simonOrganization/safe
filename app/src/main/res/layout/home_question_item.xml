@@ -17,7 +17,7 @@
 
             android:text="楼宇安防监控系统有什么解决方案吗？"
             android:textColor="@color/title_333"
-            android:textSize="@dimen/dm022" />
+            android:textSize="@dimen/dm032" />
 
         <com.lchtime.safetyexpress.views.MyGridView
             android:id="@+id/mgv_home_question"
@@ -53,7 +53,7 @@
             android:singleLine="true"
             android:text="417回答"
             android:textColor="@color/title_999"
-            android:textSize="@dimen/dm022" />
+            android:textSize="@dimen/dm024" />
 
     </LinearLayout>
 

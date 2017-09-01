@@ -35,7 +35,8 @@ public class CirclePopAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.circle_pop_item,parent,false);
+        //View view = LayoutInflater.from(context).inflate(R.layout.circle_pop_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.circle_pop_item2,parent,false);
         return new CirclePopHolder(view);
     }
 
@@ -54,12 +55,12 @@ public class CirclePopAdapter extends RecyclerView.Adapter {
             CirclePopHolder circlePopHolder = (CirclePopHolder) holder;
             if(bean.isSelect){
                 circlePopHolder.circle_pop_tv.setTextColor(Color.parseColor("#ff0000"));
-                circlePopHolder.circle_pop_view.setBackgroundColor(Color.RED);
-                circlePopHolder.circle_pop_image.setVisibility(View.VISIBLE);
+                //circlePopHolder.circle_pop_view.setBackgroundColor(Color.RED);
+                //circlePopHolder.circle_pop_image.setVisibility(View.VISIBLE);
             }else{
                 circlePopHolder.circle_pop_tv.setTextColor(Color.parseColor("#000000"));
-                circlePopHolder.circle_pop_view.setBackgroundColor(Color.WHITE);
-                circlePopHolder.circle_pop_image.setVisibility(View.GONE);
+                //circlePopHolder.circle_pop_view.setBackgroundColor(Color.WHITE);
+                //circlePopHolder.circle_pop_image.setVisibility(View.GONE);
             }
             circlePopHolder.circle_pop_tv.setText(bean.hy_name);
         }
@@ -73,10 +74,10 @@ public class CirclePopAdapter extends RecyclerView.Adapter {
     class CirclePopHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.circle_pop_tv)
         TextView circle_pop_tv;
-        @BindView(R.id.circle_pop_view)
+        /*@BindView(R.id.circle_pop_view)
         View circle_pop_view;
         @BindView(R.id.circle_pop_image)
-        ImageView circle_pop_image;
+        ImageView circle_pop_image;*/
 
         public CirclePopHolder(View itemView) {
             super(itemView);

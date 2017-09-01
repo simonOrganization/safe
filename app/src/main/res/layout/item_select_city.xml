@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginRight="24dp"
-        android:background="#E0E0E0"
+        android:background="@color/page_color"
         android:gravity="center_vertical"
         android:paddingLeft="12dip"
         android:text="自动定位"

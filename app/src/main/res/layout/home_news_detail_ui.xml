@@ -69,7 +69,7 @@
                                 android:gravity="center_vertical"
                                 android:paddingLeft="@dimen/dm020"
                                 android:paddingRight="@dimen/dm020"
-                                android:text="对文章进行评论吧！"
+                                android:text="点击此处进行评论"
                                 android:textColor="@color/title_999"
                                 android:textSize="@dimen/dm026" />
 

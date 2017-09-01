@@ -70,7 +70,7 @@
                                 android:layout_marginRight="@dimen/dm020"
                                 android:layout_weight="1"
                                 android:background="@drawable/shape_gray_border"
-                                android:text="对文章进行评论吧！"
+                                android:text="点击此处进行评论"
                                 android:paddingLeft="@dimen/dm020"
                                 android:paddingRight="@dimen/dm020"
                                 android:gravity="center_vertical"

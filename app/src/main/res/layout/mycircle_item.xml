@@ -26,7 +26,6 @@
                 android:text=""
                 android:textSize="@dimen/dm030"
                 android:textColor="@color/title_333"
-                android:layout_below="@id/circle_item_company_name"
                 android:maxLines="3"
                 android:ellipsize="end"
                 android:layout_marginTop="@dimen/dm010"/>

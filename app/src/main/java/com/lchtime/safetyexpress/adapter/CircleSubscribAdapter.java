@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +26,7 @@ import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.CircleImageView;
+import com.lchtime.safetyexpress.weight.GlideCircleTransform;
 
 import java.util.List;
 
@@ -56,11 +58,11 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final CircleSubscribeHolder myViewHolder = (CircleSubscribeHolder) holder;
         final MydyBean.DyBean bean = dy.get(position);
-        if (!TextUtils.isEmpty(bean.ud_photo_fileid)) {
-            Glide.with(context).load(bean.ud_photo_fileid).into(myViewHolder.raiv_hotcircle_icon);
-        }else {
-            Glide.with(context).load(R.drawable.circle_user_image).into(myViewHolder.raiv_hotcircle_icon);
-        }
+
+        Glide.with(context).load(bean.ud_photo_fileid)
+                .bitmapTransform(new GlideCircleTransform(context , 8))
+                .placeholder(R.drawable.circle_user_image).error(R.drawable.circle_user_image)
+                .into(myViewHolder.raiv_hotcircle_icon);
         myViewHolder.tv_hotcircle_name.setText(bean.ud_nickname);
         myViewHolder.cb_hotcircle_subscribe.setChecked(true);
 
@@ -165,7 +167,7 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
     }
     class CircleSubscribeHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.raiv_hotcircle_icon)
-        CircleImageView raiv_hotcircle_icon;
+        ImageView raiv_hotcircle_icon;
         @BindView(R.id.tv_hotcircle_name)
         TextView tv_hotcircle_name;
         @BindView(R.id.iv_hotcircle_subscribe)

@@ -20,98 +20,84 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:background="@color/white"
-        android:layout_marginLeft="@dimen/dm020"
-        android:layout_marginRight="@dimen/dm020"
-        android:paddingTop="@dimen/dm016"
         >
-        <com.lchtime.safetyexpress.views.CircleImageView
-            android:id="@+id/iv_circle_photo"
-            android:layout_width="@dimen/dm048"
-            android:layout_height="@dimen/dm048"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:background="@drawable/circle_user_image"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dm008"
             android:layout_marginLeft="@dimen/dm020"
-            android:paddingTop="@dimen/dm008">
+            android:layout_marginRight="@dimen/dm020">
+
+            <LinearLayout
+                android:id="@+id/ll_date"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm080"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <com.lchtime.safetyexpress.views.CircleImageView
+                    android:id="@+id/iv_circle_photo"
+                    android:layout_width="@dimen/dm048"
+                    android:layout_height="@dimen/dm048"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/circle_user_image"/>
+
+                <TextView
+                    android:id="@+id/circle_item_title"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="落日西风"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/dm026"
+                    android:textColor="@color/commen_reg"
+                    android:layout_marginLeft="@dimen/dm020"
+                    android:layout_toRightOf="@+id/iv_circle_photo"/>
+                <CheckBox
+                    android:id="@+id/circle_item_subscribe"
+                    android:layout_width="@dimen/dm099"
+                    android:layout_height="@dimen/dm032"
+                    android:text="@null"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:background="@drawable/circle_item_subscribe_selector"
+                    android:layout_alignParentRight="true" />
+
+            </LinearLayout>
+
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/bg_df"
+                android:layout_below="@+id/ll_date"
+                />
+
             <TextView
-                android:id="@+id/circle_item_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="落日西风"
-                android:textSize="@dimen/dm022"
-                android:textColor="@color/red"/>
-            <CheckBox
-                android:id="@+id/circle_item_subscribe"
-                android:layout_width="@dimen/dm099"
-                android:layout_height="@dimen/dm032"
-                android:text="@null"
-                android:button="@null"
-                android:gravity="center"
-                android:background="@drawable/circle_item_subscribe_selector"
-                android:layout_alignParentRight="true" />
-
-
-            <TextView
-                android:id="@+id/circle_item_company_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="北京华视远大公司"
-                android:textSize="@dimen/dm022"
-                android:textColor="@color/black"
-                android:layout_below="@id/circle_item_title"
-                android:layout_marginTop="@dimen/dm016"/>
-
-            <TextView
-                android:id="@+id/circle_item_subscribe_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="607已订阅"
-                android:textSize="@dimen/dm022"
-                android:textColor="@color/title_999"
-                android:layout_below="@id/circle_item_subscribe"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="@dimen/dm008"/>
-
-            <!--<com.lchtime.safetyexpress.weight.ShowMoreTextView
                 android:id="@+id/circle_item_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="超爱戴比尔斯家的产品了专柜正品一比一独家开模制作这款耳钉厚壁结实，佩戴大气上档次成熟技术水平肯定减肥快捷键风光好"
                 android:textSize="@dimen/dm022"
                 android:textColor="@color/title_333"
-                android:layout_below="@id/circle_item_company_name"
-                android:layout_marginTop="@dimen/dm008"/>-->
-            <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">-->
-                <TextView
-                    android:id="@+id/circle_item_content"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="超爱戴比尔斯家的产品了专柜正品一比一独家开模制作这款耳钉厚壁结实，佩戴大气上档次成熟技术水平肯定减肥快捷键风光好"
-                    android:textSize="@dimen/dm022"
-                    android:textColor="@color/title_333"
-                    android:layout_below="@id/circle_item_company_name"
-                    android:layout_marginTop="@dimen/dm008"
-                    />
-                <TextView
-                    android:id="@+id/hide_show"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/commen_reg"
-                    android:textSize="16sp"
-                    android:text="展开"
-                    android:padding="3dp"
-                    android:layout_below="@+id/circle_item_content"
-                    />
-
-            <!--</LinearLayout>-->
+                android:layout_below="@id/line"
+                android:layout_marginTop="@dimen/dm008"
+                />
+            <TextView
+                android:id="@+id/hide_show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/commen_reg"
+                android:textSize="16sp"
+                android:text="展开"
+                android:padding="3dp"
+                android:layout_below="@+id/circle_item_content"
+                />
 
             <RelativeLayout
                 android:id="@+id/circle_item_shipin_1"
@@ -150,15 +136,16 @@
                 android:layout_below="@id/circle_item_image_rc"
                 android:orientation="horizontal">
 
-                <ImageView
+                <!--<ImageView
                     android:layout_width="@dimen/dm024"
                     android:layout_height="@dimen/dm024"
                     android:scaleType="fitXY"
                     android:background="@drawable/circle_item_time"
-                    />
+                    />-->
                 <TextView
                     android:id="@+id/circle_item_time"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="09:30"
                     android:textSize="@dimen/dm020"
@@ -211,8 +198,7 @@
                     android:layout_marginLeft="@dimen/dm030"/>
                 <TextView
                     android:id="@+id/circle_item_low"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="09:30"
                     android:textSize="@dimen/dm020"
@@ -229,14 +215,13 @@
                     android:textColor="@color/tab_color_true"/>
 
             </LinearLayout>
-            <View
-                android:layout_below="@id/ll_other"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dm001"
-                android:background="@color/line"
-                android:layout_marginTop="@dimen/dm016"
-                />
         </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm001"
+            android:background="@color/line"
+            android:layout_marginTop="@dimen/dm016"
+            />
 
     </LinearLayout>
 

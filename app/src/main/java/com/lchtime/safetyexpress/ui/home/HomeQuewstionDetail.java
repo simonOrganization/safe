@@ -28,6 +28,7 @@ import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.MyGridView;
+import com.lchtime.safetyexpress.weight.LoginDialog;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -147,8 +148,14 @@ public class HomeQuewstionDetail extends BaseUI {
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(SpTools.getUserId(mContext))) {
-                    Intent intent = new Intent(HomeQuewstionDetail.this,LoginUI.class);
-                    startActivity(intent);
+                    LoginDialog dialog = new LoginDialog(mContext, new LoginDialog.onClickLogin() {
+                        @Override
+                        public void OnClickLogin() {
+                            Intent intent = new Intent(HomeQuewstionDetail.this,LoginUI.class);
+                            startActivity(intent);
+                        }
+                    });
+                    dialog.show();
                 }else{
                     Intent intent = new Intent(HomeQuewstionDetail.this,AnswerQuestionActivity.class);
                     intent.putExtra("q_id",qid);

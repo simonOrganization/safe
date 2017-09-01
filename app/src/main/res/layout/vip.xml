@@ -8,9 +8,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-        <include layout="@layout/title" />
+        <!--<include layout="@layout/title" />-->
 
         <ScrollView
             android:layout_width="match_parent"
@@ -21,15 +24,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/ll_vip_logout"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dm280"
-
-                    android:background="@color/commen_reg"
+                    android:background="@color/white"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
                     android:visibility="visible">
@@ -39,7 +40,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dm050"
                         android:layout_marginRight="@dimen/dm050"
-                        android:layout_marginTop="@dimen/dm035"
+                        android:layout_marginTop="@dimen/dm050"
                         android:orientation="horizontal">
 
                         <TextView
@@ -47,10 +48,10 @@
                             android:layout_width="@dimen/dm180"
                             android:layout_height="@dimen/dm050"
                             android:layout_weight="1"
-                            android:background="#302b0404"
                             android:gravity="center"
                             android:text="手机号登录"
-                            android:textColor="@color/white"
+                            android:background="@drawable/bg_login_666"
+                            android:textColor="@color/title_666"
                             android:textSize="@dimen/dm022" />
 
                         <TextView
@@ -59,10 +60,10 @@
                             android:layout_height="@dimen/dm050"
                             android:layout_marginLeft="@dimen/dm020"
                             android:layout_weight="1"
-                            android:background="#302b0404"
                             android:gravity="center"
                             android:text="手机号快速注册"
-                            android:textColor="@color/white"
+                            android:background="@drawable/bg_login_666"
+                            android:textColor="@color/title_666"
                             android:textSize="@dimen/dm022" />
 
                     </LinearLayout>
@@ -94,7 +95,7 @@
                                 android:layout_marginLeft="@dimen/dm030"
                                 android:layout_marginRight="@dimen/dm030"
                                 android:text="第三方账号登录"
-                                android:textColor="@color/white"
+                                android:textColor="@color/title_666"
                                 android:textSize="@dimen/dm022" />
 
                             <View
@@ -127,14 +128,14 @@
                                 <ImageView
                                     android:layout_width="@dimen/dm044"
                                     android:layout_height="@dimen/dm044"
-                                    android:src="@drawable/vip_weixin" />
+                                    android:src="@drawable/weixin" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/dm016"
                                     android:text="微信"
-                                    android:textColor="@color/white"
+                                    android:textColor="@color/title_666"
                                     android:textSize="@dimen/dm022" />
 
                             </LinearLayout>
@@ -150,14 +151,14 @@
                                 <ImageView
                                     android:layout_width="@dimen/dm044"
                                     android:layout_height="@dimen/dm044"
-                                    android:src="@drawable/vip_qq" />
+                                    android:src="@drawable/qq" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/dm016"
                                     android:text="QQ"
-                                    android:textColor="@color/white"
+                                    android:textColor="@color/title_666"
                                     android:textSize="@dimen/dm022" />
 
                             </LinearLayout>
@@ -173,14 +174,14 @@
                                 <ImageView
                                     android:layout_width="@dimen/dm044"
                                     android:layout_height="@dimen/dm044"
-                                    android:src="@drawable/vip_sina" />
+                                    android:src="@drawable/sina" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/dm016"
                                     android:text="微博"
-                                    android:textColor="@color/white"
+                                    android:textColor="@color/title_666"
                                     android:textSize="@dimen/dm022" />
 
                             </LinearLayout>
@@ -195,7 +196,7 @@
                     android:id="@+id/ll_vip_login"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dm280"
-                    android:background="@color/commen_reg"
+                    android:background="@color/white"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
                     android:visibility="visible">
@@ -205,7 +206,7 @@
                         android:layout_width="@dimen/dm110"
                         android:layout_height="@dimen/dm110"
                         android:layout_marginTop="@dimen/dm040"
-                        android:background="@drawable/circle_user_image" />
+                        android:background="@drawable/circle_user_image2" />
 
                     <TextView
                         android:id="@+id/tv_vip_nickname"
@@ -217,30 +218,30 @@
                         android:gravity="center"
                         android:singleLine="true"
                         android:text="设置昵称"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/dm022" />
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:id="@+id/tv_vip_info"
-                        android:gravity="center"
-                        android:layout_marginTop="@dimen/dm016"
-                        android:paddingLeft="@dimen/dm030"
-                        android:paddingRight="@dimen/dm030"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dm016"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/dm030"
+                        android:paddingRight="@dimen/dm030">-->
 
+                        <TextView
+                            android:id="@+id/tv_vip_date"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dm050"
+                            android:gravity="center"
                             android:paddingLeft="@dimen/dm030"
                             android:paddingRight="@dimen/dm030"
-                            android:background="@drawable/shape_white_border"
-                            android:gravity="center"
                             android:singleLine="true"
                             android:text="去完善个人信息"
-                            android:textColor="@color/white"
+                            android:textColor="@color/title_666"
                             android:textSize="@dimen/dm022" />
-                    </LinearLayout>
+                    <!--</LinearLayout>-->
 
                 </LinearLayout>
 
@@ -260,7 +261,7 @@
                     <LinearLayout
                         android:id="@+id/ll_vip_mycircle_active"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dm064"
+                        android:layout_height="@dimen/dm080"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                        >
@@ -275,7 +276,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dm020"
-                            android:text="我的圈子"
+                            android:text="我的动态"
                             android:textColor="@color/title_666"
                             android:textSize="@dimen/dm024" />
 
@@ -315,7 +316,7 @@
                         android:layout_width="match_parent"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
-                        android:layout_height="@dimen/dm064"
+                        android:layout_height="@dimen/dm080"
                        >
 
                         <ImageView
@@ -351,7 +352,7 @@
                     <LinearLayout
                         android:id="@+id/ll_vip_opinion"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dm064"
+                        android:layout_height="@dimen/dm080"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         >
@@ -389,7 +390,7 @@
                     <LinearLayout
                         android:id="@+id/ll_vip_mymoney"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dm064"
+                        android:layout_height="@dimen/dm080"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                        >
@@ -418,7 +419,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/dm010"
                             android:text="0.00"
-                            android:textColor="@color/commen_reg"
+                            android:textColor="@color/title_666"
                             android:textSize="@dimen/dm024" />
 
                         <ImageView
@@ -436,7 +437,7 @@
                     <LinearLayout
                         android:id="@+id/ll_vip_setting"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dm064"
+                        android:layout_height="@dimen/dm080"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         >

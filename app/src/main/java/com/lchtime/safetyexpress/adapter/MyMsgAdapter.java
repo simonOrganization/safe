@@ -39,6 +39,7 @@ import com.lchtime.safetyexpress.ui.chat.hx.db.InviteMessgeDao;
 import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.weight.GlideCircleTransform;
 
 import java.util.List;
 
@@ -100,6 +101,7 @@ public class MyMsgAdapter extends ArrayAdapter<ApplyMessageBean.ApplyListBean> {
 			holder.name.setText(msg.ud_nickname);
 			Glide.with(MyApplication.getContext())
 					.load(msg.ud_photo_fileid)
+					.bitmapTransform(new GlideCircleTransform(context))
 					.placeholder(R.drawable.circle_user_image)
 					.error(R.drawable.circle_user_image)
 					.into(holder.avator);

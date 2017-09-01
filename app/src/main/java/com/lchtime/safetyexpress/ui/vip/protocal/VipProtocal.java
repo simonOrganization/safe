@@ -113,7 +113,7 @@ public class VipProtocal {
     /*
 * 获取账户明细
 * */
-    public void getAcountDetail( String ub_id,String page,final CircleProtocal.NormalListener listener) {
+    public void getAcountDetail( String ub_id , String page, final CircleProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
            // CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;

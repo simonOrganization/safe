@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -21,7 +20,6 @@ import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.AddSubscribeAdapter;
 import com.lchtime.safetyexpress.adapter.HeaderAndFooterWrapper;
 import com.lchtime.safetyexpress.bean.AddSubscribBean;
-import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.PostBean;
 import com.lchtime.safetyexpress.bean.ProfessionBean;
@@ -37,6 +35,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 
 /**
  * Created by yxn on 2017/4/23.
@@ -68,12 +67,12 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
     private TextView tv_adddy_hy;
     private TextView tv_adddy_gw;
     private TextView tv_adddy_addr;
-    private ImageView hy_indicator;
-    private ImageView gw_indicator;
-    private ImageView addr_indicator;
-    private LinearLayout subscribe_all_work;
-    private LinearLayout subscribe_all_gangwei;
-    private LinearLayout subscribe_all_address;
+//    private ImageView hy_indicator;
+//    private ImageView gw_indicator;
+//    private ImageView addr_indicator;
+//    private LinearLayout subscribe_all_work;
+//    private LinearLayout subscribe_all_gangwei;
+//    private LinearLayout subscribe_all_address;
 
     @Override
     public void onAttach(Context context) {
@@ -101,17 +100,17 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
 
     private void initView() {
         subscribe_all_rc = (RecyclerView) pullLoadMoreRecyclerView.findViewById(R.id.home_new_fragment_rc);
-        View view = View.inflate(getContext(),R.layout.subscribe_all_header,null);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.subscribe_all_header , null);
         subscribe_all_ll = (LinearLayout) view.findViewById(R.id.subscribe_all_ll);
         tv_adddy_hy = (TextView) view.findViewById(R.id.tv_adddy_hy);
         tv_adddy_gw = (TextView) view.findViewById(R.id.tv_adddy_gw);
         tv_adddy_addr = (TextView) view.findViewById(R.id.tv_adddy_addr);
-        hy_indicator = (ImageView) view.findViewById(R.id.iv_hy_indicator);
-        gw_indicator = (ImageView) view.findViewById(R.id.iv_gw_indicator);
-        addr_indicator = (ImageView) view.findViewById(R.id.iv_addr_indicator);
-        subscribe_all_work = (LinearLayout) view.findViewById(R.id.subscribe_all_work);
-        subscribe_all_gangwei = (LinearLayout) view.findViewById(R.id.subscribe_all_gangwei);
-        subscribe_all_address = (LinearLayout) view.findViewById(R.id.subscribe_all_address);
+//        hy_indicator = (ImageView) view.findViewById(R.id.iv_hy_indicator);
+//        gw_indicator = (ImageView) view.findViewById(R.id.iv_gw_indicator);
+//        addr_indicator = (ImageView) view.findViewById(R.id.iv_addr_indicator);
+//        subscribe_all_work = (LinearLayout) view.findViewById(R.id.subscribe_all_work);
+//        subscribe_all_gangwei = (LinearLayout) view.findViewById(R.id.subscribe_all_gangwei);
+//        subscribe_all_address = (LinearLayout) view.findViewById(R.id.subscribe_all_address);
 
         addSubscribeAdapter = new AddSubscribeAdapter(context,allList,SubscirbeAllFragment.this);
         wrapper = new HeaderAndFooterWrapper(addSubscribeAdapter);
@@ -146,9 +145,12 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
                 refreshData(page + "");
             }
         });
-        subscribe_all_work.setOnClickListener(this);
-        subscribe_all_gangwei.setOnClickListener(this);
-        subscribe_all_address.setOnClickListener(this);
+        tv_adddy_hy.setOnClickListener(this);
+        tv_adddy_gw.setOnClickListener(this);
+        tv_adddy_addr.setOnClickListener(this);
+//        subscribe_all_work.setOnClickListener(this);
+//        subscribe_all_gangwei.setOnClickListener(this);
+//        subscribe_all_address.setOnClickListener(this);
 
 
     }
@@ -196,11 +198,12 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.subscribe_all_work:
+            case R.id.tv_adddy_hy:
                 //改变ui
-                hy_indicator.setSelected(true);
-                hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
+                //hy_indicator.setSelected(true);
+                //hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
                 tv_adddy_hy.setSelected(true);
+                tv_adddy_hy.setBackgroundColor(getResources().getColor(R.color.commen_reg));
                 currentSelected = HANG_YE;
                 if (InitInfo.professionBean != null) {
                     cp.setDataAdapter(InitInfo.professionBean.hy);
@@ -208,11 +211,12 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
                     cp.showPopWindow(subscribe_all_ll);
                 }
                 break;
-            case R.id.subscribe_all_gangwei:
+            case R.id.tv_adddy_gw:
                 //改变ui
-                gw_indicator.setSelected(true);
-                gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
+//                gw_indicator.setSelected(true);
+//                gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
                 tv_adddy_gw.setSelected(true);
+                tv_adddy_gw.setBackgroundColor(getResources().getColor(R.color.commen_reg));
                 currentSelected = GANG_WEI;
                 if (InitInfo.postBean != null) {
                     if (gwList.size() <= 0) {
@@ -228,7 +232,7 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
                     cp.showPopWindow(subscribe_all_ll);
                 }
                 break;
-            case R.id.subscribe_all_address:
+            case R.id.tv_adddy_addr:
                 String city = tv_adddy_addr.getText().toString();
                 currentSelected = ADDRESS;
                 Intent intent = new Intent(getActivity(), SelectCityActivity.class);
@@ -292,15 +296,17 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
         cp.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                hy_indicator.setSelected(false);
-                gw_indicator.setSelected(false);
-                addr_indicator.setSelected(false);
+//                hy_indicator.setSelected(false);
+//                gw_indicator.setSelected(false);
+//                addr_indicator.setSelected(false);
                 if (HANG_YE.equals(currentSelected)&&hySelected == false){
                     tv_adddy_hy.setSelected(false);
-                    hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
+                    tv_adddy_hy.setBackgroundColor(getResources().getColor(R.color.bg_f7));
+//                    hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
                 }else if(GANG_WEI.equals(currentSelected)&&gwSelected == false){
                     tv_adddy_gw.setSelected(false);
-                    gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
+                    tv_adddy_gw.setBackgroundColor(getResources().getColor(R.color.bg_f7));
+//                    gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
                 }
             }
         });
@@ -312,13 +318,15 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
             if (HANG_YE.equals(currentSelected)){
                 tv_adddy_hy.setText("行业选择");
                 tv_adddy_hy.setSelected(false);
-                hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
+                tv_adddy_hy.setBackgroundColor(getResources().getColor(R.color.bg_f7));
+//                hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
                 hySelected = false;
                 request_hy = "";
             }else if (GANG_WEI.equals(currentSelected)){
                 tv_adddy_gw.setText("岗位选择");
                 tv_adddy_gw.setSelected(false);
-                gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
+                tv_adddy_gw.setBackgroundColor(getResources().getColor(R.color.bg_f7));
+//                gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
                 gwSelected = false;
                 request_gw = "";
             }
@@ -327,7 +335,8 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
             String title = "";
             if (HANG_YE.equals(currentSelected)) {
                 tv_adddy_hy.setSelected(true);
-                hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
+                tv_adddy_hy.setBackgroundColor(getResources().getColor(R.color.commen_reg));
+//                hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
                 hySelected = true;
                 request_hy = "";
                 for (int i = 0; i < arr.length; i++) {
@@ -343,7 +352,8 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
             } else if (GANG_WEI.equals(currentSelected)) {
                 request_gw = "";
                 tv_adddy_gw.setSelected(true);
-                gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
+                tv_adddy_hy.setBackgroundColor(getResources().getColor(R.color.commen_reg));
+//                gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
                 gwSelected = true;
                 for (int i = 0; i < arr.length; i++) {
                     if (i == 0) {

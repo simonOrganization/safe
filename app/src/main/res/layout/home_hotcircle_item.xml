@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/raiv_hotcircle_icon"
-            android:layout_width="@dimen/dm080"
-            android:layout_height="@dimen/dm080"
+            android:layout_width="@dimen/dm100"
+            android:layout_height="@dimen/dm100"
             android:src="@drawable/circle_user_image" />
 
         <TextView

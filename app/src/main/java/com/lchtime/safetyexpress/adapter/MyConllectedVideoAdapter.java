@@ -74,9 +74,9 @@ public class MyConllectedVideoAdapter extends BaseAdapter {
             holder.iv_oneimg_img = (ImageView)convertView.findViewById(R.id.iv_recommend_oneimg_img);
 
             holder.tv_title = (TextView) convertView.findViewById(R.id.tv_recommend_title);
-            holder.tv_from = (TextView) convertView.findViewById(R.id.tv_recommend_from);
+            //holder.tv_from = (TextView) convertView.findViewById(R.id.tv_recommend_from);
             holder.tv_comment = (TextView) convertView.findViewById(R.id.tv_recommend_comment);
-            holder.tv_time = (TextView) convertView.findViewById(R.id.tv_recommend_time);
+            //holder.tv_time = (TextView) convertView.findViewById(R.id.tv_recommend_time);
             holder.rb = (CheckBox) convertView.findViewById(R.id.rb_delete);
             convertView.setTag(holder);
         } else {
@@ -86,10 +86,10 @@ public class MyConllectedVideoAdapter extends BaseAdapter {
 
 
         final NewsBean bean = newsBeenList.get(position);
-        holder.tv_from.setText(bean.getCc_from());
+        //holder.tv_from.setText(bean.getCc_from());
         holder.tv_comment.setText(bean.getCc_count());
         //时间
-        holder.tv_time.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.getCc_datetime())));
+        //holder.tv_time.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.getCc_datetime())));
         holder.tv_title.setText(bean.getCc_title());
         if (bean.getMedia() != null) {
             Glide.with(MyApplication.getContext()).load(bean.getMedia().get(0)).into(holder.iv_oneimg_img);
@@ -164,11 +164,11 @@ public class MyConllectedVideoAdapter extends BaseAdapter {
         //标题
         TextView tv_title;
         //来源
-        TextView tv_from;
+        //TextView tv_from;
         //评论数
         TextView tv_comment;
         //时间
-        TextView tv_time;
+        //TextView tv_time;
         //视频图片
         ImageView iv_img;
         //视频播放

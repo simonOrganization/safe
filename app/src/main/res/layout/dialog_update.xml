@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dm040"
+    android:background="@drawable/shape_bg_white">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm100"
+        android:text="发现新版本，是否升级"
+        android:gravity="center"
+        android:textSize="@dimen/dm028"
+        android:textColor="@color/black"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm001"
+        android:layout_marginLeft="@dimen/dm020"
+        android:layout_marginRight="@dimen/dm020"
+        android:background="@color/page_color"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm080"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="稍后再说"
+            android:textSize="@dimen/dm028"
+            android:textColor="@color/title_666"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/tv_update"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="立即升级"
+            android:textSize="@dimen/dm028"
+            android:textColor="@color/commen_reg"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>

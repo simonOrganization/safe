@@ -49,7 +49,10 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dm280"
-                            android:gravity="bottom">
+                            android:layout_marginLeft="@dimen/dm020"
+                            android:layout_marginRight="@dimen/dm020"
+                            android:gravity="bottom"
+                            android:background="@drawable/bg_write">
 
                             <LinearLayout
                                 android:id="@+id/ll_unclickble_pic"
@@ -59,7 +62,7 @@
                                 android:paddingLeft="@dimen/dm032"
                                 android:paddingRight="@dimen/dm032"
                                 android:gravity="center_vertical"
-                                android:background="@color/page_color">
+                                >
                                 <LinearLayout
                                     android:id="@+id/circle_public_tv"
                                     android:layout_width="0dp"
@@ -154,7 +157,9 @@
                 android:id="@+id/ll_unclickble_view"
                 android:background="@color/page_color"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm120"/>
+                android:layout_height="@dimen/dm120"
+                android:layout_marginLeft="@dimen/dm020"
+                android:layout_marginRight="@dimen/dm020"/>
 
             </LinearLayout>
             </RelativeLayout>
@@ -277,7 +282,7 @@
 
                     <CheckBox
                         android:id="@+id/tab_check"
-                        android:layout_width="@dimen/dm100"
+                        android:layout_width="@dimen/dm130"
                         android:layout_height="@dimen/dm100"
                         android:background="@drawable/tab_3"
                         android:button="@null" />

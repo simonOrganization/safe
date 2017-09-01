@@ -11,9 +11,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/circle_pop_rc"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm160"
-        android:layout_marginRight="@dimen/dm010"
-        android:layout_marginLeft="@dimen/dm010"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dm010"
         />
     <View
         android:layout_width="match_parent"
@@ -22,28 +21,34 @@
         />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm064"
-        android:orientation="horizontal">
+        android:layout_height="@dimen/dm080"
+        android:orientation="horizontal"
+        android:background="@color/bg_f7"
+        android:gravity="center_vertical">
         <Button
             android:id="@+id/circle_pop_restart"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="重置"
-            android:textColor="@color/black"
-            android:textSize="@dimen/dm016"
+            android:textColor="@color/text_90"
+            android:textSize="@dimen/dm026"
             android:gravity="center"
             android:background="@null"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/dm030"
+            android:background="@color/text_90"/>
         <Button
             android:id="@+id/circle_pop_submit"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="确定"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dm016"
+            android:textColor="@color/red"
+            android:textSize="@dimen/dm026"
             android:gravity="center"
-            android:background="@color/red"/>
+            android:background="@null"/>
     </LinearLayout>
     </LinearLayout>
 

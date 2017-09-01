@@ -2,6 +2,7 @@ package com.lchtime.safetyexpress.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<SearchHistoryAdap
 
     @Override
     public SearchHistoryHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_search_history , parent , false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_search_history , null , false);
         SearchHistoryHolder holder = new SearchHistoryHolder(view);
         return holder;
     }

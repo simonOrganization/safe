@@ -160,6 +160,8 @@
     <string name="share">index.php/user/share</string>
     <!--圈子分享记录-->
     <string name="qzshare">index.php/quanzi/share</string>
+    <!--升级App的信息-->
+    <string name="update_app">/index.php/system/appversion</string>
     <string name="help">
         发动态，挣现金啦！\n
         在这里，您发布的内容所有人都能看到哦！通过手机随时随地把一线现场的安全新闻、故事图片、隐患治理、救援方案、安全文化、管理经验等图文并茂的编辑发布到“圈子”内，就可获得以下奖励：

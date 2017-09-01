@@ -42,6 +42,7 @@ public class NewsFragment extends BaseFragment {
     protected View initSuccessView() {
         recyclerView = new EmptyRecyclerView(MyApplication.getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         recyclerView.setAdapter(homeNewAdapter);
 
         return recyclerView;
@@ -97,10 +98,9 @@ public class NewsFragment extends BaseFragment {
                 homeNewAdapter.setNewItemInterface(new HomeNewAdapter.NewsItemInterface() {
                     @Override
                     public void setNewOnItem(int position) {
-                        if(isEdit){
+                        if(isEdit){ //如果是正在编辑状态
 
                         }else{
-
                             Intent intent = new Intent(getContext(), H5DetailUI.class);
                             intent.putExtra("newsId",commentList.get(position).cc_id);
                             intent.putExtra("type","news");

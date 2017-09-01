@@ -70,10 +70,10 @@ public class AddFriendsCommendAdapter extends RecyclerView.Adapter {
         myHolder.mMessage.setText(bean.user);
         if (type == FIND_FRIENDS){
             //如果是找朋友
-            myHolder.mTvBtAdd.setText("好友");
+            myHolder.mTvBtAdd.setText("＋好友");
         }else {
             //找群
-            myHolder.mTvBtAdd.setText("加群");
+            myHolder.mTvBtAdd.setText("＋群组");
         }
 
         myHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -162,11 +162,6 @@ public class AddFriendsCommendAdapter extends RecyclerView.Adapter {
                 }
             });
         }
-
-
-
-
-
 
     }
 

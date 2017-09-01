@@ -47,7 +47,7 @@ public class SelectCityActivity extends BaseUI {
          city = intent.getStringExtra("city");
        // Log.i("----------", "clickEvent:1 " +city );
         setTitle("选择城市");
-        rightTextVisible("选择");
+        rightTextVisible("保存");
         initViews();
     }
 

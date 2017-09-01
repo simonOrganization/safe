@@ -83,7 +83,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
         View view = LayoutInflater.from(context).inflate(R.layout.circle_item, parent, false);
         if (!isShowDy) {
             view.findViewById(R.id.circle_item_subscribe).setVisibility(View.GONE);
-            view.findViewById(R.id.circle_item_subscribe_num).setVisibility(View.GONE);
+            //view.findViewById(R.id.circle_item_subscribe_num).setVisibility(View.GONE);
         }
 
         return new CircleHodler(view);
@@ -178,7 +178,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
             });
         }
 
-        holder.circle_item_company_name.setText(bean.user);
+        //holder.circle_item_company_name.setText(bean.user);
         holder.circle_item_title.setText(bean.qc_auth);
         holder.contentTv.setText(bean.qc_context);
         holder.circle_item_talk.setText(bean.qc_pinglun);
@@ -286,7 +286,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
         setDown(holder, bean, protocal);
 
         holder.circle_item_time.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.qc_date)));
-        holder.circle_item_subscribe_num.setText(bean.dyNum + "已订阅");
+        //holder.circle_item_subscribe_num.setText(bean.dyNum + "已订阅");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -498,8 +498,8 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
         ImageView circle_item_shipin;
         @BindView(R.id.iv_circle_photo)
         ImageView iv_circle_photo;
-        @BindView(R.id.circle_item_company_name)
-        TextView circle_item_company_name;
+        /*@BindView(R.id.circle_item_company_name)
+        TextView circle_item_company_name;*/
         @BindView(R.id.circle_item_title)
         TextView circle_item_title;
         @BindView(R.id.circle_item_content)
@@ -522,8 +522,8 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
         TextView circle_item_time;
         @BindView(R.id.circle_item_subscribe)
         CheckBox circle_item_subscribe;
-        @BindView(R.id.circle_item_subscribe_num)
-        TextView circle_item_subscribe_num;
+        /*@BindView(R.id.circle_item_subscribe_num)
+        TextView circle_item_subscribe_num;*/
         @BindView(R.id.rb_delete)
         CheckBox rb_delete;
         @BindView(R.id.circle_item_shipin_1)

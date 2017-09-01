@@ -32,12 +32,15 @@ import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.UpdataImageUtils;
 import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.CircleImageView;
+import com.lchtime.safetyexpress.weight.LoginDialog;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * 问答
@@ -52,8 +55,8 @@ public class HomeQuestionUI extends BaseUI {
     @ViewInject(R.id.lv_home_question)
     private PullLoadMoreRecyclerView lv_home_question;
 
-    @ViewInject(R.id.tv_home_question)
-    private TextView tv_home_question;
+    /*@ViewInject(R.id.tv_home_question)
+    private TextView tv_home_question;*/
 
 
     @ViewInject(R.id.home_new_fragment_rc)
@@ -90,7 +93,8 @@ public class HomeQuestionUI extends BaseUI {
     @Override
     protected void setControlBasis() {
         setTitle("问答");
-        view = View.inflate(this, R.layout.home_question_header,null);
+        rightVisible("提问");
+        view = View.inflate(this , R.layout.home_question_header , null);
         civ = (CircleImageView) view.findViewById(R.id.cv_wd_photo);
         nikName = (TextView) view.findViewById(R.id.tv_wd_nikname);
         vipInfoBean = SpTools.getUser(mContext);
@@ -99,9 +103,15 @@ public class HomeQuestionUI extends BaseUI {
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(SpTools.getUserId(mContext))){
-                    CommonUtils.toastMessage("登陆后才能看问答");
-                    Intent intent = new Intent(mContext , LoginUI.class);
-                    startActivityForResult(intent , LOGIN);
+                    LoginDialog dialog = new LoginDialog(mContext, new LoginDialog.onClickLogin() {
+                        @Override
+                        public void OnClickLogin() {
+                            Intent intent = new Intent(mContext , LoginUI.class);
+                            startActivityForResult(intent , LOGIN);
+                        }
+                    });
+                    dialog.show();
+
                     return;
                 }
                 //我的问答
@@ -226,27 +236,6 @@ public class HomeQuestionUI extends BaseUI {
             }
         });
 
-        tv_home_question.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(SpTools.getUserId(mContext))){
-                    CommonUtils.toastMessage("登陆后才能提问");
-                    Intent intent = new Intent(mContext , LoginUI.class);
-                    startActivityForResult(intent , LOGIN);
-                    return;
-                }
-                if(isFullPersionDate()){//如果资料完善
-                    //提问按钮的监听
-                    Intent intent = new Intent(HomeQuestionUI.this,AskQuestionActivity.class);
-                    startActivity(intent);
-
-                }else{ //如果资料不完善
-                    CommonUtils.toastMessage("请完善资料后提问");
-                }
-            }
-        });
-
-
         error_btn_retry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -257,6 +246,30 @@ public class HomeQuestionUI extends BaseUI {
             }
         });
     }
+
+    @OnClick(R.id.ll_right)
+    public void ask(View view){
+        if (TextUtils.isEmpty(SpTools.getUserId(mContext))){
+            LoginDialog dialog = new LoginDialog(mContext, new LoginDialog.onClickLogin() {
+                @Override
+                public void OnClickLogin() {
+                    Intent intent = new Intent(mContext , LoginUI.class);
+                    startActivityForResult(intent , LOGIN);
+                }
+            });
+            dialog.show();
+            return;
+        }
+        if(isFullPersionDate()){//如果资料完善
+            //提问按钮的监听
+            Intent intent = new Intent(HomeQuestionUI.this,AskQuestionActivity.class);
+            startActivity(intent);
+
+        }else{ //如果资料不完善
+            CommonUtils.toastMessage("请完善资料后提问");
+        }
+    }
+
     /**
      * 检查个人资料是否完善，检查行业，岗位，地理位置
      */

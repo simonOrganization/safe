@@ -56,7 +56,7 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
         //
         myHolder.iv_img.setUp(
                 bean.media.get(1), JCVideoPlayer.SCREEN_LAYOUT_LIST,
-                bean.cc_title);
+                "");
         Glide.with(context)
                 .load(bean.media.get(0))
                 .into(myHolder.iv_img.thumbImageView);
@@ -64,7 +64,7 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
 
         myHolder.tv_from.setText(bean.cc_from);
         myHolder.tv_comment.setText(bean.plNum);
-        myHolder.tv_time1.setText(bean.video_time);
+        //myHolder.tv_time1.setText(bean.video_time);
         if (!TextUtils.isEmpty(bean.cc_datetime)) {
             myHolder.tv_time2.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.cc_datetime)));
         }
@@ -86,7 +86,7 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
         });
 
 
-        ((ViewHolder) holder).ll_share.setOnClickListener(new View.OnClickListener() {
+        /*((ViewHolder) holder).ll_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (context instanceof HomeVideosUI){
@@ -94,7 +94,7 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
                             bean.cc_title,bean.cc_description);
                 }
             }
-        });
+        });*/
 
 
     }
@@ -108,16 +108,16 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
 
         @BindView(R.id.tv_recommend_title)
         TextView tv_title;
-        @BindView(R.id.ll_recommend_share)
-        LinearLayout ll_share;
+        /*@BindView(R.id.ll_recommend_share)
+        LinearLayout ll_share;*/
         @BindView(R.id.iv_recommend_img)
         JCVideoPlayerStandard iv_img;
 //        @BindView(R.id.iv_recommend_img_bg)
 //        ImageView iv_img_bg;
 //        @BindView(R.id.iv_recommend_play)
 //        ImageView iv_play;
-        @BindView(R.id.tv_recommend_time1)
-        TextView tv_time1;
+        /*@BindView(R.id.tv_recommend_time1)
+        TextView tv_time1;*/
         @BindView(R.id.tv_recommend_from)
         TextView tv_from;
         @BindView(R.id.tv_recommend_comment)

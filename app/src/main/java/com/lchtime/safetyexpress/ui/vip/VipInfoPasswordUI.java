@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.ui.vip;
 
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -46,6 +47,9 @@ public class VipInfoPasswordUI extends BaseUI implements View.OnClickListener {
 
     @ViewInject(R.id.ll_yan)
     private LinearLayout ll_yan;
+
+    @ViewInject(R.id.iv_show_pw)
+    private ImageView mShowpwIv;
 
     private String code;
     private boolean isShow = false;
@@ -120,10 +124,12 @@ public class VipInfoPasswordUI extends BaseUI implements View.OnClickListener {
             //是否显示密码
             if (!isShow){
                 et_Code.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                mShowpwIv.setImageResource(R.drawable.vip_yan_show);
                 isShow = true;
             }else {
                 et_Code.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD|InputType.TYPE_CLASS_TEXT);
                 isShow = false;
+                mShowpwIv.setImageResource(R.drawable.vip_yan);
             }
         }
     }

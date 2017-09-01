@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="2dp"
-
     >
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+
     <TextView
         android:id="@+id/spiner_item_tv"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dm048"
-        android:gravity="right"
+        android:layout_height="@dimen/dm090"
+        android:gravity="right|center_vertical"
         android:paddingTop="@dimen/dm010"
         android:textSize="@dimen/dm022"
         android:textColor="@color/black"
-        android:layout_marginRight="@dimen/dm020"
-       />
-    </RelativeLayout>
-</LinearLayout>
+        android:paddingRight="@dimen/dm050"
+        android:background="@color/text_f5f8fa"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/text_ededf1"
+        android:layout_marginLeft="@dimen/dm050"
+        android:layout_marginRight="@dimen/dm050"/>
+
+</RelativeLayout>

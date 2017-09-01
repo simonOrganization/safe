@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.TabUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
+import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
 import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.ui.login.RegisterUI;
 import com.lchtime.safetyexpress.ui.login.protocal.MutiLoginProtocal;
@@ -49,12 +51,15 @@ import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.LoginInternetRequest;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.CircleImageView;
+import com.lchtime.safetyexpress.weight.LoginDialog;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.tauth.Tencent;
+
+import static com.baidu.location.f.mC;
 
 
 /**
@@ -81,9 +86,10 @@ public class VipUI extends BaseUI implements View.OnClickListener {
     private LinearLayout logIn;
 
     //登陆后显示的布局
-    @ViewInject(R.id.tv_vip_info)
-    private LinearLayout addr_pro_post;
-
+    /*@ViewInject(R.id.tv_vip_info)
+    private LinearLayout addr_pro_post;*/
+    @ViewInject(R.id.tv_vip_date)
+    private TextView mVipDateTv;
 
     @ViewInject(R.id.pb_progress)
     private ProgressBar pb_progress;
@@ -110,7 +116,6 @@ public class VipUI extends BaseUI implements View.OnClickListener {
     private String userid;
     private String Clientid;
     private VipInfoBean vipInfoBean;
-
     @Override
     protected void back() {
         exit();
@@ -118,13 +123,14 @@ public class VipUI extends BaseUI implements View.OnClickListener {
 
     @Override
     protected void setControlBasis() {
-        setTitle("我");
-        backGone();
+        //setTitle("我");
+        //backGone();
         tv_money_num = (TextView) findViewById(R.id.tv_money_num);
         handler = new Handler();
         mReceiver = new MyReceiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver,
                 new IntentFilter("ACTION_WX_LOGIN_SUCEESS"));
+
     }
 
     @Override
@@ -174,7 +180,8 @@ public class VipUI extends BaseUI implements View.OnClickListener {
         if (!(TextUtils.isEmpty(arr[0])||
                 TextUtils.isEmpty(arr[1])||
                 TextUtils.isEmpty(arr[2]))){
-            float desity = getResources().getDisplayMetrics().density;
+            mVipDateTv.setText(arr[0] + " " + arr[1] + " " + arr[2]);
+            /*float desity = getResources().getDisplayMetrics().density;
             addr_pro_post.removeAllViews();
             for (int i = 0; i < arr.length;i++){
                 TextView tv = new TextView(this);
@@ -193,9 +200,10 @@ public class VipUI extends BaseUI implements View.OnClickListener {
                     tv.setLayoutParams(layoutParams);
                 }
                 addr_pro_post.addView(tv);
-            }
+            }*/
         }else {
-            float desity = getResources().getDisplayMetrics().density;
+            mVipDateTv.setText("去完善个人信息");
+            /*float desity = getResources().getDisplayMetrics().density;
             addr_pro_post.removeAllViews();
             TextView tv = new TextView(this);
             tv.setText("去完善个人信息");
@@ -211,7 +219,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
             layoutParams.setMargins((int)(10/desity + 0.5f),0,0,0);//4个参数按顺序分别是左上右下
             tv.setLayoutParams(layoutParams);
 
-            addr_pro_post.addView(tv);
+            addr_pro_post.addView(tv);*/
         }
 
 
@@ -326,7 +334,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
      *
      * @param view
      */
-    @OnClick(R.id.tv_vip_info)
+    @OnClick(R.id.tv_vip_date)
     private void getWanShanInfo(View view) {
         //有网络的情况下
         if (CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
@@ -343,6 +351,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
             Intent intent = new Intent(VipUI.this, VipInfoUI.class);
             startActivity(intent);
         }else {
+
             Toast.makeText(this,"请检查网络设置",Toast.LENGTH_SHORT).show();
         }
     }
@@ -356,12 +365,25 @@ public class VipUI extends BaseUI implements View.OnClickListener {
     private void getMyActive(View view) {
         String ub_id = SpTools.getUserId(this);
         if (TextUtils.isEmpty(ub_id)){
-            Intent intent = new Intent(this, LoginUI.class);
-            startActivity(intent);
+            showLoginDialog();
         }else {
             Intent intent = new Intent(VipUI.this, MyCircleActiveActivity.class);
             startActivity(intent);
         }
+    }
+
+    /**
+     * 显示登录的Dialog
+     */
+    private void showLoginDialog() {
+        LoginDialog dialog = new LoginDialog(mContext, new LoginDialog.onClickLogin() {
+            @Override
+            public void OnClickLogin() {
+                Intent intent = new Intent(mContext,LoginUI.class);
+                startActivity(intent);
+            }
+        });
+        dialog.show();
     }
 
     /**
@@ -373,8 +395,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
     private void getMyConllected(View view) {
         String ub_id = SpTools.getUserId(this);
         if (TextUtils.isEmpty(ub_id)){
-            Intent intent = new Intent(this, LoginUI.class);
-            startActivity(intent);
+            showLoginDialog();
         }else {
             Intent intent = new Intent(VipUI.this, MyConllected.class);
             startActivity(intent);
@@ -388,14 +409,8 @@ public class VipUI extends BaseUI implements View.OnClickListener {
      */
     @OnClick(R.id.ll_vip_opinion)
     private void getOpinion(View view) {
-//        String ub_id = SpTools.getString(this, Constants.CONFIGFILE,"");
-//        if (TextUtils.isEmpty(ub_id)){
-//            Intent intent = new Intent(this, LoginUI.class);
-//            startActivity(intent);
-//        }else {
-            Intent intent = new Intent(VipUI.this, OpinionActivity.class);
-            startActivity(intent);
-//        }
+        Intent intent = new Intent(VipUI.this, OpinionActivity.class);
+        startActivity(intent);
     }
 
     /**
@@ -407,8 +422,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
     private void getMyMoney(View view) {
         String ub_id = SpTools.getUserId(this);
         if (TextUtils.isEmpty(ub_id)){
-            Intent intent = new Intent(this, LoginUI.class);
-            startActivity(intent);
+            showLoginDialog();
         }else {
             Intent intent = new Intent(VipUI.this, MyMoneyActivity.class);
             startActivity(intent);
@@ -424,8 +438,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
     private void getSetting(View view) {
         String ub_id = SpTools.getUserId(this);
         if (TextUtils.isEmpty(ub_id)){
-            Intent intent = new Intent(this, LoginUI.class);
-            startActivity(intent);
+            showLoginDialog();
         }else {
             Intent intent = new Intent(VipUI.this, VipSettingUI.class);
             startActivity(intent);

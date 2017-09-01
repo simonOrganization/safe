@@ -12,9 +12,9 @@ import java.util.Map;
  */
 
 public class FragmentFactory2WenDa {
-    public static final int FRAGMENT_GUANZHU = 0;//新闻
-    public static final int FRAGMENT_HUIDA = 1;//视频
-    public static final int FRAGMENT_TIWEN = 2;//圈子
+    public static final int FRAGMENT_GUANZHU = 0;//关注
+    public static final int FRAGMENT_HUIDA = 1;//回答
+    public static final int FRAGMENT_TIWEN = 2;//提问
 
     public Map<Integer,BaseFragment> mCacheFragments = new HashMap<>();
 

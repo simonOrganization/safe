@@ -57,6 +57,7 @@ import com.sivin.BannerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**圈子
  * Created by user on 2017/4/14.
  */
@@ -69,9 +70,12 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     private Banner sb_home_banner;
 
 
-    private LinearLayout circle_work;
-    private LinearLayout circle_gangwei;
-    private LinearLayout circle_address;
+    //private LinearLayout circle_work;
+    //private LinearLayout circle_gangwei;
+    //private LinearLayout circle_address;
+    private TextView circle_work;
+    private TextView circle_gangwei;
+    private TextView circle_address;
     private ImageView circle_more;
 //    private View circle_layout_view;
     //行业
@@ -80,26 +84,26 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     TextView tv_gw_selected;
     //地区
     TextView tv_addr_selected;
-    ImageView hy_indicator;
-    ImageView gw_indicator;
-    ImageView addr_indicator;
+    //ImageView hy_indicator;
+    //ImageView gw_indicator;
+    //ImageView addr_indicator;
     TextView unread_msg_number;
 
 
-    private LinearLayout circle_work1;
-    private LinearLayout circle_gangwei1;
-    private LinearLayout circle_address1;
-    private ImageView circle_more1;
+    //private LinearLayout circle_work1;
+    //private LinearLayout circle_gangwei1;
+    //private LinearLayout circle_address1;
+    //private ImageView circle_more1;
     //    private View circle_layout_view;
     //行业
-    TextView tv_hy_selected1;
+    //TextView tv_hy_selected1;
     //岗位
-    TextView tv_gw_selected1;
+    //TextView tv_gw_selected1;
     //地区
-    TextView tv_addr_selected1;
-    ImageView hy_indicator1;
-    ImageView gw_indicator1;
-    ImageView addr_indicator1;
+    //TextView tv_addr_selected1;
+    //ImageView hy_indicator1;
+    //ImageView gw_indicator1;
+    //ImageView addr_indicator1;
     LinearLayout layout_circle_header;
 
     private ACache aCache;
@@ -244,28 +248,28 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         cp.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                hy_indicator.setSelected(false);
-                gw_indicator.setSelected(false);
-                addr_indicator.setSelected(false);
+                //hy_indicator.setSelected(false);
+                //gw_indicator.setSelected(false);
+                //addr_indicator.setSelected(false);
                 if (HANG_YE.equals(currentSelected)&&hySelected == false){
                     tv_hy_selected.setSelected(false);
-                    hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
+                    //hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
                 }else if(GANG_WEI.equals(currentSelected)&&gwSelected == false){
                     tv_gw_selected.setSelected(false);
-                    gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
+                    //gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
                 }
 
 
-                hy_indicator1.setSelected(false);
-                gw_indicator1.setSelected(false);
-                addr_indicator1.setSelected(false);
-                if (HANG_YE.equals(currentSelected)&&hySelected == false){
-                    tv_hy_selected1.setSelected(false);
-                    hy_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
-                }else if(GANG_WEI.equals(currentSelected)&&gwSelected == false){
-                    tv_gw_selected1.setSelected(false);
-                    gw_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
-                }
+                //hy_indicator1.setSelected(false);
+                //gw_indicator1.setSelected(false);
+                //addr_indicator1.setSelected(false);
+//                if (HANG_YE.equals(currentSelected)&&hySelected == false){
+//                    tv_hy_selected1.setSelected(false);
+//                    //hy_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
+//                }else if(GANG_WEI.equals(currentSelected)&&gwSelected == false){
+//                    tv_gw_selected1.setSelected(false);
+//                    //gw_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
+//                }
             }
         });
     }
@@ -305,29 +309,29 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
 
         headerView = View.inflate(this, R.layout.circle_header,null);
 
-        circle_work = (LinearLayout) headerView.findViewById(R.id.circle_work);
-        circle_gangwei = (LinearLayout) headerView.findViewById(R.id.circle_gangwei);
-        circle_address = (LinearLayout) headerView.findViewById(R.id.circle_address);
+        circle_work = (TextView) headerView.findViewById(R.id.tv_hy_selected);
+        circle_gangwei = (TextView) headerView.findViewById(R.id.tv_gw_selected);
+        circle_address = (TextView) headerView.findViewById(R.id.tv_addr_selected);
         circle_more = (ImageView) headerView.findViewById(R.id.circle_more);
 //        circle_layout_view = headerView.findViewById(R.id.circle_layout_view);
         tv_hy_selected = (TextView) headerView.findViewById(R.id.tv_hy_selected);
         tv_gw_selected = (TextView) headerView.findViewById(R.id.tv_gw_selected);
         tv_addr_selected = (TextView) headerView.findViewById(R.id.tv_addr_selected);
-        hy_indicator = (ImageView) headerView.findViewById(R.id.iv_hy_indicator);
-        gw_indicator = (ImageView) headerView.findViewById(R.id.iv_gw_indicator);
-        addr_indicator = (ImageView) headerView.findViewById(R.id.iv_addr_indicator);
+        //hy_indicator = (ImageView) headerView.findViewById(R.id.iv_hy_indicator);
+        //gw_indicator = (ImageView) headerView.findViewById(R.id.iv_gw_indicator);
+        //addr_indicator = (ImageView) headerView.findViewById(R.id.iv_addr_indicator);
 
-        circle_work1 = (LinearLayout)findViewById(R.id.circle_work);
-        circle_gangwei1 = (LinearLayout) findViewById(R.id.circle_gangwei);
-        circle_address1 = (LinearLayout) findViewById(R.id.circle_address);
-        circle_more1 = (ImageView) findViewById(R.id.circle_more);
+        //circle_work1 = (LinearLayout)findViewById(circle_work);
+        //circle_gangwei1 = (LinearLayout) findViewById(circle_gangwei);
+        //circle_address1 = (LinearLayout) findViewById(circle_address);
+        //circle_more1 = (ImageView) findViewById(R.id.circle_more);
 //        circle_layout_view = headerView.findViewById(R.id.circle_layout_view);
-        tv_hy_selected1 = (TextView) findViewById(R.id.tv_hy_selected);
-        tv_gw_selected1 = (TextView) findViewById(R.id.tv_gw_selected);
-        tv_addr_selected1= (TextView) findViewById(R.id.tv_addr_selected);
-        hy_indicator1 = (ImageView) findViewById(R.id.iv_hy_indicator);
-        gw_indicator1 = (ImageView) findViewById(R.id.iv_gw_indicator);
-        addr_indicator1 = (ImageView) findViewById(R.id.iv_addr_indicator);
+        //tv_hy_selected1 = (TextView) findViewById(R.id.tv_hy_selected);
+        //tv_gw_selected1 = (TextView) findViewById(R.id.tv_gw_selected);
+        //tv_addr_selected1= (TextView) findViewById(R.id.tv_addr_selected);
+//        hy_indicator1 = (ImageView) findViewById(R.id.iv_hy_indicator);
+//        gw_indicator1 = (ImageView) findViewById(R.id.iv_gw_indicator);
+//        addr_indicator1 = (ImageView) findViewById(R.id.iv_addr_indicator);
         layout_circle_header = (LinearLayout) findViewById(R.id.layout_circle_header);
 
 
@@ -381,10 +385,10 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         circle_address.setOnClickListener(this);
         circle_more.setOnClickListener(this);
 
-        circle_work1.setOnClickListener(this);
-        circle_gangwei1.setOnClickListener(this);
-        circle_address1.setOnClickListener(this);
-        circle_more1.setOnClickListener(this);
+        //circle_work1.setOnClickListener(this);
+        //circle_gangwei1.setOnClickListener(this);
+        //circle_address1.setOnClickListener(this);
+        //circle_more1.setOnClickListener(this);
 
         mReceiver = new UiReceiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver,
@@ -502,12 +506,12 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                     request_addr = selectCity;
                     refreshData("1");
                     tv_addr_selected.setText(selectCity);
-                    tv_addr_selected1.setText(selectCity);
+                    //tv_addr_selected1.setText(selectCity);
                 }else{
                     request_addr = "";
                     refreshData("1");
                     tv_addr_selected.setText("地理位置");
-                    tv_addr_selected1.setText("地理位置");
+                    //v_addr_selected1.setText("地理位置");
                 }
 
             }
@@ -520,25 +524,25 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
             if (HANG_YE.equals(currentSelected)){
                 tv_hy_selected.setText("行业选择");
                 tv_hy_selected.setSelected(false);
-                hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
+                //hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
                 hySelected = false;
                 request_hy = "";
 
 
-                tv_hy_selected1.setText("行业选择");
-                tv_hy_selected1.setSelected(false);
-                hy_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
+                //tv_hy_selected1.setText("行业选择");
+                //tv_hy_selected1.setSelected(false);
+                //hy_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
 
             }else if (GANG_WEI.equals(currentSelected)){
                 tv_gw_selected.setText("岗位选择");
                 tv_gw_selected.setSelected(false);
-                gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
+                //gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
                 gwSelected = false;
                 request_gw = "";
 
-                tv_gw_selected1.setText("岗位选择");
-                tv_gw_selected1.setSelected(false);
-                gw_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
+                //tv_gw_selected1.setText("岗位选择");
+                //tv_gw_selected1.setSelected(false);
+                //gw_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector));
 
             }
         }else {
@@ -546,7 +550,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
             String title = "";
             if (HANG_YE.equals(currentSelected)) {
                 tv_hy_selected.setSelected(true);
-                hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
+                //hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
                 hySelected = true;
                 request_hy = "";
                 for (int i = 0; i < arr.length; i++) {
@@ -561,13 +565,13 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 tv_hy_selected.setText(title);
 
 
-                tv_hy_selected1.setSelected(true);
-                hy_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
-                tv_hy_selected1.setText(title);
+                //tv_hy_selected1 .setSelected(true);
+                //hy_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
+                //tv_hy_selected1.setText(title);
 
             } else if (GANG_WEI.equals(currentSelected)) {
                 tv_gw_selected.setSelected(true);
-                gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
+                //gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
                 gwSelected = true;
                 request_gw = "";
                 for (int i = 0; i < arr.length; i++) {
@@ -582,9 +586,9 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 tv_gw_selected.setText(title);
 
 
-                tv_gw_selected1.setSelected(true);
-                gw_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
-                tv_gw_selected1.setText(title);
+                //tv_gw_selected1.setSelected(true);
+                //gw_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
+                //tv_gw_selected1.setText(title);
             }
         }
         refreshData("1");
@@ -670,10 +674,10 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
             RecyclerView.LayoutManager layoutManager = circle_rc.getLayoutManager();
             ((LinearLayoutManager) layoutManager).scrollToPositionWithOffset(1, 0);
         }
-        if (v == circle_work || v == circle_work1){
+        if (v == circle_work){
             //改变ui
-            hy_indicator.setSelected(true);
-            hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
+            //hy_indicator.setSelected(true);
+            //hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
             tv_hy_selected.setSelected(true);
             //更新数据
             currentSelected = HANG_YE;
@@ -681,22 +685,22 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 cp.setDataAdapter(InitInfo.professionBean.hy);
             }
 
-            hy_indicator1.setSelected(true);
-            hy_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
-            tv_hy_selected1.setSelected(true);
+//            hy_indicator1.setSelected(true);
+//            hy_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
+//            tv_hy_selected1.setSelected(true);
             //显示在circle_work的下方
 //            cp.showPopWindow(circle_work);
             cp.showPopWindow(v);
 
-        }else if (v == circle_gangwei || v == circle_gangwei1){
+        }else if (v == circle_gangwei ){
             //改变ui
-            gw_indicator.setSelected(true);
-            gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
+            //gw_indicator.setSelected(true);
+            //gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
             tv_gw_selected.setSelected(true);
 
-            gw_indicator1.setSelected(true);
-            gw_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
-            tv_gw_selected1.setSelected(true);
+//            gw_indicator1.setSelected(true);
+//            gw_indicator1.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
+//            tv_gw_selected1.setSelected(true);
 
             currentSelected = GANG_WEI;
             if (gwList.size() <= 0 && InitInfo.postBean != null && InitInfo.postBean.gw != null) {
@@ -712,22 +716,22 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
 //            cp.showPopWindow(circle_work);
             cp.showPopWindow(v);
 
-        }else if (v == circle_address || v == circle_address1){
+        }else if (v == circle_address){
             currentSelected = ADDRESS;
             String city = tv_addr_selected.getText().toString();
             Intent intent = new Intent(this, SelectCityActivity.class);
             intent.putExtra("city" ,city);
             Log.i("qza", "onClick: " +  city);
             startActivityForResult(intent,CITY_REQUEST_CODE);
-        }else if (v == circle_more || v == circle_more1){
+        }else if (v == circle_more){
 
             if (moreData == null){
                 moreData = new ArrayList<String>();
-                moreData.add("按最新排序");
-                moreData.add("按热门排序");
+                moreData.add("只看最新消息");
+                moreData.add("只看热门消息");
                 moreData.add("按订阅量排序");
             }
-            spinerPopWindow = new SpinerPopWindow(CircleUI.this,moreData,request_order);
+            spinerPopWindow = new SpinerPopWindow(CircleUI.this , moreData , request_order);
             spinerPopWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
 //          spinerPopWindow.showAsDropDown(circle_more);
             spinerPopWindow.showAsDropDown(v);

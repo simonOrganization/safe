@@ -29,9 +29,10 @@
                 android:layout_height="match_parent"
                 android:drawableLeft="@drawable/home_search"
                 android:drawablePadding="@dimen/dm012"
+                android:paddingLeft="@dimen/dm020"
                 android:gravity="center"
-                android:text="搜你感兴趣的内容"
-                android:textColor="@color/commen_reg"
+                android:text="请输入关键词搜索"
+                android:textColor="@color/text_9d9e9e"
                 android:textSize="@dimen/dm022" />
         </LinearLayout>
 
@@ -44,7 +45,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="订阅"
-            android:textColor="@color/commen_reg"
+            android:textColor="@color/black"
             android:textSize="@dimen/dm022"
             android:background="@null"/>
 

@@ -76,6 +76,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static android.R.attr.button;
 import static com.lchtime.safetyexpress.R.id.ll_more_member;
 import static com.lchtime.safetyexpress.R.id.rl_change_group_invite;
 import static com.lchtime.safetyexpress.ui.chat.hx.activity.NewGroupActivity.members;
@@ -220,15 +221,13 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 					mInviteContent.setText(mBean.qun.sq_info);
 					mProfessionContent.setText(mBean.qun.sq_profession);
 					mAddrContent.setText(mBean.qun.sq_addr);
-					if (!TextUtils.isEmpty(mBean.qun.ud_photo_fileid)){
-						Glide.with(GroupDetailsActivity.this)
-								.load(mBean.qun.ud_photo_fileid)
-								.into(mCivPhoto);
-					}else {
-						Glide.with(GroupDetailsActivity.this)
-								.load(R.drawable.qun_list)
-								.into(mCivPhoto);
-					}
+
+					Glide.with(GroupDetailsActivity.this)
+							.load(mBean.qun.ud_photo_fileid)
+							.placeholder(R.drawable.qun_list)
+							.error(R.drawable.qun_list)
+							.into(mCivPhoto);
+
 					//如果不在群里面，在这里设置
 					setType();
 					initListener();
@@ -848,16 +847,17 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 			    holder = (ViewHolder) convertView.getTag();
 			}
 			final LinearLayout button = (LinearLayout) convertView.findViewById(R.id.button_avatar);
-			// 最后一个item，减人按钮
-			if (position == getCount() - 1) {
-			    holder.textView.setText("");
-				// 设置成删除按钮
-			    holder.imageView.setImageResource(R.drawable.em_smiley_minus_btn);
-				// 如果不是创建者或者没有相应权限，不提供加减人按钮
-				if (!phoneNumber.equals(mBean.qun.master)) {
-					// if current user is not group admin, hide add/remove btn
-					convertView.setVisibility(View.GONE);
-				} else { // 显示删除按钮
+			if (phoneNumber.equals(mBean.qun.master)) {  //如果是群主
+				// 最后一个item，减人按钮
+				if (position == getCount() - 1) {
+					holder.textView.setText("");
+					// 设置成删除按钮
+					holder.imageView.setImageResource(R.drawable.em_smiley_minus_btn);
+					// 如果不是创建者或者没有相应权限，不提供加减人按钮
+//				if (!phoneNumber.equals(mBean.qun.master)) {
+//					// if current user is not group admin, hide add/remove btn
+//					convertView.setVisibility(View.GONE);
+//				} else { // 显示删除按钮
 					button.setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
@@ -866,15 +866,15 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 							startActivityForResult(intent , REQUEST_CODE_DEL_USER);
 						}
 					});
-				}
-			} else if (position == getCount() - 2) { // 添加群组成员按钮
-			    holder.textView.setText("");
-			    holder.imageView.setImageResource(R.drawable.em_smiley_add_btn);
-				// 如果不是创建者或者没有相应权限
-				if (!phoneNumber.equals(mBean.qun.master)) {
-					// if current user is not group admin, hide add/remove btn
-					convertView.setVisibility(View.GONE);
-				} else {
+					//}
+				} else if (position == getCount() - 2) { // 添加群组成员按钮
+					holder.textView.setText("");
+					holder.imageView.setImageResource(R.drawable.em_smiley_add_btn);
+					// 如果不是创建者或者没有相应权限
+//				if (!phoneNumber.equals(mBean.qun.master)) {
+//					// if current user is not group admin, hide add/remove btn
+//					convertView.setVisibility(View.GONE);
+//				} else {
 					button.setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
@@ -886,8 +886,43 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 							startActivityForResult(intent , REQUEST_CODE_ADD_USER);
 						}
 					});
+					//}
+				} else { // 普通item，显示群组成员
+					final InfoBean.QunersBean bean = getItem(position);
+					convertView.setVisibility(View.VISIBLE);
+					button.setVisibility(View.VISIBLE);
+					EaseUserUtils.setUserNick(bean.ud_nickname, holder.textView);
+					String photoSrc = objects.get(position).ud_photo_fileid;
+					int localPhotoSrc = objects.get(position).pic_resource;
+					if (!TextUtils.isEmpty(photoSrc)){
+						Glide.with(GroupDetailsActivity.this)
+								.load(photoSrc)
+								.bitmapTransform(new GlideCircleTransform(GroupDetailsActivity.this , 8))
+								.into(holder.imageView);
+					}else if(localPhotoSrc != 0){
+						//如果有本地资源，那么就设置本地资源
+						Glide.with(GroupDetailsActivity.this).load(localPhotoSrc).into(holder.imageView);
+					}else {
+						Glide.with(GroupDetailsActivity.this).load(R.drawable.circle_user_image).into(holder.imageView);
+					}
+
+//				final String st12 = getResources().getString(R.string.not_delete_myself);
+//				final String st13 = getResources().getString(R.string.Are_removed);
+//				final String st14 = getResources().getString(R.string.Delete_failed);
+					button.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							Intent intent = new Intent(GroupDetailsActivity.this,UserProfileActivity.class);
+							intent.putExtra("username",objects.get(position).hx_account);
+							startActivity(intent);
+
+						}
+
+
+					});
+
 				}
-			} else { // 普通item，显示群组成员
+			}else{// 如果并不是群主
 				final InfoBean.QunersBean bean = getItem(position);
 				convertView.setVisibility(View.VISIBLE);
 				button.setVisibility(View.VISIBLE);
@@ -906,15 +941,15 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 					Glide.with(GroupDetailsActivity.this).load(R.drawable.circle_user_image).into(holder.imageView);
 				}
 
-				final String st12 = getResources().getString(R.string.not_delete_myself);
-				final String st13 = getResources().getString(R.string.Are_removed);
-				final String st14 = getResources().getString(R.string.Delete_failed);
+//				final String st12 = getResources().getString(R.string.not_delete_myself);
+//				final String st13 = getResources().getString(R.string.Are_removed);
+//				final String st14 = getResources().getString(R.string.Delete_failed);
 				button.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-							Intent intent = new Intent(GroupDetailsActivity.this,UserProfileActivity.class);
-							intent.putExtra("username",objects.get(position).hx_account);
-							startActivity(intent);
+						Intent intent = new Intent(GroupDetailsActivity.this,UserProfileActivity.class);
+						intent.putExtra("username",objects.get(position).hx_account);
+						startActivity(intent);
 
 					}
 
@@ -922,11 +957,15 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 				});
 
 			}
+
 			return convertView;
 		}
 
 		@Override
 		public int getCount() {
+			if(!phoneNumber.equals(mBean.qun.master)){
+				return super.getCount();
+			}
 			return super.getCount() + 2;
 		}
 	}

@@ -151,7 +151,7 @@
                 <ImageView
                     android:layout_width="@dimen/dm024"
                     android:layout_height="@dimen/dm024"
-                    android:background="@drawable/question_addpic_press"/>
+                    android:background="@drawable/icon_check_normal"/>
                 <TextView
                     android:gravity="center"
                     android:layout_marginLeft="@dimen/dm005"
@@ -184,7 +184,7 @@
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="邀请好友回答"
+                    android:text="邀请好友"
                     android:textSize="@dimen/dm026"
                     android:textColor="#e9553e"/>
             </LinearLayout>

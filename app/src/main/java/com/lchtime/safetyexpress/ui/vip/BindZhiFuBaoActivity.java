@@ -74,7 +74,7 @@ public class BindZhiFuBaoActivity extends BaseUI implements View.OnClickListener
             tvLoginLogin.setText("修改");
         } else {
             isChange = false;
-            tvLoginLogin.setText("提交");
+            tvLoginLogin.setText("绑定");
         }
         setTitle(titleText);
         tvLoginLogin.setOnClickListener(this);

@@ -41,15 +41,16 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="@dimen/dm280"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/dm160"
             android:layout_marginLeft="@dimen/dm020">
 
             <ImageView
                 android:id="@+id/iv_hotvideo_img"
-                android:layout_width="@dimen/dm280"
+                android:layout_width="@dimen/dm250"
                 android:layout_height="@dimen/dm160"
-                android:background="@drawable/home_test_img7" />
+                android:scaleType="centerCrop"
+                android:background="@drawable/home_banner" />
 
             <ImageView
                 android:layout_width="40dp"

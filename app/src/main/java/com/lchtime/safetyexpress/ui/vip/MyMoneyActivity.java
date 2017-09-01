@@ -46,16 +46,16 @@ public class MyMoneyActivity extends BaseUI implements View.OnClickListener {
     RelativeLayout rlTitle;
     @BindView(R.id.tv_account_balance)
     TextView tvAccountBalance;
-    @BindView(R.id.iv_zhifubao_img)
-    ImageView ivZhifubaoImg;
-    @BindView(R.id.rl_money_zhifubao)
-    RelativeLayout rlMoneyZhifubao;
+    /*@BindView(R.id.iv_zhifubao_img)
+    ImageView ivZhifubaoImg;*/
+   /* @BindView(R.id.rl_money_zhifubao)
+    RelativeLayout rlMoneyZhifubao;*/
     @BindView(R.id.tv_change_account)
     TextView tvChangeAccount;
-    @BindView(R.id.tv_bind_zhifubao)
-    TextView tvBindZhifubao;
+    /*@BindView(R.id.tv_bind_zhifubao)
+    TextView tvBindZhifubao;*/
     @BindView(R.id.item_authorization_zhifubao)
-    RelativeLayout item_authorization_zhifubao;
+    TextView item_authorization_zhifubao;
     private VipProtocal protocal;
     private boolean isBind = false;
     private MyAccountBean bean;
@@ -106,14 +106,15 @@ public class MyMoneyActivity extends BaseUI implements View.OnClickListener {
                 if ("1".equals(bean.tparty.ud_zfb_account)) {
                     //没有绑定支付宝
                     isBind = false;
-                    tvBindZhifubao.setText("未绑定");
-                    tvBindZhifubao.setTextColor(getResources().getColor(R.color.commen_reg));
-                    tvChangeAccount.setVisibility(View.GONE);
+                    //tvBindZhifubao.setText("未绑定");
+                    //tvBindZhifubao.setTextColor(getResources().getColor(R.color.commen_reg));
+                    tvChangeAccount.setText("授权到支付宝");
+                    item_authorization_zhifubao.setBackgroundResource(R.drawable.shape_bg_pink_gray);
                 } else {
                     //绑定了支付宝
                     isBind = true;
-                    tvBindZhifubao.setText("已绑定");
-                    tvBindZhifubao.setTextColor(getResources().getColor(R.color.title_999));
+                    //tvBindZhifubao.setText("已绑定");
+                    //tvBindZhifubao.setTextColor(getResources().getColor(R.color.title_999));
                     tvChangeAccount.setVisibility(View.VISIBLE);
                     tvChangeAccount.setOnClickListener(MyMoneyActivity.this);
                 }
@@ -135,10 +136,10 @@ public class MyMoneyActivity extends BaseUI implements View.OnClickListener {
                 CommonUtils.toastMessage("请检查网络");
             }
         }else {
-            //如果没有绑定，进入绑定账号界面
+            /*//如果没有绑定，进入绑定账号界面
             Intent intent = new Intent(this, BindZhiFuBaoActivity.class);
             intent.putExtra("title","绑定账号");
-            startActivity(intent);
+            startActivity(intent);*/
         }
 
     }
@@ -147,6 +148,9 @@ public class MyMoneyActivity extends BaseUI implements View.OnClickListener {
     public void onClick(View v) {
         //如果点击了更换提现账号
         if (v == tvChangeAccount){
+            if(isBind){ //如果已经绑定
+
+            }
             Intent intent = new Intent(this, BindZhiFuBaoActivity.class);
             intent.putExtra("title","更换提现账号");
             startActivity(intent);

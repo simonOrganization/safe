@@ -53,6 +53,7 @@ import com.lchtime.safetyexpress.bean.GetUpBean;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.PostBean;
 import com.lchtime.safetyexpress.bean.ProfessionBean;
+import com.lchtime.safetyexpress.bean.UpdateResponse;
 import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.pop.GuiZePop;
 import com.lchtime.safetyexpress.ui.add.ChatEmptyUI;
@@ -74,12 +75,15 @@ import com.lchtime.safetyexpress.ui.vip.VipUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.LoginInternetRequest;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.weight.UpdateDialog;
 
 import java.io.File;
 import java.util.List;
 import java.util.Map;
 
 import service.DemoPushService;
+
+import static com.lchtime.safetyexpress.utils.CommonUtils.getVersionCode;
 
 
 /**
@@ -91,7 +95,7 @@ public class TabUI extends TabActivity implements OnClickListener {
 
     public static final int TAKE_DATA = 200;
 
-    private static TabUI tabUI;
+    //private static TabUI tabUI;
 //    private MyApplication application;
 
     private RadioButton rb_tab_1;
@@ -151,7 +155,7 @@ public class TabUI extends TabActivity implements OnClickListener {
         mTabUI = this;
 
 
-        tabUI = this;
+        //tabUI = this;
         Drawable drawable;
         int right = CommonUtils.getDimen(this, R.dimen.dm044);
         int bottom = CommonUtils.getDimen(this, R.dimen.dm036);
@@ -291,14 +295,31 @@ public class TabUI extends TabActivity implements OnClickListener {
         registerBroadcastReceiver();
         updateUnreadLabel();
         init(true);
-
-       /* mReceiver = new UiReceiver();
-        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver,
-                new IntentFilter("ACTION_LOGIN_SUCEESS"));*/
+        checkUpdateApp();
 
     }
-   // private UiReceiver mReceiver;
-    private ProgressDialog mDialog;
+
+    /**
+     * 检查新版本
+     */
+    private void checkUpdateApp() {
+        mCircleProtocal.getUpDate(new CircleProtocal.UpdateListener() {
+            @Override
+            public void updateResponse(UpdateResponse bean) {
+                if(bean != null){
+                    int version = CommonUtils.getVersionCode(TabUI.this);
+                    int onloneVersion = Integer.parseInt(bean.getVersionCode());
+                    if(onloneVersion > version){
+                        UpdateDialog dialog = new UpdateDialog(TabUI.this , bean.getVersionUrl());
+                        dialog.show();
+                    }
+                }
+            }
+        });
+
+
+    }
+
     //只是splash 使用
     public void init(boolean flag) {
         initRedPoint();

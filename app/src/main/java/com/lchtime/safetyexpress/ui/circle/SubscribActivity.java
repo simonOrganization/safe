@@ -78,7 +78,7 @@ public class SubscribActivity extends BaseUI {
 
     @Override
     protected void setControlBasis() {
-        rightVisible(R.drawable.circle_subscribe);
+        rightVisible(R.drawable.icon_add);
         setTitle("我的订阅");
         view = View.inflate(this, R.layout.subscribe_horizotol,null);
         initView();

@@ -9,7 +9,7 @@
         android:orientation="vertical"
         android:paddingTop="@dimen/dm010">
 
-    <com.lchtime.safetyexpress.views.CircleImageView
+    <ImageView
         android:id="@+id/raiv_hotcircle_icon"
         android:layout_width="@dimen/dm090"
         android:layout_height="@dimen/dm090"

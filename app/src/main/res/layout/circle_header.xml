@@ -8,102 +8,71 @@
 
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm064"
+        android:background="@color/white"
         android:orientation="horizontal"
-        android:background="@color/white">
-        <LinearLayout
-            android:id="@+id/circle_work"
-            android:layout_weight="1"
+        android:gravity="center_vertical">
+
+
+        <TextView
+            android:id="@+id/tv_hy_selected"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="left|center_vertical"
-            android:layout_marginLeft="@dimen/dm020">
-            <TextView
-                android:id="@+id/tv_hy_selected"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="行业选择"
-                android:textSize="@dimen/dm026"
-                android:textColor="@color/circle_text_indicator_selector"/>
-            <ImageView
-                android:id="@+id/iv_hy_indicator"
-                android:layout_width="@dimen/dm028"
-                android:layout_height="@dimen/dm008"
-                android:src="@drawable/circle_indicator_selector"
-                android:layout_marginLeft="@dimen/dm006"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/circle_gangwei"
+            android:gravity="center"
             android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="行业选择"
+            android:textColor="@color/circle_text_indicator_selector"
+            android:textSize="@dimen/dm026" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/dm020"
+            android:background="@color/text_da"/>
+
+        <TextView
+            android:id="@+id/tv_gw_selected"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="left|center_vertical"
-            android:layout_marginLeft="@dimen/dm030">
-            <TextView
-                android:id="@+id/tv_gw_selected"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:gravity="left"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="岗位选择"
-                android:textSize="@dimen/dm026"
-                android:textColor="@color/circle_text_indicator_selector"/>
-            <ImageView
-                android:id="@+id/iv_gw_indicator"
-                android:layout_width="@dimen/dm018"
-                android:layout_height="@dimen/dm008"
-                android:src="@drawable/circle_indicator_selector"
-                android:layout_marginLeft="@dimen/dm006"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/circle_address"
+            android:gravity="center"
             android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="岗位选择"
+            android:textColor="@color/circle_text_indicator_selector"
+            android:textSize="@dimen/dm026" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/dm020"
+            android:background="@color/text_da"/>
+
+        <TextView
+            android:id="@+id/tv_addr_selected"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="left|center_vertical"
-            android:layout_marginLeft="@dimen/dm030">
-            <TextView
-                android:id="@+id/tv_addr_selected"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="地理位置"
-                android:textSize="@dimen/dm026"
-                android:textColor="@color/circle_text_indicator_selector"/>
-            <ImageView
-                android:id="@+id/iv_addr_indicator"
-                android:layout_width="@dimen/dm018"
-                android:layout_height="@dimen/dm008"
-                android:src="@drawable/circle_indicator_selector"
-                android:layout_marginLeft="@dimen/dm006"/>
+            android:gravity="center"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="地理位置"
+            android:textColor="@color/circle_text_indicator_selector"
+            android:textSize="@dimen/dm026" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/dm020"
+            android:background="@color/text_da"/>
 
-        </LinearLayout>
-        <!--<View-->
-            <!--android:id="@+id/circle_layout_view"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"/>-->
         <ImageView
             android:id="@+id/circle_more"
-            android:layout_width="@dimen/dm028"
-            android:layout_height="@dimen/dm028"
-            android:background="@drawable/circle_sort"
-            android:layout_marginRight="@dimen/dm020"
-            android:layout_marginLeft="@dimen/dm060"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:clickable="true"/>
+            android:padding="@dimen/dm013"
+            android:src="@drawable/icon_exchange"
+            android:clickable="true" />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm016"

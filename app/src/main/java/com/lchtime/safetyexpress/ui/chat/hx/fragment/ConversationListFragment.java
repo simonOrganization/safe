@@ -95,9 +95,8 @@ public class ConversationListFragment extends MyConversationListFragment {
             });
 
         //}
-
-        if (EaseInitBean.map == null) {
-            if (EaseInitBean.contactBean != null) {
+        if (EaseInitBean.contactBean != null) {
+            if (EaseInitBean.map == null || EaseInitBean.map.size() != EaseInitBean.contactBean.friendlist.size()) {
                 userInfo.clear();
                 for (ContactBean contactBean : EaseInitBean.contactBean.friendlist) {
                     userInfo.put(contactBean.hx_account, contactBean);
@@ -105,8 +104,6 @@ public class ConversationListFragment extends MyConversationListFragment {
             }
             EaseInitBean.map = userInfo;
         }
-
-        //super.setUpView();
         // register context menu
         registerForContextMenu(conversationListView);
         conversationListView.setOnItemClickListener(new OnItemClickListener() {

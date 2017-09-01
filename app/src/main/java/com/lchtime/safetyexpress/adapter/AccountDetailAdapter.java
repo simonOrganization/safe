@@ -46,8 +46,8 @@ public class AccountDetailAdapter extends RecyclerView.Adapter {
             myHolder.tvSingleMoney.setTextColor(context.getResources().getColor(R.color.commen_reg));
         }
         myHolder.tvSingleMoney.setText(bean.uc_amount);
-        myHolder.tvTotalMoney.setText(bean.balance);
-
+        myHolder.tvTotalMoney.setText("余额：" + bean.balance);
+        myHolder.statusTv.setText(bean.uc_status);
     }
 
     @Override
@@ -64,6 +64,8 @@ public class AccountDetailAdapter extends RecyclerView.Adapter {
         TextView tvTime;
         @BindView(R.id.tv_total_money)
         TextView tvTotalMoney;
+        @BindView(R.id.tv_status)
+        TextView statusTv;
         public MyViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

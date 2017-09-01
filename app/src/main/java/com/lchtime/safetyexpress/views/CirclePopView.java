@@ -68,7 +68,7 @@ public class CirclePopView extends PopupWindow {
         ColorDrawable dw = new ColorDrawable(0xb0000000);
         // 点back键和其他地方使其消失,设置了这个才能触发OnDismisslistener ，设置其他控件变化等操作
         this.setBackgroundDrawable(dw);
-        circle_pop_rc.setLayoutManager(new GridLayoutManager(context,2));
+        circle_pop_rc.setLayoutManager(new GridLayoutManager(context , 4));
 //
 //        this.setOnDismissListener(new OnDismissListener() {
 //            @Override

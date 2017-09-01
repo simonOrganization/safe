@@ -29,7 +29,7 @@
 
             </com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView>
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/tv_home_question"
                 android:layout_width="@dimen/dm080"
                 android:layout_height="@dimen/dm080"
@@ -41,7 +41,7 @@
                 android:gravity="center"
                 android:text="提问"
                 android:textColor="@color/white"
-                android:textSize="@dimen/dm024" />
+                android:textSize="@dimen/dm024" />-->
 
         </RelativeLayout>
         <include android:id="@+id/loading" android:visibility="visible" layout="@layout/pager_loading"/>

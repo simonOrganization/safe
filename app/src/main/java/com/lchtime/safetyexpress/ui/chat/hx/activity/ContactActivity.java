@@ -82,7 +82,8 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
 
 
 	private TextView mTitle;
-	private TextView mTitleRight;
+	//private TextView mTitleRight;
+	private ImageView mRightIv;
 	private LinearLayout mTitleLeft;
 	private LinearLayout mLlTitleRight;
 
@@ -172,13 +173,16 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
 
 
 		mTitle = (TextView) findViewById(R.id.title);
-		mTitleRight = (TextView) findViewById(R.id.tv_delete);
+		//mTitleRight = (TextView) findViewById(R.id.tv_delete);
+		mRightIv = (ImageView) findViewById(R.id.iv_right);
 		mTitleLeft = (LinearLayout) findViewById(R.id.ll_back);
 		mLlTitleRight = (LinearLayout) findViewById(R.id.ll_right);
 		mLlTitleRight.setVisibility(View.VISIBLE);
 		mTitle.setText("通讯录");
-		mTitleRight.setText("加好友/群");
-		mTitleRight.setVisibility(View.VISIBLE);
+		mRightIv.setImageResource(R.drawable.icon_add);
+		mRightIv.setVisibility(View.VISIBLE);
+		//mTitleRight.setText("＋");
+		//mTitleRight.setVisibility(View.VISIBLE);
 		mLlTitleRight.setOnClickListener(this);
 		mTitleLeft.setOnClickListener(this);
 

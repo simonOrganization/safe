@@ -371,62 +371,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
-        /*mInsideWebChromeClient = new InsideWebChromeClient();
-        InsideWebViewClient mInsideWebViewClient = new InsideWebViewClient();
-        //javascriptInterface = new JavascriptInterface();
-        //mWebView.addJavascriptInterface(javascriptInterface, "java2js_laole918");
-        mWebView.setWebChromeClient(mInsideWebChromeClient);
-        mWebView.setWebViewClient(mInsideWebViewClient);*/
     }
-
-   /* private class InsideWebChromeClient extends WebChromeClient {
-        private View mCustomView;
-        private CustomViewCallback mCustomViewCallback;
-
-        @Override
-        public void onShowCustomView(View view, CustomViewCallback callback) {
-            super.onShowCustomView(view, callback);
-            if (mCustomView != null) {
-                callback.onCustomViewHidden();
-                return;
-            }
-            mCustomView = view;
-            mFrameLayout.addView(mCustomView);
-            mCustomViewCallback = callback;
-            mWebView.setVisibility(View.GONE);
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-
-        public void onHideCustomView() {
-            mWebView.setVisibility(View.VISIBLE);
-            if (mCustomView == null) {
-                return;
-            }
-            mCustomView.setVisibility(View.GONE);
-            mFrameLayout.removeView(mCustomView);
-            mCustomViewCallback.onCustomViewHidden();
-            mCustomView = null;
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            super.onHideCustomView();
-        }
-    }
-    private class InsideWebViewClient extends WebViewClient {
-
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            // TODO Auto-generated method stub
-            view.loadUrl(url);
-            return true;
-        }
-
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);
-            //mWebView.loadUrl(javascript);
-        }
-
-    }*/
-
     @Override
     public void onConfigurationChanged(Configuration config) {
         super.onConfigurationChanged(config);
@@ -487,15 +432,17 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
         mWebView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                // TODO Auto-generated method stub
+                //如果是淘宝或者天猫的链接，返回父类方法
+                if(url.contains("taobao://") || url.contains("tmall://")){
+                    return super.shouldOverrideUrlLoading(view , url);
+                }
                 //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
                 //String u = url;
                 if(!url.equals("wvjbscheme://__BRIDGE_LOADED__")){
                     mWebView.loadUrl(url);
                 }
                 if(url.contains(".pdf")){
-                    Intent intent = new Intent();
-                    intent.setAction("android.intent.action.VIEW");
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
                     Uri content_url = Uri.parse(url);
                     intent.setData(content_url);
                     startActivity(intent);
@@ -1136,18 +1083,12 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
         }
 
         rl_pl.setVisibility(View.VISIBLE);
-        //et_common.setVisibility(View.VISIBLE);
-        //et_common.clearFocus();
 
         et_common.setFocusable(true);
         et_common.setFocusableInTouchMode(true);
         et_common.requestFocus();
-        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(0 , InputMethodManager.HIDE_NOT_ALWAYS);
-        //et_common.performClick();
-        //bottom_zan_or_common.setVisibility(View.GONE);
-//        makeText("收藏");
     }
 
     private void requestConllect(final CheckBox cb) {

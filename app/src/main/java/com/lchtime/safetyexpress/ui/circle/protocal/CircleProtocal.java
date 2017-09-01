@@ -3,6 +3,7 @@ package com.lchtime.safetyexpress.ui.circle.protocal;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.AddSubscribBean;
@@ -12,6 +13,7 @@ import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
 import com.lchtime.safetyexpress.bean.MydyBean;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.SingleInfoBean;
+import com.lchtime.safetyexpress.bean.UpdateResponse;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.DialogUtil;
@@ -677,11 +679,42 @@ public class CircleProtocal {
                 });
     }
 
+    /**
+     * 获取升级信息
+     * @param listener
+     */
+    public void getUpDate(final UpdateListener listener){
+        String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
+                .concat(MyApplication.getContext().getResources().getString(R.string.update_app));
+
+        OkHttpUtils.post()
+                .url(url)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int i) {
+                    }
+
+                    @Override
+                    public void onResponse(String response, int i) {
+                        if (TextUtils.isEmpty(response)) {
+                            return;
+                        }
+                        UpdateResponse bean = new Gson().fromJson(response , UpdateResponse.class);
+                        listener.updateResponse(bean);
+                    }
+                });
+
+
+    }
 
     public interface CircleListener{
         void circleResponse(CircleBean response);
     }
     public interface NormalListener{
         void normalResponse(Object response);
+    }
+    public interface UpdateListener{
+        void updateResponse(UpdateResponse bean);
     }
 }

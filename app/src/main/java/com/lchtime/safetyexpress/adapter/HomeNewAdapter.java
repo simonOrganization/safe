@@ -62,7 +62,6 @@ public class HomeNewAdapter extends RecyclerView.Adapter {
             View view = LayoutInflater.from(context).inflate(R.layout.home_new_no_item, parent, false);
             return new HomeNewNoHolder(view);
         } else if (viewType == ITEM_VIEW_TYPE_VIDEO) {
-            Log.i("yang", "ITEM_VIEW_TYPE_VIDEO----");
             //View view = LayoutInflater.from(context).inflate(R.layout.home_news_video_item, parent, false);
             View view = LayoutInflater.from(context).inflate(R.layout.home_hotvideo_item , parent, false);
             return new HomeNewVideoHolder(view);

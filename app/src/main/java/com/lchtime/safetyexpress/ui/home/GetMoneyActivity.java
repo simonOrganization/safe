@@ -27,6 +27,7 @@ import com.lchtime.safetyexpress.ui.vip.VipInfoUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.LoginInternetRequest;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.weight.LoginDialog;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
@@ -249,8 +250,14 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
     private void clickTask(int num) {
 
         if (num == 0) {
-            Intent intent = new Intent(this, LoginUI.class);
-            startActivity(intent);
+            LoginDialog dialog = new LoginDialog(mContext, new LoginDialog.onClickLogin() {
+                @Override
+                public void OnClickLogin() {
+                    Intent intent = new Intent(mContext,LoginUI.class);
+                    startActivity(intent);
+                }
+            });
+            dialog.show();
             //finish();
         } else if (num == 1) {
             Intent intent = new Intent(this, VipInfoUI.class);

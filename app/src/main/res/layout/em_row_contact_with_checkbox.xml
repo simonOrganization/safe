@@ -20,19 +20,9 @@
         android:layout_height="@dimen/dm098"
         android:background="@color/white"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dm020">
 
-        <CheckBox
-            android:id="@+id/checkbox"
-            android:layout_marginLeft="@dimen/dm020"
-            android:layout_marginRight="@dimen/dm020"
-            android:layout_width="@dimen/dm024"
-            android:layout_height="@dimen/dm024"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/rb_delete"
-            android:focusable="false"
-            android:button="@null"
-            android:text="@null"/>
 
         <com.lchtime.safetyexpress.views.CircleImageView
             android:id="@+id/avatar"
@@ -44,7 +34,8 @@
         <TextView
             android:id="@+id/name"
             android:maxWidth="110dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:layout_marginRight="16dp"
@@ -52,7 +43,17 @@
             android:ellipsize="end"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
-
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_marginLeft="@dimen/dm020"
+            android:layout_marginRight="@dimen/dm040"
+            android:layout_width="@dimen/dm030"
+            android:layout_height="@dimen/dm030"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/rb_delete"
+            android:focusable="false"
+            android:button="@null"
+            android:text="@null"/>
     </LinearLayout>
 
     <View

@@ -193,8 +193,8 @@ public class HomeSearchContentFragment extends Fragment {
             });
             slv_news_search_history.addView(tv);*/
             historyList.add(key);
+            Log.i("fxp" , "刷新前的历史数据==" + historyList.toString());
             mHistoryAdapter.notifyDataSetChanged();
-
         }
     }
 

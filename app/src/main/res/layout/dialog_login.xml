@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dm490"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_dialog_white"
+        android:layout_marginTop="@dimen/dm080">
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="@dimen/dm040"
+            android:layout_height="@dimen/dm040"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/icon_close"/>
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未登录"
+            android:textSize="@dimen/dm042"
+            android:layout_marginTop="@dimen/dm080"
+            android:layout_below="@+id/iv_close"
+            android:textColor="@color/color_8c"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/tv_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您需要登录才能使用此功能"
+            android:textSize="@dimen/dm030"
+            android:layout_marginTop="@dimen/dm080"
+            android:layout_below="@+id/tv_content"
+            android:textColor="@color/color_8c"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm080"
+            android:layout_below="@+id/tv_hint"
+            android:background="@drawable/shape_bg_pink"
+            android:layout_marginTop="@dimen/dm040"
+            android:layout_marginLeft="@dimen/dm060"
+            android:layout_marginRight="@dimen/dm060"
+            android:layout_marginBottom="@dimen/dm060"
+            android:text="前去登陆"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="@dimen/dm035"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="@dimen/dm160"
+        android:layout_height="@dimen/dm160"
+        android:src="@drawable/icon_no_login"
+        android:layout_gravity="center_horizontal"/>
+
+</FrameLayout>

@@ -8,11 +8,71 @@
     <include layout="@layout/title" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm250"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/dm010"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm080"
+            android:text="账户余额"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dm050"/>
+        <TextView
+            android:id="@+id/tv_account_balance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¥0.00"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dm050"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dm100"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_change_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:gravity="center"
+        android:padding="@dimen/dm020"
+        android:text="更改提现号码"
+        android:textColor="@color/commen_reg"
+        android:textSize="@dimen/dm024" />
+
+
+    <TextView
+        android:id="@+id/item_authorization_zhifubao"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm072"
+        android:layout_marginLeft="@dimen/dm076"
+        android:layout_marginRight="@dimen/dm076"
+        android:layout_marginTop="@dimen/dm150"
+        android:background="@drawable/shape_bg_pink"
+        android:gravity="center"
+        android:text="提现到支付宝"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dm028" />
+
+    <TextView
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/title_999"
+        android:layout_marginTop="@dimen/dm010"
+        android:layout_marginLeft="@dimen/dm076"
+        android:textSize="@dimen/dm022"
+        android:text="提现最低20，最高5000"/>
+    <!--<LinearLayout
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm280"
         android:orientation="vertical"
-        android:background="@drawable/bg_mymoney">
+        >
         <ImageView
             android:layout_marginTop="@dimen/dm058"
             android:layout_width="@dimen/dm074"
@@ -26,7 +86,7 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:text="账户余额"/>
-        <TextView
+       &lt;!&ndash; <TextView
             android:id="@+id/tv_account_balance"
             android:layout_marginTop="@dimen/dm016"
             android:layout_width="wrap_content"
@@ -34,8 +94,8 @@
             android:textSize="@dimen/dm024"
             android:gravity="center"
             android:textColor="@color/white"
-            android:text="¥0.00"/>
-        <TextView
+            android:text="¥0.00"/>&ndash;&gt;
+       &lt;!&ndash; <TextView
             android:id="@+id/tv_change_account"
             android:layout_marginTop="@dimen/dm012"
             android:layout_width="wrap_content"
@@ -43,19 +103,19 @@
             android:textSize="@dimen/dm024"
             android:gravity="center"
             android:textColor="@color/white"
-            android:text="更换提现账号"/>
-    </LinearLayout>
+            android:text="更换提现账号"/>&ndash;&gt;
+    </LinearLayout>-->
 
-    <TextView
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm048"
         android:gravity="center_vertical"
         android:layout_marginLeft="@dimen/dm024"
         android:text="提现方式"
         android:textSize="@dimen/dm022"
-        android:textColor="#666666"/>
+        android:textColor="#666666"/>-->
 
-    <include
+    <!--<include
         android:id="@+id/item_authorization_zhifubao"
-        layout="@layout/item_money" />
+        layout="@layout/item_money" />-->
 </LinearLayout>
