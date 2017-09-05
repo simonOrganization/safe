@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.ui.vip;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
@@ -14,11 +15,13 @@ import com.lchtime.safetyexpress.bean.AcountDetailBean;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
+import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.ui.vip.protocal.VipProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.EmptyRecyclerView;
+import com.lchtime.safetyexpress.weight.LoginDialog;
 import com.lidroid.xutils.view.annotation.ContentView;
 
 import java.util.ArrayList;
@@ -120,7 +123,14 @@ public class AccountDetailActivity extends BaseUI {
         }
         userid = SpTools.getUserId(this);
         if (TextUtils.isEmpty(userid)){
-            CommonUtils.toastMessage("您没有登陆，请登陆后再试");
+            LoginDialog dialog = new LoginDialog(mContext, new LoginDialog.onClickLogin() {
+                @Override
+                public void OnClickLogin() {
+                    Intent intent = new Intent(mContext,LoginUI.class);
+                    startActivity(intent);
+                }
+            });
+            dialog.show();
             return;
         }
         protocal.getAcountDetail(userid, page, new CircleProtocal.NormalListener() {

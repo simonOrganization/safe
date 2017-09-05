@@ -71,7 +71,8 @@
             android:padding="@dimen/dm013"
             android:src="@drawable/icon_exchange"
             android:clickable="true" />
-    </LinearLayout>
+    </LinearLayout
+>
 
     <View
         android:layout_width="match_parent"

@@ -21,9 +21,11 @@ import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.circle.fragment.SubscirbeAllFragment;
 import com.lchtime.safetyexpress.ui.circle.fragment.SubscirbeCommendFragment;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
+import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.CircleImageView;
+import com.lchtime.safetyexpress.weight.LoginDialog;
 
 import java.util.List;
 
@@ -70,7 +72,14 @@ public class AddSubscribeAdapter extends RecyclerView.Adapter {
                 }
                 String userid = SpTools.getUserId(context);
                 if (TextUtils.isEmpty(userid)){
-                    CommonUtils.toastMessage("请登陆！！！");
+                    LoginDialog dialog = new LoginDialog(context, new LoginDialog.onClickLogin() {
+                        @Override
+                        public void OnClickLogin() {
+                            Intent intent = new Intent(context,LoginUI.class);
+                            context.startActivity(intent);
+                        }
+                    });
+                    dialog.show();
                     myHolder.add_subscirbe_item_but.setChecked("1".equals(bean.is_dy));
                     return;
                 }else {

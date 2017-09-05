@@ -30,6 +30,7 @@ import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
+import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.ui.vip.MyCircleActiveActivity;
 import com.lchtime.safetyexpress.ui.vip.MyConllected;
 import com.lchtime.safetyexpress.ui.vip.fragment.CircleFragment;
@@ -37,6 +38,7 @@ import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ImageUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.weight.LoginDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -188,7 +190,14 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
             public void onClick(View v) {
                 String userid = SpTools.getUserId(context);
                 if (TextUtils.isEmpty(userid)) {
-                    CommonUtils.toastMessage("请登陆！！！");
+                    LoginDialog dialog = new LoginDialog(context, new LoginDialog.onClickLogin() {
+                        @Override
+                        public void OnClickLogin() {
+                            Intent intent = new Intent(context,LoginUI.class);
+                            context.startActivity(intent);
+                        }
+                    });
+                    dialog.show();
                     holder.circle_item_subscribe.setChecked("1".equals(bean.is_dy));
                     return;
                 } else {
@@ -309,7 +318,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
                 }
             });
         } else {
-            holder.tv_delete.setVisibility(View.GONE);
+            holder.tv_delete.setVisibility(View.INVISIBLE);
         }
 
     }

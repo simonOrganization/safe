@@ -24,6 +24,7 @@ import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.weight.GlideCircleTransform;
+import com.lchtime.safetyexpress.weight.LoginDialog;
 
 import java.util.List;
 
@@ -83,62 +84,26 @@ public class HomeHotCircleAdapter extends BaseAdapter {
         Glide.with(context)
                 .load(list.get(position).ud_photo_fileid)
                 .bitmapTransform(new GlideCircleTransform(context , 8))
-                .placeholder(R.drawable.circle_user_image)
-                .error(R.drawable.circle_user_image)
+                .placeholder(R.drawable.icon_head_rectangle)
+                .error(R.drawable.icon_head_rectangle)
                 .into(holder.raiv_icon);
 
         //holder.iv_subscribe.setChecked(list.get(position).checked);
         holder.tv_name.setText(list.get(position).ud_nickname);
         final ViewHolder finalHolder = holder;
-        /*holder.iv_subscribe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String userid = SpTools.getUserId(context);
-                if (TextUtils.isEmpty(userid)){
-                    CommonUtils.toastMessage("请登陆！！！");
-                    Intent intent = new Intent(context , LoginUI.class);
-                    context.startActivity(intent);
-                    finalHolder.iv_subscribe.setChecked(list.get(position).checked);
-                    return;
-                }else {
-                    String type = finalHolder.iv_subscribe.isChecked() ? "1" : "0";
-                    protocal.changeSubscribe(userid, list.get(position).ud_ub_id, type , new CircleProtocal.CircleListener() {
-                        @Override
-                        public void circleResponse(CircleBean response) {
-                            if (response == null){
-                                notifyDataSetChanged();
-                                return;
-                            }
-
-                            if ("10".equals(response.result.code)){
-                                list.get(position).checked = !list.get(position).checked;
-                                InitInfo.circleRefresh = true;
-                                finalHolder.iv_subscribe.setChecked(list.get(position).checked);
-                            }else if("02".equals(response.result.code)){
-                                list.get(position).checked = !list.get(position).checked;
-                                InitInfo.circleRefresh = true;
-                                finalHolder.iv_subscribe.setChecked(list.get(position).checked);
-                            }else{
-                                //订阅或者取消订阅失败了
-                               list.get(position).checked = !list.get(position).checked;
-                                finalHolder.iv_subscribe.setChecked(list.get(position).checked);
-                                notifyDataSetChanged();
-                            }
-                            CommonUtils.toastMessage(response.result.getInfo());
-                        }
-
-
-                    });
-                }
-            }
-        });
-*/
         holder.hot_circle_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String userid = SpTools.getUserId(context);
                 if (TextUtils.isEmpty(userid)){
-                    CommonUtils.toastMessage("请登陆！！！");
+                    LoginDialog dialog = new LoginDialog(context, new LoginDialog.onClickLogin() {
+                        @Override
+                        public void OnClickLogin() {
+                            Intent intent = new Intent(context,LoginUI.class);
+                            context.startActivity(intent);
+                        }
+                    });
+                    dialog.show();
                     return;
                 }
                 Intent intent = new Intent(context, SingleInfoUI.class);

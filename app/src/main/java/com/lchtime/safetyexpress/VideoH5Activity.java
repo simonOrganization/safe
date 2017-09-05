@@ -43,9 +43,11 @@ import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.home.AnswerQuestionActivity;
 import com.lchtime.safetyexpress.ui.home.protocal.H5Protocal;
 import com.lchtime.safetyexpress.ui.home.protocal.ShareProtocal;
+import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.weight.LoginDialog;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -188,7 +190,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             setTitle("安全头条");
             bottom_zan_or_common.setVisibility(View.VISIBLE);
         }else if ("video".equals(type)){
-            baseUrl = Const.HOST+"cms/videoinfo?cc_id=" + cc_id;
+            baseUrl = Const.HOST+"cms/videoinfo?cc_id=" + cc_id + "&ub_id=" + ub_id +  "&timestamp=" + System.currentTimeMillis();
             setTitle("视频");
             bottom_zan_or_common.setVisibility(View.VISIBLE);
             videoUrl = getIntent().getStringExtra("videoUrl");
@@ -664,7 +666,19 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             }
         });
     }
-
+    /**
+     * 显示登录的Dialog
+     */
+    private void showLoginDialog() {
+        LoginDialog dialog = new LoginDialog(mContext, new LoginDialog.onClickLogin() {
+            @Override
+            public void OnClickLogin() {
+                Intent intent = new Intent(mContext,LoginUI.class);
+                startActivity(intent);
+            }
+        });
+        dialog.show();
+    }
     /**
      * 评论
      *
@@ -672,16 +686,6 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
      */
     @OnClick(R.id.rl_news_detail_comment)
     private void getComment(View view) {
-        /*if (TextUtils.isEmpty(ub_id)) {
-            ub_id = SpTools.getString(this, Constants.userId, "");
-        }
-
-        if (TextUtils.isEmpty(ub_id)){
-            CommonUtils.toastMessage("请登陆后再进行相关操作！");
-            return;
-        }
-        rl_pl.setVisibility(View.VISIBLE);*/
-//        makeText("评论");
         mWebView.loadUrl("javascript:onclickComments()");
     }
 
@@ -829,8 +833,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             requestNewsData(cb_news_detail_zan,"0");
         }else if (("circle".equals(type))){//圈子
             if (TextUtils.isEmpty(ub_id)){
-                CommonUtils.toastMessage("请登陆后再进行相关操作！");
-                //cb_news_detail_zan.setChecked(!cb_news_detail_zan.isChecked());
+                showLoginDialog();
                 return;
             }
            /* if (!cb_news_detail_zan.isChecked()){
@@ -863,8 +866,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             requestNewsData(cb_news_detail_cai,"1");
         }else if (("circle".equals(type))){
             if (TextUtils.isEmpty(ub_id)){
-                CommonUtils.toastMessage("请登陆后再进行相关操作！");
-                //cb_news_detail_cai.setChecked(!cb_news_detail_cai.isChecked());
+                showLoginDialog();
             }
            /* if (!cb_news_detail_cai.isChecked()){
                 cb_news_detail_cai.setChecked(true);
@@ -1041,7 +1043,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
         }
 
         if (TextUtils.isEmpty(ub_id)){
-            CommonUtils.toastMessage("请登陆后再进行相关操作！");
+            showLoginDialog();
             cb_news_detail_collect.setChecked(false);
             return;
         }
@@ -1063,7 +1065,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
         }
 
         if (TextUtils.isEmpty(ub_id)){
-            CommonUtils.toastMessage("请登陆后再进行相关操作！");
+            showLoginDialog();
             return;
         }
 

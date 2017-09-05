@@ -13,7 +13,7 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/dm010"
-        android:paddingTop="@dimen/dm020">
+        android:paddingTop="@dimen/dm010">
 
         <LinearLayout
             android:id="@+id/ll_home_logo"
@@ -34,7 +34,7 @@
         <LinearLayout
             android:id="@+id/ll_home_search"
             android:layout_width="0dp"
-            android:layout_height="@dimen/dm060"
+            android:layout_height="@dimen/dm050"
             android:layout_weight="1"
             android:background="@drawable/shape_bg_gray"
             android:gravity="center_vertical"
@@ -96,7 +96,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dm032"
+                    android:layout_marginTop="@dimen/dm032"
+                    android:layout_marginBottom="@dimen/dm032"
+                    android:layout_marginLeft="@dimen/dm010"
+                    android:layout_marginRight="@dimen/dm010"
                     android:background="@color/white"
                     android:orientation="horizontal">
 
@@ -109,8 +112,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="@dimen/dm080"
-                            android:layout_height="@dimen/dm080"
+                            android:layout_width="@dimen/dm090"
+                            android:layout_height="@dimen/dm090"
                             android:src="@drawable/home_news" />
 
                         <TextView
@@ -133,8 +136,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="@dimen/dm080"
-                            android:layout_height="@dimen/dm080"
+                            android:layout_width="@dimen/dm090"
+                            android:layout_height="@dimen/dm090"
                             android:src="@drawable/home_video" />
 
                         <TextView
@@ -157,8 +160,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="@dimen/dm080"
-                            android:layout_height="@dimen/dm080"
+                            android:layout_width="@dimen/dm090"
+                            android:layout_height="@dimen/dm090"
                             android:src="@drawable/home_circle" />
 
                         <TextView
@@ -181,8 +184,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="@dimen/dm080"
-                            android:layout_height="@dimen/dm080"
+                            android:layout_width="@dimen/dm090"
+                            android:layout_height="@dimen/dm090"
                             android:src="@drawable/home_question" />
 
                         <TextView

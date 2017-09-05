@@ -27,45 +27,46 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/dm008"
             android:layout_marginLeft="@dimen/dm020"
-            android:layout_marginRight="@dimen/dm020">
+            android:layout_marginRight="@dimen/dm020"
+            android:paddingTop="@dimen/dm008">
 
             <LinearLayout
                 android:id="@+id/ll_date"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dm080"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <com.lchtime.safetyexpress.views.CircleImageView
                     android:id="@+id/iv_circle_photo"
-                    android:layout_width="@dimen/dm048"
-                    android:layout_height="@dimen/dm048"
+                    android:layout_width="@dimen/dm068"
+                    android:layout_height="@dimen/dm068"
                     android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    android:background="@drawable/circle_user_image"/>
+                    android:background="@drawable/circle_user_image"
+                    android:scaleType="centerCrop" />
 
                 <TextView
                     android:id="@+id/circle_item_title"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="落日西风"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/dm026"
-                    android:textColor="@color/commen_reg"
                     android:layout_marginLeft="@dimen/dm020"
-                    android:layout_toRightOf="@+id/iv_circle_photo"/>
+                    android:layout_toRightOf="@+id/iv_circle_photo"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="落日西风"
+                    android:textColor="@color/commen_reg"
+                    android:textSize="@dimen/dm032" />
+
                 <CheckBox
                     android:id="@+id/circle_item_subscribe"
                     android:layout_width="@dimen/dm099"
-                    android:layout_height="@dimen/dm032"
-                    android:text="@null"
+                    android:layout_height="@dimen/dm038"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/circle_item_subscribe_selector"
                     android:button="@null"
                     android:gravity="center"
-                    android:background="@drawable/circle_item_subscribe_selector"
-                    android:layout_alignParentRight="true" />
+                    android:text="@null" />
 
             </LinearLayout>
 
@@ -74,50 +75,48 @@
                 android:id="@+id/line"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/bg_df"
                 android:layout_below="@+id/ll_date"
-                />
+                android:background="@color/bg_df" />
 
             <TextView
                 android:id="@+id/circle_item_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="超爱戴比尔斯家的产品了专柜正品一比一独家开模制作这款耳钉厚壁结实，佩戴大气上档次成熟技术水平肯定减肥快捷键风光好"
-                android:textSize="@dimen/dm022"
-                android:textColor="@color/title_333"
                 android:layout_below="@id/line"
                 android:layout_marginTop="@dimen/dm008"
-                />
+                android:text="超爱戴比尔斯家的产品了专柜正品一比一独家开模制作这款耳钉厚壁结实，佩戴大气上档次成熟技术水平肯定减肥快捷键风光好"
+                android:textColor="@color/title_333"
+                android:textSize="@dimen/dm030" />
+
             <TextView
                 android:id="@+id/hide_show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/commen_reg"
-                android:textSize="16sp"
-                android:text="展开"
-                android:padding="3dp"
                 android:layout_below="@+id/circle_item_content"
-                />
+                android:padding="3dp"
+                android:text="展开"
+                android:textColor="@color/commen_reg"
+                android:textSize="16sp" />
 
             <RelativeLayout
                 android:id="@+id/circle_item_shipin_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/hide_show">
+
                 <ImageView
                     android:id="@+id/circle_item_shipin"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dm240"
-                    android:layout_marginTop="@dimen/dm008"
-                    />
+                    android:layout_marginTop="@dimen/dm008" />
 
 
                 <ImageView
                     android:id="@+id/iv_recommend_play"
                     android:layout_width="@dimen/dm047"
                     android:layout_height="@dimen/dm054"
-                    android:src="@drawable/video_play2"
-                    android:layout_centerInParent="true"/>
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/video_play2" />
 
             </RelativeLayout>
 
@@ -125,15 +124,15 @@
                 android:id="@+id/circle_item_image_rc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/circle_item_shipin_1"
-                />
+                android:layout_below="@id/circle_item_shipin_1" />
+
             <LinearLayout
                 android:id="@+id/ll_other"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm024"
-                android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/dm009"
+                android:layout_height="@dimen/dm080"
                 android:layout_below="@id/circle_item_image_rc"
+                android:layout_marginTop="@dimen/dm009"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <!--<ImageView
@@ -144,83 +143,89 @@
                     />-->
                 <TextView
                     android:id="@+id/circle_item_time"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dm010"
                     android:text="09:30"
-                    android:textSize="@dimen/dm020"
                     android:textColor="@color/title_999"
-                    android:layout_marginLeft="@dimen/dm010"/>
+                    android:textSize="@dimen/dm024" />
+
+                <TextView
+                    android:id="@+id/tv_delete"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/dm020"
+                    android:text="@string/delete"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/title_999"
+                    android:textSize="@dimen/dm024" />
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/dm030"
                     android:layout_width="@dimen/dm024"
                     android:layout_height="@dimen/dm024"
-                    android:scaleType="fitXY"
+                    android:layout_marginLeft="@dimen/dm030"
                     android:background="@drawable/circle_item_talk"
-                    />
+                    android:scaleType="fitXY" />
+
                 <TextView
                     android:id="@+id/circle_item_talk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dm010"
                     android:text="0"
-                    android:textSize="@dimen/dm020"
                     android:textColor="@color/title_999"
-                    android:layout_marginLeft="@dimen/dm010"/>
+                    android:textSize="@dimen/dm024" />
 
                 <RadioButton
                     android:id="@+id/iv_circle_item_great"
                     android:layout_width="@dimen/dm024"
                     android:layout_height="@dimen/dm024"
-                    android:scaleType="fitXY"
-                    android:text="@null"
+                    android:layout_marginLeft="@dimen/dm030"
+                    android:background="@drawable/circle_item_great_selector"
                     android:button="@null"
                     android:gravity="center"
-                    android:background="@drawable/circle_item_great_selector"
-                    android:layout_marginLeft="@dimen/dm030"/>
+                    android:scaleType="fitXY"
+                    android:text="@null" />
+
                 <TextView
                     android:id="@+id/circle_item_great"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dm010"
                     android:text="09:30"
-                    android:textSize="@dimen/dm020"
                     android:textColor="@color/title_999"
-                    android:layout_marginLeft="@dimen/dm010"/>
+                    android:textSize="@dimen/dm024" />
+
                 <RadioButton
                     android:id="@+id/iv_circle_item_low"
                     android:layout_width="@dimen/dm024"
                     android:layout_height="@dimen/dm024"
-                    android:scaleType="fitXY"
-                    android:text="@null"
+                    android:layout_marginLeft="@dimen/dm030"
+                    android:background="@drawable/circle_item_below_selector"
                     android:button="@null"
                     android:gravity="center"
-                    android:background="@drawable/circle_item_below_selector"
-                    android:layout_marginLeft="@dimen/dm030"/>
+                    android:scaleType="fitXY"
+                    android:text="@null" />
+
                 <TextView
                     android:id="@+id/circle_item_low"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dm010"
                     android:text="09:30"
-                    android:textSize="@dimen/dm020"
                     android:textColor="@color/title_999"
-                    android:layout_marginLeft="@dimen/dm010"/>
+                    android:textSize="@dimen/dm024" />
 
-                <TextView
-                    android:id="@+id/tv_delete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/delete"
-                    android:visibility="gone"
-                    android:textSize="@dimen/dm020"
-                    android:textColor="@color/tab_color_true"/>
 
             </LinearLayout>
         </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dm001"
-            android:background="@color/line"
-            android:layout_marginTop="@dimen/dm016"
+            android:layout_height="@dimen/dm010"
+            android:background="@color/line_big"
+
             />
 
     </LinearLayout>

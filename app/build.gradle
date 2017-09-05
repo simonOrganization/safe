@@ -1,7 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 android {
-
+    signingConfigs {
+        safety {
+            keyAlias 'safety'
+            keyPassword 'lchtime'
+            //storeFile file('D:/work/安全快车最新/safety.jks')
+            storeFile file('E:/company/jks/safety.jks')
+            storePassword 'lchtime'
+        }
 //        debug {
 //            keyAlias 'safety'
 //            keyPassword 'lchtime'
@@ -23,8 +30,8 @@ android {
             applicationId "com.lchtime.safetyexpress"
             minSdkVersion 16
             targetSdkVersion 25
-            versionCode 3
-            versionName "1.2"
+            versionCode 4
+            versionName "1.3"
             testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 //        signingConfig signingConfigs.safety
             multiDexEnabled true
@@ -33,7 +40,7 @@ android {
                     GETUI_APP_KEY   : "uQSlvoaK2G6DXbrnstZtM6",
                     GETUI_APP_SECRET: "6JfaGUdsHw5MKFgvOgLa86"
             ]
-//            signingConfig signingConfigs.safety
+            signingConfig signingConfigs.safety
         }
         buildTypes {
             release {
@@ -41,10 +48,10 @@ android {
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
                 debuggable true
                 jniDebuggable false
-//                signingConfig signingConfigs.safety
+                signingConfig signingConfigs.safety
             }
             debug {
-//                signingConfig signingConfigs.safety
+                signingConfig signingConfigs.safety
             }
         }
         productFlavors {
@@ -57,7 +64,7 @@ android {
         compile fileTree(include: ['*.jar'], dir: 'libs')
         testCompile 'junit:junit:4.12'
         compile project(':mylibrary')
-        compile "com.squareup.picasso:picasso:$v_picasso"
+        //compile "com.squareup.picasso:picasso:$v_picasso"
         compile 'com.xiwenhec:banner:1.0.2'
         compile 'com.zhy:okhttputils:2.6.2'
         compile project(':PagerSlidingTabStrip')
@@ -78,13 +85,15 @@ android {
         compile files('libs/GetuiSDK2.10.2.0.jar')
         compile 'com.timehop.stickyheadersrecyclerview:library:0.4.3@aar'
     }
-//    buildTypes {
-//        debug {
-//        }
-//        release {
-//        }
-//    }
-
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.safety
+        }
+        release {
+            signingConfig signingConfigs.safety
+        }
+    }
+}
 
 dependencies {
 }

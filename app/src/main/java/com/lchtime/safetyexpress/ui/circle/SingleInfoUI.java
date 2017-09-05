@@ -28,9 +28,11 @@ import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.chat.hx.activity.ApplyMessage;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
+import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.views.CircleImageView;
+import com.lchtime.safetyexpress.weight.LoginDialog;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -283,7 +285,7 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
             //订阅
             String userid = SpTools.getUserId(this);
             if (TextUtils.isEmpty(userid)){
-                CommonUtils.toastMessage("请登陆！！！");
+                showLoginDialog();
                 return;
             }else {
                 String type = "0".equals(is_dy) ? "1" : "0";
@@ -321,7 +323,7 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
         } else if(v == tvFriend){
 
             if (TextUtils.isEmpty(userid)){
-                CommonUtils.toastMessage("请登陆！！！");
+                showLoginDialog();
                 return;
             }
 
@@ -378,6 +380,20 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
                 }
             }
         }
+    }
+
+    /**
+     * 显示登录的Dialog
+     */
+    private void showLoginDialog() {
+        LoginDialog dialog = new LoginDialog(mContext, new LoginDialog.onClickLogin() {
+            @Override
+            public void OnClickLogin() {
+                Intent intent = new Intent(mContext,LoginUI.class);
+                startActivity(intent);
+            }
+        });
+        dialog.show();
     }
 
     public void notifyDataSetChange(){

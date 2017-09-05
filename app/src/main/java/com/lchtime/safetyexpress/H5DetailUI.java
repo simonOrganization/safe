@@ -44,9 +44,11 @@ import com.lchtime.safetyexpress.ui.home.AnswerQuestionActivity;
 import com.lchtime.safetyexpress.ui.home.HomeQuewstionDetail;
 import com.lchtime.safetyexpress.ui.home.protocal.H5Protocal;
 import com.lchtime.safetyexpress.ui.home.protocal.ShareProtocal;
+import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.weight.LoginDialog;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -177,7 +179,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
     }
 
     private void myInit(){
-        String ub_id = SpTools.getUserId(this);
+        ub_id = SpTools.getUserId(this);
         cc_id = getIntent().getStringExtra("newsId"); //
         a_id = getIntent().getStringExtra("a_id");
         aq_id = getIntent().getStringExtra("aq_id");
@@ -186,11 +188,11 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
 
         rightVisible(R.drawable.news_share);
         if ("news".equals(type)){
-            baseUrl = Const.HOST+"cms/pagenews?cc_id=" + cc_id + "&timestamp=" + System.currentTimeMillis();
+            baseUrl = Const.HOST+"cms/pagenews?cc_id=" + cc_id + "&ub_id=" + ub_id +  "&timestamp=" + System.currentTimeMillis();
             setTitle("安全头条");
             bottom_zan_or_common.setVisibility(View.VISIBLE);
         }else if ("video".equals(type)){
-            baseUrl = Const.HOST+"cms/videoinfo?cc_id=" + cc_id + "&timestamp=" + System.currentTimeMillis();
+            baseUrl = Const.HOST+"cms/videoinfo?cc_id=" + cc_id + "&ub_id=" + ub_id  + "&timestamp=" + System.currentTimeMillis();
             setTitle("视频");
             bottom_zan_or_common.setVisibility(View.VISIBLE);
             /*videoUrl = getIntent().getStringExtra("videoUrl");
@@ -200,7 +202,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
             }*/
         }else if (("circle".equals(type))){
             //圈子的baseurl
-            baseUrl = Const.HOST + "quanzi/qzinfo?qc_id=" + cc_id + "&timestamp=" + System.currentTimeMillis();
+            baseUrl = Const.HOST + "quanzi/qzinfo?qc_id=" + cc_id  + "&ub_id=" + ub_id + "&timestamp=" + System.currentTimeMillis();
             qc_id = cc_id;
             setTitle("圈子详情");
             bottom_zan_or_common.setVisibility(View.VISIBLE);
@@ -213,7 +215,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
             }else {
                 setTitle("查看全部回答");
             }
-            baseUrl = Const.HOST + "wenda/myhuida?a_id= "+a_id+"&q_id=" + aq_id + "&timestamp=" + System.currentTimeMillis();
+            baseUrl = Const.HOST + "wenda/myhuida?a_id= "+a_id+"&q_id=" + aq_id  + "&ub_id=" + ub_id + "&timestamp=" + System.currentTimeMillis();
             bottom_zan_or_common.setVisibility(View.VISIBLE);
             ll_collect.setVisibility(View.GONE);
             Message();
@@ -672,7 +674,19 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
             }
         });
     }
-
+    /**
+     * 显示登录的Dialog
+     */
+    private void showLoginDialog() {
+        LoginDialog dialog = new LoginDialog(mContext, new LoginDialog.onClickLogin() {
+            @Override
+            public void OnClickLogin() {
+                Intent intent = new Intent(mContext,LoginUI.class);
+                startActivity(intent);
+            }
+        });
+        dialog.show();
+    }
     /**
      * 评论
      *
@@ -680,17 +694,6 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
      */
     @OnClick(R.id.rl_news_detail_comment)
     private void getComment(View view) {
-        /*if (TextUtils.isEmpty(ub_id)) {
-            ub_id = SpTools.getUserId(this);
-        }
-
-        if (TextUtils.isEmpty(ub_id)){
-            CommonUtils.toastMessage("请登陆后再进行相关操作！");
-            return;
-        }
-        rl_pl.setVisibility(View.VISIBLE);*/
-//        makeText("评论");
-        //调用JS的方法
         mWebView.loadUrl("javascript:onclickComments()");
     }
 
@@ -847,7 +850,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
             requestNewsData(cb_news_detail_zan,"0");
         }else if (("circle".equals(type))){
             if (TextUtils.isEmpty(ub_id)){
-                CommonUtils.toastMessage("请登陆后再进行相关操作！");
+                showLoginDialog();
                 cb_news_detail_zan.setChecked(false);
                 return;
             }
@@ -880,7 +883,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
             requestNewsData(cb_news_detail_cai,"1");
         }else if (("circle".equals(type))){
             if (TextUtils.isEmpty(ub_id)){
-                CommonUtils.toastMessage("请登陆后再进行相关操作！");
+                showLoginDialog();
                 cb_news_detail_cai.setChecked(false);
                 return;
             }
@@ -1056,7 +1059,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
         }
 
         if (TextUtils.isEmpty(ub_id)){
-            CommonUtils.toastMessage("请登陆后再进行相关操作！");
+            showLoginDialog();
             cb_news_detail_collect.setChecked(false);
             return;
         }
@@ -1078,7 +1081,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
         }
 
         if (TextUtils.isEmpty(ub_id)){
-            CommonUtils.toastMessage("请登陆后再进行相关操作！");
+            showLoginDialog();
             return;
         }
 

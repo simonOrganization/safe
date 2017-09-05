@@ -16,7 +16,7 @@
             android:id="@+id/raiv_hotcircle_icon"
             android:layout_width="@dimen/dm100"
             android:layout_height="@dimen/dm100"
-            android:src="@drawable/circle_user_image" />
+            android:src="@drawable/icon_head_rectangle" />
 
         <TextView
             android:id="@+id/tv_hotcircle_name"

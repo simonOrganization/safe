@@ -460,12 +460,12 @@
         "source": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_29.png"
     },
     {
-        "merged": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\abc_scrubber_control_off_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator.SKY-20170708ONJ\\.android\\build-cache\\9a22ade86d9da5d904c881d1c57b1c9fa10ca803\\output\\res\\drawable-hdpi-v4\\abc_scrubber_control_off_mtrl_alpha.png"
-    },
-    {
         "merged": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png",
         "source": "C:\\Users\\Administrator.SKY-20170708ONJ\\.android\\build-cache\\9a22ade86d9da5d904c881d1c57b1c9fa10ca803\\output\\res\\drawable-hdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\abc_scrubber_control_off_mtrl_alpha.png",
+        "source": "C:\\Users\\Administrator.SKY-20170708ONJ\\.android\\build-cache\\9a22ade86d9da5d904c881d1c57b1c9fa10ca803\\output\\res\\drawable-hdpi-v4\\abc_scrubber_control_off_mtrl_alpha.png"
     },
     {
         "merged": "E:\\AndroidProjects\\gitsafe\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_chatto_voice_playing_f3.png",

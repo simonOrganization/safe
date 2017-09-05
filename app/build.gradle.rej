@@ -1,0 +1,25 @@
+diff a/app/build.gradle b/app/build.gradle	(rejected hunks)
+@@ -78,15 +78,13 @@
+         compile files('libs/GetuiSDK2.10.2.0.jar')
+         compile 'com.timehop.stickyheadersrecyclerview:library:0.4.3@aar'
+     }
+-    buildTypes {
+-        debug {
+-            signingConfig signingConfigs.safety
+-        }
+-        release {
+-            signingConfig signingConfigs.safety
+-        }
+-    }
+-}
++//    buildTypes {
++//        debug {
++//        }
++//        release {
++//        }
++//    }
++
+ 
+ dependencies {
+ }
+\ No newline at end of file

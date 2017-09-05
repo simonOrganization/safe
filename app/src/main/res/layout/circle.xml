@@ -37,16 +37,16 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="@dimen/dm063"
+            android:layout_width="@dimen/dm070"
             android:layout_height="match_parent">
         <Button
             android:id="@+id/circle_subscribe_but"
-            android:layout_width="@dimen/dm063"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="订阅"
             android:textColor="@color/black"
-            android:textSize="@dimen/dm022"
+            android:textSize="@dimen/dm028"
             android:background="@null"/>
 
         <TextView

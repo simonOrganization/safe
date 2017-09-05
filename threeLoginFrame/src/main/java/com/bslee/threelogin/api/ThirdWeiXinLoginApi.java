@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.bslee.R;
 import com.bslee.threelogin.constans.ThirdAppKey;
@@ -21,6 +22,8 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
 public class ThirdWeiXinLoginApi {
 
 	private static IWXAPI mWXAPI;
+	private static String WXData;
+
 
 	public static void registerToWeiXin(Context ctx) {
 		mWXAPI = WXAPIFactory.createWXAPI(ctx, ThirdAppKey.WEIXIN_APPID, true);
@@ -28,14 +31,18 @@ public class ThirdWeiXinLoginApi {
 		Log.v("wxapi", mWXAPI + "");
 	}
 
-	public static void login(Context ctx) {
+	public static void login(Context ctx , WXLoginListener listener) {
 	
 		if (!isWXAPPInstalled(ctx)) {
-			UIUtils.showToastMessage(R.string.weixin_not_install);
+			//UIUtils.showToastMessage(R.string.weixin_not_install);
+			Toast.makeText(ctx , "请安装微信客户端" , Toast.LENGTH_SHORT).show();
+			listener.onFail();
 			return;
 		}
 		if (!mWXAPI.isWXAppSupportAPI()) {
-			UIUtils.showToastMessage(R.string.weixin_install_update);
+			//UIUtils.showToastMessage(R.string.weixin_install_update);
+			Toast.makeText(ctx , "请升级微信客户端，不支持api！" , Toast.LENGTH_SHORT).show();
+			listener.onFail();
 			return;
 		}
 		final SendAuth.Req req = new SendAuth.Req();
@@ -79,9 +86,11 @@ public class ThirdWeiXinLoginApi {
 				+ "appid=" + ThirdAppKey.WEIXIN_APPID + "&secret="
 				+ ThirdAppKey.WEIXIN_APPSECRET + "&code=" + code
 				+ "&grant_type=authorization_code";
-		String data = HttpUrlUtils.httpClientGetJson(url);
+		if(WXData == null){
+			WXData = HttpUrlUtils.httpClientGetJson(url);
+		}
 		try {
-			JSONObject obj = new JSONObject(data);
+			JSONObject obj = new JSONObject(WXData);
 			if (obj != null) {
 				Log.v("weixin-token", obj.toString());
 
@@ -131,6 +140,11 @@ public class ThirdWeiXinLoginApi {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+
+	public interface WXLoginListener{
+		void onFail();
 	}
 
 }
