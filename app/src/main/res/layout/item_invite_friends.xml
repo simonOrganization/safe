@@ -27,7 +27,9 @@
                 android:layout_height="wrap_content"
                 android:textColor="#333333"
                 android:layout_marginLeft="@dimen/dm011"
-                android:text="提现到支付宝"/>
+                android:text="提现到支付宝"
+                android:ellipsize="end"
+                android:maxLength="10"/>
 
             <TextView
                 android:id="@+id/tv_detail"
@@ -45,8 +47,8 @@
             android:id="@+id/tv_invite"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_width="@dimen/dm120"
-            android:layout_height="@dimen/dm100"
+            android:layout_width="@dimen/dm100"
+            android:layout_height="@dimen/dm050"
             android:background="@drawable/invite_pink_grey_selector"
             android:textColor="@color/white"
             android:textSize="@dimen/dm030"

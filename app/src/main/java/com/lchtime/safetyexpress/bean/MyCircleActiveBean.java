@@ -40,14 +40,14 @@ public class MyCircleActiveBean {
      * cai : 0
      */
 
-    public List<QuanziBean> quanzi;
+    public List<QzContextBean> quanzi;
 
     public static class ResultBean {
         public String code;
         public String info;
     }
 
-    public static class QuanziBean {
+    /*public static class QuanziBean implements {
         public String qc_id;
         public String qc_ub_id;
         public String qc_fee;
@@ -70,5 +70,5 @@ public class MyCircleActiveBean {
         public String zan;
         public String cai;
         public ArrayList<String> pic;
-    }
+    }*/
 }

@@ -23,6 +23,9 @@ import com.lchtime.safetyexpress.views.MyGridView;
 import java.util.ArrayList;
 import java.util.List;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+
 /**
  * Created by android-cp on 2017/4/21.
  */
@@ -70,13 +73,17 @@ public class MyConllectedVideoAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new ViewHolder();
                 //单张图片
-            convertView = View.inflate(context, R.layout.myconllected_video_item_oneimg, null);
-            holder.iv_oneimg_img = (ImageView)convertView.findViewById(R.id.iv_recommend_oneimg_img);
+            //convertView = View.inflate(context, R.layout.myconllected_video_item_oneimg, null);
+            convertView = View.inflate(context, R.layout.home_videos_recommend_item, null);
 
+            holder.iv_oneimg_img = (JCVideoPlayerStandard)convertView.findViewById(R.id.iv_recommend_img);
             holder.tv_title = (TextView) convertView.findViewById(R.id.tv_recommend_title);
-            //holder.tv_from = (TextView) convertView.findViewById(R.id.tv_recommend_from);
+
+            holder.tv_from = (TextView) convertView.findViewById(R.id.tv_recommend_from);
             holder.tv_comment = (TextView) convertView.findViewById(R.id.tv_recommend_comment);
-            //holder.tv_time = (TextView) convertView.findViewById(R.id.tv_recommend_time);
+            holder.tv_time = (TextView) convertView.findViewById(R.id.tv_recommend_time);
+            holder.tv_playnum = (TextView) convertView.findViewById(R.id.tv_recommend_playnum);
+
             holder.rb = (CheckBox) convertView.findViewById(R.id.rb_delete);
             convertView.setTag(holder);
         } else {
@@ -86,17 +93,26 @@ public class MyConllectedVideoAdapter extends BaseAdapter {
 
 
         final NewsBean bean = newsBeenList.get(position);
-        //holder.tv_from.setText(bean.getCc_from());
-        holder.tv_comment.setText(bean.getCc_count());
+        //来源
+        holder.tv_from.setText(bean.getCc_from());
+        //播放次数
+        holder.tv_playnum.setText(bean.getCc_count() + "次播放");
         //时间
-        //holder.tv_time.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.getCc_datetime())));
+        holder.tv_time.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.getCc_datetime())));
+        //holder.tv_comment.setText(b);
+        //标题
         holder.tv_title.setText(bean.getCc_title());
-        if (bean.getMedia() != null) {
+        /*if (bean.getMedia() != null) {
             Glide.with(MyApplication.getContext()).load(bean.getMedia().get(0)).into(holder.iv_oneimg_img);
         }else {
 
-        }
-
+        }*/
+        holder.iv_oneimg_img.setUp(
+                bean.media.get(1), JCVideoPlayer.SCREEN_LAYOUT_LIST,
+                "");
+        Glide.with(context)
+                .load(bean.media.get(0))
+                .into(holder.iv_oneimg_img.thumbImageView);
         /*holder.iv_oneimg_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,17 +180,19 @@ public class MyConllectedVideoAdapter extends BaseAdapter {
         //标题
         TextView tv_title;
         //来源
-        //TextView tv_from;
+        TextView tv_from;
         //评论数
         TextView tv_comment;
         //时间
-        //TextView tv_time;
+        TextView tv_time;
         //视频图片
         ImageView iv_img;
         //视频播放
         ImageView iv_play;
         //单张图片
-        ImageView iv_oneimg_img;
+        JCVideoPlayerStandard iv_oneimg_img;
+
+        TextView tv_playnum;
 
         CheckBox rb;
     }

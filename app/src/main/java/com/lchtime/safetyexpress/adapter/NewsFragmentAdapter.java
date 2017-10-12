@@ -34,7 +34,7 @@ public class NewsFragmentAdapter extends FragmentPagerAdapter {
         Fragment fragment = fragments.get(position);
         Bundle bundle = new Bundle();
         bundle.putInt("position",position);
-        if(position != 0 && position != 1){
+        if(position != 0){
 
             bundle.putString("typeId",mDatas.get(position).getCd_id());
 

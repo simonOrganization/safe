@@ -73,9 +73,9 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     //private LinearLayout circle_work;
     //private LinearLayout circle_gangwei;
     //private LinearLayout circle_address;
-    private TextView circle_work;
+    /*private TextView circle_work;
     private TextView circle_gangwei;
-    private TextView circle_address;
+    private TextView circle_address;*/
     private ImageView circle_more;
 //    private View circle_layout_view;
     //行业
@@ -93,7 +93,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     //private LinearLayout circle_work1;
     //private LinearLayout circle_gangwei1;
     //private LinearLayout circle_address1;
-    //private ImageView circle_more1;
+    private ImageView circle_more1;
     //    private View circle_layout_view;
     //行业
     TextView tv_hy_selected1;
@@ -111,6 +111,8 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     public final String circle_list = "CIRCLE_LIST";
 
     public static final int CITY_REQUEST_CODE = 0;
+    public static final int CITY_DETAIL_CODE = 20;
+
 
     private CirclePopView cp;
     private CircleAdapter rcAdapter;
@@ -309,9 +311,9 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
 
         headerView = View.inflate(this, R.layout.circle_header,null);
 
-        circle_work = (TextView) headerView.findViewById(R.id.tv_hy_selected);
+        /*circle_work = (TextView) headerView.findViewById(R.id.tv_hy_selected);
         circle_gangwei = (TextView) headerView.findViewById(R.id.tv_gw_selected);
-        circle_address = (TextView) headerView.findViewById(R.id.tv_addr_selected);
+        circle_address = (TextView) headerView.findViewById(R.id.tv_addr_selected);*/
         circle_more = (ImageView) headerView.findViewById(R.id.circle_more);
 //        circle_layout_view = headerView.findViewById(R.id.circle_layout_view);
         tv_hy_selected = (TextView) headerView.findViewById(R.id.tv_hy_selected);
@@ -324,7 +326,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         //circle_work1 = (LinearLayout)findViewById(circle_work);
         //circle_gangwei1 = (LinearLayout) findViewById(circle_gangwei);
         //circle_address1 = (LinearLayout) findViewById(circle_address);
-        //circle_more1 = (ImageView) findViewById(R.id.circle_more);
+        circle_more1 = (ImageView) findViewById(R.id.circle_more);
 //        circle_layout_view = headerView.findViewById(R.id.circle_layout_view);
         tv_hy_selected1 = (TextView) findViewById(R.id.tv_hy_selected);
         tv_gw_selected1 = (TextView) findViewById(R.id.tv_gw_selected);
@@ -380,15 +382,18 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
             }
         });
 
-        circle_work.setOnClickListener(this);
+        /*circle_work.setOnClickListener(this);
         circle_gangwei.setOnClickListener(this);
-        circle_address.setOnClickListener(this);
+        circle_address.setOnClickListener(this);*/
         circle_more.setOnClickListener(this);
 
-        //circle_work1.setOnClickListener(this);
-        //circle_gangwei1.setOnClickListener(this);
-        //circle_address1.setOnClickListener(this);
-        //circle_more1.setOnClickListener(this);
+        tv_hy_selected1.setOnClickListener(this);
+        tv_gw_selected1.setOnClickListener(this);
+        tv_addr_selected1.setOnClickListener(this);
+        tv_hy_selected.setOnClickListener(this);
+        tv_gw_selected.setOnClickListener(this);
+        tv_addr_selected.setOnClickListener(this);
+        circle_more1.setOnClickListener(this);
 
         mReceiver = new UiReceiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver,
@@ -515,6 +520,8 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                 }
 
             }
+        }else if(requestCode == CITY_DETAIL_CODE && resultCode == RESULT_OK){
+            refreshData("1");
         }
     }
 
@@ -670,11 +677,11 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     public static final String ADDRESS ="addr";
     @Override
     public void onClick(View v) {
-        if (v == circle_work || v == circle_gangwei || v == circle_address) {
+        if (v == tv_hy_selected || v == tv_gw_selected || v == tv_addr_selected) {
             RecyclerView.LayoutManager layoutManager = circle_rc.getLayoutManager();
             ((LinearLayoutManager) layoutManager).scrollToPositionWithOffset(1, 0);
         }
-        if (v == circle_work){
+        if (v == tv_hy_selected || v == tv_hy_selected1){
             //改变ui
             //hy_indicator.setSelected(true);
             //hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
@@ -692,7 +699,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
 //            cp.showPopWindow(circle_work);
             cp.showPopWindow(v);
 
-        }else if (v == circle_gangwei ){
+        }else if (v == tv_gw_selected || v== tv_gw_selected1 ){
             //改变ui
             //gw_indicator.setSelected(true);
             //gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
@@ -716,14 +723,14 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
 //            cp.showPopWindow(circle_work);
             cp.showPopWindow(v);
 
-        }else if (v == circle_address){
+        }else if (v == tv_addr_selected || v == tv_addr_selected1){
             currentSelected = ADDRESS;
             String city = tv_addr_selected.getText().toString();
             Intent intent = new Intent(this, SelectCityActivity.class);
             intent.putExtra("city" ,city);
             Log.i("qza", "onClick: " +  city);
             startActivityForResult(intent,CITY_REQUEST_CODE);
-        }else if (v == circle_more){
+        }else if (v == circle_more || v == circle_more1){
 
             if (moreData == null){
                 moreData = new ArrayList<String>();

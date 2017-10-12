@@ -9,7 +9,7 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#E0E0E0"
+        android:background="@color/page_color"
         android:paddingBottom="2dp"
         android:paddingLeft="10dp"
         android:paddingTop="2dp"
@@ -20,7 +20,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/ease_mm_listitem"
+        android:background="@drawable/ease_mm_listitem2"
         android:duplicateParentState="true" >
 
         <com.hyphenate.easeui.widget.view.CircleImageView
@@ -82,4 +82,10 @@
             android:textSize="12sp" />
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm001"
+        android:layout_marginRight="@dimen/dm020"
+        android:layout_marginLeft="@dimen/dm020"
+        android:background="@color/bg_f5"/>
 </LinearLayout>

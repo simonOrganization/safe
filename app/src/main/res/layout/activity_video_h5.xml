@@ -10,13 +10,31 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/title" />
-
-        <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
-            android:id="@+id/iv_recommend_img"
+        <!--<include layout="@layout/title" />-->
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dm300"
-            android:visibility="gone"/>
+            android:layout_height="wrap_content">
+            <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+                android:id="@+id/iv_recommend_img"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm300"
+                />
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="@dimen/dm080"
+                android:layout_height="@dimen/dm080"
+                android:src="@drawable/icon_back_white"
+                android:padding="@dimen/dm025"
+                />
+            <ImageView
+                android:id="@+id/iv_right"
+                android:layout_width="@dimen/dm080"
+                android:layout_height="@dimen/dm080"
+                android:layout_marginLeft="@dimen/dm010"
+                android:src="@drawable/icon_share_white"
+                android:padding="@dimen/dm025"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
 
         <RelativeLayout
 
@@ -79,13 +97,13 @@
 
                             <RelativeLayout
                                 android:id="@+id/rl_news_detail_comment"
-                                android:layout_width="@dimen/dm056"
-                                android:layout_height="@dimen/dm056"
-                                android:layout_marginRight="@dimen/dm010">
+                                android:layout_width="@dimen/dm070"
+                                android:layout_height="@dimen/dm070"
+                                android:layout_marginRight="@dimen/dm020">
 
                                 <ImageView
-                                    android:layout_width="@dimen/dm032"
-                                    android:layout_height="@dimen/dm032"
+                                    android:layout_width="@dimen/dm040"
+                                    android:layout_height="@dimen/dm040"
                                     android:layout_centerInParent="true"
                                     android:src="@drawable/circle_item_talk" />
 
@@ -105,63 +123,63 @@
 
                             <RelativeLayout
                                 android:id="@+id/ll_news_detail_zan"
-                                android:layout_width="@dimen/dm056"
-                                android:layout_height="@dimen/dm056"
-                                android:paddingRight="@dimen/dm008">
+                                android:layout_width="@dimen/dm070"
+                                android:layout_height="@dimen/dm070"
+                                >
 
                                 <CheckBox
                                     android:id="@+id/cb_news_detail_zan"
-                                    android:layout_width="@dimen/dm032"
-                                    android:layout_height="@dimen/dm032"
-                                    android:button="@null"
+                                    android:layout_width="@dimen/dm040"
+                                    android:layout_height="@dimen/dm040"
                                     android:layout_centerVertical="true"
-                                    android:text="@null"
-                                    android:background="@drawable/circle_item_great_selector" />
+                                    android:background="@drawable/circle_item_great_selector"
+                                    android:layout_marginRight="@dimen/dm030"
+                                    android:button="@null"
+                                    android:text="@null" />
+
                                 <TextView
-                                    android:visibility="gone"
                                     android:id="@+id/tv_news_detail_zan"
                                     android:layout_width="@dimen/dm024"
                                     android:layout_height="@dimen/dm024"
                                     android:layout_alignParentRight="true"
+                                    android:layout_marginRight="@dimen/dm022"
+                                    android:background="@drawable/bubble"
                                     android:gravity="center"
                                     android:text="26"
-                                    android:textSize="@dimen/dm018"
                                     android:textColor="@color/white"
-                                    android:background="@drawable/bubble"/>
-
-                                <!--<ImageView-->
-                                <!--android:layout_width="@dimen/dm060"-->
-                                <!--android:layout_height="@dimen/dm060"-->
-                                <!--android:src="@drawable/circle_item_great_selector" />-->
+                                    android:textSize="@dimen/dm016"
+                                    android:visibility="gone"/>
 
                             </RelativeLayout>
 
                             <RelativeLayout
                                 android:id="@+id/ll_news_detail_cai"
-                                android:layout_width="@dimen/dm056"
-                                android:layout_height="@dimen/dm056"
-                                android:paddingRight="@dimen/dm008">
+                                android:layout_width="@dimen/dm070"
+                                android:layout_height="@dimen/dm070"
+                                >
 
                                 <CheckBox
                                     android:id="@+id/cb_news_detail_cai"
-                                    android:layout_width="@dimen/dm032"
-                                    android:layout_height="@dimen/dm032"
-                                    android:button="@null"
-                                    android:text="@null"
+                                    android:layout_width="@dimen/dm040"
+                                    android:layout_height="@dimen/dm040"
                                     android:layout_centerVertical="true"
-                                    android:background="@drawable/circle_item_below_selector" />
+                                    android:layout_marginRight="@dimen/dm030"
+                                    android:background="@drawable/circle_item_below_selector"
+                                    android:button="@null"
+                                    android:text="@null" />
 
                                 <TextView
-                                    android:visibility="gone"
                                     android:id="@+id/tv_news_detail_fd"
                                     android:layout_width="@dimen/dm024"
                                     android:layout_height="@dimen/dm024"
                                     android:layout_alignParentRight="true"
+                                    android:layout_marginRight="@dimen/dm022"
+                                    android:background="@drawable/bubble"
                                     android:gravity="center"
                                     android:text="26"
-                                    android:textSize="@dimen/dm018"
                                     android:textColor="@color/white"
-                                    android:background="@drawable/bubble"/>
+                                    android:textSize="@dimen/dm016"
+                                    android:visibility="gone"/>
 
                             </RelativeLayout>
 
@@ -169,12 +187,12 @@
                                 android:id="@+id/ll_collect"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingRight="@dimen/dm016">
+                                android:paddingRight="@dimen/dm030">
 
                                 <CheckBox
                                     android:id="@+id/cb_news_detail_collect"
-                                    android:layout_width="@dimen/dm032"
-                                    android:layout_height="@dimen/dm032"
+                                    android:layout_width="@dimen/dm040"
+                                    android:layout_height="@dimen/dm040"
                                     android:button="@null"
                                     android:text="@null"
                                     android:background="@drawable/news_collect_selector" />

@@ -31,7 +31,7 @@ public class SelectCityActivity extends BaseUI {
     private CitySortAdapter adapter;
     private CharacterParser characterParser;
     private List<CitySortModel> SourceDateList;
-    private String cityName;
+    private String cityName = "";
     private Object oldview;
     private String city;
     private boolean boo;
@@ -56,13 +56,13 @@ public class SelectCityActivity extends BaseUI {
 
     }
     /**
-     * 修改
+     * 保存
      * @param
      */
     @Override
     protected void clickEvent() {
         
-        if (!cityName.equals("地理位置") ) {
+        if (!cityName.equals("地理位置")&& !cityName.equals("")) {
             Intent intent = new Intent();
             intent.putExtra("city", cityName);
             setResult(0,intent);

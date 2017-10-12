@@ -32,24 +32,23 @@
         <RelativeLayout
             android:layout_marginTop="@dimen/dm030"
             android:id="@+id/circle_item_shipin"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/dm240"
             android:layout_below="@id/circle_item_content">
 
             <ImageView
                 android:id="@+id/iv_recommend_img"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/dm240"
                 android:layout_height="@dimen/dm240"
-                android:background="@color/title_666" />
+                />
 
             <ImageView
-                android:id="@+id/iv_recommend_img_bg"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dm240"
-                android:background="@drawable/video_sel_bg"
-                android:visibility="visible"/>
-
-            <RelativeLayout
+                android:id="@+id/iv_recommend_play"
+                android:layout_width="@dimen/dm059"
+                android:layout_height="@dimen/dm061"
+                android:src="@drawable/video_play2"
+                android:layout_centerInParent="true"/>
+            <!--<RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dm240">
                 <LinearLayout
@@ -77,7 +76,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/dm024"/>
 
-                </RelativeLayout>
+                </RelativeLayout>-->
 
             </RelativeLayout>
             <com.lchtime.safetyexpress.views.EmptyRecyclerView

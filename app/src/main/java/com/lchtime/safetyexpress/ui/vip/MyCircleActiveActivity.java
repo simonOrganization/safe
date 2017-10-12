@@ -14,6 +14,7 @@ import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.MyCircleActiveAdapter;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
+import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
@@ -56,7 +57,7 @@ public class MyCircleActiveActivity extends BaseUI {
     ProgressBar pb_progress;
     private CircleProtocal protocal;
     private String userid = "";
-    private List<MyCircleActiveBean.QuanziBean> myCircleList = new ArrayList<>();
+    private List<QzContextBean> myCircleList = new ArrayList<>();
     private MyCircleActiveAdapter adapter;
     @Override
     protected void back() {

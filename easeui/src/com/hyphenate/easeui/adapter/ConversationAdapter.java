@@ -150,7 +150,11 @@ public class ConversationAdapter extends ArrayAdapter<EMConversation> {
             EaseUserUtils.setUserNick(username, holder.name);
             if (userInfo != null  && userInfo.get(username) != null){
                 if (!TextUtils.isEmpty(userInfo.get(username).ud_photo_fileid)) {
-                    Glide.with(context).load(userInfo.get(username).ud_photo_fileid).into(holder.avatar);
+                    Glide.with(context)
+                            .load(userInfo.get(username).ud_photo_fileid)
+                            .error(R.drawable.circle_user_image)
+                            .placeholder(R.drawable.circle_user_image)
+                            .into(holder.avatar);
                 }
                 holder.name.setText(userInfo.get(username).ud_nickname);
             }

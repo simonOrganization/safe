@@ -93,10 +93,10 @@ public class HomeNewsFragment extends BaseFragment {
 //            commentList = bundle.getParcelableArrayList("comments");
             //推荐
             initPosition1to2("1", Const.NEW_TYPE,1 + "");
-        }else if(position == 1){
+        }/*else if(position == 1){
             //热点追踪
             initPosition1to2("2",Const.NEW_TYPE,1 + "");
-        }else{
+        }*/else{
             Log.i("yang","else   ===");
             type_id = bundle.getString("typeId");
             if(!TextUtils.isEmpty(type_id)){
@@ -114,7 +114,7 @@ public class HomeNewsFragment extends BaseFragment {
                     commentList = new ArrayList<NewsBean>();
                 }
                 commentList.clear();
-                if (position == 0 || position == 1){
+                if (position == 0 ){
                     new Thread(new Runnable() {
                         @Override
                         public void run() {

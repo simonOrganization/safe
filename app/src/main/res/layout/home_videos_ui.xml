@@ -18,10 +18,10 @@
             android:orientation="vertical" android:layout_width="match_parent"
             android:layout_height="match_parent"
                     android:background="@color/white">
-            <View
+            <!--<View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dm016"
-                android:background="@color/line_big"/>
+                android:background="@color/line_big"/>-->
 
             <!--<com.lchtime.safetyexpress.views.XHorizontalScrollView-->
                 <!--android:id="@+id/xhsv_home_videos"-->
@@ -32,16 +32,16 @@
             <android.support.design.widget.TabLayout
                 android:id="@+id/xhsv_home_videos"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm056"
+                android:layout_height="@dimen/dm075"
                 app:tabIndicatorColor="@color/commen_reg"
                 app:tabSelectedTextColor="@color/commen_reg"
                 app:tabTextColor="#000000"
-                android:background="@color/white"/>
+                android:background="@color/line_big"/>
 
-            <View
+            <!--<View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dm016"
-                android:background="@color/line_big"/>
+                android:background="@color/line_big"/>-->
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/vp_home_videos"

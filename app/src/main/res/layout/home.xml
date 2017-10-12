@@ -145,7 +145,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dm016"
                             android:textStyle="bold"
-                            android:text="视频"
+                            android:text="安全视频"
                             android:textColor="@color/title_333"
                             android:textSize="@dimen/dm026" />
 
@@ -169,7 +169,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dm016"
                             android:textStyle="bold"
-                            android:text="微安全"
+                            android:text="安全圈子"
                             android:textColor="@color/title_333"
                             android:textSize="@dimen/dm026" />
 
@@ -193,7 +193,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dm016"
                             android:textStyle="bold"
-                            android:text="问答"
+                            android:text="问答部落"
                             android:textColor="@color/title_333"
                             android:textSize="@dimen/dm026" />
 
@@ -260,7 +260,7 @@
                     android:layout_height="@dimen/dm001"
                     android:layout_marginLeft="@dimen/dm020"
                     android:layout_marginRight="@dimen/dm020"
-                    android:background="@color/line" />
+                    android:background="@color/line_big" />
 
                 <com.lchtime.safetyexpress.views.MyGridView
                     android:id="@+id/mgv_home_hot_circle"
@@ -334,7 +334,7 @@
                     android:layout_height="@dimen/dm001"
                     android:layout_marginLeft="@dimen/dm020"
                     android:layout_marginRight="@dimen/dm020"
-                    android:background="@color/line" />
+                    android:background="@color/line_big" />
 
                 <com.lchtime.safetyexpress.views.EmptyRecyclerView
                     android:id="@+id/mlv_home_hot_track"
@@ -407,7 +407,7 @@
                     android:layout_height="@dimen/dm001"
                     android:layout_marginLeft="@dimen/dm020"
                     android:layout_marginRight="@dimen/dm020"
-                    android:background="@color/line" />
+                    android:background="@color/line_big" />
 
                 <com.lchtime.safetyexpress.views.EmptyRecyclerView
                     android:id="@+id/mlv_home_hot_video"

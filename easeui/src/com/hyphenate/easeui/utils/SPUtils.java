@@ -20,7 +20,7 @@ public class SPUtils {
      * @param value
      */
     public static void setString(Context context , String key , String value){
-        SharedPreferences sharedPreferences = context.getSharedPreferences(LOGIN , Context.MODE_APPEND);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(CONFIGFILE , Context.MODE_APPEND);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key , value);
         editor.commit();
@@ -28,7 +28,7 @@ public class SPUtils {
     }
 
     public static String getString(Context context , String key){
-        SharedPreferences sharedPreferences = context.getSharedPreferences(LOGIN , Context.MODE_APPEND);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(CONFIGFILE , Context.MODE_APPEND);
         return sharedPreferences.getString(key , "");
     }
 

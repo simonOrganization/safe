@@ -93,7 +93,7 @@ public class MyMsgAdapter extends ArrayAdapter<ApplyMessageBean.ApplyListBean> {
 		if (msg != null) {
 			if(msg.message != null && !msg.message.equals("")){
 				holder.reason.setText(msg.message);
-			}else if(msg.qun != null && !msg.qun.equals("")){
+			}else if(msg.qun != null && !msg.qun.equals("0") && !msg.qun.equals("")){
 				holder.reason.setText(msg.ud_nickname + "邀请你进群");
 			}else{
 				holder.reason.setText(msg.ud_nickname + "请求加你为好友");

@@ -20,6 +20,7 @@ import android.webkit.WebViewClient;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -77,11 +78,12 @@ import static android.R.attr.action;
 @ContentView(R.layout.activity_video_h5)
 public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
 
-
-
     //分享
-    @ViewInject(R.id.ll_right)
-    LinearLayout ll_right;
+    @ViewInject(R.id.iv_right)
+    ImageView ll_right;
+    //返回
+    @ViewInject(R.id.iv_back)
+    ImageView iv_back;
 
     @ViewInject(R.id.home_news_detailed_web)
     WebView mWebView;
@@ -131,9 +133,9 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
 
     private SharePop sharePop;
     private String cc_id;
-    private String a_id;
+    /*private String a_id;
     private String aq_id;
-    private String url;
+    private String url;*/
     //类型，是新闻还是视频
     private String type;
     private String baseUrl = "";
@@ -179,53 +181,53 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
     private void myInit(){
         String ub_id = SpTools.getUserId(this);
         cc_id = getIntent().getStringExtra("newsId");
-        a_id = getIntent().getStringExtra("a_id");
+        /*a_id = getIntent().getStringExtra("a_id");
         aq_id = getIntent().getStringExtra("aq_id");
-        url = getIntent().getStringExtra("url");
+        url = getIntent().getStringExtra("url");*/
         type = getIntent().getStringExtra("type");
 
-        rightVisible(R.drawable.news_share);
-        if ("news".equals(type)){
+
+        /*if ("news".equals(type)){
             baseUrl = Const.HOST+"cms/pagenews?cc_id=" + cc_id;
-            setTitle("安全头条");
+            //setTitle("安全头条");
             bottom_zan_or_common.setVisibility(View.VISIBLE);
-        }else if ("video".equals(type)){
+        }else*/ if ("video".equals(type)){
             baseUrl = Const.HOST+"cms/videoinfo?cc_id=" + cc_id + "&ub_id=" + ub_id +  "&timestamp=" + System.currentTimeMillis();
-            setTitle("视频");
+            //setTitle("视频");
             bottom_zan_or_common.setVisibility(View.VISIBLE);
             videoUrl = getIntent().getStringExtra("videoUrl");
 
-        }else if (("circle".equals(type))){
+        }/*else if (("circle".equals(type))){
             //圈子的baseurl
             baseUrl = Const.HOST + "quanzi/qzinfo?qc_id=" + cc_id;
             qc_id = cc_id;
-            setTitle("圈子详情");
+            //setTitle("圈子详情");
             bottom_zan_or_common.setVisibility(View.VISIBLE);
         }else if (("wenda".equals(type))){
             //问答的baseurl
 
             String num = getIntent().getStringExtra("num");
             if (!TextUtils.isEmpty(num)){
-                setTitle("查看全部"+num+"个回答");
+                //setTitle("查看全部"+num+"个回答");
             }else {
-                setTitle("查看全部回答");
+                //setTitle("查看全部回答");
             }
             baseUrl = Const.HOST + "wenda/myhuida?a_id= "+a_id+"&q_id=" + aq_id;
             bottom_zan_or_common.setVisibility(View.VISIBLE);
             ll_collect.setVisibility(View.GONE);
 
-        }
+        }*/
         if (!TextUtils.isEmpty(ub_id)){
             baseUrl = baseUrl + "&ub_id=" +ub_id;
         }
 
-        if ("url".equals(type)){
+        /*if ("url".equals(type)){
             if (!TextUtils.isEmpty(url)) {
                 baseUrl = url;
                 bottom_zan_or_common.setVisibility(View.GONE);
             }
         }else if ("agreement".equals(type)){
-            setTitle("用户协议");
+            //setTitle("用户协议");
             baseUrl = getIntent().getStringExtra("url");
             rightGone();
             bottom_zan_or_common.setVisibility(View.GONE);
@@ -234,9 +236,9 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             if (!TextUtils.isEmpty(url)) {
                 baseUrl = url;
             }
-        }
+        }*/
 
-        sharePop = new SharePop(ll_right, VideoH5Activity.this, R.layout.pop_share);
+        sharePop = new SharePop(ll_right, mContext, R.layout.pop_share);
         init();
         if ("news".equals(type) || "video".equals(type)||"circle".equals(type) || "wenda".equals(type)) {
             initH5Info();
@@ -249,7 +251,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
         String param1 = "";
         String param2 = "";
         String param3 = "";
-        if ("wenda".equals(type)){
+        /*if ("wenda".equals(type)){
             param1 = aq_id;
             param2 = "4";
             param3 = a_id;
@@ -257,7 +259,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             param1 = cc_id;
             param2 = "1";
             param3 = "0";
-        }else if ("video".equals(type)){
+        }else */if ("video".equals(type)){
             param1 = cc_id;
             param2 = "2";
             param3 = "0";
@@ -270,11 +272,11 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
                 //mVideoPaler.changeUiToPreparingShow(); //修改ui为准备播放
 
             }
-        }else if ("circle".equals(type)){
+        }/*else if ("circle".equals(type)){
             param1 = cc_id;
             param2 = "3";
             param3 = "0";
-        }
+        }*/
         protocal.getH5Info(param1, param2, param3, new H5Protocal.H5Listener() {
             @Override
             public void H5Response(String response) {
@@ -378,22 +380,6 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             super.onHideCustomView();
         }
     }
-    /*private class InsideWebViewClient extends WebViewClient {
-
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            // TODO Auto-generated method stub
-            view.loadUrl(url);
-            return true;
-        }
-
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);
-            //mWebView.loadUrl(javascript);
-        }
-
-    }*/
 
     @Override
     public void onConfigurationChanged(Configuration config) {
@@ -542,7 +528,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
 
             @Override
             public void run() {
-                Intent intent = new Intent(VideoH5Activity.this,HomeNewsSearchUI.class);
+                Intent intent = new Intent(mContext,HomeNewsSearchUI.class);
                 intent.putExtra("content",text);
                 startActivity(intent);
 
@@ -557,7 +543,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
 
             @Override
             public void run() {
-                Intent intent = new Intent(VideoH5Activity.this,SingleInfoUI.class);
+                Intent intent = new Intent(mContext,SingleInfoUI.class);
                 intent.putExtra("uid",ub_id);
                 startActivity(intent);
 
@@ -583,7 +569,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
     }
 
     //问答界面编辑
-    @JavascriptInterface
+   /* @JavascriptInterface
     public void getWdEditId (final String eid){
         runOnUiThread(new Runnable() {
             @Override
@@ -591,7 +577,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
                 String title = "";
                 try {
                     title = URLDecoder.decode(eid, "UTF-8");
-                    Intent intent = new Intent(VideoH5Activity.this,AnswerQuestionActivity.class);
+                    Intent intent = new Intent(mContext,AnswerQuestionActivity.class);
                     intent.putExtra("a_id",a_id);
                     intent.putExtra("title",title);
                     startActivity(intent);
@@ -601,7 +587,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
 
             }
         });
-    }
+    }*/
 
 
     //点击了h5界面的回复
@@ -622,7 +608,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
      */
 
     public static int flag = 0;
-    @OnClick(R.id.ll_right)
+    @OnClick(R.id.iv_right)
     private void getShare(View view) {
         sharePop.showAtLocation();
         sharePop.setOnClickListener(new View.OnClickListener() {
@@ -651,7 +637,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
                     case R.id.ll_share_sina:
                         sharePop.dismiss();
 //                        ShareWeiBo.getShareWeiboInstants().shareToWeibo(H5DetailUI.this,"微博分享测试" + baseUrl,mWeiboShareAPI);
-                        Intent intent = new Intent(VideoH5Activity.this,CallBackActivity.class);
+                        Intent intent = new Intent(mContext,CallBackActivity.class);
                         intent.putExtra("shareUrl",baseUrl);
                         intent.putExtra("qc_id",cc_id);
                         intent.putExtra("title",a);
@@ -688,7 +674,13 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
     private void getComment(View view) {
         mWebView.loadUrl("javascript:onclickComments()");
     }
-
+    /**
+     * 返回
+     */
+    @OnClick(R.id.iv_back)
+    private void onBack(){
+        finish();
+    }
     /**
      * 取消评论
      *
@@ -725,18 +717,18 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
 
             circleCommon(content,god);
 
-        }else if (("wenda".equals(type))){
+        }/*else if (("wenda".equals(type))){
 
             WDCommon(content,god);
 
-        }
+        }*/
 
         god = "0";
 
 
     }
 
-    private void WDCommon(String content, String god) {
+    /*private void WDCommon(String content, String god) {
         protocal.setWDCommen(a_id, content, god, new H5Protocal.H5Listener() {
             @Override
             public void H5Response(String response) {
@@ -762,7 +754,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             }
         });
     }
-
+*/
     private void circleCommon(String content,String god) {
         protocal.setCircleCommen(cc_id, content, god, new H5Protocal.H5Listener() {
             @Override
@@ -842,9 +834,9 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             }*/
             requestNewsDataCicle(cb_news_detail_zan,"0");
 
-        }else if (("wenda".equals(type))){ //问答
+        }/*else if (("wenda".equals(type))){ //问答
             requestNewsDataWD(cb_news_detail_zan,"0");
-        }
+        }*/
 
 
 //        makeText("顶");
@@ -874,9 +866,9 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
             }*/
             requestNewsDataCicle(cb_news_detail_cai,"1");
 
-        }else if (("wenda".equals(type))){
+        }/*else if (("wenda".equals(type))){
             requestNewsDataWD(cb_news_detail_cai,"1");
-        }
+        }*/
 //        makeText("踩");
     }
 
@@ -885,7 +877,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
      * @param cb
      * @param type
      */
-    private void requestNewsDataWD(final CheckBox cb, final String type) {
+    /*private void requestNewsDataWD(final CheckBox cb, final String type) {
         String action = "0";
         if (!cb.isChecked()){
             //取消赞
@@ -927,7 +919,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
                 }
             }
         });
-    }
+    }*/
 
     /**
      * 视频  和  新闻的赞和踩

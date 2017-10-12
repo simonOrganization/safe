@@ -187,6 +187,7 @@ public class LoginUI extends BaseUI {
         final long start = System.currentTimeMillis();
         // call login method
 //        Log.d(TAG, "EMClient.getInstance().login");
+
         EMClient.getInstance().login(currentUsername, currentPassword, new EMCallBack() {
 
             @Override

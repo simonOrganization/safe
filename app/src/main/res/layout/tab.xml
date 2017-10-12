@@ -176,9 +176,9 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dm001"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/dm091"
-                android:background="@color/line" />
+                android:layout_above="@+id/rg_tab"
+                android:background="@color/line"
+                />
 
             <RadioGroup
                 android:id="@+id/rg_tab"
@@ -187,37 +187,38 @@
                 android:layout_alignParentBottom="true"
                 android:background="@android:color/transparent"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <RadioButton
                     android:id="@+id/rb_tab_1"
                     style="@style/tab"
                     android:checked="true"
                     android:drawableTop="@drawable/tab_1"
-                    android:padding="@dimen/dm010" />
+                    android:paddingTop="@dimen/dm010" />
 
                 <RadioButton
                     android:id="@+id/rb_tab_2"
                     style="@style/tab"
                     android:drawableTop="@drawable/tab_2"
-                    android:padding="@dimen/dm010" />
+                    android:paddingTop="@dimen/dm010" />
 
                 <RadioButton
                     android:id="@+id/rb_tab_3"
                     style="@style/tab"
-                    android:padding="@dimen/dm010" />
+                    android:paddingTop="@dimen/dm010" />
 
                 <RadioButton
                     android:id="@+id/rb_tab_4"
                     style="@style/tab"
                     android:drawableTop="@drawable/tab_4"
-                    android:padding="@dimen/dm010" />
+                    android:paddingTop="@dimen/dm010" />
 
                 <RadioButton
                     android:id="@+id/rb_tab_5"
                     style="@style/tab"
                     android:drawableTop="@drawable/tab_5"
-                    android:padding="@dimen/dm010" />
+                    android:paddingTop="@dimen/dm010" />
             </RadioGroup>
 
             <LinearLayout

@@ -131,7 +131,7 @@ public class HomeNewActivity extends BaseUI {
                             ArrayList<NewTypeBean> list = new ArrayList<NewTypeBean>();
                             list.add(new NewTypeBean("推荐"));
                             //新增加的tab
-                            list.add(new NewTypeBean("热点追踪"));
+                            //list.add(new NewTypeBean("热点追踪"));
                             list.addAll(newsRes.getCms_dir());
                             activity_new_tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);//MODE_FIXED
                             for (int i = 0; i < list.size(); i++) {

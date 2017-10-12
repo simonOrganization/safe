@@ -45,7 +45,11 @@ public class EaseChatRowBigExpression extends EaseChatRowText{
         if(EaseUI.getInstance().getEmojiconInfoProvider() != null){
             emojicon =  EaseUI.getInstance().getEmojiconInfoProvider().getEmojiconInfo(emojiconId);
         }
-        if(emojicon != null){
+        Glide.with(activity).load(emojicon.getBigIcon())
+                .error(R.drawable.ease_default_expression)
+                .placeholder(R.drawable.ease_default_expression)
+                .into(imageView);
+        /*if(emojicon != null){
             if(emojicon.getBigIcon() != 0){
                 Glide.with(activity).load(emojicon.getBigIcon()).placeholder(R.drawable.ease_default_expression).into(imageView);
             }else if(emojicon.getBigIconPath() != null){
@@ -53,7 +57,7 @@ public class EaseChatRowBigExpression extends EaseChatRowText{
             }else{
                 imageView.setImageResource(R.drawable.ease_default_expression);
             }
-        }
+        }*/
         
         handleTextMessage();
     }

@@ -15,14 +15,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.lchtime.safetyexpress.CircleH5Activity;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
+import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
+import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
@@ -33,6 +36,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.lchtime.safetyexpress.ui.circle.CircleUI.CITY_DETAIL_CODE;
+
 /**
  * Created by yxn on 2017/4/20.
  */
@@ -41,10 +46,10 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
 
 
     private Activity context;
-    private List<MyCircleActiveBean.QuanziBean> circleOneList;
+    private List<QzContextBean> circleOneList;
     private final String ub_id;
 
-    public SingleInfoRCAdapter(Activity context, List<MyCircleActiveBean.QuanziBean> circleOneList) {
+    public SingleInfoRCAdapter(Activity context, List<QzContextBean> circleOneList) {
         this.context = context;
         this.circleOneList = circleOneList;
         ub_id = SpTools.getUserId(context);
@@ -63,7 +68,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
         int screenWith = ScreenUtil.getScreenSize(context)[0];
         if (holder instanceof MyCircleActiveHodler) {
             MyCircleActiveHodler myHodler = (MyCircleActiveHodler) holder;
-            final MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);
+            final QzContextBean bean = circleOneList.get(position);
 
             //如果有图片
             if (TextUtils.isEmpty(bean.qc_video) || bean.qc_video.equals("0")) {
@@ -114,7 +119,10 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
                 myHodler.circleItemShipin.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        Intent intent = new Intent(context, MediaActivity.class);
+                        intent.putExtra("url" , bean.qc_video);
+                        intent.putExtra("img_url" , bean.pic.get(0));
+                        context.startActivity(intent);
                     }
                 });
             }
@@ -125,10 +133,14 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context,H5DetailUI.class);
+                    /*Intent intent = new Intent(context,H5DetailUI.class);
                     intent.putExtra("newsId",bean.qc_id);
                     intent.putExtra("type","circle");
-                    context.startActivity(intent);
+                    context.startActivity(intent);*/
+                    Intent intent = new Intent(context, CircleH5Activity.class);
+                    intent.putExtra("data", bean);
+                    intent.putExtra("type", "circle");
+                    context.startActivityForResult(intent , CITY_DETAIL_CODE);
                 }
             });
 
@@ -161,7 +173,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
 
     private void deleteCircle(MyCircleActiveHodler holder, final int position, CircleProtocal protocal) {
         ((SingleInfoUI)context).setIsLoading(true);
-        MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);
+        QzContextBean bean = circleOneList.get(position);
         String userid = SpTools.getUserId(context);
         if (TextUtils.isEmpty(userid)) {
             CommonUtils.toastMessage("没有登陆！！");
@@ -188,7 +200,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
     private boolean greate;
     private boolean down;
     private String action;
-    private void setGreate(final MyCircleActiveHodler holder, final MyCircleActiveBean.QuanziBean bean, final CircleProtocal protocal) {
+    private void setGreate(final MyCircleActiveHodler holder, final QzContextBean bean, final CircleProtocal protocal) {
         holder.circleItemGreat.setText(bean.qc_zc);
         holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
         //点赞逻辑监听
@@ -247,7 +259,7 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
     }
 
 
-    private void setDown(final MyCircleActiveHodler holder, final MyCircleActiveBean.QuanziBean bean, final CircleProtocal protocal) {
+    private void setDown(final MyCircleActiveHodler holder, final QzContextBean bean, final CircleProtocal protocal) {
         holder.circleItemLow.setText(bean.qc_fd);
         holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
         //点赞逻辑监听

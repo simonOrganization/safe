@@ -2,6 +2,7 @@ package com.lchtime.safetyexpress;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -365,15 +367,69 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
         settings.setUseWideViewPort(true);
         //settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         settings.setCacheMode(WebSettings.LOAD_DEFAULT);
-
-
-
         settings.setBlockNetworkImage(false);
         settings.setDomStorageEnabled(true);
+        //表示可以同时加载http  和  https
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
+        /*InsideWebChromeClient mInsideWebChromeClient = new InsideWebChromeClient();
+        InsideWebViewClient mInsideWebViewClient = new InsideWebViewClient();
+        //javascriptInterface = new JavascriptInterface();
+        //mWebView.addJavascriptInterface(javascriptInterface, "java2js_laole918");
+        mWebView.setWebChromeClient(mInsideWebChromeClient);
+        mWebView.setWebViewClient(mInsideWebViewClient);*/
+
     }
+      /*private class InsideWebChromeClient extends WebChromeClient {
+        private View mCustomView;
+        private CustomViewCallback mCustomViewCallback;
+
+        @Override
+        public void onShowCustomView(View view, CustomViewCallback callback) {
+            super.onShowCustomView(view, callback);
+            if (mCustomView != null) {
+                callback.onCustomViewHidden();
+                return;
+            }
+            mCustomView = view;
+            mFrameLayout.addView(mCustomView);
+            mCustomViewCallback = callback;
+            mWebView.setVisibility(View.GONE);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+
+        public void onHideCustomView() {
+            mWebView.setVisibility(View.VISIBLE);
+            if (mCustomView == null) {
+                return;
+            }
+            mCustomView.setVisibility(View.GONE);
+            mFrameLayout.removeView(mCustomView);
+            mCustomViewCallback.onCustomViewHidden();
+            mCustomView = null;
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            super.onHideCustomView();
+        }
+    }
+    private class InsideWebViewClient extends WebViewClient {
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            // TODO Auto-generated method stub
+            view.loadUrl(url);
+            return true;
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            //mWebView.loadUrl(javascript);
+        }
+
+    }*/
+
+
     @Override
     public void onConfigurationChanged(Configuration config) {
         super.onConfigurationChanged(config);
@@ -430,6 +486,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
         //WebView加载web资源
         //mWebView.loadUrl("http://www.baidu.com");
         mWebView.loadUrl(baseUrl);
+        //mWebView.loadUrl("http://zfxf.gensee.com/webcast/site/vod/play-7ec075d4525a486d8b7e1e030bf27da6");
         //覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
         mWebView.setWebViewClient(new WebViewClient(){
             @Override

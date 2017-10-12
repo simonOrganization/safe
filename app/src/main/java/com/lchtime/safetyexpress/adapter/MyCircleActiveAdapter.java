@@ -15,12 +15,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.lchtime.safetyexpress.CircleH5Activity;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
+import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.bean.Result;
+import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
+import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.vip.MyCircleActiveActivity;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.ScreenUtil;
@@ -31,6 +35,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.lchtime.safetyexpress.ui.circle.CircleUI.CITY_DETAIL_CODE;
+
 /**
  * Created by yxn on 2017/4/20.
  */
@@ -38,9 +44,9 @@ import butterknife.ButterKnife;
 public class MyCircleActiveAdapter extends RecyclerView.Adapter {
 
     private Activity context;
-    private List<MyCircleActiveBean.QuanziBean> circleOneList;
+    private List<QzContextBean> circleOneList;
 
-    public MyCircleActiveAdapter(Activity context, List<MyCircleActiveBean.QuanziBean> circleOneList) {
+    public MyCircleActiveAdapter(Activity context, List<QzContextBean> circleOneList) {
         this.context = context;
         this.circleOneList = circleOneList;
     }
@@ -58,7 +64,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
         int screenWith = ScreenUtil.getScreenSize(context)[0];
         if (holder instanceof MyCircleActiveHodler) {
             MyCircleActiveHodler myHodler = (MyCircleActiveHodler) holder;
-            final MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);
+            final QzContextBean bean = circleOneList.get(position);
 
             //如果有图片
             if (TextUtils.isEmpty(bean.qc_video) || bean.qc_video.equals("0")) {
@@ -89,9 +95,9 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                 imageAdapter.setOnItemSelectLs(new CircleImageAdapter.IOnItemSelectListener() {
                     @Override
                     public void onItemClick(View v, int pos) {
-                        Intent intent = new Intent(context, H5DetailUI.class);
-                        intent.putExtra("newsId", bean.qc_id);
-                        intent.putExtra("type", "circle");
+                        Intent intent = new Intent(context, CirclePhone.class);
+                        intent.putExtra("url", bean.pic);
+                        intent.putExtra("pos", pos);
                         context.startActivity(intent);
                     }
                 });
@@ -112,9 +118,9 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                 myHodler.circleItemShipin.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(context, H5DetailUI.class);
-                        intent.putExtra("newsId", bean.qc_id);
-                        intent.putExtra("type", "circle");
+                        Intent intent = new Intent(context, MediaActivity.class);
+                        intent.putExtra("url" , bean.qc_video);
+                        intent.putExtra("img_url" , bean.pic.get(0));
                         context.startActivity(intent);
                     }
                 });
@@ -127,8 +133,8 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, H5DetailUI.class);
-                    intent.putExtra("newsId", bean.qc_id);
+                    Intent intent = new Intent(context, CircleH5Activity.class);
+                    intent.putExtra("data", bean);
                     intent.putExtra("type", "circle");
                     context.startActivity(intent);
                 }
@@ -164,7 +170,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
      */
     private void deleteCircle(MyCircleActiveHodler holder, final int position, CircleProtocal protocal) {
         //  ((MyCircleActiveActivity) context).setIsLoading(true);
-        MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);
+        QzContextBean bean = circleOneList.get(position);
         String userid = SpTools.getUserId(context);
         if (TextUtils.isEmpty(userid)) {
             CommonUtils.toastMessage("没有登陆！！");
@@ -192,7 +198,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
     private boolean down;
     private String action;
 
-    private void setGreate(final MyCircleActiveHodler holder, final MyCircleActiveBean.QuanziBean bean, final CircleProtocal protocal) {
+    private void setGreate(final MyCircleActiveHodler holder, final QzContextBean bean, final CircleProtocal protocal) {
         holder.circleItemGreat.setText(bean.qc_zc);
         holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
         holder.ivCircleItemGreat.setOnClickListener(new View.OnClickListener() {
@@ -249,7 +255,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
         });
     }
 
-    private void setDown(final MyCircleActiveHodler holder, final MyCircleActiveBean.QuanziBean bean, final CircleProtocal protocal) {
+    private void setDown(final MyCircleActiveHodler holder, final QzContextBean bean, final CircleProtocal protocal) {
         holder.circleItemLow.setText(bean.qc_fd);
         holder.ivCircleItemLow.setChecked("1".equals(bean.cai));
 
@@ -321,12 +327,12 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
         TextView circleItemContent;
         @BindView(R.id.iv_recommend_img)
         ImageView ivRecommendImg;
-        @BindView(R.id.iv_recommend_img_bg)
-        ImageView ivRecommendImgBg;
+//        @BindView(R.id.iv_recommend_img_bg)
+//        ImageView ivRecommendImgBg;
         @BindView(R.id.iv_recommend_play)
         ImageView ivRecommendPlay;
-        @BindView(R.id.tv_recommend_time1)
-        TextView tvRecommendTime1;
+//        @BindView(R.id.tv_recommend_time1)
+//        TextView tvRecommendTime1;
         @BindView(R.id.circle_item_shipin)
         RelativeLayout circleItemShipin;
         @BindView(R.id.circle_item_image_rc)

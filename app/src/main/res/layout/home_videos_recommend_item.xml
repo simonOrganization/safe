@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/white"
     android:descendantFocusability="blocksDescendants"
-    android:orientation="vertical">
+    android:orientation="horizontal">
+
+    <CheckBox
+        android:id="@+id/rb_delete"
+        android:layout_width="@dimen/dm040"
+        android:layout_height="@dimen/dm040"
+        android:text="@null"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:button="@null"
+        android:visibility="gone"
+        android:background="@drawable/rb_delete"
+        android:layout_marginRight="@dimen/dm020"
+        android:layout_marginLeft="@dimen/dm020" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -135,7 +148,7 @@
                 android:textSize="@dimen/dm024" />
 
             <TextView
-                android:id="@+id/tv_recommend_time2"
+                android:id="@+id/tv_recommend_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dm020"

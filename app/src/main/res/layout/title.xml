@@ -32,7 +32,9 @@
             android:layout_centerInParent="true"
             android:text="标题"
             android:textColor="@color/black"
-            android:textSize="@dimen/dm032" />
+            android:textSize="@dimen/dm032"
+            android:maxLength="10"
+            android:ellipsize="end"/>
 
         <LinearLayout
             android:id="@+id/ll_back"
@@ -44,8 +46,8 @@
             android:paddingRight="@dimen/dm030">
 
             <ImageView
-                android:layout_width="@dimen/dm040"
-                android:layout_height="@dimen/dm035"
+                android:layout_width="@dimen/dm035"
+                android:layout_height="@dimen/dm030"
                 android:background="@drawable/icon_back_gray"
                 android:scaleType="fitXY" />
         </LinearLayout>
@@ -77,8 +79,8 @@
                 android:layout_marginLeft="@dimen/dm010">
                 <ImageView
                     android:id="@+id/iv_right"
-                    android:layout_width="@dimen/dm040"
-                    android:layout_height="@dimen/dm040"
+                    android:layout_width="@dimen/dm035"
+                    android:layout_height="@dimen/dm035"
                     android:layout_marginLeft="@dimen/dm010"
                     android:src="@drawable/home_search"
                     android:visibility="gone" />

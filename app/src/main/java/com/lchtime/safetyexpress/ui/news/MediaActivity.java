@@ -1,9 +1,11 @@
 package com.lchtime.safetyexpress.ui.news;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.lchtime.safetyexpress.R;
 
 import java.io.File;
@@ -12,6 +14,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+
+import static com.igexin.sdk.GTServiceManager.context;
 
 //import static com.lchtime.safetyexpress.R.id.mSurfaceView;
 
@@ -31,17 +35,21 @@ public class MediaActivity extends AppCompatActivity {
     //private SurfaceHolder surfaceHolder;
 
     private String url;   //视频播放地址
+    private String image_url;
     private boolean flag = true;   //用于判断视频是否在播放中
     //private PlayMovie playmove;
     private String uriStr;
+    private Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media);
+        mContext = this;
         ButterKnife.bind(this);
         Intent intent = getIntent();
         if(intent!=null){
             url = intent.getStringExtra("url");
+            image_url = intent.getStringExtra("img_url");
         }
         if(url != null && !url.equals("")){
             mVideoPlayer.setUp(
@@ -49,6 +57,10 @@ public class MediaActivity extends AppCompatActivity {
                     JCVideoPlayer.SCREEN_LAYOUT_LIST ,
                     ""
             );
+            Glide.with(mContext).load(image_url)
+                    //.transform(ImageUtils.getTransformation(holder.circle_item_shipin))
+                    .into(mVideoPlayer.thumbImageView);
+
         }
 
 
@@ -149,7 +161,7 @@ public class MediaActivity extends AppCompatActivity {
         }
     }*/
 
-    public boolean fileIsExists(String strFile) {
+    /*public boolean fileIsExists(String strFile) {
         try {
             File f = new File(strFile);
             if (!f.exists()) {
@@ -159,5 +171,5 @@ public class MediaActivity extends AppCompatActivity {
             return false;
         }
         return true;
-    }
+    }*/
 }

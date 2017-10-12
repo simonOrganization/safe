@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
@@ -30,6 +31,8 @@ import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.util.List;
+
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 /**
  * Created by android-cp on 2017/4/20.我的收藏界面 其中有三个fragment
@@ -59,11 +62,6 @@ public class MyConllected extends BaseUI {
     //设置删除键角标
     private int num = 0;
     private BaseFragment currentFragment;
-
-    @Override
-    protected void back() {
-        finish();
-    }
 
     @Override
     protected void setControlBasis() {
@@ -334,4 +332,26 @@ public class MyConllected extends BaseUI {
     public  void refreshItemData( String qc_id ){
         ((CircleFragment) FragmentFactory.createFragment(2)).refreshItemData(qc_id);
     }
+
+    @Override
+    protected void back() {
+        JCVideoPlayer.releaseAllVideos();
+        finish();
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            boolean flag = JCVideoPlayer.backPress();
+            if (!flag){
+                JCVideoPlayer.releaseAllVideos();
+                finish();
+
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 }

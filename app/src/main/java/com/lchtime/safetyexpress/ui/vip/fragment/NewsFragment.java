@@ -2,6 +2,7 @@ package com.lchtime.safetyexpress.ui.vip.fragment;
 
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.lchtime.safetyexpress.H5DetailUI;
@@ -40,12 +41,14 @@ public class NewsFragment extends BaseFragment {
 
     @Override
     protected View initSuccessView() {
-        recyclerView = new EmptyRecyclerView(MyApplication.getContext());
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_news_conllect , null);
+        recyclerView = (EmptyRecyclerView) view.findViewById(R.id.recyclerView);
+        //recyclerView = new EmptyRecyclerView(MyApplication.getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         recyclerView.setAdapter(homeNewAdapter);
 
-        return recyclerView;
+        return view;
     }
 
     @Override

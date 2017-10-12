@@ -18,7 +18,7 @@
         android:textColor="@color/title_666"
         android:hint="点击此处进行编辑"
         android:gravity="top"
-        android:textSize="@dimen/dm020"
+        android:textSize="@dimen/dm028"
         android:padding="@dimen/dm020"/>
     <View
         android:layout_width="match_parent"

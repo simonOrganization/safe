@@ -8,6 +8,7 @@
         android:id="@+id/iv_img_img"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dm128"
-        android:src="@drawable/home_banner"/>
+        android:src="@drawable/home_banner"
+        android:scaleType="centerCrop"/>
 
 </LinearLayout>

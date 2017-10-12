@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.lchtime.safetyexpress.CircleH5Activity;
 import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.VideoH5Activity;
@@ -31,6 +32,7 @@ import com.lchtime.safetyexpress.ui.circle.SubscribActivity;
 import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.login.LoginUI;
+import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.vip.MyCircleActiveActivity;
 import com.lchtime.safetyexpress.ui.vip.MyConllected;
 import com.lchtime.safetyexpress.ui.vip.fragment.CircleFragment;
@@ -46,6 +48,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
+import static com.lchtime.safetyexpress.ui.circle.CircleUI.CITY_DETAIL_CODE;
 
 /**
  * Created by yxn on 2017/4/20.
@@ -64,7 +68,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
     private boolean isCircle = false;
     private String ub_id;
     private String action;
-
+    //private boolean isVideo = false;
     private SparseArray<Integer> mTextStateList;
 
     public CircleAdapter(Activity context, List<QzContextBean> circleOneList) {
@@ -140,6 +144,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
 
             //视频
             if (bean.pic.size() > 0) {
+                //isVideo = true;
                 holder.circle_item_shipin_1.setVisibility(View.VISIBLE);
                 holder.iv_recommend_play.setVisibility(View.VISIBLE);
                 holder.circle_item_image_rc.setVisibility(View.GONE);
@@ -149,12 +154,11 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
                 holder.circle_item_shipin_1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(context, VideoH5Activity.class);
-                        intent.putExtra("newsId", bean.qc_id);
-                        intent.putExtra("type","circle");
-                       // intent.putExtra("videoUrl" , bean.qc_video);
+                        Intent intent = new Intent(context, MediaActivity.class);
+                        intent.putExtra("url" , bean.qc_video);
+                        intent.putExtra("img_url" , bean.pic.get(0));
                         context.startActivity(intent);
-                        JCVideoPlayer.releaseAllVideos();
+                        //JCVideoPlayer.releaseAllVideos();
                     }
                 });
             } else {
@@ -223,6 +227,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
         });
 
         int state = mTextStateList.get(position, STATE_UNKNOW);
+
         switch (state) {
             case STATE_UNKNOW://        如果该item是第一次初始化，则取获取文本的行数
                 holder.contentTv.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
@@ -285,7 +290,6 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
             }
         });
 
-
         //设置删除按钮
         setCheckBox(holder.rb_delete, position);
         //点赞
@@ -302,10 +306,17 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
                 if (flag) {
                     return;
                 }
-                Intent intent = new Intent(context, H5DetailUI.class);
-                intent.putExtra("newsId", bean.qc_id);
-                intent.putExtra("type", "circle");
-                context.startActivity(intent);
+                //if(isVideo){
+                    Intent intent = new Intent(context, CircleH5Activity.class);
+                    intent.putExtra("data", bean);
+                    intent.putExtra("type", "circle");
+                    context.startActivityForResult(intent , CITY_DETAIL_CODE);
+                /*}else{
+                    Intent intent = new Intent(context, H5DetailUI.class);
+                    intent.putExtra("newsId", bean.qc_id);
+                    intent.putExtra("type", "circle");
+                    context.startActivity(intent);
+                }*/
             }
         });
         //如果是本人发的圈子
@@ -317,8 +328,10 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.CircleHodl
                     deleteCircle(position, bean.qc_id, protocal);
                 }
             });
+            holder.circle_item_subscribe.setVisibility(View.INVISIBLE);
         } else {
             holder.tv_delete.setVisibility(View.INVISIBLE);
+            holder.circle_item_subscribe.setVisibility(View.VISIBLE);
         }
 
     }

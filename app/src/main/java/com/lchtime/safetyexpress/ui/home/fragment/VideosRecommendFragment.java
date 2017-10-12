@@ -97,7 +97,7 @@ public class VideosRecommendFragment extends Fragment {
                                 public void videoListResponse(VideoRes videoRes) {
                                     videoList.clear();
                                     videoList.addAll(videoRes.cms_context);
-                                    homeVideosRecommendAdapter .notifyDataSetChanged();
+                                    homeVideosRecommendAdapter.notifyDataSetChanged();
                                     refreshLayout.setPullLoadMoreCompleted();
                                 }
                             });

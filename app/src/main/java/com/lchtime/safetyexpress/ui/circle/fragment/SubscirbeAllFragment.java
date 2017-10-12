@@ -203,7 +203,7 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
                 //hy_indicator.setSelected(true);
                 //hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
                 tv_adddy_hy.setSelected(true);
-                tv_adddy_hy.setBackgroundColor(getResources().getColor(R.color.commen_reg));
+                //tv_adddy_hy.setBackgroundColor(getResources().getColor(R.color.commen_reg));
                 currentSelected = HANG_YE;
                 if (InitInfo.professionBean != null) {
                     cp.setDataAdapter(InitInfo.professionBean.hy);
@@ -216,7 +216,7 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
 //                gw_indicator.setSelected(true);
 //                gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
                 tv_adddy_gw.setSelected(true);
-                tv_adddy_gw.setBackgroundColor(getResources().getColor(R.color.commen_reg));
+                //tv_adddy_gw.setBackgroundColor(getResources().getColor(R.color.commen_reg));
                 currentSelected = GANG_WEI;
                 if (InitInfo.postBean != null) {
                     if (gwList.size() <= 0) {
@@ -335,7 +335,7 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
             String title = "";
             if (HANG_YE.equals(currentSelected)) {
                 tv_adddy_hy.setSelected(true);
-                tv_adddy_hy.setBackgroundColor(getResources().getColor(R.color.commen_reg));
+                //tv_adddy_hy.setBackgroundColor(getResources().getColor(R.color.commen_reg));
 //                hy_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
                 hySelected = true;
                 request_hy = "";
@@ -352,7 +352,7 @@ public class SubscirbeAllFragment extends Fragment implements View.OnClickListen
             } else if (GANG_WEI.equals(currentSelected)) {
                 request_gw = "";
                 tv_adddy_gw.setSelected(true);
-                tv_adddy_hy.setBackgroundColor(getResources().getColor(R.color.commen_reg));
+                //tv_adddy_hy.setBackgroundColor(getResources().getColor(R.color.commen_reg));
 //                gw_indicator.setImageDrawable(getResources().getDrawable(R.drawable.circle_indicator_selector_red));
                 gwSelected = true;
                 for (int i = 0; i < arr.length; i++) {

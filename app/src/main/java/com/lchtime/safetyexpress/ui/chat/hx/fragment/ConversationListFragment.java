@@ -59,7 +59,7 @@ public class ConversationListFragment extends MyConversationListFragment {
     public void onResume() {
         super.onResume();
 
-        setUpView();
+        //setUpView();
     }
 
     private HomeQuestionProtocal protocal = new HomeQuestionProtocal();

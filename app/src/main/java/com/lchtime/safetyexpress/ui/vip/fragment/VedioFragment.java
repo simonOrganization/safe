@@ -19,6 +19,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import okhttp3.Response;
 
 /**
@@ -121,5 +122,11 @@ public class VedioFragment extends BaseFragment {
         }
         deleteList.clear();
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        JCVideoPlayer.releaseAllVideos();
     }
 }

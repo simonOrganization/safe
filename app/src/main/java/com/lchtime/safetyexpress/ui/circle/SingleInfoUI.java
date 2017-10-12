@@ -23,6 +23,7 @@ import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.HXInfo;
 import com.lchtime.safetyexpress.bean.InitInfo;
 import com.lchtime.safetyexpress.bean.MyCircleActiveBean;
+import com.lchtime.safetyexpress.bean.QzContextBean;
 import com.lchtime.safetyexpress.bean.SingleInfoBean;
 import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
@@ -87,7 +88,7 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
     private LinearLayout llSubscribe;
     private LinearLayout llFriends ;
     private String uid = "";
-    private List<MyCircleActiveBean.QuanziBean> myCircleList = new ArrayList<>();
+    private List<QzContextBean> myCircleList = new ArrayList<>();
     private TextView tvSubscribe;
     private TextView tvFriend;
     private String is_dy;

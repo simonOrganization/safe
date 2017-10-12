@@ -122,7 +122,7 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
         TextView tv_from;
         @BindView(R.id.tv_recommend_comment)
         TextView tv_comment;
-        @BindView(R.id.tv_recommend_time2)
+        @BindView(R.id.tv_recommend_time)
         TextView tv_time2;
         @BindView(R.id.tv_recommend_playnum)
         TextView tv_playnum;
