@@ -66,64 +66,86 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
             MyCircleActiveHodler myHodler = (MyCircleActiveHodler) holder;
             final QzContextBean bean = circleOneList.get(position);
 
-            //如果有图片
-            if (TextUtils.isEmpty(bean.qc_video) || bean.qc_video.equals("0")) {
-                ((MyCircleActiveHodler) holder).circleItemShipin.setVisibility(View.GONE);
-                ((MyCircleActiveHodler) holder).circleItemImageRc.setVisibility(View.VISIBLE);
-                //一片张图
-                if (bean.pic.size() == 1) {
-                    ViewGroup.LayoutParams layoutParamsss = myHodler.circleItemImageRc.getLayoutParams();
-                    layoutParamsss.width = screenWith / 3;
-                    myHodler.circleItemImageRc.setLayoutManager(new GridLayoutManager(context, 1));
-//                circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(2,10,true));
-                } else if (bean.pic.size() == 4) {
-                    //四张图片
-                    ViewGroup.LayoutParams layoutParamsss = myHodler.circleItemImageRc.getLayoutParams();
-                    layoutParamsss.width = screenWith / 2;
-                    myHodler.circleItemImageRc.setLayoutManager(new GridLayoutManager(context, 2));
-                    //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(2, 5, true));
-                } else {
-                    //多张图片
-                    ViewGroup.LayoutParams layoutParamsss = myHodler.circleItemImageRc.getLayoutParams();
-                    layoutParamsss.width = ViewGroup.LayoutParams.MATCH_PARENT;
-                    myHodler.circleItemImageRc.setLayoutManager(new GridLayoutManager(context, 3));
-                    //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(3, 5, true));
-                }
-                //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(3, 5, true));
-                CircleImageAdapter imageAdapter = new CircleImageAdapter(context, bean.pic);
-                myHodler.circleItemImageRc.setAdapter(imageAdapter);
-                imageAdapter.setOnItemSelectLs(new CircleImageAdapter.IOnItemSelectListener() {
+
+            //如果是长文章
+            if(!TextUtils.isEmpty(bean.qc_cwz)){
+                myHodler.mLongContentLl.setVisibility(View.VISIBLE);
+                myHodler.mCircleRl.setVisibility(View.GONE);
+
+                myHodler.mLongAuthTv.setText("作者：" + bean.qc_auth);
+                myHodler.mLongContentTv.setText(bean.qc_context);
+                myHodler.mLongTitleTv.setText(bean.qc_title);
+                Glide.with(context).load(bean.qc_cwz).into(myHodler.mLongImg);
+                myHodler.mLongContentLl.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onItemClick(View v, int pos) {
-                        Intent intent = new Intent(context, CirclePhone.class);
-                        intent.putExtra("url", bean.pic);
-                        intent.putExtra("pos", pos);
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, H5DetailUI.class);
+                        intent.putExtra("newsId", bean.qc_id);
+                        intent.putExtra("type", "circle");
                         context.startActivity(intent);
                     }
                 });
-                //如果没有图片
-            } else {
+            }else {
 
-                //视频
-                if (bean.pic.size() > 0) {
-                    ((MyCircleActiveHodler) holder).circleItemShipin.setVisibility(View.VISIBLE);
-                    ((MyCircleActiveHodler) holder).circleItemImageRc.setVisibility(View.GONE);
-                    Glide.with(context).load(bean.pic.get(0)).into(((MyCircleActiveHodler) holder).ivRecommendImg);
-                } else {
+                //如果有图片
+                if (TextUtils.isEmpty(bean.qc_video) || bean.qc_video.equals("0")) {
                     ((MyCircleActiveHodler) holder).circleItemShipin.setVisibility(View.GONE);
-                    ((MyCircleActiveHodler) holder).circleItemImageRc.setVisibility(View.GONE);
-                }
-
-                //点击视频播放事件
-                myHodler.circleItemShipin.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(context, MediaActivity.class);
-                        intent.putExtra("url" , bean.qc_video);
-                        intent.putExtra("img_url" , bean.pic.get(0));
-                        context.startActivity(intent);
+                    ((MyCircleActiveHodler) holder).circleItemImageRc.setVisibility(View.VISIBLE);
+                    //一片张图
+                    if (bean.pic.size() == 1) {
+                        ViewGroup.LayoutParams layoutParamsss = myHodler.circleItemImageRc.getLayoutParams();
+                        layoutParamsss.width = screenWith / 3;
+                        myHodler.circleItemImageRc.setLayoutManager(new GridLayoutManager(context, 1));
+                        //                circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(2,10,true));
+                    } else if (bean.pic.size() == 4) {
+                        //四张图片
+                        ViewGroup.LayoutParams layoutParamsss = myHodler.circleItemImageRc.getLayoutParams();
+                        layoutParamsss.width = screenWith / 2;
+                        myHodler.circleItemImageRc.setLayoutManager(new GridLayoutManager(context, 2));
+                        //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(2, 5, true));
+                    } else {
+                        //多张图片
+                        ViewGroup.LayoutParams layoutParamsss = myHodler.circleItemImageRc.getLayoutParams();
+                        layoutParamsss.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                        myHodler.circleItemImageRc.setLayoutManager(new GridLayoutManager(context, 3));
+                        //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(3, 5, true));
                     }
-                });
+                    //circleHodler.circle_item_image_rc.addItemDecoration(new GridSpacingItemDecoration(3, 5, true));
+                    CircleImageAdapter imageAdapter = new CircleImageAdapter(context, bean.pic);
+                    myHodler.circleItemImageRc.setAdapter(imageAdapter);
+                    imageAdapter.setOnItemSelectLs(new CircleImageAdapter.IOnItemSelectListener() {
+                        @Override
+                        public void onItemClick(View v, int pos) {
+                            Intent intent = new Intent(context, CirclePhone.class);
+                            intent.putExtra("url", bean.pic);
+                            intent.putExtra("pos", pos);
+                            context.startActivity(intent);
+                        }
+                    });
+                    //如果没有图片
+                } else {
+
+                    //视频
+                    if (bean.pic.size() > 0) {
+                        ((MyCircleActiveHodler) holder).circleItemShipin.setVisibility(View.VISIBLE);
+                        ((MyCircleActiveHodler) holder).circleItemImageRc.setVisibility(View.GONE);
+                        Glide.with(context).load(bean.pic.get(0)).into(((MyCircleActiveHodler) holder).ivRecommendImg);
+                    } else {
+                        ((MyCircleActiveHodler) holder).circleItemShipin.setVisibility(View.GONE);
+                        ((MyCircleActiveHodler) holder).circleItemImageRc.setVisibility(View.GONE);
+                    }
+
+                    //点击视频播放事件
+                    myHodler.circleItemShipin.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(context, MediaActivity.class);
+                            intent.putExtra("url", bean.qc_video);
+                            intent.putExtra("img_url", bean.pic.get(0));
+                            context.startActivity(intent);
+                        }
+                    });
+                }
             }
             final CircleProtocal protocal = new CircleProtocal();
 
@@ -351,8 +373,24 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
         TextView circleItemTime;
         @BindView(R.id.circle_item_delete)
         TextView circleItemDelete;
-        @BindView(R.id.lltime)
-        LinearLayout lltime;
+        /*@BindView(R.id.lltime)
+        LinearLayout lltime;*/
+
+
+        @BindView(R.id.rl_content)
+        RelativeLayout mCircleRl; //正常圈子的内容
+
+        @BindView(R.id.ll_long_circle)
+        LinearLayout mLongContentLl; //长文章的内容
+        @BindView(R.id.iv_image)
+        ImageView mLongImg;             //长文章的图片
+        @BindView(R.id.tv_title)
+        TextView mLongTitleTv;
+        @BindView(R.id.tv_auther)
+        TextView mLongAuthTv;
+        @BindView(R.id.tv_content)
+        TextView mLongContentTv;
+
 
         public MyCircleActiveHodler(View itemView) {
             super(itemView);

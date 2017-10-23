@@ -10,7 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.google.gson.Gson;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.bean.ActivityBean;
+import com.lchtime.safetyexpress.ui.home.protocal.PictureAdvantage;
 import com.lchtime.safetyexpress.utils.SpTools;
 
 import java.util.ArrayList;
@@ -24,12 +27,16 @@ public class YDActivity extends Activity {
     private ViewPager vp;
     private List<View> list = new ArrayList<>();
     private Handler handler = new Handler();
+    private PictureAdvantage picProtocal = new PictureAdvantage();
 
     private int[] arr = {R.drawable.first,R.drawable.second,R.drawable.third};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yd);
+        //获取活动信息
+        loadActivity();
+
         vp = (ViewPager) findViewById(R.id.vp);
 
         for (int i = 0 ; i < arr.length; i++){
@@ -71,6 +78,22 @@ public class YDActivity extends Activity {
 
             }
         });
+    }
+
+    /**
+     * 获取活动信息
+     */
+    private void loadActivity() {
+        picProtocal.getActivity(new PictureAdvantage.ActivityListener() {
+            @Override
+            public void activityResponse(String respose) {
+                ActivityBean bean = new Gson().fromJson(respose , ActivityBean.class);
+                //保存活动信息
+                SpTools.setString(YDActivity.this , "activite" , bean.flag + "");
+
+            }
+        });
+
     }
 
     class VPAdapter extends PagerAdapter{

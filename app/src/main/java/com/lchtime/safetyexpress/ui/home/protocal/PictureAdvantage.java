@@ -100,7 +100,40 @@ public class PictureAdvantage {
                 });
     }
 
+    /**
+     * 获取活动数据
+     */
+    public void getActivity(final ActivityListener listener){
+        String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
+                .concat(MyApplication.getContext().getResources().getString(R.string.activity));
+        OkHttpUtils.get()
+                .url(url)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int i) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int i) {
+                        listener.activityResponse(response);
+                    }
+                });
+
+
+
+
+
+    }
+
+
+
+
     public interface HotNewsListener{
         void hotNewsResponse(String respose);
+    }
+    public interface ActivityListener{
+        void activityResponse(String respose);
     }
 }

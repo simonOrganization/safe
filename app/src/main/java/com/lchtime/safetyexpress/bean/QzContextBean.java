@@ -25,6 +25,7 @@ public class QzContextBean  implements Serializable {
     public String qc_qs_id;
     public String qc_pinglun;
     public String qc_long;
+    public String qc_cwz;
     public String qc_lat;
     public String qc_high;
     public String qc_lm_id;

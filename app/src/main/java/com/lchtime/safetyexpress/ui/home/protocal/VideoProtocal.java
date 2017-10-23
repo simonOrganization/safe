@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.ui.home.protocal;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
@@ -57,6 +58,7 @@ public class VideoProtocal {
     public void getVideoList( String page,String cd_id,final VideoListListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             //CommonUtils.toastMessage("您当前无网络，请联网再试");
+            listener.onError();
             return;
         }
         String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
@@ -70,21 +72,25 @@ public class VideoProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        listener.onError();
+                        CommonUtils.toastMessage("访问网络失败");
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         if (TextUtils.isEmpty(response)){
                             CommonUtils.toastMessage("没有数据返回");
+                            listener.onError();
                             return;
                         }
+                        Log.i("fxp++++" , response);
                         VideoRes videoRes = (VideoRes) JsonUtils.stringToObject(response,VideoRes.class);
                         if(videoRes.getResult().getCode().equals("10")){
                             if (listener != null){
                                 listener.videoListResponse(videoRes);
                             }
                         }else{
+                            listener.onError();
                             CommonUtils.toastMessage(videoRes.getResult().getInfo());
                         }
                     }
@@ -97,5 +103,6 @@ public class VideoProtocal {
 
     public interface VideoListListener{
         void videoListResponse(VideoRes videoRes);
+        void onError();
     }
 }

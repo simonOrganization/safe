@@ -46,7 +46,7 @@ public class PublicCircleAdapter extends RecyclerView.Adapter<PublicCircleAdapte
             holder.image.setImageBitmap(mDatas.get(position).getImage());
         }else{
             Log.i("yang","else   ===");
-            holder.image.setBackgroundResource(R.drawable.public_circle_icon);
+            //holder.image.setBackgroundResource(R.drawable.public_circle_icon);
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

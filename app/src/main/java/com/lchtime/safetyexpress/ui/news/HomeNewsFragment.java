@@ -152,7 +152,7 @@ public class HomeNewsFragment extends BaseFragment {
 
                     return;
                 }
-                if (position == 0 || position == 1){
+                if (position == 0 ){
                     new Thread(new Runnable() {
                         @Override
                         public void run() {

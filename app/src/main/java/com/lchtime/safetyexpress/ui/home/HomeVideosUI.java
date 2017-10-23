@@ -58,6 +58,7 @@ public class HomeVideosUI extends BaseUI implements IWeiboHandler.Response {
     @ViewInject(R.id.xhsv_home_videos)
     //private XHorizontalScrollView xhsv_home_videos;
     private TabLayout xhsv_home_videos;
+
     //ViewPager
     @ViewInject(R.id.vp_home_videos)
     private ViewPager vp_home_videos;
@@ -147,7 +148,7 @@ public class HomeVideosUI extends BaseUI implements IWeiboHandler.Response {
                 vp_home_videos.setAdapter(videosPagerAdapter);
 
 
-                xhsv_home_videos.setTabMode(TabLayout.MODE_SCROLLABLE);//MODE_FIXED
+                xhsv_home_videos.setTabMode(TabLayout.MODE_FIXED);//MODE_FIXED
                 xhsv_home_videos.setupWithViewPager(vp_home_videos);
                 xhsv_home_videos.setTabsFromPagerAdapter(videosPagerAdapter);
                 setSuccessVisiblity();
@@ -188,7 +189,7 @@ public class HomeVideosUI extends BaseUI implements IWeiboHandler.Response {
 
         @Override
         public int getCount() {
-            return titleList == null ? 0 :titleList.size();
+            return titleList == null ? 0 : titleList.size();
         }
 
         @Override

@@ -137,4 +137,5 @@ public class NewTypeBean {
     public void setCd_child(ArrayList<String> cd_child) {
         this.cd_child = cd_child;
     }
+
 }

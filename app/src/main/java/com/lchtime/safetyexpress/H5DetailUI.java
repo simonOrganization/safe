@@ -373,61 +373,10 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
-        /*InsideWebChromeClient mInsideWebChromeClient = new InsideWebChromeClient();
-        InsideWebViewClient mInsideWebViewClient = new InsideWebViewClient();
-        //javascriptInterface = new JavascriptInterface();
-        //mWebView.addJavascriptInterface(javascriptInterface, "java2js_laole918");
-        mWebView.setWebChromeClient(mInsideWebChromeClient);
-        mWebView.setWebViewClient(mInsideWebViewClient);*/
+
 
     }
-      /*private class InsideWebChromeClient extends WebChromeClient {
-        private View mCustomView;
-        private CustomViewCallback mCustomViewCallback;
 
-        @Override
-        public void onShowCustomView(View view, CustomViewCallback callback) {
-            super.onShowCustomView(view, callback);
-            if (mCustomView != null) {
-                callback.onCustomViewHidden();
-                return;
-            }
-            mCustomView = view;
-            mFrameLayout.addView(mCustomView);
-            mCustomViewCallback = callback;
-            mWebView.setVisibility(View.GONE);
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-
-        public void onHideCustomView() {
-            mWebView.setVisibility(View.VISIBLE);
-            if (mCustomView == null) {
-                return;
-            }
-            mCustomView.setVisibility(View.GONE);
-            mFrameLayout.removeView(mCustomView);
-            mCustomViewCallback.onCustomViewHidden();
-            mCustomView = null;
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            super.onHideCustomView();
-        }
-    }
-    private class InsideWebViewClient extends WebViewClient {
-
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            // TODO Auto-generated method stub
-            view.loadUrl(url);
-            return true;
-        }
-
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);
-            //mWebView.loadUrl(javascript);
-        }
-
-    }*/
 
 
     @Override
@@ -645,6 +594,20 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
         });
     }
 
+    /**
+     * 跳转广告链接
+     * @param url
+     */
+    @JavascriptInterface
+    public void adurl(final String url){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mWebView.loadUrl(url);
+            }
+        });
+
+    }
 
     //点击了h5界面的回复
     @JavascriptInterface
@@ -1125,10 +1088,8 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
 //        makeText("收藏");
     }
 
-
     /**
      * 评论
-     *
      * @param view
      */
     @OnClick(R.id.tv_common)
@@ -1222,28 +1183,30 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
                 mShareProtocal.postCircleShare(cc_id,new ShareProtocal.ShareInfo() {
                     @Override
                     public void shareResponse(String response) {
-                        if (TextUtils.isEmpty(response)){
-                            CommonUtils.toastMessage("请重新分享已确保获得奖励。");
-                            return;
-                        }
+                        if(!TextUtils.isEmpty(cc_id)){
+                            if (TextUtils.isEmpty(response)){
+                                CommonUtils.toastMessage("请重新分享已确保获得奖励。");
+                                return;
+                            }
 
-                        Result bean = gson.fromJson(response,Result.class);
-                        if ("10".equals(bean.result.code)){
-                            CommonUtils.toastMessage(bean.result.info);
-                        }else {
-                            CommonUtils.toastMessage(bean.result.info);
+                            Result bean = gson.fromJson(response,Result.class);
+                            if ("10".equals(bean.result.code)){
+                                CommonUtils.toastMessage(bean.result.info);
+                            }else {
+                                CommonUtils.toastMessage(bean.result.info);
+                            }
                         }
                     }
                 });
             }
 
-            Util.toastMessage(H5DetailUI.this, "onComplete: " + response.toString());
+            //Util.toastMessage(H5DetailUI.this, "onComplete: " + response.toString());
         }
 
         @Override
         public void onError(UiError e) {
             // TODO Auto-generated method stub
-            Util.toastMessage(H5DetailUI.this, "onError: " + e.errorMessage, "e");
+            //Util.toastMessage(H5DetailUI.this, "onError: " + e.errorMessage, "e");
         }
     };
 

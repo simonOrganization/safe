@@ -32,6 +32,7 @@ import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.cacheutils.ACache;
 import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.lchtime.safetyexpress.views.MyGridView;
+import com.lchtime.safetyexpress.weight.RedPacketDialog;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -144,6 +145,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
                 } else {
                     Intent intent = new Intent(HomeUI.this, H5DetailUI.class);
                     intent.putExtra("type", "url");
+                    intent.putExtra("newsId", lunbo.get(position));
                     intent.putExtra("url", lunbo.get(position).url + "?timestamp=" + System.currentTimeMillis());
                     startActivity(intent);
                 }
@@ -191,8 +193,6 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     @Override
     protected void prepareData() {
         aCache = ACache.get(mContext);
-
-
         //获取广告
         getAdvData();
         //首页热门圈子
@@ -200,6 +200,19 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         //首页热点追踪
         getHotNewsData("1");
         getHotNewsData("2");
+
+        //检查活动信息
+        checkActivite();
+    }
+
+    /**
+     * 检查红包活动
+     */
+    private void checkActivite() {
+        if(SpTools.getString(mContext , "activite").equals("1")){
+            new RedPacketDialog(mContext).show();
+            SpTools.setString(mContext , "activite" , "0");
+        }
     }
 
 

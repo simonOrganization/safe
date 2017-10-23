@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.lchtime.safetyexpress.adapter.HomeVideosRecommendAdapter;
 import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.bean.res.VideoRes;
 import com.lchtime.safetyexpress.ui.home.protocal.VideoProtocal;
+import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
 import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.lidroid.xutils.ViewUtils;
@@ -27,7 +29,7 @@ import java.util.ArrayList;
  * Created by user on 2017/4/18.
  */
 
-public class VideosRecommendFragment extends Fragment {
+public class VideosRecommendFragment extends BaseHintFragment {
 
     //列表展示
     @ViewInject(R.id.refreshLayout)
@@ -37,10 +39,12 @@ public class VideosRecommendFragment extends Fragment {
 
     private HomeVideosRecommendAdapter homeVideosRecommendAdapter;
 
-    private VideoProtocal protocal;
+    private VideoProtocal protocal = new VideoProtocal();
     public ArrayList<NewsBean> videoList;
     private int pageIndex = 0;
-
+    private DialogUtil mDialog;
+    private boolean isLoaded = false;
+    private boolean isFirst = true;
     int footPage = 0;
     int headPage = 0;
     private String cd_id;
@@ -48,7 +52,9 @@ public class VideosRecommendFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.home_videos_recommend_fragment, container, false);
+        View view = inflater.inflate(R.layout.home_videos_recommend_fragment, container, false);
+        mDialog = new DialogUtil(getActivity());
+        return view;
     }
 
     @Override
@@ -56,31 +62,23 @@ public class VideosRecommendFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ViewUtils.inject(this, view);
 
+        home_new_fragment_rc.setLayoutManager(new LinearLayoutManager(getActivity()));
+        videoList = new ArrayList<NewsBean>();
+        Bundle bundle = getArguments();
+        cd_id = bundle.getString("cd_id");
+
+        homeVideosRecommendAdapter = new HomeVideosRecommendAdapter(getActivity(),videoList);
+        refreshLayout.setAdapter(homeVideosRecommendAdapter);
 
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        home_new_fragment_rc.setLayoutManager(new LinearLayoutManager(getContext()));
-        videoList = new ArrayList<NewsBean>();
-        Bundle bundle = getArguments();
-        cd_id = bundle.getString("cd_id");
-        if (protocal == null){
-            protocal = new VideoProtocal();
+        isFirst = false;
+        if(isVisible){
+            lazyLoad(); //是不是base调用的
         }
-        protocal.getVideoList("0" , cd_id , new VideoProtocal.VideoListListener() {
-            @Override
-            public void videoListResponse(VideoRes videoRes) {
-                videoList = videoRes.cms_context;
-                if(getActivity() != null){
-                    homeVideosRecommendAdapter = new HomeVideosRecommendAdapter(getActivity(),videoList);
-                    home_new_fragment_rc.setLayoutManager(new LinearLayoutManager(getContext()));
-                    refreshLayout.setAdapter(homeVideosRecommendAdapter);
-                }
-            }
-        });
-
         refreshLayout.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
             @Override
             public void onRefresh() {
@@ -100,12 +98,17 @@ public class VideosRecommendFragment extends Fragment {
                                     homeVideosRecommendAdapter.notifyDataSetChanged();
                                     refreshLayout.setPullLoadMoreCompleted();
                                 }
+
+                                @Override
+                                public void onError() {
+
+                                }
                             });
                         }
 
 
                     }
-                },2000);
+                },0);
             }
 
             @Override
@@ -124,11 +127,16 @@ public class VideosRecommendFragment extends Fragment {
                                     videoList.addAll(videoRes.cms_context);
                                     homeVideosRecommendAdapter .notifyDataSetChanged();
                                 }
+
+                                @Override
+                                public void onError() {
+
+                                }
                             });
                         }
                         refreshLayout.setPullLoadMoreCompleted();
                     }
-                },2000);
+                },0);
             }
         });
 
@@ -144,4 +152,28 @@ public class VideosRecommendFragment extends Fragment {
         footPage = 0;
     }
 
+    @Override
+    protected void lazyLoad() {
+        if(!isLoaded && !isFirst){
+            isLoaded = true;
+            mDialog.show();
+            protocal.getVideoList("0" , cd_id , new VideoProtocal.VideoListListener() {
+                @Override
+                public void videoListResponse(VideoRes videoRes) {
+
+                    mDialog.dissmiss();
+                    videoList.clear();
+                    videoList.addAll(videoRes.cms_context);
+                    //if(getActivity() != null){
+                    homeVideosRecommendAdapter.notifyDataSetChanged();
+                    //}
+                }
+
+                @Override
+                public void onError() {
+                    mDialog.dissmiss();
+                }
+            });
+        }
+    }
 }

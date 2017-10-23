@@ -86,7 +86,7 @@ public class ThirdWeiXinLoginApi {
 				+ "appid=" + ThirdAppKey.WEIXIN_APPID + "&secret="
 				+ ThirdAppKey.WEIXIN_APPSECRET + "&code=" + code
 				+ "&grant_type=authorization_code";
-		if(WXData == null){
+		if(WXData == null || WXData.equals("")){
 			WXData = HttpUrlUtils.httpClientGetJson(url);
 		}
 		try {

@@ -32,4 +32,13 @@ public class VideoRes {
         this.cms_dir = cms_dir;
     }
 
+
+    @Override
+    public String toString() {
+        return "VideoRes{" +
+                "result=" + result +
+                ", cms_dir=" + cms_dir +
+                ", cms_context=" + cms_context +
+                '}';
+    }
 }

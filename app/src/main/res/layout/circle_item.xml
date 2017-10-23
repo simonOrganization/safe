@@ -20,16 +20,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="@color/white"
-        >
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dm020"
-            android:layout_marginRight="@dimen/dm020"
-            >
+            android:layout_marginRight="@dimen/dm020">
 
             <LinearLayout
                 android:id="@+id/ll_date"
@@ -76,69 +74,89 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_below="@+id/ll_date"
-                android:background="@color/bg_df"
-                />
+                android:background="@color/bg_df" />
 
-            <TextView
-                android:id="@+id/circle_item_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/ll_date"
-                android:layout_marginTop="@dimen/dm025"
-                android:text="超爱戴比尔斯家的产品了专柜正品一比一独家开模制作这款耳钉厚壁结实，佩戴大气上档次成熟技术水平肯定减肥快捷键风光好"
-                android:textColor="@color/title_666"
-                android:lineSpacingExtra="@dimen/dm010"
-                android:textSize="16sp" />
-
-
-            <TextView
-                android:id="@+id/hide_show"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/circle_item_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingRight="5dp"
-                android:text="展开"
-                android:textColor="@color/color_text_bule"
-                android:textSize="16sp" />
-
-            <RelativeLayout
-                android:id="@+id/circle_item_shipin_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/hide_show">
-
-                <ImageView
-                    android:id="@+id/circle_item_shipin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dm240"
-                    android:layout_marginTop="@dimen/dm008" />
-
-
-                <ImageView
-                    android:id="@+id/iv_recommend_play"
-                    android:layout_width="@dimen/dm047"
-                    android:layout_height="@dimen/dm054"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/video_play2" />
-
-            </RelativeLayout>
-
-            <com.lchtime.safetyexpress.views.NoTouchRecycler
-                android:id="@+id/circle_item_image_rc"
+            <LinearLayout
+                android:id="@+id/ll_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/circle_item_shipin_1"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="@dimen/dm020"/>
+                android:layout_below="@id/ll_date"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/ll_long_circle"
+                    layout="@layout/item_long_circle"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/circle_item_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dm025"
+                        android:lineSpacingExtra="@dimen/dm010"
+                        android:text="超爱戴比尔斯家的产品了专柜正品一比一独家开模制作这款耳钉厚壁结实，佩戴大气上档次成熟技术水平肯定减肥快捷键风光好"
+                        android:textColor="@color/title_666"
+                        android:textSize="16sp" />
+
+
+                    <TextView
+                        android:id="@+id/hide_show"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/circle_item_content"
+                        android:paddingBottom="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingTop="5dp"
+                        android:text="展开"
+                        android:textColor="@color/color_text_bule"
+                        android:textSize="16sp" />
+
+                    <RelativeLayout
+                        android:id="@+id/circle_item_shipin_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/hide_show">
+
+                        <ImageView
+                            android:id="@+id/circle_item_shipin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dm240"
+                            android:layout_marginTop="@dimen/dm008" />
+
+
+                        <ImageView
+                            android:id="@+id/iv_recommend_play"
+                            android:layout_width="@dimen/dm047"
+                            android:layout_height="@dimen/dm054"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/video_play2" />
+
+                    </RelativeLayout>
+
+                    <com.lchtime.safetyexpress.views.NoTouchRecycler
+                        android:id="@+id/circle_item_image_rc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/circle_item_shipin_1"
+                        android:layout_marginTop="@dimen/dm020" />
+
+
+                </RelativeLayout>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/ll_other"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dm080"
-                android:layout_below="@id/circle_item_image_rc"
+                android:layout_below="@id/ll_content"
                 android:layout_marginTop="@dimen/dm009"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
@@ -162,9 +180,9 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:paddingLeft="@dimen/dm020"
                     android:text="@string/delete"
-                    android:gravity="center_vertical"
                     android:textColor="@color/title_999"
                     android:textSize="@dimen/dm024" />
 
@@ -236,7 +254,6 @@
             />
 
     </LinearLayout>
-
 
 
 </LinearLayout>

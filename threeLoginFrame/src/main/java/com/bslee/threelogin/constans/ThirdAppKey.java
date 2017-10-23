@@ -12,7 +12,7 @@ public class ThirdAppKey {
     //微信
     public static final String WEIXIN_SCOPE="snsapi_userinfo";
     public static final String WEIXIN_APPID = "wxd233252bc3b1efe1";
-    public static final String WEIXIN_APPSECRET  = "4b3c6f5f3294198184d669ced6a9143c";
+    public static final String WEIXIN_APPSECRET  = "bdcafe71f777721e98eaa48980ecc24a";
     //新浪
     public final static String SINAWEIBO_APPKEY = "607153619";
     public final static String SINAWEIBO_AppSecret="0b06a0e77d7ad81ea66bf9c14f7a07b6";

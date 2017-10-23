@@ -133,7 +133,7 @@ public class VipSettingUI extends BaseUI {
     private void getAgreement(View view){
         Intent intent = new Intent(VipSettingUI.this,H5DetailUI.class);
         intent.putExtra("type","agreement");
-        intent.putExtra("url","http://fcar.lchtime.cn:8001/H5/agreement.html" + "?timestamp=" + System.currentTimeMillis());
+        intent.putExtra("url","http://www.aqkcw.com/H5/agreement.html");
         startActivity(intent);
     }
 

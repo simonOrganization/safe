@@ -122,7 +122,7 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
         listImg.add(mIvFirst);
         listImg.add(mIvSecond);
         listImg.add(mIvThird);
-
+        setTitle("邀请好友，得好礼");
 
 
     }

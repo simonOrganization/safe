@@ -101,7 +101,7 @@ public class ShareProtocal {
 
 
     public void postCircleShare( String qc_id,final ShareInfo listener){
-        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
+        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext()) || TextUtils.isEmpty(qc_id)){
            // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.shareResponse(null);
             return;

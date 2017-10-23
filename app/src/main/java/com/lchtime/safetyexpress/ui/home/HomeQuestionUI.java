@@ -139,7 +139,7 @@ public class HomeQuestionUI extends BaseUI {
             File file = new File(MyApplication.getContext().getFilesDir(), Constants.photo_name);//将要保存图片的路径
             //如果没有加载过图片了
             if (!file.exists()){
-                civ.setImageDrawable(getResources().getDrawable(R.drawable.vip_test_icon));
+                civ.setImageDrawable(getResources().getDrawable(R.drawable.circle_user_image));
                 if (!TextUtils.isEmpty(vipInfoBean.user_detail.ud_photo_fileid)){
                     UpdataImageUtils.getUrlBitmap(vipInfoBean.user_detail.ud_photo_fileid, new UpdataImageUtils.BitmapListener() {
                         @Override

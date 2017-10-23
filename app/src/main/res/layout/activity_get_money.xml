@@ -5,247 +5,222 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <include layout="@layout/title"/>
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm438"
+                android:layout_height="wrap_content"
                 android:background="@drawable/money_top"/>
 
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/tv_small_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dm024"
+            android:gravity="center"
+            android:textColor="@color/title_333"
+            android:layout_marginTop="@dimen/dm020"
+            android:text="您还未注册"/>
+        <FrameLayout
+            android:layout_marginTop="@dimen/dm040"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dm034"
+            android:layout_marginRight="@dimen/dm034">
+
+
             <LinearLayout
+                android:id="@+id/second"
+                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm065"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:background="@drawable/shape_bg_white_money"
-                >
-                <TextView
-                    android:layout_width="@dimen/dm090"
-                    android:layout_height="@dimen/dm036"
-                    android:layout_marginLeft="@dimen/dm020"
-                    android:background="@drawable/money_bag"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:text="领红包"
-                    android:textSize="@dimen/dm018"
-                    />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dm017"
-                    android:textSize="@dimen/dm020"
-                    android:text="下载APP，注册并分享给好友，现金红包马上到账"/>
-
+                <ImageView
+                    android:layout_weight="314"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dm080"
+                    android:layout_gravity="center"
+                    android:background="@drawable/money_login_pic"/>
+                <ImageView
+                    android:id="@+id/iv_second"
+                    android:layout_weight="335"
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="@dimen/dm018"
+                    android:layout_height="@dimen/dm096"
+                    android:background="@drawable/money_info_big"/>
+                <ImageView
+                    android:layout_weight="314"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dm018"
+                    android:layout_height="@dimen/dm080"
+                    android:background="@drawable/money_share"/>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_small_title"
+            <LinearLayout
+                android:id="@+id/third"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dm024"
-                android:gravity="center"
-                android:textColor="@color/title_333"
-                android:layout_marginTop="@dimen/dm020"
-                android:text="您还未注册"/>
-            <FrameLayout
-                android:layout_marginTop="@dimen/dm040"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_weight="314"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_height="@dimen/dm080"
+                    android:background="@drawable/money_login_pic"/>
+                <ImageView
+                    android:layout_weight="314"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dm018"
+                    android:layout_height="@dimen/dm080"
+                    android:background="@drawable/money_info"/>
+                <ImageView
+                    android:id="@+id/iv_third"
+                    android:layout_weight="335"
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="@dimen/dm018"
+                    android:layout_height="@dimen/dm096"
+                    android:background="@drawable/money_share_big"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/forth"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="@dimen/dm034"
-                android:layout_marginRight="@dimen/dm034">
+                android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_weight="314"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_height="@dimen/dm080"
+                    android:background="@drawable/money_login_pic"/>
+                <ImageView
+                    android:layout_weight="314"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dm018"
+                    android:layout_height="@dimen/dm100"
+                    android:background="@drawable/money_info"/>
+                <ImageView
+                    android:layout_weight="314"
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="@dimen/dm018"
+                    android:layout_height="@dimen/dm080"
+                    android:background="@drawable/money_share"/>
+            </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/second"
-                    android:visibility="gone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_weight="314"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/dm080"
-                        android:layout_gravity="center"
-                        android:background="@drawable/money_login_pic"/>
-                    <ImageView
-                        android:id="@+id/iv_second"
-                        android:layout_weight="335"
-                        android:layout_width="0dp"
-                        android:layout_marginLeft="@dimen/dm018"
-                        android:layout_height="@dimen/dm096"
-                        android:background="@drawable/money_info_big"/>
-                    <ImageView
-                        android:layout_weight="314"
-                        android:layout_width="0dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/dm018"
-                        android:layout_height="@dimen/dm080"
-                        android:background="@drawable/money_share"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/third"
-                    android:visibility="gone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_weight="314"
-                        android:layout_width="0dp"
-                        android:layout_gravity="center"
-                        android:layout_height="@dimen/dm080"
-                        android:background="@drawable/money_login_pic"/>
-                    <ImageView
-                        android:layout_weight="314"
-                        android:layout_width="0dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/dm018"
-                        android:layout_height="@dimen/dm080"
-                        android:background="@drawable/money_info"/>
-                    <ImageView
-                        android:id="@+id/iv_third"
-                        android:layout_weight="335"
-                        android:layout_width="0dp"
-                        android:layout_marginLeft="@dimen/dm018"
-                        android:layout_height="@dimen/dm096"
-                        android:background="@drawable/money_share_big"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/forth"
-                    android:visibility="gone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_weight="314"
-                        android:layout_width="0dp"
-                        android:layout_gravity="center"
-                        android:layout_height="@dimen/dm080"
-                        android:background="@drawable/money_login_pic"/>
-                    <ImageView
-                        android:layout_weight="314"
-                        android:layout_width="0dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/dm018"
-                        android:layout_height="@dimen/dm100"
-                        android:background="@drawable/money_info"/>
-                    <ImageView
-                        android:layout_weight="314"
-                        android:layout_width="0dp"
-                        android:layout_marginLeft="@dimen/dm018"
-                        android:layout_height="@dimen/dm080"
-                        android:background="@drawable/money_share"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/first"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/iv_first"
-                        android:layout_weight="335"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/dm096"
-                        android:background="@drawable/money_login_pic_big"/>
-                    <ImageView
-                        android:layout_weight="314"
-                        android:layout_width="0dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/dm018"
-                        android:layout_height="@dimen/dm080"
-                        android:background="@drawable/money_info"/>
-                    <ImageView
-                        android:layout_weight="314"
-                        android:layout_width="0dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/dm018"
-                        android:layout_height="@dimen/dm080"
-                        android:background="@drawable/money_share"/>
-                </LinearLayout>
-
-            </FrameLayout>
-            <!--<LinearLayout-->
-                <!--android:layout_marginTop="@dimen/dm050"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:gravity="center_vertical"-->
-                <!--android:layout_marginLeft="@dimen/dm034"-->
-                <!--android:layout_marginRight="@dimen/dm034"-->
-                <!--&gt;-->
-
-                <!--<CheckBox-->
-                    <!--android:id="@+id/money_login"-->
-                    <!--android:layout_weight="314"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:checked="false"-->
-                    <!--android:text="@null"-->
-                    <!--android:button="@null"-->
-                    <!--android:background="@drawable/money_login_selector"/>-->
-
-                <!--<CheckBox-->
-                    <!--android:id="@+id/money_info"-->
-                    <!--android:layout_weight="314"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="@dimen/dm020"-->
-                    <!--android:text="@null"-->
-                    <!--android:button="@null"-->
-                    <!--android:background="@drawable/money_info_selector"/>-->
-
-                <!--<CheckBox-->
-                    <!--android:id="@+id/money_share"-->
-                    <!--android:layout_weight="314"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="@dimen/dm020"-->
-                    <!--android:text="@null"-->
-                    <!--android:button="@null"-->
-                    <!--android:background="@drawable/money_share_selector"/>-->
-
-
-            <!--</LinearLayout>-->
-
-
-            <ImageView
-                android:id="@+id/money_progress_bar"
-                android:layout_marginTop="@dimen/dm015"
+            <LinearLayout
+                android:id="@+id/first"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dm021"
-                android:layout_marginLeft="@dimen/dm034"
-                android:layout_marginRight="@dimen/dm034"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_first"
+                    android:layout_weight="335"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dm096"
+                    android:background="@drawable/money_login_pic_big"/>
+                <ImageView
+                    android:layout_weight="314"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dm018"
+                    android:layout_height="@dimen/dm080"
+                    android:background="@drawable/money_info"/>
+                <ImageView
+                    android:layout_weight="314"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dm018"
+                    android:layout_height="@dimen/dm080"
+                    android:background="@drawable/money_share"/>
+            </LinearLayout>
+
+        </FrameLayout>
+        <!--<LinearLayout-->
+        <!--android:layout_marginTop="@dimen/dm050"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:layout_marginLeft="@dimen/dm034"-->
+        <!--android:layout_marginRight="@dimen/dm034"-->
+        <!--&gt;-->
+
+        <!--<CheckBox-->
+        <!--android:id="@+id/money_login"-->
+        <!--android:layout_weight="314"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:checked="false"-->
+        <!--android:text="@null"-->
+        <!--android:button="@null"-->
+        <!--android:background="@drawable/money_login_selector"/>-->
+
+        <!--<CheckBox-->
+        <!--android:id="@+id/money_info"-->
+        <!--android:layout_weight="314"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/dm020"-->
+        <!--android:text="@null"-->
+        <!--android:button="@null"-->
+        <!--android:background="@drawable/money_info_selector"/>-->
+
+        <!--<CheckBox-->
+        <!--android:id="@+id/money_share"-->
+        <!--android:layout_weight="314"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/dm020"-->
+        <!--android:text="@null"-->
+        <!--android:button="@null"-->
+        <!--android:background="@drawable/money_share_selector"/>-->
+
+
+        <!--</LinearLayout>-->
+
+
+        <ImageView
+            android:id="@+id/money_progress_bar"
+            android:layout_marginTop="@dimen/dm015"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm021"
+            android:layout_marginLeft="@dimen/dm034"
+            android:layout_marginRight="@dimen/dm034"/>
 
 
 
-            <CheckBox
-                android:id="@+id/cb_give_money"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dm072"
-                android:layout_marginLeft="@dimen/dm034"
-                android:layout_marginRight="@dimen/dm034"
-                android:layout_marginTop="@dimen/dm056"
-                android:layout_marginBottom="@dimen/dm056"
-                android:background="@drawable/get_money_selector"
-                android:gravity="center"
-                android:button="@null"
-                android:text="领取奖励，并存入钱包"
-                android:textColor="@color/white"
-                android:textSize="@dimen/dm024" />
-        </LinearLayout>
+        <CheckBox
+            android:id="@+id/cb_give_money"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dm072"
+            android:layout_marginLeft="@dimen/dm034"
+            android:layout_marginRight="@dimen/dm034"
+            android:layout_marginTop="@dimen/dm056"
+            android:layout_marginBottom="@dimen/dm056"
+            android:background="@drawable/get_money_selector"
+            android:gravity="center"
+            android:button="@null"
+            android:text="领取奖励，并存入钱包"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dm024" />
 
-
-    </ScrollView>
+    </LinearLayout>
 </LinearLayout>
