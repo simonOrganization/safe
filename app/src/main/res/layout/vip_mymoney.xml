@@ -40,7 +40,7 @@
         android:layout_gravity="end"
         android:gravity="center"
         android:padding="@dimen/dm020"
-        android:text="更改提现号码"
+        android:text="更改提现账号"
         android:textColor="@color/commen_reg"
         android:textSize="@dimen/dm024" />
 

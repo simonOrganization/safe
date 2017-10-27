@@ -15,17 +15,18 @@
             android:id="@+id/iv_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_close_red"
+            android:src="@drawable/icon_close_white"
+            android:layout_alignParentRight="true"
             android:padding="@dimen/dm020"/>
 
         <ImageView
             android:id="@+id/iv_red_get"
-            android:layout_width="@dimen/dm320"
-            android:layout_height="@dimen/dm080"
+            android:layout_width="@dimen/dm100"
+            android:layout_height="@dimen/dm100"
             android:src="@drawable/img_btn_get"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/dm100"/>
+            android:layout_marginBottom="@dimen/dm120"/>
 
     </RelativeLayout>
 

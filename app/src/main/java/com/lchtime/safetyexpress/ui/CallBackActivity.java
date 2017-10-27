@@ -69,25 +69,8 @@ public class CallBackActivity extends Activity implements IWeiboHandler.Response
                     Toast.makeText(this, "成功", Toast.LENGTH_LONG).show();
                     if (GetMoneyActivity.flag == 1) {
                         GetMoneyActivity.flag = 0;
-                        protocal.postShare(new ShareProtocal.ShareInfo() {
-                            @Override
-                            public void shareResponse(String response) {
-                                if (TextUtils.isEmpty(response)) {
-                                    CommonUtils.toastMessage("请重新分享已确保获得奖励。");
-                                    return;
-                                }
-
-                                Result bean = gson.fromJson(response, Result.class);
-                                if ("10".equals(bean.result.code)) {
-                                    CommonUtils.toastMessage(bean.result.info);
-                                } else {
-                                    CommonUtils.toastMessage(bean.result.info);
-                                }
-                            }
-                        });
+                        GetMoneyActivity.getmoney();
                     }
-
-
                     if (H5DetailUI.flag == 1&& !TextUtils.isEmpty(qc_id)){
                         H5DetailUI.flag = 0;
                         protocal.postCircleShare(qc_id,new ShareProtocal.ShareInfo() {

@@ -21,6 +21,8 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.google.android.gms.internal.bd.f;
+
 /**
  * Created by android-cp on 2017/4/21.我的钱包界面
  */
@@ -89,8 +91,8 @@ public class MyMoneyActivity extends BaseUI implements View.OnClickListener {
 
     @Override
     protected void onResume() {
-        super.onResume();
         getData();
+        super.onResume();
     }
 
     private void getData() {
@@ -102,21 +104,19 @@ public class MyMoneyActivity extends BaseUI implements View.OnClickListener {
                     return;
                 }
                 bean = (MyAccountBean) response;
+
                 tvAccountBalance.setText("¥" + bean.ud_amount);
+                tvChangeAccount.setOnClickListener(MyMoneyActivity.this);
                 if ("1".equals(bean.tparty.ud_zfb_account)) {
                     //没有绑定支付宝
                     isBind = false;
-                    //tvBindZhifubao.setText("未绑定");
-                    //tvBindZhifubao.setTextColor(getResources().getColor(R.color.commen_reg));
                     tvChangeAccount.setText("授权到支付宝");
-                    item_authorization_zhifubao.setBackgroundResource(R.drawable.shape_bg_pink_gray);
+                    //item_authorization_zhifubao.setBackgroundResource(R.drawable.shape_bg_pink_gray);
                 } else {
                     //绑定了支付宝
                     isBind = true;
-                    //tvBindZhifubao.setText("已绑定");
-                    //tvBindZhifubao.setTextColor(getResources().getColor(R.color.title_999));
-                    tvChangeAccount.setVisibility(View.VISIBLE);
-                    tvChangeAccount.setOnClickListener(MyMoneyActivity.this);
+                    tvChangeAccount.setText("更改提现账号");
+                    //item_authorization_zhifubao.setBackgroundResource(R.drawable.shape_bg_pink);
                 }
             }
         });
@@ -136,10 +136,11 @@ public class MyMoneyActivity extends BaseUI implements View.OnClickListener {
                 CommonUtils.toastMessage("请检查网络");
             }
         }else {
-            /*//如果没有绑定，进入绑定账号界面
+           /* //如果没有绑定，进入绑定账号界面
             Intent intent = new Intent(this, BindZhiFuBaoActivity.class);
             intent.putExtra("title","绑定账号");
             startActivity(intent);*/
+            CommonUtils.toastMessage("请绑定支付宝账号再提现");
         }
 
     }
@@ -148,19 +149,32 @@ public class MyMoneyActivity extends BaseUI implements View.OnClickListener {
     public void onClick(View v) {
         //如果点击了更换提现账号
         if (v == tvChangeAccount){
-            if(isBind){ //如果已经绑定
-
-            }
             Intent intent = new Intent(this, BindZhiFuBaoActivity.class);
-            intent.putExtra("title","更换提现账号");
+            if(!isBind){ //如果没有绑定支付宝
+                intent.putExtra("title","绑定账号");
+            }else{
+                intent.putExtra("title","更换提现账号");
+            }
             startActivity(intent);
         }
     }
+
+    /*@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == BIND && resultCode == RESULT_OK){
+            getData();
+        }
+
+
+
+    }*/
 
     @Override
     protected void clickEvent() {
         //右上侧账户明细点击事件
         Intent intent = new Intent(this,AccountDetailActivity.class);
         startActivity(intent);
+
     }
 }

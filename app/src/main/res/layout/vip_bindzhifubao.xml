@@ -14,7 +14,7 @@
         android:layout_height="@dimen/dm072"
         android:textSize="@dimen/dm026"
         android:textColor="@color/black"
-        android:text="请输入您的支付宝账户和姓名，确保无误后提交即可"
+        android:text="请输入您的支付宝账号和姓名，确保无误后提交即可"
         />
     <EditText
         android:id="@+id/editText_name"
@@ -38,7 +38,7 @@
         android:layout_marginRight="@dimen/dm050"
         android:layout_marginTop="@dimen/dm024"
         android:background="@drawable/rectangle"
-        android:hint="输入支付宝账户"
+        android:hint="输入支付宝账号"
         android:inputType="number"
         android:padding="@dimen/dm016"
         android:textColorHint="@color/title_999"

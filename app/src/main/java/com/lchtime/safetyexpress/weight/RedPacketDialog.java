@@ -20,16 +20,16 @@ public class RedPacketDialog extends Dialog implements View.OnClickListener{
 
     private Context mContext;
 
-    public RedPacketDialog(@NonNull Context context) {
+    public RedPacketDialog(Context context) {
         super(context , R.style.MyDialogStyle);
         mContext = context;
     }
 
-    public RedPacketDialog(@NonNull Context context, @StyleRes int themeResId) {
+    public RedPacketDialog(Context context, int themeResId) {
         super(context, themeResId);
     }
 
-    protected RedPacketDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
+    protected RedPacketDialog(Context context, boolean cancelable, OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
     }
 

@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.ui.home;
 
+import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.lchtime.safetyexpress.ui.vip.VipInfoUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.LoginInternetRequest;
 import com.lchtime.safetyexpress.utils.SpTools;
+import com.lchtime.safetyexpress.weight.GetRedPacketDialog;
 import com.lchtime.safetyexpress.weight.LoginDialog;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.tencent.mm.sdk.openapi.IWXAPI;
@@ -41,14 +43,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.hyphenate.easeui.bean.EaseConstants.userId;
 
 
 /**
  * Created by Dreamer on 2017/6/14. 轮播图分享得奖界面
  */
 @ContentView(R.layout.activity_get_money)
-public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
+public class GetMoneyActivity extends BaseUI{
 
 
     @BindView(R.id.ll_home)
@@ -85,14 +86,13 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
     LinearLayout mForth;
     @BindView(R.id.money_progress_bar)
     ImageView mMoneyProgressBar;
-    @BindView(R.id.cb_give_money)
-    CheckBox mCbGiveMoney;
+    /*@BindView(R.id.cb_give_money)
+    CheckBox mCbGiveMoney;*/
     @BindView(R.id.tv_small_title)
     TextView mSmallTitle;
     private List<LinearLayout> list = new ArrayList<>();
     private List<ImageView> listImg = new ArrayList<>();
     private String ub_id;
-    private int x = 0;
 
 
     public static IWXAPI api;
@@ -100,6 +100,7 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
 
     public static int flag = 0;
     public boolean isGetMoney = false; //是否已经领取奖励
+    public static Context mContext;
 
     @Override
     protected void back() {
@@ -112,7 +113,7 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
         setTitle("");
         sharePop = new SharePop(mIvThird, GetMoneyActivity.this, R.layout.pop_share);
         initWX();
-
+        mContext = this;
 
         list.add(mFirst);
         list.add(mSecond);
@@ -138,10 +139,7 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
         } else {
             getInfo();
         }
-//        setOnclickCheckBox(3);
-//         setSelected(3);
 
-        mCbGiveMoney.setOnClickListener(this);
     }
 
     private void initWX() {
@@ -151,20 +149,13 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
         api.registerApp(ShareConstants.WX_APP_ID);
     }
 
-    private Gson gson = new Gson();
-
     private void getInfo() {
-        x = 1;
         LoginInternetRequest.getVipInfo(ub_id, new LoginInternetRequest.ForResultListener() {
             @Override
             public void onResponseMessage(String code) {
                 if (!TextUtils.isEmpty(code)) {
-                    VipInfoBean vipInfoBean = gson.fromJson(code, VipInfoBean.class);
+                    VipInfoBean vipInfoBean = new Gson().fromJson(code, VipInfoBean.class);
                     if (vipInfoBean != null) {
-//                        InitInfo.phoneNumber = vipInfoBean.user_detail.ub_phone;
-//                        InitInfo.vipInfoBean = vipInfoBean;
-//                        InitInfo.isLogin = true;
-//                        SpTools.setString(GetMoneyActivity.this, Constants.nik_name, vipInfoBean.user_detail.ud_nickname);
                         if ((TextUtils.isEmpty(vipInfoBean.user_detail.ud_profession)) ||
                                 (TextUtils.isEmpty(vipInfoBean.user_detail.ud_post)) ||
                                 (TextUtils.isEmpty(vipInfoBean.user_detail.ud_addr))) {
@@ -175,10 +166,10 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
                             if ("未分享".equals(vipInfoBean.user_detail.share)){
                                 setSelected(2);
                                 mSmallTitle.setText("您还未分享");
-                            }else if ("已分享,未领奖".equals(vipInfoBean.user_detail.share)){
+                            }/*else if ("已分享,未领奖".equals(vipInfoBean.user_detail.share)){
                                 setSelected(3);
                                 mSmallTitle.setText("您还未领奖");
-                            }else if ("已领奖".equals(vipInfoBean.user_detail.share)){
+                            }*/else if ("已领奖".equals(vipInfoBean.user_detail.share)){
                                 setSelected(4);
                                 mSmallTitle.setText("您已完成任务！");
                                 isGetMoney = true; //表示已经领取过奖励
@@ -197,15 +188,12 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
 
     }
 
-
     @Override
     protected void prepareData() {
 
     }
 
-
     public void setSelected(final int num) {
-
         //设置bar
         if (num == 0) {
             mMoneyProgressBar.setImageResource(R.drawable.money_bar1);
@@ -217,11 +205,6 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
             mMoneyProgressBar.setImageResource(R.drawable.money_bar4);
         }
 
-        if (num == 3){
-            mCbGiveMoney.setChecked(false);
-        }else {
-            mCbGiveMoney.setChecked(true);
-        }
         for (int i = 0;i<list.size(); i++){
             if (i == num){
                 list.get(i).setVisibility(View.VISIBLE);
@@ -284,7 +267,6 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
                             break;
                         case R.id.ll_share_sina:
                             sharePop.dismiss();
-//                        ShareWeiBo.getShareWeiboInstants().shareToWeibo(H5DetailUI.this,"微博分享测试" + baseUrl,mWeiboShareAPI);
                             Intent intent = new Intent(GetMoneyActivity.this,CallBackActivity.class);
                             intent.putExtra("shareUrl",Constants.SHARE);
                             intent.putExtra("more","more");
@@ -294,7 +276,7 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
                             break;
                         case R.id.ll_share_qq:
                             sharePop.dismiss();
-                            ShareQQ.getShareQQInstants().shareToQQ(GetMoneyActivity.this,qqShareListener, Constants.SHARE_TITLE,Constants.SHARE_DES,Constants.SHARE);
+                            ShareQQ.getShareQQInstants().shareToQQ(GetMoneyActivity.this , qqShareListener , Constants.SHARE_TITLE,Constants.SHARE_DES,Constants.SHARE);
                             break;
                     }
                 }
@@ -304,49 +286,7 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
         }
     }
 
-
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.cb_give_money){
-            mCbGiveMoney.setChecked(true);
-            if(isGetMoney){
-                makeText("您已领取奖励，请在我的钱包查看");
-                return;
-            }
-
-            if (!mCbGiveMoney.isChecked()){
-                //mCbGiveMoney.setChecked(true);
-            }else {
-                //执行去领奖操作
-                //mCbGiveMoney.setChecked(true);
-
-                protocal.postGetMoney(new ShareProtocal.ShareInfo() {
-                    @Override
-                    public void shareResponse(String response) {
-                        if (TextUtils.isEmpty(response)){
-                            CommonUtils.toastMessage("获取奖励失败，请重新再试！");
-                            mCbGiveMoney.setChecked(false);
-                            return;
-                        }
-
-                        Result bean = gson.fromJson(response,Result.class);
-                        if ("10".equals(bean.result.code)){
-                            CommonUtils.toastMessage(bean.result.info);
-                            mCbGiveMoney.setChecked(true);
-
-                        }else {
-                            CommonUtils.toastMessage(bean.result.info);
-                            mCbGiveMoney.setChecked(false);
-                        }
-                    }
-                });
-
-            }
-        }
-    }
-
-
-    ShareProtocal protocal = new ShareProtocal();
+    static ShareProtocal protocal = new ShareProtocal();
     IUiListener qqShareListener = new IUiListener() {
         @Override
         public void onCancel() {
@@ -355,28 +295,7 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
 
         @Override
         public void onComplete(Object response) {
-            flag = 0;
-            // TODO Auto-generated method stub
-            protocal.postShare(new ShareProtocal.ShareInfo() {
-                @Override
-                public void shareResponse(String response) {
-
-                    if (TextUtils.isEmpty(response)){
-                        CommonUtils.toastMessage("请重新分享已确保获得奖励。");
-                        return;
-                    }
-
-                    Result bean = gson.fromJson(response,Result.class);
-                    if ("10".equals(bean.result.code)){
-                        CommonUtils.toastMessage(bean.result.info);
-                    }else {
-                        CommonUtils.toastMessage(bean.result.info);
-                    }
-                }
-            });
-
-//            Util.toastMessage(GetMoneyActivity.this, "onComplete: " + response.toString());
-
+            getmoney();
         }
 
         @Override
@@ -385,6 +304,30 @@ public class GetMoneyActivity extends BaseUI implements View.OnClickListener {
             Util.toastMessage(GetMoneyActivity.this, "onError: " + e.errorMessage, "e");
         }
     };
+
+    /**
+     * 获取奖励
+     */
+    public static void getmoney() {
+        protocal.postGetMoney(new ShareProtocal.ShareInfo() {
+            @Override
+            public void shareResponse(String response) {
+                if (TextUtils.isEmpty(response)){
+                    CommonUtils.toastMessage("获取奖励失败，请重新再试！");
+                    return;
+                }
+
+                Result bean = new Gson().fromJson(response,Result.class);
+                if ("10".equals(bean.result.code)){
+                    GetRedPacketDialog dialog = new GetRedPacketDialog(mContext , bean.money);
+                    dialog.show();
+
+                }else {
+                    CommonUtils.toastMessage(bean.result.info);
+                }
+            }
+        });
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

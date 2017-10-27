@@ -203,11 +203,12 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dm021"
             android:layout_marginLeft="@dimen/dm034"
-            android:layout_marginRight="@dimen/dm034"/>
+            android:layout_marginRight="@dimen/dm034"
+            android:layout_marginBottom="@dimen/dm020"/>
 
 
 
-        <CheckBox
+        <!--<CheckBox
             android:id="@+id/cb_give_money"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dm072"
@@ -220,7 +221,7 @@
             android:button="@null"
             android:text="领取奖励，并存入钱包"
             android:textColor="@color/white"
-            android:textSize="@dimen/dm024" />
+            android:textSize="@dimen/dm024" />-->
 
     </LinearLayout>
 </LinearLayout>

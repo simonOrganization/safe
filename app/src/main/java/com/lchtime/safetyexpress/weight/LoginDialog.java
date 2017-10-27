@@ -63,6 +63,7 @@ public class LoginDialog extends Dialog implements View.OnClickListener {
         switch(v.getId()){
             case R.id.tv_login:
                 listener.OnClickLogin();
+                dismiss();
                 break;
             case R.id.iv_close:
                 dismiss();

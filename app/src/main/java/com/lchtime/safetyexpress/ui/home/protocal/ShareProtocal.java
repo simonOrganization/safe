@@ -86,15 +86,15 @@ public class ShareProtocal {
                             listener.shareResponse(null);
                             return;
                         }
-                        VideoRes videoRes = (VideoRes) JsonUtils.stringToObject(response,VideoRes.class);
-                        if(videoRes.getResult().getCode().equals("10")){
+                        /*VideoRes videoRes = (VideoRes) JsonUtils.stringToObject(response,VideoRes.class);
+                        if(videoRes.getResult().getCode().equals("10")){*/
                             if (listener != null){
                                 listener.shareResponse(response);
                             }
-                        }else{
+                        /*}else{
                             CommonUtils.toastMessage(videoRes.getResult().getInfo());
                             listener.shareResponse(null);
-                        }
+                        }*/
                     }
                 });
     }

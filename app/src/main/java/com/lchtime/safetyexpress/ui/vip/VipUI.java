@@ -695,8 +695,8 @@ public class VipUI extends BaseUI implements View.OnClickListener {
             isLogin = false;
             backgroundAlpha(1f);
             pb_progress.setVisibility(View.GONE);
-            Toast.makeText(getApplicationContext(), "授权失败,请重试！", Toast.LENGTH_SHORT)
-                    .show();
+            /*Toast.makeText(getApplicationContext(), "授权失败,请重试！", Toast.LENGTH_SHORT)
+                    .show();*/
         }
 
         @Override

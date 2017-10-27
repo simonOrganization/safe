@@ -30,7 +30,7 @@ public abstract class BaseUI extends FragmentActivity {
     private MyApplication application;
     private long exitTime = 0;
     private LinearLayout.LayoutParams params;
-    protected Context mContext;
+    protected  Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

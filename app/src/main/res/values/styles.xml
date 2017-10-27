@@ -12,10 +12,7 @@
 
         parent="Theme.AppCompat.Light.NoActionBar">
 
-        <item
-
-            name="toolbarStyle">@style/MyToolbar
-        </item>
+        <item name="toolbarStyle">@style/MyToolbar</item>
 
     </style>
     <!-- 底端tab -->

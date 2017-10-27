@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="@dimen/dm465"
+        android:layout_height="@dimen/dm700"
+        android:background="@drawable/bg_get_redpackaet"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_close_white"
+            android:padding="@dimen/dm030"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dm050"/>
+
+        <TextView
+            android:id="@+id/tv_money_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/iv_look_money"
+            android:text="888元!"
+            android:textColor="@color/tv_fae1a9"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/dm055"
+            android:layout_marginBottom="@dimen/dm080"/>
+
+
+        <ImageView
+            android:id="@+id/iv_look_money"
+            android:layout_width="@dimen/dm320"
+            android:layout_height="@dimen/dm080"
+            android:src="@drawable/icon_look_money"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dm100"/>
+
+    </RelativeLayout>
+
+
+
+
+
+</RelativeLayout>
