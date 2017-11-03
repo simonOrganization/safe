@@ -441,7 +441,7 @@ public class H5DetailUI extends BaseUI implements IWeiboHandler.Response{
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 //如果是淘宝或者天猫的链接，返回父类方法
-                if(url.contains("taobao://") || url.contains("tmall://")){
+                if(url.contains("taobao") || url.contains("tmall")){
                     return super.shouldOverrideUrlLoading(view , url);
                 }
                 //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器

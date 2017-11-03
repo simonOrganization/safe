@@ -155,7 +155,8 @@ public class MyConllected extends BaseUI {
         public void onPageSelected(int position) {
             currentFragment = FragmentFactory.createFragment(position);
             LoadingPager loadingPager = currentFragment.getLoadingPager();
-            loadingPager.triggerLoadData();
+            if(loadingPager != null)
+                loadingPager.triggerLoadData();
             if(flag){
                 clickEvent();
             }

@@ -678,7 +678,7 @@ public class VideoH5Activity extends BaseUI implements IWeiboHandler.Response {
      * 返回
      */
     @OnClick(R.id.iv_back)
-    private void onBack(){
+    private void onBack(View view){
         finish();
     }
     /**

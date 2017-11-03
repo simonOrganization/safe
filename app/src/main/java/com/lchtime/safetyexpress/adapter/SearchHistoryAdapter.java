@@ -30,6 +30,7 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<SearchHistoryAdap
 
     @Override
     public SearchHistoryHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // if use "parent", only first line will show up
         View view = LayoutInflater.from(context).inflate(R.layout.item_search_history , null , false);
         SearchHistoryHolder holder = new SearchHistoryHolder(view);
         return holder;

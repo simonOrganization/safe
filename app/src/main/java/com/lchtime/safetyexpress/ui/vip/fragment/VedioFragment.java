@@ -44,7 +44,7 @@ public class VedioFragment extends BaseFragment {
     @Override
     public LoadingPager.LoadedResult initData() {
 
-            getVideoList("9","");
+        getVideoList("9","");
 
         if (loadedResult == null) {
             loadedResult = checkResult(videoList);

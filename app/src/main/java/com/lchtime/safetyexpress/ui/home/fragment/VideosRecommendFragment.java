@@ -3,10 +3,7 @@ package com.lchtime.safetyexpress.ui.home.fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +13,9 @@ import com.lchtime.safetyexpress.adapter.HomeVideosRecommendAdapter;
 import com.lchtime.safetyexpress.bean.NewsBean;
 import com.lchtime.safetyexpress.bean.res.VideoRes;
 import com.lchtime.safetyexpress.ui.home.protocal.VideoProtocal;
+import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView;
-import com.lchtime.safetyexpress.views.EmptyRecyclerView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -34,19 +31,18 @@ public class VideosRecommendFragment extends BaseHintFragment {
     //列表展示
     @ViewInject(R.id.refreshLayout)
     private PullLoadMoreRecyclerView refreshLayout;
-    @ViewInject(R.id.home_new_fragment_rc)
-    private EmptyRecyclerView home_new_fragment_rc;
+    /*@ViewInject(R.id.home_new_fragment_rc)
+    private EmptyRecyclerView home_new_fragment_rc;*/
 
     private HomeVideosRecommendAdapter homeVideosRecommendAdapter;
 
     private VideoProtocal protocal = new VideoProtocal();
     public ArrayList<NewsBean> videoList;
-    private int pageIndex = 0;
     private DialogUtil mDialog;
     private boolean isLoaded = false;
     private boolean isFirst = true;
-    int footPage = 0;
-    int headPage = 0;
+    int footPage = 1;
+    int totalpage = 1;
     private String cd_id;
 
     @Nullable
@@ -62,14 +58,17 @@ public class VideosRecommendFragment extends BaseHintFragment {
         super.onViewCreated(view, savedInstanceState);
         ViewUtils.inject(this, view);
 
-        home_new_fragment_rc.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //home_new_fragment_rc.setLayoutManager(new LinearLayoutManager(getActivity()));
+        refreshLayout.setLinearLayout();
         videoList = new ArrayList<NewsBean>();
         Bundle bundle = getArguments();
         cd_id = bundle.getString("cd_id");
 
         homeVideosRecommendAdapter = new HomeVideosRecommendAdapter(getActivity(),videoList);
         refreshLayout.setAdapter(homeVideosRecommendAdapter);
-
+        refreshLayout.setFooterViewText("加载中...");
+        refreshLayout.setFooterViewBackgroundColor(R.color.white);
+        refreshLayout.setPushRefreshEnable(true);
     }
 
     @Override
@@ -77,7 +76,7 @@ public class VideosRecommendFragment extends BaseHintFragment {
         super.onActivityCreated(savedInstanceState);
         isFirst = false;
         if(isVisible){
-            lazyLoad(); //是不是base调用的
+            lazyLoad();
         }
         refreshLayout.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
             @Override
@@ -85,23 +84,25 @@ public class VideosRecommendFragment extends BaseHintFragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        footPage = 0;
+                        footPage = 1;
                         videoList.clear();
 
                         if(!TextUtils.isEmpty(cd_id)){
 
-                            protocal.getVideoList("0", cd_id,new VideoProtocal.VideoListListener() {
+                            protocal.getVideoList("1", cd_id,new VideoProtocal.VideoListListener() {
                                 @Override
                                 public void videoListResponse(VideoRes videoRes) {
+                                    totalpage = videoRes.totalpage;
                                     videoList.clear();
                                     videoList.addAll(videoRes.cms_context);
                                     homeVideosRecommendAdapter.notifyDataSetChanged();
                                     refreshLayout.setPullLoadMoreCompleted();
+                                    footPage++;
                                 }
 
                                 @Override
                                 public void onError() {
-
+                                    refreshLayout.setPullLoadMoreCompleted();
                                 }
                             });
                         }
@@ -116,25 +117,27 @@ public class VideosRecommendFragment extends BaseHintFragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        //如果是推荐或者是热点
-                        footPage++;
+                        if(footPage > totalpage){
+                            CommonUtils.toastMessage("没有更多了");
+                            refreshLayout.setPullLoadMoreCompleted();
+                        }else if(!TextUtils.isEmpty(cd_id)){
+                                protocal.getVideoList(footPage + "", cd_id,new VideoProtocal.VideoListListener() {
+                                    @Override
+                                    public void videoListResponse(VideoRes videoRes) {
+                                        totalpage = videoRes.totalpage;
+                                        videoList.addAll(videoRes.cms_context);
+                                        homeVideosRecommendAdapter.notifyDataSetChanged();
+                                        refreshLayout.setPullLoadMoreCompleted();
+                                        footPage++;
+                                    }
 
-                        if(!TextUtils.isEmpty(cd_id)){
-                            footPage++;
-                            protocal.getVideoList(footPage + "", cd_id,new VideoProtocal.VideoListListener() {
-                                @Override
-                                public void videoListResponse(VideoRes videoRes) {
-                                    videoList.addAll(videoRes.cms_context);
-                                    homeVideosRecommendAdapter .notifyDataSetChanged();
-                                }
-
-                                @Override
-                                public void onError() {
-
-                                }
-                            });
-                        }
-                        refreshLayout.setPullLoadMoreCompleted();
+                                    @Override
+                                    public void onError() {
+                                        refreshLayout.setPullLoadMoreCompleted();
+                                    }
+                                });
+                            }
+                        //refreshLayout.setPullLoadMoreCompleted();
                     }
                 },0);
             }
@@ -148,8 +151,6 @@ public class VideosRecommendFragment extends BaseHintFragment {
     public void onDestroy() {
         super.onDestroy();
         videoList = null;
-        headPage = 0;
-        footPage = 0;
     }
 
     @Override
@@ -157,21 +158,24 @@ public class VideosRecommendFragment extends BaseHintFragment {
         if(!isLoaded && !isFirst){
             isLoaded = true;
             mDialog.show();
-            protocal.getVideoList("0" , cd_id , new VideoProtocal.VideoListListener() {
+            protocal.getVideoList("1" , cd_id , new VideoProtocal.VideoListListener() {
                 @Override
                 public void videoListResponse(VideoRes videoRes) {
-
+                    totalpage = videoRes.totalpage;
+                    footPage++;
                     mDialog.dissmiss();
                     videoList.clear();
                     videoList.addAll(videoRes.cms_context);
                     //if(getActivity() != null){
                     homeVideosRecommendAdapter.notifyDataSetChanged();
+                    refreshLayout.setPullLoadMoreCompleted();
                     //}
                 }
 
                 @Override
                 public void onError() {
                     mDialog.dissmiss();
+                    refreshLayout.setPullLoadMoreCompleted();
                 }
             });
         }

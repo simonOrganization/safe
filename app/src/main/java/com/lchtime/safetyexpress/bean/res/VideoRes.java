@@ -15,6 +15,7 @@ public class VideoRes {
     public ArrayList<NewTypeBean> cms_dir;
     //新闻列表
     public ArrayList<NewsBean> cms_context;
+    public int totalpage;
 
     public BasicResult getResult() {
         return result;
