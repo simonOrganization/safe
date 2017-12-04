@@ -189,9 +189,7 @@ public abstract class BaseUI extends FragmentActivity {
         if ((System.currentTimeMillis() - exitTime) > 2000) {
             Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
             exitTime = System.currentTimeMillis();
-            Log.i("fxp==" , "BaseUI    start");
         } else {
-            Log.i("fxp==" , "BaseUI    start");
             finish();
             //System.exit(0);
         }

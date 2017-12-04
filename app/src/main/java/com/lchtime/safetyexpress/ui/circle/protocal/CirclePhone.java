@@ -39,6 +39,8 @@ public class CirclePhone extends AppCompatActivity {
             for(String imageUrl : urlList){
                 PhotoView photoView = new PhotoView(CirclePhone.this);
                 Glide.with(CirclePhone.this).load(imageUrl)
+                        .placeholder(R.drawable.home_banner)
+                        .error(R.drawable.home_banner)
                         .skipMemoryCache(true)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .into(photoView);

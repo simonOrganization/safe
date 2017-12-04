@@ -30,8 +30,8 @@ android {
             applicationId "com.lchtime.safetyexpress"
             minSdkVersion 16
             targetSdkVersion 25
-            versionCode 6
-            versionName "1.5"
+            versionCode 9
+            versionName "1.8"
             testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 //        signingConfig signingConfigs.safety
             multiDexEnabled true
@@ -96,4 +96,5 @@ android {
 }
 
 dependencies {
+    compile files('libs/bdplayer.jar')
 }

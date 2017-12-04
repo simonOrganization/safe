@@ -66,7 +66,7 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
                 .placeholder(R.drawable.circle_user_image).error(R.drawable.circle_user_image)
                 .into(myViewHolder.raiv_hotcircle_icon);
         myViewHolder.tv_hotcircle_name.setText(bean.ud_nickname);
-        myViewHolder.cb_hotcircle_subscribe.setChecked(true);
+        //myViewHolder.cb_hotcircle_subscribe.setChecked(true);
 
         myViewHolder.raiv_hotcircle_icon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +78,7 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
             }
         });
 
-        myViewHolder.cb_hotcircle_subscribe.setOnClickListener(new View.OnClickListener() {
+        /*myViewHolder.cb_hotcircle_subscribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (context instanceof SubscribActivity){
@@ -110,7 +110,7 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
 
 
             }
-        });
+        });*/
 
 
 
@@ -121,7 +121,7 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
     private void removeSubscribe(final CircleSubscribeHolder myViewHolder, MydyBean.DyBean bean, final int position) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
            // CommonUtils.toastMessage("您当前无网络，请联网再试");
-            myViewHolder.cb_hotcircle_subscribe.setChecked(true);
+            //myViewHolder.cb_hotcircle_subscribe.setChecked(true);
             return;
         }
         String userid = SpTools.getUserId(context);
@@ -134,7 +134,7 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
                 }
             });
             dialog.show();
-            myViewHolder.cb_hotcircle_subscribe.setChecked(true);
+            //myViewHolder.cb_hotcircle_subscribe.setChecked(true);
             return;
         }else {
             protocal.changeSubscribe(userid, bean.ud_ub_id, "0" , new CircleProtocal.CircleListener() {
@@ -143,7 +143,7 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
 
                     if (response == null){
                         //订阅或者取消订阅失败了
-                        myViewHolder.cb_hotcircle_subscribe.setChecked(true);
+                        //myViewHolder.cb_hotcircle_subscribe.setChecked(true);
                         CommonUtils.toastMessage("请重试！");
                         return;
                     }
@@ -162,7 +162,7 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
                         InitInfo.circleRefresh = true;
                     }else {
                         //订阅或者取消订阅失败了
-                        myViewHolder.cb_hotcircle_subscribe.setChecked(true);
+                        //myViewHolder.cb_hotcircle_subscribe.setChecked(true);
                     }
                     CommonUtils.toastMessage(response.result.getInfo());
                 }
@@ -179,8 +179,8 @@ public class CircleSubscribAdapter extends RecyclerView.Adapter {
         ImageView raiv_hotcircle_icon;
         @BindView(R.id.tv_hotcircle_name)
         TextView tv_hotcircle_name;
-        @BindView(R.id.iv_hotcircle_subscribe)
-        CheckBox cb_hotcircle_subscribe;
+        /*@BindView(R.id.iv_hotcircle_subscribe)
+        CheckBox cb_hotcircle_subscribe;*/
         public CircleSubscribeHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);

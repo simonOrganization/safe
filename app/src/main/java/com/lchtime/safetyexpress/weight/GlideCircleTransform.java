@@ -67,7 +67,6 @@ public class GlideCircleTransform extends BitmapTransformation {
         paint.setAntiAlias(true);
         float r = size / 2f;
         canvas.drawCircle(r, r, r, paint);
-        LogUtil.i("fxp", "返回数据");
         return result;
     }
     /**
@@ -78,7 +77,6 @@ public class GlideCircleTransform extends BitmapTransformation {
      */
     private static Bitmap roundCrop(BitmapPool pool, Bitmap source) {
         if (source == null) return null;
-        LogUtil.i("fxp" , "加载矩形");
         Bitmap result = pool.get(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);
         if (result == null) {
             result = Bitmap.createBitmap(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);

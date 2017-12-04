@@ -21,6 +21,8 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
 /**
  * 视频- 推荐
  * Created by user on 2017/4/18.
@@ -37,7 +39,7 @@ public class VideosRecommendFragment extends BaseHintFragment {
     private HomeVideosRecommendAdapter homeVideosRecommendAdapter;
 
     private VideoProtocal protocal = new VideoProtocal();
-    public ArrayList<NewsBean> videoList;
+    public ArrayList<NewsBean> videoList = new ArrayList();;
     private DialogUtil mDialog;
     private boolean isLoaded = false;
     private boolean isFirst = true;
@@ -60,7 +62,7 @@ public class VideosRecommendFragment extends BaseHintFragment {
 
         //home_new_fragment_rc.setLayoutManager(new LinearLayoutManager(getActivity()));
         refreshLayout.setLinearLayout();
-        videoList = new ArrayList<NewsBean>();
+
         Bundle bundle = getArguments();
         cd_id = bundle.getString("cd_id");
 
@@ -147,6 +149,7 @@ public class VideosRecommendFragment extends BaseHintFragment {
     }
 
 
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -164,7 +167,11 @@ public class VideosRecommendFragment extends BaseHintFragment {
                     totalpage = videoRes.totalpage;
                     footPage++;
                     mDialog.dissmiss();
-                    videoList.clear();
+                    if(videoList != null){
+                        videoList.clear();
+                    }else{
+                        videoList = new ArrayList();
+                    }
                     videoList.addAll(videoRes.cms_context);
                     //if(getActivity() != null){
                     homeVideosRecommendAdapter.notifyDataSetChanged();
@@ -179,5 +186,10 @@ public class VideosRecommendFragment extends BaseHintFragment {
                 }
             });
         }
+    }
+
+    @Override
+    protected void onHide() {
+        JCVideoPlayer.releaseAllVideos();
     }
 }

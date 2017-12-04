@@ -3,6 +3,8 @@ package com.lchtime.safetyexpress.ui.home;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -140,14 +142,20 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
             public void onItemClick(int position) {
 //                makeText("广告" + position);
                 String url = lunbo.get(position).url;
-                if (url == null || url.equals("")|| !url.contains("http://")) {
+                Log.i("yang","onItemClick===="+url);
+                if (TextUtils.isEmpty(url)) {
+                    return;
+                }else if(!url.contains("http")){
+                    Log.i("yang","else if(!url.contains(\"http\")===="+url);
                     Intent intent = new Intent(HomeUI.this, GetMoneyActivity.class);
                     startActivity(intent);
                 } else {
+                    Log.i("yang","else===="+url);
                     Intent intent = new Intent(HomeUI.this, H5DetailUI.class);
                     intent.putExtra("type", "url");
                     intent.putExtra("newsId", lunbo.get(position));
                     intent.putExtra("url", lunbo.get(position).url + "?timestamp=" + System.currentTimeMillis());
+//                    intent.putExtra("url", lunbo.get(position).url);
                     startActivity(intent);
                 }
             }
@@ -228,7 +236,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
 //       从缓存中获取数据
         FirstPic bean = (FirstPic) aCache.getAsObject(advDataUrl);
         //String advdata = SpTools.getString(mContext , advDataUrl , "");
-        //FirstPic bean = gson.fromJson(advdata , FirstPic.class);
+//        FirstPic bean = gson.fromJson(advdata , FirstPic.class);
         if (bean != null && bean.result != null && "10".equals(bean.result.code)) {
             lunbo.clear();
             lunbo.addAll(bean.lunbo);
@@ -312,7 +320,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
     @OnClick(R.id.ll_home_circle)
     private void getCircle(View view) {
         homeToCircleInterface.toCircleActivity();
-        makeText("微安全");
+        //makeText("微安全");
     }
 
     /**
@@ -495,7 +503,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         list.clear();
 
         //添加所有---------------
-        if (newsListRes.hot != null) {
+        if (newsListRes.hot != null && newsListRes.hot.size() > 0) {
             list.addAll(newsListRes.hot.get(0));
         }
 
@@ -541,7 +549,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
         }
         //aCache.clear();
         HotCircleBean hotCircleBean = (HotCircleBean) aCache.getAsObject(hotCircleUrl);
-        if (hotCircleBean != null) {
+        if (hotCircleBean != null && hotCircleBean.hot == null && hotCircleBean.hot.size() == 0) {
             if (hot == null) {
                 hot = hotCircleBean.hot;
             } else {
@@ -586,7 +594,7 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
      */
     private void initHotCircleDate(int page, HotCircleBean hotCircleBean) {
         isCircleComplete = true;
-        if (hotCircleBean == null) {
+        if (hotCircleBean == null || hotCircleBean.hot == null || hotCircleBean.hot.size() == 0) {
             if (isNewComplete && isVideoComplete && isCircleComplete) {
                 isNewComplete = false;
                 isVideoComplete = false;
@@ -595,21 +603,15 @@ public class HomeUI extends BaseUI implements SwipeRefreshLayout.OnRefreshListen
             }
             return;
         }
-        if (hot == null) {
-            hot = hotCircleBean.hot;
-        } else {
-            hot.clear();
-            hot.addAll(hotCircleBean.hot);
-        }
 
+        hot.clear();
+        hot.addAll(hotCircleBean.hot);
         //先清除
-
         hotList.clear();
-
         //添加所有---------------
         hotList.addAll(hot.get(page));
-
         homeHotCircleAdapter.notifyDataSetChanged();
+
         if (isNewComplete && isVideoComplete && isCircleComplete) {
             isNewComplete = false;
             isVideoComplete = false;

@@ -8,8 +8,8 @@ import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.res.VideoRes;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
-import com.mzhy.http.okhttp.OkHttpUtils;
-import com.mzhy.http.okhttp.callback.StringCallback;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import okhttp3.Call;
 
@@ -83,7 +83,6 @@ public class VideoProtocal {
                             listener.onError();
                             return;
                         }
-                        Log.i("fxp++++" , response);
                         VideoRes videoRes = (VideoRes) JsonUtils.stringToObject(response,VideoRes.class);
                         if(videoRes.getResult().getCode().equals("10")){
                             if (listener != null){

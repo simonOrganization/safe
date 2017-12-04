@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -45,6 +46,7 @@ import com.lchtime.safetyexpress.shareapi.wx.ShareWX;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.CallBackActivity;
 import com.lchtime.safetyexpress.ui.Const;
+import com.lchtime.safetyexpress.ui.circle.CircleUI;
 import com.lchtime.safetyexpress.ui.circle.SingleInfoUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CirclePhone;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
@@ -153,7 +155,8 @@ public class CircleH5Activity extends BaseUI implements IWeiboHandler.Response {
     TextView mTimeTv;
     @ViewInject(R.id.circle_item_image_rc)
     NoTouchRecycler mCircleRecycleView;//图片
-
+    @ViewInject(R.id.tv_delete)
+    TextView mDeleteTv;
 
 
     CircleProtocal circleProtocal = new CircleProtocal();
@@ -221,13 +224,11 @@ public class CircleH5Activity extends BaseUI implements IWeiboHandler.Response {
         if (!TextUtils.isEmpty(ub_id)){
             baseUrl = baseUrl + "&ub_id=" +ub_id;
         }
-
-
         sharePop = new SharePop(ll_right, mContext, R.layout.pop_share);
         init();
         if ("news".equals(type) || "video".equals(type)||"circle".equals(type) || "wenda".equals(type)) {
             initH5Info();
-      }
+        }
         //头像
         Glide.with(mContext).load(mDatabean.ud_photo_fileid)
                 .placeholder(R.drawable.circle_user_image)
@@ -237,7 +238,6 @@ public class CircleH5Activity extends BaseUI implements IWeiboHandler.Response {
         circle_item_title.setText(mDatabean.qc_auth);
         contentTv.setText(mDatabean.qc_context);
         mTimeTv.setText(CommonUtils.getSpaceTime(Long.parseLong(mDatabean.qc_date)));
-
 
         //如果有图片
         if (mDatabean.qc_video == null || mDatabean.qc_video.equals("0") || mDatabean.qc_video.equals("")) {
@@ -287,10 +287,31 @@ public class CircleH5Activity extends BaseUI implements IWeiboHandler.Response {
                 }
             });
         }
-
-        if(mDatabean.qc_ub_id.equals(ub_id)){//如果是自己的圈子
+        //如果是自己的圈子
+        if(mDatabean.qc_ub_id.equals(ub_id)){
             mSubscribeCb.setVisibility(View.INVISIBLE);
+            mDeleteTv.setVisibility(View.VISIBLE);
+            mDeleteTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new CircleProtocal().getDeleteCircle(ub_id, qc_id, new CircleProtocal.NormalListener() {
+                        @Override
+                        public void normalResponse(Object response) {
+                            if (response == null) {
+                                CommonUtils.toastMessage("删除圈子失败，请稍后再试");
+                                ((MyCircleActiveActivity) context).setIsLoading(false);
+                                return;
+                            }
+                            Result bean = (Result) response;
+                            CommonUtils.toastMessage(bean.result.info);
+                            setResult(RESULT_OK);
+                            finish();
+                        }
+                    });
+                }
+            });
         }else{
+            mDeleteTv.setVisibility(View.INVISIBLE);
             mSubscribeCb.setVisibility(View.VISIBLE);
             mSubscribeCb.setChecked("1".equals(mDatabean.is_dy));
             mSubscribeCb.setOnClickListener(new View.OnClickListener() {
@@ -407,6 +428,13 @@ public class CircleH5Activity extends BaseUI implements IWeiboHandler.Response {
         //mWebView.addJavascriptInterface(javascriptInterface, "java2js_laole918");
         mWebView.setWebChromeClient(mInsideWebChromeClient);
         //mWebView.setWebViewClient(mInsideWebViewClient);
+
+
+        //表示可以同时加载http  和  https
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            //settings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+            settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
     }
 
     private class InsideWebChromeClient extends WebChromeClient {
@@ -475,9 +503,6 @@ public class CircleH5Activity extends BaseUI implements IWeiboHandler.Response {
             mWebView.goBack();
             return;
         }
-        /*if(mVideoPaler.backPress()){
-            return;
-        }*/
         super.onBackPressed();
     }
 
@@ -490,35 +515,6 @@ public class CircleH5Activity extends BaseUI implements IWeiboHandler.Response {
         }
         super.onDestroy();
     }
-
-    /**
-     * 删除圈子
-     */
-    private void deleteCircle(final int position, String qc_id, CircleProtocal protocal) {
-        //MyCircleActiveBean.QuanziBean bean = circleOneList.get(position);
-        String userid = SpTools.getUserId(context);
-        if (TextUtils.isEmpty(userid)) {
-            CommonUtils.toastMessage("没有登陆！！");
-            //holder.ivCircleItemGreat.setChecked("1".equals(bean.zan));
-            return;
-        }
-        protocal.getDeleteCircle(userid, qc_id, new CircleProtocal.NormalListener() {
-            @Override
-            public void normalResponse(Object response) {
-                if (response == null) {
-                    CommonUtils.toastMessage("删除圈子失败，请稍后再试");
-                    ((MyCircleActiveActivity) context).setIsLoading(false);
-                    return;
-                }
-                Result bean = (Result) response;
-                CommonUtils.toastMessage(bean.result.info);
-                isChange = true;
-                finish();
-
-            }
-        });
-    }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -726,16 +722,10 @@ public class CircleH5Activity extends BaseUI implements IWeiboHandler.Response {
         }
         rl_pl.setVisibility(View.GONE);
         et_common.setText("");
-
         if (("circle".equals(type))){
-
             circleCommon(content,god);
-
         }
-
         god = "0";
-
-
     }
 
 
@@ -765,11 +755,8 @@ public class CircleH5Activity extends BaseUI implements IWeiboHandler.Response {
             }
         });
     }
-
-
     /**
      * 顶
-     *
      * @param view
      */@OnClick(R.id.cb_news_detail_zan)
     private void getZan(View view) {
@@ -959,7 +946,7 @@ public class CircleH5Activity extends BaseUI implements IWeiboHandler.Response {
     IUiListener qqShareListener = new IUiListener() {
         @Override
         public void onCancel() {
-            Util.toastMessage(CircleH5Activity.this, "onCancel: ");
+            Util.toastMessage(CircleH5Activity.this, "取消 ");
         }
 
         @Override

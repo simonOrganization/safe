@@ -114,6 +114,17 @@
                     android:textSize="@dimen/dm020"/>-->
 
             <!--</RelativeLayout>-->
+            <TextView
+                android:id="@+id/tv_recommend_time1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dm020"
+                android:layout_marginBottom="@dimen/dm008"
+                android:text="01:09"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dm020"/>
         </RelativeLayout>
 
         <LinearLayout

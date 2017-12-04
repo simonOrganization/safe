@@ -100,7 +100,6 @@ public class HomeSearchContentFragment extends Fragment {
         localContent = SpTools.getString(activity , LOCAL_CONTENT_KEY + mType);
         historyList = getHistoryList(localContent.split(","));
         mHistoryAdapter = new SearchHistoryAdapter(activity , historyList);
-        Log.e("fxp","----------"+mHistoryAdapter.getItemCount());
         slv_news_search_history.setLayoutManager(new LinearLayoutManager(activity));
         slv_news_search_history.setAdapter(mHistoryAdapter);
         mHistoryAdapter.setOnItemClickListener(new SearchHistoryAdapter.OnItemClickListener() {
@@ -193,7 +192,6 @@ public class HomeSearchContentFragment extends Fragment {
             });
             slv_news_search_history.addView(tv);*/
             historyList.add(key);
-            Log.i("fxp" , "刷新前的历史数据==" + historyList.toString());
             mHistoryAdapter.notifyDataSetChanged();
         }
     }

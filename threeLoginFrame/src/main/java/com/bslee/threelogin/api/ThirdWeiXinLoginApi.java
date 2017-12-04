@@ -14,6 +14,7 @@ import com.bslee.threelogin.db.LoginPlatForm;
 import com.bslee.threelogin.model.WeiXinToken;
 import com.bslee.threelogin.model.WeiXinUserInfo;
 import com.bslee.threelogin.network.HttpUrlUtils;
+import com.bslee.threelogin.util.ACache;
 import com.bslee.threelogin.util.UIUtils;
 import com.tencent.mm.sdk.modelmsg.SendAuth;
 import com.tencent.mm.sdk.openapi.IWXAPI;
@@ -23,7 +24,7 @@ public class ThirdWeiXinLoginApi {
 
 	private static IWXAPI mWXAPI;
 	private static String WXData;
-
+	private static String ACCESS_TOKEN = "access_token_cache";
 
 	public static void registerToWeiXin(Context ctx) {
 		mWXAPI = WXAPIFactory.createWXAPI(ctx, ThirdAppKey.WEIXIN_APPID, true);
@@ -81,13 +82,15 @@ public class ThirdWeiXinLoginApi {
 		return result;
 	}
 
-	public static void getOauthAcces(String code, OauthLoginListener oauth) {
+	public static void getOauthAcces(Context context ,String code, OauthLoginListener oauth) {
+		WXData = ACache.get(context).getAsString(ACCESS_TOKEN);
 		String url = "https://api.weixin.qq.com/" + "sns/oauth2/access_token?"
 				+ "appid=" + ThirdAppKey.WEIXIN_APPID + "&secret="
 				+ ThirdAppKey.WEIXIN_APPSECRET + "&code=" + code
 				+ "&grant_type=authorization_code";
 		if(WXData == null || WXData.equals("")){
 			WXData = HttpUrlUtils.httpClientGetJson(url);
+			ACache.get(context).put(ACCESS_TOKEN , WXData , 24 * 60 * 60 * 1000);
 		}
 		try {
 			JSONObject obj = new JSONObject(WXData);

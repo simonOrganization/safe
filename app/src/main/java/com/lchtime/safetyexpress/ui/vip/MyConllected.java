@@ -51,7 +51,7 @@ public class MyConllected extends BaseUI {
 
     @ViewInject(R.id.rv_delete_all)
     private RelativeLayout rv_delete;
-
+    
     private MyPagerAdapter myPagerAdapter;
 
     private String[] mMainTitle = {"新闻","视频","圈子"};

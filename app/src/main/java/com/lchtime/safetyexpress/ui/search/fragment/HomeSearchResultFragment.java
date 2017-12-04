@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.baidu.mapapi.map.Text;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.HomeNewAdapter;
 import com.lchtime.safetyexpress.adapter.HomeVideosRecommendAdapter;
@@ -20,6 +22,7 @@ import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
 import com.lchtime.safetyexpress.ui.search.protocal.SerchProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.SpTools;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -42,8 +45,14 @@ public class HomeSearchResultFragment extends Fragment {
     @ViewInject(R.id.llvideo_title)
     private LinearLayout llvideo_title;
 
+    @ViewInject(R.id.empty)
+    private View mEmptyView;
+    @ViewInject(R.id.tv_error)
+    private TextView mErrorView;
+
     private HomeNewsSearchUI activity;
     private String mType;
+    private String mId;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,7 +63,12 @@ public class HomeSearchResultFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ViewUtils.inject(this, view);
-
+        mErrorView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initData();
+            }
+        });
     }
 
     @Override
@@ -74,6 +88,7 @@ public class HomeSearchResultFragment extends Fragment {
     }
 
     private void initData() {
+        mId = SpTools.getUserId(getActivity());
         //初始化搜索
         getSearch(activity.getKey());
 
@@ -86,7 +101,7 @@ public class HomeSearchResultFragment extends Fragment {
         if (mProtocal == null){
             mProtocal = new SerchProtocal();
         }
-        mProtocal.getSearchResult(key, Integer.parseInt(mType), mType, new SerchProtocal.NormalListener() {
+        mProtocal.getSearchResult(key,mId, Integer.parseInt(mType), mType, new SerchProtocal.NormalListener() {
 
             @Override
             public void normalResponse(Object response) {
@@ -107,7 +122,6 @@ public class HomeSearchResultFragment extends Fragment {
                                 intent.putExtra("type","news");
                                 startActivity(intent);
                             }
-
                             @Override
                             public void setVideoPlay(String url) {
                                 Intent intent = new Intent(getContext(), MediaActivity.class);
@@ -119,6 +133,22 @@ public class HomeSearchResultFragment extends Fragment {
 
                         homeVideosRecommendAdapter = new HomeVideosRecommendAdapter(getActivity(),bean.sp_info);
                         slv_video_search.setAdapter(homeVideosRecommendAdapter);
+                        if(bean.news == null || bean.news.size() == 0){
+                            llnews_title.setVisibility(View.GONE);
+                        }else {
+                            llnews_title.setVisibility(View.VISIBLE);
+                        }
+                        if(bean.sp_info == null || bean.sp_info.size() == 0){
+                            llvideo_title.setVisibility(View.GONE);
+                        }else {
+                            llvideo_title.setVisibility(View.VISIBLE);
+                        }
+                        if(bean.news.size() == 0 &&bean.sp_info.size() == 0){
+                            mEmptyView.setVisibility(View.VISIBLE);
+                        }else {
+                            mEmptyView.setVisibility(View.GONE);
+                        }
+
                         break;
 
                 }

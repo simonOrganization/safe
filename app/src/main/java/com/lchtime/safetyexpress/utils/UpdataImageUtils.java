@@ -79,7 +79,7 @@ public class UpdataImageUtils {
         //if(list.size() <= 3){
             PostFormBuilder builder = OkHttpUtils.post()
                     .url(context.getResources().getString(R.string.service_host_address).concat(context.getResources().getString(R.string.upload)));
-        //PostFormBuilder builder = OkHttpUtils.post().url("http://fcar.lchtime.cn:8001/index.php/system/uploads");
+        //PostFormBuilder builder = OkHttpUtils.post().url("http://www.aqkcw.com/index.php/system/upload");
             for (int i = 0 ;i < list.size(); i ++){
                 builder.addFile("image[]" , list.get(i).getName() , list.get(i));
             }
@@ -90,20 +90,16 @@ public class UpdataImageUtils {
                     .build().execute(new StringCallback() {
                 @Override
                 public void onError(Call call, Exception e, int id) {
-                    mDialog.dissmiss();
+                    if (mDialog != null)
+                        mDialog.dissmiss();
+                    mListener.onResponse(null);
                     Toast.makeText(context,"上传图片失败，请重新上传", Toast.LENGTH_SHORT).show();
-                    //mListener.onResponse(null);
                 }
                 @Override
                 public void onResponse(String response, int id) {
                     if (mListener != null){
-                        /*UpdataBean updataBean = (UpdataBean) JsonUtils.stringToObject(response, UpdataBean.class);
-                        mListener.onResponse(updataBean);*/
                         mListener.onResponse(response);
-                    }else {
-                        mListener.onResponse(null);
                     }
-                    //Toast.makeText(context,"上传图片成功",Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -146,7 +142,6 @@ public class UpdataImageUtils {
     public static void saveBitmapFile(Bitmap bitmap , String str){
 
         File file = new File(MyApplication.getContext().getFilesDir(),str);//将要保存图片的路径
-        Log.d("fxp","file="+file.getName());
         try {
             if(file.exists()){
                 file.delete();

@@ -13,12 +13,18 @@
         <!--<include layout="@layout/title" />-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+            android:layout_height="@dimen/dm330">
+            <!--<fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
                 android:id="@+id/iv_recommend_img"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dm300"
-                />
+                />-->
+            <RelativeLayout
+                android:id="@+id/rl_videoplayer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dm330">
+
+            </RelativeLayout>
             <ImageView
                 android:id="@+id/iv_back"
                 android:layout_width="@dimen/dm080"
@@ -26,14 +32,26 @@
                 android:src="@drawable/icon_back_white"
                 android:padding="@dimen/dm025"
                 />
+            <!--<ImageView
+                android:id="@+id/ibtn_screen_control"
+                android:layout_width="@dimen/dm080"
+                android:layout_height="@dimen/dm080"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/dm025"
+                android:background="@drawable/btn_to_fullscreen" />-->
             <ImageView
                 android:id="@+id/iv_right"
                 android:layout_width="@dimen/dm080"
                 android:layout_height="@dimen/dm080"
-                android:layout_marginLeft="@dimen/dm010"
+                android:layout_alignParentRight="true"
                 android:src="@drawable/icon_share_white"
                 android:padding="@dimen/dm025"
-                android:layout_alignParentRight="true" />
+                />
+            <com.lchtime.safetyexpress.weight.bar.SimpleMediaController
+                android:id="@+id/media_controller_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -270,7 +288,7 @@
             </RelativeLayout>
 
 
-            <!--<include  android:visibility="visible" layout="@layout/pager_loading"/>-->
+            <!--<include android:id="@+id/loading" layout="@layout/pager_loading"/>-->
             <include android:id="@+id/empty" android:visibility="gone" layout="@layout/pager_empty"/>
             <include android:id="@+id/error" android:visibility="gone" layout="@layout/pager_error"/>
 

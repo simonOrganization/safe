@@ -27,7 +27,7 @@ public class ThirdWeiBoLoginApi {
 
 			@Override
 			public void onWeiboException(WeiboException arg0) {
-				listener.OauthFail(null);
+				//listener.OauthFail(null);
 			}
 
 			@Override
@@ -105,7 +105,7 @@ public class ThirdWeiBoLoginApi {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		oauth.OauthLoginFail();
+		//oauth.OauthLoginFail();
 	}
 
 

@@ -10,15 +10,24 @@
         android:layout_height="@dimen/dm016"
         android:background="@color/page_color"/>
 
-
-    <com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView
-        android:id="@+id/rc_detail"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/dm026"
-        android:layout_marginRight="@dimen/dm026">
+        android:layout_height="match_parent">
+
+        <com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView
+            android:id="@+id/rc_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dm026"
+            android:layout_marginRight="@dimen/dm026">
+
+        </com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView>
+
+        <include android:id="@+id/empty" android:visibility="gone" layout="@layout/pager_empty"/>
 
 
-    </com.lchtime.safetyexpress.utils.refresh.PullLoadMoreRecyclerView>
+    </RelativeLayout>
+
+
 
 </LinearLayout>

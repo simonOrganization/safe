@@ -12,8 +12,8 @@ import com.lchtime.safetyexpress.bean.WenDaDetailBean;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
 import com.lchtime.safetyexpress.utils.SpTools;
-import com.mzhy.http.okhttp.OkHttpUtils;
-import com.mzhy.http.okhttp.callback.StringCallback;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import okhttp3.Call;
 
@@ -167,7 +167,7 @@ public class HomeQuestionProtocal {
                     @Override
                     public void onResponse(String response, int id) {
                         if (TextUtils.isEmpty(response)){
-                            CommonUtils.toastMessage("没有数据返回");
+                            //CommonUtils.toastMessage("没有数据返回");
                             listener.questionResponse(null);
                             return;
                         }
@@ -180,7 +180,7 @@ public class HomeQuestionProtocal {
                                     listener.questionResponse(bean);
                                 }
                             }else{
-                                CommonUtils.toastMessage(bean.result.info);
+                                //CommonUtils.toastMessage(bean.result.info);
                                 listener.questionResponse(null);
                             }
                         }catch (Exception exception){

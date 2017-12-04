@@ -88,10 +88,10 @@ public class SubscribActivity extends BaseUI {
         adapter = new CircleSubscribAdapter(SubscribActivity.this,dyList);
         circle_subscribe_rc.setAdapter(adapter);
         //下面的adapter
-        circleAdapter = new CircleAdapter(SubscribActivity.this,circleList);
+        circleAdapter = new CircleAdapter(SubscribActivity.this,circleList , false);
         wrapper = new HeaderAndFooterWrapper(circleAdapter);
         //不显示订阅按钮
-        circleAdapter.setShowDy(false);
+        //circleAdapter.setShowDy(false);
         //和circle用一样的adapter
         circleAdapter.setIsCircle(true);
         wrapper.addHeaderView(view);

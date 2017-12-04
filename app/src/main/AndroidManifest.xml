@@ -52,7 +52,7 @@
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <!-- GCM required, remember replace "com.hyphenate.chatuidemo" to your own package -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
@@ -88,6 +88,8 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
+
+
         </provider>
 
         <!-- 注册微信授权回调 -->
@@ -165,7 +167,8 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity
             android:name=".ui.search.HomeNewsSearchUI"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -338,6 +341,14 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".CircleH5Activity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.vip.AffirmPWActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.circle.MyFriendActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
@@ -516,6 +527,13 @@
         <meta-data
             android:name="PUSH_APPSECRET"
             android:value="${GETUI_APP_SECRET}" />
+
+
+        <!--配置glide加载https所需要的GlideModule-->
+        <meta-data
+            android:name="com.lchtime.safetyexpress.weight.glide_https.OkHttpGlideModule"
+            android:value="GlideModule"/>
+
 
         <!-- 配置SDK核心服务 -->
         <service

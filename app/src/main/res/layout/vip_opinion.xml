@@ -36,7 +36,8 @@
             android:gravity="top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="方便我们及时向您反馈问题"/>
+            android:hint="方便我们及时向您反馈问题"
+            android:inputType="number"/>
     </LinearLayout>
 
     <LinearLayout

@@ -114,8 +114,6 @@ public class HomeNewsSearchUI extends BaseUI {
                         currentFragment = mCacheFragments.get(7);
                     }
                 }
-
-
             }
 
             @Override
@@ -376,7 +374,11 @@ public class HomeNewsSearchUI extends BaseUI {
     }
     private String key = "";
     public String getKey(){
-        return key;
+        content = et_news_search.getText().toString().trim();
+        if(content != null){
+            return content;
+        }
+        return "";
     }
 
     @Override

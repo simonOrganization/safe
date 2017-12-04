@@ -8,9 +8,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.lchtime.safetyexpress.R;
+
 
 
 /**
@@ -67,14 +66,27 @@ public class UpdateDialog extends Dialog implements View.OnClickListener {
                 goToMarket.setClassName()
                 try {
                     context.startActivity(goToMarket);
-                } catch (ActivityNotFoundException e) {*/
+                } catch (ActivityNotFoundException e) {
+                }
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 Uri content_url = Uri.parse(updateUrl);
                 intent.setData(content_url);
-                context.startActivity(intent);
+                context.startActivity(intent);*/
+
+                goToMarket(context , context.getPackageName());
                 dismiss();
-               // }
+
                 break;
+        }
+    }
+
+    public void goToMarket(Context context, String packageName) {
+        Uri uri = Uri.parse("market://details?id=" + packageName);
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        try {
+            context.startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }

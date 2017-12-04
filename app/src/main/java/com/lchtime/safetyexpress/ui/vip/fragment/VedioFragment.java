@@ -45,10 +45,6 @@ public class VedioFragment extends BaseFragment {
     public LoadingPager.LoadedResult initData() {
 
         getVideoList("9","");
-
-        if (loadedResult == null) {
-            loadedResult = checkResult(videoList);
-        }
         return loadedResult;
     }
 
@@ -91,6 +87,7 @@ public class VedioFragment extends BaseFragment {
 //                }
                 adapter.notifyDataSetChanged();
                 // home_new_fragment_rc.setAdapter(homeNewAdapter);
+                loadedResult = checkResult(videoList);
             }else{
                 loadedResult = LoadingPager.LoadedResult.ERRO;
             }
@@ -122,6 +119,7 @@ public class VedioFragment extends BaseFragment {
         }
         deleteList.clear();
         adapter.notifyDataSetChanged();
+        loadedResult = checkResult(videoList);
     }
 
     @Override

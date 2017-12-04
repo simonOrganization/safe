@@ -10,9 +10,9 @@ import com.lchtime.safetyexpress.ui.chat.hx.bean.InfoBean;
 import com.lchtime.safetyexpress.ui.chat.hx.fragment.protocal.AddCommandProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
-import com.mzhy.http.okhttp.OkHttpUtils;
-import com.mzhy.http.okhttp.builder.PostFormBuilder;
-import com.mzhy.http.okhttp.callback.StringCallback;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.builder.PostFormBuilder;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import okhttp3.Call;
 
@@ -288,7 +288,7 @@ public class GetInfoProtocal {
     }
 
 
-    public void getApply( String username,String groupid,String action,String message,String targetname,final AddCommandProtocal.NormalListener listener) {
+    public void getApply( String baseusername,String groupid,String action,String message,String username,final AddCommandProtocal.NormalListener listener) {
         if (!CommonUtils.isNetworkAvailable(MyApplication.getContext())) {
            // CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.normalResponse(null);
@@ -298,10 +298,10 @@ public class GetInfoProtocal {
                 .concat(MyApplication.getContext().getResources().getString(R.string.apply));
         PostFormBuilder builder = OkHttpUtils
                 .post()
-                .addParams("baseusername", username)
+                .addParams("baseusername", baseusername)
                 .addParams("action", action)
                 .addParams("message", message)
-                .addParams("username", targetname);
+                .addParams("username", username);
 
         if ("0".equals(action)){
             //群

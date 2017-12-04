@@ -71,15 +71,29 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
             MyCircleActiveHodler myHodler = (MyCircleActiveHodler) holder;
             final QzContextBean bean = circleOneList.get(position);
 
-
             //如果是长文章
             if(!TextUtils.isEmpty(bean.qc_cwz)){
                 myHodler.mLongContentLl.setVisibility(View.VISIBLE);
                 myHodler.mCircleRl.setVisibility(View.GONE);
+                if(bean.qc_auth.trim().equals("")){
+                    myHodler.mLongAuthTv.setVisibility(View.GONE);
+                }else{
+                    myHodler.mLongAuthTv.setText("作者：" + bean.qc_auth);
+                    myHodler.mLongAuthTv.setVisibility(View.VISIBLE);
+                }
+                if(bean.qc_context.trim().equals("")){
+                    myHodler.mLongContentTv.setVisibility(View.GONE);
+                }else{
+                    myHodler.mLongContentTv.setVisibility(View.VISIBLE);
+                    myHodler.mLongContentTv.setText(bean.qc_context);
+                }
 
-                myHodler.mLongAuthTv.setText("作者：" + bean.qc_auth);
-                myHodler.mLongContentTv.setText(bean.qc_context);
-                myHodler.mLongTitleTv.setText(bean.qc_title);
+                if(bean.qc_title.trim().equals("")){
+                    myHodler.mLongTitleTv.setVisibility(View.GONE);
+                }else{
+                    myHodler.mLongTitleTv.setText(bean.qc_title);
+                    myHodler.mLongTitleTv.setVisibility(View.VISIBLE);
+                }
                 Glide.with(context).load(bean.qc_cwz).into(myHodler.mLongImg);
                 myHodler.mLongContentLl.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -156,10 +170,6 @@ public class SingleInfoRCAdapter extends RecyclerView.Adapter {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*Intent intent = new Intent(context,H5DetailUI.class);
-                    intent.putExtra("newsId",bean.qc_id);
-                    intent.putExtra("type","circle");
-                    context.startActivity(intent);*/
                     Intent intent = new Intent(context, CircleH5Activity.class);
                     intent.putExtra("data", bean);
                     intent.putExtra("type", "circle");

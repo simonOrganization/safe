@@ -18,9 +18,9 @@ import com.lchtime.safetyexpress.bean.res.CircleBean;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.JsonUtils;
-import com.mzhy.http.okhttp.OkHttpUtils;
-import com.mzhy.http.okhttp.builder.PostFormBuilder;
-import com.mzhy.http.okhttp.callback.StringCallback;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.builder.PostFormBuilder;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import okhttp3.Call;
 
@@ -160,7 +160,8 @@ public class CircleProtocal {
                                 listener.circleResponse(circleBean);
                             }
                         } else {
-                            listener.circleResponse(null);
+                            CommonUtils.toastMessage(circleBean.result.info);
+                            //listener.circleResponse(null);
                         }
                     }
                 });
@@ -693,11 +694,13 @@ public class CircleProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int i) {
+                        listener.updateResponse(null);
                     }
 
                     @Override
                     public void onResponse(String response, int i) {
                         if (TextUtils.isEmpty(response)) {
+                            listener.updateResponse(null);
                             return;
                         }
                         UpdateResponse bean = new Gson().fromJson(response , UpdateResponse.class);

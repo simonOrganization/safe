@@ -18,6 +18,7 @@ import com.lchtime.safetyexpress.bean.PostBean;
 import com.lchtime.safetyexpress.bean.ProfessionBean;
 import com.lchtime.safetyexpress.bean.Result;
 import com.lchtime.safetyexpress.bean.VipInfoBean;
+import com.lchtime.safetyexpress.ui.Splash;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -108,7 +109,12 @@ public class LoginInternetRequest {
                     SpTools.setUserId(context , result.ub_id);//存储用户的ub_id
                     if (!TextUtils.isEmpty(result.ub_id)){
                         PushManager.getInstance().bindAlias(context,result.ub_id);
-                        PushManager.getInstance().turnOnPush(context);
+                        if( SpTools.getBoolean(context , "push" , true)){
+                            PushManager.getInstance().turnOnPush(context);
+                        }else {
+                            PushManager.getInstance().turnOffPush(context);
+                        }
+                        //PushManager.getInstance().turnOnPush(context);
 //                        Tag t = new Tag();
 //                        //name 字段只支持：中文、英文字母（大小写）、数字、除英文逗号以外的其他特殊符号, 具体请看代码示例
 //                        t.setName("Android");

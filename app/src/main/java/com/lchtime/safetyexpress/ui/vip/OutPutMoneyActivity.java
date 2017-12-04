@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.ui.vip;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -67,9 +68,9 @@ public class OutPutMoneyActivity extends BaseUI implements View.OnClickListener 
     TextView tvOutput;
     private Handler handler = new Handler();
     private String accountNum;
-    private VipProtocal protocal;
 
-    private DialogUtil mDialog;
+
+    //private DialogUtil mDialog;
     private String num;
     private float mAllmoney;
 
@@ -82,7 +83,7 @@ public class OutPutMoneyActivity extends BaseUI implements View.OnClickListener 
     protected void setControlBasis() {
         ButterKnife.bind(this);
         setTitle("提现");
-        mDialog = new DialogUtil(mContext);
+        //mDialog = new DialogUtil(mContext);
         accountNum = getIntent().getStringExtra("ud_zfb_account");
         num = getIntent().getStringExtra("ud_amount");
         if(num != null){
@@ -150,8 +151,8 @@ public class OutPutMoneyActivity extends BaseUI implements View.OnClickListener 
                 CommonUtils.toastMessage("提现最低20元");
                 return;
             }
-            if(mAllmoney > 5000.00){
-                CommonUtils.toastMessage("提现最高5000元");
+            if(mAllmoney > 200.00){
+                CommonUtils.toastMessage("提现最高200元");
                 return;
             }
             if (TextUtils.isEmpty(num)){
@@ -167,14 +168,19 @@ public class OutPutMoneyActivity extends BaseUI implements View.OnClickListener 
                 return;
             }
             float m = Float.valueOf(money);
+            if(m > mAllmoney){
+                CommonUtils.toastMessage("余额不足");
+                return;
+            }
             if(m < 20.00){
                 CommonUtils.toastMessage("提现最低20元");
                 return;
             }
-            if(mAllmoney > 5000.00){
-                CommonUtils.toastMessage("提现最高5000元");
+            if(m > 200.00){
+                CommonUtils.toastMessage("提现最高200元");
                 return;
             }
+
             tiXianInternet(money);
         }
     }
@@ -184,26 +190,18 @@ public class OutPutMoneyActivity extends BaseUI implements View.OnClickListener 
         if (userid == null){
             userid = SpTools.getUserId(this);
         }
-        if (protocal == null){
-            protocal = new VipProtocal();
-        }
+
         if (TextUtils.isEmpty(userid)){
             CommonUtils.toastMessage("请登录后再提现");
             return;
         }
-        mDialog.show();
-        protocal.getTiXian(userid, num, accountNum, mDialog ,new CircleProtocal.NormalListener() {
-            @Override
-            public void normalResponse(Object response) {
-                Result result = (Result) response;
-                if ("10".equals(result.result.code)){
-                    CommonUtils.toastMessage(result.result.info);
-                    finish();
-                }else {
-                    CommonUtils.toastMessage(result.result.info);
-                }
 
-            }
-        });
+        Intent intent = new Intent(mContext , AffirmPWActivity.class);
+        intent.putExtra("user_id" , userid);
+        intent.putExtra("ud_zfb_account", accountNum);
+        intent.putExtra("ud_amount", num);
+        startActivity(intent);
+        //mDialog.show();
+
     }
 }

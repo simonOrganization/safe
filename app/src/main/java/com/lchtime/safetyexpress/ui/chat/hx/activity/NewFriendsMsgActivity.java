@@ -96,8 +96,8 @@ public class NewFriendsMsgActivity extends BaseActivity implements View.OnClickL
 		if (mProtocal == null){
 			mProtocal = new GetInfoProtocal();
 		}
-		String HXID = "aqkc" + SpTools.getUserId(this);
-		mProtocal.getApplyMessage(HXID, new AddCommandProtocal.NormalListener() {
+		String ub_id = SpTools.getUserId(this);
+		mProtocal.getApplyMessage(ub_id, new AddCommandProtocal.NormalListener() {
 			@Override
 			public void normalResponse(Object response) {
 				if (response == null){

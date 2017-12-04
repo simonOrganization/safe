@@ -20,6 +20,7 @@ import com.lchtime.safetyexpress.ui.news.MediaActivity;
 import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
 import com.lchtime.safetyexpress.ui.search.protocal.SerchProtocal;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.SpTools;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -41,6 +42,7 @@ public class NewsSearchResultFragment extends Fragment {
 
     private HomeNewsSearchUI activity;
     private String mType;
+    private String mId;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -72,6 +74,7 @@ public class NewsSearchResultFragment extends Fragment {
     }
 
     private void initData() {
+        mId = SpTools.getUserId(getActivity());
         //初始化搜索
         getSearch(activity.getKey());
     }
@@ -82,7 +85,7 @@ public class NewsSearchResultFragment extends Fragment {
         if (mProtocal == null){
             mProtocal = new SerchProtocal();
         }
-        mProtocal.getSearchResult(key, Integer.parseInt(mType), mType, new SerchProtocal.NormalListener() {
+        mProtocal.getSearchResult(key, mId ,Integer.parseInt(mType), mType, new SerchProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
                 if (response == null){

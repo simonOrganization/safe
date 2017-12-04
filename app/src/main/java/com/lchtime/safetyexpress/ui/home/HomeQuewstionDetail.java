@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -44,29 +45,29 @@ import static com.igexin.sdk.GTServiceManager.context;
  * Created by android-cp on 2017/5/11.           问答的详情界面
  */
 @ContentView(R.layout.home_question_detail)
-public class HomeQuewstionDetail extends BaseUI {
+public class HomeQuewstionDetail extends BaseUI implements View.OnClickListener {
 
     public static final int QUEWSTION_DETAIL_REQUEST = 100;
     public static final int QUEWSTION_DETAIL_RESULT = 101;
-    @BindView(R.id.ll_home)
+    @ViewInject(R.id.ll_home)
     LinearLayout llHome;
-    @BindView(R.id.v_title)
+    @ViewInject(R.id.v_title)
     TextView vTitle;
-    @BindView(R.id.title)
+    @ViewInject(R.id.title)
     TextView title;
-    @BindView(R.id.ll_back)
+    @ViewInject(R.id.ll_back)
     LinearLayout llBack;
-    @BindView(R.id.tv_right)
+    @ViewInject(R.id.tv_right)
     TextView tvRight;
-    @BindView(R.id.iv_right)
+    @ViewInject(R.id.iv_right)
     ImageView ivRight;
-    @BindView(R.id.tv_delete)
+    @ViewInject(R.id.tv_delete)
     TextView tvDelete;
-    @BindView(R.id.ll_right)
+    @ViewInject(R.id.ll_right)
     LinearLayout llRight;
-    @BindView(R.id.rl_title)
+    @ViewInject(R.id.rl_title)
     RelativeLayout rlTitle;
-    @BindView(R.id.tv_home_question)
+    @ViewInject(R.id.tv_home_question)
     TextView tvHomeQuestion;
 
     @ViewInject(R.id.loading)
@@ -77,6 +78,9 @@ public class HomeQuewstionDetail extends BaseUI {
     RelativeLayout error;
     @ViewInject(R.id.success)
     RelativeLayout success;
+    @ViewInject(R.id.error_btn_retry)
+    Button mErrorBtn;
+
 
 //    @BindView(R.id.rc_question_huifu)
 //    RecyclerView rcQuestionHuifu;
@@ -124,7 +128,7 @@ public class HomeQuewstionDetail extends BaseUI {
 
     @Override
     protected void setControlBasis() {
-        ButterKnife.bind(this);
+        //ButterKnife.bind(this);
         setTitle("问答");
         View view = View.inflate(this,R.layout.qeuwstion_detail_header , null);
         initView(view);
@@ -144,42 +148,9 @@ public class HomeQuewstionDetail extends BaseUI {
     private int page = 1;
     private int totalPage = 1;
     private void initListner() {
-        tvHomeQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(SpTools.getUserId(mContext))) {
-                    LoginDialog dialog = new LoginDialog(mContext, new LoginDialog.onClickLogin() {
-                        @Override
-                        public void OnClickLogin() {
-                            Intent intent = new Intent(HomeQuewstionDetail.this,LoginUI.class);
-                            startActivity(intent);
-                        }
-                    });
-                    dialog.show();
-                }else{
-                    Intent intent = new Intent(HomeQuewstionDetail.this,AnswerQuestionActivity.class);
-                    intent.putExtra("q_id",qid);
-                    intent.putExtra("title",detailBean.wenti.q_title);
-
-                    startActivityForResult(intent , QUEWSTION_DETAIL_REQUEST);
-                }
-
-            }
-        });
-        llInviteFriend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(SpTools.getUserId(mContext))) {
-                    CommonUtils.toastMessage("您还未登录，暂无数据");
-                }else{
-                    Intent intent = new Intent(HomeQuewstionDetail.this,InviteFriendActivity.class);
-                    intent.putExtra("q_id",qid);
-                    startActivity(intent);
-                }
-
-
-            }
-        });
+        tvHomeQuestion.setOnClickListener(this);
+        mErrorBtn.setOnClickListener(this);
+        llInviteFriend.setOnClickListener(this);
         lv_home_question.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
             @Override
             public void onRefresh() {
@@ -417,4 +388,39 @@ public class HomeQuewstionDetail extends BaseUI {
         success.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.tv_home_question:
+                if (TextUtils.isEmpty(SpTools.getUserId(mContext))) {
+                    LoginDialog dialog = new LoginDialog(mContext, new LoginDialog.onClickLogin() {
+                        @Override
+                        public void OnClickLogin() {
+                            Intent intent = new Intent(HomeQuewstionDetail.this,LoginUI.class);
+                            startActivity(intent);
+                        }
+                    });
+                    dialog.show();
+                }else{
+                    Intent intent = new Intent(HomeQuewstionDetail.this,AnswerQuestionActivity.class);
+                    intent.putExtra("q_id",qid);
+                    intent.putExtra("title",detailBean.wenti.q_title);
+
+                    startActivityForResult(intent , QUEWSTION_DETAIL_REQUEST);
+                }
+                break;
+            case R.id.error_btn_retry:
+                refresh("1");
+                break;
+            case R.id.ll_invite_friend:
+                if (TextUtils.isEmpty(SpTools.getUserId(mContext))) {
+                    CommonUtils.toastMessage("您还未登录，暂无数据");
+                }else{
+                    Intent intent = new Intent(HomeQuewstionDetail.this,InviteFriendActivity.class);
+                    intent.putExtra("q_id",qid);
+                    startActivity(intent);
+                }
+                break;
+        }
+    }
 }

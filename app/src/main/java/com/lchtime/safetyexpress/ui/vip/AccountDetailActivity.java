@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -57,6 +58,9 @@ public class AccountDetailActivity extends BaseUI {
     PullLoadMoreRecyclerView rcDetail;
     @BindView(R.id.home_new_fragment_rc)
     EmptyRecyclerView home_new_fragment_rc;
+    @BindView(R.id.empty)
+    View mEmptyView; //错误界面
+
     private AccountDetailAdapter adapter;
     private VipProtocal protocal;
     private List<AcountDetailBean.ListBean> detailList ;
@@ -80,6 +84,12 @@ public class AccountDetailActivity extends BaseUI {
         detailList = new ArrayList<>();
         adapter = new AccountDetailAdapter(this,detailList);
         rcDetail.setAdapter(adapter);
+        findViewById(R.id.tv_error).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDetailFromInternet("0");
+            }
+        });
         getDetailFromInternet("0");
         rcDetail.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
             @Override
@@ -92,7 +102,7 @@ public class AccountDetailActivity extends BaseUI {
                         getDetailFromInternet("0");
 
                     }
-                },2000);
+                },100);
             }
 
             @Override
@@ -111,7 +121,7 @@ public class AccountDetailActivity extends BaseUI {
                         getDetailFromInternet(footPage + "");
 
                     }
-                },2000);
+                },100);
             }
         });
     }
@@ -136,12 +146,23 @@ public class AccountDetailActivity extends BaseUI {
         protocal.getAcountDetail(userid, page, new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
+                if(response == null){
+                    mEmptyView.setVisibility(View.VISIBLE);
+                    return;
+                }else{
+                    mEmptyView.setVisibility(View.GONE);
+                }
                 AcountDetailBean bean  = (AcountDetailBean) response;
                 if (bean.list != null){
                     detailList.addAll(bean.list);
                 }
                 adapter.notifyDataSetChanged();
                 rcDetail.setPullLoadMoreCompleted();
+                if(detailList.size() == 0){
+                    mEmptyView.setVisibility(View.VISIBLE);
+                }else{
+                    mEmptyView.setVisibility(View.GONE);
+                }
             }
         });
     }

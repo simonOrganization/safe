@@ -65,7 +65,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
 
     private static final int REQUEST_CODE_SELECT_VIDEO = 11;
     private static final int REQUEST_CODE_SELECT_FILE = 12;
-    private static final int REQUEST_CODE_GROUP_DETAIL = 13;
+    public static final int REQUEST_CODE_GROUP_DETAIL = 13;
     private static final int REQUEST_CODE_CONTEXT_MENU = 14;
     private static final int REQUEST_CODE_SELECT_AT_USER = 15;
     
@@ -265,7 +265,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
                 Toast.makeText(getActivity(), R.string.gorup_not_found, Toast.LENGTH_SHORT).show();
                 return;
             }
-            startActivityForResult(
+            getActivity().startActivityForResult(
                     (new Intent(getActivity(), GroupDetailsActivity.class).putExtra("groupId", toChatUsername)),
                     REQUEST_CODE_GROUP_DETAIL);
         }else if(chatType == Constant.CHATTYPE_CHATROOM){

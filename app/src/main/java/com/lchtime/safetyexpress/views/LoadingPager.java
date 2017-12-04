@@ -44,6 +44,12 @@ public abstract class LoadingPager extends FrameLayout {
         mEmptyView = View.inflate(UIUtils.getContext(), R.layout.pager_empty,null);
         this.addView(mEmptyView);
 
+        mEmptyView.findViewById(R.id.tv_error).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                triggerLoadData();
+            }
+        });
 
         mErroView = View.inflate(UIUtils.getContext(), R.layout.pager_error,null);
         this.addView(mErroView);

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,16 +29,21 @@ import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
 import com.lchtime.safetyexpress.bean.InitInfo;
+import com.lchtime.safetyexpress.bean.UpdateResponse;
 import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.ui.BaseUI;
+import com.lchtime.safetyexpress.ui.TabUI;
 import com.lchtime.safetyexpress.ui.chat.hx.DemoHelper;
+import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.login.LoginUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
+import com.lchtime.safetyexpress.utils.DialogUtil;
 import com.lchtime.safetyexpress.utils.SpTools;
 import com.lchtime.safetyexpress.utils.cacheutils.AppConfig;
 import com.lchtime.safetyexpress.utils.cacheutils.DataCleanManager;
 import com.lchtime.safetyexpress.utils.cacheutils.FileUtil;
 import com.lchtime.safetyexpress.utils.cacheutils.MethodsCompat;
+import com.lchtime.safetyexpress.weight.UpdateDialog;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -47,6 +53,10 @@ import org.kymjs.kjframe.Core;
 import java.io.File;
 import java.util.Properties;
 
+import service.DemoPushService;
+
+import static android.R.attr.version;
+import static com.baidu.location.f.mC;
 import static com.igexin.sdk.GTServiceManager.context;
 
 /**
@@ -58,7 +68,8 @@ public class VipSettingUI extends BaseUI {
 
     @ViewInject(R.id.tv_setting_version)
     private TextView tv_version;
-
+    @ViewInject(R.id.ll_setting_version)
+    private LinearLayout mVersionLl;
     @ViewInject(R.id.tv_setting_cache)
     private TextView tvCache;
 
@@ -69,6 +80,9 @@ public class VipSettingUI extends BaseUI {
     @ViewInject(R.id.cb_setting_push)
     private CheckBox cb_setting_push;
     private UiReceiver mReceiver;
+    private CircleProtocal mCircleProtocal;
+    private DialogUtil mDialog;
+
 
     @Override
     protected void back() {
@@ -82,8 +96,8 @@ public class VipSettingUI extends BaseUI {
         //推送服务初始化
 
         initListener();
-
-
+        mDialog = new DialogUtil(mContext);
+        mCircleProtocal = new CircleProtocal();
         long cache = caculateCacheSize();
         long unknowCache = SpTools.getLong(this, "unknowCache", 0L);
         if (unknowCache < 0 ){
@@ -106,15 +120,25 @@ public class VipSettingUI extends BaseUI {
         //初始化推送
 //        PushManager.getInstance().initialize(VipSettingUI.this, DemoPushService.class);
         final PushManager pushManager = PushManager.getInstance();
-        cb_setting_push.setChecked(pushManager.isPushTurnedOn(this));
+        boolean isPush= pushManager.isPushTurnedOn(this);
+        cb_setting_push.setChecked(isPush);
         cb_setting_push.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    pushManager.turnOnPush(VipSettingUI.this);
+                    pushManager.initialize(VipSettingUI.this, DemoPushService.class);
+                    //保存打开推送的状态
+                    SpTools.setBoolean(mContext , "push" , true);
                 }else {
                     pushManager.turnOffPush(VipSettingUI.this);
+                    SpTools.setBoolean(mContext , "push" , false);
                 }
+            }
+        });
+        mVersionLl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkUpdateApp();
             }
         });
     }
@@ -125,7 +149,30 @@ public class VipSettingUI extends BaseUI {
     }
 
 
+    /**
+     * 检查新版本
+     */
+    private void checkUpdateApp() {
+        mDialog.show();
+        mCircleProtocal.getUpDate(new CircleProtocal.UpdateListener() {
+            @Override
+            public void updateResponse(UpdateResponse bean) {
+                mDialog.dissmiss();
+                if(bean != null){
+                    int version = CommonUtils.getVersionCode(mContext);
+                    int onloneVersion = Integer.parseInt(bean.getVersionCode());
+                    if(onloneVersion > version){
+                        UpdateDialog dialog = new UpdateDialog(mContext , bean.getVersionUrl());
+                        dialog.show();
+                    }else{
+                        CommonUtils.toastMessage("已经是最新版本");
+                    }
+                }
+            }
+        });
 
+
+    }
 
 
 //    用户协议

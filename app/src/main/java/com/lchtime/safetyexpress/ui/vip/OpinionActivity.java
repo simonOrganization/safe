@@ -146,6 +146,7 @@ public class OpinionActivity extends BaseUI implements PopupWindow.OnDismissList
                 case 1:
                     // 删除图片
                     selectMedia.remove(position);
+                    fileList.remove(position);
                     adapter.notifyItemRemoved(position);
                     break;
             }
@@ -193,11 +194,16 @@ public class OpinionActivity extends BaseUI implements PopupWindow.OnDismissList
     protected void clickEvent() {
         if (protocal == null){
             protocal = new OpinionProtocal();
-            finish();
         }
 
         if (updataImageUtils == null){
             updataImageUtils = new UpdataImageUtils();
+        }
+
+        final String phone_num = et_phone_num.getText().toString().trim();
+        if(phone_num == null || phone_num.equals("") || phone_num.length() != 11){
+            CommonUtils.toastMessage("手机号不规范");
+            return;
         }
 
         final String advice = describe_text.getText().toString().trim();
@@ -206,7 +212,6 @@ public class OpinionActivity extends BaseUI implements PopupWindow.OnDismissList
             return;
         }
         mDialog.show();
-        final String phone_num = et_phone_num.getText().toString().trim();
         if (fileList != null && fileList.size() > 0){
             updataImageUtils.upMuchDataPic(fileList, mDialog , new UpdataImageUtils.UpdataPicListener() {
                 @Override
@@ -218,7 +223,7 @@ public class OpinionActivity extends BaseUI implements PopupWindow.OnDismissList
                     UpdataBean updataBean = (UpdataBean) JsonUtils.stringToObject(response, UpdataBean.class);
 
                     filesid = "";
-                    if (updataBean != null&& updataBean.file_ids != null) {
+                    if (updataBean != null && updataBean.file_ids != null) {
                         //拼接上传picture的id
                         for (int i = 0; i < updataBean.file_ids.size(); i ++) {
                             if (i == 0){
@@ -228,11 +233,10 @@ public class OpinionActivity extends BaseUI implements PopupWindow.OnDismissList
                             }
                         }
 
-                        protocal.getDataInternet(advice, filesid, SpTools.getUserId(OpinionActivity.this), phone_num,new OpinionProtocal.OpinionResultListener() {
+                        protocal.getDataInternet(advice, filesid, SpTools.getUserId(OpinionActivity.this), phone_num, mContext , new OpinionProtocal.OpinionResultListener() {
                             @Override
                             public void onResponseMessage(Object result) {
-                                AdviceBean adviceBean = (AdviceBean) result;
-                                //Toast.makeText(OpinionActivity.this,adviceBean.result.info,Toast.LENGTH_SHORT).show();
+                                mDialog.dissmiss();
                                 finish();
                             }
                         });
@@ -241,11 +245,11 @@ public class OpinionActivity extends BaseUI implements PopupWindow.OnDismissList
             });
         }else {
             filesid = "";
-            protocal.getDataInternet(advice, filesid, SpTools.getUserId(OpinionActivity.this),phone_num, new OpinionProtocal.OpinionResultListener() {
+            protocal.getDataInternet(advice, filesid, SpTools.getUserId(OpinionActivity.this),phone_num, mContext , new OpinionProtocal.OpinionResultListener() {
                 @Override
                 public void onResponseMessage(Object result) {
-                    AdviceBean adviceBean = (AdviceBean) result;
-                    Toast.makeText(OpinionActivity.this,adviceBean.result.info,Toast.LENGTH_SHORT).show();
+                    mDialog.dissmiss();
+                    finish();
                 }
             });
         }
@@ -311,12 +315,12 @@ public class OpinionActivity extends BaseUI implements PopupWindow.OnDismissList
                 .setGif(false)// 是否显示gif图片，默认不显示
 //                            .setCropW(cropW) // cropW-->裁剪宽度 值不能小于100  如果值大于图片原始宽高 将返回原图大小
 //                            .setCropH(cropH) // cropH-->裁剪高度 值不能小于100 如果值大于图片原始宽高 将返回原图大小
-                .setMaxB(512000) // 压缩最大值 例如:200kb  就设置202400，202400 / ic_launcher = 200kb
+                .setMaxB(306400) // 压缩最大值 例如:200kb  就设置202400，202400 / ic_launcher = 200kb
                 .setPreviewColor(previewColor) //预览字体颜色
                 .setCompleteColor(completeColor) //已完成字体颜色
                 .setPreviewBottomBgColor(ContextCompat.getColor(OpinionActivity.this, R.color.transparent)) //预览底部背景色
                 .setBottomBgColor(ContextCompat.getColor(OpinionActivity.this, R.color.transparent)) //图片列表底部背景色
-                .setGrade(Luban.THIRD_GEAR) // 压缩档次 默认三档
+                .setGrade(Luban.CUSTOM_GEAR) // 压缩档次 默认三档
                 .setCheckNumMode(false)//设置是否显示数字模式
                 .setCompressQuality(100) // 图片裁剪质量,默认无损
                 .setImageSpanCount(3) // 每行个数

@@ -33,7 +33,8 @@
         android:textColor="@color/text_2d"
         android:paddingLeft="@dimen/dm030"
         android:paddingRight="@dimen/dm030"
-        android:layout_marginTop="@dimen/dm060"
+        android:paddingTop="@dimen/dm060"
+        android:paddingBottom="@dimen/dm020"
         android:maxLines="2"/>
 
     <TextView
@@ -43,10 +44,11 @@
         android:text="作者："
         android:textSize="@dimen/dm028"
         android:textColor="@color/text_a6"
-        android:layout_marginTop="@dimen/dm045"
+        android:paddingTop="@dimen/dm020"
         android:paddingLeft="@dimen/dm030"
         android:paddingRight="@dimen/dm030"
-        android:maxLines="2"/>
+        android:maxLines="2"
+        android:paddingBottom="@dimen/dm020"/>
     <TextView
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
@@ -54,12 +56,12 @@
         android:text="摄影需要想象力"
         android:textSize="@dimen/dm029"
         android:textColor="@color/text_7d"
-        android:layout_marginTop="@dimen/dm045"
+        android:paddingTop="@dimen/dm025"
         android:paddingLeft="@dimen/dm030"
         android:paddingRight="@dimen/dm030"
         android:maxLines="2"
         android:ellipsize="end"
-        android:layout_marginBottom="@dimen/dm052"/>
+        android:paddingBottom="@dimen/dm040"/>
 
 
 </LinearLayout>

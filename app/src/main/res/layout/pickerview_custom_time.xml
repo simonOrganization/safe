@@ -4,51 +4,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-
-    <LinearLayout
-        android:background="@color/white"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dm080"
-        android:orientation="horizontal">
-
-        <TextView
-            android:background="@color/white"
-            android:id="@+id/tv_cancel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="取消"
-            android:textColor="@color/title_666"
-            android:textSize="18sp" />
-
-        <View
-            android:layout_gravity="center_vertical"
-            android:layout_width="0.5dp"
-            android:layout_height="40dp"
-            android:background="#d5d5d5" />
-        <TextView
-            android:background="@color/white"
-            android:id="@+id/tv_sure"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:text="确定"
-            android:gravity="center"
-            android:textColor="@color/commen_pink"
-            android:textSize="18sp" />
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#d5d5d5" />
-
-
-
-
     <!--此部分需要完整复制过去，删减或者更改ID会导致初始化找不到内容而报空-->
     <LinearLayout
         android:id="@+id/timepicker"
@@ -94,8 +49,47 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.1" />
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#d5d5d5" />
 
+    <LinearLayout
+        android:background="@color/white"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm080"
+        android:orientation="horizontal">
 
+        <TextView
+            android:background="@color/white"
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="取消"
+            android:textColor="@color/title_666"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_gravity="center_vertical"
+            android:layout_width="0.5dp"
+            android:layout_height="40dp"
+            android:background="#d5d5d5" />
+        <TextView
+            android:background="@color/white"
+            android:id="@+id/tv_sure"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:text="确定"
+            android:gravity="center"
+            android:textColor="@color/commen_pink"
+            android:textSize="18sp" />
+    </LinearLayout>
 
 
 </LinearLayout>

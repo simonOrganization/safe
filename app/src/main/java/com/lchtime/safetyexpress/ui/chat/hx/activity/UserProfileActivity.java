@@ -37,6 +37,8 @@ import com.lchtime.safetyexpress.utils.SpTools;
 
 import java.util.Map;
 
+import static com.baidu.location.d.j.G;
+
 public class UserProfileActivity extends BaseActivity implements OnClickListener{
 	
 	private static final int REQUESTCODE_PICK = 1;
@@ -67,6 +69,9 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	private VipInfoHintPop popWindow;
 	private String uid;
 	private String phoneNumber;
+	private RelativeLayout mChatUpRl;
+	private RelativeLayout mClearChatRl;
+
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -105,7 +110,8 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 //		tvNickName = (TextView) findViewById(R.id.user_nickname);
 //		rlNickName = (RelativeLayout) findViewById(R.id.rl_nickname);
 //		iconRightArrow = (ImageView) findViewById(R.id.ic_right_arrow);
-
+		mChatUpRl = (RelativeLayout) findViewById(R.id.rl_chat_up);
+		mClearChatRl = (RelativeLayout) findViewById(R.id.rl_clear_chat);
 
 		cbChatUp.setChecked(topMap.containsKey(mUsername));
 
@@ -144,8 +150,6 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.user_head_avatar : //头像跳转个人主页
-
-
 				Intent inti = new Intent(this, SingleInfoUI.class);
 				inti.putExtra("uid", uid);
 				//Log.i("qaz", "onClick: "+SpTools.getString(context, Constants.userId, ""));
@@ -366,20 +370,26 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 
 					if ("1".equals(bean.is_friend)||TextUtils.isEmpty(bean.is_friend)){
 						//如果是好友关系
-						if (phoneNumber.equals(bean.ub_phone) ){
+						if (phoneNumber.equals("aqkc" + bean.ud_ub_id) ){
 							//自己的个人资料
 							type = 2;
 							tvSendMessage.setText("编辑");
 							tvDeleteFriends.setVisibility(View.GONE);
+							mChatUpRl.setVisibility(View.GONE);
+							mClearChatRl.setVisibility(View.GONE);
 						}else {
 							type = 1;
 							tvSendMessage.setText("发消息");
 							tvDeleteFriends.setVisibility(View.VISIBLE);
+							mChatUpRl.setVisibility(View.VISIBLE);
+							mClearChatRl.setVisibility(View.VISIBLE);
 						}
 					}else {
 						type = 0;
 						tvSendMessage.setText("申请好友");
 						tvDeleteFriends.setVisibility(View.GONE);
+						mChatUpRl.setVisibility(View.GONE);
+						mClearChatRl.setVisibility(View.GONE);
 					}
 
 					setLoadding(false);

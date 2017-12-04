@@ -61,8 +61,8 @@ public class AddFriendsCommendAdapter extends RecyclerView.Adapter {
 
             Glide.with(mFragment)
                     .load(bean.ud_photo_fileid)
-                    .placeholder(R.drawable.circle_user_image)
-                    .error(R.drawable.circle_user_image)
+                    .placeholder(R.drawable.qun_list)
+                    .error(R.drawable.qun_list)
                     .into(myHolder.mAvatar);
 
 
@@ -98,13 +98,13 @@ public class AddFriendsCommendAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     //加群
-                    if (mFragment instanceof FindGroupsFragment) {
+                    if (type == FIND_GROUP) {
                         Intent intent = new Intent(mFragment.getActivity(), ApplyMessage.class);
                         intent.putExtra("groupid", bean.hx_account);
                         intent.putExtra("master",bean.master);
                         intent.putExtra("type", "0");
                         mFragment.getActivity().startActivityForResult(intent, 102);
-                    }else if (mFragment instanceof FindFriendsFragment){
+                    }else if (type == FIND_FRIENDS){
                         Intent intent = new Intent(mFragment.getActivity(), ApplyMessage.class);
                         intent.putExtra("type", "1");
                         intent.putExtra("master",bean.hx_account);
@@ -171,19 +171,19 @@ public class AddFriendsCommendAdapter extends RecyclerView.Adapter {
         return user == null ? 0 : user.size();
     }
 
-    class MyHolder extends RecyclerView.ViewHolder {
+    public static class MyHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.avatar)
-        ImageView mAvatar;
+        public ImageView mAvatar;
         @BindView(R.id.name)
-        TextView mName;
+        public TextView mName;
         @BindView(R.id.msg_state)
-        ImageView mMsgState;
+        public ImageView mMsgState;
         @BindView(R.id.message)
-        TextView mMessage;
+        public TextView mMessage;
         @BindView(R.id.tv_bt_add)
-        TextView mTvBtAdd;
+        public TextView mTvBtAdd;
         @BindView(R.id.indicator)
-        LinearLayout mIndicator;
+        public LinearLayout mIndicator;
         public MyHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

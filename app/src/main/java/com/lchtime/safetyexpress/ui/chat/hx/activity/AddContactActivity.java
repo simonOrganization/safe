@@ -145,6 +145,7 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
 			mRg.setVisibility(View.GONE);
 			mIndex = 1;
 			mTitle.setText("加群组");
+			editText.setHint("请输入关键词搜索");
 			initFragment(1);
 		}else if (!TextUtils.isEmpty(friend)){
 			//如果是通过加好友进入的，那么就显示群组界面，并且将引导器隐藏

@@ -82,7 +82,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="添加图片，最多可添加9张"
+            android:text="添加图片，最多可添加3张"
             android:textColor="@color/color_b5"
             android:layout_marginLeft="@dimen/dm020"
             android:layout_marginTop="@dimen/dm020"/>

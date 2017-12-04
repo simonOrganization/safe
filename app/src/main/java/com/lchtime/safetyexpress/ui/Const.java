@@ -5,9 +5,9 @@ package com.lchtime.safetyexpress.ui;
  */
 
 public class Const {
-    public static final String HOST = "http://www.aqkcw.com/index.php/";
+    public static final String HOST = "https://www.aqkcw.com/index.php/";
     //新闻类型
-    public static final String NEW_TYPE = HOST+"cms/listdir";
+    public static final String NEW_TYPE = HOST +"cms/listdir";
     //根据新闻类型获取新闻列表数据
     public static final String NEW_LIST = HOST+"cms/listnews";
     //新闻列表搜索接口

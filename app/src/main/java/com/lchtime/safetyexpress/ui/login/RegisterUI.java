@@ -1,6 +1,7 @@
 package com.lchtime.safetyexpress.ui.login;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.lchtime.safetyexpress.H5DetailUI;
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.Constants;
@@ -19,6 +21,7 @@ import com.lchtime.safetyexpress.bean.VipInfoBean;
 import com.lchtime.safetyexpress.pop.VipInfoHintPop;
 import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.vip.VipInfoUI;
+import com.lchtime.safetyexpress.ui.vip.VipSettingUI;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.LoginInternetRequest;
 import com.lchtime.safetyexpress.utils.SpTools;
@@ -56,11 +59,14 @@ public class RegisterUI extends BaseUI {
     //密码
     @ViewInject(R.id.et_register_passport)
     private EditText et_register_passport;
-
+    //用户注册协议
+    @ViewInject(R.id.tv_register_protocol)
+    private TextView mRegisterTv;
 
     @ViewInject(R.id.pb_progress)
     private ProgressBar pb_progress;
     private String mType;
+    private String mPhoneNum;
 
     @Override
     protected void back() {
@@ -72,6 +78,16 @@ public class RegisterUI extends BaseUI {
         setTitle("注册");
         mType = getIntent().getStringExtra("third");
         vipInfoHintPop = new VipInfoHintPop(et_register_username, RegisterUI.this, R.layout.pop_info_hint);
+        mRegisterTv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+        mRegisterTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext , H5DetailUI.class);
+                intent.putExtra("type","agreement");
+                intent.putExtra("url","http://www.aqkcw.com/H5/agreement.html");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -100,14 +116,23 @@ public class RegisterUI extends BaseUI {
         if (isLogin == true){
             return;
         }
+        String phoneNum = et_register_username.getText().toString().trim();
+        String pwd = et_register_passport.getText().toString().trim();
+        String customRegisterNum = et_register_code.getText().toString();
+        if(phoneNum == null || phoneNum.equals("") || phoneNum.length() != 11){
+            CommonUtils.toastMessage("手机号不规范");
+            return;
+        }
+        if(mPhoneNum != null && !mPhoneNum.equals(phoneNum)){
+            CommonUtils.toastMessage("请输入正确的验证码");
+            return;
+        }
+
         isLogin = true;
         //显示progressbar
         pb_progress.setVisibility(View.VISIBLE);
         backgroundAlpha(0.5f);
 
-        String phoneNum = et_register_username.getText().toString().trim();
-        String pwd = et_register_passport.getText().toString().trim();
-        String customRegisterNum = et_register_code.getText().toString();
         if (registerCode == null){
             Toast.makeText(RegisterUI.this,"您没有获取验证码",Toast.LENGTH_SHORT).show();
             isLogin = false;
@@ -233,12 +258,12 @@ public class RegisterUI extends BaseUI {
      */
     @OnClick(R.id.tv_register_getcode)
     private void getRegisterGetCode(View view){
-        String phoneNum = et_register_username.getText().toString();
-        if(phoneNum == null || phoneNum.equals("") || phoneNum.length() != 11){
+        mPhoneNum = et_register_username.getText().toString();
+        if(mPhoneNum == null || mPhoneNum.equals("") || mPhoneNum.length() != 11){
             CommonUtils.toastMessage("手机号不规范");
             return;
         }
-        LoginInternetRequest.verificationCode(phoneNum, register_getcode, new LoginInternetRequest.ForResultListener() {
+        LoginInternetRequest.verificationCode(mPhoneNum, register_getcode, new LoginInternetRequest.ForResultListener() {
             @Override
             public void onResponseMessage(String code) {
                 registerCode = code;

@@ -32,9 +32,7 @@ import okhttp3.Response;
 
 public class NewsFragment extends BaseFragment {
     public HomeNewAdapter homeNewAdapter;
-
     private ArrayList<NewsBean> commentList;
-
     private LoadingPager.LoadedResult loadedResult;
     private EmptyRecyclerView recyclerView;
     private boolean isEdit = false;
@@ -43,9 +41,7 @@ public class NewsFragment extends BaseFragment {
     protected View initSuccessView() {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_news_conllect , null);
         recyclerView = (EmptyRecyclerView) view.findViewById(R.id.recyclerView);
-        //recyclerView = new EmptyRecyclerView(MyApplication.getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         recyclerView.setAdapter(homeNewAdapter);
 
         return view;
@@ -54,12 +50,7 @@ public class NewsFragment extends BaseFragment {
     @Override
     public LoadingPager.LoadedResult initData() {
 
-
         getNewsList("","");
-        if (loadedResult == null) {
-            loadedResult = checkResult(commentList);
-        }
-
 
         return loadedResult;
     }
@@ -116,21 +107,13 @@ public class NewsFragment extends BaseFragment {
                         Intent intent = new Intent(getContext(), MediaActivity.class);
                         intent.putExtra("url",url);
                         startActivity(intent);
-                       /* //视频
-                        //Intent intent = new Intent(HomeUI.this, VideoH5Activity.class);
-                        intent.putExtra("newsId", vedioNewsList.get(position).cc_id);
-                        intent.putExtra("type","video");
-                        intent.putExtra("videoUrl", vedioNewsList.get(position).media.get(1));
-                        startActivity(intent);*/
+
                     }
                 });
 
-//                if (recyclerView == null){
-//                    recyclerView = new EmptyRecyclerView(MyApplication.getContext());
-//                    recyclerView.setAdapter(homeNewAdapter);
-//                }
                 homeNewAdapter.notifyDataSetChanged();
-                // home_new_fragment_rc.setAdapter(homeNewAdapter);
+                loadedResult = checkResult(commentList);
+
             }else{
                 loadedResult = LoadingPager.LoadedResult.ERRO;
             }
@@ -165,5 +148,6 @@ public class NewsFragment extends BaseFragment {
         }
         deleteList.clear();
         homeNewAdapter.notifyDataSetChanged();
+        loadedResult = checkResult(commentList);
     }
 }

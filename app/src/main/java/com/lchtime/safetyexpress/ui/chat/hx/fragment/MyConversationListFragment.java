@@ -243,7 +243,6 @@ public class MyConversationListFragment extends EaseBaseFragment{
                             continue;
                         }
                         sortList.add(new Pair<Long, EMConversation>(conversation.getLastMessage().getMsgTime(), conversation));
-                        Log.i("fxp---", conversation + " " + conversation.getLastMessage() + " " + conversation.getLastMessage().getMsgTime());
 
                     }
                 }else {

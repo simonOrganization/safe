@@ -87,7 +87,7 @@ import static com.lchtime.safetyexpress.utils.CommonUtils.getVersionCode;
 
 
 /**
- * TabUI  主界面  里面放有五个界面
+ * TabUI  主界面  里面放有五个界面，控制切换不同的界面
  * Created by user on 2017/3/13.
  */
 
@@ -387,7 +387,7 @@ public class TabUI extends TabActivity implements OnClickListener {
                         CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
                     }
                 }catch (Exception exception){
-                 //   CommonUtils.toastMessage("请求好友数据失败，请稍后再试！");
+
                 }
 
             }
@@ -444,7 +444,12 @@ public class TabUI extends TabActivity implements OnClickListener {
         userId = SpTools.getUserId(this);
         if (!TextUtils.isEmpty(userId)){
             PushManager.getInstance().bindAlias(this,userId);
-            PushManager.getInstance().turnOnPush(this);
+            if( SpTools.getBoolean(TabUI.this , "push" , true)){
+                PushManager.getInstance().turnOnPush(TabUI.this);
+            }else {
+                PushManager.getInstance().turnOffPush(TabUI.this);
+            }
+            //PushManager.getInstance().turnOnPush(this);
             //登录操作
             LoginInternetRequest.getVipInfo(userId, new LoginInternetRequest.ForResultListener() {
                 @Override
@@ -765,11 +770,15 @@ public class TabUI extends TabActivity implements OnClickListener {
         if (requestCode == REQUEST_PERMISSION) {
             if ((grantResults.length == 2 && grantResults[0] == PackageManager.PERMISSION_GRANTED
                     && grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
-                PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
+                if(SpTools.getBoolean(TabUI.this , "push" , true)){
+                    PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
+                }
             } else {
                 Log.e(TAG, "We highly recommend that you need to grant the special permissions before initializing the SDK, otherwise some "
                         + "functions will not work");
-                PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
+                if(SpTools.getBoolean(TabUI.this , "push" , true)){
+                    PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
+                }
             }
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);

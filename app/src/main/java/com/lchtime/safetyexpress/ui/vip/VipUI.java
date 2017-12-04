@@ -168,7 +168,11 @@ public class VipUI extends BaseUI implements View.OnClickListener {
 
     //设置个人相关信息
     private void initVipInfo() {
-        Glide.with(this).load(vipInfoBean.user_detail.ud_photo_fileid).into(civ_vip_icon);
+        Glide.with(this)
+                .load(vipInfoBean.user_detail.ud_photo_fileid)
+                .placeholder(R.drawable.circle_user_image2)
+                .error(R.drawable.circle_user_image2)
+                .into(civ_vip_icon);
         if (isLogin) {
             tv_vip_nickname.setText(TextUtils.isEmpty(vipInfoBean.user_detail.ud_nickname) ? "设置昵称" : vipInfoBean.user_detail.ud_nickname);
         }else {
@@ -357,7 +361,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
     }
 
     /**
-     * 我的动态
+     * 我的圈子
      *
      * @param view
      */
@@ -728,7 +732,7 @@ public class VipUI extends BaseUI implements View.OnClickListener {
 
                         @Override
                         public void run() {
-                            ThirdWeiXinLoginApi.getOauthAcces(code, oauthlogin);
+                            ThirdWeiXinLoginApi.getOauthAcces(mContext , code, oauthlogin);
                         }
                     }).start();
                 }else {

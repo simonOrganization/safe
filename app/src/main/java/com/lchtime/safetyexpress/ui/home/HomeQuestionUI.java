@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.adapter.HeaderAndFooterWrapper;
@@ -72,7 +71,6 @@ public class HomeQuestionUI extends BaseUI {
     RelativeLayout success;
     @ViewInject(R.id.error_btn_retry)
     Button error_btn_retry;
-
     private HomeQuestionAdapter homeQuestionAdapter;
     private HomeQuestionProtocal protocal;
     private List<WenDaBean.TwBean> list = new ArrayList<>();
@@ -83,7 +81,6 @@ public class HomeQuestionUI extends BaseUI {
     private View view;
     private VipInfoBean vipInfoBean;
     private UiReceiver mReceiver;
-
 
     @Override
     protected void back() {
@@ -97,7 +94,17 @@ public class HomeQuestionUI extends BaseUI {
         view = View.inflate(this , R.layout.home_question_header , null);
         civ = (CircleImageView) view.findViewById(R.id.cv_wd_photo);
         nikName = (TextView) view.findViewById(R.id.tv_wd_nikname);
-        vipInfoBean = SpTools.getUser(mContext);
+
+        error_btn_retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setLoadingVisiblity();
+                initMyInfo();
+                initListener();
+                prepareData();
+            }
+        });
+
         LinearLayout ll_home_question = (LinearLayout) view.findViewById(R.id.ll_home_question);
         ll_home_question.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +137,7 @@ public class HomeQuestionUI extends BaseUI {
     }
 
     public void initMyInfo(){
+        vipInfoBean = SpTools.getUser(mContext);
         //如果没有登录
         if(TextUtils.isEmpty(SpTools.getUserId(mContext))){
             civ.setVisibility(View.GONE);
@@ -236,7 +244,8 @@ public class HomeQuestionUI extends BaseUI {
             }
         });
 
-        error_btn_retry.setOnClickListener(new View.OnClickListener() {
+
+        /*tv_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setLoadingVisiblity();
@@ -244,7 +253,7 @@ public class HomeQuestionUI extends BaseUI {
                 initListener();
                 prepareData();
             }
-        });
+        });*/
     }
 
     @OnClick(R.id.ll_right)
@@ -263,7 +272,7 @@ public class HomeQuestionUI extends BaseUI {
         if(isFullPersionDate()){//如果资料完善
             //提问按钮的监听
             Intent intent = new Intent(HomeQuestionUI.this,AskQuestionActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent , HOME_QUESTION);
 
         }else{ //如果资料不完善
             CommonUtils.toastMessage("请完善资料后提问");
@@ -304,7 +313,7 @@ public class HomeQuestionUI extends BaseUI {
                     return;
                 }
                 totalPage = bean.totalpage;
-                homeQuestionAdapter = new HomeQuestionAdapter(HomeQuestionUI.this,list);
+                homeQuestionAdapter = new HomeQuestionAdapter(HomeQuestionUI.this , list);
                 wrapper = new HeaderAndFooterWrapper(homeQuestionAdapter);
                 wrapper.addHeaderView(view);
                 recyclerView.setLayoutManager(new LinearLayoutManager(HomeQuestionUI.this));
@@ -323,7 +332,7 @@ public class HomeQuestionUI extends BaseUI {
         }
         //页面删除提问之后
         if(resultCode == RESULT_OK && requestCode == HOME_QUESTION){
-            initMyInfo();
+            prepareData();
         }
     }
 

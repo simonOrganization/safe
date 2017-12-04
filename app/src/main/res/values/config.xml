@@ -2,8 +2,9 @@
 <resources>
     <!--主 -->
     <!--<string name="service_host_address">http://fcar.lchtime.cn:8001/</string>-->
-    <!--<string name="service_host_address">http://47.94.44.84/</string>-->
-    <string name="service_host_address">http://www.aqkcw.com/</string>
+    <!--<string name="service_host_address">http://safecar.lchtime.cn:10080/</string>-->
+    <string name="service_host_address">https://www.aqkcw.com/</string>
+
     <!--登录-->
     <string name="getLogin">index.php/user/login/</string>
 
@@ -61,7 +62,7 @@
     <string name="xiangqing">index.php/wenda/showwdinfo</string>
     <!--上传文字视频圈子-->
     <string name="qzfb">index.php/quanzi/qzfb</string>
-    <!--我的动态-->
+    <!--我的圈子-->
     <string name="qzdt">index.php/quanzi/qzdt</string>
     <!--删除圈子-->
     <string name="qzdel">index.php/quanzi/qzdel</string>
@@ -164,6 +165,8 @@
     <string name="update_app">/index.php/system/appversion</string>
     <!--获取活动信息-->
     <string name="activity">index.php/system/active</string>
+    <!--验证密码提现-->
+    <string name="affirm">index.php/caiwu/tixian</string>
     <string name="help">
         【发动态，赚现金啦！】\n
         在这里，您可以吐槽生活安全，用喜闻乐见的方式，表达一本正经的态度！

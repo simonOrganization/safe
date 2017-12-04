@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include layout="@layout/title"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dm020"
+        android:background="@color/bg_f5"/>
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AffirmEditBg"
+        android:drawableLeft="@drawable/icon_lock"
+        android:layout_marginLeft="@dimen/dm070"
+        android:layout_marginRight="@dimen/dm070"
+        android:layout_marginTop="@dimen/dm170"
+        android:hint="请输入登陆密码"
+        android:textColor="@color/title_999"
+        android:textColorHint="@color/title_999"
+        android:gravity="center"
+        android:inputType="textPassword"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="每日3次错误机会"
+        android:layout_gravity="end"
+        android:layout_marginRight="@dimen/dm070"
+        android:layout_marginTop="@dimen/dm020"
+        android:textColor="@color/title_999"/>
+
+    <TextView
+        android:id="@+id/tv_enter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dm070"
+        android:layout_marginRight="@dimen/dm070"
+        android:layout_marginTop="@dimen/dm123"
+        android:text="确认"
+        android:gravity="center"
+        android:background="@drawable/shape_bg_pink"
+        android:padding="@dimen/dm020"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

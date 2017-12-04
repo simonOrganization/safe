@@ -308,12 +308,14 @@ public class EaseContactListFragment extends EaseBaseFragment {
         
         @Override
         public void onConnected() {
-            getActivity().runOnUiThread(new Runnable() {
-                public void run() {
-                    onConnectionConnected();
-                }
+            if(getActivity()!= null){
+                getActivity().runOnUiThread(new Runnable() {
+                    public void run() {
+                        onConnectionConnected();
+                    }
 
-            });
+                });
+            }
         }
     };
     private EaseContactListItemClickListener listItemClickListener;

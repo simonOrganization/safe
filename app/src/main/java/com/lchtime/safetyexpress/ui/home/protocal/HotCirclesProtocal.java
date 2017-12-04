@@ -2,16 +2,22 @@ package com.lchtime.safetyexpress.ui.home.protocal;
 
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.lchtime.safetyexpress.MyApplication;
 import com.lchtime.safetyexpress.R;
 import com.lchtime.safetyexpress.bean.HotCircleBean;
+import com.lchtime.safetyexpress.ui.Const;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
-import com.mzhy.http.okhttp.OkHttpUtils;
-import com.mzhy.http.okhttp.callback.StringCallback;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.builder.PostFormBuilder;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.io.IOException;
 
 import okhttp3.Call;
+import okhttp3.Response;
 
 
 /**
@@ -20,13 +26,13 @@ import okhttp3.Call;
 
 public class HotCirclesProtocal {
 
-    public void getCirclesList(String ub_id ,final HotNewsListener listener){
+    public void getCirclesList(final String ub_id , final HotNewsListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             //CommonUtils.toastMessage("您当前无网络，请联网再试");
             listener.hotNewsResponse(null);
             return;
         }
-        String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
+        final String url = MyApplication.getContext().getResources().getString(R.string.service_host_address)
                 .concat(MyApplication.getContext().getResources().getString(R.string.hotqz));
         OkHttpUtils
                 .post()

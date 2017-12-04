@@ -17,11 +17,10 @@ public abstract class BaseHintFragment extends Fragment{
 
         if(getUserVisibleHint()) { //当前fragment可见
             isVisible = true;
-            //onVisible();*/
             lazyLoad();
         } else {
             isVisible = false;
-            //onInvisible();*/
+            onHide();
         }
 
     }
@@ -33,4 +32,8 @@ public abstract class BaseHintFragment extends Fragment{
      */
     protected abstract void lazyLoad();
 
+    /**
+     *
+     */
+    protected abstract void onHide();
 }

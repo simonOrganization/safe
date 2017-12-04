@@ -35,7 +35,7 @@
                         android:layout_width="@dimen/dm068"
                         android:layout_height="@dimen/dm068"
                         android:adjustViewBounds="true"
-                        android:background="@drawable/circle_user_image"
+                        android:src="@drawable/circle_user_image"
                         android:scaleType="centerCrop" />
 
                     <TextView
@@ -145,7 +145,8 @@
                         android:text="@string/delete"
                         android:gravity="center_vertical"
                         android:textColor="@color/title_999"
-                        android:textSize="@dimen/dm024" />
+                        android:textSize="@dimen/dm024"
+                        android:visibility="invisible"/>
                 </LinearLayout>
 
                 <RelativeLayout

@@ -372,6 +372,7 @@ public class HXMainActivity extends BaseActivity implements View.OnClickListener
 			runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
+
 					Toast.makeText(HXMainActivity.this, s + "已同意您的好友申请" , Toast.LENGTH_LONG)
 							.show();
 				}

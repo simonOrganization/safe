@@ -502,7 +502,7 @@ public class LoginUI extends BaseUI {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            ThirdWeiXinLoginApi.getOauthAcces(code, oauthlogin);
+                            ThirdWeiXinLoginApi.getOauthAcces(mContext , code, oauthlogin);
                         }
                     }).start();
                 }else {

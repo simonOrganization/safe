@@ -44,6 +44,7 @@ import service.DemoPushService;
 
 /**
  * Created by Dreamer on 2017/6/22.
+ * 主页面入口，获取权限，获取数据验证等等操作
  */
 
 public class Splash extends Activity {
@@ -77,6 +78,13 @@ public class Splash extends Activity {
         }
         // com.getui.demo.DemoIntentService 为第三方自定义的推送服务事件接收类
         PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
+        //检测是不是关闭状态
+        if( SpTools.getBoolean(Splash.this , "push" , true)){
+            PushManager.getInstance().turnOnPush(Splash.this);
+        }else {
+            PushManager.getInstance().turnOffPush(Splash.this);
+        }
+
 
         application = (MyApplication) getApplication();
 
@@ -97,7 +105,14 @@ public class Splash extends Activity {
         userId = SpTools.getUserId(this);
         if (!TextUtils.isEmpty(userId)){
             PushManager.getInstance().bindAlias(this,userId);
-            PushManager.getInstance().turnOnPush(this);
+            //检测是不是关闭状态
+            if( SpTools.getBoolean(Splash.this , "push" , true)){
+                PushManager.getInstance().turnOnPush(Splash.this);
+            }else {
+                PushManager.getInstance().turnOffPush(Splash.this);
+            }
+
+            //PushManager.getInstance().turnOnPush(this);
             //登录操作
             LoginInternetRequest.getVipInfo(userId, new LoginInternetRequest.ForResultListener() {
                 @Override

@@ -29,7 +29,7 @@
                 android:hint="请输入创建群聊名称"
                 android:singleLine="true"
                 android:background="@color/white"
-
+                android:maxLength="20"
                 />
         </LinearLayout>
     </LinearLayout>

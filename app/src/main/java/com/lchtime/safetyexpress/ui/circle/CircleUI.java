@@ -39,6 +39,7 @@ import com.lchtime.safetyexpress.ui.BaseUI;
 import com.lchtime.safetyexpress.ui.TabUI;
 import com.lchtime.safetyexpress.ui.circle.protocal.CircleProtocal;
 import com.lchtime.safetyexpress.ui.home.GetMoneyActivity;
+import com.lchtime.safetyexpress.ui.home.HomeUI;
 import com.lchtime.safetyexpress.ui.home.protocal.PictureAdvantage;
 import com.lchtime.safetyexpress.ui.search.HomeNewsSearchUI;
 import com.lchtime.safetyexpress.ui.vip.SelectCityActivity;
@@ -68,14 +69,6 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     private PullLoadMoreRecyclerView pullLoadMoreRecyclerView;
     private RecyclerView circle_rc;
     private Banner sb_home_banner;
-
-
-    //private LinearLayout circle_work;
-    //private LinearLayout circle_gangwei;
-    //private LinearLayout circle_address;
-    /*private TextView circle_work;
-    private TextView circle_gangwei;
-    private TextView circle_address;*/
     private ImageView circle_more;
 //    private View circle_layout_view;
     //行业
@@ -84,26 +77,14 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
     TextView tv_gw_selected;
     //地区
     TextView tv_addr_selected;
-    //ImageView hy_indicator;
-    //ImageView gw_indicator;
-    //ImageView addr_indicator;
     TextView unread_msg_number;
-
-
-    //private LinearLayout circle_work1;
-    //private LinearLayout circle_gangwei1;
-    //private LinearLayout circle_address1;
     private ImageView circle_more1;
-    //    private View circle_layout_view;
     //行业
     TextView tv_hy_selected1;
     //岗位
     TextView tv_gw_selected1;
     //地区
     TextView tv_addr_selected1;
-    //ImageView hy_indicator1;
-    //ImageView gw_indicator1;
-    //ImageView addr_indicator1;
     LinearLayout layout_circle_header;
 
     private ACache aCache;
@@ -145,7 +126,6 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         exit();
     }
 
-    private boolean isOnCreate = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -226,10 +206,17 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
             @Override
             public void onItemClick(int position) {
 //                makeText("广告" + position);
-                if (position == 0){
+                String url = lunbo.get(position).url;
+                if (url == null || url.equals("")) {
+                    return;
+                }else if(!url.contains("http")){
+                    Intent intent = new Intent(CircleUI.this, GetMoneyActivity.class);
+                    startActivity(intent);
+                }
+                /*if (position == 0){
                     Intent intent = new Intent(CircleUI.this,GetMoneyActivity.class);
                     startActivity(intent);
-                }else {
+                }*/else {
                     Intent intent = new Intent(CircleUI.this,H5DetailUI.class);
                     intent.putExtra("type","url");
                     intent.putExtra("url",lunbo.get(position).url + "?timestamp=" + System.currentTimeMillis());
@@ -421,12 +408,14 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
         protocal.getCircleList(userid, "1", "4", "0", new CircleProtocal.CircleListener() {
             @Override
             public void circleResponse(CircleBean response) {
-                aCache.put(circle_list , response);
-                //SpTools.setString(mContext , circle_list , gson.toJson(response));
-                totalPage = response.totalpage;
-                circleList.clear();
-                circleList.addAll(response.qz_context);
-                notifyDataSetChanged();
+                if(response != null){
+                    aCache.put(circle_list , response);
+                    //SpTools.setString(mContext , circle_list , gson.toJson(response));
+                    totalPage = response.totalpage;
+                    circleList.clear();
+                    circleList.addAll(response.qz_context);
+                    notifyDataSetChanged();
+                }
             }
         });
 
@@ -516,7 +505,7 @@ public class CircleUI extends BaseUI implements View.OnClickListener {
                     request_addr = "";
                     refreshData("1");
                     tv_addr_selected.setText("地理位置");
-                    //v_addr_selected1.setText("地理位置");
+                    tv_addr_selected1.setText("地理位置");
                 }
 
             }

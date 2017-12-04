@@ -46,34 +46,39 @@ public class ApplyMessage extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_qun_name);
         mVipInfoBean = SpTools.getUser(this);
-        initTitle();
-        initView();
+        //获取数据
         initData();
+
+        initView();
 
     }
 
-
-    private void initTitle() {
+    /**
+     * 初始化界面
+     */
+    private void initView() {
         mBar = (ProgressBar) findViewById(R.id.pb_progress);
         mTitle = (TextView) findViewById(R.id.title);
         mTitleRight = (TextView) findViewById(R.id.tv_delete);
         mTitleLeft = (LinearLayout) findViewById(R.id.ll_back);
         mLlTitleRight = (LinearLayout) findViewById(R.id.ll_right);
+        mEtName = (EditText) findViewById(R.id.tv_qun_name);
+        mEtName.setHint("请输入验证消息");
+
         mLlTitleRight.setVisibility(View.VISIBLE);
-        mTitle.setText("朋友验证");
+        if(mType.equals("0")){
+            mTitle.setText("申请加群");
+        }else{
+            mTitle.setText("朋友验证");
+            mEtName.setText("我是" + mVipInfoBean.user_detail.ud_nickname + ",请加我为好友吧！");
+        }
         mTitleRight.setText("发送");
+        mEtName.setSelection(mEtName.getText().toString().length());
         mTitleRight.setVisibility(View.VISIBLE);
         mLlTitleRight.setOnClickListener(this);
         mTitleLeft.setOnClickListener(this);
     }
 
-    private void initView() {
-
-        mEtName = (EditText) findViewById(R.id.tv_qun_name);
-        mEtName.setHint("请输入验证消息");
-        mEtName.setText("我是" + mVipInfoBean.user_detail.ud_nickname + ",请加我为好友吧！");
-        mEtName.setSelection(mEtName.getText().toString().length());
-    }
 
     private void initData() {
 
@@ -98,7 +103,11 @@ public class ApplyMessage extends Activity implements View.OnClickListener {
                 setLoadding(true);
                 String message = mEtName.getText().toString().trim();
                 if (TextUtils.isEmpty(message)){
-                    message = "我是" + mVipInfoBean.user_detail.ud_nickname + ",请加我为好友吧！";
+                    if(mType.equals("0")){
+                        message = mVipInfoBean.user_detail.ud_nickname + "申请加群";
+                    }else{
+                        message = "我是" + mVipInfoBean.user_detail.ud_nickname + ",请加我为好友吧！";
+                    }
                 }
                 //发送验证消息
                 if (TextUtils.isEmpty(mUserid)){
@@ -115,9 +124,7 @@ public class ApplyMessage extends Activity implements View.OnClickListener {
                 if (groupId == null){
                     groupId = "";
                 }
-
-
-                mProtocal.getApply(mVipInfoBean.user_detail.getHXId() , groupId , mType,message , mMaster, new AddCommandProtocal.NormalListener() {
+                mProtocal.getApply(mVipInfoBean.user_detail.getHXId() , groupId , mType ,message , mMaster, new AddCommandProtocal.NormalListener() {
                     @Override
                     public void normalResponse(Object response) {
                         if (response == null){

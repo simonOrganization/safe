@@ -290,7 +290,7 @@ public class GetMoneyActivity extends BaseUI{
     IUiListener qqShareListener = new IUiListener() {
         @Override
         public void onCancel() {
-            Util.toastMessage(GetMoneyActivity.this, "onCancel: ");
+            Util.toastMessage(GetMoneyActivity.this, "取消 ");
         }
 
         @Override

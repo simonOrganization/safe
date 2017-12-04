@@ -21,6 +21,7 @@ import com.lchtime.safetyexpress.ui.TabUI;
 import com.lchtime.safetyexpress.ui.chat.hx.fragment.ChatFragment;
 import com.lchtime.safetyexpress.ui.chat.hx.permission.PermissionsManager;
 
+
 /**
  * chat activity，EaseChatFragment was used {@link #}
  *聊天界面
@@ -38,6 +39,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
         setContentView(R.layout.em_activity_chat);
+
         activityInstance = this;
         //get user id or group id
         toChatUsername = getIntent().getExtras().getString("userId");
@@ -137,5 +139,14 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
 
     public void setTitle(String title){
         mTitle.setText(title);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == ChatFragment.REQUEST_CODE_GROUP_DETAIL && resultCode == RESULT_OK){
+            finish();
+        }
+
     }
 }

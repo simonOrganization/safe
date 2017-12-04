@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.ui.vip;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -26,6 +27,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.lchtime.safetyexpress.ui.circle.CircleUI.CITY_DETAIL_CODE;
 
 
 /**
@@ -55,10 +58,14 @@ public class MyCircleActiveActivity extends BaseUI {
     RecyclerView rcMycircleActive;
     @BindView(R.id.pb_progress)
     ProgressBar pb_progress;
+    @BindView(R.id.empty)
+    View mEmptyView; //错误界面
+
     private CircleProtocal protocal;
     private String userid = "";
     private List<QzContextBean> myCircleList = new ArrayList<>();
     private MyCircleActiveAdapter adapter;
+    private MyCircleActiveAdapter.OnDeleteListener mListener;
     @Override
     protected void back() {
         finish();
@@ -68,6 +75,12 @@ public class MyCircleActiveActivity extends BaseUI {
     protected void setControlBasis() {
         ButterKnife.bind(this);
         setTitle("我的圈子");
+        findViewById(R.id.tv_error).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initData();
+            }
+        });
     }
 
     @Override
@@ -81,12 +94,23 @@ public class MyCircleActiveActivity extends BaseUI {
             protocal = new CircleProtocal();
         }
         userid = SpTools.getUserId(this);
+        mListener = new MyCircleActiveAdapter.OnDeleteListener() {
+            @Override
+            public void onDeleteItem() {
+                if (myCircleList.size() == 0){
+                    mEmptyView.setVisibility(View.VISIBLE);
+                }else{
+                    mEmptyView.setVisibility(View.GONE);
+                }
+            }
+        };
         protocal.getMyCircleList(userid,"", new CircleProtocal.NormalListener() {
             @Override
             public void normalResponse(Object response) {
                 if (response == null){
-                    CommonUtils.toastMessage("加载我的动态失败，请稍后再试！");
+                    CommonUtils.toastMessage("加载我的圈子失败，请稍后再试！");
                     setIsLoading(false);
+                    mEmptyView.setVisibility(View.VISIBLE);
                     return;
                 }
 
@@ -97,24 +121,23 @@ public class MyCircleActiveActivity extends BaseUI {
                 if (bean.quanzi!= null) {
                     myCircleList.addAll(bean.quanzi);
                 }
-                if (myCircleList.size() == 0){
-                    CommonUtils.toastMessage("您还没有发布圈子");
-                }
                 if (adapter ==null) {
-                    adapter = new MyCircleActiveAdapter(MyCircleActiveActivity.this,myCircleList);
+                    adapter = new MyCircleActiveAdapter(MyCircleActiveActivity.this , myCircleList , mListener);
                     rcMycircleActive.setAdapter(adapter);
                 }else {
                     adapter.notifyDataSetChanged();
                 }
-
-
+                if (myCircleList.size() == 0){
+                    mEmptyView.setVisibility(View.VISIBLE);
+                }else{
+                    mEmptyView.setVisibility(View.GONE);
+                }
                 setIsLoading(false);
             }
         });
     }
 
-    public void backgroundAlpha(float bgAlpha)
-    {
+    public void backgroundAlpha(float bgAlpha) {
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.alpha = bgAlpha; //0.0-1.0
         getWindow().setAttributes(lp);
@@ -130,8 +153,14 @@ public class MyCircleActiveActivity extends BaseUI {
         }
     }
     public void refreshItemData(final String qc_id){
-
         initData();
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == CITY_DETAIL_CODE && resultCode == RESULT_OK){
+            initData();
+        }
     }
 }

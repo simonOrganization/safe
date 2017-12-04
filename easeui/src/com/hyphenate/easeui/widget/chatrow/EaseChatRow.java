@@ -162,13 +162,13 @@ public abstract class EaseChatRow extends LinearLayout {
             EaseUserUtils.setUserNick(user, usernickView);
 
             if (EaseInitBean.map != null && EaseInitBean.map.size() > position && EaseInitBean.map.get(user) != null){
-                if (!TextUtils.isEmpty(EaseInitBean.map.get(user).ud_photo_fileid)) {
+                //if (!TextUtils.isEmpty(EaseInitBean.map.get(user).ud_photo_fileid)) {
                     Glide.with(context)
                             .load(EaseInitBean.map.get(user).ud_photo_fileid)
                             .placeholder(R.drawable.circle_user_image)
                             .error(R.drawable.circle_user_image)
                             .into(userAvatarView);
-                }
+                //}
 
                 usernickView.setText(EaseInitBean.map.get(user).ud_nickname);
             }

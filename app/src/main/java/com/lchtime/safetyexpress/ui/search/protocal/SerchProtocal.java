@@ -9,6 +9,7 @@ import com.lchtime.safetyexpress.bean.QZSearchBean;
 import com.lchtime.safetyexpress.bean.WordSerchBean;
 import com.lchtime.safetyexpress.utils.CommonUtils;
 import com.lchtime.safetyexpress.utils.JsonUtils;
+import com.lchtime.safetyexpress.utils.SpTools;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -60,7 +61,7 @@ public class SerchProtocal {
     }
 
     //搜索
-    public void getSearchResult(String search, final int urlType, String type, final NormalListener listener){
+    public void getSearchResult(String search, String ub_id,final int urlType, String type, final NormalListener listener){
         if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
             //CommonUtils.toastMessage("您当前无网络，请联网再试");
             return;
@@ -84,7 +85,8 @@ public class SerchProtocal {
         PostFormBuilder builder = OkHttpUtils
                                             .post()
                                             .url(url)
-                                            .addParams("search",search);
+                                            .addParams("search",search)
+                .addParams("ub_id" , ub_id);
         if (urlType == 1 || urlType == 2){
             builder.addParams("type", type);
         }

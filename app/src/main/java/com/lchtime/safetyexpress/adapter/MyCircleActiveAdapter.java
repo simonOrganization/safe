@@ -45,10 +45,12 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
 
     private Activity context;
     private List<QzContextBean> circleOneList;
+    private OnDeleteListener listener;
 
-    public MyCircleActiveAdapter(Activity context, List<QzContextBean> circleOneList) {
+    public MyCircleActiveAdapter(Activity context, List<QzContextBean> circleOneList, OnDeleteListener listener) {
         this.context = context;
         this.circleOneList = circleOneList;
+        this.listener = listener;
     }
 
     @Override
@@ -71,10 +73,25 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
             if(!TextUtils.isEmpty(bean.qc_cwz)){
                 myHodler.mLongContentLl.setVisibility(View.VISIBLE);
                 myHodler.mCircleRl.setVisibility(View.GONE);
+                if(bean.qc_auth.trim().equals("")){
+                    myHodler.mLongAuthTv.setVisibility(View.GONE);
+                }else{
+                    myHodler.mLongAuthTv.setText("作者：" + bean.qc_auth);
+                    myHodler.mLongAuthTv.setVisibility(View.VISIBLE);
+                }
+                if(bean.qc_context.trim().equals("")){
+                    myHodler.mLongContentTv.setVisibility(View.GONE);
+                }else{
+                    myHodler.mLongContentTv.setVisibility(View.VISIBLE);
+                    myHodler.mLongContentTv.setText(bean.qc_context);
+                }
 
-                myHodler.mLongAuthTv.setText("作者：" + bean.qc_auth);
-                myHodler.mLongContentTv.setText(bean.qc_context);
-                myHodler.mLongTitleTv.setText(bean.qc_title);
+                if(bean.qc_title.trim().equals("")){
+                    myHodler.mLongTitleTv.setVisibility(View.GONE);
+                }else{
+                    myHodler.mLongTitleTv.setText(bean.qc_title);
+                    myHodler.mLongTitleTv.setVisibility(View.VISIBLE);
+                }
                 Glide.with(context).load(bean.qc_cwz).into(myHodler.mLongImg);
                 myHodler.mLongContentLl.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -158,7 +175,7 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                     Intent intent = new Intent(context, CircleH5Activity.class);
                     intent.putExtra("data", bean);
                     intent.putExtra("type", "circle");
-                    context.startActivity(intent);
+                    context.startActivityForResult(intent , CITY_DETAIL_CODE);
                 }
             });
             //点赞
@@ -212,6 +229,9 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
                 circleOneList.remove(position);
                 notifyDataSetChanged();
                 ((MyCircleActiveActivity) context).setIsLoading(false);
+                if(circleOneList.size() == 0){
+                    listener.onDeleteItem();
+                }
             }
         });
     }
@@ -397,5 +417,9 @@ public class MyCircleActiveAdapter extends RecyclerView.Adapter {
             ButterKnife.bind(this, itemView);
 
         }
+    }
+
+    public interface OnDeleteListener{
+        void onDeleteItem();
     }
 }

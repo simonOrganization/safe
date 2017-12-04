@@ -1,5 +1,6 @@
 package com.lchtime.safetyexpress.utils;
 
+import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.util.Log;
 import android.widget.Toast;
@@ -28,9 +29,11 @@ import okhttp3.Call;
 
 public class OpinionProtocal {
     public OpinionResultListener mListener;
-    public void getDataInternet(String advice,String filedid,String userID,String phone,OpinionResultListener listener){
-        if(!CommonUtils.isNetworkAvailable(MyApplication.getContext())){
-            //CommonUtils.toastMessage("您当前无网络，请联网再试");
+    public void getDataInternet(String advice, String filedid,
+                                String userID, String phone,
+                                final Context context , final OpinionResultListener listener){
+        if(!CommonUtils.isNetworkAvailable(context)){
+            listener.onResponseMessage(null);
             return;
         }
         this.mListener = listener;
@@ -50,7 +53,7 @@ public class OpinionProtocal {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        listener.onResponseMessage(null);
                     }
 
                     @Override
@@ -58,16 +61,18 @@ public class OpinionProtocal {
                         Log.i("--------","getTabData======="+response);
                         AdviceBean result = (AdviceBean) JsonUtils.stringToObject(response, AdviceBean.class);
                         if (result == null){
-                            Toast.makeText(MyApplication.getContext(),"请求失败",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context,"请求失败",Toast.LENGTH_SHORT).show();
+                            listener.onResponseMessage(null);
                             return;
                         }
                         if("10".equals(result.result.code)){
+                            Toast.makeText(context,"提交反馈成功",Toast.LENGTH_SHORT).show();
                             if (mListener != null) {
                                 mListener.onResponseMessage(result);
                             }
-                            Toast.makeText(MyApplication.getContext(),"提交反馈成功",Toast.LENGTH_SHORT).show();
                         }else {
-                            Toast.makeText(MyApplication.getContext(),"提交反馈失败，请再次提交！",Toast.LENGTH_SHORT).show();
+                            listener.onResponseMessage(null);
+                            Toast.makeText(context,"提交反馈失败，请再次提交！",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

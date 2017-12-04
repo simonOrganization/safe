@@ -713,6 +713,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 							CommonUtils.toastMessage(result.result.info);
 							//删除聊天记录
 							clearGroupHistory();
+                            setResult(RESULT_OK);
 							finish();
 						}else {
 							CommonUtils.toastMessage(result.result.info);
@@ -903,7 +904,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 						//如果有本地资源，那么就设置本地资源
 						Glide.with(GroupDetailsActivity.this).load(localPhotoSrc).into(holder.imageView);
 					}else {
-						Glide.with(GroupDetailsActivity.this).load(R.drawable.circle_user_image).into(holder.imageView);
+						Glide.with(GroupDetailsActivity.this).load(R.drawable.icon_head_rectangle).into(holder.imageView);
 					}
 
 //				final String st12 = getResources().getString(R.string.not_delete_myself);

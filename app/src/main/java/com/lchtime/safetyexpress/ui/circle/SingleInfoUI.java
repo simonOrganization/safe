@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import com.hyphenate.easeui.bean.ContactBean;
 import com.hyphenate.easeui.bean.EaseInitBean;
 import com.lchtime.safetyexpress.R;
+import com.lchtime.safetyexpress.adapter.CircleAdapter;
 import com.lchtime.safetyexpress.adapter.HeaderAndFooterWrapper;
 import com.lchtime.safetyexpress.adapter.SingleInfoRCAdapter;
 import com.lchtime.safetyexpress.bean.Constants;
@@ -44,6 +45,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.Call;
+
+import static com.igexin.sdk.GTServiceManager.context;
+import static com.lchtime.safetyexpress.ui.circle.CircleUI.CITY_DETAIL_CODE;
 
 /**
  * Created by android-cp on 2017/5/18.个人主页
@@ -76,6 +80,7 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
 
     private HeaderAndFooterWrapper wrapperAdapter;
     private SingleInfoRCAdapter listAdapter;
+    //private CircleAdapter listAdapter;
     private CircleImageView civVipIcon;
     private TextView tvVipNickname;
     private TextView tvVipProfession;
@@ -109,6 +114,7 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
         initView(view);
         singleInfoList.setLayoutManager(new GridLayoutManager(this,1));
         listAdapter = new SingleInfoRCAdapter(SingleInfoUI.this, myCircleList);
+        //listAdapter = new CircleAdapter(SingleInfoUI.this, myCircleList);
         wrapperAdapter = new HeaderAndFooterWrapper(listAdapter);
         wrapperAdapter.addHeaderView(view);
         singleInfoList.setAdapter(wrapperAdapter);
@@ -141,6 +147,8 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
                 String[] arr = infoBean.user.user.split("\\s+");
                 if (infoBean != null && !TextUtils.isEmpty(infoBean.user.ud_photo_fileid)){
                     Glide.with(SingleInfoUI.this).load(infoBean.user.ud_photo_fileid).into(civVipIcon);
+                }else{
+                    Glide.with(context).load(R.drawable.circle_user_image).into(civVipIcon);
                 }
                 tvVipNickname.setText(infoBean.user.ud_nickname);
                 if (arr.length == 3) {
@@ -275,8 +283,9 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
             intent.putExtra("uid",uid);
             startActivity(intent);
 
-        }else if(v == llFriends){
-
+        }else if(v == llFriends && userid.equals(uid)){
+             Intent intent = new Intent(mContext , MyFriendActivity.class);
+            startActivity(intent);
         }else if(v == tvSubscribe){
 
             if (dyClick){
@@ -380,6 +389,9 @@ public class SingleInfoUI extends BaseUI implements View.OnClickListener {
                     //CommonUtils.toastMessage("添加好友成功！");
                 }
             }
+        }
+        if(requestCode == CITY_DETAIL_CODE && resultCode == RESULT_OK){
+            prepareData();
         }
     }
 

@@ -284,7 +284,7 @@ public class HomeVideosUI extends BaseUI implements IWeiboHandler.Response {
     IUiListener qqShareListener = new IUiListener() {
         @Override
         public void onCancel() {
-            Util.toastMessage(HomeVideosUI.this, "onCancel: ");
+            Util.toastMessage(HomeVideosUI.this, "取消 ");
         }
 
         @Override

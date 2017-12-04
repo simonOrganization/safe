@@ -166,6 +166,7 @@ public class AskQuestionActivity extends BaseUI implements PopupWindow.OnDismiss
                 case 1:
                     // 删除图片
                     selectMedia.remove(position);
+                    fileList.remove(position);
                     adapter.notifyItemRemoved(position);
                     break;
             }
@@ -176,7 +177,6 @@ public class AskQuestionActivity extends BaseUI implements PopupWindow.OnDismiss
         @Override
         public void onSelectSuccess(List<LocalMedia> resultList) {
             if(resultList != null && resultList.size() > 1){
-                //Log.i("fxp" ,"type" + resultList.get(0).getType());
                 selectMedia = resultList;
             }else if(resultList != null && resultList.size() == 1){
                 if(selectMedia.contains(resultList.get(0))){
@@ -262,7 +262,7 @@ public class AskQuestionActivity extends BaseUI implements PopupWindow.OnDismiss
                             public void questionResponse(Object response) {
                                 Result result = (Result) response;
                                 Log.i("qaz", "questionResponse:1 ");
-                               // Toast.makeText(AskQuestionActivity.this,result.result.info,Toast.LENGTH_SHORT).show();
+                                setResult(RESULT_OK);
                                 finish();
                             }
                         });
@@ -343,7 +343,7 @@ public class AskQuestionActivity extends BaseUI implements PopupWindow.OnDismiss
                 .setGif(false)// 是否显示gif图片，默认不显示
 //                            .setCropW(cropW) // cropW-->裁剪宽度 值不能小于100  如果值大于图片原始宽高 将返回原图大小
 //                            .setCropH(cropH) // cropH-->裁剪高度 值不能小于100 如果值大于图片原始宽高 将返回原图大小
-                .setMaxB(202400) // 压缩最大值 例如:200kb  就设置202400，202400 / ic_launcher = 200kb
+                .setMaxB(102400) // 压缩最大值 例如:200kb  就设置202400，202400 / ic_launcher = 200kb
                 .setPreviewColor(previewColor) //预览字体颜色
                 .setCompleteColor(completeColor) //已完成字体颜色
                 .setPreviewBottomBgColor(ContextCompat.getColor(AskQuestionActivity.this, R.color.transparent)) //预览底部背景色

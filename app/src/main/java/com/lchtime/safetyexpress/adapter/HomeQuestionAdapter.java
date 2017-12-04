@@ -82,8 +82,9 @@ public class HomeQuestionAdapter extends RecyclerView.Adapter {
             myHolder.iv_question.setVisibility(View.VISIBLE);
             myHolder.mgv_question.setVisibility(View.GONE);
             Glide.with(context).load(bean.pic.get(0))
-                    //.transform(ImageUtils.getTransformation(myHolder.iv_question))
-            .into(myHolder.iv_question);
+                    .placeholder(R.drawable.home_banner)
+                    .error(R.drawable.home_banner)
+                    .into(myHolder.iv_question);
             final ArrayList<String> picList = (ArrayList<String>) list.get(position).pic;
 
             myHolder.iv_question.setOnClickListener(new View.OnClickListener() {

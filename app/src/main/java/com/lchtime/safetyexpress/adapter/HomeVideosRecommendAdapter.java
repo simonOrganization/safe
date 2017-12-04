@@ -64,7 +64,7 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
 
         myHolder.tv_from.setText(bean.cc_from);
         myHolder.tv_comment.setText(bean.plNum);
-        //myHolder.tv_time1.setText(bean.video_time);
+        myHolder.tv_time1.setText(bean.video_time);
         if (!TextUtils.isEmpty(bean.cc_datetime)) {
             myHolder.tv_time2.setText(CommonUtils.getSpaceTime(Long.parseLong(bean.cc_datetime)));
         }
@@ -116,8 +116,8 @@ public class HomeVideosRecommendAdapter extends RecyclerView.Adapter{
 //        ImageView iv_img_bg;
 //        @BindView(R.id.iv_recommend_play)
 //        ImageView iv_play;
-        /*@BindView(R.id.tv_recommend_time1)
-        TextView tv_time1;*/
+        @BindView(R.id.tv_recommend_time1)
+        TextView tv_time1;
         @BindView(R.id.tv_recommend_from)
         TextView tv_from;
         @BindView(R.id.tv_recommend_comment)

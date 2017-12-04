@@ -70,7 +70,7 @@ public class MyMoneyActivity extends BaseUI implements View.OnClickListener {
     @Override
     protected void setControlBasis() {
         ButterKnife.bind(this);
-        setTitle("我的账户");
+        setTitle("我的钱包");
         rightTextVisible("账户明细");
 
     }

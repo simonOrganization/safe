@@ -49,12 +49,6 @@ public class CircleFragment extends BaseFragment {
     @Override
     public LoadingPager.LoadedResult initData() {
         getCircleList("0", "");
-
-        if (loadedResult == null) {
-            loadedResult = checkResult(list);
-        }
-
-
         return loadedResult;
     }
 
@@ -91,7 +85,7 @@ public class CircleFragment extends BaseFragment {
                 Log.i("qaz", "getCircleList: " + list);
                 adapter = new CircleAdapter(getActivity(), list);
                 adapter.setShowDy(false);
-
+                loadedResult = checkResult(list);
                 // home_new_fragment_rc.setAdapter(homeNewAdapter);
             } else {
                 loadedResult = LoadingPager.LoadedResult.ERRO;
@@ -124,7 +118,12 @@ public class CircleFragment extends BaseFragment {
             list.remove(bean);
         }
         deleteList.clear();
-        adapter.notifyDataSetChanged();
+        if(list.size() == 0){
+            initData();
+        }else{
+            adapter.notifyDataSetChanged();
+        }
+
     }
 
     public void refreshItemData(final String qc_id) {

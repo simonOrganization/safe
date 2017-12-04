@@ -41,13 +41,13 @@
                     android:layout_width="@dimen/dm068"
                     android:layout_height="@dimen/dm068"
                     android:adjustViewBounds="true"
-                    android:background="@drawable/circle_user_image"
+                    android:src="@drawable/circle_user_image"
                     android:scaleType="centerCrop" />
 
                 <TextView
                     android:id="@+id/circle_item_title"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/dm020"
                     android:layout_toRightOf="@+id/iv_circle_photo"
                     android:layout_weight="1"

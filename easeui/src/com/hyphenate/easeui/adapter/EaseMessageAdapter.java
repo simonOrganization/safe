@@ -224,26 +224,26 @@ public class EaseMessageAdapter extends BaseAdapter{
             return customRowProvider.getCustomChatRow(message, position, this);
         }
         switch (message.getType()) {
-        case TXT:
+        case TXT:		//文字样式
             if(message.getBooleanAttribute(EaseConstant.MESSAGE_ATTR_IS_BIG_EXPRESSION, false)){
                 chatRow = new EaseChatRowBigExpression(context, message, position, this);
             }else{
                 chatRow = new EaseChatRowText(context, message, position, this);
             }
             break;
-        case LOCATION:
+        case LOCATION: //位置样式
             chatRow = new EaseChatRowLocation(context, message, position, this);
             break;
-        case FILE:
+        case FILE:		//文件样式
             chatRow = new EaseChatRowFile(context, message, position, this);
             break;
-        case IMAGE:
+        case IMAGE:		//图片样式
             chatRow = new EaseChatRowImage(context, message, position, this);
             break;
-        case VOICE:
+        case VOICE:		//语音样式
             chatRow = new EaseChatRowVoice(context, message, position, this);
             break;
-        case VIDEO:
+        case VIDEO:		//视频样式
             chatRow = new EaseChatRowVideo(context, message, position, this);
             break;
         default:

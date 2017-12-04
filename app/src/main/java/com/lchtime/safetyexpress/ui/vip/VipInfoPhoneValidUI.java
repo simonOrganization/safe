@@ -147,12 +147,8 @@ public class VipInfoPhoneValidUI extends BaseUI {
             LoginInternetRequest.verificationCode(phonenum, tv_info_phone_valid_code, new LoginInternetRequest.ForResultListener() {
                 @Override
                 public void onResponseMessage(String code) {
-//                    if (TYPE_CHANGE.equals(currentType)&&isReset){
-//                        LoginInternetRequest.reset();
-//                        isReset = false;
-//                    }
                     currentCode = code;
-                    Toast.makeText(VipInfoPhoneValidUI.this, code + "", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VipInfoPhoneValidUI.this,  "验证码发送成功", Toast.LENGTH_SHORT).show();
                 }
             });
         }else {
